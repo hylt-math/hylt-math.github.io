@@ -1,0 +1,26 @@
+---
+layout: default
+---
+<section class="intro">
+  <p>{{ site.description | escape }}</p>
+</section>
+
+<section class="post-list">
+  <h2>記事一覧</h2>
+  {% if site.posts.size == 0 %}
+    <p>まだ記事はありません。</p>
+  {% endif %}
+  <ul>
+    {% for post in site.posts %}
+    <li>
+      <div class="meta">
+        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%Y-%m-%d' }}</time>
+        {% if post.status %}<span class="status status-{{ post.status }}">{{ site.status_labels[post.status] | default: post.status }}</span>{% endif %}
+      </div>
+      <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+      {% if post.abstract %}<div class="summary">{{ post.abstract | markdownify }}</div>{% endif %}
+      {% if post.tags.size > 0 %}<p class="tags">{% for t in post.tags %}<span class="tag">{{ t }}</span>{% endfor %}</p>{% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+</section>

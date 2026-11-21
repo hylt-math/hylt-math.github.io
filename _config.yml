@@ -1,0 +1,38 @@
+# ===== サイトの基本設定（ここを書き換えてください） =====
+title: "数学研究ノート"
+description: "研究の進捗と結果を順次公開しています。"
+author: "hylt-math"
+lang: ja
+
+# GitHub Pages の URL
+#  リポジトリ名を「ユーザー名.github.io」にした場合: baseurl は "" のまま
+#  それ以外（例: math-research）にした場合: baseurl: "/math-research"
+url: "https://hylt-math.github.io"
+baseurl: ""
+
+# 記事のステータス表示（記事の front matter の status: に左側の値を書く）
+status_labels:
+  wip: "進行中"
+  conjecture: "予想"
+  proved: "証明済み"
+  partial: "部分的結果"
+  open: "未解決"
+  retracted: "撤回"
+
+# ===== 以下は通常変更不要 =====
+markdown: kramdown
+kramdown:
+  input: GFM
+  math_engine: mathjax
+  parse_block_html: true
+  hard_wrap: false
+
+permalink: /:year/:month/:day/:title/
+timezone: Asia/Tokyo
+
+plugins:
+  - jekyll-feed
+
+exclude:
+  - README.md
+  - CLAUDE.md
