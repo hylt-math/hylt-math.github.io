@@ -21,6 +21,19 @@ abstract: "1〜3文の概要。数式は $$x^2$$ のように書ける。"
 本文（Markdown）
 ```
 
+## PDF を公開する場合
+
+1. PDF を `assets/pdf/` に置く。ファイル名は英小文字・数字・ハイフン（例: `assets/pdf/generalized-geometry-v1.pdf`）。
+2. 同じ内容を紹介する記事を `_posts/` に作り、front matter に次を加える。
+
+```yaml
+pdf: /assets/pdf/generalized-geometry-v1.pdf
+pdf_version: "v1"   # 省略可
+```
+
+本文には主結果の要約（定理の主張など）を数式つきで数段落書く。記事ページには PDF を開くボタンと埋め込み表示が自動で付く。
+3. PDF を改訂したら、新しいファイル名（`-v2.pdf` など）で追加し、記事の `pdf:` を差し替えて `updated:` と改訂履歴を書く。古い PDF は消さずに残す。
+
 ## 数式（kramdown + MathJax）
 
 - 文中の数式も **`$$...$$`** で書く（単独の `$` は数式にならない）。

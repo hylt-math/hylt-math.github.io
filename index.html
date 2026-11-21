@@ -16,6 +16,7 @@ layout: default
       <div class="meta">
         <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%Y-%m-%d' }}</time>
         {% if post.status %}<span class="status status-{{ post.status }}">{{ site.status_labels[post.status] | default: post.status }}</span>{% endif %}
+        {% if post.pdf %}<a class="pdf-badge" href="{{ post.pdf | relative_url }}">PDF</a>{% endif %}
       </div>
       <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
       {% if post.abstract %}<div class="summary">{{ post.abstract | markdownify }}</div>{% endif %}
