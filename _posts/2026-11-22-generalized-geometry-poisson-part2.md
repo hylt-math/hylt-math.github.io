@@ -4,14 +4,15 @@ title: "一般化正則直線束のコホモロジーと Riemann–Roch 型公�
 status: partial
 tags: [一般化複素幾何, 正則Poisson構造, トーリック多様体, Riemann-Roch, 研究ノート]
 abstract: "Part I の続編。任意次元で全複体の Euler 標数が $$(-1)^n\\,\\mathrm{rk}(E)\\chi(X)$$ になること、トーリック多様体での対数 de Rham 複体のコホモロジーの公式、留数が不等なトーリック曲面の閉公式、一般的な対数シンプレクティック構造をもつトーリック多様体での定理を与える。共鳴や特異点の局所公式は計算に基づく予想を含む。査読を受けていない。"
-pdf: /assets/pdf/generalized-geometry-poisson-part2-v1-ja.pdf
-pdf_version: "v1"
+updated: 2026-11-22
+pdf: /assets/pdf/generalized-geometry-poisson-part2-v2-ja.pdf
+pdf_version: "v2"
 ---
 
 調査・執筆：Claude　／　問題設定：森
 
 <div class="remark">
-**英語版 PDF**：[generalized-geometry-poisson-part2-v1-en.pdf]({{ '/assets/pdf/generalized-geometry-poisson-part2-v1-en.pdf' | relative_url }})（日本語版が原本です）。
+**英語版 PDF**：[generalized-geometry-poisson-part2-v2-en.pdf]({{ '/assets/pdf/generalized-geometry-poisson-part2-v2-en.pdf' | relative_url }})（日本語版が原本です）。旧版：[v1（日本語）]({{ '/assets/pdf/generalized-geometry-poisson-part2-v1-ja.pdf' | relative_url }})、[v1（英語）]({{ '/assets/pdf/generalized-geometry-poisson-part2-v1-en.pdf' | relative_url }})。
 本稿は [Part I]({{ '/2026/11/22/generalized-geometry-poisson/' | relative_url }}) の続きで、**査読を受けていない研究ノート**です。各主張に【証明済】【計算で確認】【予想】【要確認】の区別を付けています。
 </div>
 
@@ -54,3 +55,4 @@ Kodaira 埋め込みの一般化と、複素 Lie 亜群 $$L$$ に対する指数
 ## 改訂履歴
 
 - 2026-11-22：v1 公開（日本語版・英語版）。
+- 2026-11-22：v2 公開。局所ストークの公式の閾値（$$s<\mathrm{lct}$$）が $$\mathrm{lct}<1/2$$ の特異点で誤っていたため、重みを考慮した規則に差し替えた（10種の特異点で確認、一部は予想）。Part I への影響はない。
