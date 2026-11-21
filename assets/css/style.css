@@ -1,0 +1,128 @@
+:root {
+  --text: #1f2328;
+  --muted: #656d76;
+  --bg: #ffffff;
+  --line: #d8dee4;
+  --accent: #1a5fb4;
+  --box: #f6f8fa;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #e6edf3;
+    --muted: #9198a1;
+    --bg: #0d1117;
+    --line: #30363d;
+    --accent: #6cb6ff;
+    --box: #161b22;
+  }
+}
+
+* { box-sizing: border-box; }
+html { font-size: 17px; }
+body {
+  margin: 0;
+  color: var(--text);
+  background: var(--bg);
+  font-family: "Hiragino Sans", "Noto Sans JP", "Yu Gothic", system-ui, sans-serif;
+  line-height: 1.85;
+}
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 20px; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* header / footer */
+.site-header { border-bottom: 1px solid var(--line); padding: 14px 0; }
+.site-header .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; }
+.site-title { font-weight: 700; font-size: 1.2rem; color: var(--text); }
+.site-header nav a { margin-left: 18px; font-size: 0.9rem; color: var(--muted); }
+.site-header nav a:first-child { margin-left: 0; }
+main.wrap { padding-top: 28px; padding-bottom: 60px; min-height: 70vh; }
+.site-footer { border-top: 1px solid var(--line); padding: 20px 0; color: var(--muted); font-size: 0.85rem; }
+
+/* headings */
+h1, h2, h3 { line-height: 1.4; }
+h1 { font-size: 1.7rem; margin: 0 0 8px; }
+h2 { font-size: 1.3rem; margin-top: 2.2em; padding-bottom: 4px; border-bottom: 1px solid var(--line); }
+h3 { font-size: 1.1rem; margin-top: 1.8em; }
+
+/* list */
+.intro { color: var(--muted); }
+.post-list ul { list-style: none; padding: 0; }
+.post-list li { padding: 18px 0; border-bottom: 1px solid var(--line); }
+.post-link { font-size: 1.15rem; font-weight: 600; }
+.summary { color: var(--muted); font-size: 0.93rem; }
+.summary p { margin: 4px 0 0; }
+.meta { color: var(--muted); font-size: 0.85rem; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+
+/* status & tags */
+.status {
+  display: inline-block; font-size: 0.75rem; padding: 0 8px; border-radius: 10px;
+  border: 1px solid currentColor; line-height: 1.6;
+}
+.status-wip { color: #9a6700; }
+.status-conjecture { color: #8250df; }
+.status-proved { color: #1a7f37; }
+.status-partial { color: #0969da; }
+.status-open { color: #656d76; }
+.status-retracted { color: #cf222e; text-decoration: line-through; }
+.tags { margin: 6px 0 0; }
+.tag { display: inline-block; font-size: 0.75rem; background: var(--box); border: 1px solid var(--line); border-radius: 4px; padding: 0 6px; margin-right: 6px; }
+
+/* post */
+.post-header { margin-bottom: 20px; }
+.abstract { background: var(--box); border: 1px solid var(--line); border-radius: 6px; padding: 4px 18px; margin-bottom: 24px; }
+.abstract h2 { font-size: 0.95rem; border: none; margin: 10px 0 0; color: var(--muted); }
+.post-nav { display: flex; justify-content: space-between; gap: 16px; margin-top: 50px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 0.9rem; }
+
+/* math */
+mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; padding: 4px 0; }
+
+/* code & tables */
+pre, code { font-family: ui-monospace, "SFMono-Regular", Menlo, monospace; font-size: 0.88em; }
+pre { background: var(--box); padding: 12px 14px; border-radius: 6px; overflow-x: auto; }
+:not(pre) > code { background: var(--box); padding: 1px 5px; border-radius: 4px; }
+table { border-collapse: collapse; margin: 1em 0; }
+th, td { border: 1px solid var(--line); padding: 6px 12px; }
+th { background: var(--box); }
+img { max-width: 100%; }
+
+/* theorem environments */
+.post-body { counter-reset: thm; }
+.theorem, .lemma, .proposition, .corollary, .conjecture,
+.definition, .example, .remark, .proof {
+  margin: 1.4em 0; padding: 10px 16px; border-left: 4px solid var(--line);
+}
+.theorem, .lemma, .proposition, .corollary, .conjecture { border-left-color: var(--accent); background: var(--box); }
+.conjecture { border-left-color: #8250df; }
+.definition { border-left-color: #1a7f37; }
+.theorem, .lemma, .proposition, .corollary, .conjecture, .definition, .example { counter-increment: thm; }
+.theorem > :first-child, .lemma > :first-child, .proposition > :first-child,
+.corollary > :first-child, .conjecture > :first-child, .definition > :first-child,
+.example > :first-child, .remark > :first-child, .proof > :first-child { margin-top: 0; }
+.theorem > :last-child, .lemma > :last-child, .proposition > :last-child,
+.corollary > :last-child, .conjecture > :last-child, .definition > :last-child,
+.example > :last-child, .remark > :last-child, .proof > :last-child { margin-bottom: 0; }
+
+.theorem::before, .lemma::before, .proposition::before, .corollary::before,
+.conjecture::before, .definition::before, .example::before, .remark::before, .proof::before {
+  display: block; font-weight: 700; margin-bottom: 2px;
+}
+.theorem::before     { content: "定理 " counter(thm); }
+.lemma::before       { content: "補題 " counter(thm); }
+.proposition::before { content: "命題 " counter(thm); }
+.corollary::before   { content: "系 " counter(thm); }
+.conjecture::before  { content: "予想 " counter(thm); }
+.definition::before  { content: "定義 " counter(thm); }
+.example::before     { content: "例 " counter(thm); }
+.remark::before      { content: "注意"; }
+.proof::before       { content: "証明"; font-weight: 600; font-style: italic; }
+
+.theorem[data-name]::before     { content: "定理 " counter(thm) "（" attr(data-name) "）"; }
+.lemma[data-name]::before       { content: "補題 " counter(thm) "（" attr(data-name) "）"; }
+.proposition[data-name]::before { content: "命題 " counter(thm) "（" attr(data-name) "）"; }
+.corollary[data-name]::before   { content: "系 " counter(thm) "（" attr(data-name) "）"; }
+.conjecture[data-name]::before  { content: "予想 " counter(thm) "（" attr(data-name) "）"; }
+.definition[data-name]::before  { content: "定義 " counter(thm) "（" attr(data-name) "）"; }
+.example[data-name]::before     { content: "例 " counter(thm) "（" attr(data-name) "）"; }
+
+.proof::after { content: "∎"; display: block; text-align: right; }
