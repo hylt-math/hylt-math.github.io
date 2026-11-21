@@ -4,14 +4,15 @@ title: "一般化複素幾何における Serre 型消滅・双対性・Riemann�
 status: partial
 tags: [一般化複素幾何, 正則Poisson構造, Serre消滅, Riemann-Roch, 研究ノート]
 abstract: "複素幾何の三種の神器（Riemann–Roch、Serre 消滅、Kodaira 埋め込み）の一般化複素幾何版を目指し、正則 Poisson 構造から作る一般化複素構造と一般化正則直線束の具体例を調べた研究ノート。Serre 型消滅は「横断次数」での消滅として定式化され、対数シンプレクティックな曲面では留数に応じたコホモロジーの閉じた公式が得られた。Kodaira 埋め込みは未着手。査読を受けていない。"
-pdf: /assets/pdf/generalized-geometry-poisson-v1-ja.pdf
-pdf_version: "v1"
+updated: 2026-11-22
+pdf: /assets/pdf/generalized-geometry-poisson-v2-ja.pdf
+pdf_version: "v2"
 ---
 
 調査・執筆：Claude　／　問題設定：森
 
 <div class="remark">
-**英語版 PDF**：[generalized-geometry-poisson-v1-en.pdf]({{ '/assets/pdf/generalized-geometry-poisson-v1-en.pdf' | relative_url }})（日本語版が原本です）。
+**英語版 PDF**：[generalized-geometry-poisson-v2-en.pdf]({{ '/assets/pdf/generalized-geometry-poisson-v2-en.pdf' | relative_url }})（日本語版が原本です）。旧版：[v1（日本語）]({{ '/assets/pdf/generalized-geometry-poisson-v1-ja.pdf' | relative_url }})、[v1（英語）]({{ '/assets/pdf/generalized-geometry-poisson-v1-en.pdf' | relative_url }})。
 本稿は**査読を受けていない研究ノート**です。PDF 中の各主張には【文献】【証明済】【計算で確認】【予想】【要確認】の区別を付けています。文献の定理番号や書誌には、記憶や要約に基づく未確認のものが残っています（【要確認】）。
 </div>
 
@@ -61,3 +62,4 @@ Kodaira 埋め込みの一般化は未着手です。非結節点の特異点、
 ## 改訂履歴
 
 - 2026-11-22：v1 公開（日本語版・英語版）。
+- 2026-11-22：v2 公開。文献の書誌・定理番号の誤りを訂正した（arXiv:0905.3227 の著者は Hitchin、Gualtieri 2011 の番号、Pal–Poddar の題名・定理番号、Lang–Jia–Liu の書誌など）。定理・命題の主張そのものは変更していない。訂正の一覧は PDF 末尾の「v2 改訂点」を参照。
