@@ -126,3 +126,15 @@ img { max-width: 100%; }
 .example[data-name]::before     { content: "例 " counter(thm) "（" attr(data-name) "）"; }
 
 .proof::after { content: "∎"; display: block; text-align: right; }
+
+/* PDF */
+.pdf-box { margin: 0 0 28px; }
+.pdf-button {
+  display: inline-block; padding: 8px 18px; border-radius: 6px;
+  background: var(--accent); color: #fff; font-weight: 600;
+}
+.pdf-button:hover { text-decoration: none; opacity: 0.9; }
+.pdf-view { display: block; width: 100%; height: 80vh; margin-top: 14px; border: 1px solid var(--line); border-radius: 6px; }
+@media (max-width: 700px) { .pdf-view { display: none; } }
+.pdf-badge { font-size: 0.72rem; font-weight: 700; padding: 0 6px; border-radius: 4px; background: #cf222e; color: #fff; line-height: 1.6; }
+.pdf-badge:hover { text-decoration: none; }
