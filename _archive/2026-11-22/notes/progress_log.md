@@ -73,3 +73,10 @@ Extended log-symplectic surface theorem to unequal residues (toric, proved V_S f
 
 ## 2026-11-22 round I (Conjecture C)
 - roundI_notes.md: Theorem R (HH ≅ H*(U;L)⊕C^{#D_(n)}[−n] iff/under (GEN') acyclicity of the graded pieces Q_T of Q=C/B, no (V)/ampleness needed; proof via Deligne + i^!Rj_*=0), Euler consequence Σ_{0<k<n}χ(D_k°)=0, toric reproof of Thm T without (V),(A), cross-term mechanism (P²×P² block: 6t²(1+t)² exactly), cp2/roundI_check.py (48/48 no-solvable ⇒ generic; 25 hits). Gaps: sufficiency of ν_T≠0 for non-linear σ; holomorphic log-Darboux; general-n gr_T formula sketched.
+
+## 2026-11-22 Round K
+Fixed roundK_check.py padding bug; all checks pass (K1 0/175, K2a 0/188, K2b 0/61). Notes: roundK_notes.md.
+Statements: Thm K1 (chi = chi(U)), Thm K (refined RR formula), wall-crossing Euler identity, index conjecture (b-calculus). Not pushed.
+
+## 2026-11-22 Round H
+Proved the local stalk rule R(s) for quasi-homogeneous isolated plane-curve germs (s!=1) via weight-k0 complex; verified by cp2/roundH_proof_check.py (14 types, 0 mismatches). Notes: roundH_notes.md. Not yet folded into published posts (next: v3/new post, sync _archive, STATE.md).

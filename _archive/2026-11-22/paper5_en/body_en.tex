@@ -1,0 +1,260 @@
+%--------------------------------------------------------------
+\section{Overview: position of this note and results}
+%--------------------------------------------------------------
+Parts I--IV studied the generalized Dolbeault cohomology $\HH^\bullet(L)$ of generalized holomorphic line bundles $L$ on the generalized complex structure obtained by a $\beta$-transform from a holomorphic Poisson structure $\sigma$ on a complex manifold $X$, starting from concrete examples. This note collects three things.
+
+\begin{itemize}
+\item \textbf{Riemann--Roch-type formulas.} (a) The total Euler characteristic does not depend on $c_1(E)$ (Part II Theorem E, recalled). (b) Its logarithmic version: the Euler characteristic of the log de Rham complex of any $L$ with a flat log connection equals $\chi(U)$ (Theorem \ref{thm:K1}) \tP. (c) For $U$ affine and $n$ even, the whole Poincar\'e polynomial is expressed through $\chi(X)$ and the dimensions $h^k(U;L_U)$ (Theorem \ref{thm:K}) \tP\tV. (d) In regular type the dimension is a polynomial in $m$ in each degree (Part IV Cor.\ L). We contrast these three ``behaviours of dimensions'' (\S\ref{sec:three}).
+\item \textbf{Proof of the local formula.} The stalk formula for plane curve germs with quasi-homogeneous isolated singularity, which was only a computational observation and a conjecture in Part II, is proved for $s\neq1$ (Theorem \ref{thm:local}) \tP.
+\item \textbf{The index conjecture.} We state precisely a conjecture on a weighted b-calculus on the log tangent algebroid, as the ``index-theorem version'' of Riemann--Roch, and separate what remains unproved (Conjecture \ref{conj:index}) \tK.
+\end{itemize}
+Finally we summarize, claim by claim, where Parts I--V stand with respect to the original goal (a generalized-geometry version of Riemann--Roch, Serre vanishing and Kodaira embedding) (\S\ref{sec:ledger}). \emph{The index conjecture is not proved.}
+
+%--------------------------------------------------------------
+\section{Notation (new or recalled)}\label{sec:notation}
+%--------------------------------------------------------------
+\begin{longtable}{>{\raggedright\arraybackslash}p{3.8cm}>{\raggedright\arraybackslash}p{11.2cm}}
+\toprule Symbol & Meaning\\ \midrule\endhead
+$X$, $n$ & compact complex manifold, $\dim_\C X=n$; $n$ is even in the log-symplectic case\\
+$\sigma$ & holomorphic Poisson structure on $X$. ``Log-symplectic'' means that the zero divisor of $\sigma^{n/2}$ is a reduced simple normal crossings (SNC) divisor $D$ and $\sigma$ is logarithmically non-degenerate along $D$\\
+$D=\bigcup D_i$, $U=X\setminus D$ & SNC divisor and its complement. $D_T=\bigcap_{i\in T}D_i$; $D_{(n)}$ is the set of $n$-fold points\\
+$L$, $r_i$ & line bundle which is a Poisson module (generalized holomorphic line bundle). The residue $r_i\in\C$ along $D_i$ is constant (Esnault--Viehweg); $c_1(L)=-\sum r_i[D_i]$ in $H^2(X;\C)$\\
+$L_U$ & flat line bundle on $U$ (sheaf of flat sections of $L$); its monodromy around $D_i$ is determined by $r_i$ (Deligne)\\
+$T(-\log D)$, $\Omega^p(\log D)$ & log tangent bundle, sheaves of log differential forms\\
+$\mathrm{DR}_{\log}(L)$ & log de Rham complex $(\Omega^\bullet(\log D)\otimes L,\nabla)$\\
+$\HH^k(L)$ & generalized Dolbeault cohomology: hypercohomology of $(\wedge^\bullet T\otimes L,\ \dbar+[\sigma,\cdot])$\\
+$P_{\HH}(t)$ & $\sum_k\dim\HH^k(L)\,t^k$\\
+$h^k(U;L_U)$ & $\dim H^k(U;L_U)$\\
+$\chi(X)$, $\chi(U)$ & topological Euler characteristics\\
+$\partial U$ & boundary of a tubular neighbourhood of $D$ (the end of $U$); a closed real $(2n-1)$-manifold ($\chi(\partial U)=0$)\\
+$h$, $(w_z,w_w)$, $N$ & defining function of a quasi-homogeneous isolated singularity, weights, degree; $\delta=N-w_z-w_w$\\
+$J=(h_z,h_w)$, $T=\mathcal O/J$, $\mu$ & Jacobian ideal, Milnor algebra, Milnor number $\mu=\dim T$\\
+$\mathrm{Sp}$ & spectrum: for each monomial basis element $m$ of $T$, $\alpha=(\mathrm{wt}(m)+w_z+w_w)/N$\\
+$s$ & residue (local exponent) of the local model $\mathcal O\,h^s$; $\nabla_s=d+s\,\dlog h$\\
+$\chi_h$, $e$ & Hamiltonian vector field $h_w\partial_z-h_z\partial_w$ and Euler field $w_zz\partial_z+w_ww\partial_w$ ($e h=Nh$)\\
+\bottomrule
+\end{longtable}
+(To avoid confusion with $\chi(X)$ the Hamiltonian field is written $\chi_h$.)
+
+\paragraph{Status tags.} \tP\ proved here or in an earlier part; \tC\ result from the literature; \tV\ checked by computer (exact rational/finite-field linear algebra); \tK\ conjecture; \tQ\ unverified (e.g.\ citations from memory). When several tags occur, each refers to the corresponding part.
+
+%--------------------------------------------------------------
+\section{Recollection of known results}\label{sec:recall}
+%--------------------------------------------------------------
+We list the statements from earlier parts that are used here, with their status only (proofs are in the respective parts). Part I: \cite{PartI}, II: \cite{PartII}, III: \cite{PartIII}, IV: \cite{PartIV}.
+
+\begin{thm}[Euler characteristic theorem (Part II, Theorem E) \tP]\label{thm:E}
+Let $X$ be a compact complex manifold, $\sigma$ any holomorphic Poisson structure and $E$ a generalized holomorphic vector bundle of rank $\rk E$. Then $\sum_k(-1)^k\dim\HH^k(E)=(-1)^n\,\rk(E)\,\chi(X)$.
+\end{thm}
+Sketch: filter the complex by the Higgs degree $b$; the graded pieces are the complexes of $H^a(X;\wedge^bT\otimes E)$, and the $\sigma$-part of the differential lowers the filtration, so the Euler characteristic is $\sum_b(-1)^b\chi(\wedge^bT\otimes E)$. By Hirzebruch--Riemann--Roch, $\sum_b(-1)^b\mathrm{ch}(\wedge^bT)=c_n(T)\mathrm{Td}(T)^{-1}$ starts in degree $n$, so higher terms of $\mathrm{ch}(E)$ do not contribute and $\rk E\cdot\int c_n(T_X)$ remains. \emph{Hence it is completely independent of $c_1(E)$.}
+
+\begin{thm}[Reduction theorem (Part IV, Theorem R) \tP\ \tQ]\label{thm:R}
+Assume $\sigma$ is log-symplectic along an SNC divisor $D$, no residue $r_i$ lies in $\Z_{\ge1}$, and (GEN$'$) holds (for $0<|T|<n$ the quotient complex $Q_T$ on the stratum $D_T$ is acyclic). Then $\HH^*(L)\cong H^*(U;L_U)\oplus\bigoplus_{p\in D_{(n)}}\C[-n]$.
+\end{thm}
+For $n=2$ this is the theorem of Part I. The derivation from the filtration of $Q$ in general $n$ is closer to a sketch in Part IV, and we carry the \tQ\ over. In the toric case (GEN$'$) is proved (Part IV, Proposition).
+
+\begin{thm}[Regular type (Part IV, Theorem L and Cor.\ L) \tP\ \tQ]\label{thm:L}
+Let $Y\to M\to X$ be a flat symplectic fibre bundle ($Y$ compact connected symplectic satisfying hard Lefschetz, $X$ compact complex) and $E=\pi^*G$ for a holomorphic line bundle $G$ on $X$. Then $\HH^k(M,E)\cong\bigoplus_{a+b+j=k}H^a(X,\wedge^bT_X\otimes V^j\otimes G)$ ($V^j$ the Gauss--Manin bundle of the fibre). In particular for $G=G_0^m$ ($G_0$ ample) the dimension in each degree $k$ is a polynomial in $m$ ($m\gg0$).
+\end{thm}
+It uses the Leray spectral sequence and Deligne's Lefschetz lemma; the points involving a Nomizu-type theorem are marked \tQ\ in Part IV.
+
+\paragraph{Other earlier results (statements only).} Duality $\HH^k(L)^*\cong\HH^{2n-k}(L^\vee\otimes K^2)$ (Part I, any dimension) \tP; Serre-type vanishing in the transversal degree, failing in total degree (Part I) \tP; impossibility of embedding by generalized holomorphic sections, leaf-space Kodaira, Poisson--Kodaira conjecture in the toric case (Part III) \tP\ \tK.
+
+%--------------------------------------------------------------
+\section{Euler characteristic of the log de Rham complex (Theorem K1)}\label{sec:K1}
+%--------------------------------------------------------------
+\begin{thm}[K1: log version of the Euler characteristic \tP]\label{thm:K1}
+Let $X$ be a compact complex manifold, $D\subset X$ an SNC divisor and $L$ a line bundle with a flat logarithmic connection $\nabla:L\to L\otimes\Omega^1_X(\log D)$. Then $\mathbb H^k(X;\mathrm{DR}_{\log}(L))$ is finite dimensional and
+\[\sum_k(-1)^k\dim\mathbb H^k(X;\mathrm{DR}_{\log}(L))\;=\;\int_Xc_n\bigl(T_X(-\log D)\bigr)\;=\;\chi(U)\;=\;\sum_{T}(-1)^{|T|}\chi(D_T),\]
+independent of $L$ and of the residues $r_i$.
+\end{thm}
+\begin{hyptab}
+$X$ compact & $H^q(X;\Omega^p(\log D)\otimes L)$ finite dimensional; HRR available. & Steps (1), (2).\\\midrule
+$D$ SNC & $\Omega^p(\log D)$ locally free, and $\Omega^\bullet(\log D)\simeq Rj_*\C_U$ (log Poincar\'e lemma). & Step (3) (to get the topological value for $L=\mathcal O$).\\\midrule
+$\nabla$ flat log connection & makes $\mathrm{DR}_{\log}(L)$ a complex; in rank 1 the residues are constant. & Step (1).\\\midrule
+residues $r_i\notin\Z_{\ge1}$ & \emph{not needed.} & Only for the identification $\mathrm{DR}_{\log}(L)\simeq Rj_*L_U$, not for the Euler characteristic.\\\midrule
+$\sigma$ (log-symplecticity) & \emph{not needed.} & Only to relate to the generalized Dolbeault complex ($\wedge^\bullet T(-\log D)\otimes L\cong\mathrm{DR}_{\log}(L)$).
+\end{hyptab}
+\begin{proof}
+(1) The stupid filtration of $\mathrm{DR}_{\log}(L)$ has $E_1$-term $H^q(X;\Omega^p(\log D)\otimes L)$, finite dimensional; hence $\chi(\mathrm{DR}_{\log}(L))=\sum_p(-1)^p\chi(X;\Omega^p(\log D)\otimes L)$.
+
+(2) By HRR this equals $\int_X\bigl[\sum_p(-1)^p\mathrm{ch}(\Omega^p(\log D))\bigr]\mathrm{ch}(L)\,\mathrm{Td}(T_X)$. For the rank $n$ bundle $F=\Omega^1(\log D)$ one has $\sum_p(-1)^p\mathrm{ch}(\wedge^pF)=c_n(F^\vee)\,\mathrm{Td}(F^\vee)^{-1}$, which starts in degree $n$. So only the constant term $1$ of $\mathrm{ch}(L)\mathrm{Td}(T_X)$ matters and the result is $\int_Xc_n(T_X(-\log D))$, independent of $L$.
+
+(3) For $L=\mathcal O$ ($\nabla=d$) the log Poincar\'e lemma (Deligne \cite{Del70}) $\Omega^\bullet(\log D)\simeq Rj_*\C_U$ shows that the hypercohomology is $H^*(U;\C)$, so the Euler characteristic in (1) is $\chi(U)$; by (2) it equals $\int c_n(T_X(-\log D))$. Finally $\chi(U)=\sum_T(-1)^{|T|}\chi(D_T)$ follows from $\chi_c=\chi$ on the open even-dimensional manifold $U$ (Poincar\'e duality) and additivity of $\chi_c$.
+\end{proof}
+\paragraph{Check.} \tV\ For $X=\mathbb P^2$, $D$ a smooth curve of degree $d=1,\dots,7$, $L=\mathcal O(a)$, $a=-12,\dots,12$, we computed $\sum_p(-1)^p\chi(\Omega^p(\log D)\otimes L)$ directly: in all 175 cases it equals $3-3d+d^2=\chi(U)$ (script \texttt{cp2/roundK\_check.py}).
+
+\begin{cor}[Wall-crossing identity \tP]\label{cor:wall}
+For a rank one local system $L_U$, $\chi_c(U;L_U)=\chi(U;L_U)=\chi(U)$. This follows from $\chi(\partial U)=0$ (closed odd-dimensional manifold) and the Euler characteristic of the triangle $j_!L_U\to Rj_*L_U\to i_*i^*Rj_*L_U$. Hence the Euler characteristic does not change when a residue crosses an integer and $j_!$ and $Rj_*$ exchange roles.
+\end{cor}
+\paragraph{Relation to Theorem E.} Theorem \ref{thm:E} and the present theorem are two faces of the same phenomenon: ``the Euler characteristic does not see the higher terms of $\mathrm{ch}(L)$''. The total Euler characteristic of $\HH^*$ is $(-1)^n\chi(X)$, that of the comparison subcomplex $B\simeq\mathrm{DR}_{\log}(L)$ is $\chi(U)$, and the difference $(-1)^n\chi(X)-\chi(U)$ is carried by the Euler characteristic of the quotient complex $Q$. For $n$ even and under (GEN$'$) the difference is $\#D_{(n)}$ (Theorem \ref{thm:R}).
+
+%--------------------------------------------------------------
+\section{A Riemann--Roch-type formula for the Poincar\'e polynomial (Theorem K)}\label{sec:K}
+%--------------------------------------------------------------
+\begin{thm}[K \tP\ \tV]\label{thm:K}
+Assume the hypotheses of Theorem \ref{thm:R} (SNC, log-symplectic, $r_i\notin\Z_{\ge1}$, (GEN$'$)) and in addition (i) $U$ is affine and (ii) $n$ is even (automatic in the log-symplectic case). Then
+\[P_{\HH}(t)\;=\;\chi(X)\,t^n\;+\;\sum_{k=0}^{n-1}h^k(U;L_U)\,\bigl(t^k-(-1)^kt^n\bigr).\]
+\end{thm}
+\begin{hyptab}
+hypotheses of the reduction theorem & give $\HH^*\cong H^*(U;L_U)\oplus\C^{\#D_{(n)}}[-n]$. & Step (1).\\\midrule
+$U$ affine & Artin vanishing: $H^k(U;L_U)=0$ for $k>n$ for a local system. & Step (2). Without it the sum could not be confined to $k<n$.\\\midrule
+$n$ even & $\sum_k(-1)^kh^k+\#D_{(n)}=\chi(X)$ holds without sign (Theorem \ref{thm:E}). & Step (3).\\\midrule
+projectivity / ampleness & \emph{not needed.} & ---
+\end{hyptab}
+\begin{proof}
+(1) By Theorem \ref{thm:R}, $P_{\HH}=\sum_{k\le n}h^kt^k+\#D_{(n)}t^n$ (terms with $k>n$ vanish by (2)). (2) By Artin's vanishing theorem \cite{SGA4}, $h^k=0$ for $k>n$. (3) By Theorem \ref{thm:E} ($n$ even), $\sum_{k\le n}(-1)^kh^k+\#D_{(n)}=\chi(X)$, i.e.\ $h^n+\#D_{(n)}=\chi(X)-\sum_{k<n}(-1)^kh^k$. Substituting into the coefficient of $t^n$ gives the formula.
+\end{proof}
+\paragraph{Comparison with Part I.} For $n=2$, $r\in\Z_{\le0}$ and $L_U$ trivial, $h^0=1$ and $h^1=b_1$, so $P=\chi(X)t^2+(1-t^2)+b_1(t+t^2)=\chi(X)t^2+\Delta(t)$, the $[r\le0]$ term of the theorem of Part I. For $r\notin\Z$ Part I gives $P=\chi(X)t^2$; Theorem \ref{thm:K} reproduces this only if $H^k(U;L_U)=0$ for $k<n$, which we have not shown for general $n$ \tQ\ (for $n=2$ it was checked in Part I). The side $r\ge2$ follows from duality.
+
+\paragraph{Checks.} \tV\ (a) 188 tables for $n=2$; (b) 61 toric cases for $n=2,4$ ($h^k=\binom nk$ if $\rho\in M$, $0$ otherwise): the measured Poincar\'e polynomials agree with the formula in every case (0 mismatches). Toric $\mathbb P^2$, $\rho\in M$: $P=3t^2+(1-t^2)+2(t+t^2)=1+2t+4t^2$.
+
+\subsection{Three behaviours of the dimensions}\label{sec:three}
+Taking $L=L_0^m$ and varying $m$, the cohomology dimensions behave in three qualitatively different ways depending on the setting.
+
+\begin{center}\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{3.0cm}>{\raggedright\arraybackslash}p{4.4cm}>{\raggedright\arraybackslash}p{6.4cm}}
+\toprule Behaviour & Dimension in each degree $k$ & Example\\\midrule
+(A) regular type & \emph{polynomial} in $m$ ($m\gg0$) \tP & $X=\mathbb P^1$, $Y=T^2$ (product), $G=\mathcal O(m)$: from Theorem \ref{thm:L}, $(m+1,\ 3m+5,\ 3m+7,\ m+3)$ ($m\ge-1$)\\\midrule
+(B) log-symplectic & \emph{periodic} jumps governed by integrality of the residue $r=-m/3$ \tP\ \tV & $\mathbb P^2$, smooth cubic: $(1,0,2,0,0)$ for $m=3k\ge0$, $(0,0,3,0,0)$ otherwise ($m\ge-3$)\\\midrule
+(C) total Euler characteristic & \emph{independent} of $m$ \tP & in (A) $\sum(-1)^kh^k=0$; in (B) $3=\chi(\mathbb P^2)$\\\bottomrule
+\end{tabular}
+\end{center}
+In example (A) the Euler characteristic is $(m+1)-(3m+5)+(3m+7)-(m+3)=0$, consistent with Theorem \ref{thm:E} ($\chi(M)=\chi(Y)\chi(X)=0$). The computation in (A) is the formula of Theorem \ref{thm:L} specialized to a product, using $T=\mathcal O(2)$ on $\mathbb P^1$ and $\dim V^j=(1,2,1)$ (in the range $m\ge-1$ where no $H^1$ terms occur).
+
+\paragraph{Reading.} By (C), the naive Riemann--Roch form ``$\chi(E)=\int\mathrm{ch}(E)\mathrm{Td}$ is a polynomial in $c_1(E)$'' \emph{degenerates} in generalized geometry (it does not see $c_1$); the information lies in the graded dimensions. In (A) these are polynomials degree by degree; in (B) they decompose, as in Theorem \ref{thm:K}, into $\chi(X)$ and topological quantities $h^k(U;L_U)$ depending on the residue only through its integrality. Polynomial behaviour in all degrees occurs only in regular type.
+
+%--------------------------------------------------------------
+\section{Proof of the local formula for quasi-homogeneous isolated singularities}\label{sec:local}
+%--------------------------------------------------------------
+In Part II the following formula was checked by computation for a range of spectra and left as a conjecture in general. We prove it in the quasi-homogeneous case.
+
+\paragraph{Setting.} Let $h\in\C\{z,w\}$ be a quasi-homogeneous polynomial for positive weights $(w_z,w_w)$ and degree $N$ with an isolated singularity at the origin (so $h$ is reduced). Let $\sigma=h\,\partial_z\wedge\partial_w$, $D=\{h=0\}$, $\mathcal O\,h^s$ the module of residue $s$, and $\mathcal C_s=(\mathcal O\to\Theta\to\mathcal O)$ the stalk complex: $d_0f=(hf_w+sfh_w)\partial_z-(hf_z+sfh_z)\partial_w$, $d_1(p,q)=h(p_z+q_w)-(1-s)(h_zp+h_wq)$ (Part I \S6.6).
+
+\begin{thm}[Local formula \tP\ \tQ]\label{thm:local}
+For $s\ne1$ the Poincar\'e polynomial of the cohomology of $\mathcal C_s$ is
+\[\mu\,t^2\;+\;[\,s\in\Z,\ s\le0\,](1+t)\;+\;(t+t^2)\cdot\#\{\alpha\in\mathrm{Sp}:\ s+\alpha\in\Z,\ s+\alpha\le1\}.\]
+\end{thm}
+\begin{hyptab}
+quasi-homogeneous & the Euler field $e$ with $e\,h=Nh$ exists; the complex splits by weights with finite-dimensional pieces. & Steps (2), (3).\\\midrule
+isolated singularity & $h_z,h_w$ is a regular sequence (Hilbert series formula); $h$ is reduced. & Steps (5), (4).\\\midrule
+$s\ne1$ & for $s=1$ the stalk is infinite dimensional (Part II). & dimension $\mu$ of the quotient $Q$ (step (1)).\\\midrule
+$h$ polynomial (positive weights) & each weight piece $\mathcal O_k$ is a finite-dimensional space of polynomials. & Step (4).
+\end{hyptab}
+\begin{proof}
+\emph{(1) Decomposition from earlier parts.} $B_s=(\mathcal O\to\Theta(-\log D)\to h\mathcal O)\cong(\Omega^\bullet(\log D),\,d+s\,\dlog h)$ is a subcomplex, and the quotient $Q=\mathcal C_s/B_s\simeq[J\!\cdot\!\mathcal O_D\to\mathcal O_D]$ has injective differential with $\dim\mathcal O/J=\mu$. So the stalk is $H^*(B_s)\oplus(\mathcal O/J)[-2]$ (as dimensions); this was proved in Part II v2 \tP. It remains to determine $\dim H^*(B_s)$. The sign convention for $s$ was fixed in Part II by matching computed data (see the checks at the end of this section).
+
+\emph{(2) Weight decomposition.} $\mathcal O=\prod_k\mathcal O_k$ ($\mathcal O_k$ = quasi-homogeneous polynomials of weight $k$; since $h$ is quasi-homogeneous, a convergent series is a (convergent) sum of its weight components). Each term of $B_s$ is written with $\mathcal O_k$ and a basis of log forms ($\omega_e,\omega_\chi$: log 1-forms dual to the Euler field $e$ and Hamiltonian field $\chi_h$), and $\nabla_s$ preserves weight. The Lie derivative $L_e=\nabla\iota_e+\iota_e\nabla$ acts on the weight-$k$ part as the constant $k+sN$ (Cartan's formula), so for $k+sN\ne0$ the complex is contractible (homotopy $\iota_e/(k+sN)$), hence acyclic. Therefore $H^*(B_s)$ is concentrated in the weight $k_0=-sN$, and can be non-zero only if $k_0\in\Z_{\ge0}$ (so that $\mathcal O_{k_0}\ne0$).
+
+\emph{(3) The weight-$k_0$ piece.} From the basic formulas
+\[\nabla_sf=(ef+sNf)\,\omega_e+\chi_h(f)\,\omega_\chi,\qquad\nabla(a\,\omega_e+b\,\omega_\chi)=\tfrac{\nu}{N}\bigl[\chi_h(a)-(e+sN-\delta)\,b\bigr]\]
+($\nu$ the basis 2-form), in weight $k_0$ we get $C^0=\mathcal O_{k_0}$, $C^1=\mathcal O_{k_0}\oplus\mathcal O_{k_0+\delta}$, $C^2=\mathcal O_{k_0+\delta}$, $d^0f=(0,\chi_hf)$, $d^1(a,b)=\chi_h(a)/N$. Put $K=\ker(\chi_h|\mathcal O_{k_0})$ and $\mathrm{Cok}=\mathrm{coker}(\chi_h:\mathcal O_{k_0}\to\mathcal O_{k_0+\delta})$. Then $H^0=K$, $H^1=K\oplus\mathrm{Cok}$, $H^2=\mathrm{Cok}$.
+
+\emph{(4) Determination of $K$.} Let $f\in\mathcal O_{k_0}$ with $\chi_hf=0$. Up to sign $\chi_hf=(df\wedge dh)/(dz\wedge dw)$, so $df\wedge dh=0$. Contracting with $e$ gives $(ef)\,dh-(eh)\,df=k_0f\,dh-Nh\,df=0$, i.e.\ $d(f^N/h^{k_0})=0$ (for $k_0>0$). Hence $f^N=c\,h^{k_0}$ on the connected set $\C^2\setminus D$. Since $h$ is reduced, $N\,v_p(f)=k_0$ for every irreducible factor $p\mid h$. If $f\ne0$ then $N\mid k_0$ and $f/h^{k_0/N}$ is a weight-$0$ (rational) function, hence constant. So $K=\C\,h^{k_0/N}$ for $k_0\in N\Z_{\ge0}$ and $K=0$ otherwise (for $k_0=0$, $f$ is constant). \emph{This is an elementary verification, in the quasi-homogeneous case, of the standard fact that $\chi_hf=0\Rightarrow f\in\C\{h\}$ for isolated singularities.}
+
+\emph{(5) $\dim\mathrm{Cok}$.} Let $d=k_0+\delta$, $a=w_z$, $b=w_w$. Then $\sum_k\dim\mathcal O_kx^k=1/((1-x^a)(1-x^b))$, and since $h_z,h_w$ is a regular sequence of degrees $N-a,N-b$, $\sum\dim T_kx^k=(1-x^{N-a})(1-x^{N-b})/((1-x^a)(1-x^b))$. From the identity $x^\delta+x^N-x^{N-a}-x^{N-b}=x^\delta(1-x^a)(1-x^b)$,
+\[\frac{(1-x^{N-a})(1-x^{N-b})}{(1-x^a)(1-x^b)(1-x^N)}-\frac{1-x^\delta}{(1-x^a)(1-x^b)}=\frac{x^\delta}{1-x^N}.\]
+Taking the coefficient of $x^d$: $\sum_{r\ge0}\dim T_{d-rN}-(\dim\mathcal O_d-\dim\mathcal O_{k_0})=[\,k_0\in N\Z_{\ge0}\,]=\dim K$. Since $\dim\mathrm{Cok}=\dim\mathcal O_d-\dim\mathcal O_{k_0}+\dim K$, we get $\dim\mathrm{Cok}=\sum_{r\ge0}\dim T_{d-rN}$.
+
+\emph{(6) Translation to the spectrum.} Let $s=-k_0/N$. $\dim T_{d-rN}$ is the number of basis monomials $m$ of weight $\mathrm{wt}(m)=d-rN$. With $\alpha=(\mathrm{wt}(m)+a+b)/N$ we have $s+\alpha=1-r\in\Z_{\le1}$. Conversely each $\alpha$ with $s+\alpha\in\Z_{\le1}$ corresponds to exactly one $r\ge0$. Thus $\dim\mathrm{Cok}=\#\{\alpha\in\mathrm{Sp}:s+\alpha\in\Z,\ s+\alpha\le1\}$ and $\dim K=[\,s\in\Z_{\le0}\,]$. By (3) the Poincar\'e polynomial of $H^*(B_s)$ is $[s\in\Z_{\le0}](1+t)+(t+t^2)\dim\mathrm{Cok}$. Adding $\mu t^2$ from (1) gives the theorem.
+\end{proof}
+\paragraph{Checks and remaining unverified points.}
+\begin{itemize}
+\item \tV\ The identities and dimensions of steps (3)--(6) were compared, in exact rational arithmetic, for 14 types ($A_1,A_2,A_3,A_6,D_4,D_5,E_6,E_8$, $z^3+w^6$, $z^4+w^5$, $z^5+w^5$, $z^4+w^4$, $z^3+w^7$, $z^5+w^6$) and about 700 values of $k_0$: 0 mismatches (\texttt{cp2/roundH\_proof\_check.py}).
+\item \tQ\ Sign convention of $s$: the sign of $s$ in $B_s\cong(\Omega^\bullet(\log D),d+s\,\dlog h)$ was fixed in Part II to match computed data. The agreement for 14 types $\times$ about 700 values would fail with the opposite sign, so it is a consistency check, but we have not written an independent derivation.
+\item \tQ\ Convergence and completion in the weight decomposition: by quasi-homogeneity convergent series are sums of weight components and the complex splits as a product over weights; each weight is finite dimensional and $H^*(B_s)$ is concentrated in one weight, so the finite-dimensional stalk should equal the sum of the parts, but the comparison of formal and convergent series is not written out carefully.
+\item Scope: $s\ne1$ and quasi-homogeneous isolated singularities only. Non-quasi-homogeneous isolated singularities, non-isolated singularities and $s=1$ are not covered.
+\end{itemize}
+Consequently the Part II v2 Observation ``local formula'' can be upgraded for quasi-homogeneous germs with $s\ne1$ from \tV\ \tK\ to \tP\ (apart from the \tQ\ items above); a proposed wording is recorded in \texttt{v3\_corrections.md}.
+
+%--------------------------------------------------------------
+\section{The index conjecture}\label{sec:index}
+%--------------------------------------------------------------
+Hirzebruch--Riemann--Roch is a special case of the Atiyah--Singer index theorem, and a Riemann--Roch theorem in generalized geometry should be formulated as an index theorem for the generalized Dolbeault complex. We restrict to the log-symplectic case and separate what can and cannot be said now. \emph{Everything in this section is conjectural and unproved.}
+
+\paragraph{Why existing index theorems do not apply.} (1) Hu's Kodaira--Nakano vanishing and Riemann--Roch on Lie groupoids (arXiv:2403.13424) \cite{Hu} treats complexes attached to real Lie algebroids. Our complex $(\wedge^\bullet T\otimes L,\dbar+[\sigma,\cdot])$ is the complex of the complex Lie algebroid $\mathcal L=T^{0,1}\ltimes A^{1,0}$ (no real structure coming from $J$), a different object. (2) The Lie groupoid index of Pflaum--Posthuma--Tang \cite{PPT} requires a compact base, unimodularity, etc.\ \tQ. (3) We found no index theorem for log Dolbeault complexes weighted by the residue of $L$. Nearby literature: geometric quantization of b-symplectic manifolds (Braverman--Loizides--Song \cite{BLS}, boundary term vanishing in the limit), index formulas on boundary groupoids (Qiao--So \cite{QS}, no eta term in codimension $\ge2$), pseudodifferential operators with Lie structure at infinity (Ammann--Lauter--Nistor \cite{ALN}), fibred boundaries (Mazzeo--Melrose \cite{MM}), log Hodge theory (Hausel--Hunsicker--Mazzeo \cite{HHM}). All have different settings and do not apply as they stand.
+
+\paragraph{Framework.} View $A=T_X(-\log D)$ as a (real) Lie algebroid (Gualtieri--Li \cite{GL}: integrable in the log-symplectic case, checked for smooth $D$ \tC\ \tQ) and regard the complex $\mathcal D_L=(\wedge^\bullet T\otimes L,\ \dbar+[\sigma,\cdot])$ on $U$ as a closed operator on weighted Sobolev spaces determined by $A$ (the weight being determined by the residue $r$). The principal symbol in the sense of $A$ is invertible (local computation in Part I \tV), so non-Fredholmness comes from the \emph{indicial roots} at the boundary. In the local model (smooth point of $D$, coordinate $z$) $\nabla z^k=(k-r)z^k\,dz/z$, so the indicial root is $k=r$, which exists iff $r\in\Z$.
+
+\begin{conj}[Index conjecture \tK]\label{conj:index}
+Let $X,\sigma,D,L$ be as above (log-symplectic, SNC).
+\begin{enumerate}
+\item[(I1)] A closed extension of $\mathcal D_L$ on the weighted Sobolev space of weight $r$ is Fredholm if and only if $r_i\notin\Z$ for all $i$.
+\item[(I2)] When Fredholm, the index (alternating sum) is $\chi(U)+(-1)^n\#D_{(n)}=(-1)^n\chi(X)$: an Atiyah--Singer-type integral $\int c_n(T(-\log D))$ plus the corner contribution $\#D_{(n)}$.
+\item[(I3)] For $r_i\in\Z$, the difference of kernels and cokernels of the two closed extensions of $j_!$-type and $Rj_*$-type is given by a subquotient of $H^*(\partial U;L)$ (an APS-type wall-crossing triangle), and the index does not change since $\chi(\partial U)=0$ (consistent with Corollary \ref{cor:wall}).
+\item[(I4)] Graded refinement: the Poincar\'e polynomial $P_{\HH}(t)$ is given by the shape of Theorem \ref{thm:K} ($\chi(X)t^n$ plus jump terms determined by the kernel of the indicial family).
+\end{enumerate}
+\end{conj}
+\paragraph{Relation to what is already proved.} The Euler characteristic value in (I2) is proved by Theorems \ref{thm:E} and \ref{thm:K1} ($\chi(X)$). The triangle in (I3) is used at the topological level, $j_!L_U\to Rj_*L_U\to i_*i^*Rj_*L_U$, in Parts I--IV (fully checked for $n=2$); its index-theoretic counterpart is unproved. (I4) is a theorem for $n=2$ (Part I) \tP\ and, in general dimension, Theorem \ref{thm:K} (under (GEN$'$)) \tP\ \tQ.
+
+\paragraph{What remains to be proved.}
+\begin{enumerate}
+\item Fredholm theory on the complex Lie algebroid $\mathcal L$ (no $J$): construction of a parametrix and the ``$\Leftrightarrow$'' in (I1). Extending the Ammann--Lauter--Nistor framework to weights is natural but has not been done.
+\item The index formula (I2): an analogue of the Atiyah--Singer formula on the b-tangent bundle $^bT$ \cite{BLS} for complexes with $\wedge^\bullet T$ coefficients and weights. The treatment of corners (strata of higher codimension) is the issue. The deformation argument of Qiao--So (no eta term) may help \tQ.
+\item The APS-type wall-crossing (I3): the identification with $H^*(\partial U;L)$ beyond $n=2$ with smooth $D$ (Gysin sequence).
+\item The graded version (I4): a graded refinement of spectral flow. We found no literature.
+\item The algebraic hypothesis (GEN$'$) in general (open problems in \S\ref{sec:ledger}).
+\end{enumerate}
+
+%--------------------------------------------------------------
+\section{Relation to the original goal and a ledger of the whole series}\label{sec:ledger}
+%--------------------------------------------------------------
+The original goal is a generalized-geometry version of the three treasures of complex geometry (Riemann--Roch, Serre vanishing, Kodaira embedding). We organize the results by whether each holds in the naive form, holds in a different form, or fails.
+
+\begin{center}\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{2.6cm}>{\raggedright\arraybackslash}p{6.2cm}>{\raggedright\arraybackslash}p{6.0cm}}
+\toprule Treasure & Form in which it holds & Fails / open\\\midrule
+Riemann--Roch & Euler characteristic formula $(-1)^n\rk(E)\chi(X)$ (Thm.\ E), log version $\chi(U)$ (Thm.\ K1), Poincar\'e polynomial formulas (Part I for $n=2$, Thm.\ K), degree-wise polynomials in regular type (Part IV Cor.\ L) & naive HRR depending on $c_1(E)$ fails (Euler characteristic does not see $c_1$). Unification by an index theorem is unproved (Conjecture \ref{conj:index})\\\midrule
+Serre vanishing & vanishing in the transversal degree $a>0$ ($m\gg0$, $X$ projective, $\sigma$ arbitrary) (Part I) & vanishing in total degree fails (already for $\sigma=0$)\\\midrule
+Kodaira embedding & leaf-space Kodaira; Poisson--Kodaira conjecture in the toric case (Part III) & embedding by generalized holomorphic sections is impossible (Part III). The general Poisson--Kodaira conjecture ($\mathbb P^2$, $m\ge3$, etc.) is unproved\\\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{center}\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{9.0cm}>{\raggedright\arraybackslash}p{1.9cm}>{\raggedright\arraybackslash}p{3.9cm}}
+\toprule Claim & Status & Remark\\\midrule
+Duality $\HH^k(L)^*\cong\HH^{2n-k}(L^\vee\otimes K^2)$ (any dimension) & \tP\ \tV & identity checked by machine for $n\le4$\\
+Serre-type vanishing (transversal degree) & \tP & Part I\\
+Surface theorem ($P_r(t)$, nodes only) & \tP\ \tV & Part I; cubic in $\mathbb P^2$, $m=-15,\dots,15$\\
+Euler characteristic theorem (Thm.\ E) & \tP & Part II\\
+Toric theorem T & \tP\ \tV & Part II; reproved in Part IV\\
+Local formula (quasi-homogeneous, $s\ne1$) (Thm.\ \ref{thm:local}) & \tP\ \tQ & this note; sign convention and convergence remain to be checked\\
+Local formula (non-quasi-homogeneous, $s=1$) & \tK & unproved\\
+Formula for non-reduced $D$ (Part II conjecture) & \tK\ \tV & fit to data\\
+Reduction theorem (Thm.\ \ref{thm:R}) & \tP\ \tQ & derivation of the filtration for $n>2$ is a sketch\\
+(GEN$'$) in general & \tK & proved in the toric case\\
+Regular type Theorem L / Cor.\ L & \tP\ \tQ & includes Nomizu-type hypotheses\\
+Theorem K1 (log Euler characteristic) & \tP\ \tV & this note\\
+Theorem K (RR-type Poincar\'e polynomial) & \tP\ \tV\ \tQ & this note; inherits \tQ\ from the reduction theorem\\
+Impossibility of embedding by generalized holomorphic sections & \tP & Part III\\
+Leaf-space Kodaira, toric Poisson--Kodaira & \tP\ \tK & Part III\\
+Poisson--Kodaira (general) & \tK & unproved\\
+Index conjecture (Conjecture \ref{conj:index}) & \tK & this note; not proved\\
+\bottomrule
+\end{tabular}
+\end{center}
+\paragraph{Next steps.} (1) General sufficient conditions for (GEN$'$), and a reference for the holomorphic log-Darboux theorem. (2) Local formulas for non-reduced and non-quasi-homogeneous germs. (3) Poisson--Kodaira for $m\ge3$. (4) For the index conjecture, start with the Fredholm theory (I1). (5) Non-flat bundles and fibres without hard Lefschetz.
+
+\paragraph{Scope of verification.} The computations in Parts I--V are exact linear algebra over finite fields or the rationals, or fits of known formulas. For Hu, Gualtieri--Li, Braverman--Loizides--Song, Qiao--So, Ammann--Lauter--Nistor, Mazzeo--Melrose, Hausel--Hunsicker--Mazzeo and Pflaum--Posthuma--Tang we only checked titles, authors and abstracts; the contents of theorems and journal details are unverified (\tQ).
+
+\begin{thebibliography}{99}\small
+\bibitem{PartI} Claude, Mori, \emph{Cohomology of generalized holomorphic line bundles on generalized complex structures from holomorphic Poisson structures} (Part I, v2), \url{https://hylt-math.github.io/2026/11/22/generalized-geometry-poisson/}
+\bibitem{PartII} Claude, Mori, \emph{Cohomology of generalized holomorphic line bundles and Riemann--Roch-type formulas} (Part II), \url{https://hylt-math.github.io/2026/11/22/generalized-geometry-poisson-part2/}
+\bibitem{PartIII} Claude, Mori, \emph{Cohomology of generalized holomorphic line bundles and Kodaira-type theorems} (Part III), \url{https://hylt-math.github.io/2026/11/22/generalized-geometry-poisson-part3/}
+\bibitem{PartIV} Claude, Mori, \emph{Cohomology of generalized holomorphic line bundles (Part IV): regular type versus log-symplectic type, and a reduction theorem}, \url{https://hylt-math.github.io/2026/11/22/generalized-geometry-poisson-part4/}
+\bibitem{Del70} P.\ Deligne, \'Equations diff\'erentielles \`a points singuliers r\'eguliers, Lecture Notes in Math.\ 163, Springer 1970.
+\bibitem{EV} H.\ Esnault, E.\ Viehweg, Logarithmic de Rham complexes and vanishing theorems, Invent.\ Math.\ 86 (1986) 161--194.
+\bibitem{SGA4} M.\ Artin, Th\'eor\`eme de finitude pour un morphisme propre; dimension cohomologique des sch\'emas alg\'ebriques affines, in SGA 4, Exp.\ XIV, Lecture Notes in Math.\ 305 [Artin vanishing; the source for its application to analytic local systems is \tQ].
+\bibitem{Hu} T.\ Hu, Kodaira--Nakano vanishing and Riemann--Roch on Lie groupoids, arXiv:2403.13424 [details of the title \tQ].
+\bibitem{GL} M.\ Gualtieri, S.\ Li, Symplectic groupoids of log symplectic manifolds, arXiv:1206.3674 (IMRN 2014 [\tQ]).
+\bibitem{BLS} M.\ Braverman, Y.\ Loizides, Y.\ Song, Geometric quantization of $b$-symplectic manifolds, arXiv:1910.10016.
+\bibitem{PPT} M.\ Pflaum, H.\ Posthuma, X.\ Tang, The index of geometric operators on Lie groupoids, arXiv:1308.0236.
+\bibitem{QS} Y.\ Qiao, B.-K.\ So, Deformation and K-theoretic index formulae on boundary groupoids, arXiv:2304.13345.
+\bibitem{ALN} B.\ Ammann, R.\ Lauter, V.\ Nistor, Pseudodifferential operators on manifolds with a Lie structure at infinity, arXiv:math/0304044.
+\bibitem{MM} R.\ Mazzeo, R.\ Melrose, Pseudodifferential operators on manifolds with fibred boundaries, arXiv:math/9812120.
+\bibitem{HHM} T.\ Hausel, E.\ Hunsicker, R.\ Mazzeo, Hodge cohomology of gravitational instantons, arXiv:math/0207169 (Duke Math.\ J.\ 122 (2004) [\tQ]).
+\bibitem{LGSX} C.\ Laurent-Gengoux, M.\ Sti\'enon, P.\ Xu, Holomorphic Poisson manifolds and holomorphic Lie algebroids, IMRN 2008, arXiv:0707.4253.
+\bibitem{Hit} N.\ Hitchin, Poisson modules and generalized geometry, arXiv:0905.3227.
+\bibitem{Gua} M.\ Gualtieri, Generalized complex geometry, Ann.\ Math.\ 174 (2011) 75--123, arXiv:math/0703298.
+\bibitem{Del68} P.\ Deligne, Th\'eor\`eme de Lefschetz et crit\`eres de d\'eg\'en\'erescence de suites spectrales, Publ.\ Math.\ IH\'ES 35 (1968) 259--278.
+\end{thebibliography}

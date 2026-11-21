@@ -12,21 +12,22 @@
 
 ## 公開済み
 - 2026-11-22 generalized-geometry-poisson v1（ja/en）、v2（ja/en、書誌・定理番号の訂正、commit e299fc2）。status: partial。v2 のソースは _archive/2026-11-22/paper_v2_ja, paper_v2_en。
-- Part II: generalized-geometry-poisson-part2 v1, v2（局所公式の訂正）。Part III: generalized-geometry-poisson-part3 v1（Kodaira 型）。Part IV: generalized-geometry-poisson-part4 v1（正則型 Gauss–Manin と対数シンプレクティック型の比較、簡約定理 R）。いずれも ja/en、status partial。
+- Part II: generalized-geometry-poisson-part2 v1, v2（局所公式の訂正）。Part III: generalized-geometry-poisson-part3 v1（Kodaira 型）。Part V: generalized-geometry-poisson-part5 v1（Riemann–Roch 型公式 K1/K、局所公式の証明、指数予想）。Part IV: generalized-geometry-poisson-part4 v1（正則型 Gauss–Manin と対数シンプレクティック型の比較、簡約定理 R）。いずれも ja/en、status partial。
 - 注意: v2 公開後、公開サイトでの反映確認は未了（ブラウザ系ツールが使えず、WebFetch は古いキャッシュを返した）。次ラウンドで確認する。
 
 - 2026-11-22 generalized-geometry-poisson-part2 v1（ja/en、新記事、status: partial）。ソースは _archive/2026-11-22/paper2_ja, paper2_en。Part I への影響確認の結果（撤回なし）は notes/v3_corrections.md。
 
 ## 作業キュー（優先順・更新）
 G. 公開サイトの反映確認（ブラウザ系ツールが使えるとき、または WebFetch で新しい URL を取得）。
-H. 局所ストークの規則の証明（Wang 完全列との一致、Milnor 繊維、Brieskorn 格子）。
+H. 完了（Part V）。残り: 準斉次な局所公式の収束複体への移行の詳細、s=1。
 I'. 予想 C は定理 R（条件 (GEN') つき）として証明済み。残り: (GEN') が ν_T≢0 から従うか（非線形化 σ）、正則な対数 Darboux の文献、予想 NR（非被約）。
 L'. 正則型との比較（定理 L）は完了。残り: 非平坦束、hard Lefschetz が成り立たない場合。
 J. Poisson–Kodaira 予想: P^2 の m>=3、P^1×P^1 の Segre、Jacobiator 障害の解析。
-K. Riemann–Roch の指数定理的な定式化（対数接 Lie 亜群上の指数、留数が重みになる b-計算）。
+K. Part V で定理 K1/K を公開。残り: r∉Z, n>2 で H^k(U;L_U)=0 (k<n) の証明、b-計算による指数定理（予想 I1–I4）。
 L. Pal–Poddar の枠組み（正則型）との統合: 型 1 の例 Y×X で Part I–III の公式と Thm 11.12 を直接比較。
 M. 全体を一つの総合論文（Part I–III の統合・整理）にまとめる準備（記号表・仮定表の統一）。
 
 ## ラウンド記録
 - ラウンド0 (02:35–05:30): アーカイブ、A・B（書誌確認、Pal–Poddar 再読）、C・D・E・F を完了。Part I v2, Part II v1→v2, Part III v1 を公開。
 - ラウンド0 続き (〜06:30): Task I, L 完了。Part IV v1 を公開（commit 59661d6）。次回ラウンド(07:31〜): G（サイト確認）, H, J, K, M を優先。
+- ラウンド1 (07:31〜08:50): Task H, K 完了。Part V v1 公開（commit 74f6203）。次: M（総合論文）、J（Poisson–Kodaira）、G（サイト確認）、K の残り。

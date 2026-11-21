@@ -1,0 +1,260 @@
+%--------------------------------------------------------------
+\section{概観：本稿の位置づけと結果}
+%--------------------------------------------------------------
+Part I--IV は、複素多様体 $X$ 上の正則 Poisson 構造 $\sigma$ から $\beta$-変換で作る一般化複素構造と、その上の一般化正則直線束 $L$ の一般化 Dolbeault コホモロジー $\HH^\bullet(L)$ を、具体例から調べてきた。本稿は次の 3 点をまとめる。
+
+\begin{itemize}
+\item \textbf{Riemann--Roch 型の公式。}（a）全 Euler 標数は $E$ の第1 Chern 類に依らない（Part II 定理 E の再掲）。（b）その対数版：対数的 de Rham 複体の Euler 標数は、平坦な対数接続をもつ任意の $L$ について $\chi(U)$ に等しい（定理 \ref{thm:K1}）\tP。（c）$U$ がアフィン・$n$ 偶数などの下で、Poincaré 多項式全体が $\chi(X)$ と $H^k(U;L_U)$ の次元だけで書ける（定理 \ref{thm:K}）\tP\tV。（d）正則型では次数ごとに $m$ の多項式（Part IV 系 L）。この 3 つの「次元の振る舞い」を対比する（\S\ref{sec:three}）。
+\item \textbf{局所公式の証明。}Part II では計算による観察と予想にとどまっていた、準斉次な孤立特異点をもつ平面曲線の茎の公式を、$s\ne1$ について証明する（定理 \ref{thm:local}）\tP。
+\item \textbf{指数定理の予想。}Riemann--Roch の「指数定理版」として、対数接線 Lie 亜代数上の重み付き b-計算に関する予想を正確に述べ、何が未証明かを切り分ける（予想 \ref{conj:index}）\tK。
+\end{itemize}
+最後に、当初の目標（Riemann--Roch・Serre 消滅・Kodaira 埋め込みの一般化幾何版）に対する Part I--V 全体の到達点を、主張ごとの状態表にまとめる（\S\ref{sec:ledger}）。\emph{指数予想は証明されていない。}
+
+%--------------------------------------------------------------
+\section{記号表（本稿で新しく使うもの、および再掲）}\label{sec:notation}
+%--------------------------------------------------------------
+\begin{longtable}{>{\raggedright\arraybackslash}p{3.8cm}>{\raggedright\arraybackslash}p{11.2cm}}
+\toprule 記号 & 意味\\ \midrule\endhead
+$X$、$n$ & コンパクト複素多様体、$\dim_\C X=n$。対数シンプレクティックの場合は $n$ は偶数\\
+$\sigma$ & $X$ 上の正則 Poisson 構造。「対数シンプレクティック」とは、$\sigma^{n/2}$ の零因子が被約な単純正規交差因子（SNC）$D$ で、$\sigma$ が $D$ に沿って対数的に非退化なこと\\
+$D=\bigcup D_i$、$U=X\setminus D$ & SNC 因子とその補集合。$D_T=\bigcap_{i\in T}D_i$、$D_{(n)}$ は $n$ 重点の集合\\
+$L$、$r_i$ & Poisson 加群である直線束（一般化正則直線束）。各 $D_i$ に沿う留数 $r_i\in\C$ は定数（Esnault--Viehweg）。$c_1(L)=-\sum r_i[D_i]$（$H^2(X;\C)$ で）\\
+$L_U$ & $U$ 上の平坦直線束（$L$ の平坦切断の層）。$D_i$ 周りの単調性は $r_i$ で決まる（Deligne）\\
+$T(-\log D)$、$\Omega^p(\log D)$ & 対数接束、対数微分形式の層\\
+$\mathrm{DR}_{\log}(L)$ & 対数 de Rham 複体 $(\Omega^\bullet(\log D)\otimes L,\nabla)$\\
+$\HH^k(L)$ & 一般化 Dolbeault コホモロジー。$(\wedge^\bullet T\otimes L,\ \dbar+[\sigma,\cdot])$ の超コホモロジー。次元を $\mathrm{hh}^k$ と書く\\
+$P_{\HH}(t)$ & $\sum_k\dim\HH^k(L)\,t^k$\\
+$h^k(U;L_U)$ & $\dim H^k(U;L_U)$\\
+$\chi(X)$、$\chi(U)$ & 位相的 Euler 標数\\
+$\partial U$ & $D$ の管状近傍の境界（$U$ の端）。実 $2n-1$ 次元の閉多様体（$\chi(\partial U)=0$）\\
+$h$、$(w_z,w_w)$、$N$ & 準斉次な孤立特異点の定義関数、重み、次数。$\delta=N-w_z-w_w$\\
+$J=(h_z,h_w)$、$T=\mathcal O/J$、$\mu$ & Jacobi イデアル、Milnor 代数、Milnor 数 $\mu=\dim T$\\
+$\mathrm{Sp}$ & スペクトル：$T$ の単項式基底 $m$ ごとに $\alpha=(\mathrm{wt}(m)+w_z+w_w)/N$\\
+$s$ & 局所モデル $\mathcal O\,h^s$ の留数（局所指数）。$\nabla_s=d+s\,\dlog h$\\
+$\chi_h$、$e$ & Hamilton ベクトル場 $h_w\partial_z-h_z\partial_w$ と Euler ベクトル場 $w_zz\partial_z+w_ww\partial_w$（$e h=Nh$）\\
+\bottomrule
+\end{longtable}
+（$\chi(X)$ と $\chi_h$ の混同を避けるため、Hamilton ベクトル場は $\chi_h$ と書く。）
+
+\paragraph{状態の記号。}\tP\ 本稿または前稿で証明済、\tC\ 文献の結果、\tV\ 計算機（正確な有理数／有限体の線形代数）で確認、\tK\ 予想、\tQ\ 未確認（記憶に基づく引用など）。複数付く場合は各部分に対応する。
+
+%--------------------------------------------------------------
+\section{既知の結果の復習}\label{sec:recall}
+%--------------------------------------------------------------
+本稿で使う前稿の結果を、主張とその状態だけ記す（証明は各稿）。Part I: \cite{PartI}、II: \cite{PartII}、III: \cite{PartIII}、IV: \cite{PartIV}。
+
+\begin{thm}[Euler 標数の定理（Part II 定理 E）\tP]\label{thm:E}
+$X$ をコンパクト複素多様体、$\sigma$ を任意の正則 Poisson 構造、$E$ を階数 $\rk E$ の一般化正則ベクトル束とする。$\sum_k(-1)^k\dim\HH^k(E)=(-1)^n\,\rk(E)\,\chi(X)$。
+\end{thm}
+証明の骨子：複体を Higgs 次数 $b$ で濾過すると、次数商は $H^a(X;\wedge^bT\otimes E)$ の複体になり、$\sigma$ 由来の微分は濾過を下げるので、Euler 標数は $\sum_b(-1)^b\chi(\wedge^bT\otimes E)$ に等しい。Hirzebruch--Riemann--Roch で $\sum_b(-1)^b\mathrm{ch}(\wedge^bT)=c_n(T)\mathrm{Td}(T)^{-1}$ は次数 $n$ から始まるため、$\mathrm{ch}(E)$ の高次の項は積分に効かず、$\rk E\cdot\int c_n(T_X)$ が残る。\emph{ゆえに $c_1(E)$ には全く依存しない。}
+
+\begin{thm}[簡約定理（Part IV 定理 R）\tP\ \tQ]\label{thm:R}
+$\sigma$ は SNC 因子 $D$ に沿って対数シンプレクティック、$L$ の留数 $r_i$ はどれも $\Z_{\ge1}$ に入らず、さらに (GEN$'$)（$0<|T|<n$ の各層の商複体 $Q_T$ が非輪状）を仮定する。このとき $\HH^*(L)\cong H^*(U;L_U)\oplus\bigoplus_{p\in D_{(n)}}\C[-n]$。
+\end{thm}
+$n=2$ のときは Part I の定理そのもの。一般の $n$ で $Q$ の濾過から導く部分は、Part IV では見取り図に近く、\tQ\ のまま引き継ぐ。トーリックの場合は (GEN$'$) が成り立つことを証明してある（Part IV 命題）。
+
+\begin{thm}[正則型（Part IV 定理 L・系 L）\tP\ \tQ]\label{thm:L}
+平坦なシンプレクティックファイバー束 $Y\to M\to X$（$Y$ は hard Lefschetz をみたすコンパクト連結なシンプレクティック多様体、$X$ はコンパクト複素多様体）と、$X$ 上の正則直線束 $G$ の引き戻し $E=\pi^*G$ について $\HH^k(M,E)\cong\bigoplus_{a+b+j=k}H^a(X,\wedge^bT_X\otimes V^j\otimes G)$（$V^j$ はファイバーの Gauss--Manin 束）。特に $G=G_0^m$（$G_0$ は豊富）なら、各次数 $k$ の次元は $m$ の多項式（$m\gg0$）。
+\end{thm}
+Leray のスペクトル系列と Deligne の Lefschetz の補題を使う。Nomizu 型の定理の仮定を含む箇所は Part IV で\tQ。
+
+\paragraph{その他の前稿の結果（主張のみ）。}双対性 $\HH^k(L)^*\cong\HH^{2n-k}(L^\vee\otimes K^2)$（Part I、一般次元）\tP；Serre 型消滅（横断次数）、全次数では不成立（Part I）\tP；一般化正則切断による埋め込みの不可能性、葉空間 Kodaira、トーリックでの Poisson--Kodaira 予想（Part III）\tP\ \tK。
+
+%--------------------------------------------------------------
+\section{対数 de Rham 複体の Euler 標数（定理 K1）}\label{sec:K1}
+%--------------------------------------------------------------
+\begin{thm}[K1：対数版の Euler 標数\ \tP]\label{thm:K1}
+$X$ をコンパクト複素多様体、$D\subset X$ を SNC 因子、$L$ を平坦な対数接続 $\nabla:L\to L\otimes\Omega^1_X(\log D)$ をもつ直線束とする。このとき超コホモロジー $\mathbb H^k(X;\mathrm{DR}_{\log}(L))$ は有限次元で
+\[\sum_k(-1)^k\dim\mathbb H^k(X;\mathrm{DR}_{\log}(L))\;=\;\int_Xc_n\bigl(T_X(-\log D)\bigr)\;=\;\chi(U)\;=\;\sum_{T}(-1)^{|T|}\chi(D_T)\]
+が成り立ち、$L$ にも留数 $r_i$ にも依らない。
+\end{thm}
+\begin{hyptab}
+$X$ コンパクト & $H^q(X;\Omega^p(\log D)\otimes L)$ が有限次元、HRR が使える。 & 手順 (1)、(2)。\\\midrule
+$D$ が SNC & $\Omega^p(\log D)$ が局所自由で、$\Omega^\bullet(\log D)\simeq Rj_*\C_U$（log Poincar\'e 補題）が使える。 & 手順 (3)（$L=\mathcal O$ の場合に位相的な値を得る）。\\\midrule
+$\nabla$ が平坦な対数接続 & $\mathrm{DR}_{\log}(L)$ が複体になる。階数 1 なので留数は定数。 & 手順 (1)。\\\midrule
+留数 $r_i\notin\Z_{\ge1}$ & \emph{不要}。 & 同定 $\mathrm{DR}_{\log}(L)\simeq Rj_*L_U$ にだけ必要で、Euler 標数には使わない。\\\midrule
+$\sigma$（対数シンプレクティック性） & \emph{不要}。 & 一般化 Dolbeault 複体との関係（$\wedge^\bullet T(-\log D)\otimes L\cong\mathrm{DR}_{\log}(L)$）を使うときだけ。
+\end{hyptab}
+\begin{proof}
+(1) $\Omega^p(\log D)\otimes L$ に沿う濾過（stupid filtration）の $E_1$ 項は $H^q(X;\Omega^p(\log D)\otimes L)$ で、有限次元。よって $\chi(\mathrm{DR}_{\log}(L))=\sum_p(-1)^p\chi(X;\Omega^p(\log D)\otimes L)$。
+
+(2) HRR により、これは $\int_X\bigl[\sum_p(-1)^p\mathrm{ch}(\Omega^p(\log D))\bigr]\mathrm{ch}(L)\,\mathrm{Td}(T_X)$。階数 $n$ の束 $F=\Omega^1(\log D)$ について $\sum_p(-1)^p\mathrm{ch}(\wedge^pF)=c_n(F^\vee)\,\mathrm{Td}(F^\vee)^{-1}$ で、これは次数 $n$ から始まる。したがって $\mathrm{ch}(L)\mathrm{Td}(T_X)$ の定数項 $1$ だけが効き、結果は $\int_Xc_n(T_X(-\log D))$ で、$L$ に依らない。
+
+(3) $L=\mathcal O$（$\nabla=d$）のとき、log Poincar\'e 補題（Deligne \cite{Del70}）$\Omega^\bullet(\log D)\simeq Rj_*\C_U$ により、超コホモロジーは $H^*(U;\C)$ で、(1) の Euler 標数は $\chi(U)$。(2) よりこれは $\int c_n(T_X(-\log D))$ に等しい。最後に $\chi(U)=\sum_T(-1)^{|T|}\chi(D_T)$ は、開多様体 $U$ で $\chi_c=\chi$（Poincar\'e 双対性、実偶数次元）と $\chi_c$ の加法性から従う。
+\end{proof}
+\paragraph{検証。}\tV\ $X=\mathbb P^2$、$D$ を次数 $d=1,\dots,7$ の滑らかな曲線、$L=\mathcal O(a)$（$a=-12,\dots,12$）で $\sum_p(-1)^p\chi(\Omega^p(\log D)\otimes L)$ を直接計算：全 175 例で $3-3d+d^2=\chi(U)$ と一致（スクリプト \texttt{cp2/roundK\_check.py}）。
+
+\begin{cor}[壁越えの恒等式\ \tP]\label{cor:wall}
+$L_U$ が階数 1 の局所系のとき $\chi_c(U;L_U)=\chi(U;L_U)=\chi(U)$。これは $\chi(\partial U)=0$（奇数次元の閉多様体）と、三角形 $j_!L_U\to Rj_*L_U\to i_*i^*Rj_*L_U$ の Euler 標数から従う。したがって、留数が整数を横切って $j_!$ と $Rj_*$ が入れ替わっても Euler 標数は変わらない。
+\end{cor}
+\paragraph{Theorem E との関係。}定理 \ref{thm:E} と本定理は同じ現象の 2 つの顔である：「Euler 標数は $\mathrm{ch}(L)$ の高次項を見ない」。一般化 Dolbeault 複体 $\HH^*$ の Euler 標数が $(-1)^n\chi(X)$、その部分（比較）複体 $B\simeq\mathrm{DR}_{\log}(L)$ の Euler 標数が $\chi(U)$ で、差 $(-1)^n\chi(X)-\chi(U)$ は商複体 $Q$ の Euler 標数が受け持つ。$n$ 偶数かつ (GEN$'$) の下では差は $\#D_{(n)}$（定理 \ref{thm:R}）。
+
+%--------------------------------------------------------------
+\section{Poincar\'e 多項式の Riemann--Roch 型公式（定理 K）}\label{sec:K}
+%--------------------------------------------------------------
+\begin{thm}[K\ \tP\ \tV]\label{thm:K}
+定理 \ref{thm:R} の仮定（SNC・対数シンプレクティック・$r_i\notin\Z_{\ge1}$・(GEN$'$)）に加えて、(i) $U$ がアフィン、(ii) $n$ が偶数（対数シンプレクティックなら自動）を仮定する。このとき
+\[P_{\HH}(t)\;=\;\chi(X)\,t^n\;+\;\sum_{k=0}^{n-1}h^k(U;L_U)\,\bigl(t^k-(-1)^kt^n\bigr).\]
+\end{thm}
+\begin{hyptab}
+簡約定理の仮定 & $\HH^*\cong H^*(U;L_U)\oplus\C^{\#D_{(n)}}[-n]$ を与える。 & 手順 (1)。\\\midrule
+$U$ アフィン & Artin の消滅定理：局所系について $H^k(U;L_U)=0\ (k>n)$。 & 手順 (2)。これがないと上の公式の「$k<n$ の和」に収まらない。\\\midrule
+$n$ 偶数 & $\sum_k(-1)^kh^k+\#D_{(n)}=\chi(X)$ が符号なしで使える（定理 \ref{thm:E}）。 & 手順 (3)。\\\midrule
+射影性・豊富性 & \emph{不要}。 & ---
+\end{hyptab}
+\begin{proof}
+(1) 定理 \ref{thm:R} より $P_{\HH}=\sum_{k\le n}h^kt^k+\#D_{(n)}t^n$（$k>n$ は (2) で消える）。(2) Artin の消滅定理 \cite{SGA4} により $k>n$ で $h^k=0$。(3) 定理 \ref{thm:E}（$n$ 偶数）より $\sum_{k\le n}(-1)^kh^k+\#D_{(n)}=\chi(X)$。すなわち $h^n+\#D_{(n)}=\chi(X)-\sum_{k<n}(-1)^kh^k$。$t^n$ の係数に代入して公式を得る。
+\end{proof}
+\paragraph{Part I との照合。}$n=2$、$r\le0$ の整数、$L_U$ 自明のとき $h^0=1$、$h^1=b_1$ なので $P=\chi(X)t^2+(1-t^2)+b_1(t+t^2)=\chi(X)t^2+\Delta(t)$（Part I の定理の $[r\le0]$ の項）。$r\notin\Z$ のときは、Part I の定理（$n=2$）が $P=\chi(X)t^2$ を与える。定理 \ref{thm:K} がこれを再現するには $H^k(U;L_U)=0\ (k<n)$ が要るが、一般の $n$ でのこの消滅は本稿では示していない\tQ（$n=2$ は Part I で確認済み）。$r\ge2$ の側は双対性から得られる。
+
+\paragraph{検証。}\tV\ (a) $n=2$ の表 188 例、(b) トーリック $n=2,4$ の 61 例（$\rho\in M$ のとき $h^k=\binom nk$、それ以外は 0）で、実測の Poincar\'e 多項式と公式の予言が全例一致（食い違い 0）。トーリック $\mathbb P^2$、$\rho\in M$ の例：$P=3t^2+(1-t^2)+2(t+t^2)=1+2t+4t^2$。
+
+\subsection{次元の 3 つの振る舞い}\label{sec:three}
+$m$ を動かして $L=L_0^m$ を取るとき、コホモロジー次元は設定によって質的に異なる 3 つの振る舞いをする。
+
+\begin{center}\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{3.0cm}>{\raggedright\arraybackslash}p{4.4cm}>{\raggedright\arraybackslash}p{6.4cm}}
+\toprule 振る舞い & 次数 $k$ ごとの次元 & 例\\\midrule
+(A) 正則型 & $m$ の\emph{多項式}（$m\gg0$）\tP & $X=\mathbb P^1$、$Y=T^2$（直積）、$G=\mathcal O(m)$：定理 \ref{thm:L} から $(m+1,\ 3m+5,\ 3m+7,\ m+3)$（$m\ge-1$）\\\midrule
+(B) 対数シンプレクティック & 留数 $r=-m/3$ の整数性による\emph{周期的}な跳び \tP\ \tV & $\mathbb P^2$、滑らかな 3 次曲線：$m=3k\ge0$ で $(1,0,2,0,0)$、それ以外 $m\ge-3$ で $(0,0,3,0,0)$\\\midrule
+(C) 全 Euler 標数 & $m$ に\emph{依らない}\tP & (A) では $\sum(-1)^kh^k=0$、(B) では $3=\chi(\mathbb P^2)$\\\bottomrule
+\end{tabular}
+\end{center}
+(A) の例では Euler 標数 $(m+1)-(3m+5)+(3m+7)-(m+3)=0$（定理 \ref{thm:E}：$\chi(M)=\chi(Y)\chi(X)=0$ と整合）。(A) の計算は定理 \ref{thm:L} の公式を直積の場合に当てはめたもので、$\mathbb P^1$ の $T=\mathcal O(2)$、$V^j$ の次元 $(1,2,1)$ から読む（$m\ge-1$ で $H^1$ の項が出ない範囲）。
+
+\paragraph{読み方。}(C) より、Riemann--Roch の素朴な形「$\chi(E)=\int\mathrm{ch}(E)\mathrm{Td}$ が $c_1(E)$ の多項式」は一般化幾何では\emph{退化}し（$c_1$ を見ない）、情報は次数つきの次元にある。そこで (A) では次数ごとの多項式、(B) では定理 \ref{thm:K} のように「位相的な量 $h^k(U;L_U)$（留数の整数性にだけ依存）」と $\chi(X)$ に分解される。多項式的な振る舞いが全次数で成り立つのは正則型だけである。
+
+%--------------------------------------------------------------
+\section{準斉次な孤立特異点の局所公式の証明}\label{sec:local}
+%--------------------------------------------------------------
+Part II では次の公式を、$\mathrm{Sp}$ の指定された種類について計算で確認し、一般には予想としていた。ここで準斉次な場合に証明する。
+
+\paragraph{設定。}$h\in\C\{z,w\}$ を、正の重み $(w_z,w_w)$、次数 $N$ に関する準斉次多項式で、原点が孤立特異点（したがって $h$ は被約）とする。$\sigma=h\,\partial_z\wedge\partial_w$、$D=\{h=0\}$、$\mathcal O\,h^s$ を留数 $s$ の加群とし、茎の複体を $\mathcal C_s=(\mathcal O\to\Theta\to\mathcal O)$：$d_0f=(hf_w+sfh_w)\partial_z-(hf_z+sfh_z)\partial_w$、$d_1(p,q)=h(p_z+q_w)-(1-s)(h_zp+h_wq)$（Part I \S6.6）とする。
+
+\begin{thm}[局所公式\ \tP\ \tQ]\label{thm:local}
+$s\ne1$ のとき、$\mathcal C_s$ のコホモロジーの Poincar\'e 多項式は
+\[\mu\,t^2\;+\;[\,s\in\Z,\ s\le0\,](1+t)\;+\;(t+t^2)\cdot\#\{\alpha\in\mathrm{Sp}:\ s+\alpha\in\Z,\ s+\alpha\le1\}.\]
+\end{thm}
+\begin{hyptab}
+準斉次 & Euler ベクトル場 $e$ に $e\,h=Nh$ があり、複体が重みで分解して各重みが有限次元。 & 手順 (2)、(3)。\\\midrule
+孤立特異点 & $h_z,h_w$ が正則列（Hilbert 級数の公式）、$h$ が被約。 & 手順 (5)、(4)。\\\midrule
+$s\ne1$ & $s=1$ では茎が無限次元（重み分解の $e$ に対する可逆性が崩れる、Part II）。 & 商 $Q$ の部分の次元 $\mu$（手順 (1)）。\\\midrule
+$h$ が多項式（正の重み） & 各重み成分 $\mathcal O_k$ が有限次元多項式空間。 & 手順 (4)。
+\end{hyptab}
+\begin{proof}
+\emph{(1) 前稿の分解。}$B_s=(\mathcal O\to\Theta(-\log D)\to h\mathcal O)\cong(\Omega^\bullet(\log D),\,d+s\,\dlog h)$ は部分複体で、商 $Q=\mathcal C_s/B_s\simeq[J\!\cdot\!\mathcal O_D\to\mathcal O_D]$ の微分は単射で $\dim\mathcal O/J=\mu$ であるから、茎 $=H^*(B_s)\oplus(\mathcal O/J)[-2]$（次元として）。これは Part II v2 で証明した\tP。残りは $H^*(B_s)$ の次元。ここで $s$ の符号の規約は、Part II で計算データに合わせて固定した（本節末尾の確認事項を参照）。
+
+\emph{(2) 重みによる分解。}$\mathcal O=\prod_k\mathcal O_k$（$\mathcal O_k$ は重み $k$ の準斉次多項式。$h$ が準斉次なので収束級数も重み成分の（収束する）和）。$B_s$ の各項は $\mathcal O_k$ と、対数形式の基底（$\omega_e,\omega_\chi$：Euler 場 $e$ と Hamilton 場 $\chi_h$ に双対な対数 1 形式）で書け、$\nabla_s$ は重みを保つ。Lie 微分 $L_e=\nabla\iota_e+\iota_e\nabla$ は重み $k$ の部分に定数 $k+sN$ として働くので（Cartan の公式）、$k+sN\ne0$ の重みでは複体は縮約可能（ホモトピー $\iota_e/(k+sN)$）、したがって非輪状。ゆえに $H^*(B_s)$ は重み $k_0=-sN$ の部分だけに集中し、$k_0\in\Z_{\ge0}$（$\mathcal O_{k_0}\ne0$ のため）のときだけ非零になりうる。
+
+\emph{(3) 重み $k_0$ の部分。}基本公式
+\[\nabla_sf=(ef+sNf)\,\omega_e+\chi_h(f)\,\omega_\chi,\qquad\nabla(a\,\omega_e+b\,\omega_\chi)=\tfrac{\nu}{N}\bigl[\chi_h(a)-(e+sN-\delta)\,b\bigr]\]
+（$\nu$ は 2 形式の基底）より、重み $k_0$ では $C^0=\mathcal O_{k_0}$、$C^1=\mathcal O_{k_0}\oplus\mathcal O_{k_0+\delta}$、$C^2=\mathcal O_{k_0+\delta}$、$d^0f=(0,\chi_hf)$、$d^1(a,b)=\chi_h(a)/N$。$K=\ker(\chi_h|\mathcal O_{k_0})$、$\mathrm{Cok}=\mathrm{coker}(\chi_h:\mathcal O_{k_0}\to\mathcal O_{k_0+\delta})$ とおくと、$H^0=K$、$H^1=K\oplus\mathrm{Cok}$、$H^2=\mathrm{Cok}$。
+
+\emph{(4) $K$ の決定。}$f\in\mathcal O_{k_0}$、$\chi_hf=0$ とする。$\chi_hf=(df\wedge dh)/(dz\wedge dw)$（符号を除き）なので $df\wedge dh=0$。$e$ で縮約すると $(ef)\,dh-(eh)\,df=k_0f\,dh-Nh\,df=0$、すなわち $d(f^N/h^{k_0})=0$（$k_0>0$ のとき）。よって連結な $\C^2\setminus D$ 上 $f^N=c\,h^{k_0}$。$h$ は被約なので、既約因子 $p\mid h$ に対し $N\,v_p(f)=k_0$。$f\ne0$ なら $N\mid k_0$ で、$f/h^{k_0/N}$ は重み $0$ の（有理）関数で定数。したがって $K=\C\,h^{k_0/N}$（$k_0\in N\Z_{\ge0}$）、それ以外は $K=0$。$k_0=0$ では $f$ は定数。\emph{これは文献の標準的な事実（孤立特異点で $\chi_hf=0\Rightarrow f\in\C\{h\}$）を準斉次の場合に初等的に確かめたものである。}
+
+\emph{(5) $\dim\mathrm{Cok}$。}$d=k_0+\delta$ とおく。$a=w_z$、$b=w_w$ とすると $\sum_k\dim\mathcal O_kx^k=1/((1-x^a)(1-x^b))$、$h_z,h_w$ は次数 $N-a,N-b$ の正則列なので $\sum\dim T_kx^k=(1-x^{N-a})(1-x^{N-b})/((1-x^a)(1-x^b))$。恒等式 $x^\delta+x^N-x^{N-a}-x^{N-b}=x^\delta(1-x^a)(1-x^b)$ から
+\[\frac{(1-x^{N-a})(1-x^{N-b})}{(1-x^a)(1-x^b)(1-x^N)}-\frac{1-x^\delta}{(1-x^a)(1-x^b)}=\frac{x^\delta}{1-x^N}.\]
+$x^d$ の係数を取ると $\sum_{r\ge0}\dim T_{d-rN}-(\dim\mathcal O_d-\dim\mathcal O_{k_0})=[\,k_0\in N\Z_{\ge0}\,]=\dim K$。$\dim\mathrm{Cok}=\dim\mathcal O_d-\dim\mathcal O_{k_0}+\dim K$ なので $\dim\mathrm{Cok}=\sum_{r\ge0}\dim T_{d-rN}$。
+
+\emph{(6) スペクトルへの翻訳。}$s=-k_0/N$。$T_{d-rN}$ の次元は、重み $\mathrm{wt}(m)=d-rN$ の基底単項式 $m$ の個数。$\alpha=(\mathrm{wt}(m)+a+b)/N$ とおくと $s+\alpha=1-r\in\Z_{\le1}$。逆に $s+\alpha\in\Z_{\le1}$ をみたす $\alpha$ は、ちょうど 1 つの $r\ge0$ に対応する。よって $\dim\mathrm{Cok}=\#\{\alpha\in\mathrm{Sp}:s+\alpha\in\Z,\ s+\alpha\le1\}$。$\dim K=[\,s\in\Z_{\le0}\,]$。(3) より $H^*(B_s)$ の Poincar\'e 多項式は $[s\in\Z_{\le0}](1+t)+(t+t^2)\dim\mathrm{Cok}$。(1) の $\mu t^2$ を加えて定理を得る。
+\end{proof}
+\paragraph{確認と、残る未確認事項。}
+\begin{itemize}
+\item \tV\ 手順 (3)--(6) の恒等式と次元を、14 種（$A_1,A_2,A_3,A_6,D_4,D_5,E_6,E_8$、$z^3+w^6$、$z^4+w^5$、$z^5+w^5$、$z^4+w^4$、$z^3+w^7$、$z^5+w^6$）について、有理数の厳密計算で約 700 個の $k_0$ に対し照合：食い違い 0（\texttt{cp2/roundH\_proof\_check.py}）。
+\item \tQ\ $s$ の符号の規約：$B_s\cong(\Omega^\bullet(\log D),d+s\,\dlog h)$ における $s$ の符号は、Part II の計算データに合わせて定めた。上の 14 種×約 700 値の一致は、符号が逆なら起こらないので整合の確認にはなるが、独立な導出は書いていない。
+\item \tQ\ 重み分解の収束・完備化：準斉次なので収束級数は重み成分の和で、複体は重みの直積に分解する。各重みが有限次元で、$H^*(B_s)$ が単一の重みに集中するため、有限次元の茎の次元が分解の各部分に等しいことは問題ないはずだが、形式級数と収束級数の比較は丁寧に書いていない。
+\item 適用範囲：$s\ne1$、準斉次の孤立特異点のみ。準斉次でない孤立特異点、非孤立特異点、$s=1$ は含まない。
+\end{itemize}
+したがって Part II v2 の観察「局所公式」は、準斉次・$s\ne1$ について \tV\ \tK\ から \tP\ （上の \tQ\ を除く）に格上げできる（\texttt{v3\_corrections.md} に提案文を記録）。
+
+%--------------------------------------------------------------
+\section{指数定理の予想}\label{sec:index}
+%--------------------------------------------------------------
+Hirzebruch--Riemann--Roch は Atiyah--Singer の指数定理の特別な場合であり、一般化幾何での Riemann--Roch は「一般化 Dolbeault 複体の指数定理」として定式化されるべきである。ここでは設定を対数シンプレクティックな場合に絞り、現時点で言えることと言えないことを切り分ける。\emph{本節の主張はすべて予想であり、証明されていない。}
+
+\paragraph{なぜ既存の指数定理が使えないか。}(1) Hu の Lie 亜群上の Kodaira--Nakano 消滅と Riemann--Roch（arXiv:2403.13424）\cite{Hu}は、実 Lie 亜代数に付随する複体の指数を扱う。我々の複体 $(\wedge^\bullet T\otimes L,\dbar+[\sigma,\cdot])$ は、複素 Lie 亜代数 $\mathcal L=T^{0,1}\ltimes A^{1,0}$（$J$ に由来する実構造がない）の複体で、別物である。(2) Pflaum--Posthuma--Tang \cite{PPT} の Lie 亜群の指数は、コンパクトな底、ユニモジュラー性等を要する \tQ。(3) 文献に、$L$ の留数を重みとする対数 Dolbeault 複体の指数定理は見つからなかった。近い文献：b-対称多様体の幾何学的量子化（Braverman--Loizides--Song \cite{BLS}、境界項が極限で消える）、境界亜群の指数公式（Qiao--So \cite{QS}、余次元 $\ge2$ で eta 項なし）、Lie 構造をもつ多様体の擬微分作用素（Ammann--Lauter--Nistor \cite{ALN}）、ファイバー付き境界（Mazzeo--Melrose \cite{MM}）、複素対数 Hodge（Hausel--Hunsicker--Mazzeo \cite{HHM}）。いずれも設定が異なり、そのままは適用できない。
+
+\paragraph{予想の枠組み。}$A=T_X(-\log D)$ を（実）Lie 亜代数（Gualtieri--Li \cite{GL}：対数シンプレクティックな場合に積分可能、滑らかな $D$ で確認 \tC\ \tQ）とみて、$U$ 上の複体 $\mathcal D_L=(\wedge^\bullet T\otimes L,\ \dbar+[\sigma,\cdot])$ を、$A$ から決まる重み付き Sobolev 空間（重みは留数 $r$ から決まる）の上の閉作用素と考える。$A$ の意味での主シンボルは可逆（Part I 命題で局所計算を確認 \tV）なので、非 Fredholm 性は境界での\emph{指数的根（indicial root）}から生じる。局所モデル（$D$ の滑らかな点、座標 $z$）では $\nabla z^k=(k-r)z^k\,dz/z$ なので、指数的根は $k=r$、存在するのは $r\in\Z$ のとき。
+
+\begin{conj}[指数予想\ \tK]\label{conj:index}
+$X$、$\sigma$、$D$、$L$ を上のとおり（対数シンプレクティック、SNC）とする。
+\begin{enumerate}
+\item[(I1)] 作用素 $\mathcal D_L$ の、重み $r$ の Sobolev 空間上の閉拡大は、$r_i\notin\Z$（すべての $i$）のとき、またそのときに限り Fredholm である。
+\item[(I2)] Fredholm のとき、指数（交代和）は $\chi(U)+(-1)^n\#D_{(n)}=(-1)^n\chi(X)$ に等しい。Atiyah--Singer 型の積分 $\int c_n(T(-\log D))$ に、角の寄与 $\#D_{(n)}$ を加えたもの。
+\item[(I3)] $r_i\in\Z$ のとき、$j_!$ 型と $Rj_*$ 型の 2 つの閉拡大の核・余核の差は $H^*(\partial U;L)$ の部分商で与えられ（APS 型の壁越え三角形）、$\chi(\partial U)=0$ なので指数は変わらない（系 \ref{cor:wall} と整合）。
+\item[(I4)] 次数つきの精密化：Poincar\'e 多項式 $P_{\HH}(t)$ は、定理 \ref{thm:K} の形（$\chi(X)t^n$ と、指数的根の核が決める跳びの項）で与えられる。
+\end{enumerate}
+\end{conj}
+\paragraph{既に証明されている部分との対応。}(I2) の Euler 標数の値は定理 \ref{thm:E} と \ref{thm:K1} で証明済（$\chi(X)$）。(I3) の三角形は位相的なレベルでは $j_!L_U\to Rj_*L_U\to i_*i^*Rj_*L_U$ として Part I--IV で使われ（$n=2$ で完全に確認）、この三角形の指数側の対応物が未証明。(I4) は $n=2$ では Part I の定理 \tP、一般次元は定理 \ref{thm:K}（(GEN$'$) の下）\tP\ \tQ。
+
+\paragraph{証明すべきこと（残された課題）。}
+\begin{enumerate}
+\item 複素 Lie 亜代数 $\mathcal L$（$J$ なし）上の Fredholm 理論：parametrix の構成と、(I1) の「$\Leftrightarrow$」。Ammann--Lauter--Nistor の枠組みを重み付きに拡張する形が自然だが、未実施。
+\item (I2) の指数公式：b-接束 $^bT$ 上の Atiyah--Singer 公式 \cite{BLS} の類似を、$\wedge^\bullet T$ 係数の複体と重みつきの設定で示す。角（高い余次元の層）の寄与の扱いが問題。Qiao--So の変形の議論（eta 項なし）が参考になるかもしれない \tQ。
+\item (I3) の APS 型の壁越え：$H^*(\partial U;L)$ との同定を、$n=2$ の滑らかな $D$（Gysin 列）以外で行う。
+\item (I4) 次数つき版：スペクトル流の次数つき精密化。文献が見つかっていない。
+\item 代数的な前提 (GEN$'$) の一般の場合の証明（\S\ref{sec:ledger} の未解決問題）。
+\end{enumerate}
+
+%--------------------------------------------------------------
+\section{当初の目標との関係と、全シリーズの状態表}\label{sec:ledger}
+%--------------------------------------------------------------
+当初の目標は「複素幾何の三種の神器（Riemann--Roch、Serre 消滅、Kodaira 埋め込み）の一般化幾何版」である。到達点を、素朴な形でそのまま成り立つか／別の形で成り立つか／不成立か、で整理する。
+
+\begin{center}\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{2.6cm}>{\raggedright\arraybackslash}p{6.2cm}>{\raggedright\arraybackslash}p{6.0cm}}
+\toprule 神器 & 成り立った形 & 成り立たない／未解決\\\midrule
+Riemann--Roch & Euler 標数の公式 $(-1)^n\rk(E)\chi(X)$（定理 E）、対数版 $\chi(U)$（定理 K1）、Poincar\'e 多項式の公式（Part I $n=2$、定理 K）、正則型の次数別多項式（Part IV 系 L） & $c_1(E)$ に依存する素朴な HRR は不成立（Euler 標数は $c_1$ を見ない）。指数定理による統一は未証明（予想 \ref{conj:index}）\\\midrule
+Serre 消滅 & 横断次数 $a>0$ での消滅（$m\gg0$、$X$ 射影、$\sigma$ 任意）（Part I） & 全次数での消滅は不成立（$\sigma=0$ でも）\\\midrule
+Kodaira 埋め込み & 葉空間の Kodaira、トーリックでの Poisson--Kodaira 予想（Part III） & 一般化正則切断による埋め込みは不可能（Part III）。一般の Poisson--Kodaira 予想（$\mathbb P^2$ の $m\ge3$ 等）は未証明\\\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{center}\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{9.0cm}>{\raggedright\arraybackslash}p{1.6cm}>{\raggedright\arraybackslash}p{4.2cm}}
+\toprule 主張 & 状態 & 備考\\\midrule
+双対性 $\HH^k(L)^*\cong\HH^{2n-k}(L^\vee\otimes K^2)$（一般次元） & \tP\ \tV & $n\le4$ で恒等式を機械確認\\
+Serre 型消滅（横断次数） & \tP & Part I\\
+曲面の定理（$P_r(t)$、結節点のみ） & \tP\ \tV & Part I；$\mathbb P^2$ 3 次曲線で $m=-15,\dots,15$\\
+Euler 標数の定理（定理 E） & \tP & Part II\\
+トーリックの定理 T & \tP\ \tV & Part II、IV で再証明\\
+局所公式（準斉次、$s\ne1$）（定理 \ref{thm:local}） & \tP\ \tQ & 本稿。符号規約・収束の確認が残る\\
+局所公式（準斉次でない、$s=1$） & \tK & 未証明\\
+非被約な $D$ の公式（Part II 予想） & \tK\ \tV & データへの当てはめ\\
+簡約定理（定理 \ref{thm:R}） & \tP\ \tQ & $n>2$ の濾過の導出は見取り図\\
+(GEN$'$) の一般の場合 & \tK & トーリックは \tP\\
+正則型の定理 L・系 L & \tP\ \tQ & Nomizu 型の仮定を含む\\
+定理 K1（対数版 Euler 標数） & \tP\ \tV & 本稿\\
+定理 K（Poincar\'e 多項式の RR 型公式） & \tP\ \tV\ \tQ & 本稿。簡約定理の \tQ\ を引き継ぐ\\
+一般化正則切断による埋め込みの不可能性 & \tP & Part III\\
+葉空間 Kodaira、トーリック Poisson--Kodaira & \tP\ \tK & Part III\\
+Poisson--Kodaira（一般） & \tK & 未証明\\
+指数予想（予想 \ref{conj:index}） & \tK & 本稿。証明されていない\\
+\bottomrule
+\end{tabular}
+\end{center}
+\paragraph{次に取り組むべきこと。}(1) (GEN$'$) の一般的な十分条件と、ホロモルフィックな対数 Darboux の参照。(2) 非被約・非準斉次の局所公式。(3) Poisson--Kodaira の $m\ge3$ の場合。(4) 指数予想のうち、(I1) の Fredholm 理論から。(5) 非平坦なバンドル、hard Lefschetz をみたさないファイバー。
+
+\paragraph{検証の範囲。}Part I--V の計算は、有限体または有理数上の厳密な線形代数、または既知の公式の当てはめである。Hu、Gualtieri--Li、Braverman--Loizides--Song、Qiao--So、Ammann--Lauter--Nistor、Mazzeo--Melrose、Hausel--Hunsicker--Mazzeo、Pflaum--Posthuma--Tang については、題名・著者・要旨を確認したのみで、定理の内容や掲載誌の詳細は未確認（\tQ）である。
+
+\begin{thebibliography}{99}\small
+\bibitem{PartI} Claude, 森, \emph{正則 Poisson 構造に付随する一般化複素構造上の一般化正則直線束のコホモロジー}（Part I, v2）, \url{https://hylt-math.github.io/2026/11/22/generalized-geometry-poisson/}
+\bibitem{PartII} Claude, 森, \emph{一般化正則直線束のコホモロジーと Riemann--Roch 型公式（Part II）}, \url{https://hylt-math.github.io/2026/11/22/generalized-geometry-poisson-part2/}
+\bibitem{PartIII} Claude, 森, \emph{一般化正則直線束のコホモロジーと Kodaira 型定理（Part III）}, \url{https://hylt-math.github.io/2026/11/22/generalized-geometry-poisson-part3/}
+\bibitem{PartIV} Claude, 森, \emph{一般化正則直線束のコホモロジー（Part IV）：正則型と対数シンプレクティック型の比較、簡約定理}, \url{https://hylt-math.github.io/2026/11/22/generalized-geometry-poisson-part4/}
+\bibitem{Del70} P.\ Deligne, \'Equations diff\'erentielles \`a points singuliers r\'eguliers, Lecture Notes in Math.\ 163, Springer 1970.
+\bibitem{EV} H.\ Esnault, E.\ Viehweg, Logarithmic de Rham complexes and vanishing theorems, Invent.\ Math.\ 86 (1986) 161--194.
+\bibitem{SGA4} M.\ Artin, Th\'eor\`eme de finitude pour un morphisme propre; dimension cohomologique des sch\'emas alg\'ebriques affines, in SGA 4, Exp.\ XIV, Lecture Notes in Math.\ 305 [Artin の消滅定理。解析的な局所系への適用の出典は\tQ].
+\bibitem{Hu} T.\ Hu, Kodaira--Nakano vanishing and Riemann--Roch on Lie groupoids, arXiv:2403.13424 [題名の細部は\tQ].
+\bibitem{GL} M.\ Gualtieri, S.\ Li, Symplectic groupoids of log symplectic manifolds, arXiv:1206.3674 (IMRN 2014 [\tQ]).
+\bibitem{BLS} M.\ Braverman, Y.\ Loizides, Y.\ Song, Geometric quantization of $b$-symplectic manifolds, arXiv:1910.10016.
+\bibitem{PPT} M.\ Pflaum, H.\ Posthuma, X.\ Tang, The index of geometric operators on Lie groupoids, arXiv:1308.0236.
+\bibitem{QS} Y.\ Qiao, B.-K.\ So, Deformation and K-theoretic index formulae on boundary groupoids, arXiv:2304.13345.
+\bibitem{ALN} B.\ Ammann, R.\ Lauter, V.\ Nistor, Pseudodifferential operators on manifolds with a Lie structure at infinity, arXiv:math/0304044.
+\bibitem{MM} R.\ Mazzeo, R.\ Melrose, Pseudodifferential operators on manifolds with fibred boundaries, arXiv:math/9812120.
+\bibitem{HHM} T.\ Hausel, E.\ Hunsicker, R.\ Mazzeo, Hodge cohomology of gravitational instantons, arXiv:math/0207169 (Duke Math.\ J.\ 122 (2004) [\tQ]).
+\bibitem{LGSX} C.\ Laurent-Gengoux, M.\ Sti\'enon, P.\ Xu, Holomorphic Poisson manifolds and holomorphic Lie algebroids, IMRN 2008, arXiv:0707.4253.
+\bibitem{Hit} N.\ Hitchin, Poisson modules and generalized geometry, arXiv:0905.3227.
+\bibitem{Gua} M.\ Gualtieri, Generalized complex geometry, Ann.\ Math.\ 174 (2011) 75--123, arXiv:math/0703298.
+\bibitem{Del68} P.\ Deligne, Th\'eor\`eme de Lefschetz et crit\`eres de d\'eg\'en\'erescence de suites spectrales, Publ.\ Math.\ IH\'ES 35 (1968) 259--278.
+\end{thebibliography}
