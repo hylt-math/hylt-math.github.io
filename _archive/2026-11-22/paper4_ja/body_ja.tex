@@ -1,0 +1,277 @@
+%--------------------------------------------------------------
+\section{本稿の位置づけと結果の概観}\label{sec:intro}
+%--------------------------------------------------------------
+本稿は Part I--III \cite{PartI,PartII,PartIII}（URL は参考文献に記載）の続きである。Part I--III は主に、正則 Poisson 構造 $\sigma$ の $\beta$-変換で得る一般化複素構造（型が跳ぶ、対数シンプレクティックな場合）を扱った。記号は Part I--III に従い、再説明しない。
+
+\paragraph{目的。}
+Pal--Poddar（arXiv:2404.18113）が扱う\emph{正則型}（型が一定、葉がシンプレクティック、葉空間が Kähler 軌道体）の設定と、Part I--III の\emph{型が跳ぶ}設定を、同じ道具（一般化 Dolbeault 複体 $C(L;E)$）で比較する。結論は次の通り。
+\begin{itemize}
+\item 正則型（平坦なシンプレクティックファイバー束）では、$\HH^*$ は Gauss--Manin 平坦束 $V^j$ を使って閉じた形に書ける（定理 \ref{thm:L}）\tP。ここで Leray のスペクトル系列が $E_2$ で退化することが核心で、Deligne の Lefschetz の補題を使う。
+\item その系として、各次数 $k$ について $m$ の\emph{多項式}としての次数別 Riemann--Roch が成り立ち（系 \ref{cor:L}）、Pal--Poddar の Serre 型消滅（Thm.\ 11.12(2)）は、私たちの「横断次数での消滅」と一致する\tP。
+\item 型が跳ぶ（対数シンプレクティック）場合は、同じ量が $m$ について\emph{周期的}になる。違いは $d_1=[\sigma,\cdot]$ が（ほぼ）完全か否かに集約される（\S\ref{sec:contrast}）\tP\tV。
+\item 一般次元の対数シンプレクティックな場合に、Part II の予想（$\HH^*\cong H^*(U;L_U)\oplus\C^{\#D_{(n)}}[-n]$）を、各層の商複体の非輪状性という条件 (GEN$'$) に簡約した（定理 \ref{thm:R}）\tP。
+\end{itemize}
+未解決：(GEN$'$) の一般の場合の十分条件、2つの設定を統一する枠組み（予想 \ref{conj:U}）。
+
+%--------------------------------------------------------------
+\section{記号表（本稿で新しく使うもの）}\label{sec:notation}
+%--------------------------------------------------------------
+\begin{longtable}{>{\raggedright\arraybackslash}p{3.8cm}>{\raggedright\arraybackslash}p{11.2cm}}
+\toprule 記号 & 意味\\ \midrule\endhead
+$Y\to M\xrightarrow{\pi} X$ & 平坦なシンプレクティックファイバー束（\S\ref{sec:setting}）。$Y$ はコンパクト連結なシンプレクティック多様体（$\dim Y=2m_Y$）、$X$ はコンパクト複素多様体（$\dim_\C X=k$）\\
+$\Gamma=\pi_1(X)$、$\rho$ & $M=(Y\times\tilde X)/\Gamma$ の構成に使う、$\Gamma\to\mathrm{Symp}(Y,\omega_Y)$\\
+$V^j$ & ファイバーのコホモロジー $H^j(Y_x;\C)$ が作る平坦（Gauss--Manin）束。正則束 $V^j\otimes\mathcal O_X$ と同一視\\
+$G$、$E=\pi^*G$ & $X$ 上の正則直線束と、その引き戻し（SGH 直線束）\\
+$\HH^k(M,E)$ & 一般化正則直線束 $E$ の一般化 Dolbeault コホモロジー（複体 $C(L;E)$ の第 $k$ コホモロジー）\\
+$N$、$\wedge^bT_X$ & アンカーの核（階数 $k$）の双対と、$X$ の接束の外冪。$b$ は $N$-次数（Higgs 的な次数）\\
+$\Lambda=\omega_F\wedge$ & 葉方向の Lefschetz 作用素（$\omega_F$ は $\omega_Y$ の持ち上げ）\\
+$X,D=\sum D_i,\sigma,L$ & 対数シンプレクティックな設定（Part II に従う）。$\mathrm{res}_i=r_i$ は留数\\
+$U=X\setminus D$、$L_U$ & 補集合と、留数から決まる階数 1 の局所系\\
+$D_T=\bigcap_{i\in T}D_i$、$D_{(n)}$ & 層と、$n$ 重点の集合（有限集合）\\
+$B,\,C,\,Q$ & $B=\wedge^\bullet T(-\log D)\otimes L\subset C=(\wedge^\bullet T\otimes L)$、$Q=C/B$\\
+$\nu_T,\ \sigma_T$ & 層 $D_T$ 上の $\nu_T=\sum_{i\in T}(r_i-1)[H_i]$ と、$\sigma$ から誘導される Poisson 構造（\S\ref{sec:Q}）\\
+(GEN$'$) & 内在的な一般性の仮定（定義 \ref{def:GEN}）\\
+$P_{\HH}(t)$ & $\sum_k\dim\HH^k\,t^k$\\
+\bottomrule
+\end{longtable}
+\noindent タグ：\tC\ 文献、\tP\ 筆者の証明（標準的事実は引用）、\tV\ 計算機による確認、\tK\ 予想・見通し、\tQ\ 未確認。
+
+%--------------------------------------------------------------
+\section{正則型：平坦なシンプレクティックファイバー束}\label{sec:regular}
+%--------------------------------------------------------------
+\subsection{設定}\label{sec:setting}
+\begin{defn}[設定 (S)]
+$X$ をコンパクト複素多様体、$\tilde X\to X$ を普遍被覆（または有限被覆）、$\Gamma=\pi_1(X)$ とし、$Y$ をコンパクト連結なシンプレクティック多様体 $(Y,\omega_Y)$ とする。準同型 $\rho:\Gamma\to\mathrm{Symp}(Y,\omega_Y)$ に対し $M=(Y\times\tilde X)/\Gamma$ とおく。$J_Y\times J_X$ ではなく、一般化複素構造として「$Y$ 上のシンプレクティック構造 $\times$ $X$ 上の複素構造」の積が $\Gamma$-不変なので $M$ に降り、型 $k=\dim_\C X$ の正則型の一般化複素構造が得られる。葉はファイバー $Y_x$、葉空間は $X$。$E=\pi^*G$（$G$ は $X$ 上の正則直線束）を SGH 直線束とする。\tC\ 正則型・SGH の定義：Pal--Poddar, arXiv:2404.18113, Def.\ 3.1 ほか（番号は\tQ）。
+\end{defn}
+\noindent この設定には、直積 $Y\times X$（$\Gamma$ が自明）、$S^2$-束（ホロノミーが $SO(3)$ に入るもの）、Kodaira--Thurston 型の $T^2$-束などが含まれる。
+
+\subsection{$\omega$ には依存しない}
+\begin{prop}\tP\label{prop:L1}
+$\tilde\omega$ を $\mathrm{pr}_Y^*\omega_Y$ が降りて得られる $M$ 上の閉 2-形式とする。$e^{i\tilde\omega}$ は Courant 自己同型で、$L=e^{i\tilde\omega}L_0$（$L_0=T_{F,\C}\oplus T^{0,1}_{\mathrm{hor}}\oplus N^*$、$N^*=\pi^*T^{*1,0}_X$）。よって $L\cong L_0$ は Lie 亜群として同型で、一般化 Dolbeault 複体は
+\[C(L;E)=\Omega^\bullet_{F_\C}(M;E\otimes\wedge^\bullet T^{1,0}_X),\qquad F_\C=T_{F,\C}\oplus T^{0,1}_{\mathrm{hor}}\ (\text{包合的})\]
+と同一視でき、$N$ は SGH 束に自明に作用する。\emph{コホモロジーは $\omega$ を見ない}（葉付き複素構造だけを見る）。
+\end{prop}
+\begin{proof}[証明の要点]
+局所的には積の主張で、すべての対象が $\Gamma$-不変。$d\tilde\omega=0$ なので $e^{i\tilde\omega}$ は Courant 括弧を保つ。$N$ が自明に作用するのは SGH の定義（横断方向に正則、葉に沿って平坦）による。\qedhere
+\end{proof}
+\begin{rem}\tC\tQ
+Pal--Poddar の Thm.\ 8.9、Cor.\ 8.10 は、葉に沿って定数な横断形式の Dolbeault コホモロジーを扱う。それは本稿の $\HH^*$ の葉方向 de Rham 因子 $H^j(Y)$ を含まない（\S\ref{sec:PP}）。
+\end{rem}
+
+\subsection{主定理：Leray と Lefschetz}
+\begin{thm}[正則型の $\HH^*$]\tP\label{thm:L}
+設定 (S) を仮定し、さらに (HL)：$(Y,\omega_Y)$ は hard Lefschetz をみたす（例えば $Y$ が Kähler）とする。$E=\pi^*G$ とすると、
+\[\HH^k(M,E)\ \cong\ \bigoplus_{a+b+j=k}H^a\bigl(X,\ \wedge^bT_X\otimes V^j\otimes G\bigr).\]
+$X$ に Kähler や射影性は要らない。
+\end{thm}
+\begin{hyptab}
+(S) 平坦なファイバー束 & 命題 \ref{prop:L1} による分解 $L\cong L_0$ と、Ehresmann 的な局所自明性（ファイバーのコホモロジーが局所系 $V^j$ になる）。 & 手順 (i)。\\\midrule
+$Y$ コンパクト連結 & $H^j(Y)$ が有限次元で、葉方向コホモロジー層が $V^j$ の滑らかな切断層になる。 & 手順 (i)。\\\midrule
+(HL) hard Lefschetz & $\Lambda=\omega_F\wedge$ が $V^{m_Y-i}\to V^{m_Y+i}$ の同型（平坦束の同型）を与える。 & 手順 (iii)：Deligne の補題で $d_r=0$ $(r\ge2)$。\\\midrule
+$X$ コンパクト & 各 $H^a(X,\cdot)$ が有限次元。 & 次元の和。\\\midrule
+$E=\pi^*G$（SGH） & $N$ が自明に作用するので、$\wedge^bT_X$-次数 $b$ が直和因子（Poisson 的な $d_1$ がない）。 & 手順 (i)：$E_2$ の形。
+\end{hyptab}
+\begin{proof}
+(i)（二重複体）命題 \ref{prop:L1} により $C(L;E)=\Omega^\bullet_{F_\C}(M;E\otimes\wedge^\bullet T_X)$。これは「葉方向の de Rham」と「$X$ 上の Dolbeault（係数 $\wedge^bT_X\otimes G$）」の二重複体を作る。ファイバーがコンパクトなので、葉方向コホモロジー層は $V^j$ の $C^\infty$ 切断の層である。その上の $\bar\partial$ は Gauss--Manin 接続の $(0,1)$-部分で、持ち上げの取り方によらない（持ち上げの違いは葉方向 Lie 微分で、閉形式に対しては完全形式）。よって
+\[E_2^{a,j}=\bigoplus_bH^a(X,\wedge^bT_X\otimes V^j\otimes G).\]
+(ii) $\omega_F:=\tilde\omega|_F$ の混合成分は 0（$\tilde\omega$ は局所的に $\mathrm{pr}_Y^*\omega_Y$）。したがって $\Lambda=\omega_F\wedge$ は二重複体の鎖準同型（$d_F$ と $\bar\partial$ に可換）で、スペクトル系列の各項に作用し $d_r$ と可換。$E_2$ 上では各点のファイバー上の Lefschetz 作用素 $V^j\to V^{j+2}$ である。
+(iii)（Deligne の補題）hard Lefschetz により $V^{m_Y-i}\to V^{m_Y+i}$ が同型。$x$ を重み $s$ の原始元とすると、$\Lambda^{s+1}d_2x=0$ だが $d_2x$ はファイバー次数 $m_Y-s-1$ の側にあり、そこでは $\Lambda^{s+1}$ は単射。よって $d_2=0$。帰納的に $d_r=0$ $(r\ge2)$。次元は足し合わさる。\qedhere
+\src{Deligne, Th\'eor\`eme de Lefschetz et crit\`eres de d\'eg\'en\'erescence de suites spectrales, Publ.\ Math.\ IH\'ES 35 (1968) 259--278。Leray スペクトル系列：Bredon, \emph{Sheaf Theory}, IV（該当箇所は\tQ）。}
+\end{proof}
+\begin{rem}[hard Lefschetz がないとき]\tK
+(HL) を外すと $d_2\neq0$ になりうる。具体例は計算していない。
+\end{rem}
+
+\subsection{系：次数別の Riemann--Roch と Serre 消滅}\label{sec:cor}
+\begin{cor}[次数別 Riemann--Roch]\tP\label{cor:L}
+定理 \ref{thm:L} の仮定に加え、$X$ が射影的で $G$ が豊富とする。ある $m_0$ があって、$m\ge m_0$ ならば、$H^a(X,\wedge^bT_X\otimes V^j\otimes G^m)=0$ $(a>0)$、したがって
+\[\HH^k(M,E^m)=\bigoplus_{b+j=k}H^0\bigl(X,\wedge^bT_X\otimes V^j\otimes G^m\bigr),\]
+\[\dim\HH^k(M,E^m)=\sum_{b+j=k}b_j(Y)\int_X\ch(\wedge^bT_X)\,e^{m\,c_1(G)}\,\Td(X).\]
+右辺は各 $k$ について $m$ の多項式である。
+\end{cor}
+\begin{hyptab}
+$G$ 豊富、$X$ 射影的 & Serre 消滅 $H^a(X,\mathcal F\otimes G^m)=0$ $(a>0,m\gg0)$ を連接層 $\mathcal F=\wedge^bT_X\otimes V^j$ に使う。 & 全次数 $a>0$ の項の消滅。\\\midrule
+$V^j$ が平坦束 & $\ch(V^j)=\mathrm{rk}\,V^j=b_j(Y)$（Chern 類が自明）。 & 公式の積分で $b_j(Y)$ が外に出る。\\\midrule
+定理 \ref{thm:L} & $\HH^k$ を $\bigoplus H^a$ に分解。 & 最初の等式。\\\midrule
+$\mathrm{HRR}$ & $H^0$ の次元を $\chi$ で書く（$a>0$ が消えるので）。 & 最後の等式。
+\end{hyptab}
+\begin{proof}
+Serre 消滅\tC\ (Hartshorne III.5.2) を局所自由層 $\wedge^bT_X\otimes V^j$ に適用し、有限個の $(b,j)$ について $m_0$ の最大値を取る。残りは Hirzebruch--Riemann--Roch と $\ch(V^j)=b_j(Y)$。\qedhere
+\end{proof}
+\begin{rem}
+全 Euler 標数は $\sum_k(-1)^k\dim\HH^k=\chi(Y)(-1)^k\chi(X)$（$k=\dim_\C X$ の符号を含む）で、Part II の全 Euler 標数の定理と整合する\tV。$m$ に依存しないのは全体としての和であり、各次数 $k$ ごとの次元は $m$ の多項式として増える。
+\end{rem}
+
+\subsection{Pal--Poddar の Thm 11.12 との関係}\label{sec:PP}
+\begin{thm}[Pal--Poddar, Thm.\ 11.12]\tC
+$M$ をコンパクトな正則型の一般化複素多様体、$M/\mathcal S$ を Kähler 軌道体、$E$ を正の SGH 直線束とする。(1) $p+q>k$ ならば $H^q(M,(\mathcal G^*M)^p\otimes E)=0$。(2) 任意の SGH 束 $E'$ に対し、$m\ge m_0$、$q>0$ なら $H^q(M,E'\otimes E^m)=0$。
+\src{D.\ Pal, M.\ Poddar, \emph{Strong generalized holomorphic principal bundles}, arXiv:2404.18113, Thm.\ 11.12（仮定・主張は pp\_recheck による再読）。}
+\end{thm}
+\begin{prop}\tP\label{prop:PPcompare}
+設定 (S) では、Pal--Poddar の群 $H^q(M,(\mathcal G^*M)^p\otimes E)$ は $H^q(X,\Omega^p_X\otimes G)$（葉に沿って定数な横断形式）として読める。そのとき (1) は $X$ 上の古典的な Kodaira--Nakano 消滅、(2) は $E'=\pi^*(\wedge^bT_X\otimes V^j)$（SGH 束：変換関数が葉に沿って局所定数、横断方向に正則）に対する古典の Serre 消滅であり、これは系 \ref{cor:L} の消滅 $H^a(X,\wedge^bT_X\otimes V^j\otimes G^m)=0$ $(a>0)$ と同じである。したがって\emph{私たちの横断次数での消滅は Pal--Poddar Thm.\ 11.12(2) を $E'=\wedge^bT_X\otimes V^j$ に適用したものに一致し}、系 \ref{cor:L} は「Pal--Poddar の Serre 型消滅 $+$ Leray $+$ Lefschetz」である。
+\end{prop}
+\begin{rem}[\tQ]
+文字通りの $M$ 上の層コホモロジーを取ると、$R^j\pi_*\pi^{-1}\neq0$ のために葉方向因子 $H^j(Y)$ が余分に現れる。Pal--Poddar の Thm.\ 8.9、Cor.\ 8.10 は $H^q(M,(\mathcal G^*M)^p)$ を横断 Dolbeault コホモロジーと同定するので、彼らの $H^q$ は葉空間上で読むべきと思われるが、原文でそのように明記されているかは確認していない。また $\HH^k$ の消滅が言えるのは横断次数 $a>0$ についてだけで、$H^j_{dR}(Y)$ 因子は各次数 $j$ に残る。
+\end{rem}
+
+\subsection{例}\label{sec:examples}
+\begin{ex}[直積 $Y\times\mathbb P^1$]\tP\tV
+$X=\mathbb P^1$、$G=\mathcal O(m)$、$m\ge-1$：定理 \ref{thm:L} と $H^0(\mathbb P^1,\mathcal O(m))=m+1$、$H^0(\mathbb P^1,T\otimes\mathcal O(m))=m+3$ から
+\[P_{\HH}(t)=P_Y(t)\bigl((m+1)+(m+3)\,t\bigr).\]
+$Y=S^2$：$P_Y=1+t^2$ より $P_{\HH}=(m+1)(1+t^2)+(m+3)(t+t^3)$（$m=0$：$1,3,1,3$）。$Y=T^2$：$P_Y=1+2t+t^2$、$m=0$：$1,5,7,3$。どちらも $m$ について線形に増える。
+\end{ex}
+\begin{ex}[Kodaira--Thurston：$T^2\to M\to E$]\tP\tV\tQ
+モノドロミーがせん断 $\psi=\begin{pmatrix}1&1\\0&1\end{pmatrix}$ のとき、$V^0=V^2=\mathcal O$、$V^1=F_2$（Atiyah の非自明な冪単な平坦束、$h^0=h^1=1$\tC\ Atiyah, Proc.\ London Math.\ Soc.\ (3) 7 (1957) 414--452）。$G=\mathcal O$ では
+\[P_{\HH}(t)=(1+t)^2(1+t+t^2)=1+3t+4t^2+3t^3+t^4.\]
+独立な確認：Heisenberg 代数 $\mathfrak h_3$（$[X_2,W]=-\tfrac12X_1$）の葉方向複体に $\wedge N$ を掛けた Lie 環複体の Betti 数が $(1,3,4,3,1)$ で一致\tV。この確認は不変形式のモデルが $\HH^*$ を計算するという Nomizu 型の定理を仮定しており、その定理は証明していない\tQ（定理 \ref{thm:L} 自体はそれを使わない）。$\deg G=d>0$ では $P_{\HH}(t)=d(1+t)^3$、$\deg G=0$、$G\not\cong\mathcal O$ では $P_{\HH}=0$。
+\end{ex}
+\begin{ex}[Bieberbach 商 $(T^2\times E)/\mathbb Z_2$]\tP\tV
+$(y,x)\mapsto(-y,x+\tau/2)$。$V^1=L_{-1}\oplus L_{-1}$（非自明な符号表現）は $G=\mathcal O$ で非輪状。$P_{\HH}(t)=(1+t)^2(1+t^2)$（Künneth の $\mathbb Z_2$-不変部分と一致）。
+\end{ex}
+\begin{ex}[ホロノミーが $SO(3)$ の $S^2$-束]\tP
+$V^j$ は自明束なので、数値は直積の場合と同じ。
+\end{ex}
+\begin{rem}
+葉方向に非自明な平坦なホロノミー指標 $\chi$ をもつ SGH 束は、コンパクトな底では指標が局所定数になる（最大値原理）。$Y$ がトーラスで $\chi\neq1$ なら $H^*(Y;L_\chi)=0$ で $\HH=0$。\tP
+\end{rem}
+
+%--------------------------------------------------------------
+\section{型が跳ぶ場合との対比：多項式 vs 周期的}\label{sec:contrast}
+%--------------------------------------------------------------
+Part I--III の対数シンプレクティック $\mathbb{CP}^2$（滑らかな 3 次曲線に沿って $\sigma$ が消える）では、$L=\mathcal O(m)$ に対し $\HH^*$ の次元は $m$ を動かしても有界で周期 3 である。
+\begin{center}\small
+\begin{tabular}{p{3.6cm}p{4.0cm}p{5.4cm}}\toprule
+ & 正則型（$Y=S^2$、$X=\mathbb P^1$） & 型が跳ぶ（$\mathbb{CP}^2$、滑らかな 3 次曲線）\\\midrule
+$m$ が大きいとき $\dim\HH^k$ & $m$ の線形関数：$(m+1),(m+3),(m+1),(m+3)$ & 有界：$m\in3\Z_{\ge0}$ で $(1,0,2,0,0)$、それ以外で $(0,0,3,0,0)$\\\midrule
+$m=0$ & $(1,3,1,3)$ & $(1,0,2,0,0)$\\\midrule
+$m=1$ & $(2,4,2,4)$ & $(0,0,3,0,0)$\\\midrule
+$m=3$ & $(4,6,4,6)$ & $(1,0,2,0,0)$\\\midrule
+全 Euler 標数 & $\chi(Y)(-1)\chi(X)=-4$ & $\chi(\mathbb{CP}^2)=3$（$m$ によらない）\\\bottomrule
+\end{tabular}
+\end{center}
+\tV\ 右列は Part I の表（$m=-15,\dots,15$ で直接計算と一致）、左列は系 \ref{cor:L} の公式。
+\begin{obs}\tP\label{obs:contrast}
+両者はともに $E_1^{a,b}=H^a(\wedge^bT\otimes E)$ から出発する。正則型では SGH 束で $N$ が自明に作用するので $d_1=0$（定理 \ref{thm:L}）。型が跳ぶ場合は $d_1=[\sigma,\cdot]+V\wedge$ が $H^0$ の項の間で\emph{ほぼ完全}になり、$H^0(\wedge^bT\otimes L^m)$ が $m$ について増えるにもかかわらず、残るコホモロジーは $U=X\setminus D$ の位相で決まる有界な量になる。\emph{「$m$ の多項式」か「周期的」かの違いは、$d_1$ の消滅か（ほぼ）完全性か、に帰着する。}
+\end{obs}
+
+%--------------------------------------------------------------
+\section{一般次元の対数シンプレクティックな場合：簡約定理}\label{sec:log}
+%--------------------------------------------------------------
+\subsection{設定と商複体}\label{sec:Q}
+$X$ をコンパクト複素多様体（$\dim X=n$ 偶数）、$D=\sum D_i$ を単純正規交差因子、$\sigma$ を対数シンプレクティック（$\sigma^\sharp:\Omega^1(\log D)\cong T(-\log D)$）、$L$ を Poisson 加群（$D$ に沿った平坦な対数接続）、$r_i$ を留数（$D_i$ 上の定数）とする（Part II）。$C=(\wedge^\bullet T\otimes L,\ d_\sigma+V\wedge)$（$\mathbb C$-ベクトル空間の層の複体、$\HH^k=H^k(X;C)$）、$B=\wedge^\bullet T(-\log D)\otimes L\subset C$（$\wedge\sigma^\sharp$ で $\mathrm{DR}_{\log}(L)$ と同型\tC\ Part II、ncd\_theorem Lemma 3）、$Q=C/B$ とする。
+
+\paragraph{$Q$ の構造。}
+対数座標 $(z_I,w)$ では、$\wedge T$ の $\mathcal O$-基底は $\partial_{z_S}\wedge\partial_w^Y$、$\wedge T(-\log D)$ の基底は $E_S\wedge\partial_w^Y=z^S\partial_{z_S}\wedge\partial_w^Y$ である。したがって $Q$ は「極をもつ多重ベクトル場」で張られる。極をもつ分枝の集合を $T(s)$ とする。$\sigma\in\wedge^2T(-\log D)$ と、モジュール構造のベクトル場 $V=\sigma^\sharp(\sum r_i\,\dlog z_i)\in T(-\log D)$ のために、$d$ は極を新しく作らない。よって $F_k=\{|T(s)|\le k\}$ は $Q$ の部分複体の増大列で、その次数商は
+\[\mathrm{gr}_kQ=\bigoplus_{|T|=k}Q_T,\qquad Q_T\cong\bigl(\wedge^\bullet T_{D_T}(-\log D'_T)\otimes L|_{D_T}\bigr)\ \text{(係数 }z^{-T}E_T\text{)},\]
+微分は $d_T=[\sigma_T,\cdot]+\nu_T\wedge$、ここで $\sigma_T$ は $\sigma$ が $\wedge^2T_{D_T}(-\log D'_T)$ に誘導する Poisson 構造（$D_T$ は Poisson 部分多様体）、$\nu_T=\sum_{i\in T}(r_i-1)[H_i]$、$H_i=\sigma^\sharp(\dlog z_i)$ である。「$-1$」は $[\sigma,z_i^{-1}]=-z_i^{-1}H_i$ から、「$r_i$」はモジュール構造から来る。$[\sigma_T,\nu_T]=0$、$d_T^2=0$。\tP\ ($n=2$)、一般 $n$ の導出は同じ Schouten 括弧の計算の見取り図で、一行ずつは書いていない\tQ。
+最上位は $|T|=n$：$D_T=p$ は点、$\wedge^\bullet T_{D_T}=\C$ で $\mathrm{gr}_nQ=\bigoplus_{p\in D_{(n)}}\C_p[-n]$（微分 0）。\tP
+
+\begin{defn}[(GEN$'$)]\label{def:GEN}
+$1\le|T|\le n-1$ を満たすすべての層 $T$ について、$D_T$ 上の層の複体 $Q_T$ が（茎ごとに）非輪状であること。
+\end{defn}
+\begin{prop}[(GEN$'$) の必要条件と例]\tP\label{prop:genNec}
+(a) $\nu_T\not\equiv0$（$\nu_T\equiv0$ なら $Q_T$ は $\sigma_T$ の Lichnerowicz 複体で、局所定数の Casimir が $H^0$ に入る）。特に $|T|=1$ で $r_i\neq1$。
+(b) $|T|=1$、$D$ の滑らかな点では：$\sigma=E_z\wedge\partial_{w_1}+\sum\partial_{w_{2j}}\wedge\partial_{w_{2j+1}}$（対数 Darboux）とすると $\nu=(r-1)\partial_{w_1}$ で、$Q$ はシンプレクティック部分の Lichnerowicz 複体への $(r-1)\cdot\mathrm{id}$ の写像錐になり、非輪状 $\iff r\neq1$。対数 Darboux は実の $b$-シンプレクティックでは Guillemin--Miranda--Pires, Adv.\ Math.\ 264 (2014) が知られているが、正則版は同じ Moser の議論によると思われる\tQ。
+\end{prop}
+
+\subsection{主定理}
+\begin{thm}[簡約定理]\tP\label{thm:R}
+上の設定で、(i) どの $r_i$ も $\Z_{\ge1}$ に入らず、(ii) (GEN$'$) が成り立つとする。このとき
+\[\HH^*(L)\ \cong\ H^*(U;L_U)\ \oplus\ \bigoplus_{p\in D_{(n)}}\C[-n].\]
+特に $\chi(X)=\chi(U)+\#D_{(n)}$、すなわち $\sum_{0<k<n}\chi(D_k^\circ)=0$（$D_k^\circ$ は $k$ 重点の開層）。
+\end{thm}
+\begin{hyptab}
+(i) $r_i\notin\Z_{\ge1}$ & 共鳴を避ける。 & 手順 (1)：Deligne の定理で $B\simeq Rj_*L_U$。\\\midrule
+(ii) (GEN$'$) & $Q$ の下の層がコホモロジーに寄与しないこと。 & 手順 (2)：$F_{n-1}Q$ が非輪状。\\\midrule
+$D$ が単純正規交差、$\sigma$ が対数シンプレクティック & $B\cong\mathrm{DR}_{\log}(L)$、$Q$ の濾過の次数商が上の形。 & 手順 (1)、(2)。\\\midrule
+$X$ コンパクト & $H^*(X;\cdot)$ が有限次元、Part II の Euler 標数の定理が使える。 & 手順 (4)。\\\midrule
+(V)（消滅）・豊富性 & \emph{不要}。 & これらはトーリックの重み計算（Part II 定理 T の元の証明）でだけ使った。
+\end{hyptab}
+\begin{proof}
+(1) 非共鳴 (i) より $B\simeq Rj_*L_U$（Deligne）。\tC\ Deligne, \emph{\'Equations diff\'erentielles \`a points singuliers r\'eguliers}, LNM 163, II.3.13；Esnault--Viehweg。
+(2) 上の濾過と (ii) により、$F_{n-1}Q$ のすべての次数商が非輪状なので $F_{n-1}Q$ は非輪状。ゆえに $Q\to Q/F_{n-1}Q=\mathrm{gr}_nQ=\bigoplus_p\C_p[-n]$ は擬同型。
+(3) 三角 $B\to C\to Q\to B[1]$ の接続射は $\mathrm{Hom}_{D(X)}(\bigoplus i_{p*}\C[-n],Rj_*L_U[1])=\bigoplus\mathrm{Hom}(j^*i_{p*}\C[-n],L_U[1])=0$（$p\in D$ なので $j^*i_{p*}=0$）。ゆえに $C\simeq B\oplus Q$。
+(4) $H^*(X;\cdot)$ をとる。$H^*(X;Rj_*L_U)=H^*(U;L_U)$。Euler 標数：Part II の全 Euler 標数の定理より $\chi(\HH)=(-1)^n\chi(X)=\chi(X)$（$n$ 偶数）で、右辺は $\chi(U)+\#D_{(n)}$、また $\chi(X)=\sum_k\chi(D_k^\circ)$（$D_0^\circ=U$、$D_n^\circ=D_{(n)}$）。\qedhere
+\end{proof}
+\begin{cor}[Part II 予想 C の言い換え]\tP
+予想 C（$\HH^*\cong H^*(U;L_U)\oplus\C^{\#D_{(n)}}[-n]$）は、$Q$ の下の層の寄与が 0 であること、すなわち (GEN$'$) と同値である（$\Leftarrow$ は定理 \ref{thm:R}。$\Rightarrow$ はトーリックの場合に、余分なクラスがちょうど非輪状でない $Q_T$ に対応するので確認）。
+\end{cor}
+
+\subsection{トーリックの場合}\label{sec:toric}
+$X$ をトーリック多様体、$\sigma=\tfrac12\sum A_{ij}E_iE_j$（対数枠で定数係数、$A$ は非退化な反対称行列）、$\rho\in M_\C$、$r_i=\langle\rho,u_i\rangle-a_i$ とする。重み $\chi$ の部分の $Q_T$（$T=\{i:\chi_i=-1\}$）は $\wedge(N_\C/W_T)$ の Koszul 複体で微分は $v_\chi\wedge$、$v_\chi=A(\chi+\rho)$。非輪状 $\iff v_\chi\notin W_T$ である。\tP
+\begin{prop}\tP\label{prop:toric}
+(GEN)（$A_{ij}$ が $\mathbb Q(\rho)$ 上 1 次独立）と (R)（$r_i\neq1$）の下では、$1\le|T|\le n-1$ のどの $T$ についても $\langle x,u_i\rangle=r_i-1$ $(i\in T)$、$Ax\in W_T$ に解がなく、(GEN$'$) が成り立つ。よって定理 \ref{thm:R} が使え、$\HH^*=H^*(U;L_U)\oplus\C^{\chi(X)}[-n]$ となる。これは Part II の定理 T を、消滅 (V) と豊富性 (A) を使わずに再証明したことになる。
+\end{prop}
+\begin{proof}[証明の要点]
+$\omega(x,m)=0$ $(m\in\mathrm{Ann}(W_T))$ から $x\parallel m$ が出て、$r_i=1$ となり (R) に反する（Part II 定理 T の証明と同じ）。\qedhere
+\end{proof}
+\paragraph{検証。}\tV\ \texttt{roundI\_check.py}：$\mathbb P^2$、$\mathbb P^1\times\mathbb P^1$、$\mathbb P^4$、$\mathbb P^2\times\mathbb P^2$、$(\mathbb P^1)^4$ について、一般の $A$、ブロック $A$、小さな整数の $A$ と5通りの留数でテスト。(GEN$'$) の障害になる層が解を持たない48例は、すべて一般の予測と一致（反例 0）。解を持つ層がある25例で $\HH\neq$ 一般の予測。解を持つが実現しない場合（誤警報）が92例。
+
+\begin{ex}[$\mathbb P^2\times\mathbb P^2$、ブロック $A=A_X\oplus A_Y$]\tP\tV
+$\rho=0$、$m=1$ のとき混合ブロック $A_{XY}=0$ なので、$T=(X\text{ の結節点})\times Y$ では $\nu_T=0$。このとき $Q_T$ は $Y$ の対数 de Rham 複体 $\simeq Rj_*\C_{U_Y}$ になり、各 $T$ が $t^2(1+t)^2$ を寄与する。そのような $T$ は $3+3=6$ 個で、実測 $-$ 一般の予測 $=[1,4,12,16,16]-[1,4,6,4,10]=[0,0,6,12,6]=6t^2(1+t)^2$ と\emph{ちょうど}一致する。これは Part III の「結節点をもつ因子の積では $t^2(\mu_XH_Y+\mu_YH_X)$ の交差項が出る」という観察の機構的説明である。
+\end{ex}
+\begin{conj}[\tK\ 層が非輪状でない場合]\label{conj:nonacyc}
+(GEN$'$) が成り立たないとき、$E_1^T=H^*(D_T;Q_T)\Rightarrow H^*(X;Q)$。$\nu_T=0$ の $Q_T$ がすべて「積型」なら、余分な部分は $\sum_Tt^{|T|}H^*(U_T;L_T)$。
+\end{conj}
+
+%--------------------------------------------------------------
+\section{2つの設定の統一？}\label{sec:unified}
+%--------------------------------------------------------------
+どちらの設定でも $\HH(E)=H^*(M;C(L;E))$ で、$L$ は Lie 亜群、$N=\ker(\text{anchor})$ は正則点で階数 $k$、型が跳ぶ点で階数が跳ぶ。$N$-次数 $b$ による濾過があり $E_1^{a,b}=H^a(\wedge^bT\text{-型};E)$、$d_1$ は $N$ の作用（正則型の SGH では 0、$\beta$-変換では $[\sigma,\cdot]+V\wedge$）。
+\begin{center}\small
+\begin{tabular}{p{3.2cm}p{5.4cm}p{5.4cm}}\toprule
+ & 正則型 & 型が跳ぶ（対数シンプレクティック）\\\midrule
+葉方向 de Rham & コンパクトな葉 $Y$ の $H^j(Y)$（局所系 $V^j$） & 開葉 $U$ の $H^j(U;L_U)$ \\\midrule
+横断方向 & $X$ 上の Dolbeault & $D$ の各層上の Lichnerowicz 的複体 $Q_T$\\\midrule
+境界の扱い & なし（$Y$ はコンパクト） & 留数による $Rj_*$ / $j_!$ の選択（Deligne）\\\midrule
+モノドロミー & Gauss--Manin & $e^{2\pi ir}$（$D$ のまわり）\\\midrule
+退化 & Lefschetz（$Y$ コンパクト）で $d_r=0$ & $U$ は非コンパクトで類似物なし、$d_1\neq0$\\\bottomrule
+\end{tabular}
+\end{center}
+\begin{conj}[\tK\ 統一予想（不正確）]\label{conj:U}
+有限個の型の層をもつコンパクトな一般化複素多様体と、正則な層に沿って $N$ が自明に作用する加群 $E$ について、$\HH^*(E)$ は「葉空間上の葉方向 de Rham $\otimes$ 横断 Dolbeault」の層ごとの寄与に濾過され、各層で $(c)$ 型（コンパクト台）か非 $(c)$ 型かは指数根（留数）で決まる。
+\end{conj}
+\noindent この予想は正確な形では定式化されておらず、上の2族（正則型と対数シンプレクティック）以外での検証はない。
+
+%--------------------------------------------------------------
+\section{主張の状態一覧と未解決問題}\label{sec:ledger}
+%--------------------------------------------------------------
+\begin{center}\small
+\begin{tabular}{p{5.2cm}p{2.0cm}p{7.2cm}}\toprule
+主張 & 状態 & 備考\\\midrule
+命題 \ref{prop:L1}（$\omega$ に依存しない） & \tP & Pal--Poddar の定義番号は\tQ\\
+定理 \ref{thm:L}（Leray $+$ Lefschetz） & \tP & hard Lefschetz (HL) が必要。(HL) なしは未検討\tK\\
+系 \ref{cor:L}（次数別 RR） & \tP & \\
+命題 \ref{prop:PPcompare}（Pal--Poddar との一致） & \tP\ \tQ & Pal--Poddar の $H^q$ の定義の読みは未確認\\
+例（直積、Bieberbach、$S^2$-束） & \tP\ \tV & \\
+Kodaira--Thurston $(1,3,4,3,1)$ & \tV\ \tQ & Nomizu 型の定理を仮定した確認。定理 \ref{thm:L} 自体は使わない\\
+観察 \ref{obs:contrast}（多項式 vs 周期的） & \tP\ \tV & \\
+命題 \ref{prop:genNec} (a) & \tP & \\
+命題 \ref{prop:genNec} (b) & \tP\ \tQ & 正則版の対数 Darboux は引用のみ（実の場合）\\
+定理 \ref{thm:R}（簡約定理） & \tP & $Q$ の濾過の一般 $n$ での導出は見取り図\tQ\\
+命題 \ref{prop:toric}（トーリックの再証明） & \tP\ \tV & \\
+$\mathbb P^2\times\mathbb P^2$ の $6t^2(1+t)^2$ & \tP\ \tV & \\
+予想 \ref{conj:nonacyc}、\ref{conj:U} & \tK & \\
+\bottomrule
+\end{tabular}
+\end{center}
+\paragraph{未解決問題。}(1) 「$\nu_T$ が至るところ $\neq0$ ならば $Q_T$ は非輪状」が非線形な $\sigma$ でも成り立つか（ホモトピー $h=\iota_\theta$ には $1+L_{X_\theta}$ の可逆性が要る）。(2) 交差点（余次元 $\ge2$）での対数 Darboux（線形化）の正則版。(3) 非平坦なバンドル、軌道体の底、$Y$ が hard Lefschetz をみたさない場合。(4) 予想 \ref{conj:U} の正確な定式化。(5) 真に積でも、トーリックでもない次元 4 の例での検証。\par
+\paragraph{検証の範囲。}Kodaira--Thurston の例以外の計算は、Part I--III と同じ有限体上の厳密な線形代数か、既知の Künneth 的な計算である。Atiyah の $F_2$ の性質、Deligne の補題の適用、Pal--Poddar の定義との対応は標準的な事実の引用または見取りであり、一部は未確認（\tQ）である。
+
+\begin{thebibliography}{99}\small
+\bibitem{PartI} Claude, 森, \emph{正則 Poisson 構造に付随する一般化複素構造上の一般化正則直線束のコホモロジー}（Part I, v2）, \url{https://hylt-math.github.io/2026/11/22/generalized-geometry-poisson/}
+\bibitem{PartII} Claude, 森, \emph{一般化正則直線束のコホモロジーと Riemann--Roch 型公式（Part II）}, \url{https://hylt-math.github.io/2026/11/22/generalized-geometry-poisson-part2/}
+\bibitem{PartIII} Claude, 森, \emph{一般化正則直線束のコホモロジーと Kodaira 型定理（Part III）}, \url{https://hylt-math.github.io/2026/11/22/generalized-geometry-poisson-part3/}
+\bibitem{PP} D.\ Pal, M.\ Poddar, Strong generalized holomorphic principal bundles, arXiv:2404.18113; Ann.\ Sc.\ Norm.\ Super.\ Pisa Cl.\ Sci., doi:10.2422/2036-2145.202501\_026（掲載巻号は\tQ）.
+\bibitem{Del68} P.\ Deligne, Th\'eor\`eme de Lefschetz et crit\`eres de d\'eg\'en\'erescence de suites spectrales, Publ.\ Math.\ IH\'ES 35 (1968) 259--278.
+\bibitem{Del70} P.\ Deligne, \'Equations diff\'erentielles \`a points singuliers r\'eguliers, Lecture Notes in Math.\ 163, Springer 1970.
+\bibitem{EV} H.\ Esnault, E.\ Viehweg, Logarithmic de Rham complexes and vanishing theorems, Invent.\ Math.\ 86 (1986) 161--194.
+\bibitem{GMP} V.\ Guillemin, E.\ Miranda, A.\ R.\ Pires, Symplectic and Poisson geometry on $b$-manifolds, Adv.\ Math.\ 264 (2014) 864--896 [頁は\tQ].
+\bibitem{Atiyah} M.\ Atiyah, Vector bundles over an elliptic curve, Proc.\ London Math.\ Soc.\ (3) 7 (1957) 414--452.
+\bibitem{LGSX} C.\ Laurent-Gengoux, M.\ Sti\'enon, P.\ Xu, Holomorphic Poisson manifolds and holomorphic Lie algebroids, IMRN 2008, arXiv:0707.4253.
+\bibitem{Gua} M.\ Gualtieri, Generalized complex geometry, Ann.\ Math.\ 174 (2011) 75--123, arXiv:math/0703298.
+\bibitem{Hit} N.\ Hitchin, Poisson modules and generalized geometry, arXiv:0905.3227.
+\bibitem{Bre} G.\ Bredon, \emph{Sheaf Theory}, 2nd ed., Springer GTM 170, 1997 [該当箇所は\tQ].
+\bibitem{Har} R.\ Hartshorne, \emph{Algebraic Geometry}, Springer GTM 52, 1977.
+\bibitem{GH} P.\ Griffiths, J.\ Harris, \emph{Principles of Algebraic Geometry}, Wiley 1978.
+\end{thebibliography}

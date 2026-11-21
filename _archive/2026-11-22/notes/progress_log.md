@@ -63,3 +63,13 @@ Extended log-symplectic surface theorem to unequal residues (toric, proved V_S f
 - Non-reduced D: exact tables for x^2y, x^3 on P^2 (m=-15..15); Conjecture NR with linear classes sum_j h^0(D_i, L|D_i (x) N^j) fits x^2y (m>=-2), x^3 (m>=0), double conic on P1xP1 (m>=0).
 - Products: Kunneth P_{XxY}=P_X P_Y proved; C holds for smooth-D products; (GEN) necessary. Non-product non-toric dim 4 not done.
 - See roundF_notes.md; scripts cp2/roundF_*.py.
+
+## 2026-11-22 Round L (regular type vs Pal–Poddar) — Task L
+- Proved (Thm L): for flat symplectic fibre bundles Y→M→X with hard-Lefschetz fibre, HH^k(M,π^*G)=⊕_{a+b+j=k}H^a(X,∧^bT_X⊗V^j⊗G) (Leray + Deligne Lefschetz degeneration; ω drops out via e^{iω̃}).
+- Cor L: graded Riemann–Roch polynomial in m for each k in regular type; vanishing in transversal degree = Pal–Poddar Thm 11.12(2) applied to ∧^bT⊗V^j.
+- Computed (cp2/roundL_check.py): Kodaira–Thurston (1,3,4,3,1) matches invariant Heisenberg model; Bieberbach quotient (1,2,2,2,1); X=P^1 tables; Euler char = χ(Y)(−1)^kχ(X).
+- Contrast: regular type d_1=0 ⇒ polynomial; type jump d_1=[σ,·] ⇒ periodic. Unified stratified picture only heuristic. Caveat on P–P sheaf-cohomology reading.
+- Notes: scratchpad/roundL_notes.md.
+
+## 2026-11-22 round I (Conjecture C)
+- roundI_notes.md: Theorem R (HH ≅ H*(U;L)⊕C^{#D_(n)}[−n] iff/under (GEN') acyclicity of the graded pieces Q_T of Q=C/B, no (V)/ampleness needed; proof via Deligne + i^!Rj_*=0), Euler consequence Σ_{0<k<n}χ(D_k°)=0, toric reproof of Thm T without (V),(A), cross-term mechanism (P²×P² block: 6t²(1+t)² exactly), cp2/roundI_check.py (48/48 no-solvable ⇒ generic; 25 hits). Gaps: sufficiency of ν_T≠0 for non-linear σ; holomorphic log-Darboux; general-n gr_T formula sketched.

@@ -1,0 +1,263 @@
+\section{Position and overview}\label{sec:intro}
+This note continues Parts I--III \cite{PartI,PartII,PartIII} (URLs in the bibliography). Parts I--III mainly treated generalized complex structures obtained by $\beta$-transform of a holomorphic Poisson structure $\sigma$ (type-jumping, log-symplectic case). Notation follows Parts I--III and is not re-explained.
+
+\paragraph{Aim.}
+We compare, with the same tool (the generalized Dolbeault complex $C(L;E)$), the \emph{regular-type} setting of Pal--Poddar (arXiv:2404.18113: constant type, symplectic leaves, Kähler orbifold leaf space) with the \emph{type-jumping} setting of Parts I--III. Conclusions:
+\begin{itemize}
+\item For regular type (flat symplectic fibre bundles), $\HH^*$ has a closed form via Gauss--Manin flat bundles $V^j$ (Theorem \ref{thm:L}) \tP. The key is degeneration of the Leray spectral sequence at $E_2$, via Deligne's Lefschetz lemma.
+\item Consequently, for each degree $k$ we get a Riemann--Roch formula \emph{polynomial} in $m$ (Corollary \ref{cor:L}), and Pal--Poddar's Serre-type vanishing (Thm.\ 11.12(2)) coincides with our ``vanishing in transversal degree'' \tP.
+\item In the type-jumping (log-symplectic) case the same quantities are \emph{periodic} in $m$. The difference boils down to whether $d_1=[\sigma,\cdot]$ is (almost) exact (\S\ref{sec:contrast}) \tP\tV.
+\item In general dimension in the log-symplectic case, the Part II conjecture ($\HH^*\cong H^*(U;L_U)\oplus\C^{\#D_{(n)}}[-n]$) is reduced to acyclicity of the quotient complexes on strata, condition (GEN$'$) (Theorem \ref{thm:R}) \tP.
+\end{itemize}
+Open: general sufficient conditions for (GEN$'$); a framework unifying the two settings (Conjecture \ref{conj:U}).
+
+\section{Notation (new in this note)}\label{sec:notation}
+\begin{longtable}{>{\raggedright\arraybackslash}p{3.8cm}>{\raggedright\arraybackslash}p{11.2cm}}
+\toprule Symbol & Meaning\\ \midrule\endhead
+$Y\to M\xrightarrow{\pi} X$ & flat symplectic fibre bundle (\S\ref{sec:setting}). $Y$ compact connected symplectic ($\dim Y=2m_Y$), $X$ compact complex ($\dim_\C X=k$)\\
+$\Gamma=\pi_1(X)$, $\rho$ & $\rho:\Gamma\to\mathrm{Symp}(Y,\omega_Y)$ used to build $M=(Y\times\tilde X)/\Gamma$\\
+$V^j$ & flat (Gauss--Manin) bundle with fibres $H^j(Y_x;\C)$; identified with the holomorphic bundle $V^j\otimes\mathcal O_X$\\
+$G$, $E=\pi^*G$ & holomorphic line bundle on $X$ and its pullback (SGH line bundle)\\
+$\HH^k(M,E)$ & generalized Dolbeault cohomology of the generalized holomorphic line bundle $E$ ($k$-th cohomology of $C(L;E)$)\\
+$N$, $\wedge^bT_X$ & dual of the kernel of the anchor (rank $k$), and exterior powers of $T_X$; $b$ is the $N$-degree (Higgs-type degree)\\
+$\Lambda=\omega_F\wedge$ & fibrewise Lefschetz operator ($\omega_F$ a lift of $\omega_Y$)\\
+$X,D=\sum D_i,\sigma,L$ & log-symplectic setting (as in Part II); $\mathrm{res}_i=r_i$ are residues\\
+$U=X\setminus D$, $L_U$ & complement and rank-one local system determined by the residues\\
+$D_T=\bigcap_{i\in T}D_i$, $D_{(n)}$ & strata and the (finite) set of $n$-fold points\\
+$B,\,C,\,Q$ & $B=\wedge^\bullet T(-\log D)\otimes L\subset C=(\wedge^\bullet T\otimes L)$, $Q=C/B$\\
+$\nu_T,\ \sigma_T$ & $\nu_T=\sum_{i\in T}(r_i-1)[H_i]$ on the stratum $D_T$, and the Poisson structure induced by $\sigma$ (\S\ref{sec:Q})\\
+(GEN$'$) & intrinsic genericity assumption (Definition \ref{def:GEN})\\
+$P_{\HH}(t)$ & $\sum_k\dim\HH^k\,t^k$\\
+\bottomrule
+\end{longtable}
+\noindent Tags: \tC\ literature; \tP\ author's proof (standard facts cited); \tV\ machine-checked; \tK\ conjecture/outlook; \tQ\ unverified.
+
+\section{Regular type: flat symplectic fibre bundles}\label{sec:regular}
+\subsection{Setting}\label{sec:setting}
+\begin{defn}[Setting (S)]
+Let $X$ be a compact complex manifold, $\tilde X\to X$ the universal (or a finite) cover, $\Gamma=\pi_1(X)$, and $(Y,\omega_Y)$ a compact connected symplectic manifold. For a homomorphism $\rho:\Gamma\to\mathrm{Symp}(Y,\omega_Y)$ put $M=(Y\times\tilde X)/\Gamma$. The product generalized complex structure ``symplectic on $Y$ $\times$ complex on $X$'' is $\Gamma$-invariant and descends to $M$, giving a regular-type generalized complex structure of type $k=\dim_\C X$. Leaves are the fibres $Y_x$, the leaf space is $X$. $E=\pi^*G$ ($G$ a holomorphic line bundle on $X$) is an SGH line bundle. \tC\ Definitions of regular type and SGH: Pal--Poddar, arXiv:2404.18113, Def.\ 3.1 etc.\ (numbering \tQ).
+\end{defn}
+\noindent This includes products $Y\times X$ ($\Gamma$ trivial), $S^2$-bundles with holonomy in $SO(3)$, Kodaira--Thurston type $T^2$-bundles, etc.
+
+\subsection{Independence of $\omega$}
+\begin{prop}\tP\label{prop:L1}
+Let $\tilde\omega$ be the closed 2-form on $M$ descending from $\mathrm{pr}_Y^*\omega_Y$. Then $e^{i\tilde\omega}$ is a Courant automorphism and $L=e^{i\tilde\omega}L_0$ ($L_0=T_{F,\C}\oplus T^{0,1}_{\mathrm{hor}}\oplus N^*$, $N^*=\pi^*T^{*1,0}_X$). Hence $L\cong L_0$ as Lie algebroids, and the generalized Dolbeault complex is
+\[C(L;E)=\Omega^\bullet_{F_\C}(M;E\otimes\wedge^\bullet T^{1,0}_X),\qquad F_\C=T_{F,\C}\oplus T^{0,1}_{\mathrm{hor}}\ (\text{involutive}),\]
+and $N$ acts trivially on SGH bundles. \emph{The cohomology does not see $\omega$} (only the foliated complex structure).
+\end{prop}
+\begin{proof}[Sketch]
+Locally this is a statement about a product, and all objects are $\Gamma$-invariant. Since $d\tilde\omega=0$, $e^{i\tilde\omega}$ preserves the Courant bracket. $N$ acts trivially by the definition of SGH (holomorphic transversally, flat along leaves).\qedhere
+\end{proof}
+\begin{rem}\tC\tQ
+Pal--Poddar's Thm.\ 8.9 and Cor.\ 8.10 treat the Dolbeault cohomology of transversal forms constant along leaves. It does not contain the fibrewise de Rham factor $H^j(Y)$ of our $\HH^*$ (\S\ref{sec:PP}).
+\end{rem}
+
+\subsection{Main theorem: Leray and Lefschetz}
+\begin{thm}[$\HH^*$ in regular type]\tP\label{thm:L}
+Assume (S) and (HL): $(Y,\omega_Y)$ satisfies hard Lefschetz (e.g.\ $Y$ Kähler). For $E=\pi^*G$,
+\[\HH^k(M,E)\ \cong\ \bigoplus_{a+b+j=k}H^a\bigl(X,\ \wedge^bT_X\otimes V^j\otimes G\bigr).\]
+No Kähler or projectivity assumption on $X$ is needed.
+\end{thm}
+\begin{hyptab}
+(S) flat fibre bundle & Decomposition $L\cong L_0$ (Prop.\ \ref{prop:L1}) and Ehresmann-type local triviality (fibre cohomology forms local systems $V^j$). & Step (i).\\\midrule
+$Y$ compact connected & $H^j(Y)$ finite-dimensional; fibrewise cohomology sheaves are sheaves of smooth sections of $V^j$. & Step (i).\\\midrule
+(HL) hard Lefschetz & $\Lambda=\omega_F\wedge$ gives isomorphisms $V^{m_Y-i}\to V^{m_Y+i}$ of flat bundles. & Step (iii): $d_r=0$ $(r\ge2)$ by Deligne's lemma.\\\midrule
+$X$ compact & Each $H^a(X,\cdot)$ is finite-dimensional. & Sum of dimensions.\\\midrule
+$E=\pi^*G$ (SGH) & $N$ acts trivially, so the $\wedge^bT_X$-degree $b$ splits off (no Poisson-type $d_1$). & Step (i): shape of $E_2$.
+\end{hyptab}
+\begin{proof}
+(i) (Double complex) By Prop.\ \ref{prop:L1}, $C(L;E)=\Omega^\bullet_{F_\C}(M;E\otimes\wedge^\bullet T_X)$. This is a double complex of ``fibrewise de Rham'' and ``Dolbeault on $X$ (coefficients $\wedge^bT_X\otimes G$)''. Since the fibres are compact, the fibrewise cohomology sheaves are the sheaves of $C^\infty$ sections of $V^j$. The induced $\bar\partial$ is the $(0,1)$-part of the Gauss--Manin connection and does not depend on the choice of lift (a change of lift is a fibrewise Lie derivative, exact on closed forms). Hence
+\[E_2^{a,j}=\bigoplus_bH^a(X,\wedge^bT_X\otimes V^j\otimes G).\]
+(ii) The mixed component of $\omega_F:=\tilde\omega|_F$ vanishes ($\tilde\omega$ is locally $\mathrm{pr}_Y^*\omega_Y$). So $\Lambda=\omega_F\wedge$ is a chain map of the double complex (commuting with $d_F$ and $\bar\partial$), acts on every page and commutes with $d_r$. On $E_2$ it is the pointwise fibrewise Lefschetz operator $V^j\to V^{j+2}$.
+(iii) (Deligne's lemma) By hard Lefschetz $V^{m_Y-i}\to V^{m_Y+i}$ is an isomorphism. If $x$ is primitive of weight $s$, then $\Lambda^{s+1}d_2x=0$, but $d_2x$ lies in fibre degree $m_Y-s-1$, where $\Lambda^{s+1}$ is injective; so $d_2=0$. Inductively $d_r=0$ $(r\ge2)$, and dimensions add up.\qedhere
+\src{Deligne, Th\'eor\`eme de Lefschetz et crit\`eres de d\'eg\'en\'erescence de suites spectrales, Publ.\ Math.\ IH\'ES 35 (1968) 259--278. Leray spectral sequence: Bredon, \emph{Sheaf Theory}, IV (precise location \tQ).}
+\end{proof}
+\begin{rem}[Without hard Lefschetz]\tK
+Without (HL), $d_2\neq0$ may occur. We have computed no example.
+\end{rem}
+
+\subsection{Corollary: degree-wise Riemann--Roch and Serre vanishing}\label{sec:cor}
+\begin{cor}[Degree-wise Riemann--Roch]\tP\label{cor:L}
+Under the hypotheses of Theorem \ref{thm:L}, assume moreover $X$ projective and $G$ ample. There is $m_0$ such that for $m\ge m_0$, $H^a(X,\wedge^bT_X\otimes V^j\otimes G^m)=0$ $(a>0)$, hence
+\[\HH^k(M,E^m)=\bigoplus_{b+j=k}H^0\bigl(X,\wedge^bT_X\otimes V^j\otimes G^m\bigr),\]
+\[\dim\HH^k(M,E^m)=\sum_{b+j=k}b_j(Y)\int_X\ch(\wedge^bT_X)\,e^{m\,c_1(G)}\,\Td(X).\]
+The right-hand side is a polynomial in $m$ for each $k$.
+\end{cor}
+\begin{hyptab}
+$G$ ample, $X$ projective & Serre vanishing $H^a(X,\mathcal F\otimes G^m)=0$ $(a>0,m\gg0)$ applied to the coherent sheaves $\mathcal F=\wedge^bT_X\otimes V^j$. & Vanishing of all terms with $a>0$.\\\midrule
+$V^j$ flat & $\ch(V^j)=\mathrm{rk}\,V^j=b_j(Y)$ (trivial Chern classes). & $b_j(Y)$ factors out of the integral.\\\midrule
+Theorem \ref{thm:L} & Decomposes $\HH^k$ into $\bigoplus H^a$. & First equality.\\\midrule
+HRR & Expresses $\dim H^0$ via $\chi$ (since $a>0$ terms vanish). & Last equality.
+\end{hyptab}
+\begin{proof}
+Apply Serre vanishing \tC\ (Hartshorne III.5.2) to the locally free sheaves $\wedge^bT_X\otimes V^j$, taking the maximum of $m_0$ over the finitely many $(b,j)$. The rest is Hirzebruch--Riemann--Roch and $\ch(V^j)=b_j(Y)$.\qedhere
+\end{proof}
+\begin{rem}
+The total Euler characteristic is $\sum_k(-1)^k\dim\HH^k=\chi(Y)(-1)^k\chi(X)$ (including the sign for $k=\dim_\C X$), consistent with the total Euler characteristic theorem of Part II \tV. Independence of $m$ holds only for the total alternating sum; each $\dim\HH^k$ grows as a polynomial in $m$.
+\end{rem}
+
+\subsection{Relation to Pal--Poddar Thm.\ 11.12}\label{sec:PP}
+\begin{thm}[Pal--Poddar, Thm.\ 11.12]\tC
+Let $M$ be a compact regular-type generalized complex manifold, $M/\mathcal S$ a Kähler orbifold, $E$ a positive SGH line bundle. (1) If $p+q>k$ then $H^q(M,(\mathcal G^*M)^p\otimes E)=0$. (2) For every SGH bundle $E'$ and $m\ge m_0$, $q>0$: $H^q(M,E'\otimes E^m)=0$.
+\src{D.\ Pal, M.\ Poddar, \emph{Strong generalized holomorphic principal bundles}, arXiv:2404.18113, Thm.\ 11.12 (hypotheses and statement re-read in pp\_recheck).}
+\end{thm}
+\begin{prop}\tP\label{prop:PPcompare}
+In setting (S), the Pal--Poddar groups $H^q(M,(\mathcal G^*M)^p\otimes E)$ read as $H^q(X,\Omega^p_X\otimes G)$ (transversal forms constant along leaves). Then (1) is the classical Kodaira--Nakano vanishing on $X$, and (2) is classical Serre vanishing for $E'=\pi^*(\wedge^bT_X\otimes V^j)$ (an SGH bundle: transition functions locally constant along leaves, holomorphic transversally), which is the same as the vanishing $H^a(X,\wedge^bT_X\otimes V^j\otimes G^m)=0$ $(a>0)$ of Corollary \ref{cor:L}. Hence \emph{our vanishing in transversal degree is Pal--Poddar Thm.\ 11.12(2) applied to $E'=\wedge^bT_X\otimes V^j$}, and Corollary \ref{cor:L} is ``Pal--Poddar's Serre-type vanishing $+$ Leray $+$ Lefschetz''.
+\end{prop}
+\begin{rem}[\tQ]
+Taking sheaf cohomology literally on $M$, the fibre factor $H^j(Y)$ appears extra because $R^j\pi_*\pi^{-1}\neq0$. Since Pal--Poddar's Thm.\ 8.9 and Cor.\ 8.10 identify $H^q(M,(\mathcal G^*M)^p)$ with transversal Dolbeault cohomology, their $H^q$ should be read on the leaf space; we have not checked that the original says so explicitly. Also, vanishing of $\HH^k$ is asserted only in transversal degree $a>0$; the $H^j_{dR}(Y)$ factor survives in each degree $j$.
+\end{rem}
+
+\subsection{Examples}\label{sec:examples}
+\begin{ex}[Product $Y\times\mathbb P^1$]\tP\tV
+$X=\mathbb P^1$, $G=\mathcal O(m)$, $m\ge-1$: by Theorem \ref{thm:L}, $h^0(\mathbb P^1,\mathcal O(m))=m+1$ and $h^0(\mathbb P^1,T\otimes\mathcal O(m))=m+3$,
+\[P_{\HH}(t)=P_Y(t)\bigl((m+1)+(m+3)\,t\bigr).\]
+For $Y=S^2$: $P_Y=1+t^2$, so $P_{\HH}=(m+1)(1+t^2)+(m+3)(t+t^3)$ ($m=0$: $1,3,1,3$). For $Y=T^2$: $P_Y=1+2t+t^2$, $m=0$: $1,5,7,3$. Both grow linearly in $m$.
+\end{ex}
+\begin{ex}[Kodaira--Thurston: $T^2\to M\to E$]\tP\tV\tQ
+For monodromy the shear $\psi=\begin{pmatrix}1&1\\0&1\end{pmatrix}$: $V^0=V^2=\mathcal O$, $V^1=F_2$ (Atiyah's non-trivial unipotent flat bundle, $h^0=h^1=1$ \tC\ Atiyah, Proc.\ London Math.\ Soc.\ (3) 7 (1957) 414--452). For $G=\mathcal O$,
+\[P_{\HH}(t)=(1+t)^2(1+t+t^2)=1+3t+4t^2+3t^3+t^4.\]
+Independent check: the Betti numbers of the Lie algebra complex of the Heisenberg algebra $\mathfrak h_3$ ($[X_2,W]=-\tfrac12X_1$) tensored with $\wedge N$ are $(1,3,4,3,1)$ \tV. This check assumes a Nomizu-type theorem (invariant forms compute $\HH^*$), which we have not proved \tQ\ (Theorem \ref{thm:L} itself does not use it). For $\deg G=d>0$, $P_{\HH}(t)=d(1+t)^3$; for $\deg G=0$, $G\not\cong\mathcal O$, $P_{\HH}=0$.
+\end{ex}
+\begin{ex}[Bieberbach quotient $(T^2\times E)/\mathbb Z_2$]\tP\tV
+$(y,x)\mapsto(-y,x+\tau/2)$. $V^1=L_{-1}\oplus L_{-1}$ (non-trivial sign representation) is acyclic for $G=\mathcal O$. $P_{\HH}(t)=(1+t)^2(1+t^2)$ (agrees with the $\mathbb Z_2$-invariant part of the Künneth formula).
+\end{ex}
+\begin{ex}[$S^2$-bundle with $SO(3)$ holonomy]\tP
+The $V^j$ are trivial bundles, so the numbers coincide with the product case.
+\end{ex}
+\begin{rem}
+An SGH bundle with non-trivial flat holonomy character $\chi$ along the leaves has $\chi$ locally constant over a compact base (maximum principle). If $Y$ is a torus and $\chi\neq1$, then $H^*(Y;L_\chi)=0$ and $\HH=0$. \tP
+\end{rem}
+
+\section{Contrast with the type-jumping case: polynomial vs periodic}\label{sec:contrast}
+For the log-symplectic $\mathbb{CP}^2$ of Parts I--III ($\sigma$ vanishing along a smooth cubic) and $L=\mathcal O(m)$, the dimensions of $\HH^*$ stay bounded and are 3-periodic in $m$.
+\begin{center}\small
+\begin{tabular}{p{3.6cm}p{4.0cm}p{5.4cm}}\toprule
+ & regular type ($Y=S^2$, $X=\mathbb P^1$) & type-jumping ($\mathbb{CP}^2$, smooth cubic)\\\midrule
+$\dim\HH^k$ for large $m$ & linear in $m$: $(m+1),(m+3),(m+1),(m+3)$ & bounded: $(1,0,2,0,0)$ for $m\in3\Z_{\ge0}$, otherwise $(0,0,3,0,0)$\\\midrule
+$m=0$ & $(1,3,1,3)$ & $(1,0,2,0,0)$\\\midrule
+$m=1$ & $(2,4,2,4)$ & $(0,0,3,0,0)$\\\midrule
+$m=3$ & $(4,6,4,6)$ & $(1,0,2,0,0)$\\\midrule
+total Euler characteristic & $\chi(Y)(-1)\chi(X)=-4$ & $\chi(\mathbb{CP}^2)=3$ (independent of $m$)\\\bottomrule
+\end{tabular}
+\end{center}
+\tV\ The right column is Part I's table (agreeing with direct computation for $m=-15,\dots,15$); the left column is the formula of Corollary \ref{cor:L}.
+\begin{obs}\tP\label{obs:contrast}
+Both start from $E_1^{a,b}=H^a(\wedge^bT\otimes E)$. In regular type, $N$ acts trivially on SGH bundles, so $d_1=0$ (Theorem \ref{thm:L}). In the type-jumping case $d_1=[\sigma,\cdot]+V\wedge$ is \emph{almost exact} on the $H^0$ terms: although $H^0(\wedge^bT\otimes L^m)$ grows with $m$, the remaining cohomology is a bounded quantity determined by the topology of $U=X\setminus D$. \emph{The difference between ``polynomial in $m$'' and ``periodic'' reduces to vanishing versus (near) exactness of $d_1$.}
+\end{obs}
+
+\section{Log-symplectic case in general dimension: a reduction theorem}\label{sec:log}
+\subsection{Setting and the quotient complex}\label{sec:Q}
+Let $X$ be a compact complex manifold ($\dim X=n$ even), $D=\sum D_i$ a simple normal crossing divisor, $\sigma$ log-symplectic ($\sigma^\sharp:\Omega^1(\log D)\cong T(-\log D)$), $L$ a Poisson module (flat log connection along $D$), $r_i$ the residues (constants on $D_i$) (Part II). Let $C=(\wedge^\bullet T\otimes L,\ d_\sigma+V\wedge)$ (a complex of sheaves of $\mathbb C$-vector spaces, $\HH^k=H^k(X;C)$), $B=\wedge^\bullet T(-\log D)\otimes L\subset C$ (isomorphic to $\mathrm{DR}_{\log}(L)$ via $\wedge\sigma^\sharp$ \tC\ Part II, ncd\_theorem Lemma 3), and $Q=C/B$.
+
+\paragraph{Structure of $Q$.}
+In logarithmic coordinates $(z_I,w)$ the $\mathcal O$-basis of $\wedge T$ is $\partial_{z_S}\wedge\partial_w^Y$, and that of $\wedge T(-\log D)$ is $E_S\wedge\partial_w^Y=z^S\partial_{z_S}\wedge\partial_w^Y$. Thus $Q$ is spanned by multivector fields with poles. Let $T(s)$ be the set of branches with poles. Because $\sigma\in\wedge^2T(-\log D)$ and the module vector field $V=\sigma^\sharp(\sum r_i\,\dlog z_i)\in T(-\log D)$, $d$ creates no new poles. Hence $F_k=\{|T(s)|\le k\}$ is an increasing filtration of $Q$ by subcomplexes, with graded pieces
+\[\mathrm{gr}_kQ=\bigoplus_{|T|=k}Q_T,\qquad Q_T\cong\bigl(\wedge^\bullet T_{D_T}(-\log D'_T)\otimes L|_{D_T}\bigr)\ \text{(coefficient }z^{-T}E_T\text{)},\]
+with differential $d_T=[\sigma_T,\cdot]+\nu_T\wedge$, where $\sigma_T$ is the Poisson structure induced by $\sigma$ on $\wedge^2T_{D_T}(-\log D'_T)$ ($D_T$ is a Poisson submanifold), $\nu_T=\sum_{i\in T}(r_i-1)[H_i]$, $H_i=\sigma^\sharp(\dlog z_i)$. The ``$-1$'' comes from $[\sigma,z_i^{-1}]=-z_i^{-1}H_i$, the ``$r_i$'' from the module structure. $[\sigma_T,\nu_T]=0$, $d_T^2=0$. \tP\ ($n=2$); for general $n$ the derivation is a sketch of the same Schouten-bracket computation, not written line by line \tQ.
+The top piece $|T|=n$: $D_T=p$ is a point, $\wedge^\bullet T_{D_T}=\C$, and $\mathrm{gr}_nQ=\bigoplus_{p\in D_{(n)}}\C_p[-n]$ (zero differential). \tP
+
+\begin{defn}[(GEN$'$)]\label{def:GEN}
+For every stratum index set $T$ with $1\le|T|\le n-1$, the complex of sheaves $Q_T$ on $D_T$ is acyclic (stalkwise).
+\end{defn}
+\begin{prop}[Necessary condition for (GEN$'$) and examples]\tP\label{prop:genNec}
+(a) $\nu_T\not\equiv0$ is necessary (if $\nu_T\equiv0$ then $Q_T$ is the Lichnerowicz complex of $\sigma_T$ and locally constant Casimirs enter $H^0$). In particular $r_i\neq1$ for $|T|=1$.
+(b) For $|T|=1$ at a smooth point of $D$: with $\sigma=E_z\wedge\partial_{w_1}+\sum\partial_{w_{2j}}\wedge\partial_{w_{2j+1}}$ (log Darboux), $\nu=(r-1)\partial_{w_1}$ and $Q$ is the mapping cone of $(r-1)\cdot\mathrm{id}$ into the Lichnerowicz complex of the symplectic part, so acyclic $\iff r\neq1$. The log Darboux theorem is known for real $b$-symplectic structures (Guillemin--Miranda--Pires, Adv.\ Math.\ 264 (2014)); the holomorphic version should follow from the same Moser argument \tQ.
+\end{prop}
+
+\subsection{Main theorem}
+\begin{thm}[Reduction theorem]\tP\label{thm:R}
+In the above setting assume (i) no $r_i$ lies in $\Z_{\ge1}$ and (ii) (GEN$'$). Then
+\[\HH^*(L)\ \cong\ H^*(U;L_U)\ \oplus\ \bigoplus_{p\in D_{(n)}}\C[-n].\]
+In particular $\chi(X)=\chi(U)+\#D_{(n)}$, i.e.\ $\sum_{0<k<n}\chi(D_k^\circ)=0$ ($D_k^\circ$ the open stratum of $k$-fold points).
+\end{thm}
+\begin{hyptab}
+(i) $r_i\notin\Z_{\ge1}$ & Avoids resonance. & Step (1): $B\simeq Rj_*L_U$ by Deligne.\\\midrule
+(ii) (GEN$'$) & The lower strata of $Q$ do not contribute to cohomology. & Step (2): $F_{n-1}Q$ is acyclic.\\\midrule
+$D$ SNC, $\sigma$ log-symplectic & $B\cong\mathrm{DR}_{\log}(L)$; graded pieces of the filtration of $Q$ as above. & Steps (1), (2).\\\midrule
+$X$ compact & $H^*(X;\cdot)$ finite-dimensional; Part II's Euler characteristic theorem applies. & Step (4).\\\midrule
+(V) (vanishing), ampleness & \emph{Not needed.} & Used only in the toric weight computation (original proof of Part II Theorem T).
+\end{hyptab}
+\begin{proof}
+(1) By non-resonance (i), $B\simeq Rj_*L_U$ (Deligne). \tC\ Deligne, \emph{\'Equations diff\'erentielles \`a points singuliers r\'eguliers}, LNM 163, II.3.13; Esnault--Viehweg.
+(2) By the filtration and (ii), all graded pieces of $F_{n-1}Q$ are acyclic, so $F_{n-1}Q$ is acyclic. Hence $Q\to Q/F_{n-1}Q=\mathrm{gr}_nQ=\bigoplus_p\C_p[-n]$ is a quasi-isomorphism.
+(3) The connecting morphism of the triangle $B\to C\to Q\to B[1]$ lies in $\mathrm{Hom}_{D(X)}(\bigoplus i_{p*}\C[-n],Rj_*L_U[1])=\bigoplus\mathrm{Hom}(j^*i_{p*}\C[-n],L_U[1])=0$ (as $p\in D$, $j^*i_{p*}=0$). Hence $C\simeq B\oplus Q$.
+(4) Take $H^*(X;\cdot)$. $H^*(X;Rj_*L_U)=H^*(U;L_U)$. Euler characteristic: by Part II's total Euler characteristic theorem $\chi(\HH)=(-1)^n\chi(X)=\chi(X)$ ($n$ even); the right-hand side is $\chi(U)+\#D_{(n)}$, and $\chi(X)=\sum_k\chi(D_k^\circ)$ ($D_0^\circ=U$, $D_n^\circ=D_{(n)}$).\qedhere
+\end{proof}
+\begin{cor}[Reformulation of Part II Conjecture C]\tP
+Conjecture C ($\HH^*\cong H^*(U;L_U)\oplus\C^{\#D_{(n)}}[-n]$) is equivalent to the vanishing of the contributions of the lower strata of $Q$, i.e.\ to (GEN$'$) ($\Leftarrow$ is Theorem \ref{thm:R}; $\Rightarrow$ was checked in the toric case, where the extra classes correspond exactly to the non-acyclic $Q_T$).
+\end{cor}
+
+\subsection{The toric case}\label{sec:toric}
+Let $X$ be a toric variety, $\sigma=\tfrac12\sum A_{ij}E_iE_j$ (constant coefficients in the log frame, $A$ a non-degenerate antisymmetric matrix), $\rho\in M_\C$, $r_i=\langle\rho,u_i\rangle-a_i$. The weight-$\chi$ part of $Q_T$ ($T=\{i:\chi_i=-1\}$) is the Koszul complex of $\wedge(N_\C/W_T)$ with differential $v_\chi\wedge$, $v_\chi=A(\chi+\rho)$. It is acyclic $\iff v_\chi\notin W_T$. \tP
+\begin{prop}\tP\label{prop:toric}
+Under (GEN) ($A_{ij}$ linearly independent over $\mathbb Q(\rho)$) and (R) ($r_i\neq1$), for every $T$ with $1\le|T|\le n-1$ the system $\langle x,u_i\rangle=r_i-1$ $(i\in T)$, $Ax\in W_T$ has no solution, so (GEN$'$) holds. Theorem \ref{thm:R} then applies and $\HH^*=H^*(U;L_U)\oplus\C^{\chi(X)}[-n]$. This reproves Part II Theorem T without the vanishing (V) and ampleness (A).
+\end{prop}
+\begin{proof}[Sketch]
+$\omega(x,m)=0$ $(m\in\mathrm{Ann}(W_T))$ gives $x\parallel m$, hence $r_i=1$, contradicting (R) (same as in the proof of Part II Theorem T).\qedhere
+\end{proof}
+\paragraph{Verification.}\tV\ \texttt{roundI\_check.py}: for $\mathbb P^2$, $\mathbb P^1\times\mathbb P^1$, $\mathbb P^4$, $\mathbb P^2\times\mathbb P^2$, $(\mathbb P^1)^4$, tested with generic $A$, block $A$, small-integer $A$, and 5 residue choices. In the 48 cases where no stratum obstructing (GEN$'$) has a solution, all agree with the generic prediction (0 counterexamples). In the 25 cases where some stratum has a solution, $\HH\neq$ the generic prediction. In 92 cases a solution exists but is not realized (false alarms).
+
+\begin{ex}[$\mathbb P^2\times\mathbb P^2$, block $A=A_X\oplus A_Y$]\tP\tV
+For $\rho=0$, $m=1$: the mixed block $A_{XY}=0$, so on $T=(\text{a node of }X)\times Y$ we have $\nu_T=0$. Then $Q_T$ is the log de Rham complex of $Y$, $\simeq Rj_*\C_{U_Y}$, and each such $T$ contributes $t^2(1+t)^2$. There are $3+3=6$ such $T$, and measured $-$ generic prediction $=[1,4,12,16,16]-[1,4,6,4,10]=[0,0,6,12,6]=6t^2(1+t)^2$ \emph{exactly}. This is a mechanistic explanation of Part III's observation that products of divisors with nodes produce cross terms $t^2(\mu_XH_Y+\mu_YH_X)$.
+\end{ex}
+\begin{conj}[\tK\ non-acyclic strata]\label{conj:nonacyc}
+When (GEN$'$) fails, $E_1^T=H^*(D_T;Q_T)\Rightarrow H^*(X;Q)$. If all $Q_T$ with $\nu_T=0$ are of ``product type'', the extra part is $\sum_Tt^{|T|}H^*(U_T;L_T)$.
+\end{conj}
+
+\section{A unification of the two settings?}\label{sec:unified}
+In both settings $\HH(E)=H^*(M;C(L;E))$, $L$ is a Lie algebroid, and $N=\ker(\text{anchor})$ has rank $k$ at regular points and jumps at type-jump points. There is a filtration by $N$-degree $b$ with $E_1^{a,b}=H^a(\wedge^bT\text{-type};E)$, and $d_1$ is the action of $N$ (zero for SGH in regular type; $[\sigma,\cdot]+V\wedge$ for $\beta$-transforms).
+\begin{center}\small
+\begin{tabular}{p{3.2cm}p{5.4cm}p{5.4cm}}\toprule
+ & regular type & type-jumping (log-symplectic)\\\midrule
+fibrewise de Rham & $H^j(Y)$ of the compact leaf $Y$ (local system $V^j$) & $H^j(U;L_U)$ of the open leaf $U$ \\\midrule
+transversal direction & Dolbeault on $X$ & Lichnerowicz-type complexes $Q_T$ on the strata of $D$\\\midrule
+treatment of boundary & none ($Y$ compact) & choice of $Rj_*$ / $j_!$ by residues (Deligne)\\\midrule
+monodromy & Gauss--Manin & $e^{2\pi ir}$ (around $D$)\\\midrule
+degeneration & $d_r=0$ by Lefschetz ($Y$ compact) & $U$ non-compact, no analogue; $d_1\neq0$\\\bottomrule
+\end{tabular}
+\end{center}
+\begin{conj}[\tK\ Unification conjecture (imprecise)]\label{conj:U}
+For a compact generalized complex manifold with finitely many types of strata and a module $E$ on which $N$ acts trivially along the regular strata, $\HH^*(E)$ is filtered by stratum-wise contributions of ``fibrewise de Rham on the leaf space $\otimes$ transversal Dolbeault'', and on each stratum whether the type is $(c)$ (compact support) or non-$(c)$ is decided by the indicial roots (residues).
+\end{conj}
+\noindent This conjecture is not formulated precisely, and has been tested nowhere beyond the two families above (regular type and log-symplectic).
+
+\section{Status ledger and open problems}\label{sec:ledger}
+\begin{center}\small
+\begin{tabular}{p{5.2cm}p{2.0cm}p{7.2cm}}\toprule
+Claim & Status & Remarks\\\midrule
+Prop.\ \ref{prop:L1} (independence of $\omega$) & \tP & Pal--Poddar definition numbers \tQ\\
+Thm.\ \ref{thm:L} (Leray $+$ Lefschetz) & \tP & needs hard Lefschetz (HL); case without (HL) not studied \tK\\
+Cor.\ \ref{cor:L} (degree-wise RR) & \tP & \\
+Prop.\ \ref{prop:PPcompare} (agreement with Pal--Poddar) & \tP\ \tQ & reading of Pal--Poddar's $H^q$ unverified\\
+Examples (product, Bieberbach, $S^2$-bundle) & \tP\ \tV & \\
+Kodaira--Thurston $(1,3,4,3,1)$ & \tV\ \tQ & check assumes a Nomizu-type theorem; Theorem \ref{thm:L} itself does not use it\\
+Obs.\ \ref{obs:contrast} (polynomial vs periodic) & \tP\ \tV & \\
+Prop.\ \ref{prop:genNec} (a) & \tP & \\
+Prop.\ \ref{prop:genNec} (b) & \tP\ \tQ & holomorphic log Darboux only cited (real case)\\
+Thm.\ \ref{thm:R} (reduction theorem) & \tP & derivation of the filtration of $Q$ for general $n$ is a sketch \tQ\\
+Prop.\ \ref{prop:toric} (toric reproof) & \tP\ \tV & \\
+$6t^2(1+t)^2$ for $\mathbb P^2\times\mathbb P^2$ & \tP\ \tV & \\
+Conj.\ \ref{conj:nonacyc}, \ref{conj:U} & \tK & \\
+\bottomrule
+\end{tabular}
+\end{center}
+\paragraph{Open problems.}(1) Does ``$\nu_T\neq0$ everywhere $\Rightarrow Q_T$ acyclic'' hold for non-linear $\sigma$ (the homotopy $h=\iota_\theta$ needs invertibility of $1+L_{X_\theta}$)? (2) The holomorphic log Darboux (linearization) at crossings (codimension $\ge2$). (3) Non-flat bundles, orbifold bases, and $Y$ not satisfying hard Lefschetz. (4) A precise formulation of Conjecture \ref{conj:U}. (5) Tests on genuinely non-product, non-toric examples of dimension 4.\par
+\paragraph{Scope of verification.}Apart from the Kodaira--Thurston example, the computations are exact linear algebra over finite fields as in Parts I--III, or known Künneth-type computations. Properties of Atiyah's $F_2$, the application of Deligne's lemma and the correspondence with Pal--Poddar's definitions are citations of standard facts or sketches, and partly unverified (\tQ).
+
+\begin{thebibliography}{99}\small
+\bibitem{PartI} Claude, Mori, \emph{Cohomology of generalized holomorphic line bundles on the generalized complex structure of a holomorphic Poisson structure} (Part I, v2; Japanese original), \url{https://hylt-math.github.io/2026/11/22/generalized-geometry-poisson/}
+\bibitem{PartII} Claude, Mori, \emph{Cohomology of generalized holomorphic line bundles and Riemann--Roch type formulas} (Part II), \url{https://hylt-math.github.io/2026/11/22/generalized-geometry-poisson-part2/}
+\bibitem{PartIII} Claude, Mori, \emph{Cohomology of generalized holomorphic line bundles and Kodaira-type theorems} (Part III), \url{https://hylt-math.github.io/2026/11/22/generalized-geometry-poisson-part3/}
+\bibitem{PP} D.\ Pal, M.\ Poddar, Strong generalized holomorphic principal bundles, arXiv:2404.18113; Ann.\ Sc.\ Norm.\ Super.\ Pisa Cl.\ Sci., doi:10.2422/2036-2145.202501\_026 (volume/pages \tQ).
+\bibitem{Del68} P.\ Deligne, Th\'eor\`eme de Lefschetz et crit\`eres de d\'eg\'en\'erescence de suites spectrales, Publ.\ Math.\ IH\'ES 35 (1968) 259--278.
+\bibitem{Del70} P.\ Deligne, \'Equations diff\'erentielles \`a points singuliers r\'eguliers, Lecture Notes in Math.\ 163, Springer 1970.
+\bibitem{EV} H.\ Esnault, E.\ Viehweg, Logarithmic de Rham complexes and vanishing theorems, Invent.\ Math.\ 86 (1986) 161--194.
+\bibitem{GMP} V.\ Guillemin, E.\ Miranda, A.\ R.\ Pires, Symplectic and Poisson geometry on $b$-manifolds, Adv.\ Math.\ 264 (2014) 864--896 [pages \tQ].
+\bibitem{Atiyah} M.\ Atiyah, Vector bundles over an elliptic curve, Proc.\ London Math.\ Soc.\ (3) 7 (1957) 414--452.
+\bibitem{LGSX} C.\ Laurent-Gengoux, M.\ Sti\'enon, P.\ Xu, Holomorphic Poisson manifolds and holomorphic Lie algebroids, IMRN 2008, arXiv:0707.4253.
+\bibitem{Gua} M.\ Gualtieri, Generalized complex geometry, Ann.\ Math.\ 174 (2011) 75--123, arXiv:math/0703298.
+\bibitem{Hit} N.\ Hitchin, Poisson modules and generalized geometry, arXiv:0905.3227.
+\bibitem{Bre} G.\ Bredon, \emph{Sheaf Theory}, 2nd ed., Springer GTM 170, 1997 [precise location \tQ].
+\bibitem{Har} R.\ Hartshorne, \emph{Algebraic Geometry}, Springer GTM 52, 1977.
+\bibitem{GH} P.\ Griffiths, J.\ Harris, \emph{Principles of Algebraic Geometry}, Wiley 1978.
+\end{thebibliography}

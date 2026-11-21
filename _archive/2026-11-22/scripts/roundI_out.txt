@@ -1,0 +1,5 @@
+roundI_check.py final stats (run 2026-11-22): {'nosolv_ok': 48, 'nosolv_bad': 0, 'solv_diff': 25, 'solv_same': 92}
+ nosolv_ok: no stratum S solvable  => HH == generic prediction (48 cases, 0 violations)
+ solv_diff: some S solvable and HH != generic (e.g. P2xP2 block A rho=0: act [1,4,12,16,16] vs gen [1,4,6,4,10], diff 6 t^2 (1+t)^2)
+ solv_same: S solvable but no lattice weight realises it (false alarms), 92 cases
+ (P2/P1xP1 'generic' hits with rho=(1,0) are the r_i=1 resonance cases, excluded by (R).)
