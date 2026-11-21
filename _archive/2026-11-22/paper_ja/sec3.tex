@@ -1,0 +1,101 @@
+%--------------------------------------------------------------
+\section{対数シンプレクティックな場合：Poisson 加群 $=$ 対数的平坦接続}\label{sec:logsymp}
+%--------------------------------------------------------------
+\subsection{設定}
+$X$ をコンパクト複素多様体（$\dim_\C X=n=2k$）、$\sigma$ を正則 Poisson 構造、$D\subset X$ を簡約な因子（単純正規交差、曲面では通常二重点のみも許す）とする。
+$T_D=T_X(-\log D)$、$B=\Omega^1(\log D)$。
+
+\begin{defn}[対数シンプレクティック]\tC
+$\sigma\in H^0(\wedge^2T_D)$ かつ $\sigma^\sh:B\to T_D$ が同型であるとき、$\sigma$ は $D$ に沿って対数シンプレクティックであるという（同値：$\omega:=\sigma^{-1}\in H^0(\Omega^2(\log D))$ が非退化）。このとき $\mathrm{div}(\sigma^k)=D$、すなわち $-K_X=\mathcal O(D)$。
+\src{Goto, \emph{Unobstructed deformations of generalized complex structures induced by $C^\infty$ logarithmic symplectic structures}, J.\ Math.\ Soc.\ Japan 68 (2016)；Gualtieri--Li, \emph{Symplectic groupoids of log symplectic manifolds}, IMRN 2014, arXiv:1206.3674；Pym, \emph{Constructions and classifications of projective Poisson varieties}, Lett.\ Math.\ Phys.\ 108 (2018)。書誌情報は記憶に基づく\tQ。}
+曲面の場合これは、$\sigma\in H^0(-K_X)$ で零因子が簡約かつ通常二重点しか持たない、ということである。局所的に $\sigma=h\,\partial_1\wedge\partial_2$、$h=zu$（滑らかな点）または $h=z_1z_2u$（二重点）、$u$ は単元。
+\end{defn}
+
+\subsection{主張}
+\begin{thm}[Poisson 加群 $=$ 対数的平坦接続]\tP\label{thm:main1}
+$(X,D,\sigma)$ を対数シンプレクティック（任意の偶数次元、$D$ は単純正規交差）、$E$ を Poisson 加群を持つ正則直線束とする。
+\begin{enumerate}
+\item[(a)] 局所枠 $e$ に対し $\nabla_\beta e=\beta(V)e$ で正則ベクトル場 $V$ が定まり、$[\sigma,V]=0$（Poisson ベクトル場）。枠の取り替え $e\mapsto ge$ で $V$ は $X_{\log g}$ 型のハミルトン項だけ変わる。
+\item[(b)] $V$ は自動的に対数的：$V\in T_D$。したがって $A$-加群構造は一意に $B$-加群構造に延び、同型 $\sigma^\sh:B\cong T_D$ を通して、対数極をもつ平坦接続 $\nabla^{\log}:E\to\Omega^1(\log D)\otimes E$ と同じものになる。
+\item[(c)] $\nabla^{\log}$ の $D_i$ に沿った留数は定数 $r_i\in\C$ で、$H^2(X;\C)$ において $c_1(E)=-\sum_ir_i[D_i]$。
+\item[(d)] $D$ の点の近くで、$\nabla^{\log}e=\sum_ir_i\,\dlog z_i\,e$ となる枠が取れる。
+\item[(e)] 部分複体 $C(T_D;E)=(\wedge^bT_D\otimes E,d_E)\subset C(A;E)$ は、$\wedge^b\sigma^\sh$ により対数 de Rham 複体 $\mathrm{DR}_{\log}(E)$ と同型。
+\end{enumerate}
+\end{thm}
+\begin{hyptab}
+対数シンプレクティック（$\sigma^\sh:B\cong T_D$） & $B$ 上の Lie 亜群構造 $(T_D^*)_\sigma$ と $T_D$ を同一視し、Poisson 加群を通常の平坦接続（対数極つき）として扱うため。 & 補題 \ref{lem:iso}、定理 (b),(e)。\\\midrule
+$D$ が簡約・単純正規交差 & 局所方程式 $f=z_1\cdots z_s$ の各因子から極の位数を独立に評価するため。 & 補題 \ref{lem:log}（$V(f)\in(f)$ から $V(z_i)\in(z_i)$ を導く）。\\\midrule
+$X$ コンパクト & $c_1(E)$ と留数の関係（大域的なコホモロジー類の等式）のため。 & (c)。留数が定数であることは局所的。\\\midrule
+$\sigma$ が Poisson（$[\sigma,\sigma]=0$）& $A$ が Lie 亜群になり、$d_E^2=0$ となる。 & 補題 \ref{lem:flat}。
+\end{hyptab}
+
+\begin{lem}[平坦性 $\Leftrightarrow$ Poisson ベクトル場]\tP\label{lem:flat}
+局所枠 $e$ について $\Theta(\beta):=\nabla_\beta e/e$ とおくと、$\nabla_a\nabla_be=(\sigma^\sh a)(\Theta b)e+\Theta(a)\Theta(b)e$。よって平坦性 $[\nabla_a,\nabla_b]=\nabla_{[a,b]_\sigma}$ は
+$(\sigma^\sh a)(\Theta b)-(\sigma^\sh b)(\Theta a)=\Theta([a,b]_\sigma)$、すなわち $\Theta$ が Lichnerowicz 複体の 1-コサイクル：$\Theta(\beta)=\beta(V)$、$[\sigma,V]=0$ と同値。
+局所座標で $\sigma=h\partial_1\wedge\partial_2$、$a=\Theta(dz_1)$、$b=\Theta(dz_2)$ のとき条件は $h(a_1+b_2)=h_1a+h_2b$ すなわち $V(h)=h\,\mathrm{div}V$。微分 $d_E$ は $C^0$ で $d_E(fe)=(-\sigma^\sh(df)+fV)e$、$c=X\otimes e$、$X=p\partial_1+q\partial_2$ に対し
+\[(d_Ec)(dz_1,dz_2)=h(p_1+q_2)-h_1p-h_2q+qa-pb.\]
+\end{lem}
+\begin{lem}[$V$ は対数的]\tP\label{lem:log}
+$D$ の局所方程式を $f=z_1\cdots z_s$ とする。$L_V\sigma=0$ から $L_V\sigma^k=0$。$\sigma^k=f'\partial_1\wedge\cdots\wedge\partial_n$（$f'=f\cdot$単元）なので $V(f')-f'\,\mathrm{div}V=0$、よって $V(f)\in(f)$。$V(f)/f=\sum_iV(z_i)/z_i$ で、第 $i$ 項の極は $\{z_i=0\}$ のみ。全体が正則なので各 $V(z_i)/z_i$ が正則、すなわち $V(z_i)\in(z_i)$。
+\end{lem}
+\begin{lem}[$\sigma^\sh:B\to T_D$ は Lie 亜群の同型]\tP\ （標準）\label{lem:iso}
+$\sigma\in\wedge^2T_D$ は Lie 亜群 $T_D$ 上の Poisson 構造で非退化。$\omega=\sigma^{-1}$ が $d_{T_D}$-閉であることは、$U$ 上で $\omega$ が閉（Poisson 構造の逆）で、$\Omega^3(\log D)$ の切断が稠密開集合上で 0 なら 0 であることから従う。閉 2-形式による非退化 Poisson 構造では $\sigma^\sh$ が括弧を保つ。ゆえに $(T_D^*)_\sigma=B\cong T_D$。
+\end{lem}
+\begin{lem}[留数・局所標準形・$c_1$]\tP\ /\ \tC\label{lem:res}
+$\nabla^{\log}e=\theta e$、$\theta\in\Omega^1(\log D)$ は平坦性から閉。$D_i$ に沿った留数 $\theta_i|_{D_i}$ は、$d\theta$ を $D_i$ に制限すると定数であることが分かる。$\theta-\sum r_i\dlog z_i$ は閉正則 1-形式なので $=dg$、枠 $e'=e^{-g}e$ で $\nabla^{\log}e'=\sum r_i\dlog z_i\,e'$（(d)）。$c_1(E)=-\sum r_i[D_i]$ は Esnault--Viehweg の留数公式（\tC\ Esnault--Viehweg, \emph{Logarithmic de Rham complexes and vanishing theorems}, Invent.\ Math.\ 86 (1986) 161--194, \S2；Deligne, \emph{\'Equations diff\'erentielles \`a points singuliers r\'eguliers}, LNM 163, Springer 1970, Ch.\ II。符号の確認：標準切断が平坦な $\mathcal O(D)$ の留数は $-1$、$c_1=[D]$）。
+同じ $c_1$ をもつ加群構造の全体は $H^0(\Omega^1(\log D))=\ker(\C^c\to H^2(X;\C))$ 上のトーサー（Deligne）で、次元は $c-\rho$。$D$ が既約なら一意、可約なら留数ベクトルのアフィン族になる。
+\end{lem}
+\begin{proof}[定理 \ref{thm:main1} の証明]
+(a) 補題 \ref{lem:flat}。(b) 補題 \ref{lem:log} で $\Theta$ が $B$ に延び、平坦性は稠密開集合上の等式なので延長後も成り立つ。補題 \ref{lem:iso} と合わせる。(c),(d) 補題 \ref{lem:res}。(e) 補題 \ref{lem:iso}。
+\end{proof}
+
+%--------------------------------------------------------------
+\section{最も簡単な非自明な例：$\mathbb{CP}^2$ と滑らかな3次曲線}\label{sec:cp2}
+%--------------------------------------------------------------
+$F$ を $\mathbb C^3$ 上の滑らかな3次斉次多項式、$\Pi^{ij}=\epsilon_{ijk}\partial_kF$ とする。$\Pi$ は Euler ベクトル場と縮約すると 0 になる斉次 Poisson 構造（ウェイト 0）で、$\mathbb{CP}^2$ 上の正則 Poisson 構造 $\sigma\in H^0(\wedge^2T)=H^0(\mathcal O(3))$ を定める。$\sigma$ は $D=\{F=0\}$（滑らかな3次曲線）で 1 位に消える。標準的な構成である（出典の同定は\tQ；$D$ での消え方は局所計算で確認した）。以下、$E=\mathcal O(m)$ とする。
+
+\subsection{どの $\mathcal O(m)$ が一般化正則か}
+\begin{prop}\tP\label{prop:cp2mod}
+すべての $m\in\Z$ に対し $\mathcal O(m)$ はただ一つの Poisson 加群構造をもち、その対数接続の留数は $r=-m/3$ である。
+\end{prop}
+\begin{proof}
+定理 \ref{thm:main1}(c) より $r=-m/3$（$[D]=3H$）。存在：$\mathcal O(m)$ の Atiyah 類が $H^1(\Omega^1(\log D))$ で消えることと $c_1\in\C[D]$ が同値（完全列 $H^0(\mathcal O_D)\to H^1(\Omega^1)\to H^1(\Omega^1(\log D))$）で、$m[H]\in\C\cdot3[H]$。曲率は $H^0(\Omega^2(\log D))=\C\omega$ の元で留数 $dr=0$ だから平坦。一意性：2つの対数接続の差は $H^0(\Omega^1(\log D))=0$（連結写像 $1\mapsto[D]=3H\ne0$）。\qedhere
+\end{proof}
+別の見方：$\Pi$ の Casimir $F$ に対し、$F^{m/3}$ は $U=\mathbb{CP}^2\setminus D$ 上で $\mathcal O(m)$ の（多価の）平坦切断を与える。$\mathcal O(m)|_U$ は階数 1 の局所系 $L_m$ で、$D$ まわりのモノドロミーは $e^{-2\pi im/3}$。$\pi_1(U)=\Z/3$ に対応して周期 3 が現れる。\tP\ 局所的に $\nabla e=-\tfrac m3\dlog z\,e$。
+
+\subsection{結果}
+\begin{thm}\tP\label{thm:cp2}
+$\mathcal O(m)$ の一般化 Dolbeault コホモロジー
+\[\HH^*(\mathcal O(m))=\mathbb H^*\bigl(\mathbb{CP}^2;(\wedge^\bullet T(m),d_\sigma)\bigr)\]
+の次元 $[\dim\HH^0,\dots,\dim\HH^4]$ は
+\begin{center}\small
+\begin{tabular}{lll}\toprule
+$m$ & 次元 & 解釈\\\midrule
+$m\in3\Z_{\ge0}$ & $[1,0,2,0,0]$ & $H^*(U;\C)$。$\HH^0=\C F^{m/3}$ は Casimir 切断\\
+$m\in3\Z_{\le-6}$ & $[0,0,2,0,1]$ & $H^*_c(U;\C)$\\
+上記以外（$m=-3$ を含む）& $[0,0,3,0,0]$ & $H^*(U;L_m)$（$m\notin3\Z$）、$m=-3$ は特別\\\bottomrule
+\end{tabular}
+\end{center}
+全 Euler 標数は常に $3=\chi(\mathbb{CP}^2)$。
+\end{thm}
+\begin{hyptab}
+$D$ が滑らか・$\sigma$ が $D$ に沿って 1 位に消える & 商複体 $Q$ の微分が同型 $d\sigma|_D:N_D\to\wedge^2T|_D$ の定数倍になる。 & 証明の手順 (3)。$m\ne-3$ で $Q$ が非輪状。\\\midrule
+$\pi_1(U)=\Z/3$（Milnor ファイバー $\simeq$ $S^2$ の8個の束） & $U$ のコホモロジーを具体的に決める。 & 手順 (2) の表の右辺。\\\midrule
+$m\ne-3$ & $Q$ の微分 $-(1+m/3)\cdot(d\sigma|_D)$ が零写像でない。 & $m=-3$ だけ別扱い（手順 (4)）。
+\end{hyptab}
+\begin{proof}[証明の手順]
+(1) 命題 \ref{prop:cp2mod} と定理 \ref{thm:main1}(e) により、部分複体 $C_{\log}=(\wedge^bT_D\otimes\mathcal O(m))\cong\mathrm{DR}_{\log}$。
+(2) 局所枠で $\nabla^{\log}e=r\,\dlog z\,e$（$r=-m/3$）。$D$ の点での茎では、対数 de Rham 複体は単項式 $z^ne$ に $(n+r)=(n-m/3)$ 倍で作用する。茎のコホモロジーは $m\in3\Z_{\ge0}$ で $[1,1]$、それ以外で 0。ゆえに $m\in3\Z_{\ge0}$ では自然な写像 $\mathrm{DR}_{\log}\to Rj_*L_m$ が茎ごとに擬同型（$\mathbb H(C_{\log})=H^*(U;\C)$）、それ以外では $j_!L_m\to\mathrm{DR}_{\log}$ が擬同型（$\mathbb H(C_{\log})=H_c^*(U;L_m)$）。$U$ の位相：$F=1$ の Milnor ファイバーは $\mu=8$ 個の $S^2$ の束で $U=\{F=1\}/\mu_3$、$H^2=\C^8=2+3+3$（自明指標・非自明指標2つ）。$U$ はアファインなので $H^k=0\ (k>2)$。よって $H^*(U)=[1,0,2,0,0]$、非自明な指標の $H^*(U;L)=[0,0,3,0,0]$、Verdier 双対性で $H^*_c(U;\C)=[0,0,2,0,1]$。
+(3) 商 $Q=C(A;\mathcal O(m))/C_{\log}$ は $D$ 上の複体で、$Q^1=N_D(m)=\mathcal O_D(m+3)$、$Q^2=\wedge^2T(m)|_D=\mathcal O_D(m+3)$。補題 \ref{lem:flat} の公式で $z=0$ とすると $d_Q=-u(1-r)p$、不変な形では $d_Q=-(1+m/3)\cdot(d\sigma|_D)$。$d\sigma|_D$ は同型なので、$m\ne-3$ のとき $Q$ は非輪状で $\HH^*(\mathcal O(m))=\mathbb H^*(C_{\log})$。
+(4) $m=-3$：$E_1^{a,b}=H^a(\wedge^bT(-3))$ は $(2,0),(1,1),(0,2)$ にそれぞれ 1 次元（Bott）、すべて全次数 2 なので以後の微分は零で $[0,0,3,0,0]$。符号の確認は不要。
+\end{proof}
+\begin{rem}[\tV]
+上の表は、$m=-15,\dots,15$ について、Fermat 型と Hesse 型の3次曲線を使い、スペクトル系列 $E_1^{a,b}=H^a(\wedge^bT(m))$ の微分 $d_1$ を（$m\ge-2$ では大域切断の複体として、$m\le-4$ では Laurent 単項式による Cech 計算として）素数 $32003$ を法とする厳密な線形代数で直接計算した結果と一致する（スクリプト：\texttt{cp2/poisson.py, table.py, neg\_check.py, predict.py}）。
+\end{rem}
+\begin{rem}[\tC\ 関連]
+Hitchin, \emph{Deformations of holomorphic Poisson manifolds}, arXiv:1105.4775（Moscow Math.\ J.\ 12 (2012)、書誌は\tQ）の (11) 式 $0\to T^*\xrightarrow{\sigma}T\to T|_D\to0$ と Prop.\ 8 が関連するが、$\mathbb{CP}^2$ のこの結果そのものは同論文にも Gualtieri の論文にも書かれていない（調べた範囲）。
+\end{rem}
+
+\begin{obs}[「$m$ への依存」の見え方]\tP
+全 Euler 標数は $m$ によらない（位相不変量）。$m$ への依存は Poincaré 多項式、特に周期 3 の跳びと $\HH^0$（Casimir 切断 $F^{m/3}$）にのみ現れる。$m\gg0$ でも $\HH^2$ は 2 または 3 次元のまま残るので、全次数での Serre 消滅は成り立たない。
+\end{obs}

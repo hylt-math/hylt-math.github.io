@@ -1,0 +1,45 @@
+%--------------------------------------------------------------
+\section{先行研究との比較}\label{sec:compare}
+%--------------------------------------------------------------
+\subsection{Hodge 理論（形式係数）}
+Gualtieri は一般化 Kähler 多様体上の一般化 Hodge star、Born--Infeld 内積、Laplacian の等式、Hodge 分解、$dd^{\Jc}$-補題を示した（\tC\ Gualtieri, \emph{Generalized geometry and the Hodge decomposition}, arXiv:math/0409093；Gualtieri, \emph{Generalized K\"ahler geometry}, Comm.\ Math.\ Phys.\ 331 (2014) 297--331, arXiv:1007.3485；Cavalcanti, \emph{New aspects of the $dd^c$-lemma}, arXiv:math/0501406、および J.\ Geom.\ Phys.\ 57 (2006) 121--132。定理番号は精読していないので省く\tQ）。これらは自明束または $H$-捩れ係数の理論であり、直線束（曲率つき）係数の Bochner--Kodaira--Nakano 恒等式は、調べた範囲では書かれていない。本ノートの結果は、この係数付き版の穴を、Hodge 理論に頼らず、対数複体と構成可能層の比較で $\beta$-変換の場合に埋めたものと位置づけられる。
+
+\subsection{Pal--Poddar}
+\tC\ Pal--Poddar, arXiv:2404.18113（題名・著者表示は\tQ）は、正則型（型 $k$ が一定）のコンパクト一般化複素多様体で、シンプレクティック葉構造の葉空間が Kähler 軌道体である場合に、強一般化正則（SGH）束の Hodge 理論、Serre 双対性（Thm.\ 8.9, Cor.\ 8.10）、正の SGH 直線束に対する Kodaira 型・Serre 型の消滅定理（Thm.\ 11.12、準備 Prop.\ 11.2--11.8, Lemma 11.9）を与える。正則型と軌道体の仮定は、葉構造が滑らかな葉束をなすことと、横断方向の Hodge 理論（楕円性）を保証するために使われている。本ノートとの違い：
+\begin{itemize}
+\item 型が跳ぶ場合（$\sigma$ の退化因子上で型が跳ぶ）は Pal--Poddar の枠外であり、本ノートの $\mathbb{CP}^2$ などの例はこの場合である。
+\item SGH 束は一般化正則束の真部分クラス（葉に沿って平坦で横断方向に正則）。本ノートの Poisson 加群は $\beta$-変換構造における一般の GH 束である。
+\item 積の場合の整合性（命題 \ref{prop:PPprod}）を除き、定理 11.12 との直接の比較はしていない\tQ。
+\end{itemize}
+原典の記述について、本調査で気づいた疑義（原典の誤植・省略の可能性が高いが未検証\tQ）：(i) 表示された不等式で $1/2\pi$ の規格化が混在して見える、(ii) Example 10.18 と Prop.\ 9.3 で $c_1$ に関する符号が食い違って見える、(iii)「正のコホモロジー類が正の曲率の計量を与える」ステップは断言のみで証明が見当たらない。
+
+\subsection{Tengzhou Hu の仕事}
+\tC\ T.\ Hu, \emph{Kodaira vanishing theorems for K\"ahler Lie algebroids}, arXiv:2403.10876；\\ T.\ Hu, \emph{Lie groupoid Riemann--Roch--Hirzebruch theorem and applications}, arXiv:2403.13424。
+\begin{itemize}
+\item \emph{設定}（2403.13424）：Lie 亜群 $G\rightrightarrows M$（Def.\ 1、固有性・$s$-連結性の仮定は述べられていない）、その Lie 亜群 $\mathfrak g$。「複素 Lie 亜群」（Def.\ 2）は、\emph{実}の Lie 亜群 $\mathfrak g$ に、ファイバー方向の可積分な複素構造 $J$ を与えたもの（これは $\bT_\C$ の部分束としての複素 Lie 亜群 $L$ とは別物）。Kähler Lie 亜群は Def.\ 11、正の束は Def.\ 12。
+\item \emph{主張}（2403.13424）：Thm.\ 4（Riemann--Roch）は、$M$ コンパクト、$\dbar_{\mathfrak g}$ が楕円型（主張されているが証明は見当たらない）、$\Omega$ が $\mathfrak g$-不変な密度（単模性）のとき
+\[\mathrm{Ind}_\Omega(\dbar_{\mathfrak g}+\dbar_{\mathfrak g}^*)=(2\pi i)^{-k}\int_M(-1)^{\mathrm{rk}\,\mathfrak g}\bigl\langle\ch^{\mathfrak g}(\mathfrak g^{*p,0})\ch^{\mathfrak g}(E)\Td^{\mathfrak g}_\C(\mathfrak g),\Omega_{\mathfrak g}\bigr\rangle\]
+を主張する。Thm.\ 7（消滅）：$E$ が正で $p+q>n$ なら $\mathfrak g$-Dolbeault Laplacian の\emph{核}が消える（コホモロジーの消滅は導けない：$\mathfrak g$ が一般の Lie 亜群のとき Laplacian は楕円型とは限らず、Hodge 理論が使えないため）。2403.10876 では Kähler Lie 亜群は Def.\ 2、Kähler の恒等式は Thm.\ 1 と Prop.\ 4、BKN 恒等式は Lemma 4、主な消滅定理は序論。
+\item \emph{一般化 Dolbeault 複体は適用範囲外}\tP\ （導出、原典との照合は以下の範囲）：$L$ は複素 Lie 亜群で $J$ をもたず、$\wedge L^*$ は一般には $(p,q)$ 二重次数をもたない。正則 Poisson 構造 $\sigma$ に対し、実 Lie 亜群 $A_{\mathbb R}$ は Hu の設定に入るが、その Dolbeault 複体は $\bar\sigma$ から作られる $\wedge\mathfrak g^{*0,q}$ で、本ノートの複体 $(T^{0,1}\bowtie A^{1,0})$ とは別物。
+\item \emph{指数は $m$ を見るか}\tK：Hu の指数は群の指数で、おおよそ $\int\ch(E)\Td(T^*)\ch(\wedge^pT)$ のように $m$ に多項式的に依存する見込みだが、本ノートの全 Euler 標数は $m$ によらない（命題 \ref{prop:euler}）。また周期的な跳びを決める留数 $-m/3$ は Hu のデータに含まれない。したがって Hu の定理は「一般化 Dolbeault コホモロジーに対する Riemann--Roch」ではない。
+\item \emph{原典の不整合（要約を通して得たもの）}：Thm.\ 7 で $n$ が未定義、符号定数が Thm.\ 5, Prop.\ 1, Thm.\ 6 で異なる、「単模」の定義が二通り、BKN の符号（$[\nabla^2,\Lambda]$ 対 $[\sqrt{-1}R,\Lambda]$）に食い違いの疑い。2403.10876 は先頭約 10 万字のみ読み、付録（Kähler 恒等式の証明）は未読。\tQ
+\item \emph{本ノートの前版（予備調査）の訂正}：前版では著者を「S.\ Hu」、題名を別の題名で書いていたが、いずれも誤りで、上記が正しい。
+\end{itemize}
+
+\subsection{積分可能性・群}
+\tC\ Gualtieri--Li（arXiv:1206.3674、IMRN 2014）は対数シンプレクティック多様体の Hausdorff シンプレクティック亜群を分類し、滑らかな $D$ に沿って接する対数ベクトル場の Lie 亜群 $T_X(-\log D)$ が積分可能であることを与える。Bailey--Gualtieri（arXiv:1611.03850）は、一般化複素構造の弱正則シンプレクティック亜群への積分と実 Poisson 構造の積分可能性の同値を示す（Thm.\ 7.1、題名は\tQ）。Laurent-Gengoux--Stiénon--Xu（arXiv:0803.2031）：Thm.\ 3.17, 3.22。Crainic--Fernandes（arXiv:math/0105033）：Thm.\ 4.1, Cor.\ 5.2。これらは、指数理論の入力としての群を与えるが、複素 Lie 亜群 $L$ 自体の積分は扱わない。
+
+%--------------------------------------------------------------
+\section{未解決問題と次のステップ}\label{sec:open}
+%--------------------------------------------------------------
+\begin{enumerate}
+\item \textbf{三種の神器のうち未着手のもの}：Kodaira 埋め込みの一般化。$\HH^0$ が Casimir 切断であること（観察 \ref{obs:casimir}）から、$M$ 自身への埋め込みではなく、Casimir 切断が分離する商（葉空間など）への写像として定式化する必要がある。Casimir 切断の線形系のベースポイント・分離性を、$\mathbb{CP}^2$ の例（$\HH^0=\C F^{m/3}$、すなわち $m\in3\Z_{\ge0}$ で 1 次元）から調べるのが次の具体的な一歩。
+\item \textbf{Serre 型消滅の一般化}（予想 \ref{conj:A3}）：「正」な一般化正則直線束の定義、$\beta$-変換でない $\Jc$ での $E_1$ 項に相当する濾過の構成。Pal--Poddar Thm.\ 11.12 との正確な比較（原典の定義を読み直す）。
+\item \textbf{Riemann--Roch の定式化}：全 Euler 標数ではなく、細分（$\Jc$ の型による濾過の $E_1$ 項、周期擬多項式、指標根 $H^*(\partial U)$）を決める。予想 \ref{conj:I3} の証明には、複素 Lie 亜群 $L$ の指数理論（単模性・Fredholm 性 $\Leftrightarrow r\notin\Z$ の導出）が必要。境界つき一般化複素多様体への APS 型の拡張は、さらに先の課題。
+\item \textbf{対数シンプレクティック以外}：非ノーダル特異点の局所理論の証明（準斉次 germ のみ計算）、留数が等しくない場合の大域公式、非簡約 $D$（無限次元の茎と線形増大）、次元 4 以上の非トーリックな例（観察 \ref{obs:arith} を参照）。
+\item \textbf{一般化 Kähler 側}：直線束係数の Bochner--Kodaira--Nakano 恒等式を一般化 Kähler の枠組みで書き下す。$H$-捩れと曲率項の相互作用が障害になりうる\tK。
+\item \textbf{本ノートの未確認事項の解消}：\S\ref{sec:ledger} の \tQ\ の項目。特に、Mokri の定理、LGSX Lemma 4.22 の再導出、Gualtieri 2011 の定理番号、書誌情報、Pal--Poddar \S11 の再読。
+\end{enumerate}
+
+\paragraph{次のステップの優先順位（筆者案）。}
+(a) 型が跳ばない比較対象として、Pal--Poddar の正則型の例で同じ「Poincaré 多項式」を計算して、本ノートの周期的な跳びと見比べる。(b) $\mathbb{CP}^2$ の例について、$\HH^0=\C F^{m/3}$ を使った Casimir 切断の線形系の幾何を調べ、Kodaira 型定理の「正しい形」を探る。(c) 予想 \ref{conj:I3} の指数理論的な証明の足場として、実 Lie 亜群 $T_X(-\log D)$ 上の重みつき $b$-複体と留数 $r$ の関係を厳密に定式化する。

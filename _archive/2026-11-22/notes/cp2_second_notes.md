@@ -1,0 +1,41 @@
+# Second round (2026-11-21): P^1xP^1, local singularity theory, refined conjecture
+Legend: [C]=computed (exact linear algebra mod p), [P]=proved here (by hand, standard facts), [K]=cited, [?]=conjectural.
+Scripts (cp2/): p1p1.py (global tables on P1xP1), p1p1_out.txt (raw), p1p1_twist.py (Z-field/sign test), local_stalk.py, local_scan.py (germ cohomology).
+## 0. Correction to my own earlier remark
+For REDUCIBLE D the Poisson-module structure on O(m) is NOT unique: H^0(Omega^1(log D)) = ker(C^c -> H^2(X)), dimension c - rank<[D_i]>, so residues (r_1..r_c) with sum r_i[D_i] = -c_1(E) form an affine family. All reducible-D tables (P^2 round 1 and below) use the symmetric member r_i = -m/k (module O h^{-m/k}, h=F; k=3 on P^2, k=2 on P1xP1). Uniqueness holds for smooth/irreducible-with-H^0(Omega^1(log D))=0.
+## 1. P^1xP^1, sigma = Pi_F, F in H^0(O(2,2)) (-K = O(2,2))
+Model [C]: multivectors on C^4 of bi-weight (m,m) mod ideal (E_x,E_y), Pi~ = sum c_ij d_xi ^ d_yj, c_ij = eps_ik eps_jl d_xk d_yl F (represents 4F d_x^d_y in a chart); d = Schouten bracket. The flat log structure F^{m/2} D F^{-m/2} equals plain D mod the ideal because Pi~^#(dF) = F*Z + E_x*alpha + E_y*beta with Z = lambda E_x + mu E_y (checked, p1p1_twist.py); so Z^A is in the ideal. Checks d1 d0 = 0, d1 kills Euler images: passed in every case. (An earlier version of the check was too strong -- it required vanishing before projecting to wedge^2 T; fixed.)
+Proved [P] (smooth D, same argument as cp2_proof_notes.md sect.1-4): O(a,b) is a Poisson module iff (a,b)=(m,m) (c_1 = -r[D], [D]=(2,2)), r=-m/2, unique. Log subcomplex ~ full complex iff quotient Q acyclic iff r != 1 iff m != -2 (m=-2 is O(-2,-2)=K, all E_1 terms in total degree 2 => [0,0,4,0,0]). Stalk cohomology of DR_log: Rj_*C iff m even >=0, else j_!L_m, L_m with monodromy (-1)^m. Topology of U=P1xP1\D (D elliptic): H^*(U)=[1,0,3,0,0] (Gysin: C->H^2(X) injective), so predicted: m even>=0 [1,0,3,0,0]; m even <=-4 H_c^*(U)=[0,0,3,0,1]; m odd [0,0,4,0,0] (assumes H^1(U;L_{-1})=0; consistent with data); m=-2 [0,0,4,0,0].
+Computed [C] (m=-9..8, F random smooth): exactly the prediction, period 2, Serre duality m<->-m-4, chi=4 always.
+Other D [C] (equal-residue module, m=-9..8, all chi=4):
+- two transverse (1,1)-curves (2 nodes): m even>=0 [1,1,4,0,0]; even<=-4 [0,0,4,1,1]; odd and m=-2 [0,0,4,0,0].
+- four lines x0x1y0y1 (4 nodes): even>=0 [1,2,5,0,0]; even<=-4 [0,0,5,2,1]; else [0,0,4,0,0].
+- (1,1)+(1,0)+(0,1) (3 nodes): [1,1,4,0,0] / [0,0,4,1,1] / [0,0,4,0,0].
+- double (1,1)-curve (non-reduced): H^0=1,H^1=2m+3,H^2=2m+6 for m>=0 (all parities); m=-3..-1: [0,0,4,0,0]; m<=-4 dual. Slope in m = (O(1,1).C)=2, parallel to P^2 double line (slope 1): growth ~ deg(O(m)|_C) -- the cohomology sheaves are coherent O_C-modules (see sect.2).
+- sigma=0 control reproduces oplus H^0(wedge^b T(m)).
+Prediction rule of round 1 (U-part + #nodes in degree 2, b_1(U)=c-rank<[D_i]>) matches all of these: [C] 0 mismatches (hand-checked: b1=c-rank in H^2(X)).
+## 2. Local theory (germ at p of D, sigma = h d_z^d_w, module O h^s: d0 f=(h f_w + s f h_w)d_z - (h f_z + s f h_z)d_w, d1(p,q)=h(p_z+q_w)-(1-s)(h_z p+h_w q))
+Global: s = r = -m/3 (P^2), -m/2 (P1xP1). Normalisation matches cp2_proof_notes.md sect.3 (d_Q ~ (1-s)).
+Computed [C] with weight-graded exact linear algebra (cp2/local_stalk.py; quasi-homogeneous h, formal=convergent germ cohomology assumed), stalk dims (h^0,h^1,h^2):
+ smooth z: generic (0,0,0); s in Z_{<=0}: (1,1,0)=stalk of Rj_*; s=1 infinite-dim.
+ node zw: generic (0,0,1); s in Z_{<=0}: (1,2,2)=Rj_*[(C*)^2: 1,2,1]+1; s=1 infinite.
+ cusp z2-w3: generic (0,0,2); s in (1/6)Z, s<=1/6 (s<5/6): non-integer (0,1,3)=[0,1,1]+2, integer<=0 (1,1,2)=[1,1,0]+2.
+ tacnode z2-w4: generic (0,0,3); s in (1/4)Z, s<=1/4: (0,1,4), integer<=0 (1,2,4).
+ A4 z2-w5: generic (0,0,4); integer s<=0: (1,1,4).
+ D4 zw(z-w): generic (0,0,4); s in (1/3)Z\Z, s<=1/3: (0,1,5); integer s<=0: (1,3,6).
+ D5 w(z2-w3): generic (0,0,5); s=k/8 odd k, s<=3/8: (0,1,6); integer<=0: (1,2,6).
+Pattern (all 7 types scanned, s in 1/12 or 1/8 grid, |s|<=5) [C]:
+ stalk(C_s)_p = C^{mu_p}[-2]  +  (stalk of Rj_*L_s at p  if s < lct_p ,  0 if s > lct_p),  s != 1,
+ lct_p = smallest spectral number (smooth/node 1, cusp 5/6, tacnode 3/4, D4 2/3, D5 5/8). Rj_*-stalk = H^*(U_loc; h^*L'_s) = Milnor-fibre/monodromy computation: classes appear iff s = alpha_j mod Z (alpha_j spectral numbers; one sign convention) [H^1,H^2] and s in Z [H^0,H^1]; consistent with all scanned values (D4: eigenvalues e^{-2 pi i alpha}={w,1,1,w^2} gives exactly one class for s in 1/3+Z or 2/3+Z). [the Milnor-monodromy explanation is a consistency argument, not proved]
+ The skyscraper dimension is mu_p = tau_p (quasi-homogeneous). s=1 (=K_X-twist, m=-3 on P^2, -2 on P1xP1) is infinite-dimensional locally (d_Q=0) but globally fine by E_1.
+Non-reduced germs z^2, z^2w, z^3 [C]: stalk cohomology infinite-dimensional (h^1,h^2 grow +1 per weight): cohomology sheaves are coherent O_C-modules on the multiple curve, hence global dims linear in m as in sect.1 (slope = (O(1).C)). Not analysed further.
+## 3. Explanation of the triple-point anomaly (P^2, xy(x-y))
+Data (round 1): m=1,2,4,5.. [0,1,4,0,0]; m=-1 [0,1,4,0,0]; m=-5,-7,-8 [0,0,4,1,0]; m=-2,-3,-4 [0,0,3,0,0].
+Local rule + 'Rj_* if s<lct else j_!': at the triple point lct=2/3 so s=-m/3 <2/3 (m>=-1): [H^*(U;L)=(0,1,0)] +4 -> [0,1,4,0,0] OK; s>2/3 (m<=-5, m != -3): H_c^*(U;L)=(0,0,0,1,0)+4 -> [0,0,4,1,0] OK. m=-2,-4 have s=2/3,4/3 = the two non-integer spectral numbers of D4 ({2/3,1,1,4/3}), and there one class of the skyscraper C^4 (degree 2) cancels against the H_c class (degree 3) by a differential d_3 of the spectral sequence H^p(X,H^q) => hypercohomology: [0,0,4,1,0] -> [0,0,3,0,0]. [?] This explains why only the triple point shows anomalies among cubics: cusp (5/6,7/6), tacnode (3/4,5/4), D5 (5/8,...) have spectral numbers not in (1/3)Z. On P1xP1 (s in (1/2)Z) no A_k germ has a half-integer spectral number != 1 (alpha=1/2+j/(k+1) in (1/2,3/2)), so no anomalies were seen.
+## 4. Refined Riemann-Roch / periodic stabilisation conjecture (normal-crossing D or isolated singularities, equal residues) [?]
+Setup: X compact complex surface, sigma in H^0(-K_X) with reduced zero curve D (isolated singularities), L = line bundle with Poisson module M_s, i.e. c_1(L) = s*K_X (s in Q; X=P^2: O(m), s=-m/3; X=P1xP1: O(m,m), s=-m/2), L_s = rank-1 local system on U=X\D with monodromy e^{2 pi i s} around every branch, F_s = constructible complex with F|_U=L_s, stalk Rj_*L_s at p in D iff s<lct_p, 0 if s>lct_p.
+ (a) For s not in Sp(D) (spectral numbers of all points of D, including 1 at smooth/node points): H^*(X; C_s) = H^*(X;F_s) + sum_p mu_p [degree 2].
+ (b) Euler characteristic: chi = chi(U)+sum mu_p = chi(X) for every s (uses chi(D)=sum mu_p for reduced anticanonical D, p_a=1: proof by delta-invariants, checked in text: chi(D)=2 sum delta - sum (r_p-1)=sum mu_p). So the total Euler characteristic is m-independent (consistent with Observation of round 1).
+ (c) Periodic stabilisation (Serre-vanishing analogue): for s<<0 (m>>0) F_s = Rj_*L_s everywhere, so H^*(m)=H^*(U;L_s)+sum mu_p[-2] depends only on s mod Z (m mod 3 on P^2, mod 2 on P1xP1) and vanishes in degrees >=3 (U affine, dim 2): 'transversal' vanishing in degree >2 plus a fixed finite-dimensional residue. Serre duality (m <-> -m-2k... , i.e. s <-> 2-s... ) swaps Rj_* and j_! and gives the m<<0 side with H_c^*(U;L_s).
+ (d) At s in Sp(D) the answer differs by a rank-1 cancellation (observed at the two non-integer spectral numbers of D4; s=1 treated separately by E_1: all in degree 2, equal to sum_p h^{p,p}(X) when h^{p,q}=0 for p != q).
+ Status: (a)-(d) verified on P^2 (smooth, nodal, cuspidal, conic+secant, conic+tangent, triangle, triple point) and P1xP1 (smooth, 2 conics, 3 comps, 4 lines), m in -15..15 resp. -9..8: 0 mismatches except the resonances in (d). Not proved: stalk statements are computed for quasi-homogeneous germs only; the global identification C_m ~ (F_s + skyscrapers) is a fit, not a derivation (a proof would go through the log/Q decomposition of cp2_proof_notes.md plus a local-to-global comparison); non-reduced D untreated; module with unequal residues untreated.

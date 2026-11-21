@@ -1,0 +1,130 @@
+%--------------------------------------------------------------
+\section{Riemann--Roch 型の公式}\label{sec:RR}
+%--------------------------------------------------------------
+\subsection{全 Euler 標数は位相不変量}
+\begin{prop}\tP\label{prop:euler}
+$X$ をコンパクト複素多様体、$\sigma$ を任意の正則 Poisson 構造、$E$ を階数 $\rk E$ の Poisson 加群とする。このとき
+\[\sum_k(-1)^k\dim\HH^k(E)=\sum_b(-1)^b\chi(X,\wedge^bT\otimes E)=(-1)^n\,\rk E\cdot\chi(X).\]
+\end{prop}
+\begin{proof}
+複体 $C(A;E)=(\wedge^bT\otimes E,d)$ は $b$ による濾過（stupid filtration）をもち、スペクトル系列 $E_1^{a,b}=H^a(X,\wedge^bT\otimes E)$ は有限次元で $\HH^{a+b}$ に収束する。Euler 標数は $E_1$ 項のものに等しく、$\sum_b(-1)^b\chi(\wedge^bT\otimes E)$ は Hirzebruch--Riemann--Roch（定理 \ref{thm:HRR}）で
+$\int\ch(E)\Td(T)\sum_b(-1)^b\ch(\wedge^bT)$。$\Td(T)=\prod\frac{x_i}{1-e^{-x_i}}$、$\sum_b(-1)^b\ch(\wedge^bT)=\prod(1-e^{x_i})$ なので積は $\prod(-x_ie^{x_i})=(-1)^ne^{c_1}c_n(T)$。$c_n$ が最高次なので $\ch(E)$ からは階数のみが効き、$(-1)^n\rk E\int c_n(T)=(-1)^n\rk E\,\chi(X)$。\qedhere
+\end{proof}
+\begin{rem}[\tP\ 意味するところ]
+$\sigma=0$ のときこの公式は $\mathbb{P}^1$、$E=\mathcal O(m)$ で $\chi(\mathcal O(m))-\chi(\mathcal O(m+2))=(m+1)-(m+3)=-2$ と確認できる（$m$ に依存しない）。つまり、一般化 Dolbeault 複体の「全」Euler 標数に対する Riemann--Roch 公式は、$c_1(E)$ を見ない位相的な公式であり、古典の $\chi(M,E)=\int\ch(E)\Td(M)$ の一般化にはなっていない。古典の $\chi(M,E)$ は $b=0$ の「列」$H^\bullet(X,E)$ の Euler 標数にあたる。一般の $\Jc$ ではこの列は $d$ で保たれず、何らかの細分が必要になる。
+\end{rem}
+
+\subsection{Poincaré 多項式の閉公式}
+\begin{thm}[Riemann--Roch 型の閉公式（曲面）]\tP\ （定理 \ref{thm:main2} と下の仮定に依存）\label{thm:B}
+定理 \ref{thm:main2} の設定で、次を追加で仮定する。(H1) $H^1(X;\C)=0$（$b_1(U)=c-\rho$ のため）、(H2) $U$ がアファイン（次数 $\ge3$ の消滅のため）、(H3) 全成分で留数が等しい $r_i=r\ne1$、(H4) $r\notin\Z$ のとき、$H^0(U;L_U)=H^1(U;L_U)=0$（G2：下の注意）。$b_1=c-\rho$（$c$ は成分数、$\rho$ は $[D_i]\in H^2(X;\C)$ の張る空間の次元）、$\chi_U=\chi(X)-\mu$、$b_2=\chi_U-1+b_1$ とおく。このとき
+\begin{align*}
+P_E(t)&=1+b_1t+(b_2+\mu)t^2 &&(r\in\Z_{\le0}),\\
+P_E(t)&=(b_2+\mu)t^2+b_1t^3+t^4 &&(r\in\Z_{\ge2}),\\
+P_E(t)&=\chi(X)\,t^2 &&(r\notin\Z).
+\end{align*}
+同値な書き方：$P_E(t)=\chi(X)t^2+[r\le0]\,\Delta(t)+[r\ge2]\,t^4\Delta(1/t)$、$\Delta(t)=(1+t)(1+(b_1-1)t)$。
+\end{thm}
+\begin{hyptab}
+(H1) $H^1(X;\C)=0$ & Gysin 完全列 $H^0(D)\to H^2(X)$ から $H^1(U)=\ker(\C^c\to H^2(X))$。 & $b_1(U)=c-\rho$。\\\midrule
+(H2) $U$ アファイン & Artin 消滅。 & $b_3=b_4=0$、したがって $b_2=\chi_U-1+b_1$。\\\midrule
+(H3) 留数が等しい & $\mathcal F$ が $Rj_*$ か $j_!$ のどちらか一方になる。 & 定理 \ref{thm:main2}(i),(ii)。\\\midrule
+(H4) $r\notin\Z$ で $H^0(U;L)=H^1(U;L)=0$ & $H^*(U;L)=[0,0,\chi_U]$ になるため。 & $r\notin\Z$ の行。$\mathbb{CP}^2$ の結節曲線では $\pi_1(U)$ がアーベル群（Fulton, Ann.\ Math.\ 111 (1980) 407--409；Deligne, Sém.\ Bourbaki 543）。\tC\\\midrule
+$r_i\ne1$ & 定理 \ref{thm:main2} の仮定。 & 補題 \ref{lem:Q}。
+\end{hyptab}
+\begin{proof}
+定理 \ref{thm:main2}(i),(ii) に $H^*(U)=[1,b_1,b_2,0,0]$（$r\in\Z_{\le0}$、自明な局所系）、$H_c^*(U)$（Poincaré 双対で $[0,0,b_2,b_1,1]$、$r\in\Z_{\ge2}$）、$H^*(U;L)=[0,0,\chi_U,0,0]$（$r\notin\Z$：(H2)、(H4)、$\chi(U;L)=\chi(U)$ から）を代入し、$\mu t^2$ を加える。同値な形は $\chi(X)=\chi_U+\mu=1-b_1+b_2+\mu$ による。
+\end{proof}
+\begin{rem}[性質\ \tP]
+(i) $P_E(-1)=\chi(X)$、すべての $r$ で（命題 \ref{prop:euler}、$n=2$ と整合）。(ii) 双対性 $P_{2-r}(t)=t^4P_r(1/t)$ は式から明らか（定理 \ref{thm:dual} の公式レベルの帰結）。(iii) $\mu$ と $b_2$ は $\chi(X)t^2$ に吸収され、跳びの項 $\Delta$ は $b_1$（$[D_i]$ の間の線形関係の数）のみに依存する。(iv) $E=L_0^m$ のとき、古典の Riemann--Roch が与える $m$ の擬多項式は定数 $\chi(X)$ で、$m$ への依存は留数 $r=-ma$ の整数性（周期 $N$）と符号のみに現れる。
+\end{rem}
+\begin{rem}[\tQ\ G2 について]
+(H4) を、検証した8例（$\mathbb{CP}^2$ の結節曲線 4 種、$\mathbb{CP}^1\times\mathbb{CP}^1$ の 4 種）で確かめた。$\mathbb{CP}^1\times\mathbb{CP}^1$ の滑らかな $(2,2)$ 曲線と 2 本の $(1,1)$ 曲線については、Timmerscheidt（unitary 局所系の Hodge 理論、書誌は\tQ：Math.\ Ann.\ 277 (1987) 247 と記憶していたが J.\ reine angew.\ Math.\ 379 (1987) の可能性もあり未確認）と Arapura（J.\ Algebraic Geom.\ 6 (1997) 563--597、トーション平行移動の定理）を引用した（適用範囲の確認は未了\tQ）。一般には $H^1(U;L_\chi)=0\Leftrightarrow\chi\notin V^1(U)$（第 1 特性多様体）で、非ノーダルな $D$（例：3 本共点線）では成り立たないことがある（Libgober, Arapura）。
+\end{rem}
+\tV\ 閉公式は、$\mathbb{CP}^2$（滑らか・結節・円錐＋割線・三角形、$m=-15..15$）と $\mathbb{CP}^1\times\mathbb{CP}^1$（4 例、$m=-9..8$）の計 196 個の値で厳密計算と一致（食い違い 0、\texttt{cp2/ncd\_global\_check.py}）。双対性 $r\leftrightarrow2-r$ の閉公式レベルの対称性は 73 個の有理数 $r$ の格子で確認（\texttt{cp2/serre\_rr\_check.py}）。
+
+\subsection{指数理論的な見通し}\label{sec:index}
+本節の内容は予想であり、指数定理は何も証明していない。
+\begin{obs}[\tK\ 指標根の描像（定性的）]
+滑らかな点で対数複体は単項式 $z^ne$ に $(n-r)$ 倍で作用する（補題 \ref{lem:stalk}）。指標根（indicial root）は $r\in\Z$ のときに限り存在し、$r\notin\Z$ ではウェイトごとの複体が非輪状で $P_r=\chi(X)t^2$。$r\in\Z$ で残るのは、$D$ の管状近傍の境界 $\partial U$ のコホモロジー（Gysin 完全列で $H^*(D)\otimes(1\oplus t)$）の部分商で、$\chi(\partial U)=0$ なので Euler 標数には見えない。これは Melrose の APS／b-計算の描像（Melrose, \emph{The Atiyah--Patodi--Singer Index Theorem}, A K Peters 1993）と定性的に整合する。
+\end{obs}
+\begin{conj}[指数型 Riemann--Roch（対数シンプレクティック曲面）]\tK\label{conj:I3}
+(a) $\sum(-1)^k\dim\HH^k(L)=\int_Xc_2(T_X(-\log D))+\mu=\chi(X)$ は、境界項なしの Atiyah--Singer 型積分で与えられる。(b) 跳びの項 $J(r)=P_r(t)-\chi(X)t^2$ は $r\in\Z\setminus\{1\}$ でのみ非零で、$r\le0$ で $\Delta(t)$、$r\ge2$ で $t^4\Delta(1/t)$。$\Delta(t)$ は指標根の核 $H^*(\partial U)$ のある部分商の Poincaré 多項式（長完全列 $H_c^*(U)\to H^*(U)\to H^*(\partial U)$ の重さ濾過で固定される）。(c) 一般次元・非正規交差の $D$ では、跳びの項は特異点のスペクトル数で支配される局所項（\S\ref{sec:local}）を含む。
+\end{conj}
+\begin{rem}[\tC\ 文献の状況と障害]
+\begin{itemize}
+\item \emph{$b$-指数との類似}：Braverman--Loizides--Song, \emph{Geometric quantization of $b$-symplectic manifolds}, arXiv:1910.10016 は、$b$-シンプレクティック多様体の量子化指数が $\int\mathrm{Td}({}^bTM)\mathrm{Ch}(L)$ で与えられ、境界項が極限で消えることを示す（題名・著者は確認した\tC）。本ノートの Euler 標数が $\chi(X)=\int c_2(T_X(-\log D))+\mu$ 型で $r$ に依らないことと類似する。
+\item \emph{Lie 亜群の指数}：Pflaum--Posthuma--Tang, \emph{The index of geometric operators on Lie groupoids}, arXiv:1308.0236（Indag.\ Math.\ 25 (2014) 1--18）；Qiao--So, arXiv:2304.13345（境界亜群、余次元 $\ge2$ で eta 項なし）；Ammann--Lauter--Nistor, arXiv:math/0304044；Mazzeo--Melrose, arXiv:math/9812120；Hausel--Hunsicker--Mazzeo, arXiv:math/0207169（Duke Math.\ J.\ 122 (2004)、頁は\tQ）。題名・著者は確認したが、本問題への適用可能性は未確認。
+\item \emph{Poisson コホモロジー}：Lanius, arXiv:1605.03854（対数シンプレクティック多様体の $C^\infty$ Poisson コホモロジー）。本ノートの正則 Poisson 超コホモロジーとは別の対象で、「$b$-部分 $+$ 境界項」の構造の類似があるのみ。
+\item \emph{見つからなかったもの}：複素 Lie 亜群 $L=T^{0,1}\bowtie A^{1,0}$ に対する指数定理、留数を重みとする $b$-Dolbeault 指数。実 Lie 亜群 $T_X(-\log D)$ は Gualtieri--Li, arXiv:1206.3674 により滑らかな $D$ で積分可能。\tC\ 正規交差の場合は未確認。
+\item \emph{単模性}：Pflaum--Posthuma--Tang のトレースには不変密度が必要で、Poisson 構造では modular 類の消滅にあたる。対数シンプレクティックでは対数体積形式から modular ベクトル場が 0 になる見込みだが未確認\tQ。
+\end{itemize}
+\end{rem}
+
+%--------------------------------------------------------------
+\section{トーリックな場合と高次元}\label{sec:toric}
+%--------------------------------------------------------------
+\subsection{トーリック対数シンプレクティック構造}
+$X$ を滑らかな射影的トーリック多様体（$N=\Z^n$、$n=2k$）、光線 $u_i$ ($i\in I$)、$D$ をトーリック境界（単純正規交差）とする。$E_j=z_j\partial_j$（対数枠）に関し、定数の非退化歪対称行列 $A$ により $\sigma=\tfrac12\sum A_{ij}E_i\wedge E_j$（トーラス不変、$D$ に沿って対数シンプレクティック）。$L=\mathcal O(\sum a_iD_i)$ に平坦対数接続 $d+\rho$（$\rho\in M_\C$）を与える。留数は $r_i=\langle\rho,u_i\rangle-a_i$、$c_1(L)=-\sum r_i[D_i]$。\tP\ すべての加群はこの形（$H^0(\Omega^1(\log D))=M_\C$、補題 \ref{lem:res}）。
+
+\begin{thm}[weight 公式]\tP\ \tV\label{thm:weight}
+$E_1^{a,b}=H^a(X,\wedge^bT\otimes L)=0\ (a>0)$ を仮定する（例：定理 \ref{thm:A1} の範囲）。$\chi\in M$ に対し $c_i(\chi)=\langle\chi,u_i\rangle+a_i$、$C(\chi)=\{i:c_i(\chi)=-1\}$、$W(\chi)=\mathrm{span}(u_i:i\in C(\chi))$、$s=\dim W$ とおく。このとき
+\[P_{\HH}(t)=\sum_{\chi\in\Lambda}t^{s(\chi)}(1+t)^{n-s(\chi)},\quad\Lambda=\{\chi\in M:c_i(\chi)\ge-1\ \forall i,\ A(\chi+\rho)\in W(\chi)\}.\]
+\end{thm}
+\begin{hyptab}
+トーリック・トーラス不変な $\sigma$、定数 $A$ & 大域切断の複体がトーラスの指標 $\chi\in M$ で次数付き（$T$-weight）に分解され、各 weight で有限次元の線形代数になる。 & 証明：weight $\chi$ の部分複体 $G^b_\chi$ の決定。\\\midrule
+$E_1^{a>0}=0$ & $\HH^*$ が大域切断の複体のコホモロジーに等しい。 & 定理 \ref{thm:A1}(b)。\\\midrule
+非退化な $A$ & $\sigma^\sh:B\cong T_D$ が成立し、$\wedge^b\sigma^\sh$ で対数 de Rham 微分 $(\chi+\rho)\wedge$ が $v_\chi\wedge$（$v_\chi=A(\chi+\rho)$）に写る。 & 補題 \ref{lem:iso}。
+\end{hyptab}
+\begin{proof}[証明の概略]
+$z^\chi w$（$w\in\wedge^bN_\C$）が $\wedge^bT\otimes L$ の正則切断であるための条件は、各 $D_i$ に沿って $c_i(\chi)\ge-1$、かつ $c_i(\chi)=-1$ なら $u_i\wedge w=0$。したがって weight $\chi$ の部分は $G^b_\chi=\{w\in\wedge^bN_\C:u_i\wedge w=0\ (i\in C(\chi))\}$（ある $c_i<-1$ なら空）で、$G^\bullet_\chi\cong\wedge^{\bullet-s}(N/W)\otimes\wedge^sW$ 型。微分は $v_\chi\wedge$。$v_\chi\bmod W=0$ のときは微分 0 で Poincaré 多項式 $t^s(1+t)^{n-s}$、そうでなければ非輪状。
+\end{proof}
+\tV\ 閉公式と、線形代数による直接計算（\texttt{cp2/toric\_hh.py}）が 60 個のランダムな場合（$\mathbb P^2$、$\mathbb P^1\times\mathbb P^1$、$\mathbb P^4$、$\mathbb P^2\times\mathbb P^2$、$(\mathbb P^1)^4$）で一致。
+
+\begin{cor}\tP
+(a) $E_1^{a>0}=0$ なら全 Euler 標数は $s(\chi)=n$ となる weight の個数（頂点の個数）$=\chi(X)$。（命題 \ref{prop:euler} と整合。）(b) 寄与の由来：$s=0$ は $A(\chi+\rho)=0$、すなわち $\chi=-\rho$ で、$\rho\in M$ かつ全 $r_i\le0$ のとき $(1+t)^n=H^*(U)$（$Rj_*$ の場合）。$s=n$ は常に条件を満たし頂点 weight、$t^n$ を各 1 個。$0<s<n$ は $x=\chi+\rho\in A^{-1}W$ かつ $\langle x,u_i\rangle=r_i-1\ (i\in C)$ という条件が必要で、積分格子上の「共鳴」でのみ解がある。(c) $s=n-1$ で全 $r_i=1\ (i\in C)$ のとき、条件は自動的に成り立ち、トーリック曲線 $C$ 上の格子点の個数 $\deg(L|_C)+1$ 個のクラス $t^{n-1}(1+t)$ が現れる（次元 2 での $r_i=1$ の共鳴に対応）。
+\end{cor}
+
+\subsection{一般の $\sigma$ と 4 次元}
+\begin{obs}[\tV]
+$A$ が一般的（成分が非常に大きい整数の組）のとき、$\Lambda=\{\text{頂点}\}\cup\{\text{共鳴}\}\cup\{-\rho\}$（$-\rho$ は $\rho\in M$ かつ全 $r_i\le1$ のとき含まれる）となり、$P_{\HH}=$（$U$-部分）$+\#\text{頂点}\cdot t^n+$（$r=1$ の共鳴クラス）。$U$-部分は $\rho\in M$ かつ全 $r_i\le0$ のとき $(1+t)^n$、そうでなければ 0。素数 $2^{61}-1$ を法とする厳密算術で 3626 個の場合（$\mathbb P^4$ ($m=1,2$)、$\mathbb P^2\times\mathbb P^2$、$(\mathbb P^1)^4$、$\mathbb P^1\times\mathbb P^3$、$\mathbb P^1\times\mathbb P^1\times\mathbb P^2$、$\rho\in\{-2,..,1\}^4$ と 3 つの非整数 $\rho$）で食い違い 0。例：$\mathbb P^4$、$m=1$：$[1,4,6,4,6]$；$\mathbb P^2\times\mathbb P^2$：$[1,4,6,4,10]$。
+\end{obs}
+\begin{obs}[新しい現象：$\sigma$ の算術への依存\ \tV]\label{obs:arith}
+次元 4 では $\HH^*$ は $(X,D,L,\text{留数})$ だけでは決まらない。$\mathbb P^2\times\mathbb P^2$ の積構造 $\sigma$（ブロック対角 $A$）では $[1,4,12,16,16]$（2 つの曲面の結果の積、Künneth）、一般の $A$ では $[1,4,6,4,10]$。差 $(0,0,6,12,6)=6t^2(1+t)^2$ は、余次元 2 の 6 個の層 $\{\text{一方の因子の二重点}\}\times(\mathbb C^*)^2$ の $t^2H^*(O_\tau)$。仕組み：$|C|=2$ の層で、$u_i,u_j$ が $\sigma$ に関してシンプレクティックなら $x_C(A,r)\in A^{-1}W$ が一意に決まり、これが $\rho$ の格子平行移動になる算術的条件のときだけ寄与する。\tK\ $\HH$ は対数シンプレクティック構造のパラメータ空間の可算個の真解析部分集合上で上に跳び（一般化 Dolbeault コホモロジーの上半連続性）、一般の値は最小である。
+\end{obs}
+\begin{conj}[一般の単純正規交差 $D$]\tK
+一般の（トーリックでない）単純正規交差の対数シンプレクティック $(X^{2k},D)$、一般の $\sigma$、$r_i\ne1$ の定数留数の $L$ に対し、$\HH^*(L)=H^*(X;\mathcal F)\oplus\bigoplus_{p\in D_{(n)}}\C[-n]$（$D_{(n)}$ は $n$ 本の成分が交わる点）。Euler 標数との整合は、低次の層 $D_k^\circ$ の $\chi$ が消える場合に限る（トーリックでは成立、一般には未証明）。上の \S\ref{sec:toric} の計算はトーリックのみ。
+\end{conj}
+
+%--------------------------------------------------------------
+\section{非ノーダルな特異点の局所理論}\label{sec:local}
+%--------------------------------------------------------------
+$D$ に尖点・tacnode・3重点などがあるとき、定理 \ref{thm:main2} は使えない。以下は計算による観察と予想である。局所モデル：$\sigma=h\,\partial_z\wedge\partial_w$、加群 $\mathcal O\,h^s$、$d_0f=(hf_w+sfh_w)\partial_z-(hf_z+sfh_z)\partial_w$、$d_1(p,q)=h(p_z+q_w)-(1-s)(h_zp+h_wq)$。大域では $s=r=-m/3$（$\mathbb{CP}^2$）、$-m/2$（$\mathbb{CP}^1\times\mathbb{CP}^1$）。
+
+\subsection{茎のコホモロジー}
+\tV\ 準斉次な孤立特異点の germ について、重み付き厳密線形代数（スクリプト \texttt{local\_stalk.py} など）で茎の次元 $(h^0,h^1,h^2)$ を計算した（形式的 germ のコホモロジーが収束 germ のものに等しいことを仮定）：
+\begin{center}\small
+\begin{tabular}{lccc}\toprule
+特異点 & 一般の $s$ & $s$ 整数 $\le0$ & $s$ がスペクトル数 mod $\Z$、$s<\mathrm{lct}$\\\midrule
+滑らか ($z$) & $(0,0,0)$ & $(1,1,0)$ & ---\\
+二重点 ($zw$) & $(0,0,1)$ & $(1,2,2)$ & ---\\
+尖点 ($z^2-w^3$) & $(0,0,2)$ & $(1,1,2)$ & $(0,1,3)$\\
+tacnode ($z^2-w^4$) & $(0,0,3)$ & $(1,2,4)$ & $(0,1,4)$\\
+$A_4$ ($z^2-w^5$) & $(0,0,4)$ & $(1,1,4)$ & ---\\
+$D_4$ ($zw(z-w)$) & $(0,0,4)$ & $(1,3,6)$ & $(0,1,5)$\\
+$D_5$ ($w(z^2-w^3)$) & $(0,0,5)$ & $(1,2,6)$ & $(0,1,6)$\\\bottomrule
+\end{tabular}
+\end{center}
+\begin{obs}[\tV\ 経験則]
+スペクトル数（lct は最小スペクトル数：滑らか・二重点 1、尖点 $5/6$、tacnode $3/4$、$D_4$ $2/3$、$D_5$ $5/8$）に関し、$s\ne1$ で
+\[\text{茎}_p=\C^{\mu_p}[-2]\ \oplus\ \begin{cases}\text{茎}(Rj_*L_s)_p&(s<\mathrm{lct}_p)\\0&(s>\mathrm{lct}_p)\end{cases}\]
+（$\mu_p$ は Milnor 数 $=$ Tjurina 数）。$Rj_*$ の茎は Milnor ファイバーのモノドロミーで、$s\equiv\alpha_j\bmod\Z$（$\alpha_j$ はスペクトル数）のとき 1 クラス、$s\in\Z$ のとき $H^0,H^1$ に寄与。全 7 種、$s\in\frac1{12}\Z$ または $\frac18\Z$、$|s|\le5$ で矛盾なし。Milnor モノドロミーによる説明は整合性の議論であり、証明ではない。$s=1$（$K_X$ のねじり）は茎が無限次元（$d_Q=0$）だが、大域的には $E_1$ 項の議論で扱える（命題 \ref{prop:K}）。
+\end{obs}
+\subsection{3重点の異常と大域予想}
+\tV\ $\mathbb{CP}^2$ で $xy(x-y)$（3重点）：$m=1,2,4,5,\ldots$ と $m=-1$ は $[0,1,4,0,0]$、$m=-5,-7,-8$ は $[0,0,4,1,0]$、$m=-2,-3,-4$ は $[0,0,3,0,0]$。上の経験則で、$D_4$ のスペクトル数 $\{2/3,1,1,4/3\}$、$\mathrm{lct}=2/3$、$s=-m/3$：$m\ge-1$ は $s<2/3$ で $H^*(U;L)=(0,1,0)$ を加え $[0,1,4,0,0]$、$m\le-5$ は $s>2/3$ で $H_c^*=(0,0,0,1,0)$ を加え $[0,0,4,1,0]$、異常な $m=-2,-4$ は $s=2/3,4/3$ で、$\C^4$ の 1 クラス（次数 2）と $H_c$ の 1 クラス（次数 3）が差し引かれる（スペクトル系列 $H^p(X,\mathcal H^q)\Rightarrow\HH$ の $d_3$）。\tK\ この説明は予想である。尖点（$5/6,7/6$）、tacnode（$3/4,5/4$）、$D_5$（$5/8,\ldots$）のスペクトル数は $\frac13\Z$ に入らず、$\mathbb{CP}^1\times\mathbb{CP}^1$（$s\in\frac12\Z$）では $A_k$ のスペクトル数に $1$ 以外の半整数がなく、異常は現れない。
+
+\tV\ 留数が等しくない場合：3重点で加群 $\prod h_i^{s_i}$（$h=zw(z-w)$）の茎は、533 個のランダムな $(s_1,s_2,s_3)\in(\frac16\Z\cap[-2,2])^3$（$s_i\ne1$）で $\C^4[-2]\oplus R$、$R=H^*(U_{\rm loc};L_s)$（$s_1+s_2+s_3<2$ のとき）、$0$（そうでないとき）。二重点では枝ごとの閾値であるのに対し、3重点の閾値は留数の\emph{和}である。\tK\ 一般原理：閾値は germ の対称トーラス作用に関する加群の重みと対数標準重みの比。
+
+\begin{conj}[精密化 Riemann--Roch（等留数・孤立特異点）]\tK
+$X$ コンパクト曲面、$\sigma\in H^0(-K_X)$ の零曲線 $D$ は簡約で孤立特異点のみ、$L$ は $c_1(L)=sK_X$ の Poisson 加群、$L_s$ は $U$ 上の階数 1 局所系（各枝まわりのモノドロミー $e^{2\pi is}$）、$\mathcal F_s$ は $U$ 上で $L_s$、$p\in D$ で $s<\mathrm{lct}_p$ なら $Rj_*L_s$ の茎、$s>\mathrm{lct}_p$ なら 0 とする構成可能複体。(a) $s\notin\mathrm{Sp}(D)$（$D$ の全特異点のスペクトル数と 1）のとき $\HH^*=H^*(X;\mathcal F_s)\oplus\bigoplus_p\C^{\mu_p}[-2]$。(b) Euler 標数は常に $\chi(X)$（$\chi(D)=\sum\mu_p$、$\delta$-不変量から\tP）。(c) $s\ll0$ では $\mathcal F_s=Rj_*L_s$ で、$\HH^*=H^*(U;L_s)\oplus\bigoplus\C^{\mu_p}[-2]$ は $s\bmod\Z$ のみに依存し次数 $\ge3$ で消える。(d) $s\in\mathrm{Sp}(D)$ では階数 1 のキャンセルが起こりうる。
+\tV\ $\mathbb{CP}^2$（滑らか・結節・尖点・円錐＋割線・円錐＋接線・三角形・3重点）と $\mathbb{CP}^1\times\mathbb{CP}^1$（4 例）で、$m=-15..15$（$-9..8$）に対し (d) 以外で矛盾なし。証明されていない：茎の結果は準斉次 germ のみ、大域同定 $\mathbb H(C_m)\simeq(\mathcal F_s+\text{skyscraper})$ は当てはめ。非簡約 $D$（二重線、二重円錐）では茎は無限次元で、大域次元は $m$ について線形に増える（傾きは $\deg\mathcal O(1)|_C$、$\mathbb{CP}^2$ の二重線で 1、$\mathbb{CP}^1\times\mathbb{CP}^1$ の二重円錐で 2）。
+\end{conj}

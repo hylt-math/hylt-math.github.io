@@ -1,0 +1,440 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\setmainfont[BoldFont={Noto Sans CJK JP Bold}]{Noto Serif CJK JP}
+\setsansfont[BoldFont={Noto Sans CJK JP Bold}]{Noto Sans CJK JP}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=24mm]{geometry}
+\usepackage{xcolor,booktabs,longtable,array,enumitem,fancyhdr,titlesec}
+\usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black]{hyperref}
+\usepackage{tcolorbox}
+\setlength{\parindent}{1em}
+\setlength{\parskip}{2pt}
+\linespread{1.18}
+\emergencystretch=3em
+\setlist{itemsep=1pt,topsep=3pt}
+
+%%% --- Japanese line breaking for XeTeX (no xeCJK available) ---
+\makeatletter
+\XeTeXinterchartokenstate=1
+\newXeTeXintercharclass\cjkc
+\newXeTeXintercharclass\cjkclose
+\newXeTeXintercharclass\cjkopen
+\def\setcjkrange#1#2{\@tempcnta=#1 \@whilenum\@tempcnta<#2 \do{\XeTeXcharclass\@tempcnta=\cjkc \advance\@tempcnta by 1 }}
+\setcjkrange{"3000}{"30FF}
+\setcjkrange{"4E00}{"9FFF}
+\setcjkrange{"FF00}{"FFEF}
+\setcjkrange{"2010}{"2027}
+\setcjkrange{"25A0}{"25FF}
+\setcjkrange{"2190}{"21FF}
+\@tempcnta=0
+\def\setclose#1{\XeTeXcharclass#1=\cjkclose}
+\def\setopen#1{\XeTeXcharclass#1=\cjkopen}
+\setclose{"3001}\setclose{"3002}\setclose{"FF0C}\setclose{"FF0E}\setclose{"FF09}\setclose{"300D}\setclose{"300F}\setclose{"3011}\setclose{"FF1A}\setclose{"FF1B}\setclose{"FF01}\setclose{"FF1F}\setclose{"30FC}
+\setopen{"FF08}\setopen{"300C}\setopen{"300E}\setopen{"3010}
+\def\cjkglue{\hskip0pt plus 0.25pt minus 0.1pt\relax}
+\XeTeXinterchartoks\cjkc\cjkc={\cjkglue}
+\XeTeXinterchartoks\cjkclose\cjkc={\cjkglue}
+\XeTeXinterchartoks\cjkclose\cjkopen={\cjkglue}
+\XeTeXinterchartoks\cjkc\cjkopen={\cjkglue}
+\XeTeXinterchartoks\cjkclose\cjkclose={}
+\XeTeXinterchartoks\cjkc\cjkclose={}
+\XeTeXinterchartoks 0 \cjkc={\cjkglue}
+\XeTeXinterchartoks \cjkc 0={\cjkglue}
+\XeTeXinterchartoks 0 \cjkopen={\cjkglue}
+\XeTeXinterchartoks \cjkclose 0={\cjkglue}
+\makeatother
+
+%%% --- theorem-like environments ---
+\theoremstyle{definition}
+\newtheorem{defn}{定義}[section]
+\newtheorem{thm}[defn]{定理}
+\newtheorem{prop}[defn]{命題}
+\newtheorem{lem}[defn]{補題}
+\newtheorem{cor}[defn]{系}
+\newtheorem{ex}[defn]{例}
+\newtheorem{rem}[defn]{注意}
+\newtheorem{obs}[defn]{観察}
+\newtheorem{conj}[defn]{予想・問題}
+\newcommand{\lit}[1]{\par\noindent{\small\textcolor{blue!55!black}{\textbf{[出典]}~#1}}\par}
+\newcommand{\own}{\textcolor{red!65!black}{\textbf{【筆者】}}}
+\newcommand{\litm}{\textcolor{blue!55!black}{\textbf{【文献】}}}
+\newcommand{\chk}{\textcolor{orange!80!black}{\textbf{【要確認】}}}
+\newenvironment{hyp}{\begin{tcolorbox}[colback=gray!6,colframe=gray!50,boxrule=0.4pt,left=3pt,right=3pt,top=2pt,bottom=2pt,title={\small 仮定と、その役割}]\small}{\end{tcolorbox}}
+
+%%% --- notation ---
+\newcommand{\R}{\mathbb R}\newcommand{\C}{\mathbb C}\newcommand{\Z}{\mathbb Z}
+\newcommand{\bT}{\mathbb T}
+\newcommand{\Lb}{\overline L}
+\newcommand{\Jc}{\mathcal J}
+\newcommand{\dbar}{\bar\partial}
+\newcommand{\ch}{\mathrm{ch}}\newcommand{\Td}{\mathrm{Td}}
+\newcommand{\rk}{\mathrm{rk}}
+\newcommand{\Lam}{\Lambda}
+
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small 一般化複素幾何の「三種の神器」}
+\fancyhead[R]{\small 調査ノート 2026-11-21}
+\fancyfoot[C]{\small\thepage}
+\titleformat{\section}{\large\bfseries\sffamily}{\thesection}{0.8em}{}
+\titleformat{\subsection}{\normalsize\bfseries\sffamily}{\thesubsection}{0.8em}{}
+
+\begin{document}
+
+\begin{center}
+{\LARGE\bfseries\sffamily 一般化複素幾何における\\[2pt]「三種の神器」への道}\\[6pt]
+{\large Riemann--Roch、Serre 消滅、Kodaira 埋め込み：\\先行研究の調査と、具体例から攻めるための出発点}\\[10pt]
+{\large 調査・執筆：Claude \quad／\quad 問題設定：依頼者}\\[2pt]
+2026年11月21日\\[2pt]
+{\small （個人用の調査ノート。査読を受けておらず、プレプリントではありません）}
+\end{center}
+
+\begin{abstract}
+\noindent
+複素幾何の「三種の神器」、すなわち Hirzebruch--Riemann--Roch の定理、Serre の消滅定理、Kodaira の埋め込み定理の一般化複素幾何版を考えるために、先行研究を調べてまとめた。
+(i) 一般化複素構造と一般化 Kähler 幾何の定義と基本定理（Gualtieri, Cavalcanti）、
+(ii) Lie 亜群版の Kähler 理論と Kodaira--Nakano 消滅（Hu, 2024）、
+(iii) 正則型の一般化複素多様体上の「強」一般化正則直線束に対する Kodaira 型・Serre 型消滅（Pal--Poddar, 2024）
+の三つを、定義・主張・仮定・仮定が証明のどこで効くか、という観点で整理する。
+さらに筆者自身の観察として、(a) 一般化複素多様体上では「一般化正則関数」がシンプレクティック方向に局所定数となるため、断面による埋め込みという形の Kodaira 定理は成り立たず、葉空間への写像として定式化し直す必要があること、
+(b) $\bar\partial$ 型の楕円型複体 $(\wedge L^*\otimes E,\partial_E)$ の全 Euler 標数は $E$ の階数と多様体の Euler 数だけで決まり、したがって Riemann--Roch の一般化には何らかの「細分」が必須であること（複素の場合の乗積例で確認）、を述べる。
+一般化 Kodaira 埋め込み定理および一般の一般化 Riemann--Roch 公式は、調査した範囲では見つからなかった。
+\end{abstract}
+
+\paragraph{本ノートの読み方。}
+各定義・定理には出典を付した。出典のある記述には \litm、筆者が新たに考えた・計算した記述には \own、原典で未確認、あるいは原典の記述に疑義がある箇所には \chk を付す。
+定理番号は原典のものを書いたが、要約を介して得たものは番号がずれている可能性がある（\S\ref{sec:cov} 参照）。
+
+\tableofcontents
+
+%--------------------------------------------------------------
+\section{記号表}
+%--------------------------------------------------------------
+一般的すぎる記号（$\R,\C,\Z$、外積、微分など）は省く。
+
+\begin{longtable}{>{\raggedright}p{3.1cm}p{11.8cm}}
+\toprule 記号 & 意味\\ \midrule\endhead
+$M$ & コンパクト（断らない限り）、向き付けられた $2n$ 次元実多様体\\
+$T,\,T^*$ & 接束、余接束。$T_\C=T\otimes\C$ など\\
+$\bT=T\oplus T^*$ & 一般化接束。内積 $\langle X+\xi,Y+\eta\rangle=\tfrac12(\xi(Y)+\eta(X))$\\
+$[\cdot,\cdot]$ & Courant 括弧（Dorfman 括弧）。$[X+\xi,Y+\eta]=[X,Y]+\mathcal L_X\eta-\iota_Y d\xi$ ($+\,\iota_Y\iota_X H$ は $H$-捩れ)\\
+$H$ & 閉3-形式（捩れ）。断りがなければ $H=0$\\
+$\Jc$ & 一般化概複素構造：$\Jc^2=-1$、$\langle\Jc\cdot,\Jc\cdot\rangle=\langle\cdot,\cdot\rangle$\\
+$L\subset\bT_\C$ & $\Jc$ の $+i$ 固有束。極大迷零。可積分なら Dirac 構造\\
+$\Lb$ & $L$ の複素共役（$-i$ 固有束）。$L^*\cong\Lb$（内積による）\\
+$\pi_T$ & 射影 $\bT\to T$（Lie 亜群 $L$ のアンカー）\\
+$k=\mathrm{type}(\Jc)$ & $\mathrm{codim}_\C\,\pi_T(L)$。複素構造で $k=n$、シンプレクティック構造で $k=0$。正則点では局所定数\\
+$d_L$ & Lie 亜群 $L$ の Chevalley--Eilenberg 微分 $d_L:\Gamma(\wedge^pL^*)\to\Gamma(\wedge^{p+1}L^*)$\\
+$K\subset\wedge^\bullet T^*_\C$ & 標準束：$L$ の純スピノール線束。$K=U^n$\\
+$U^k$ & $\wedge^{n-k}\Lb\cdot K$（$k=-n,\dots,n$）。$\wedge^\bullet T^*_\C=\bigoplus_kU^k$\\
+$\partial,\ \dbar$ & $d=\partial+\dbar$、$\partial:U^k\to U^{k+1}$、$\dbar:U^k\to U^{k-1}$（Gualtieri 流）\\
+$d_H^*$ & $d_H$ の形式的共役（一般化 Hodge star と Born--Infeld 内積から）\\
+$\Delta_d,\ \Delta_{\dbar},\ \Delta_{\partial}$ & Laplacian。一般化 Kähler では $\Delta_d=2\Delta_\partial=2\Delta_{\dbar}$ 等 (\S\ref{sec:gk})\\
+$E$, $\nabla$ & ベクトル束と接続。$(E,\dbar_E)$ は一般化正則束 (\S\ref{sec:gh})\\
+$\ch(E)$, $\Td$ & Chern 指標、Todd 類\\
+$F$, $F^\perp$ & 正則型の場合の葉（シンプレクティック葉）と、横断方向（複素）\\
+$X=M/F$ & 葉空間（Pal--Poddar では Kähler 軌道体と仮定）、$\dim_\C X=k$\\
+$\chi(M,E)$ & Euler 標数 $\sum(-1)^q\dim H^q(M,E)$\\
+\bottomrule
+\end{longtable}
+
+%--------------------------------------------------------------
+\section{古典の三種の神器：主張・仮定・証明のどこで効くか}\label{sec:classical}
+%--------------------------------------------------------------
+一般化の目標を明確にするため、古典版の標準的な主張と証明の骨格を整理する。
+これらは教科書の標準的内容であり、新しい結果ではない。
+
+\begin{thm}[Hirzebruch--Riemann--Roch]\label{thm:HRR}
+$M$ をコンパクト複素多様体、$E\to M$ を正則ベクトル束とする。このとき
+\[\chi(M,E)=\sum_q(-1)^q\dim H^q(M,\mathcal O(E))=\int_M\ch(E)\,\Td(T^{1,0}M).\]
+\lit{Hirzebruch, {\it Neue topologische Methoden in der algebraischen Geometrie}, Springer 1956（射影代数的の場合）；Atiyah--Singer, Ann.\ Math.\ 87 (1968) 484, 546（一般のコンパクト複素多様体、Dolbeault 複体の指数として）。教科書：Huybrechts, {\it Complex Geometry}, Springer 2005, \S5.1。}
+\end{thm}
+\begin{hyp}
+\begin{itemize}
+\item \emph{コンパクト}：コホモロジーが有限次元になる（Dolbeault 複体が楕円型 $\Rightarrow$ Fredholm）ため。非コンパクトなら $\chi$ が定義できない。
+\item \emph{正則構造}：$\dbar_E^2=0$ が複体を作る条件。
+\item 証明のどこで効くか：(1) Dolbeault 複体 $(\Omega^{0,\bullet}(E),\dbar_E)$ が楕円型 $\Rightarrow$ 指数が定義される。(2) Atiyah--Singer 指数定理で指数が「主シンボルの位相的データ」の積分で書ける。(3) シンボルから $\Td$ が現れ、$E$ は階数ではなく $\ch(E)$ として入る。
+\end{itemize}
+\end{hyp}
+
+\begin{thm}[Serre の消滅定理]\label{thm:Serre}
+$X$ を体上の射影的スキーム、$\mathcal O(1)$ を非常に豊富な直線束、$\mathcal F$ を連接層とする。このとき $m_0$ が存在して、$m\ge m_0$ ならば
+(a) $H^q(X,\mathcal F(m))=0\ (q>0)$、(b) $\mathcal F(m)$ は大域切断で生成される。
+\lit{Serre, {\it Faisceaux alg\'ebriques coh\'erents}, Ann.\ Math.\ 61 (1955), Th\'eor\`eme 1 of \S66。 現代的証明：Hartshorne, {\it Algebraic Geometry}, III.5.2。解析版：Grauert--Riemenschneider など。}
+\end{thm}
+\begin{hyp}
+\begin{itemize}
+\item \emph{連接性}：有限生成性により全射 $\bigoplus\mathcal O(-N_i)\twoheadrightarrow\mathcal F$ が取れる。これがないと $\mathbb P^N$ 上の計算に帰着できない。
+\item \emph{豊富性}：ねじり $\mathcal F(m)$ を大きくすると高次コホモロジーが効かなくなる原因。
+\item \emph{射影的}：$\mathbb P^N$ に閉埋め込みでき、$H^q(\mathbb P^N,\mathcal O(m))$ を Cech で直接計算できる。
+\item 証明の骨格：核を $\mathcal K$ として長完全列を取り、$q$ についての下降帰納法（$q>\dim X$ で消える）で $H^q(\mathcal F(m))$ を $H^{q+1}(\mathcal K(m))$ と $\mathbb P^N$ の既知の計算に帰着する。
+\end{itemize}
+\end{hyp}
+
+\begin{thm}[Kodaira--Akizuki--Nakano 消滅]\label{thm:KAN}
+$M$ をコンパクト Kähler 多様体、$E$ を正の正則 Hermite 直線束とする。このとき $p+q>n$ ならば $H^q(M,\Omega^p\otimes E)=0$。特に $p=n$ なら $H^q(M,K_M\otimes E)=0\ (q>0)$（Kodaira）。
+\lit{Kodaira, Proc.\ Nat.\ Acad.\ Sci.\ USA 39 (1953) 1268；Akizuki--Nakano, Proc.\ Japan Acad.\ 30 (1954) 266。教科書：Griffiths--Harris, {\it Principles of Algebraic Geometry}, Wiley 1978, Ch.\ 1 \S2；Huybrechts, Cor.\ 5.2.2--5.2.3。}
+\end{thm}
+\begin{hyp}
+\begin{itemize}
+\item \emph{コンパクト}：(i) Hodge 理論（調和表現）、(ii) 部分積分で境界項が出ない。
+\item \emph{Kähler}：Kähler の恒等式 $[\Lam,\dbar]=-i\partial^*$ を与える。これがないと次の Bochner--Kodaira--Nakano 恒等式が成立しない。
+\item \emph{正（$i\Theta_E>0$）}：下の恒等式の曲率項 $[i\Theta_E,\Lam]$ が $p+q>n$ で正定値になる。
+\end{itemize}
+\emph{証明の骨格}：Hodge 理論で $H^q(M,\Omega^p\otimes E)\cong\ker\Delta_{\dbar_E}$。Kähler 恒等式から $\Delta_{\dbar_E}=\Delta_{\partial_E}+[i\Theta_E,\Lam]$。$s\in\ker\Delta_{\dbar_E}$ に対し $0=\langle\Delta_{\dbar_E}s,s\rangle=\|\partial_E s\|^2+\|\partial_E^*s\|^2+\langle[i\Theta_E,\Lam]s,s\rangle$。最後の項が $p+q>n$ で $>0$ なので $s=0$。
+\end{hyp}
+
+\begin{thm}[Kodaira の埋め込み定理]\label{thm:Kod}
+$M$ をコンパクト複素多様体、$L$ を正の正則直線束とする。このとき $M$ は射影的で、十分大きな $m$ に対して $|L^m|$ が定める写像 $M\to\mathbb P(H^0(M,L^m)^*)$ は埋め込みである。
+\lit{Kodaira, Ann.\ Math.\ 60 (1954) 28。教科書：Griffiths--Harris Ch.\ 1 \S4；Huybrechts Prop.\ 5.3.1。}
+\end{thm}
+\begin{hyp}
+\begin{itemize}
+\item \emph{$L$ が正}：曲率形式 $i\Theta_L$ が Kähler 形式になり、$M$ が Kähler であることが分かる（Kodaira 消滅を使える）。
+\item \emph{コンパクト}：$H^0(M,L^m)$ が有限次元で $\mathbb P^N$ への写像が定義できる。
+\item \emph{正則断面が十分多い}：標準的証明では点 $x$ での爆発 $\tilde M$ と例外因子 $E_x$ をとり、$H^1(\tilde M,\,\pi^*L^m\otimes\mathcal O(-2E_x))$（$K$ との組合せで Kodaira 消滅の形にする）の消滅から、$H^0(L^m)\to L^m\otimes\mathcal O/\mathfrak m_x^2$ の全射性（点の分離と接ベクトルの分離）を導く。\emph{Riemann--Roch の次元評価を使わずに済む}ことが証明の要点。
+\end{itemize}
+\end{hyp}
+
+\begin{rem}[\own\ 一般化への示唆]
+古典では (1) Hodge 理論（楕円型 $\Rightarrow$ 調和表現）、(2) Kähler 恒等式 $\Rightarrow$ BKN 恒等式、(3) 曲率の正値性、(4) 断面が多くあること（大域切断）、の4点が役割を分担している。一般化複素幾何では (1),(2) は係数が自明（または $H$-捩れのみ）の場合には整備されている (\S\ref{sec:gk})。直線束係数の (2) と (4) が問題で、後者は \S\ref{sec:ghfun} で述べる障害がある。
+\end{rem}
+
+%--------------------------------------------------------------
+\section{一般化複素幾何の定義}\label{sec:gc}
+%--------------------------------------------------------------
+\begin{defn}[一般化複素構造]\label{def:GC}
+$\Jc:\bT\to\bT$ が $\Jc^2=-1$ かつ内積を保つとき一般化概複素構造という。$+i$ 固有束 $L\subset\bT_\C$ が Courant 括弧で閉じる（$[\Gamma(L),\Gamma(L)]\subset\Gamma(L)$）とき、$\Jc$ は可積分、すなわち一般化複素構造であるという。
+\lit{Hitchin, {\it Generalized Calabi--Yau manifolds}, Q.\ J.\ Math.\ 54 (2003) 281, arXiv:math/0209099 (導入)；Gualtieri, {\it Generalized complex geometry}, Ann.\ Math.\ 174 (2011) 75, arXiv:math/0703298, Def.\ 3.1, 3.5 周辺；Gualtieri 博士論文 arXiv:math/0401221。}
+\end{defn}
+\begin{ex}\label{ex:cs}
+(1) 複素構造 $I$：$L=T^{0,1}\oplus T^{*1,0}$。(2) シンプレクティック構造 $\omega$：$L=\{X-i\omega(X)\}$。
+\lit{Gualtieri 2011, Ex.\ 4.1, 4.2 周辺（番号\chk）。}
+\end{ex}
+\begin{defn}[型 (type) と正則点]
+$k(x)=\mathrm{codim}_\C\,\pi_T(L_x)$ を点 $x$ での型という。型が局所定数な点を正則点という。
+\lit{Gualtieri 2011, \S3（型の定義、Prop.\ 3.9 周辺\chk）；Abouzaid--Boyarchenko, {\it Local structure of generalized complex manifolds}, J.\ Symplectic Geom.\ 4 (2006) 43, arXiv:math/0511049。}
+\end{defn}
+\begin{thm}[一般化 Darboux、正則点]\label{thm:Darboux}
+正則点の近傍では、$\Jc$ は $\C^k$ 上の標準複素構造と $\R^{2n-2k}$ 上の標準シンプレクティック構造の直積と、（閉2-形式 $B$ による）$B$-変換を除いて同型。
+\lit{Gualtieri 2011, Thm.\ 4.35\chk（\S4 は本調査では未精読）；Abouzaid--Boyarchenko 上記。}
+\end{thm}
+\begin{rem}[\own]
+型は一般に跳ぶ（例：$\R^4$ 上の型 0 と型 2 が共存する例、Gualtieri 2011 の例；\chk 番号）。型が跳ぶ多様体では葉構造が特異になり、以下の Pal--Poddar の理論は直接は適用できない。この意味で「正則型」仮定は本質的な制限である。
+\end{rem}
+
+\begin{defn}[Lie 亜群 $L$ と複体 $(\wedge L^*,d_L)$]\label{def:dL}
+可積分な $\Jc$ に対し、$L$ はアンカー $\pi_T|_L$ と Courant 括弧の制限により複素 Lie 亜群になる。$L^*\cong\Lb$ なので $\wedge^\bullet\Lb$ 上に Lie 亜群微分 $d_L$ が定まり、$\wedge^\bullet L^*$ は微分次数付き代数をなす。スピノール同型 $\wedge^{n-k}\Lb\cdot K\cong U^k$ のもとで $d_L$ は $\dbar:U^k\to U^{k-1}$ に対応する。
+\lit{Gualtieri 2011, \S3.6, Prop.\ 3.13 周辺（\chk）。}
+\end{defn}
+\begin{prop}[楕円性]
+$(\wedge L^*,d_L)$ は楕円型複体である。ゆえにコンパクト多様体上で、一般化 Dolbeault コホモロジー $H^k_{\dbar}(M)$ は有限次元。
+\lit{Gualtieri 2011, Prop.\ 3.16 周辺\chk。}
+\end{prop}
+\begin{hyp}
+\emph{なぜ楕円型か}：$L\oplus\Lb=\bT_\C$ なので $L$ のアンカーが完全には単射でなくても、主シンボル $\sigma(d_L)(\xi)=\xi\cdot(\cdot)$ を $L$ のなす部分に制限した複体が、$\wedge T^*_\C$ 全体の複体 $\sigma(d)$ の一部として完全になる。コンパクト性は Fredholm 性に使う。\chk（原典の議論は未確認。ここは \own\ による解釈）
+\end{hyp}
+
+\begin{defn}[標準束・一般化 Calabi--Yau]
+$K$ が $d$-閉な（大域）切断を持ち、$K\cong$ 自明な $L$-束であるとき $(M,\Jc)$ を一般化 Calabi--Yau という。複素構造の場合は正則体積形式の存在と同値。
+\lit{Hitchin 2003（上掲）；Gualtieri 2011, \S4.3 (Def.\ 4.17 周辺\chk)。}
+\end{defn}
+
+\subsection{一般化正則束}\label{sec:gh}
+\begin{defn}[一般化正則束（Gualtieri--Hitchin 型）]
+複素ベクトル束 $E\to M$ と平坦な $L$-接続 $\dbar_E:\Gamma(E)\to\Gamma(L^*\otimes E)$（$\dbar_E^2=0$）の組を一般化正則束という。
+\lit{Gualtieri 2011, \S3.7, Def.\ 3.18\chk；Hitchin, {\it Generalized holomorphic bundles and the B-field action}, J.\ Geom.\ Phys.\ 61 (2011) 352, arXiv:1010.2451。}
+\end{defn}
+複素構造の場合、$L^*=T^{*0,1}\oplus T^{1,0}$ であり、一般化正則束は正則束に「Higgs 場」$\varphi\in H^0(\mathrm{End}E\otimes T^{1,0})$ を加えた余 Higgs 束 (co-Higgs bundle) である（Hitchin 上掲）。
+
+\begin{defn}[強一般化正則束（SGH）]\label{def:SGH}
+一般化正則束のうち、さらに $\pi_T$ の核側（シンプレクティック葉方向）に沿って平坦で、横断方向に正則であるもの。これは一般化正則束の真部分クラスである。
+\lit{Lang--Jia--Liu（定義の導入、題名・書誌\chk）；Pal--Poddar, arXiv:2404.18113, \S\S 5--6 周辺（\chk）。}
+\end{defn}
+\begin{ex}[\own]
+$M=Y\times X$（$Y$ シンプレクティック、$X$ 複素）の場合、SGH 直線束は $\mathrm{pr}_Y^*(\text{平坦直線束})\otimes\mathrm{pr}_X^*(\text{正則直線束})$ の形である。
+\end{ex}
+
+%--------------------------------------------------------------
+\section{一般化 Kähler 幾何と Hodge 理論（係数が自明の場合）}\label{sec:gk}
+%--------------------------------------------------------------
+\begin{defn}[一般化 Kähler 構造]
+互いに可換な2つの一般化複素構造 $\Jc_1,\Jc_2$ で、$G=-\Jc_1\Jc_2$ が正定値であるもの。
+\lit{Gualtieri, {\it Generalized K\"ahler geometry}, Comm.\ Math.\ Phys.\ 331 (2014) 297, arXiv:1007.3485；Gualtieri 2011 \S6\chk。}
+\end{defn}
+\begin{thm}[一般化 Kähler Hodge 理論]\label{thm:GKHodge}
+$(M,\Jc_1,\Jc_2)$ をコンパクト一般化 Kähler 多様体（$H$ は閉3-形式、$d_H=d+H\wedge$）とする。このとき
+(1) 一般化 Hodge star と Born--Infeld 内積により $d_H^*$ が定まり、$\Delta_{d_H}=2\Delta_{\partial}=2\Delta_{\dbar}$ 等のラプラシアン等式が成り立つ。
+(2) $H^\bullet_{d_H}(M)$ は $\Jc_1$ に関する $U^k$ 型の部分空間の直和に分解する（Hodge 分解）。
+(3) $dd^{\Jc}$-補題が成り立つ。
+\lit{Gualtieri, {\it Generalized geometry and the Hodge decomposition}, arXiv:math/0409093（定理 4.1 周辺；\chk）；Cavalcanti, {\it New aspects of the $dd^c$-lemma}, Oxford 博士論文 arXiv:math/0501406、および {\it The decomposition of forms and cohomology of generalized complex manifolds}, J.\ Geom.\ Phys.\ 57 (2006) 121。}
+\end{thm}
+\begin{hyp}
+\begin{itemize}
+\item \emph{一般化 Kähler（2つの可換な $\Jc_i$）}：古典の Kähler 恒等式に相当するものを作るのに必要。$\Jc_1$ だけでは Hodge star が定まらない。
+\item \emph{コンパクト}：楕円型作用素の核が有限次元、かつ $d_H^*$ が $L^2$-共役として振る舞う。
+\item \emph{$H$ 閉}：$d_H^2=0$。$H$-捩れ版の「Kähler 恒等式」で $H$ の項が現れるが、$[H,\cdot]$ の部分は $\Jc_{1,2}$ の可積分性（$H$-twisted Courant 括弧での閉性）で相殺される。\chk
+\end{itemize}
+\end{hyp}
+\begin{rem}[\litm\ 現状]
+上記は \emph{形式係数}（自明束または $H$-捩れ）に対する理論であり、直線束係数・曲率つき Hodge 理論（$\mathrm{Kodaira}$--$\mathrm{Nakano}$ 型の BKN 恒等式）はこの枠組みでは見つからなかった。これが本研究のギャップである。
+\end{rem}
+
+%--------------------------------------------------------------
+\section{Hu：Kähler Lie 亜群と Kodaira--Nakano 消滅}\label{sec:hu}
+%--------------------------------------------------------------
+\begin{defn}[Kähler Lie 亜群]
+複素 Lie 亜群 $A$（複素構造 $J:A\to A$ が Lie 亜群の意味で可積分）に、$J$-両立な Hermite 計量と閉な $A$-2-形式 $\omega$ があるものを Kähler Lie 亜群という。
+\lit{S.\ Hu, arXiv:2403.10876（題名・正確な定義番号\chk）。}
+\end{defn}
+\begin{thm}[Kähler 恒等式と BKN 恒等式；\litm]
+Kähler Lie 亜群 $A$ 上の $(p,q)$-形式 ($\wedge^{p,q}A^*\otimes E$、$E$ は Hermite 正則 $A$-束) に対し、Kähler 恒等式 $[\Lam,\dbar]=-i\partial^*$ と BKN 恒等式 $\Delta_{\dbar_E}=\Delta_{\partial_E}+[i\Theta_E,\Lam]$ が成り立つ。
+\lit{Hu, arXiv:2403.10876, Thm.\ 1 および Lemma 4, 5 周辺（\chk：Lemma 1 に誤植があるとの要約、印刷された消滅定理の証明で $[\Lam,\cdot]$ と $[\sqrt{-1}R,\Lam]$ の符号に食い違いの疑い）。}
+\end{thm}
+\begin{thm}[Kodaira--Nakano 消滅（核版）]\label{thm:Hu}
+$A$ を（基底がコンパクトな）Kähler Lie 亜群、$E$ を正の Hermite 正則 $A$-直線束とする。このとき $p+q>n$ ならば $\ker\Delta_{\dbar_E}$ on $\wedge^{p,q}A^*\otimes E$ は零。
+\lit{Hu, arXiv:2403.10876, Thm.\ 2（Def.\ 12, 13 が「正」の定義）\chk。}
+\end{thm}
+\begin{hyp}
+\begin{itemize}
+\item \emph{Kähler 構造}：BKN 恒等式の導出（古典の \S\ref{sec:classical} 参照）に必要。
+\item \emph{正の曲率}：$[i\Theta_E,\Lam]$ の正値性。証明は古典と同じ線形代数で、$T$ を $A$ に置き換えるだけで通る。\own\ （これは標準的議論の転用で、原典の証明を確認したわけではない。）
+\item \emph{結論が「核」にとどまる理由}：$A$ が一般の Lie 亜群のとき $\Delta_{\dbar_E}$ は楕円型とは限らず（アンカーが落ちる）、$\ker\Delta\cong H^q$ とは言えない（Hodge 理論が使えない）。したがって「コホモロジーの消滅」は導けない。これが Hu の結果の最大の制約である。
+\end{itemize}
+\end{hyp}
+\begin{rem}[Riemann--Roch]
+Hu は同じ著者の arXiv:2403.13424 で Lie 亜群版の Riemann--Roch を扱っているが、そこでの「指数」は Lie 亜群（Lie 亜群 $A$ の積分する亜群）に依存する Connes型の高次指数であり、一般化複素構造の楕円型複体の通常の指数とは別物である。\chk\ 詳細な仮定は未精読。
+\lit{Hu, arXiv:2403.13424；Connes, {\it Sur la th\'eorie non commutative de l'int\'egration}, LNM 725 (1979)；Pflaum--Posthuma--Tang, {\it The index of geometric operators on Lie groupoids}, Indag.\ Math.\ 25 (2014) 1。}
+\end{rem}
+
+%--------------------------------------------------------------
+\section{Pal--Poddar：正則型の一般化複素多様体上の消滅定理}\label{sec:pp}
+%--------------------------------------------------------------
+\paragraph{設定。}
+$(M,\Jc)$ はコンパクトな\emph{正則型}（型 $k$ で一定）一般化複素多様体。$\pi_T(L)$ から決まるシンプレクティック葉構造 $F$ があり、葉空間 $X=M/F$ に（横断複素構造から）複素構造が入る。次を仮定する：\textbf{(H1)} $X$ は（Kähler）軌道体（orbifold）であり $M\to X$ は軌道体沈めこみ。
+
+\begin{thm}[Hodge 理論・Serre 双対（SGH 束係数）]
+上の設定で、SGH 束 $E$ に対し $\dbar_E$ 複体は楕円型で、Hodge 分解、Serre 双対が成り立つ。
+\lit{Pal--Poddar, arXiv:2404.18113, Thm.\ 8.9, Cor.\ 8.10（\chk；2404.18113 の arXiv 上の著者表示と末尾の氏名に食い違いあり）。}
+\end{thm}
+\begin{defn}[正の SGH 直線束]\label{def:pos}
+SGH 直線束 $L$ が、葉方向に平坦で、横断方向の曲率形式 $\tfrac{i}{2\pi}\Theta_L$ が $X$ 上正である（局所的に $X$ 上の正の軌道体直線束の引き戻しに一致する）とき正であるという。
+\lit{Pal--Poddar, Def.\ 11.10, 11.11 周辺\chk。}
+\end{defn}
+\begin{thm}[一般化 Kodaira--Nakano / Serre 型消滅]\label{thm:PP}
+(H1) のもとで、$L$ を正の SGH 直線束とする。
+(a) $p+q>\dim_\C X$ ならば（適切な意味の）$H^{p,q}(M,L)=0$。
+(b) 任意の SGH 束 $E$ に対し、$m\gg0$ のとき $H^q(M,E\otimes L^m)=0$（$q>0$）。
+\lit{Pal--Poddar, Thm.\ 11.12 およびその準備（Prop.\ 11.2--11.7, 11.8, Lemma 11.9）。\chk\ 主張の細部は未確認。}
+\end{thm}
+\begin{hyp}
+\begin{itemize}
+\item \emph{正則型}：葉構造が滑らかな葉束をなす。特異な場合は葉空間が良い空間でなく、局所的な議論が全体に貼り合わない。
+\item \emph{葉空間が Kähler 軌道体}：横断 Kähler 計量と曲率の定義、また横断方向の Hodge 理論（楕円性）を保証する。
+\item \emph{SGH}：一般化正則束全体では $\dbar_E$ の葉方向成分が Higgs 場的な項を含み、BKN 恒等式の曲率項が壊れる。SGH は葉方向に平坦であることでこれを避ける。
+\item \emph{正値性}：古典と同様、曲率項の正値性は横断方向の $(p,q)$ 成分にのみ効く。そのため消滅は横断複素次数 $q$ に対してのみ言える（\S\ref{sec:own} 参照）。
+\end{itemize}
+\emph{証明の骨格}：葉方向の Hodge 理論（葉のシンプレクティック性で $d$-Laplacian）と横断方向の Kodaira--Nakano を併用。
+\end{hyp}
+\begin{rem}[\chk\ 原典記述に関する注意]
+(i) 原典の表示された不等式で $1/2\pi$ の規格化が混在して見える、(ii) Example 10.18 と Prop.\ 9.3 で $c_1$ に関する符号が食い違って見える、(iii) 「正のコホモロジー類が正の曲率の計量を与える」ステップは断言のみで証明が見当たらない。いずれも原典の誤植・省略の可能性が高いが未検証。
+\end{rem}
+
+%--------------------------------------------------------------
+\section{ギャップ分析と筆者自身の観察}\label{sec:own}
+%--------------------------------------------------------------
+\subsection{三種の神器の現状}
+\begin{center}
+\small
+\begin{tabular}{p{2.6cm}p{5.4cm}p{6.3cm}}
+\toprule 神器 & 調査した範囲の既知結果 & 未解決部分\\ \midrule
+Riemann--Roch & Lie 亜群版 (Hu 2403.13424; Connes 指数) & 一般化複素構造の楕円型複体の指数を公式で書く問題。\S\ref{sec:euler}\\
+Serre 消滅 & Pal--Poddar Thm.\ 11.12（正則型・SGH・軌道体） & 型が跳ぶ場合、一般の GH 束、軌道体仮定の除去\\
+Kodaira 埋め込み & 見つからず（\chk） & 定式化自体。\S\ref{sec:ghfun}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{一般化正則関数と埋め込み}\label{sec:ghfun}
+\begin{obs}[\own\ ；理由は下記]
+正則型で型 $k<n$ のとき、SGH 直線束の一般化正則断面は葉方向に平坦（局所定数）であるから、断面で $M$ から射影空間への写像を作っても葉方向の情報は復元できない。したがって「$M\hookrightarrow\mathbb P^N$」という形の Kodaira 埋め込みは $k<n$ では成立せず、成立するなら葉空間 $X$ の埋め込み（すなわち写像 $M\to X\hookrightarrow\mathbb P^N$）の形になる。
+\end{obs}
+\emph{理由}：SGH の定義 (\ref{def:SGH}) により、葉方向に平坦であるから、断面の葉方向微分は接続を通じて 0。局所自明化では断面は葉上で定数。ゆえに断面から作る写像は葉を潰す。$\square$（局所的な議論。大域的に葉が稠密でなくコンパクトな場合には $X$ への因子化となる。）
+
+\subsection{Riemann--Roch：全 Euler 標数は位相不変量}\label{sec:euler}
+\begin{obs}[\own\ ；複素の場合に確認、一般の場合は未証明]
+一般化正則束 $(E,\dbar_E)$ に対し、全複体 $(\wedge L^*\otimes E,\dbar_E)$ の指数（全 Euler 標数）は $\rk E$ と $M$ の位相のみで決まる。
+\end{obs}
+\emph{複素構造の場合の計算}：$L^*=T^{*0,1}\oplus T^{1,0}$ より $\wedge L^*=\bigoplus_{a,b}\wedge^aT^{*0,1}\otimes\wedge^bT^{1,0}$。Higgs 場が $0$ なら複体は $b$ で次数付きで、コホモロジーは $\bigoplus_bH^\bullet(M,\wedge^bT\otimes E)$。Hirzebruch--Riemann--Roch (定理 \ref{thm:HRR}) より
+\[\chi_{\mathrm{tot}}=\sum_{b}(-1)^b\chi(M,\wedge^bT\otimes E)=\int_M\ch(E)\,\Td(T)\sum_b(-1)^b\ch(\wedge^bT).\]
+$\Td(T)=\prod\frac{x_i}{1-e^{-x_i}}$、$\sum(-1)^b\ch(\wedge^bT)=\prod(1-e^{x_i})$ なので積は $\prod(-x_ie^{x_i})=(-1)^ne^{c_1}c_n(T)$。$c_n$ は最高次なので $\ch(E)$ からは階数のみが寄与し
+\[\chi_{\mathrm{tot}}=(-1)^n\,\rk E\cdot\chi(M).\]
+確認：$M=\mathbb P^1$, $E=\mathcal O(m)$ のとき $\chi(\mathcal O(m))-\chi(\mathcal O(m+2))=(m+1)-(m+3)=-2=(-1)^1\cdot1\cdot2$。$m$ に依存しない。$\square$
+
+Higgs 場が $0$ でなくても複体は $b$ について濾過されており、随伴次数付き複体は上と同じなので指数は同じ。したがって複素の場合は証明できている。一般の $\Jc$ に対しては、(Atiyah--Singer により) 指数は主シンボルの類で決まり、その類の $\ch(E)$ との積が最高次のみ寄与するかどうかが問題であるが、de Rham 複体の場合（$\chi(M)\rk E$）との類似から同様と\emph{推測}している。\chk
+
+\begin{conj}[\own\ 問題]
+一般化版の Riemann--Roch を得るには、全複体ではなく、次数 $k$ 部分 $U^k$ に由来する「列」の Euler 標数（古典では $b=0$ の列 $H^\bullet(M,E)$）を扱う必要がある。一般の $\Jc$ ではこの列は $\dbar_E$ で保たれないので、濾過の第一項 ($E_1$ 項) の Euler 標数など、何らかの細分を定義しなければならない。正則型・SGH の場合には $H^\bullet_{dR}(F\text{-葉方向})\otimes H^\bullet(X,\cdot)$ の形になり、次の例で見るように意味のある量が定義できる。
+\end{conj}
+
+\subsection{具体例：$M=Y\times X$（型 $k=\dim_\C X$）}
+\begin{ex}[\own\ 計算]\label{ex:prod}
+$Y=T^2$ または $S^2$（シンプレクティック）、$X=\mathbb P^1$（複素）、$E=\mathrm{pr}_Y^*F\otimes\mathrm{pr}_X^*\mathcal O(m)$（$F$ は $Y$ 上の平坦直線束）。Künneth 型の分解により
+\[H^\bullet(M,E)\cong H^\bullet_{dR}(Y,F)\otimes\Big(H^\bullet(X,\mathcal O(m))\oplus H^\bullet(X,T_X\otimes\mathcal O(m))[-1]\Big).\]
+\begin{itemize}
+\item $F$ が非自明な平坦ユニタリ束なら $H_{dR}^\bullet(Y,F)=0$ で全体が 0（$Y=T^2$）。$F$ が自明なら $H_{dR}^\bullet(T^2)$ が $1,2,1$ 次元。
+\item $m\ge0$ のとき $H^q(\mathbb P^1,\mathcal O(m))=0\ (q>0)$ だが、$H^\bullet_{dR}(Y)\ne0$ 自体は $m$ によらない。
+\end{itemize}
+\end{ex}
+\begin{obs}[\own]
+上の例から、一般化 Serre 消滅は「全次数 $q>0$」の消滅ではなく、\emph{横断（複素）次数に対する消滅}と述べなければならない。Pal--Poddar の定理 \ref{thm:PP}(b) もそのように読むべきである。\chk\ 原典での $q$ の定義の確認が必要。
+\end{obs}
+また $Y=S^2$ なら $\chi_{\mathrm{tot}}=\chi(S^2)\cdot(-1)^1\chi(\mathbb P^1)=-4$（$m$ 非依存）。
+
+%--------------------------------------------------------------
+\section{次に進むための具体的計画（案）}
+%--------------------------------------------------------------
+\begin{enumerate}
+\item 型 1、葉空間が $\mathbb P^1$ または楕円曲線の例で、Pal--Poddar の Example 13.10 の Bott 公式計算を再現し、仮定 (H1) の除去が可能か（葉が非コンパクトな場合など）を検討する。
+\item 全複体 ($U^\bullet$) 上の BKN 型恒等式の直線束係数版を、一般化 Kähler の枠組みで書き下す。$H$-捩れと曲率項の相互作用が障害になりうる（\own）。
+\item Riemann--Roch の「細分」の候補（濾過のスペクトル系列 $E_1$ 項、あるいは $\Jc$ の型による次数）を決め、例で計算する。
+\item Kodaira 埋め込みの定式化：$M\to X\hookrightarrow\mathbb P^N$ か、漸近正則断面 (Donaldson, Boutet de Monvel--Guillemin) による近似的埋め込みか。
+\end{enumerate}
+
+%--------------------------------------------------------------
+\section{精読範囲と注意}\label{sec:cov}
+%--------------------------------------------------------------
+\begin{itemize}
+\item Gualtieri arXiv:math/0703298 は先頭約 100,000 字（\S3 の途中まで）を精読。\S4（Darboux 等）は未精読。
+\item Hu arXiv:2403.10876 は主要定理と BKN の議論を読んだが、Chern 接続、積分・コンパクト性の細部、参考文献は未精読。arXiv:2403.13424 は概要のみ。
+\item Pal--Poddar arXiv:2404.18113 は \S\S 8--11, 13 の主な部分を読んだ。
+\item 定理番号は要約を介して得たものがあり、ずれている可能性がある。引用する際は原典で確認すること。
+\item 古典の三種の神器 (\S\ref{sec:classical}) は標準的内容で、教科書を参照した。
+\end{itemize}
+
+\begin{thebibliography}{99}\small
+\bibitem{Gua11} M.\ Gualtieri, Generalized complex geometry, Ann.\ Math.\ 174 (2011) 75--123, arXiv:math/0703298.
+\bibitem{GuaTh} M.\ Gualtieri, Generalized complex geometry, Oxford DPhil thesis, arXiv:math/0401221.
+\bibitem{GuaHodge} M.\ Gualtieri, Generalized geometry and the Hodge decomposition, arXiv:math/0409093.
+\bibitem{GuaK} M.\ Gualtieri, Generalized K\"ahler geometry, Comm.\ Math.\ Phys.\ 331 (2014) 297--331, arXiv:1007.3485.
+\bibitem{Cav} G.\ Cavalcanti, New aspects of the $dd^c$-lemma, arXiv:math/0501406; The decomposition of forms and cohomology of generalized complex manifolds, J.\ Geom.\ Phys.\ 57 (2006) 121--132.
+\bibitem{Hit03} N.\ Hitchin, Generalized Calabi--Yau manifolds, Q.\ J.\ Math.\ 54 (2003) 281--308, arXiv:math/0209099.
+\bibitem{Hit11} N.\ Hitchin, Generalized holomorphic bundles and the B-field action, J.\ Geom.\ Phys.\ 61 (2011) 352--362, arXiv:1010.2451.
+\bibitem{AB} M.\ Abouzaid, M.\ Boyarchenko, Local structure of generalized complex manifolds, J.\ Symplectic Geom.\ 4 (2006) 43--62, arXiv:math/0511049.
+\bibitem{Hu1} S.\ Hu, Kodaira--Nakano vanishing for Kähler Lie algebroids（題名は\chk）, arXiv:2403.10876.
+\bibitem{Hu2} S.\ Hu, Riemann--Roch for Lie algebroids（題名は\chk）, arXiv:2403.13424.
+\bibitem{PP} A.\ Pal, M.\ Poddar, et al., arXiv:2404.18113（題名・著者は\chk）。
+\bibitem{LJL} Lang--Jia--Liu, strong generalized holomorphic bundles（書誌は\chk）。
+\bibitem{Connes} A.\ Connes, Sur la th\'eorie non commutative de l'int\'egration, LNM 725 (1979) 19--143.
+\bibitem{PPT} M.\ Pflaum, H.\ Posthuma, X.\ Tang, The index of geometric operators on Lie groupoids, Indag.\ Math.\ 25 (2014) 1--18.
+\bibitem{Hirz} F.\ Hirzebruch, Neue topologische Methoden in der algebraischen Geometrie, Springer 1956.
+\bibitem{AS} M.\ Atiyah, I.\ Singer, The index of elliptic operators III, Ann.\ Math.\ 87 (1968) 546--604.
+\bibitem{Serre} J.-P.\ Serre, Faisceaux alg\'ebriques coh\'erents, Ann.\ Math.\ 61 (1955) 197--278.
+\bibitem{Kod53} K.\ Kodaira, On a differential-geometric method in the theory of analytic stacks, Proc.\ Nat.\ Acad.\ Sci.\ USA 39 (1953) 1268--1273.
+\bibitem{Kod54} K.\ Kodaira, On K\"ahler varieties of restricted type, Ann.\ Math.\ 60 (1954) 28--48.
+\bibitem{AN} Y.\ Akizuki, S.\ Nakano, Note on Kodaira--Spencer's proof of Lefschetz's theorems, Proc.\ Japan Acad.\ 30 (1954) 266--272.
+\bibitem{GH} P.\ Griffiths, J.\ Harris, Principles of Algebraic Geometry, Wiley 1978.
+\bibitem{Huy} D.\ Huybrechts, Complex Geometry: An Introduction, Springer 2005.
+\bibitem{Hart} R.\ Hartshorne, Algebraic Geometry, Springer GTM 52, 1977.
+\end{thebibliography}
+
+\end{document}

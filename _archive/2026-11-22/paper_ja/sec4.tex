@@ -1,0 +1,85 @@
+%--------------------------------------------------------------
+\section{主定理（曲面）：対数シンプレクティック曲面の一般化 Dolbeault コホモロジー}\label{sec:main2}
+%--------------------------------------------------------------
+\subsection{主張}
+$X$ をコンパクト複素曲面、$\sigma\in H^0(-K_X)$ は簡約な零因子 $D=\bigcup D_i$（既約成分 $D_i$、$D$ の特異点は通常二重点のみ、その個数 $\mu$）をもち、$E$ は Poisson 加群をもつ直線束とする。留数 $r_i$（各分枝に沿って定数）は定理 \ref{thm:main1}(c) による。（二重点の枝は別の枝と見なす。）
+$I_*=\{i:r_i\in\Z_{\le0}\}$、$I_!=\{i:r_i\notin\Z_{\le0}\}$、$X'=X\setminus\bigcup_{i\in I_!}D_i$、$j_1:U\hookrightarrow X'$、$j_2:X'\hookrightarrow X$ とし、
+\[\mathcal F:=j_{2!}\,Rj_{1*}L_U\]
+（$I_*$ の成分では $Rj_*$、$I_!$ の成分では零拡張）とおく。
+
+\begin{thm}[曲面の主定理]\tP\label{thm:main2}
+上の設定で、すべての $r_i\neq1$ と仮定する。このとき
+\[\HH^k(E)\;\cong\;H^k(X;\mathcal F)\ \oplus\ \C^{\mu}\ (k=2\text{ のみ}).\]
+特に
+\begin{enumerate}
+\item[(i)] すべての $r_i\notin\Z_{>0}$ なら $\HH^*(E)=H^*(U;L_U)\oplus\C^\mu[-2]$、
+\item[(ii)] すべての $r_i\notin\Z_{\le0}$ なら $\HH^*(E)=H^*_c(U;L_U)\oplus\C^\mu[-2]$、
+\item[(iii)] 全 Euler 標数 $\sum(-1)^k\dim\HH^k(E)=\chi(U)+\mu=\chi(X)$（$E$ によらない）。
+\end{enumerate}
+\end{thm}
+\begin{hyptab}
+曲面、$\sigma\in H^0(-K_X)$、$D$ 簡約・通常二重点のみ & 局所標準形 $h=zu$ または $z_1z_2u$ を使い、商複体 $Q$ を明示的に計算するため。 & 補題 \ref{lem:Q}、命題 \ref{prop:moser}、補題 \ref{lem:conn}。\\\midrule
+$r_i\ne1$（全分枝）& $r_i=1$ だと $Q$ の微分 $-u(1-r)p$ が零になり、$Q$ のコホモロジー層が無限次元になって簡約が破れる。 & 補題 \ref{lem:Q}。（$r_i=1$ は $E=K_X$ のときの特別扱い、命題 \ref{prop:K}。）\\\midrule
+留数が正整数でない／非正整数でない & 対数複体と $Rj_*L_U$、$j_!L_U$ の比較（Deligne）が擬同型になる条件。 & 補題 \ref{lem:stalk}。\\\midrule
+$X$ コンパクト & $R\Gamma(X;j_!L_U)=R\Gamma_c(U;L_U)$ と Euler 標数の計算。 & (ii),(iii)。\\\midrule
+$-K_X=\mathcal O(D)$（反標準曲線） & $\chi(D)=\mu$ を導く（$\omega_D=\mathcal O_D$、$p_a(D)=1$）。 & (iii)。
+\end{hyptab}
+
+\subsection{証明}
+\begin{lem}[対数複体の茎と Deligne の比較]\tP\ /\ \tC\label{lem:stalk}
+局所枠（定理 \ref{thm:main1}(d)）で、$D_I$（$|I|=s$）の点での $\mathrm{DR}_{\log}$ の茎は、可換作用素 $z_i\partial_i+r_i\ (i\in I)$ の Koszul 複体と、残りの変数の通常の de Rham 複体のテンソル積である。単項式 $z^a$ 上では $z_i\partial_i+r_i=a_i+r_i$（スカラー）。したがって茎のコホモロジーは、すべての $i\in I$ で $-r_i\in\mathbb N$（すなわち $r_i\in\Z_{\le0}$）のときに限り $\wedge^*\C^s$（次元 $2^s$、Euler 標数 0）で、そうでなければ 0。一方 $Rj_*L_U$ の同じ点での茎は、すべての $e^{2\pi ir_i}=1$（$r_i\in\Z$）のときに限り $\wedge^*\C^s$。ゆえに、
+\begin{itemize}
+\item 自然な写像 $\mathrm{DR}_{\log}\to Rj_*L_U$ は、正整数の $r_i$ が一つもないとき擬同型（Deligne, LNM 163, Ch.\ II \S3、番号は\tQ。ここでは直接計算で確認）。
+\item 零拡張 $j_!L_U\to\mathrm{DR}_{\log}$（平坦切断の零拡張は正則）は、$r_i\in\Z_{\le0}$ となる $i$ が一つもないとき擬同型。
+\item 混合の場合、$X'$ の上では $\mathrm{DR}_{\log}\simeq Rj_{1*}L_U$、$\bigcup_{I_!}D_i$ の上では茎が 0 なので、$\mathrm{DR}_{\log}\simeq\mathcal F$。
+\end{itemize}
+係数 $1/(a_i+r_i)$ による割り算は、有限個の $a$ を除き $|a_i+r_i|\ge c>0$ なので収束を壊さない。
+\end{lem}
+\begin{lem}[商複体 $Q$]\tP\ \tV\label{lem:Q}
+$Q:=C(A;E)/C(T_D;E)$ は $D$ 上に台をもち、次数 1, 2 のみ。$Q^1=(T/T_D)\otimes E$、$Q^2=(\wedge^2T/\wedge^2T_D)\otimes E$。
+\begin{itemize}
+\item 滑らかな点（$h=zu$）：$Q^1=\partial_z\otimes\mathcal O_D$、$Q^2=\partial_z\wedge\partial_w\otimes\mathcal O_D$、$d_Q(p)=-u(1-r)\,p|_D$。よって $r\ne1$ のとき非輪状。
+\item 二重点（$h=z_1z_2u$）：$Q^1=\mathcal O_{D_1}\partial_1\oplus\mathcal O_{D_2}\partial_2$、$Q^2=\mathcal O_D$、$d_Q(p,q)=-u[(1-r_1)z_2p+(1-r_2)z_1q]\bmod z_1z_2$。$r_1,r_2\ne1$ なら単射で像は極大イデアル $\mathfrak m_D$ なので $H^1(Q)_p=0$、$H^2(Q)_p=\mathcal O_D/\mathfrak m_D=\C$。
+\end{itemize}
+ゆえに $r_i\ne1$ のとき、導来圏で $Q\simeq\bigoplus_{\text{二重点 }p}\C_p[-2]$。
+導出：補題 \ref{lem:flat} の公式を $z=0$ に制限する。$a|_D=\theta_2h$、$b|_D=-\theta_1u$、$\theta_1|_D=r$（定理 \ref{thm:main1}(d)）を代入。（\tV\ ランダムな多項式 $u,g,p,q$ と留数で、滑らかな点・二重点とも各20回、$d_1d_0=0$ と $d_Q$ の公式を厳密算術で確認。スクリプト \texttt{cp2/ncd\_cochain\_check.py}。）
+\end{lem}
+\begin{prop}[二重点での対数 Moser の標準形]\tP\label{prop:moser}
+二重点 $p$ の近傍で $\omega=\sigma^{-1}=u^{-1}\dlog z_1\wedge\dlog z_2$、$c:=u(0)$ とする。$D$ の各枝を保ち $p$ を固定する双正則写像 $\phi$ で $\phi^*\omega=c^{-1}\dlog z_1\wedge\dlog z_2$ となるものが存在する。$c$ は局所不変量で、一般には 1 にできない。
+\end{prop}
+\begin{proof}
+$\omega_0=\dlog z_1\wedge\dlog z_2$、$k=1/u-1/c$（$k(0)=0$）、$\omega_t=(c^{-1}+tk)\omega_0$ とおく。$\omega_t$ は閉で、各 $t\in[0,1]$ で $p$ の近くで非退化。$k=\sum k_{ab}z_1^az_2^b$ に対し
+\[\alpha=\sum_{a\ge1,b\ge0}\tfrac{k_{ab}}{a}z_1^az_2^b\,\dlog z_2-\sum_{b\ge1}\tfrac{k_{0b}}{b}z_2^b\,\dlog z_1\]
+は収束する対数 1-形式で $d\alpha=k\omega_0$（$d(z^{ab}\dlog z_2)=az^{ab}\omega_0$、$d(z_2^b\dlog z_1)=-bz_2^b\omega_0$）。$X\mapsto\iota_X\omega_t$ は $T_D\to\Omega^1(\log D)$ の同型なので、$\iota_{X_t}\omega_t=-\alpha$ を満たす $X_t\in T_D$ が一意に定まり、各枝に接し $p$ で 0 になる。その流れ $\phi_t$ は $D$ を保ち、$\tfrac{d}{dt}\phi_t^*\omega_t=\phi_t^*(d\iota_{X_t}\omega_t+k\omega_0)=\phi_t^*(-d\alpha+k\omega_0)=0$。ゆえに $\phi_1^*\omega_1=\omega_{c^{-1}}$ 型。\qedhere
+\end{proof}
+\begin{lem}[連結射の消滅]\tP\ \tV\label{lem:conn}
+完全三角 $C(T_D;E)\to C(A;E)\to Q\to C(T_D;E)[1]$ の連結射の $p$ 成分 $e_p\in H^3_p(X;\mathrm{DR}_{\log})$ は、$(r_1,r_2)\ne(1,1)$ のとき 0 である。
+\end{lem}
+\begin{proof}[概略]
+命題 \ref{prop:moser} と補題 \ref{lem:res} により $\sigma=c\,z_1z_2\partial_1\wedge\partial_2$、$\nabla^{\log}e=(r_1\dlog z_1+r_2\dlog z_2)e$ としてよい。すべての複体はトーラスウェイト $\gamma\in\Z^2$ で次数付けられ、微分はウェイトを保つ（$\lambda_i=\gamma_i+r_i$）。局所コホモロジーは Laurent 尾 $H^2_p(\mathcal O)=\mathrm{span}\{z^{-a}:a\ge1\}$ で計算できる。(a) $H^3_p(\mathrm{DR}_{\log})$ は、$\lambda_1=\lambda_2=0$（$\gamma=-r$）のウェイトにのみ現れ、$r_1,r_2$ が正整数のときに限り非零。(b) $H^2_p(Q)=\C$ は単一ウェイト $\gamma=(-1,-1)$ にあり（$\mathcal O_D$ の局所コホモロジーに余分な類 $H^1_p(\mathcal O_D)\ni[c_1\ne c_2]$ が必要）、$(-1,-1)=-r$ は $r_1=r_2=1$ のときに限る。連結射はウェイトを保つので、$(r_1,r_2)\ne(1,1)$ のとき $e_p=0$。ウェイトごとの Koszul 複体の計算と合わせ、収束の問題はない（すべての写像が単項式上で対角）。
+\tV\ スクリプト \texttt{cp2/ncd\_local\_weights.py}：ウェイト $|\gamma_i|\le8$、$r_i\in\{-3..3,\pm\frac12,\frac13,-\frac23,\frac52\}$ の 78 組（すべて $r_i\ne1$）で、茎のコホモロジー $[0,0,1]$、局所コホモロジーの錐 $=H^2_p$（1 クラス）、$H(\mathrm{LOG})\to H(\mathrm{FULL})$ の単射性（連結射が 0）を厳密算術で確認。違反 0。$r=(1,1)$ では連結射は非零。
+\end{proof}
+\begin{proof}[定理 \ref{thm:main2} の証明]
+定理 \ref{thm:main1}、補題 \ref{lem:stalk} により $C(T_D;E)\simeq\mathrm{DR}_{\log}\simeq\mathcal F$。補題 \ref{lem:Q}、\ref{lem:conn} により $C(A;E)\simeq\mathrm{DR}_{\log}\oplus\bigoplus_p\C_p[-2]$（$D^b(\C_X)$ 内）。$R\Gamma(X;\cdot)$ を取る。
+(i),(ii)：$\mathcal F=Rj_*L_U$ または $j_!L_U$、$X$ コンパクトより $R\Gamma(X;j_!L_U)=R\Gamma_c(U;L_U)$。
+(iii)：$\chi(X;\mathcal F)=\sum_S\chi_c(S)\chi(\mathcal F_x)$ で、$D$ 上の茎の Euler 標数は 0（$\wedge^*\C^s$ または 0）なので $=\chi_c(U)=\chi(U)=\chi(X)-\chi(D)$。$D$ は反標準なので $\omega_D=\mathcal O_D$、$\chi(\mathcal O_D)=0$ から $\sum_j(2-2\tilde g_j)=2\mu$（$\tilde D_j$ は正規化）、よって $\chi_{\rm top}(D)=\mu$、$\chi(U)+\mu=\chi(X)$。（単純正規交差の場合の別証：$\chi(U)=\int c_2(T_X(-\log D))$。）
+\end{proof}
+\begin{prop}[$r_i=1$：$E=K_X$]\tP\label{prop:K}
+$E=K_X$ なら $\wedge^bT\otimes K_X=\Omega^{2-b}$ で、$E_1^{a,b}=H^{2-b,a}(X)$（全次数 $2+a-p$、$p=2-b$）。$h^{p,q}(X)=0\ (p\ne q)$ なら $E_1$ は全次数 2 のみに集中し、微分は全次数を 1 上げるので退化し、$\HH^k=0\ (k\ne2)$、$\dim\HH^2=\sum_ph^{p,p}=\chi(X)$（$\mathbb{CP}^2$ で 3、$\mathbb{CP}^1\times\mathbb{CP}^1$ で 4）。
+\end{prop}
+
+\subsection{$\mathbb{CP}^1\times\mathbb{CP}^1$ での確認}
+$\sigma=\Pi_F$、$F\in H^0(\mathcal O(2,2))$（$-K=\mathcal O(2,2)$）。\tP\ 滑らかな $D$ のとき、$\mathcal O(a,b)$ が Poisson 加群をもつのは $a=b=m$ のときに限り、留数は $-m/2$、構造は一意（\S\ref{sec:cp2} と同じ議論）。\tV\ $m=-9,\dots,8$ の厳密計算（スクリプト \texttt{cp2/p1p1.py}）：
+\begin{center}\small
+\begin{tabular}{lll}\toprule
+$D$ & $m$ 偶数 $\ge0$ / 偶数 $\le-4$ & $m$ 奇数、$m=-2$\\\midrule
+滑らかな $(2,2)$ 曲線 & $[1,0,3,0,0]$ / $[0,0,3,0,1]$ & $[0,0,4,0,0]$\\
+横断する2つの $(1,1)$ 曲線（$\mu=2$）& $[1,1,4,0,0]$ / $[0,0,4,1,1]$ & $[0,0,4,0,0]$\\
+4本の線 $x_0x_1y_0y_1$（$\mu=4$）& $[1,2,5,0,0]$ / $[0,0,5,2,1]$ & $[0,0,4,0,0]$\\
+$(1,1)+(1,0)+(0,1)$（$\mu=3$）& $[1,1,4,0,0]$ / $[0,0,4,1,1]$ & $[0,0,4,0,0]$\\\bottomrule
+\end{tabular}
+\end{center}
+周期 2、Serre 双対性 $m\leftrightarrow-m-4$、$\chi=4$ は常に成立。可約な $D$ では Poisson 加群構造は一意でなく（$H^0(\Omega^1(\log D))\ne0$）、上の表は成分ごとに留数が等しい対称な構造について計算している（補題 \ref{lem:res}）。
+
+\subsection{定理 \ref{thm:main2} の検証}
+\tV\ 定理 \ref{thm:main2} とその閉公式（\S\ref{sec:RR} の定理 \ref{thm:B}）を、次の8つの例の合計 196 個の $m$ について、上の厳密計算の結果と比較した（スクリプト \texttt{cp2/ncd\_global\_check.py}）：$\mathbb{CP}^2$ 上の滑らかな3次曲線、結節3次曲線（$\mu=1$）、円錐＋割線（$\mu=2$）、三角形（$\mu=3$）（$m=-15..15$）、および上の $\mathbb{CP}^1\times\mathbb{CP}^1$ の4例（$m=-9..8$）。食い違い 0。$\mathbb{CP}^2$ の尖点3次、円錐＋接線（tacnode）、3線共点、非簡約 $D$ はこの定理の対象外で、\S\ref{sec:local} で扱う。

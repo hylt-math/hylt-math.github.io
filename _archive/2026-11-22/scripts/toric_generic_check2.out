@@ -1,0 +1,19 @@
+P4 (1,) done; running mismatches 0 of 518
+P4 (2,) done; running mismatches 0 of 1036
+MISMATCH P2xP2 (1, 2) (-1, -2, -2, 0) [0, 0, 0, 4, 13] [0, 0, 0, 0, 9]
+MISMATCH P2xP2 (1, 2) (-1, -2, -1, -1) [0, 0, 0, 4, 13] [0, 0, 0, 0, 9]
+MISMATCH P2xP2 (1, 2) (-1, -2, 0, -2) [0, 0, 0, 4, 13] [0, 0, 0, 0, 9]
+MISMATCH P2xP2 (1, 2) (-1, 0, -2, -2) [0, 0, 0, 4, 13] [0, 0, 0, 0, 9]
+P2xP2 (1, 2) done; running mismatches 4 of 1554
+P1^4 (1, 1, 1, 1) done; running mismatches 4 of 2072
+P1^4 (1, 2, 1, 3) done; running mismatches 4 of 2590
+MISMATCH P1xP3 (1, 1) (0, 0, -2, -2) [0, 0, 0, 4, 12] [0, 0, 0, 0, 8]
+P1xP3 (1, 1) done; running mismatches 5 of 3108
+MISMATCH P1xP1xP2 (1, 1, 1) (-1, -1, -2, 1) [0, 1, 3, 6, 16] [0, 1, 3, 3, 13]
+MISMATCH P1xP1xP2 (1, 1, 1) (-1, -1, -1, 0) [1, 4, 6, 7, 16] [1, 4, 6, 4, 13]
+MISMATCH P1xP1xP2 (1, 1, 1) (-1, -1, 0, -1) [1, 4, 6, 7, 16] [1, 4, 6, 4, 13]
+MISMATCH P1xP1xP2 (1, 1, 1) (-1, -1, 1, -2) [0, 1, 3, 6, 16] [0, 1, 3, 3, 13]
+MISMATCH P1xP1xP2 (1, 1, 1) (0, 0, -2, -1) [0, 0, 0, 3, 15] [0, 0, 0, 0, 12]
+MISMATCH P1xP1xP2 (1, 1, 1) (0, 0, -1, -2) [0, 0, 0, 3, 15] [0, 0, 0, 0, 12]
+P1xP1xP2 (1, 1, 1) done; running mismatches 11 of 3626
+TOTAL mismatches 11 of 3626
