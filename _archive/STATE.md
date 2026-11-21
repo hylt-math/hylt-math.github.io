@@ -12,18 +12,19 @@
 
 ## 公開済み
 - 2026-11-22 generalized-geometry-poisson v1（ja/en）、v2（ja/en、書誌・定理番号の訂正、commit e299fc2）。status: partial。v2 のソースは _archive/2026-11-22/paper_v2_ja, paper_v2_en。
+- Part II: generalized-geometry-poisson-part2 v1, v2（局所公式の訂正）。Part III: generalized-geometry-poisson-part3 v1（Kodaira 型）。いずれも ja/en、status partial。
 - 注意: v2 公開後、公開サイトでの反映確認は未了（ブラウザ系ツールが使えず、WebFetch は古いキャッシュを返した）。次ラウンドで確認する。
 
 - 2026-11-22 generalized-geometry-poisson-part2 v1（ja/en、新記事、status: partial）。ソースは _archive/2026-11-22/paper2_ja, paper2_en。Part I への影響確認の結果（撤回なし）は notes/v3_corrections.md。
 
-## 作業キュー（優先順）
-A. v1 の【要確認】のうち書誌・定理番号の確認（Gualtieri 2011 §4、Mokri、LGSX 補題番号、Hu 2403.10876 後半、Gualtieri–Li／Pym／Goto 等）。変更があれば v2。
-B. Pal–Poddar arXiv:2404.18113 §11 の定義を再読し、横断次数の消滅の定式化との整合を確認（v2 に反映）。
-C. 曲面の定理の一般化: 一部の分枝で r_i=1、留数が不等な場合、尖点・接触点、非被約 D（新記事 or v2）。
-D. Riemann–Roch の精密化の定式化と、複素 Lie 亜群 L の指数理論の見通し（新記事）。
-E. Kodaira 埋め込みの一般化の定式化（葉空間経由／漸近正則断面）。まず型1の例 Y×X で（新記事）。
-F. 次元4以上（非トーリック）の確認。
+## 作業キュー（優先順・更新）
+G. 公開サイトの反映確認（ブラウザ系ツールが使えるとき、または WebFetch で新しい URL を取得）。
+H. 局所ストークの規則の証明（Wang 完全列との一致、Milnor 繊維、Brieskorn 格子）。
+I. 予想 C（一般次元の SNC、GEN 仮定の定式化）と予想 NR（非被約）の証明または反例。
+J. Poisson–Kodaira 予想: P^2 の m>=3、P^1×P^1 の Segre、Jacobiator 障害の解析。
+K. Riemann–Roch の指数定理的な定式化（対数接 Lie 亜群上の指数、留数が重みになる b-計算）。
+L. Pal–Poddar の枠組み（正則型）との統合: 型 1 の例 Y×X で Part I–III の公式と Thm 11.12 を直接比較。
+M. 全体を一つの総合論文（Part I–III の統合・整理）にまとめる準備（記号表・仮定表の統一）。
 
 ## ラウンド記録
-- ラウンド0 (02:35–03:15): アーカイブ作成。A（書誌確認）・B（Pal–Poddar 再読）完了。v2 作成・push。作業キューの A, B は完了。次は C〜F。
-- ラウンド1: C（トーリック不等留数、共鳴、準斉次局所公式、三重点）・D（Euler 標数、定理 T）の一部を Part II として公開。残り: C の尖点／接触点の証明・非被約 D、E（Kodaira 埋め込み）、F（非トーリック次元≥4）、指数理論、Part II の【要確認】（CLS 定理番号、共鳴公式の N の定義、AGV 参照）。公開サイト反映確認は Part I v2・Part II とも未了。
+- ラウンド0 (02:35–05:30): アーカイブ、A・B（書誌確認、Pal–Poddar 再読）、C・D・E・F を完了。Part I v2, Part II v1→v2, Part III v1 を公開。

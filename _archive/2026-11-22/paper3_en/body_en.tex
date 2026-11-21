@@ -1,0 +1,269 @@
+%--------------------------------------------------------------
+\section{Position of this note and overview}\label{sec:intro}
+%--------------------------------------------------------------
+This note continues Part~I (Claude, Mori, ``Cohomology of generalized holomorphic line bundles on generalized complex structures from holomorphic Poisson structures'', v2, \url{https://hylt-math.github.io/2026/11/22/generalized-geometry-poisson/}) and Part~II (``\dots Riemann--Roch-type formulas (Part II)'', \url{https://hylt-math.github.io/2026/11/22/generalized-geometry-poisson-part2/}). The setting (the generalized complex structure $\Jc_\sigma$ obtained from a holomorphic Poisson structure $\sigma$ by a $\beta$-transform, Poisson module $=$ generalized holomorphic line bundle, $\HH^*(L)=H^*(X;C(A;L))$) is not repeated; notation follows Parts I and II.
+
+\paragraph{Goal and conclusion.}
+Of the three treasures of complex geometry, Riemann--Roch and Serre vanishing were treated in Parts I and II. What remains is Kodaira's embedding theorem. In short:
+\begin{itemize}
+\item The naive formulation, ``embed $M$ in projective space by generalized holomorphic sections'', is false (\S\ref{sec:fail}) \tP.
+\item In regular type with projective leaf space, the map is the composition of the projection with the classical Kodaira embedding of the leaf space (Theorem~\ref{thm:K1}, \S\ref{sec:leaf}) \tP. This is a direct reduction; we did not find it in the literature.
+\item As a replacement we propose ``Poisson--Kodaira'', proved in the toric case and verified numerically on $\mathbb P^2$ (\S\ref{sec:PK}); in general it is conjectural \tK.
+\item No Kodaira-type embedding theorem for general generalized complex structures was found in the literature we examined \tC.
+\end{itemize}
+We also organize results on non-reduced boundary, the local formula for quasi-homogeneous singularities (including a correction to Part II), and the K\"unneth formula for products (\S\ref{sec:nonred}--\S\ref{sec:prod}).
+
+%--------------------------------------------------------------
+\section{Notation (new in this note)}\label{sec:notation}
+%--------------------------------------------------------------
+\begin{longtable}{>{\raggedright\arraybackslash}p{3.8cm}>{\raggedright\arraybackslash}p{11.2cm}}
+\toprule Symbol & Meaning\\ \midrule\endhead
+$(X,\sigma)$ & compact complex manifold with holomorphic Poisson structure ($[\sigma,\sigma]=0$)\\
+$A=(T^*X)_\sigma$ & holomorphic Lie algebroid defined by $\sigma^\sharp$\\
+$L$, $D_\alpha s$ & Poisson module $=$ generalized holomorphic line bundle: $D_\alpha(fs)=fD_\alpha s+\sigma(\alpha,df)s$ ($\alpha\in\Omega^1$), flat\\
+GH section & an element of $\HH^0(L)=\{s\in H^0(X,L):D_\alpha s=0\ \forall\alpha\}$ (kernel of $d_1:H^0(L)\to H^0(T\otimes L)$ by the Dolbeault model of Part~I)\\
+$\pi:M\to X$ & in regular type, projection to the symplectic leaves (leaves $=$ fibres, $X$ the leaf space, $\dim_\C X=k$)\\
+SGH bundle & strong generalized holomorphic bundle (flat along leaves, holomorphic transversally); Pal--Poddar Def.~3.1 \tC\\
+$R=\bigoplus_k H^0(X,L^k)$ & graded ring (\S\ref{sec:PK})\\
+$\Pi_F$ & quadratic Poisson structure on $\C^3$, $\Pi_F^{ij}=\epsilon_{ijk}\partial_kF$ (Part~I \S4)\\
+$\nu:X\hookrightarrow\mathbb P^N$ & Kodaira embedding by $|L^m|$\\
+$\mathcal J$ (Jacobiator) & $\{a,\{b,c\}\}+(\text{cyclic})$\\
+$k_i$, $N_{D_i}$ & multiplicity and normal bundle of a component of a non-reduced divisor $D=\sum k_iD_i$\\
+$U=X\setminus D_{\mathrm{red}}$, $L_U$ & complement and the rank-one local system determined by the residues\\
+$P_{\HH}(t)$, $\mu$ & $\sum\dim\HH^k\,t^k$, Milnor number\\
+\bottomrule
+\end{longtable}
+\noindent Tags: \tC\ literature, \tP\ proved by the author (standard facts cited), \tV\ verified by computer, \tK\ conjecture/outlook, \tQ\ unverified.
+
+%--------------------------------------------------------------
+\section{The classical Kodaira embedding theorem: statement, hypotheses, roles}\label{sec:classical}
+%--------------------------------------------------------------
+\begin{thm}[Kodaira's embedding theorem]\tC\label{thm:Kod}
+Let $X$ be a compact complex manifold and $L$ a positive holomorphic line bundle. Then $X$ is projective, and for $m\gg0$ the map $X\to\mathbb P(H^0(X,L^m)^*)$ defined by $|L^m|$ is an embedding.
+\src{Kodaira, Ann.\ Math.\ 60 (1954) 28--48. Textbooks: Griffiths--Harris, \emph{Principles of Algebraic Geometry}, Ch.~1 \S4; Huybrechts, \emph{Complex Geometry}, Prop.~5.3.1 (numbering \tQ).}
+\end{thm}
+\begin{hyptab}
+$X$ compact & $H^0(X,L^m)$ is finite-dimensional and the map to $\mathbb P^N$ is defined. & Start and end of the proof (finite-dimensionality, closed embedding).\\\midrule
+$L$ positive ($i\Theta_L>0$) & The curvature form is a K\"ahler form, so $X$ is K\"ahler and Kodaira vanishing applies. & The step showing $H^1(\tilde X,\pi^*L^m\otimes\mathcal O(-2E_x))=0$ on the blow-up $\tilde X$ at a point $x$ (Kodaira vanishing).\\\midrule
+Enough holomorphic sections & Sections separate points and tangent vectors. & Surjectivity of $H^0(L^m)\to L^m\otimes\mathcal O/\mathfrak m_x^2$ follows from that vanishing; no Riemann--Roch dimension count is needed.
+\end{hyptab}
+\noindent What matters is the step where sections \emph{separate points}. As we show next, this step breaks down for generalized holomorphic (GH) sections.
+
+%--------------------------------------------------------------
+\section{No embedding by generalized holomorphic sections}\label{sec:fail}
+%--------------------------------------------------------------
+\subsection{The non-degenerate case}
+\begin{prop}\tP\label{prop:one}
+Let $X$ be a connected compact complex manifold, $\sigma$ a holomorphic Poisson structure non-degenerate on a dense open set $U_0$, and $L$ a Poisson module. Then $\dim_\C\HH^0(L)\le1$. A GH section is determined by its value at one point of $U_0$, so the Kodaira map by GH sections is constant (or undefined).
+\end{prop}
+\begin{hyptab}
+Connected, $U_0$ dense & The identity theorem applies. & Step (iii).\\\midrule
+$\sigma$ non-degenerate on $U_0$ & $\sigma^\sharp:A|_{U_0}\to T$ is an isomorphism, so $D$ becomes an ordinary flat connection. & Step (i).\\\midrule
+$L$ a line bundle & A flat section is determined by its value at one point. & Step (ii).
+\end{hyptab}
+\begin{proof}
+(i) On $U_0$ put $\nabla_vs:=D_{(\sigma^\sharp)^{-1}v}s$; by the Leibniz rule of $D$ this is an ordinary flat holomorphic connection, and GH sections satisfy $\nabla s=0$. (ii) $U_0$ is connected (a connected manifold minus a proper analytic subset) and $L$ has rank one, so the space of flat sections has dimension $\le1$ and a section is determined by one value. (iii) $s$ is determined by $s|_{U_0}$ (identity theorem).\qedhere
+\end{proof}
+\begin{ex}\tV\label{ex:casimir}
+On $\mathbb{CP}^2$ with $\Pi_F$ ($F$ a smooth cubic): $\HH^0(\mathcal O(m))=\C F^{k}$ for $m=3k\ge0$ and $0$ otherwise. On $\mathbb P^1\times\mathbb P^1$ with a smooth $(2,2)$-curve: $\HH^0(\mathcal O(m,m))=\C F^{m/2}$ for $m\in2\Z_{\ge0}$ (tables of Part~I). So for no $m$ is there an embedding by GH sections.
+\end{ex}
+
+\subsection{Regular type}
+\begin{prop}\tP\label{prop:leaf}
+Let $M$ be a compact generalized complex manifold, regular of type $k<n$ on a dense open set $W$ (leaf dimension $2(n-k)>0$), and $L$ a generalized holomorphic line bundle. For any GH sections $s_0,\dots,s_N$, the map $\varphi=[s_0:\cdots:s_N]$ (defined off the base locus) is constant on each leaf in $W$; in particular it is not an immersion on $W$.
+\end{prop}
+\begin{hyptab}
+Regular type (product local model) & $\pi_T(L)\supset T_F\otimes\C$ is available. & Local normal form (Darboux, Gualtieri 2011, Thm.~4.3 \tC).\\\midrule
+$k<n$ & Leaves have positive dimension. & One can move along a leaf.\\\midrule
+$L$ generalized holomorphic & The $L$-connection satisfies $D_\xi(fs)=\pi_T(\xi)(f)s+fD_\xi s$. & GH section $\Rightarrow$ parallel along leaves.
+\end{hyptab}
+\begin{proof}
+In the product model $L=\mathrm{graph}(\omega_Y)\oplus(T^{0,1}\oplus T^{*1,0})$ and $\pi_T(L)=T_Y\otimes\C\oplus T^{0,1}$. For $\xi\in L$ with a leafwise component, $D_\xi s=0$ says that $s$ is parallel for the leafwise flat connection $\nabla^F$. For a path in a leaf and parallel transport $P:L_x\to L_y$, every GH section satisfies $s_i(y)=Ps_i(x)$, hence the ratios $[s_0:\cdots:s_N]$ at $x$ and $y$ agree.\qedhere
+\end{proof}
+\begin{ex}\tP\label{ex:prodY}
+For $M=Y\times X$ ($Y$ symplectic, $X$ complex) and $L=\mathrm{pr}_Y^*F\boxtimes\mathrm{pr}_X^*G$: $\HH^0(L)=H^0_{dR}(Y,F)\otimes H^0(X,G)$. Since $H^0_{dR}(Y,F)$ has dimension $\le1$ per component of $Y$, the map factors through $\mathrm{pr}_X$ (and the index of the component). This agrees with the K\"unneth computation of Part~I.
+\end{ex}
+\begin{rem}[Where the classical proof breaks]\tP
+The classical proof uses that sections \emph{separate points and tangent vectors}. In Proposition~\ref{prop:one} at most one section (up to scale) separates anything; in Proposition~\ref{prop:leaf} points on one leaf cannot be separated. Positivity of curvature guarantees the \emph{existence} of sections but not that they are GH (flat). Pal--Poddar's ``positive SGH line bundle'' (Defs.~11.10, 11.11 \tC\ \tQ) asks for positivity only in the transversal direction, which corresponds exactly to this situation.
+\end{rem}
+
+%--------------------------------------------------------------
+\section{The leaf-space Kodaira theorem}\label{sec:leaf}
+%--------------------------------------------------------------
+\begin{thm}[Leaf-space Kodaira]\tP\label{thm:K1}
+Let $M$ be a compact generalized complex manifold of regular type such that:
+\begin{enumerate}
+\item[(K1)] the projection $\pi:M\to X$ to the symplectic leaves is a proper submersion (or an orbifold submersion) with connected compact fibres $(=$ leaves$)$, and $X$ is a compact complex manifold (orbifold) of dimension $k$;
+\item[(K2)] $L$ is an SGH line bundle with $L\cong\pi^*L_X$ (as SGH bundles) for a holomorphic line bundle $L_X\to X$ (trivial leafwise holonomy);
+\item[(K3)] $L_X$ is ample.
+\end{enumerate}
+Then there is $m_0$ such that for $m\ge m_0$: $\HH^0(M,L^m)=\pi^*H^0(X,L_X^m)$, and the map $\varphi_m:M\to\mathbb P^N$ by GH sections equals $\iota_m\circ\pi$, where $\iota_m:X\hookrightarrow\mathbb P^N$ is the classical Kodaira embedding. Hence each fibre of $\varphi_m$ is exactly one leaf. In the orbifold case $\iota_m$ embeds the coarse space ($m$ a multiple of the isotropy orders; Baily, Amer.\ J.\ Math.\ 79 (1957) 403--430; cited from memory \tQ).
+\end{thm}
+\begin{hyptab}
+(K1) connected compact fibres & Leafwise flat sections are constant (converse of Prop.~\ref{prop:leaf}); since fibres are connected, the preimage under $\varphi_m$ is exactly one leaf. & Steps (i), (iii).\\\midrule
+(K2) trivial holonomy & $L^m$ is a trivial flat bundle on each leaf, so GH sections exist. With non-trivial holonomy, $\HH^0$ vanishes along the leaf. & Step (i).\\\midrule
+(K3) $L_X$ ample & Classical Kodaira (Theorem~\ref{thm:Kod}) is applied on $X$. & Step (ii).\\\midrule
+Orbifold case & Kodaira for the coarse space (Baily). & Orbifold version of step (ii).
+\end{hyptab}
+\begin{proof}
+(i) $\HH^0(M,L^m)$ consists of the sections of $L^m$ flat along leaves and holomorphic transversally (definition of SGH bundles, degree-0 part of Pal--Poddar Cor.~8.10 \tC\ \tQ). By (K1), (K2), on each fibre $L^m=\pi^*L_X^m$ is a trivial flat bundle, so flat sections are constant on fibres, i.e.\ of the form $\pi^*t$ with $t$ a section of $L_X^m$; transversal holomorphicity is equivalent to holomorphicity of $t$. Hence $\HH^0(M,L^m)=\pi^*H^0(X,L_X^m)$. (ii) By (K3) and classical Kodaira (Theorem~\ref{thm:Kod}), $\iota_m$ is an embedding for $m\ge m_0$. (iii) $\varphi_m=\iota_m\circ\pi$ with $\iota_m$ injective, so $\varphi_m(x)=\varphi_m(y)\Leftrightarrow\pi(x)=\pi(y)$, i.e.\ $x,y$ lie on the same leaf.\qedhere
+\end{proof}
+\begin{rem}[Position]
+\tP\ Theorem~\ref{thm:K1} is a direct reduction, not a deep result. \tC\ We found no reference stating a Kodaira-type result in regular type. It is the embedding-side counterpart of Pal--Poddar's Thm.~11.12 (Kodaira--Nakano and Serre-type vanishing for positive SGH line bundles) \tC. \tQ\ Equivalence with their definition of ``positive'' is not checked. No Kodaira-type statement was found for the case where the type jumps or for general generalized complex structures.
+\end{rem}
+
+%--------------------------------------------------------------
+\section{Poisson--Kodaira: embedding the Poisson pair}\label{sec:PK}
+%--------------------------------------------------------------
+Since GH sections are (almost) constant, we change the question: for the Kodaira embedding $\nu:X\hookrightarrow\mathbb P^N$ by \emph{ordinary} holomorphic sections, is $\nu$ a Poisson embedding, i.e.\ is $\sigma$ the restriction of a Poisson structure $\sigma_N$ on $\mathbb P^N$? (This is the author's proposal, not a formulation from the literature.)
+
+\begin{lem}[Rank-one Poisson modules and $\C^*$-invariant lifts]\tP\ \tQ\label{lem:lift}
+Let $L$ be a Poisson module. On the total space $C=L^*\setminus0$ there is a unique $\C^*$-invariant Poisson structure $\hat\pi=\sigma+u\,\theta\wedge\partial_u$ with $p_*\hat\pi=\sigma$ (local frame $e$, $D_\alpha e=\theta(\alpha)e$, $u$ the fibre coordinate), and sections of $L^k$ correspond to homogeneous functions of degree $k$. The Jacobi identity for $\hat\pi$ is equivalent to flatness and the Leibniz rule for $D$.
+\end{lem}
+\noindent The check of the local computation is only a sketch \tQ. Example: on $\mathbb P^2$ with $\Pi_F$ (quadratic Poisson structure on $\C^3$), $L=\mathcal O(m)$ for any $m$.
+
+\begin{prop}\tP\label{prop:graded}
+If $X$ is projective and $L$ is an ample Poisson module, then $R=\bigoplus_{k\ge0}H^0(X,L^k)$ is a graded Poisson algebra with bracket of degree $0$ ($\{R_a,R_b\}\subset R_{a+b}$).
+\end{prop}
+\begin{proof}
+By Lemma~\ref{lem:lift}, $R$ is the ring of homogeneous functions on $C$, and the bracket of $\hat\pi$ preserves degree.\qedhere
+\end{proof}
+\begin{prop}[Quadratic almost-Poisson lift]\tP\ \tC\label{prop:almost}
+For $m\ge m_1$, $R^{(m)}=\bigoplus_kR_{mk}=S/I$ with $S=\mathrm{Sym}\,R_m$ and $I$ generated by quadrics (Mumford, \emph{Varieties defined by quadratic equations}, in: Questions on Algebraic Varieties, CIME 1969, Cremonese 1970; cited from memory, pages \tQ). Then there is a skew biderivation $\{\ ,\ \}'$ of degree $0$ on $S$ (a quadratic almost-Poisson structure) inducing the bracket of $R$ on $S/I$.
+\end{prop}
+\begin{proof}
+Choose a linear section $s$ of $S_2\to R_{2m}$, put $\{y_a,y_b\}:=s(\{\bar y_a,\bar y_b\})$, and extend by Leibniz. For $q\in I_2$, $g\in S_1$: $\{q,g\}'\equiv\{\bar q,\bar g\}=0\bmod I_3$, so $\{I_2,S_1\}'\subset I_3$. Since $I$ is generated by $I_2$, Leibniz gives $\{I,S\}'\subset I$.\qedhere
+\end{proof}
+\noindent The Jacobiator $\mathcal J\in\mathrm{Hom}(\wedge^3S_1,I_3)$ of the lift is in general non-zero, and two lifts differ by $\epsilon\in\mathrm{Hom}(\wedge^2S_1,I_2)$. A Poisson extension exists iff the quadratic equation $\mathcal J_0+\mathcal L(\epsilon)+\mathcal J(\epsilon)=0$ has a solution $\epsilon$; the first-order obstruction class is $\mathcal J_0\bmod\mathrm{im}\,\mathcal L$.
+
+\subsection{The toric case (proof)}
+\begin{thm}[Poisson--Kodaira, toric]\tP\label{thm:PKtoric}
+Let $X$ be a smooth projective toric variety (torus $T=N\otimes\C^*$) and $\sigma=\sum\omega^{ij}\xi_i\wedge\xi_j$ ($\xi_i=x_i\partial_{x_i}$, $\omega\in\wedge^2N_\C$). Let $L=\mathcal O(D)$ be ample with polytope $P$ and $L^m$ very ample (sections $\chi^a$, $a\in mP\cap M$). Then $\nu:X\hookrightarrow\mathbb P^N$, $\nu^*y_a=\chi^a$, is a Poisson embedding for the diagonal quadratic Poisson structure on $\mathbb P^N$
+\[\sigma_N=\sum_{a<b}\omega(a,b)\,y_ay_b\,\partial_{y_a}\wedge\partial_{y_b},\qquad\omega(a,b)=\sum\omega^{ij}a_ib_j.\]
+This holds for every very ample power $L^m$.
+\end{thm}
+\begin{hyptab}
+Toric, $\sigma$ torus-invariant & Brackets of characters are monomials: $\{\chi^a,\chi^b\}=\omega(a,b)\chi^{a+b}$. & Step (2). The lift can be chosen diagonal (removing the freedom that makes the generic lift of Prop.~\ref{prop:almost} fail Jacobi).\\\midrule
+$L^m$ very ample & $\nu$ is an embedding. & The ``embedding'' part of the conclusion.\\\midrule
+$X$ smooth projective & Setting of classical Kodaira. & Same.
+\end{hyptab}
+\begin{proof}
+(1) $\sigma_N$ is Poisson: for skew $\lambda_{ij}$ put $\{y_i,y_j\}=\lambda_{ij}y_iy_j$; then $\{y_i,\{y_j,y_k\}\}=\lambda_{jk}(\lambda_{ij}+\lambda_{ik})y_iy_jy_k$, and the cyclic sum vanishes by skew-symmetry (six terms cancel in pairs). The weight for the scaling is $0$, so it descends to $\mathbb P^N$. (2) On the torus, $\{\chi^a,\chi^b\}=\sigma(d\chi^a,d\chi^b)=\omega(a,b)\chi^{a+b}=\nu^*(\omega(a,b)y_ay_b)$ since $\chi^a\chi^b=\chi^{a+b}$. So $\nu$ is a Poisson map on $T$, hence on its closure $X$ (both $\sigma$ and $\nu^*\sigma_N$ are holomorphic).\qedhere
+\end{proof}
+
+\subsection{Non-toric case (cubics on $\mathbb P^2$, numerical check)}
+\begin{obs}\tV\label{obs:P2}
+$X=\mathbb P^2$, $\sigma=\Pi_F$, Veronese $m=2$ ($\mathbb C^6$, $\dim I_2=6$, 90 unknowns $\epsilon$, 940 equations). The Jacobiator of the natural lift is non-zero (18 triples for Fermat, 19 for Hesse, 1 for $xyz$, also for the cusp). Solving the full quadratic system $\mathcal J_0+\mathcal L(\epsilon)+\mathcal J(\epsilon)=0$ by Levenberg--Marquardt from random starts gave solutions with residual $\le10^{-12}$ for $F=xyz$, Fermat, Hesse ($x^3+y^3+z^3-21xyz$) and the cusp ($x^3-y^2z$). For Fermat it was re-verified independently by finite differences (Jacobiator $\sim10^{-9}$, restriction error to the Veronese cone $\sim10^{-10}$). For Fermat the linear part $\mathcal J_0+\mathcal L(\epsilon)=0$ alone has no solution, so the quadratic term is essential. $m=1$ is tautological; $m\ge3$ was not computed (1215 unknowns, too heavy for this method). Scripts: \texttt{cp2/roundE\_*.py}.
+\end{obs}
+\noindent Status: numerical existence, not an exact algebraic certificate (the residual is machine precision).
+
+\begin{conj}[Poisson--Kodaira]\tK\label{conj:PK}
+Let $(X,\sigma)$ be a projective holomorphic Poisson manifold and $L$ an ample Poisson module. Then there is $m_0$ such that for $m\ge m_0$ the Kodaira embedding by $|L^m|$ is a Poisson embedding into $\mathbb P^N$ for some quadratic Poisson structure $\sigma_N$.
+\end{conj}
+\noindent Evidence: Theorem~\ref{thm:PKtoric} (toric) and Observation~\ref{obs:P2} ($\mathbb P^2$, $m=2$). Open: a general obstruction theory (the class $\mathcal J_0\bmod\mathrm{im}\,\mathcal L$ is of Poisson-cohomology type; one expects it to vanish for $m\gg0$ by Serre-type vanishing of an $H^1$ of a Koszul complex, but this is not proved). No counterexample was found; failure for small $m$ remains possible.\\
+\emph{Relation:} for $\sigma=0$ this is classical Kodaira. In regular type $M\to X$ with leaf $Y$, GH sections factor through $X$ (Proposition~\ref{prop:leaf}), so embedding the Poisson pair $(M,\sigma_Y)$ requires ordinary (non-GH) holomorphic sections; this is the formulation of this section.
+
+%--------------------------------------------------------------
+\section{Non-reduced boundary}\label{sec:nonred}
+%--------------------------------------------------------------
+For $\sigma=\Pi_F$ with $F$ having multiple factors, the dimensions of $\HH^*$ grow linearly in $m$. The following were computed by exact linear algebra (same machinery as Part~I, $m=-15,\dots,15$); script: \texttt{cp2/roundF\_nonreduced.py}.
+\begin{obs}\tV\label{obs:nr}
+\textbf{(a) $F=x^2y$ (double line $\{x=0\}$ plus line $\{y=0\}$, one node, $N_L=\mathcal O(1)$, $U\simeq S^1$):} all 31 values agree with
+\[m\ge-2:\ P(t)=[3\mid m](1+t)+3t^2+(m+2)(t+t^2);\qquad m=-3:\ 3t^2;\]
+\[m\le-4:\ P(t)=[3\mid m](t^3+t^4)+3t^2+(-m-4)(t^2+t^3).\]
+The case $m\le-4$ is the image under Serre duality $m\leftrightarrow-m-6$. The coefficient of the linear term is $m+2=h^0(L,\mathcal O(m+1))=h^0(L,\mathcal L|_L\otimes N_L)$. The same table holds for $x^2(x+y)$.\\
+\textbf{(b) $F=x^3$ (triple line, $U=\C^2$):} for $m\ge0$, $P(t)=1+(2m+5)(t+t^2)+2t^2$ (i.e.\ $[1,2m+5,2m+7]$); $m=-1$: $[0,2,5]$; $m=-2,-3,-4$: $[0,0,3]$; for $m\le-5$ growth $\sim2|m|$ (e.g.\ $[0,0,5,2,0]$ at $m=-5$ and $[0,0,7,5,1]$ at $m=-6$; formula not determined). $2m+5=\sum_{j=1}^2h^0(L,\mathcal O(m+j))$.\\
+\textbf{(c) $\mathbb P^1\times\mathbb P^1$, $D=2C$ ($C$ a smooth $(1,1)$-curve), $L=\mathcal O(m,m)$:} for $m\ge0$, $H^0=1$, $H^1=2m+3$, $H^2=2m+6$ (computed before Part~II).
+\end{obs}
+\begin{conj}[Non-reduced boundary]\tK\label{conj:NR}
+Let $X$ be a compact complex surface (here $\mathbb P^2$ or $\mathbb P^1\times\mathbb P^1$) and $D=\sum k_iD_i$ the divisor of $\sigma$ ($D_i$ smooth, $D_{\mathrm{red}}$ simple normal crossings). For $m\ge0$ (or in the range where higher cohomology of the relevant sheaves vanishes),
+\[\HH^*(L)=H^*(U;L_U)\oplus\C^{\chi(D_{\mathrm{red}})}[-2]\oplus\bigoplus_i\bigoplus_{j=1}^{k_i-1}\bigl(H^0(D_i,L|_{D_i}\otimes N_{D_i}^{j})[-1]\oplus H^0(D_i,L|_{D_i}\otimes N_{D_i}^{j})[-2]\bigr).\]
+\end{conj}
+\noindent Checks: the three families (a)--(c) ($x^2y$ for $m\ge-2$, $x^3$ for $m\ge0$, double conic for $m\ge0$). The total Euler characteristic is $\chi(U)+\chi(D_{\mathrm{red}})=\chi(X)$, consistent with Theorem~E of Part~II. Heuristic: the Poisson cohomology of the local model $z^k\partial_z\wedge\partial_w$ has infinite-dimensional ($\C[[w]]$-module) parts generated in degrees $j=1,\dots,k-1$ (results of Monnier, Roger--Vanhaecke type \tC\ \tQ, not checked); their global part is $H^0$ of the coherent sheaves $L|_{D_i}\otimes N^j$, growing linearly in $m$. \tK\ No proof. It fails for small $m$ ($x^3$ at $m=-1$ does not fit), so the exact range of validity is unknown.
+
+%--------------------------------------------------------------
+\section{Local formula for quasi-homogeneous singularities (with correction)}\label{sec:local}
+%--------------------------------------------------------------
+The observation in Part~II on the local formula for quasi-homogeneous plane curve singularities was stated with the rule $R(s)=[s<\mathrm{lct}](\cdots)$. This is wrong for $\mathrm{lct}<1/2$. We give the corrected version and the parts that could be proved. Setting: $h$ reduced quasi-homogeneous with an isolated singularity (weights $w_z,w_w$, degree $d$, $\mathrm{Sp}$ the Steenbrink spectrum, $\mathrm{lct}=(w_z+w_w)/d$, $\delta=d-w_z-w_w$), $\sigma=h\,\partial_z\wedge\partial_w$, $s\ne1$ the residue parameter of the module, $T=\mathcal O/J$ ($J$ the Jacobian ideal, $\dim T=\mu$). The stalk complex $\mathcal C_s=(\mathcal O\xrightarrow{d_0}\mathcal O^2\xrightarrow{d_1}\mathcal O)$ is as in Part~II.
+\begin{prop}\tP\ \tV\label{prop:Q}
+$B_s=(\mathcal O\to\Theta(-\log D)\to h\mathcal O)$ is a subcomplex of $\mathcal C_s$, and the quotient $Q=\mathcal C_s/B_s\simeq[J\mathcal O_D\to\mathcal O_D]$ has differential $-(1-s)$ times the inclusion, which is injective for $s\ne1$. Hence $H^0(Q)=H^1(Q)=0$, $H^2(Q)=\mathcal O_D/J\mathcal O_D=\mathcal O/J$ (dimension $\mu$), $H^k(B_s)=H^k(\mathcal C_s)$ for $k\le1$, and $0\to H^2(B_s)\to H^2(\mathcal C_s)\to T\to0$. In other words, stalk $=\mu\,t^2+H^*(B_s)$ (dimensionwise).
+\end{prop}
+\noindent Check: $H(\mathcal C_s)=H(B_s)+T[-2]$ for $A_1,A_2,A_3,D_4,E_6$ (no mismatches) \tV.
+\begin{prop}\tP\ \tQ\label{prop:weight}
+Assume $B_s\simeq(\Omega^\bullet(\log D),d+s\,\mathrm{dlog}\,h\wedge)$ (since $\sigma^\sharp$ is a chain map; the sign convention for $s$ was fixed by the data and not independently checked). By the Cartan formula for the Euler field $e=w_zz\partial_z+w_ww\partial_w\in\Theta(-\log D)$ ($e(h)=dh$), $H^*(B_s)$ is concentrated in the single weight $k_0=-sd$. The lowest weight of $B_s$ is $-\delta$, so $H^*(B_s)=0$ for $s>\delta/d=1-\mathrm{lct}$.
+\end{prop}
+\begin{obs}[Corrected rule]\tV\ \tC\label{obs:rule2}
+For $s\ne1$, dimensionwise,
+\[\text{stalk}=\C^\mu[-2]\oplus R(s),\qquad R(s)=[\,s\in\Z,\ s\le0\,](1+t)+(t+t^2)\cdot\#\{\alpha\in\mathrm{Sp}:\ s+\alpha\in\Z,\ s+\alpha\le1\}.\]
+This agrees with the rule of Part~II when $\mathrm{lct}\ge1/2$ but not when $\mathrm{lct}<1/2$: for $z^4-w^5$ ($\mathrm{lct}=9/20$) and $s=11/20=1-\mathrm{lct}$ there is a class (weight $-\delta$) although $s>\mathrm{lct}$. No mismatches for $A_1,A_2,A_3,D_4,D_5$ (weights $(3,2)$, degree 8), $E_6$, $T_{2,3,6}$ ($z^3-w^6$), $z^4-w^4$, $z^4-w^5$, $z^5-w^5$ (grids from $1/12$ to $1/20$ with $s\in[-2,2]$; $s=1$ excluded since the stalk is infinite-dimensional). Script: \texttt{cp2/roundF\_local\_rule2.py}. \tC\ Interpretation: the Wang sequence of the Milnor fibration $h:B\setminus D\to\C^*$ (fibre a bouquet of $\mu$ circles, monodromy eigenvalues $e^{-2\pi i\alpha}$ on $H^1$) gives $\text{stalk}(Rj_*L_s)=[s\in\Z](1+t)+(t+t^2)\#\{\alpha:s+\alpha\in\Z\}$. The complex $B_s$ computes the part of weight $\ge-\delta$, and the cutoff $s+\alpha\le1$ is this weight bound rewritten $\alpha$ by $\alpha$. Calder\'on-Moreno--Narv\'aez-Macarro, Proc.\ London Math.\ Soc.\ 98 (2009), arXiv:math/0603003, give the corresponding statement for free divisors (Jacobian ideal of linear type) for the family where $s$ is shifted by large integers (pages \tQ).
+\end{obs}
+\noindent \tK\ Not proved: that the weight-$k_0$ piece of $H(B_s)$ has exactly the dimension given by the Wang sequence for $s\le1-\mathrm{lct}$ (no mismatches in 10 types), and the $\alpha$-by-$\alpha$ cutoff $s+\alpha\le1$. The cusp and tacnode ($\mu=2,3$) are the special cases $A_2,A_3$ of the formula above; a general treatment of singularities is incomplete.\\
+\tP\ Correction: $D_5=z^2w-w^4$ has weights $(3,2)$ and degree 8; the weights $(3,1,7)$ in an internal note were wrong. The published Parts I and II used the correct weights and are not affected. The Part~II observation on the local formula (stated for quasi-homogeneous germs, though only the listed types were checked) should be replaced by Observation~\ref{obs:rule2} of this note. For the listed types ($A_k$, $D_k$, $E_6$, $E_8$, $T_{2,3,6}$) the old and new rules agree (checked), so the numbers in Part~II do not change.
+
+%--------------------------------------------------------------
+\section{Products, and the status of the general-dimension conjecture}\label{sec:prod}
+%--------------------------------------------------------------
+\begin{prop}[K\"unneth]\tP\ \tQ\label{prop:Kunneth}
+Let $X,Y$ be compact complex manifolds with holomorphic Poisson structures $\sigma_X,\sigma_Y$ and Poisson modules $L_X,L_Y$. On $X\times Y$ take $\sigma=\sigma_X+\sigma_Y$ and $L=L_X\boxtimes L_Y$ (module structure $V_X+V_Y$). Then $K_{X\times Y}=K_X\boxtimes K_Y$ as complexes of sheaves (by $[\sigma_X,\sigma_Y]=0$ and the Koszul sign), and by the K\"unneth formula for sheaf hypercohomology, $P^{X\times Y}_{\HH}(t)=P^X_{\HH}(t)P^Y_{\HH}(t)$.
+\end{prop}
+\noindent References for K\"unneth (Kashiwara--Schapira, \emph{Sheaves on Manifolds}, \S2; Bredon, \emph{Sheaf Theory}, II.15) are \tQ. \tV\ For the toric block product on $\mathbb P^2\times\mathbb P^2$: $[1,4,12,16,16]=(1+2t+4t^2)^2$ (table of Part~II).
+\begin{ex}\tP\label{ex:prod33}
+Let $X=Y=\mathbb P^2$ with smooth cubics $D_X,D_Y$ and $L=\mathcal O(m)\boxtimes\mathcal O(m')$. For $m,m'\in3\Z_{\ge0}$: $(1+2t^2)^2=1+4t^2+4t^4=P(H^*(U;\C))$ ($U=U_X\times U_Y$). For $m,m'\notin3\Z$: $(3t^2)(3t^2)=9t^4$. For $m,m'\in3\Z_{\le-6}$: $(2t^2+t^4)^2=P(H_c^*(U))$. Since $D=D_X\times Y\cup X\times D_Y$ is simple normal crossing with two components and no 4-fold points, this agrees with the prediction $H^*(U;L_U)\oplus0$ of the general-dimension conjecture of Part~II (generic log-symplectic, simple normal crossings). \tP\ So the conjecture holds on this non-toric product.
+\end{ex}
+\begin{rem}[Necessity of the genericity hypothesis (GEN)]\tP
+When the divisors have nodes, $P=(H_X+\mu_Xt^2)(H_Y+\mu_Yt^2)=H_XH_Y+t^2(\mu_XH_Y+\mu_YH_X)+\mu_X\mu_Yt^4$, which exceeds the prediction $H(U)+\#D_{(4)}t^4$ ($\#D_{(4)}=\mu_X\mu_Y$) by the cross terms $t^2(\mu_XH_Y+\mu_YH_X)$. So $\sigma_X+\sigma_Y$ is not ``generic'' (consistent with the extra classes $t^2H^*(\mathcal O_\tau)$ found in the toric case, coming from non-degeneracy of the residue pairing on codimension-2 strata). Hence the conjecture needs a genericity hypothesis (GEN), and products are the typical family of counterexamples.
+\end{rem}
+\noindent \tK\ A genuinely non-product, non-toric test in dimension 4 was not carried out. Candidate: the Feigin--Odesskii elliptic Poisson structure $q_{5,1}$ on $\mathbb P^4$ ($\sigma^2\in H^0(\mathcal O(5))$; $D$ is the secant variety of the elliptic normal quintic, not simple normal crossings).
+
+%--------------------------------------------------------------
+\section{Comparison with earlier work}\label{sec:compare}
+%--------------------------------------------------------------
+\begin{itemize}
+\item \tC\ Pal--Poddar, \emph{Strong generalized holomorphic principal bundles}, arXiv:2404.18113, prove Kodaira--Nakano and Serre-type vanishing for positive SGH line bundles (Thm.~11.12) for compact regular generalized complex manifolds whose leaf space is a K\"ahler orbifold. Theorem~\ref{thm:K1} is the embedding-side statement in the same setting. \tQ\ Equivalence with their definition of ``positive'' is not checked.
+\item \tC\ T.\ Hu's work on K\"ahler Lie algebroids (arXiv:2403.10876, 2403.13424) treats Kodaira vanishing and Riemann--Roch, not the Kodaira embedding (in what we examined).
+\item A Kodaira-type embedding theorem for general (type-jumping) generalized complex structures was not found \tC. Poisson--Kodaira (\S\ref{sec:PK}) is the author's proposal.
+\end{itemize}
+
+%--------------------------------------------------------------
+\section{Status of claims and open problems}\label{sec:ledger}
+%--------------------------------------------------------------
+\begin{center}\small
+\begin{tabular}{p{5.2cm}p{2.6cm}p{6.6cm}}\toprule
+Claim & Status & Remark\\\midrule
+Prop.~\ref{prop:one} ($\dim\HH^0\le1$) & \tP & examples \tV\\
+Prop.~\ref{prop:leaf} (constant along leaves) & \tP & cites Gualtieri Thm.~4.3\\
+Thm.~\ref{thm:K1} (leaf-space) & \tP & Baily (orbifold) cited from memory \tQ\\
+Lemma~\ref{lem:lift} & \tP\ \tQ & local computation only sketched\\
+Prop.~\ref{prop:graded}, \ref{prop:almost} & \tP & Mumford cited from memory \tQ\\
+Thm.~\ref{thm:PKtoric} (toric) & \tP & \\
+Obs.~\ref{obs:P2} ($\mathbb P^2$, $m=2$) & \tV & numerical existence; $m\ge3$ not computed\\
+Conj.~\ref{conj:PK} (Poisson--Kodaira) & \tK & \\
+Obs.~\ref{obs:nr} (non-reduced) & \tV & Conj.~\ref{conj:NR} is \tK\\
+Prop.~\ref{prop:Q} (local, quotient part) & \tP\ \tV & \\
+Prop.~\ref{prop:weight} & \tP\ \tQ & sign convention of the $B_s$ identification unchecked\\
+Obs.~\ref{obs:rule2} (corrected rule) & \tV\ \tK & no mismatches in 10 types; proof partial\\
+Prop.~\ref{prop:Kunneth} (K\"unneth) & \tP\ \tQ & literature check\\
+\bottomrule
+\end{tabular}
+\end{center}
+\paragraph{Open problems.}(1) A formulation of a Kodaira-type theorem for general type-jumping generalized complex structures (a generalized-complex version of Poisson--Kodaira). (2) Vanishing of the obstruction class in Conjecture~\ref{conj:PK} for $m\gg0$; an exact method for $\mathbb P^2$ with $m\ge3$. (3) A proof of Conjecture~\ref{conj:NR} and its range of validity. (4) An $\alpha$-by-$\alpha$ proof of the local formula. (5) A generalized-complex version of Kodaira's proof by blow-up that avoids Riemann--Roch.\par
+\paragraph{Scope of verification.}The computations in this note use the same exact linear algebra as Parts~I and~II (over the finite field $\mathbb F_{32003}$) or numerical (Levenberg--Marquardt) solutions; Observation~\ref{obs:P2} rests on the latter. Equivalence with Pal--Poddar's definitions, the theorems of Baily and Mumford, the K\"unneth references, and the results of Monnier and Roger--Vanhaecke are unverified or cited from memory.
+
+\begin{thebibliography}{99}\small
+\bibitem{PartI} Claude, Mori, \emph{Cohomology of generalized holomorphic line bundles on generalized complex structures from holomorphic Poisson structures} (Part I, v2), \url{https://hylt-math.github.io/2026/11/22/generalized-geometry-poisson/}
+\bibitem{PartII} Claude, Mori, \emph{Cohomology of generalized holomorphic line bundles and Riemann--Roch-type formulas (Part II)}, \url{https://hylt-math.github.io/2026/11/22/generalized-geometry-poisson-part2/}
+\bibitem{Kod54} K.\ Kodaira, On K\"ahler varieties of restricted type, Ann.\ Math.\ 60 (1954) 28--48.
+\bibitem{GH} P.\ Griffiths, J.\ Harris, \emph{Principles of Algebraic Geometry}, Wiley 1978.
+\bibitem{Huy} D.\ Huybrechts, \emph{Complex Geometry: An Introduction}, Springer 2005.
+\bibitem{PP} D.\ Pal, M.\ Poddar, Strong generalized holomorphic principal bundles, arXiv:2404.18113; Ann.\ Sc.\ Norm.\ Super.\ Pisa Cl.\ Sci., doi:10.2422/2036-2145.202501\_026 (volume/pages \tQ).
+\bibitem{Gua} M.\ Gualtieri, Generalized complex geometry, Ann.\ Math.\ 174 (2011) 75--123, arXiv:math/0703298.
+\bibitem{LGSX} C.\ Laurent-Gengoux, M.\ Sti\'enon, P.\ Xu, Holomorphic Poisson manifolds and holomorphic Lie algebroids, IMRN 2008, arXiv:0707.4253.
+\bibitem{Hu1} T.\ Hu, Kodaira vanishing theorems for K\"ahler Lie algebroids, arXiv:2403.10876.
+\bibitem{Hu2} T.\ Hu, Lie groupoid Riemann--Roch--Hirzebruch theorem and applications, arXiv:2403.13424.
+\bibitem{Mum} D.\ Mumford, Varieties defined by quadratic equations, in: Questions on Algebraic Varieties (C.I.M.E., Varenna 1969), Cremonese 1970 [cited from memory, pages \tQ].
+\bibitem{Bai} W.\ L.\ Baily, On the imbedding of V-manifolds in projective space, Amer.\ J.\ Math.\ 79 (1957) 403--430 [cited from memory \tQ].
+\bibitem{CMNM} F.\ J.\ Calder\'on-Moreno, L.\ Narv\'aez-Macarro, Proc.\ London Math.\ Soc.\ 98 (2009), arXiv:math/0603003, doi:10.1112/plms/pdn043 [title and pages \tQ].
+\bibitem{KS} M.\ Kashiwara, P.\ Schapira, \emph{Sheaves on Manifolds}, Springer 1990 [K\"unneth reference \tQ].
+\bibitem{Bre} G.\ Bredon, \emph{Sheaf Theory}, 2nd ed., Springer GTM 170, 1997 [reference \tQ].
+\bibitem{Har} R.\ Hartshorne, \emph{Algebraic Geometry}, Springer GTM 52, 1977.
+\end{thebibliography}

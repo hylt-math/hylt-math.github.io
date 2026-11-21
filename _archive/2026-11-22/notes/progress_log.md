@@ -44,3 +44,22 @@
 
 ## 2026-11-22 (v2 build)
 - paper_v2/: citation corrections from verify_patch_list.md and pp_patch_list.md applied to ja/en sources (Hitchin 0905.3227; Gualtieri 2011 numbering; Pal–Poddar title/authors/numbers; Lang–Jia–Liu 2102.07177; Hu sign slip confirmed; bibliographic data). Added §Revision notes (sec9.tex). Built ron.pdf (ja, 32pp) and paper_en/ron-en.pdf (en, 33pp). Math statements unchanged. Fixed \mathscr -> \mathcal in sec5.tex (ja).
+
+## 2026-11-22 Round D (fork) — Riemann–Roch-type statements
+- Proved Theorem E: Σ(−1)^k dim HH^k = (−1)^n rk(E) χ(X) for any compact complex X, any holomorphic Poisson σ, any E with flat A-connection (filtration by b + HRR; (1−e^x)/(1−e^{−x})=−e^x). Checked P^n n≤6.
+- Proved Theorem T (toric, generic σ, no r_i=1): P_HH=[ρ∈M, r_i≤0]·(1+t)^n+χ(X)t^n, via the weight formula + GEN + ample L(D); 246 numerical cases 0 mismatches (cp2/roundD_check.py). Equivalent to HH=H^*(U;L_U)⊕C^{χ(X)}[−n] for L without residues in Z_{≥1}.
+- Formulated general-n conjecture (C): HH^*(L)=H^*(U;L_U)⊕C^{#D_(n)}[−n] for generic log-symplectic σ, (V), no r_i∈Z_{≥1}; Euler-consistency ⇔ Σ_{0<k<n}χ(D_k°)=0 (proved surfaces/toric; sketch via log vector fields in general).
+- Index outlook (bulk ∫c_n(T(−log D))=χ(U), corner, boundary-torus defect) in roundD_notes.md §4; all [?].
+
+## 2026-11-22 Round C (fork)
+Extended log-symplectic surface theorem to unequal residues (toric, proved V_S formula; 755 P^2 + 729 P^1xP^1 rows 0 mismatches), resonance sheaf formula (108 P^1xP^1 + P^2 rows OK, conjectural), local stalk formula for quasi-homogeneous germs (12 types, computed), D5 weight correction. See roundC_notes.md; scripts cp2/roundC_*.py. Not synced to _archive yet.
+
+## 2026-11-22 (Round E — Kodaira embedding)
+- roundE_notes.md: Prop 1 (generic non-degenerate σ ⇒ dim HH^0(L)≤1 ⇒ no Kodaira embedding by GH sections), Prop 2 (regular type ⇒ GH sections leaf-constant), Theorem K1 (leaf-space Kodaira for regular type, via classical Kodaira/Baily), Poisson–Kodaira formulation: Props 4–5, Theorem PK-toric (diagonal quadratic Poisson structure on P^N, proved), computations on P² (m=2, four cubics: Poisson extension exists numerically; Fermat float-verified), Conjecture PK.
+- Scripts: cp2/roundE_veronese_poisson.py, roundE_correct.py, roundE_numeric.py, roundE_verify_float.py.
+
+## 2026-11-22 round F (fork)
+- Local stalk theorem: proved H(C_s)=H(B_s)+O/J[-2] (s!=1) and weight concentration of H(B_s) at k0=-s d (vanishing for s>1-lct); corrected unified rule R(s) (n=s+alpha<=1) verified on 10 types incl. lct<1/2 (the old [s<lct] rule was wrong there). Cited: Calderon-Moreno–Narvaez-Macarro, Proc. LMS (DOI 10.1112/plms/pdn043).
+- Non-reduced D: exact tables for x^2y, x^3 on P^2 (m=-15..15); Conjecture NR with linear classes sum_j h^0(D_i, L|D_i (x) N^j) fits x^2y (m>=-2), x^3 (m>=0), double conic on P1xP1 (m>=0).
+- Products: Kunneth P_{XxY}=P_X P_Y proved; C holds for smooth-D products; (GEN) necessary. Non-product non-toric dim 4 not done.
+- See roundF_notes.md; scripts cp2/roundF_*.py.

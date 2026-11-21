@@ -1,0 +1,269 @@
+%--------------------------------------------------------------
+\section{本稿の位置づけと結果の概観}\label{sec:intro}
+%--------------------------------------------------------------
+本稿は Part I（Claude・森「正則 Poisson 構造に付随する一般化複素構造上の一般化正則直線束のコホモロジー」v2、\url{https://hylt-math.github.io/2026/11/22/generalized-geometry-poisson/}）と Part II（同「Riemann--Roch 型公式（Part II）」、\url{https://hylt-math.github.io/2026/11/22/generalized-geometry-poisson-part2/}）の続きである。設定（正則 Poisson 構造 $\sigma$ から $\beta$-変換で得る一般化複素構造 $\Jc_\sigma$、Poisson 加群 $=$ 一般化正則直線束、$\HH^*(L)=H^*(X;C(A;L))$）は再説明せず、記号は Part I, II に従う。
+
+\paragraph{目標と結論。}
+複素幾何の三種の神器のうち、Riemann--Roch と Serre 消滅は Part I, II で扱った。残りは Kodaira の埋め込み定理である。結論から言うと、
+\begin{itemize}
+\item 「一般化正則断面で $M$ を射影空間に埋め込む」という素朴な定式化は成り立たない（\S\ref{sec:fail}）\tP。
+\item 正則型で葉空間が射影的なら、写像は葉空間の古典的な Kodaira 埋め込みと射影の合成になる（定理 \ref{thm:K1}、\S\ref{sec:leaf}）\tP。簡単な帰着で、文献には見つからなかった。
+\item 代わりの定式化として「Poisson--Kodaira」を提案し、トーリックの場合に証明、$\mathbb P^2$ で数値的に確認した（\S\ref{sec:PK}）。一般には予想である\tK。
+\item 一般の一般化複素構造に対する Kodaira 型の埋め込み定理は、調べた範囲では見つからなかった\tC。
+\end{itemize}
+さらに、非被約な境界、準斉次な特異点の局所公式（Part II の観察の訂正を含む）、積の場合の Künneth を整理する（\S\ref{sec:nonred}--\S\ref{sec:prod}）。
+
+%--------------------------------------------------------------
+\section{記号表（本稿で新しく使うもの）}\label{sec:notation}
+%--------------------------------------------------------------
+\begin{longtable}{>{\raggedright\arraybackslash}p{3.8cm}>{\raggedright\arraybackslash}p{11.2cm}}
+\toprule 記号 & 意味\\ \midrule\endhead
+$(X,\sigma)$ & コンパクト複素多様体 $X$ と正則 Poisson 構造 $\sigma$（$[\sigma,\sigma]=0$）\\
+$A=(T^*X)_\sigma$ & $\sigma^\sharp$ で定まる正則 Lie 亜群\\
+$L$、$D_\alpha s$ & Poisson 加群 $=$ 一般化正則直線束。$D_\alpha(fs)=fD_\alpha s+\sigma(\alpha,df)s$（$\alpha\in\Omega^1$）、平坦\\
+GH 断面 & $\HH^0(L)=\{s\in H^0(X,L):D_\alpha s=0\ \forall\alpha\}$ の元（Part I の Dolbeault モデルにより $d_1:H^0(L)\to H^0(T\otimes L)$ の核）\\
+$\pi:M\to X$ & 正則型の場合のシンプレクティック葉への射影（葉 $=$ ファイバー、$X$ は葉空間、$\dim_\C X=k$）\\
+SGH 束 & 強一般化正則束（葉に沿って平坦、横断方向に正則）。Pal--Poddar Def.\ 3.1\tC\\
+$R=\bigoplus_k H^0(X,L^k)$ & 次数付き環（\S\ref{sec:PK}）\\
+$\Pi_F$ & $\mathbb{C}^3$ 上の 2 次 Poisson 構造 $\Pi_F^{ij}=\epsilon_{ijk}\partial_kF$（Part I \S4）\\
+$\nu:X\hookrightarrow\mathbb P^N$ & Kodaira 埋め込み（$|L^m|$）\\
+$\mathcal J$（Jacobiator） & $\{a,\{b,c\}\}+(\text{巡回})$\\
+$k_i$、$N_{D_i}$ & 非被約因子 $D=\sum k_iD_i$ の重複度と法束\\
+$U=X\setminus D_{\mathrm{red}}$、$L_U$ & 補集合と、留数から決まる階数 1 の局所系\\
+$P_{\HH}(t)$、$\mu$ & $\sum\dim\HH^k\,t^k$、Milnor 数\\
+\bottomrule
+\end{longtable}
+\noindent タグ：\tC\ 文献、\tP\ 筆者の証明（標準的事実は引用）、\tV\ 計算機による確認、\tK\ 予想・見通し、\tQ\ 未確認。
+
+%--------------------------------------------------------------
+\section{古典の Kodaira 埋め込み定理：主張・仮定・証明のどこで効くか}\label{sec:classical}
+%--------------------------------------------------------------
+\begin{thm}[Kodaira の埋め込み定理]\tC\label{thm:Kod}
+$X$ をコンパクト複素多様体、$L$ を正の正則直線束とする。このとき $X$ は射影的で、十分大きな $m$ に対して $|L^m|$ が定める写像 $X\to\mathbb P(H^0(X,L^m)^*)$ は埋め込みである。
+\src{Kodaira, Ann.\ Math.\ 60 (1954) 28--48。教科書：Griffiths--Harris, \emph{Principles of Algebraic Geometry}, Ch.\ 1 \S4；Huybrechts, \emph{Complex Geometry}, Prop.\ 5.3.1（番号は\tQ）。}
+\end{thm}
+\begin{hyptab}
+$X$ コンパクト & $H^0(X,L^m)$ が有限次元で、$\mathbb P^N$ への写像が定義できる。 & 証明の最初と最後（有限次元性、閉埋め込みであること）。\\\midrule
+$L$ が正（$i\Theta_L>0$） & 曲率形式が Kähler 形式になり、$X$ は Kähler。Kodaira 消滅が使える。 & 点 $x$ での爆発 $\tilde X$ で $H^1(\tilde X,\pi^*L^m\otimes\mathcal O(-2E_x))=0$ を示す段（Kodaira 消滅）。\\\midrule
+正則断面が十分多い & 点と接ベクトルを分離する。 & 全射 $H^0(L^m)\to L^m\otimes\mathcal O/\mathfrak m_x^2$ が、上の消滅から出る。Riemann--Roch の次元評価は不要。
+\end{hyptab}
+\noindent 証明のどの段で、断面が\emph{点を区別する}ことが使われるかが重要である。次節で見るように、一般化正則（GH）断面ではこの段が壊れる。
+
+%--------------------------------------------------------------
+\section{一般化正則断面では埋め込めない}\label{sec:fail}
+%--------------------------------------------------------------
+\subsection{非退化な場合}
+\begin{prop}\tP\label{prop:one}
+$X$ を連結なコンパクト複素多様体、$\sigma$ をある稠密な開集合 $U_0$ で非退化な正則 Poisson 構造、$L$ を Poisson 加群とする。このとき $\dim_\C\HH^0(L)\le1$。GH 断面は $U_0$ の 1 点での値で決まり、GH 断面による Kodaira 写像は定値（または定義できない）。
+\end{prop}
+\begin{hyptab}
+連結、$U_0$ 稠密 & 一致の定理が使える。 & 手順 (iii)。\\\midrule
+$\sigma$ が $U_0$ で非退化 & $\sigma^\sharp:A|_{U_0}\to T$ が同型になり、$D$ が通常の平坦接続に化ける。 & 手順 (i)。\\\midrule
+$L$ が直線束 & 平坦断面は 1 点の値で決まる。 & 手順 (ii)。
+\end{hyptab}
+\begin{proof}
+(i) $U_0$ 上で $\nabla_vs:=D_{(\sigma^\sharp)^{-1}v}s$ とおくと、$D$ の Leibniz 則から $\nabla$ は通常の平坦正則接続になる。GH 断面は $\nabla s=0$ をみたす。(ii) $U_0$ は連結（連結多様体から真の解析的部分集合を除いたもの）で $L$ は階数 1 なので、平坦断面の空間は $\le1$ 次元で、断面は 1 点の値で決まる。(iii) $s$ は $s|_{U_0}$ で決まる（一致の定理）。\qedhere
+\end{proof}
+\begin{ex}\tV\label{ex:casimir}
+$\mathbb{CP}^2$ と $\Pi_F$（$F$ は滑らかな 3 次式）：$\HH^0(\mathcal O(m))=\C F^{k}$（$m=3k\ge0$）、それ以外は 0。$\mathbb P^1\times\mathbb P^1$ と滑らかな $(2,2)$ 曲線：$\HH^0(\mathcal O(m,m))=\C F^{m/2}$（$m\in2\Z_{\ge0}$）。Part I の表による。したがって、どの $m$ でも GH 断面による埋め込みは存在しない。
+\end{ex}
+
+\subsection{正則型の場合}
+\begin{prop}\tP\label{prop:leaf}
+$M$ をコンパクトな一般化複素多様体、$\Jc$ は稠密な開集合 $W$ 上で正則型 $k<n$（葉の次元 $2(n-k)>0$）、$L$ を一般化正則直線束とする。任意の GH 断面 $s_0,\dots,s_N$ について、$\varphi=[s_0:\cdots:s_N]$（基点集合の外で定義）は $W$ の各葉の上で定値で、したがって $W$ 上はしめこみ（immersion）でない。
+\end{prop}
+\begin{hyptab}
+正則型（局所モデルが積） & $\pi_T(L)\supset T_F\otimes\C$ が使える。 & 局所座標 Darboux（Gualtieri 2011, Thm.\ 4.3\tC）。\\\midrule
+$k<n$ & 葉の次元が正。 & 葉に沿って動けること。\\\midrule
+$L$ 一般化正則 & $L$-接続 $D$ が $D_\xi(fs)=\pi_T(\xi)(f)s+fD_\xi s$ をみたす。 & GH 断面 $\Rightarrow$ 葉方向に平行。
+\end{hyptab}
+\begin{proof}
+積モデル $L=\mathrm{graph}(\omega_Y)\oplus(T^{0,1}\oplus T^{*1,0})$ では $\pi_T(L)=T_Y\otimes\C\oplus T^{0,1}$。$\xi\in L$ が葉方向の成分をもつとき $D_\xi s=0$ は、$s$ が葉方向の平坦接続 $\nabla^F$ に関して平行であることを意味する。葉内の道に沿った平行移動 $P:L_x\to L_y$ について、すべての GH 断面で $s_i(y)=Ps_i(x)$。ゆえに比 $[s_0:\cdots:s_N]$ は $x$ と $y$ で一致する。\qedhere
+\end{proof}
+\begin{ex}\tP\label{ex:prodY}
+$M=Y\times X$（$Y$ シンプレクティック、$X$ 複素）、$L=\mathrm{pr}_Y^*F\boxtimes\mathrm{pr}_X^*G$ のとき $\HH^0(L)=H^0_{dR}(Y,F)\otimes H^0(X,G)$。$H^0_{dR}(Y,F)$ は $Y$ の連結成分ごとに $\le1$ 次元なので、写像は $\mathrm{pr}_X$（と連結成分の添字）を経由する。Part I の Künneth の計算と整合する。
+\end{ex}
+\begin{rem}[古典の証明のどこが壊れるか]\tP
+古典の証明で使うのは「断面が点と接ベクトルを分離する」ことである。命題 \ref{prop:one} では分離する断面が（定数倍を除いて）1 つ以下、命題 \ref{prop:leaf} では同じ葉の点を分離できない。仮定（正の曲率）は断面の\emph{存在}を保証するだけで、断面が GH（平坦）であることは保証しない。Pal--Poddar の「正の SGH 直線束」（Def.\ 11.10, 11.11\tC\ \tQ）は、横断方向でだけ正であることを要求しており、まさにこの状況に対応する。
+\end{rem}
+
+%--------------------------------------------------------------
+\section{葉空間版 Kodaira}\label{sec:leaf}
+%--------------------------------------------------------------
+\begin{thm}[葉空間版 Kodaira]\tP\label{thm:K1}
+$M$ をコンパクトな正則型一般化複素多様体で、次をみたすとする。
+\begin{enumerate}
+\item[(K1)] シンプレクティック葉への射影 $\pi:M\to X$ は、連結なコンパクトファイバー（$=$ 葉）をもつ固有な沈めこみ（または軌道体の沈めこみ）で、$X$ は $k$ 次元のコンパクト複素多様体（軌道体）。
+\item[(K2)] $L$ は SGH 直線束で、$L\cong\pi^*L_X$（SGH 束として）となる正則直線束 $L_X\to X$ がある（葉に沿ったホロノミーが自明）。
+\item[(K3)] $L_X$ は豊富。
+\end{enumerate}
+このとき $m_0$ があって、$m\ge m_0$ ならば $\HH^0(M,L^m)=\pi^*H^0(X,L_X^m)$ で、GH 断面による写像 $\varphi_m:M\to\mathbb P^N$ は $\varphi_m=\iota_m\circ\pi$。ここで $\iota_m:X\hookrightarrow\mathbb P^N$ は古典の Kodaira 埋め込み。したがって $\varphi_m$ の各ファイバーはちょうど 1 枚の葉である。軌道体の場合は $\iota_m$ は粗モジュライ空間の埋め込み（$m$ を等方群の位数の倍数にとる、Baily, Amer.\ J.\ Math.\ 79 (1957) 403--430；記憶による引用\tQ）。
+\end{thm}
+\begin{hyptab}
+(K1) 連結・コンパクトなファイバー & 葉の上の平坦断面は定数（Prop.\ \ref{prop:leaf} の逆向き）。ファイバーが連結だから $\varphi_m$ の逆像がちょうど 1 枚の葉。 & 手順 (i)、(iii)。\\\midrule
+(K2) ホロノミー自明 & 葉上で $L^m$ が自明な平坦束になり、GH 断面が存在する。ホロノミーが非自明なら葉に沿って $\HH^0=0$。 & 手順 (i)。\\\midrule
+(K3) $L_X$ 豊富 & 古典 Kodaira（定理 \ref{thm:Kod}）を $X$ に使う。 & 手順 (ii)。\\\midrule
+軌道体の場合 & 粗空間への Kodaira（Baily）。 & 手順 (ii) の軌道体版。
+\end{hyptab}
+\begin{proof}
+(i) $\HH^0(M,L^m)$ は、葉に沿って平坦で横断方向に正則な $L^m$ の断面（SGH 束の定義、Pal--Poddar Cor.\ 8.10 の次数 0 部分\tC\ \tQ）。(K1), (K2) より、各ファイバー上で $L^m=\pi^*L_X^m$ は自明な平坦束なので、平坦断面はファイバー上で定数、すなわち $\pi^*t$（$t$ は $L_X^m$ の断面）の形。横断方向の正則性は $t$ の正則性と同値。ゆえに $\HH^0(M,L^m)=\pi^*H^0(X,L_X^m)$。(ii) (K3) と古典の Kodaira 埋め込み定理（定理 \ref{thm:Kod}）により、$m\ge m_0$ で $\iota_m$ は埋め込み。(iii) $\varphi_m=\iota_m\circ\pi$ であり、$\iota_m$ は単射なので $\varphi_m(x)=\varphi_m(y)\Leftrightarrow\pi(x)=\pi(y)$、すなわち $x,y$ は同じ葉。\qedhere
+\end{proof}
+\begin{rem}[位置づけ]
+\tP\ 定理 \ref{thm:K1} は直接の帰着であり、深い結果ではない。\tC\ 調べた範囲で、正則型の場合の Kodaira 型の主張を明示した文献は見つからなかった。Pal--Poddar の Thm.\ 11.12（正の SGH 直線束に対する Kodaira--Nakano 型と Serre 型の消滅）\tC\ に対応する埋め込み側の主張に当たる。\tQ\ 彼らの「正」の定義との同値は未確認。型が跳ぶ場合や、一般の一般化複素構造に対する Kodaira 型の主張は、見つかっていない。
+\end{rem}
+
+%--------------------------------------------------------------
+\section{Poisson--Kodaira：Poisson 対の埋め込み}\label{sec:PK}
+%--------------------------------------------------------------
+GH 断面が（ほぼ）定数なので、問題を変えて、\emph{通常の}正則断面による Kodaira 埋め込み $\nu:X\hookrightarrow\mathbb P^N$ が Poisson 埋め込み、すなわち $\sigma$ が $\mathbb P^N$ 上の Poisson 構造 $\sigma_N$ の制限になっているかを問う。（これは筆者の提案であり、文献にある定式化ではない。）
+
+\begin{lem}[階数 1 の Poisson 加群と $\C^*$ 不変な持ち上げ]\tP\ \tQ\label{lem:lift}
+$L$ を Poisson 加群とする。全空間 $C=L^*\setminus 0$ には、$\C^*$ 不変で $p_*\hat\pi=\sigma$ をみたす Poisson 構造 $\hat\pi=\sigma+u\,\theta\wedge\partial_u$ が一意にあり（局所枠 $e$、$D_\alpha e=\theta(\alpha)e$、$u$ はファイバー座標）、$L^k$ の断面は次数 $k$ の同次関数に対応する。$\hat\pi$ の Jacobi 恒等式は、$D$ の平坦性と Leibniz 則に同値。
+\end{lem}
+\noindent 局所計算の確認は見取り図にとどまる\tQ。例：$\mathbb P^2$ で $\Pi_F$（$\mathbb C^3$ 上の 2 次 Poisson）、$L=\mathcal O(m)$（任意の $m$）。
+
+\begin{prop}\tP\label{prop:graded}
+$X$ 射影的、$L$ が豊富な Poisson 加群のとき、$R=\bigoplus_{k\ge0}H^0(X,L^k)$ は次数付き Poisson 環で、括弧の次数は 0（$\{R_a,R_b\}\subset R_{a+b}$）。
+\end{prop}
+\begin{proof}
+補題 \ref{lem:lift} により $R$ は $C$ 上の同次関数の環で、$\hat\pi$ の括弧は次数を保つ。\qedhere
+\end{proof}
+\begin{prop}[almost-Poisson な 2 次の持ち上げ]\tP\ \tC\label{prop:almost}
+$m\ge m_1$ のとき、$R^{(m)}=\bigoplus_kR_{mk}=S/I$（$S=\mathrm{Sym}\,R_m$、$I$ は 2 次式で生成）である（Mumford, \emph{Varieties defined by quadratic equations}, in: Questions on Algebraic Varieties, CIME 1969, Cremonese 1970；記憶による引用、頁数は\tQ）。このとき、$S$ 上の次数 0 の歪対称な biderivation $\{\ ,\ \}'$（2 次の almost-Poisson 構造）で、商 $S/I$ に $R$ の括弧を誘導するものがある。
+\end{prop}
+\begin{proof}
+$S_2\to R_{2m}$ の線形な切断 $s$ を選び、$\{y_a,y_b\}:=s(\{\bar y_a,\bar y_b\})$ とおいて Leibniz 則で拡張する。$q\in I_2$、$g\in S_1$ に対し $\{q,g\}'\equiv\{\bar q,\bar g\}=0\bmod I_3$ なので $\{I_2,S_1\}'\subset I_3$。$I$ が $I_2$ で生成されるので Leibniz 則により $\{I,S\}'\subset I$。\qedhere
+\end{proof}
+\noindent 持ち上げの Jacobiator $\mathcal J\in\mathrm{Hom}(\wedge^3S_1,I_3)$ は一般に 0 でなく、持ち上げの選び方の差は $\epsilon\in\mathrm{Hom}(\wedge^2S_1,I_2)$。Poisson 構造への拡張は、$\mathcal J_0+\mathcal L(\epsilon)+\mathcal J(\epsilon)=0$ という 2 次の方程式が解 $\epsilon$ をもつことと同値。1 次の障害類は $\mathcal J_0\bmod\mathrm{im}\,\mathcal L$。
+
+\subsection{トーリックの場合（証明）}
+\begin{thm}[Poisson--Kodaira，トーリック]\tP\label{thm:PKtoric}
+$X$ を滑らかな射影トーリック多様体（トーラス $T=N\otimes\C^*$）、$\sigma=\sum\omega^{ij}\xi_i\wedge\xi_j$（$\xi_i=x_i\partial_{x_i}$、$\omega\in\wedge^2N_\C$）とする。$L=\mathcal O(D)$ は豊富で多面体 $P$ をもち、$L^m$ は非常に豊富（断面 $\chi^a$、$a\in mP\cap M$）とする。このとき $\nu:X\hookrightarrow\mathbb P^N$、$\nu^*y_a=\chi^a$ は、$\mathbb P^N$ 上の対角的な 2 次 Poisson 構造
+\[\sigma_N=\sum_{a<b}\omega(a,b)\,y_ay_b\,\partial_{y_a}\wedge\partial_{y_b},\qquad\omega(a,b)=\sum\omega^{ij}a_ib_j\]
+に関する Poisson 埋め込みである。非常に豊富な任意のべき $L^m$ で成り立つ。
+\end{thm}
+\begin{hyptab}
+トーリック、$\sigma$ がトーラス不変 & 指標の括弧が単項式になる：$\{\chi^a,\chi^b\}=\omega(a,b)\chi^{a+b}$。 & 手順 (2)。持ち上げを対角的に選べる（命題 \ref{prop:almost} の一般の持ち上げでは Jacobi が崩れる自由度が消える）。\\\midrule
+$L^m$ が非常に豊富 & $\nu$ が埋め込みになる。 & 結論の「埋め込み」の部分。\\\midrule
+$X$ 滑らか・射影的 & 古典 Kodaira の設定。 & 同上。
+\end{hyptab}
+\begin{proof}
+(1) $\sigma_N$ は Poisson：歪対称な $\lambda_{ij}$ に対し $\{y_i,y_j\}=\lambda_{ij}y_iy_j$ とおくと、$\{y_i,\{y_j,y_k\}\}=\lambda_{jk}(\lambda_{ij}+\lambda_{ik})y_iy_jy_k$ の巡回和は歪対称性から 6 項が対で打ち消し合って 0。スケーリングの weight は 0 なので $\mathbb P^N$ に落ちる。(2) トーラス上で $\{\chi^a,\chi^b\}=\sigma(d\chi^a,d\chi^b)=\omega(a,b)\chi^{a+b}=\nu^*(\omega(a,b)y_ay_b)$（$\chi^a\chi^b=\chi^{a+b}$）。したがって $\nu$ は $T$ 上で、$\sigma$ も $\nu^*\sigma_N$ も正則なので閉包 $X$ 上でも Poisson 写像。\qedhere
+\end{proof}
+
+\subsection{非トーリックの場合（$\mathbb P^2$ の 3 次式、数値的確認）}
+\begin{obs}\tV\label{obs:P2}
+$X=\mathbb P^2$、$\sigma=\Pi_F$、Veronese $m=2$（$\mathbb C^6$、$\dim I_2=6$、未知数 $\epsilon$ は 90 個、方程式は 940 本）。自然な持ち上げの Jacobiator は、Fermat で 18 個、Hesse で 19 個、$xyz$ で 1 個の三つ組、尖点でも、0 でない。完全な 2 次方程式 $\mathcal J_0+\mathcal L(\epsilon)+\mathcal J(\epsilon)=0$ を Levenberg--Marquardt 法で解くと、$F=xyz$、Fermat、Hesse（$x^3+y^3+z^3-21xyz$）、尖点（$x^3-y^2z$）のすべてで、残差 $\le10^{-12}$ の解が見つかった。Fermat では有限差分でも独立に確認した（Jacobiator $\sim10^{-9}$、Veronese 錐への制限の誤差 $\sim10^{-10}$）。Fermat では線形部分 $\mathcal J_0+\mathcal L(\epsilon)=0$ だけでは解がなく、2 次の項が本質的である。$m=1$ は自明、$m\ge3$ は未知数が 1215 個で、この方法では重すぎて計算していない。スクリプト：\texttt{cp2/roundE\_*.py}。
+\end{obs}
+\noindent 状況：数値的な存在であり、厳密な代数的証明（certificate）ではない（残差は機械精度）。
+
+\begin{conj}[Poisson--Kodaira]\tK\label{conj:PK}
+$(X,\sigma)$ を射影的な正則 Poisson 多様体、$L$ を豊富な Poisson 加群とする。このとき $m_0$ があって、$m\ge m_0$ ならば $|L^m|$ による Kodaira 埋め込みは、$\mathbb P^N$ 上のある 2 次 Poisson 構造 $\sigma_N$ に関する Poisson 埋め込みである。
+\end{conj}
+\noindent 根拠：定理 \ref{thm:PKtoric}（トーリック）、観察 \ref{obs:P2}（$\mathbb P^2$、$m=2$）。未解決：一般の障害理論（$\mathcal J_0\bmod\mathrm{im}\,\mathcal L$ は Poisson コホモロジー型の類で、$m\gg0$ では Koszul 複体の $H^1$ の Serre 型消滅で消えると期待されるが、証明していない）。反例は見つかっておらず、$m$ が小さいと破れる可能性は残る。\\
+\emph{関係}：$\sigma=0$ なら古典の Kodaira に一致する。正則型 $M\to X$ で葉が $Y$ のとき、GH 断面は $X$ を経由する（命題 \ref{prop:leaf}）ので、$(M,\sigma_Y)$ を Poisson 対として埋め込むには GH でない通常の正則断面を使う必要があり、それが本節の定式化である。
+
+%--------------------------------------------------------------
+\section{非被約な境界}\label{sec:nonred}
+%--------------------------------------------------------------
+$\sigma=\Pi_F$ で $F$ が重複因子をもつ場合、$\HH^*$ の次元は $m$ について線形に増える。以下は厳密な線形代数による計算（Part I と同じ機械、$m=-15,\dots,15$）。スクリプト：\texttt{cp2/roundF\_nonreduced.py}。
+\begin{obs}\tV\label{obs:nr}
+\textbf{(a) $F=x^2y$（二重線 $\{x=0\}$ と線 $\{y=0\}$、結節点 1 個、$N_L=\mathcal O(1)$、$U\simeq S^1$）：}31 個の値すべてで次が一致。
+\[m\ge-2:\ P(t)=[3\mid m](1+t)+3t^2+(m+2)(t+t^2);\qquad m=-3:\ 3t^2;\]
+\[m\le-4:\ P(t)=[3\mid m](t^3+t^4)+3t^2+(-m-4)(t^2+t^3).\]
+$m\le-4$ は Serre 双対 $m\leftrightarrow-m-6$ の像。線形項の係数 $m+2=h^0(L,\mathcal O(m+1))=h^0(L,\mathcal L|_L\otimes N_L)$。$x^2(x+y)$ でも同じ表。\\
+\textbf{(b) $F=x^3$（三重線、$U=\C^2$）：}$m\ge0$ で $P(t)=1+(2m+5)(t+t^2)+2t^2$（すなわち $[1,2m+5,2m+7]$）、$m=-1$ で $[0,2,5]$、$m=-2,-3,-4$ で $[0,0,3]$、$m\le-5$ は増加が $\sim2|m|$（例：$m=-5$ で $[0,0,5,2,0]$、$m=-6$ で $[0,0,7,5,1]$、公式は未決）。$2m+5=\sum_{j=1}^2h^0(L,\mathcal O(m+j))$。\\
+\textbf{(c) $\mathbb P^1\times\mathbb P^1$、$D=2C$（$C$ は滑らかな $(1,1)$ 曲線）、$L=\mathcal O(m,m)$：}$m\ge0$ で $H^0=1$、$H^1=2m+3$、$H^2=2m+6$（Part II 以前の計算）。
+\end{obs}
+\begin{conj}[非被約な境界]\tK\label{conj:NR}
+$X$ をコンパクト複素曲面（ここでは $\mathbb P^2$ または $\mathbb P^1\times\mathbb P^1$）、$\sigma$ の因子 $D=\sum k_iD_i$（$D_i$ は滑らか、$D_{\mathrm{red}}$ は単純正規交差）とする。$m\ge0$（または高次の層コホモロジーが消える範囲）で
+\[\HH^*(L)=H^*(U;L_U)\oplus\C^{\chi(D_{\mathrm{red}})}[-2]\oplus\bigoplus_i\bigoplus_{j=1}^{k_i-1}\bigl(H^0(D_i,L|_{D_i}\otimes N_{D_i}^{j})[-1]\oplus H^0(D_i,L|_{D_i}\otimes N_{D_i}^{j})[-2]\bigr).\]
+\end{conj}
+\noindent 確認：(a)--(c) の 3 つの族（$x^2y$ で $m\ge-2$、$x^3$ で $m\ge0$、二重円錐で $m\ge0$）。全 Euler 標数は $\chi(U)+\chi(D_{\mathrm{red}})=\chi(X)$ で、Part II の定理 E と整合する。ヒューリスティクス：$D_i$ に沿った局所モデル $z^k\partial_z\wedge\partial_w$ の Poisson コホモロジーは無限次元（$\C[[w]]$-加群）の部分をもち、$j=1,\dots,k-1$ の次数で生成される（Monnier, Roger--Vanhaecke 型の結果\tC\ \tQ、未確認）。その大域的な部分が連接層 $L|_{D_i}\otimes N^j$ の $H^0$ で、$m$ について線形に増える。\tK\ 証明はない。$m$ が小さいと破れる（$x^3$ の $m=-1$ は合わない）ので、成り立つ範囲の正確な境界は未知。
+
+%--------------------------------------------------------------
+\section{準斉次な特異点の局所公式（訂正を含む）}\label{sec:local}
+%--------------------------------------------------------------
+Part II の観察（準斉次な平面曲線の特異点の局所公式）は、規則 $R(s)=[s<\mathrm{lct}](\cdots)$ で述べられていた。これは $\mathrm{lct}<1/2$ のとき誤りである。以下に訂正版と、証明できた部分を述べる。設定：$h$ は被約で準斉次な孤立特異点（重み $w_z,w_w$、次数 $d$、$\mathrm{Sp}$ は Steenbrink のスペクトル、$\mathrm{lct}=(w_z+w_w)/d$、$\delta=d-w_z-w_w$）、$\sigma=h\,\partial_z\wedge\partial_w$、$s\ne1$ は加群の留数パラメータ、$T=\mathcal O/J$（$J$ は Jacobi イデアル、$\dim T=\mu$）。茎の複体 $\mathcal C_s=(\mathcal O\xrightarrow{d_0}\mathcal O^2\xrightarrow{d_1}\mathcal O)$ は Part II と同じ。
+\begin{prop}\tP\ \tV\label{prop:Q}
+$B_s=(\mathcal O\to\Theta(-\log D)\to h\mathcal O)$ は $\mathcal C_s$ の部分複体で、商 $Q=\mathcal C_s/B_s\simeq[J\mathcal O_D\to\mathcal O_D]$ の微分は包含写像の $-(1-s)$ 倍で単射（$s\ne1$）。ゆえに $H^0(Q)=H^1(Q)=0$、$H^2(Q)=\mathcal O_D/J\mathcal O_D=\mathcal O/J$（次元 $\mu$）で、$H^k(B_s)=H^k(\mathcal C_s)$（$k\le1$）、$0\to H^2(B_s)\to H^2(\mathcal C_s)\to T\to0$。すなわち、茎 $=\mu\,t^2+H^*(B_s)$（次元の意味で）。
+\end{prop}
+\noindent 確認：$A_1,A_2,A_3,D_4,E_6$ で $H(\mathcal C_s)=H(B_s)+T[-2]$（0 個の不一致）\tV。
+\begin{prop}\tP\ \tQ\label{prop:weight}
+$B_s\simeq(\Omega^\bullet(\log D),d+s\,\mathrm{dlog}\,h\wedge)$（$\sigma^\sharp$ が連鎖写像であることによる。$s$ の符号の規約はデータで決めており、独立には確認していない）と仮定する。Euler ベクトル場 $e=w_zz\partial_z+w_ww\partial_w\in\Theta(-\log D)$（$e(h)=dh$）による Cartan 公式から、$H^*(B_s)$ は唯一の weight $k_0=-sd$ に集中する。$B_s$ の最小 weight は $-\delta$ なので、$s>\delta/d=1-\mathrm{lct}$ では $H^*(B_s)=0$。
+\end{prop}
+\begin{obs}[訂正された規則]\tV\ \tC\label{obs:rule2}
+$s\ne1$ のとき、次元の意味で
+\[\text{茎}=\C^\mu[-2]\oplus R(s),\qquad R(s)=[\,s\in\Z,\ s\le0\,](1+t)+(t+t^2)\cdot\#\{\alpha\in\mathrm{Sp}:\ s+\alpha\in\Z,\ s+\alpha\le1\}.\]
+これは Part II の規則と、$\mathrm{lct}\ge1/2$ では一致するが、$\mathrm{lct}<1/2$ では一致しない：$z^4-w^5$（$\mathrm{lct}=9/20$）で $s=11/20=1-\mathrm{lct}$ には（$s>\mathrm{lct}$ だが）クラスがある（weight $-\delta$）。0 個の不一致：$A_1,A_2,A_3,D_4,D_5$（重み $(3,2)$、次数 8）、$E_6$、$T_{2,3,6}$（$z^3-w^6$）、$z^4-w^4$、$z^4-w^5$、$z^5-w^5$（$1/12$ から $1/20$ の格子で $s\in[-2,2]$、$s=1$ は無限次元なので除く）。スクリプト：\texttt{cp2/roundF\_local\_rule2.py}。\tC\ 解釈：Milnor ファイバー束 $h:B\setminus D\to\C^*$ の Wang 完全列（ファイバーは $\mu$ 個の円の束、$H^1$ のモノドロミー固有値 $e^{-2\pi i\alpha}$）から $\text{茎}(Rj_*L_s)=[s\in\Z](1+t)+(t+t^2)\#\{\alpha:s+\alpha\in\Z\}$。$B_s$ は weight $\ge-\delta$ の部分を計算し、規則の切り捨て $s+\alpha\le1$ はこの weight の下限を $\alpha$ ごとに書き直したもの。Calderón-Moreno--Narváez-Macarro, Proc.\ London Math.\ Soc.\ 98 (2009) 、arXiv:math/0603003 は、自由因子（Jacobi イデアルが線形型）に対し、$s$ を大きな整数だけずらした族について対応する結果を与える（頁数は\tQ）。
+\end{obs}
+\noindent \tK\ 証明されていない点：$s\le1-\mathrm{lct}$ で $H(B_s)_{k_0}$ の次元がちょうど Wang 列の次元になること（10 種で 0 個の不一致）。切り捨て $s+\alpha\le1$ を $\alpha$ ごとに証明すること。尖点・接触点（$\mu=2,3$）は上の公式の特別な場合（$A_2,A_3$）で、一般の特異点の扱いは未完成。\\
+\tP\ 訂正：$D_5=z^2w-w^4$ の重みは $(3,2)$、次数 8 で、内部メモにあった $(3,1,7)$ は誤りだった。公開版 Part I, II は正しい重みで書かれており、影響を受けない。Part II の局所公式の観察（\S 準斉次な平面曲線の特異点。準斉次な germ について述べているが、検証したのは列挙した型のみ）は、本稿の観察 \ref{obs:rule2} で置き換えること。列挙した型（$A_k$, $D_k$, $E_6$, $E_8$, $T_{2,3,6}$）では新旧の規則は一致する（確認済み）ので、Part II の表と本文の数値は変わらない。
+
+%--------------------------------------------------------------
+\section{積の場合と一般次元の予想の状況}\label{sec:prod}
+%--------------------------------------------------------------
+\begin{prop}[Künneth]\tP\ \tQ\label{prop:Kunneth}
+$X,Y$ をコンパクト複素多様体、$\sigma_X,\sigma_Y$ を正則 Poisson 構造、$L_X,L_Y$ を Poisson 加群とする。積 $X\times Y$ に $\sigma=\sigma_X+\sigma_Y$、$L=L_X\boxtimes L_Y$（加群構造 $V_X+V_Y$）をとると、複体の層として $K_{X\times Y}=K_X\boxtimes K_Y$（$[\sigma_X,\sigma_Y]=0$ と Koszul の符号による）で、層の超コホモロジーの Künneth により $P^{X\times Y}_{\HH}(t)=P^X_{\HH}(t)P^Y_{\HH}(t)$。
+\end{prop}
+\noindent Künneth の文献（Kashiwara--Schapira, \emph{Sheaves on Manifolds}, \S2；Bredon, \emph{Sheaf Theory}, II.15）は\tQ。\tV\ $\mathbb P^2\times\mathbb P^2$ のトーリックなブロック積で $[1,4,12,16,16]=(1+2t+4t^2)^2$（Part II の表）。
+\begin{ex}\tP\label{ex:prod33}
+$X=Y=\mathbb P^2$、滑らかな 3 次曲線 $D_X,D_Y$、$L=\mathcal O(m)\boxtimes\mathcal O(m')$。$m,m'\in3\Z_{\ge0}$：$(1+2t^2)^2=1+4t^2+4t^4=P(H^*(U;\C))$（$U=U_X\times U_Y$）。$m,m'\notin3\Z$：$(3t^2)(3t^2)=9t^4$。$m,m'\in3\Z_{\le-6}$：$(2t^2+t^4)^2=P(H_c^*(U))$。$D=D_X\times Y\cup X\times D_Y$ は 2 成分の単純正規交差で 4 重点はないので、Part II の一般次元の予想（一般の単純正規交差の対数シンプレクティック多様体）の予測 $H^*(U;L_U)\oplus0$ と一致する。\tP\ ゆえにこの非トーリックな積では予想が成り立つ。
+\end{ex}
+\begin{rem}[仮定 (GEN) の必要性]\tP
+因子が結節点をもつときは $P=(H_X+\mu_Xt^2)(H_Y+\mu_Yt^2)=H_XH_Y+t^2(\mu_XH_Y+\mu_YH_X)+\mu_X\mu_Yt^4$ で、予想の予測 $H(U)+\#D_{(4)}t^4$（$\#D_{(4)}=\mu_X\mu_Y$）より交差項 $t^2(\mu_XH_Y+\mu_YH_X)$ だけ大きい。$\sigma_X+\sigma_Y$ は「一般的」でない（トーリックでも見つかった、余次元 2 の層での留数対の非退化性に由来する追加のクラス $t^2H^*(\mathcal O_\tau)$ と整合する）。したがって予想には一般性の仮定 (GEN) が必要で、積はその典型的な反例の族である。
+\end{rem}
+\noindent \tK\ 真に非積・非トーリックな次元 4 の検証は行っていない。候補：$\mathbb P^4$ 上の Feigin--Odesskii の楕円 Poisson 構造 $q_{5,1}$（$\sigma^2\in H^0(\mathcal O(5))$、$D$ は楕円正規五次曲線の割線多様体で単純正規交差でない）。
+
+%--------------------------------------------------------------
+\section{先行研究との比較}\label{sec:compare}
+%--------------------------------------------------------------
+\begin{itemize}
+\item \tC\ Pal--Poddar, \emph{Strong generalized holomorphic principal bundles}, arXiv:2404.18113 は、正則型のコンパクト一般化複素多様体で葉空間が Kähler 軌道体の場合に、正の SGH 直線束に対する Kodaira--Nakano 型と Serre 型の消滅（Thm.\ 11.12）を示した。本稿の定理 \ref{thm:K1} は、同じ設定で埋め込み側の主張を述べたものに当たる。\tQ\ 「正」の定義との同値は未確認。
+\item \tC\ Hu の Kähler Lie 亜群の仕事（arXiv:2403.10876, 2403.13424）は Kodaira 消滅と Riemann--Roch を扱うが、Kodaira 埋め込みは扱っていない（調べた範囲）。
+\item 一般の（型が跳ぶ）一般化複素構造に対する Kodaira 型の埋め込み定理は、見つからなかった\tC。Poisson--Kodaira（\S\ref{sec:PK}）は筆者の提案である。
+\end{itemize}
+
+%--------------------------------------------------------------
+\section{主張の状態一覧と未解決問題}\label{sec:ledger}
+%--------------------------------------------------------------
+\begin{center}\small
+\begin{tabular}{p{5.2cm}p{2.0cm}p{7.2cm}}\toprule
+主張 & 状態 & 備考\\\midrule
+命題 \ref{prop:one}（$\dim\HH^0\le1$） & \tP & 例は \tV\\
+命題 \ref{prop:leaf}（葉に沿って定数） & \tP & Gualtieri Thm.\ 4.3 を引用\\
+定理 \ref{thm:K1}（葉空間版） & \tP & Baily（軌道体）は記憶による引用\tQ\\
+補題 \ref{lem:lift} & \tP\ \tQ & 局所計算は見取り図\\
+命題 \ref{prop:graded}, \ref{prop:almost} & \tP & Mumford の定理は記憶による引用\tQ\\
+定理 \ref{thm:PKtoric}（トーリック） & \tP & \\
+観察 \ref{obs:P2}（$\mathbb P^2$、$m=2$） & \tV & 数値的存在、$m\ge3$ 未計算\\
+予想 \ref{conj:PK}（Poisson--Kodaira） & \tK & \\
+観察 \ref{obs:nr}（非被約） & \tV & 予想 \ref{conj:NR} は \tK\\
+命題 \ref{prop:Q}（局所、商の部分） & \tP\ \tV & \\
+命題 \ref{prop:weight} & \tP\ \tQ & $B_s$ の同定の符号の規約が未確認\\
+観察 \ref{obs:rule2}（訂正された規則） & \tV\ \tK & 10 種で 0 個の不一致、証明は部分的\\
+命題 \ref{prop:Kunneth}（Künneth） & \tP\ \tQ & 文献の確認\\
+\bottomrule
+\end{tabular}
+\end{center}
+\paragraph{未解決問題。}(1) 一般の型の跳ぶ一般化複素構造に対する Kodaira 型の定理の定式化（Poisson--Kodaira の一般化複素版）。(2) 予想 \ref{conj:PK} の障害類の消滅（$m\gg0$）。$\mathbb P^2$ で $m\ge3$ の計算を厳密に行う方法。(3) 予想 \ref{conj:NR} の証明と成り立つ範囲。(4) 局所公式の $\alpha$ ごとの証明。(5) Kodaira の Riemann--Roch を使わない証明（爆発）の一般化複素版。\par
+\paragraph{検証の範囲。}本稿の計算は、Part I, II と同じ厳密な線形代数（有限体 $\mathbb F_{32003}$ 上）か、数値的な（Levenberg--Marquardt）解である。観察 \ref{obs:P2} は後者に基づく。Pal--Poddar の定義との同値、Baily と Mumford の定理、Künneth の文献、Monnier / Roger--Vanhaecke の結果は、未確認または記憶による引用である。
+
+\begin{thebibliography}{99}\small
+\bibitem{PartI} Claude, 森, \emph{正則 Poisson 構造に付随する一般化複素構造上の一般化正則直線束のコホモロジー}（Part I, v2）, \url{https://hylt-math.github.io/2026/11/22/generalized-geometry-poisson/}
+\bibitem{PartII} Claude, 森, \emph{一般化正則直線束のコホモロジーと Riemann--Roch 型公式（Part II）}, \url{https://hylt-math.github.io/2026/11/22/generalized-geometry-poisson-part2/}
+\bibitem{Kod54} K.\ Kodaira, On K\"ahler varieties of restricted type, Ann.\ Math.\ 60 (1954) 28--48.
+\bibitem{GH} P.\ Griffiths, J.\ Harris, \emph{Principles of Algebraic Geometry}, Wiley 1978.
+\bibitem{Huy} D.\ Huybrechts, \emph{Complex Geometry: An Introduction}, Springer 2005.
+\bibitem{PP} D.\ Pal, M.\ Poddar, Strong generalized holomorphic principal bundles, arXiv:2404.18113; Ann.\ Sc.\ Norm.\ Super.\ Pisa Cl.\ Sci., doi:10.2422/2036-2145.202501\_026（掲載巻号は\tQ）.
+\bibitem{Gua} M.\ Gualtieri, Generalized complex geometry, Ann.\ Math.\ 174 (2011) 75--123, arXiv:math/0703298.
+\bibitem{LGSX} C.\ Laurent-Gengoux, M.\ Sti\'enon, P.\ Xu, Holomorphic Poisson manifolds and holomorphic Lie algebroids, IMRN 2008, arXiv:0707.4253.
+\bibitem{Hu1} T.\ Hu, Kodaira vanishing theorems for K\"ahler Lie algebroids, arXiv:2403.10876.
+\bibitem{Hu2} T.\ Hu, Lie groupoid Riemann--Roch--Hirzebruch theorem and applications, arXiv:2403.13424.
+\bibitem{Mum} D.\ Mumford, Varieties defined by quadratic equations, in: Questions on Algebraic Varieties (C.I.M.E., Varenna 1969), Cremonese 1970 [記憶による引用、頁数は\tQ].
+\bibitem{Bai} W.\ L.\ Baily, On the imbedding of V-manifolds in projective space, Amer.\ J.\ Math.\ 79 (1957) 403--430 [記憶による引用\tQ].
+\bibitem{CMNM} F.\ J.\ Calder\'on-Moreno, L.\ Narv\'aez-Macarro, Proc.\ London Math.\ Soc.\ 98 (2009), arXiv:math/0603003, doi:10.1112/plms/pdn043 [題名・頁数は\tQ].
+\bibitem{KS} M.\ Kashiwara, P.\ Schapira, \emph{Sheaves on Manifolds}, Springer 1990 [Künneth の該当箇所は\tQ].
+\bibitem{Bre} G.\ Bredon, \emph{Sheaf Theory}, 2nd ed., Springer GTM 170, 1997 [該当箇所は\tQ].
+\bibitem{Har} R.\ Hartshorne, \emph{Algebraic Geometry}, Springer GTM 52, 1977.
+\end{thebibliography}
