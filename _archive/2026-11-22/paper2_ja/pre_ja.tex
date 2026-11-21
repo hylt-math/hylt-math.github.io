@@ -1,0 +1,89 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\setmainfont[BoldFont={Noto Sans CJK JP Bold}]{Noto Serif CJK JP}
+\setsansfont[BoldFont={Noto Sans CJK JP Bold}]{Noto Sans CJK JP}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=24mm]{geometry}
+\usepackage{xcolor,booktabs,longtable,array,enumitem,fancyhdr,titlesec}
+\usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black]{hyperref}
+\setlength{\parindent}{1em}
+\setlength{\parskip}{2pt}
+\linespread{1.17}
+\emergencystretch=4em
+\setlist{itemsep=1pt,topsep=3pt}
+\setlength{\tabcolsep}{4pt}
+
+%%% --- Japanese line breaking for XeTeX (no xeCJK available) ---
+\makeatletter
+\XeTeXinterchartokenstate=1
+\newXeTeXintercharclass\cjkc
+\newXeTeXintercharclass\cjkclose
+\newXeTeXintercharclass\cjkopen
+\def\setcjkrange#1#2{\@tempcnta=#1 \@whilenum\@tempcnta<#2 \do{\XeTeXcharclass\@tempcnta=\cjkc \advance\@tempcnta by 1 }}
+\setcjkrange{"3000}{"30FF}
+\setcjkrange{"4E00}{"9FFF}
+\setcjkrange{"FF00}{"FFEF}
+\setcjkrange{"2010}{"2027}
+\setcjkrange{"25A0}{"25FF}
+\setcjkrange{"2190}{"21FF}
+\@tempcnta=0
+\def\setclose#1{\XeTeXcharclass#1=\cjkclose}
+\def\setopen#1{\XeTeXcharclass#1=\cjkopen}
+\setclose{"3001}\setclose{"3002}\setclose{"FF0C}\setclose{"FF0E}\setclose{"FF09}\setclose{"300D}\setclose{"300F}\setclose{"3011}\setclose{"FF1A}\setclose{"FF1B}\setclose{"FF01}\setclose{"FF1F}\setclose{"30FC}
+\setopen{"FF08}\setopen{"300C}\setopen{"300E}\setopen{"3010}
+\def\cjkglue{\hskip0pt plus 0.25pt minus 0.1pt\relax}
+\XeTeXinterchartoks\cjkc\cjkc={\cjkglue}
+\XeTeXinterchartoks\cjkclose\cjkc={\cjkglue}
+\XeTeXinterchartoks\cjkclose\cjkopen={\cjkglue}
+\XeTeXinterchartoks\cjkc\cjkopen={\cjkglue}
+\XeTeXinterchartoks\cjkclose\cjkclose={}
+\XeTeXinterchartoks\cjkc\cjkclose={}
+\XeTeXinterchartoks 0 \cjkc={\cjkglue}
+\XeTeXinterchartoks \cjkc 0={\cjkglue}
+\XeTeXinterchartoks 0 \cjkopen={\cjkglue}
+\XeTeXinterchartoks \cjkclose 0={\cjkglue}
+\makeatother
+
+%%% --- status tags ---
+\newcommand{\tP}{\textcolor{green!45!black}{\textbf{【証明済】}}}
+\newcommand{\tC}{\textcolor{blue!55!black}{\textbf{【文献】}}}
+\newcommand{\tV}{\textcolor{violet!80!black}{\textbf{【計算で確認】}}}
+\newcommand{\tK}{\textcolor{red!70!black}{\textbf{【予想】}}}
+\newcommand{\tQ}{\textcolor{orange!85!black}{\textbf{【要確認】}}}
+
+%%% --- theorem-like environments ---
+\theoremstyle{definition}
+\newtheorem{defn}{定義}[section]
+\newtheorem{thm}[defn]{定理}
+\newtheorem{prop}[defn]{命題}
+\newtheorem{lem}[defn]{補題}
+\newtheorem{cor}[defn]{系}
+\newtheorem{ex}[defn]{例}
+\newtheorem{rem}[defn]{注意}
+\newtheorem{obs}[defn]{観察}
+\newtheorem{conj}[defn]{予想}
+\newcommand{\src}[1]{\par\noindent{\small\textcolor{blue!55!black}{\textbf{[出典]}~#1}}\par}
+\renewcommand{\proofname}{証明}
+
+\newenvironment{hyptab}{\par\medskip\noindent{\small\textbf{仮定と、その役割}}\par\nopagebreak\small\noindent\begin{tabular}{>{\raggedright\arraybackslash}p{3.3cm}>{\raggedright\arraybackslash}p{5.5cm}>{\raggedright\arraybackslash}p{5.9cm}}\toprule 仮定 & なぜ必要か & 証明のどこで効くか\\\midrule}{\\\bottomrule\end{tabular}\par\medskip}
+
+%%% --- notation ---
+\newcommand{\R}{\mathbb R}\newcommand{\C}{\mathbb C}\newcommand{\Z}{\mathbb Z}
+\newcommand{\bT}{\mathbb T}
+\newcommand{\Lb}{\overline L}
+\newcommand{\Jc}{\mathcal J}
+\newcommand{\dbar}{\bar\partial}
+\newcommand{\ch}{\mathrm{ch}}\newcommand{\Td}{\mathrm{Td}}
+\newcommand{\rk}{\mathrm{rk}}
+\newcommand{\HH}{\mathrm{HH}}
+\newcommand{\Res}{\mathrm{Res}}
+\newcommand{\dlog}{\mathrm{dlog}\,}
+\newcommand{\sh}{\sharp}
+
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small 一般化正則直線束のコホモロジーと Riemann--Roch 型公式（Part II）}
+\fancyhead[R]{\small 調査ノート 2026-11-22}
+\fancyfoot[C]{\small\thepage}
+\titleformat{\section}{\large\bfseries\sffamily}{\thesection}{0.8em}{}
+\titleformat{\subsection}{\normalsize\bfseries\sffamily}{\thesubsection}{0.8em}{}
+

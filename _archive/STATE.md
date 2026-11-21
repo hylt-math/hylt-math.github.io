@@ -1,6 +1,6 @@
 # 研究の状態と再開手順（Claude 用）
 
-最終更新: 2026-11-22 03:15 JST（ラウンド0終了）
+最終更新: 2026-11-22（ラウンド1: Part II 公開）
 
 ## 方針（ユーザー指示、2026-11-22 02:29）
 - このサイトへの PDF／記事の追加・更新は、確認なしで公開してよい。arXiv 投稿・先生への連絡はしない。
@@ -14,6 +14,8 @@
 - 2026-11-22 generalized-geometry-poisson v1（ja/en）、v2（ja/en、書誌・定理番号の訂正、commit e299fc2）。status: partial。v2 のソースは _archive/2026-11-22/paper_v2_ja, paper_v2_en。
 - 注意: v2 公開後、公開サイトでの反映確認は未了（ブラウザ系ツールが使えず、WebFetch は古いキャッシュを返した）。次ラウンドで確認する。
 
+- 2026-11-22 generalized-geometry-poisson-part2 v1（ja/en、新記事、status: partial）。ソースは _archive/2026-11-22/paper2_ja, paper2_en。Part I への影響確認の結果（撤回なし）は notes/v3_corrections.md。
+
 ## 作業キュー（優先順）
 A. v1 の【要確認】のうち書誌・定理番号の確認（Gualtieri 2011 §4、Mokri、LGSX 補題番号、Hu 2403.10876 後半、Gualtieri–Li／Pym／Goto 等）。変更があれば v2。
 B. Pal–Poddar arXiv:2404.18113 §11 の定義を再読し、横断次数の消滅の定式化との整合を確認（v2 に反映）。
@@ -24,3 +26,4 @@ F. 次元4以上（非トーリック）の確認。
 
 ## ラウンド記録
 - ラウンド0 (02:35–03:15): アーカイブ作成。A（書誌確認）・B（Pal–Poddar 再読）完了。v2 作成・push。作業キューの A, B は完了。次は C〜F。
+- ラウンド1: C（トーリック不等留数、共鳴、準斉次局所公式、三重点）・D（Euler 標数、定理 T）の一部を Part II として公開。残り: C の尖点／接触点の証明・非被約 D、E（Kodaira 埋め込み）、F（非トーリック次元≥4）、指数理論、Part II の【要確認】（CLS 定理番号、共鳴公式の N の定義、AGV 参照）。公開サイト反映確認は Part I v2・Part II とも未了。
