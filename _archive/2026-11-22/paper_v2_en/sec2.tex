@@ -1,0 +1,71 @@
+%--------------------------------------------------------------
+\section{Basics of generalized complex geometry}\label{sec:gc}
+%--------------------------------------------------------------
+\subsection{Definitions}
+\begin{defn}[Generalized complex structure]\tC\label{def:GC}
+A map $\Jc:\bT\to\bT$ with $\Jc^2=-1$ preserving the pairing is called a generalized almost complex structure. If the $+i$-eigenbundle $L\subset\bT_\C$ is closed under the Courant bracket, $\Jc$ is called integrable (a generalized complex structure).
+\src{Hitchin, \emph{Generalized Calabi--Yau manifolds}, Q.\ J.\ Math.\ 54 (2003) 281--308, arXiv:math/0209099; Gualtieri, \emph{Generalized complex geometry}, Ann.\ Math.\ 174 (2011) 75--123, arXiv:math/0703298, \S3 (type Def.~3.5, canonical bundle Def.~3.7, generalized Calabi--Yau Def.~3.17, Picard group Def.~3.18; numbers checked in the source); Gualtieri's thesis arXiv:math/0401221.}
+\end{defn}
+\begin{ex}\tC
+Complex structure $I$: $L=T^{0,1}\oplus T^{*1,0}$ (type $n$). Symplectic structure $\omega$: $L=\{X-i\omega(X)\}$ (type $0$).
+\src{Hitchin 2003 (introduction); Gualtieri 2011, \S3 (examples of complex and symplectic structures; no specific example numbers could be confirmed; Def.~4.1 in \S4 is the definition of a regular point, so the ``Examples 4.1--4.2'' cited in v1 do not exist) \tQ.}
+\end{ex}
+\begin{defn}[Type]\tC
+$\mathrm{type}(\Jc)_p=\mathrm{codim}_\C\,\pi_T(L_p)$ ($\pi_T:\bT\to T$). Points where the type is locally constant are called regular points. The type can jump in general.
+\src{Gualtieri 2011, \S3, and Abouzaid--Boyarchenko, \emph{Local structure of generalized complex manifolds}, J.\ Symplectic Geom.\ 4 (2006) 43--62, arXiv:math/0511049.}
+\end{defn}
+\begin{prop}[Elliptic complex]\tC\label{prop:ellip}
+$L$ is a complex Lie algebroid (anchor $\pi_T|_L$), and via $L^*\cong\Lb$ the exterior algebra $\wedge^\bullet L^*$ carries the Lie algebroid differential $d_L$. The complex $(\wedge^\bullet L^*,d_L)$ is elliptic, and on a compact manifold the generalized Dolbeault cohomology $H^k(\wedge L^*,d_L)$ is finite-dimensional. Using the spinor bundle $K$, under $\wedge^{n-k}\Lb\cdot K\cong U^k$ the differential $d_L$ corresponds to $\dbar:U^k\to U^{k-1}$.
+\src{Gualtieri 2011, Prop.~3.13 ($(\wedge L^*,d_L)$ is elliptic), Cor.~3.14 (finite-dimensional cohomology when compact). In the proof in \S\ref{sec:duality}, for $\Jc_\sigma$ ellipticity is verified directly from the principal symbol (\tP).}
+\end{prop}
+
+\subsection{The $\beta$-transform $\Jc_\sigma$ and generalized holomorphic bundles}\label{sec:setting}
+Let $X$ be a complex manifold and $\sigma$ a holomorphic Poisson structure.
+
+\begin{prop}\tC\label{prop:Jsigma}
+(a) $L_\sigma=T^{0,1}\oplus\{\sigma^\sh\xi+\xi:\xi\in T^{*1,0}\}$ is a maximal isotropic subbundle of $\bT_\C$ and is integrable. The corresponding generalized complex structure $\Jc_\sigma$ has type $n-\mathrm{rk}\,\sigma^\sh_p$ at $p\in X$ ($\mathrm{rk}$ is the complex rank). In particular it has type 0 (symplectic type) where $\sigma$ is non-degenerate, and type $n$ (complex type) where $\sigma$ vanishes.
+(b) $(\Xi,\xi)\mapsto(\Xi+\sigma^\sh\xi,\xi)$ is an isomorphism of complex Lie algebroids $T^{0,1}\bowtie(T^{1,0})^*_\sigma\to L_\sigma$ (the left side is a matched pair, written $T^{0,1}\bowtie A^{1,0}$ in LGSX).
+\src{(a) Gualtieri, \emph{Branes on Poisson varieties}, arXiv:0710.2719, Prop.~5; Laurent-Gengoux--Sti\'enon--Xu (LGSX below), \emph{Holomorphic Poisson manifolds and holomorphic Lie algebroids}, IMRN 2008, Art.\ ID rnn088, arXiv:0707.4253, Thm.~2.7 and Rem.~2.8 (there written $\Jc_\pi$, $\pi=\pi_R+i\pi_I$). The type formula is the author's reorganization, consistent with Gualtieri's examples ($\mathbb{CP}^2$ etc.) (\tQ). (b) LGSX Thm.~4.21 and Lemma~4.22 (the factor 4 in $\Jc_{4\pi}$ comes from the normalization of $\pi=\pi_R+i\pi_I$, LGSX Prop.~3.7). Gualtieri's paper and LGSX differ in the choice of sign of eigenvalues ($\ker(\Jc\mp i)$), but the two are exchanged by complex conjugation, so the statements below are unaffected.}
+\end{prop}
+
+\begin{defn}[Generalized holomorphic bundle]\tC
+A complex vector bundle $E$ equipped with a flat $L$-connection $\dbar_E:\Gamma(E)\to\Gamma(L^*\otimes E)$ ($\dbar_E^2=0$).
+\src{Gualtieri 2011, \S3 (generalized holomorphic bundles are introduced in prose after Thm.~3.15, with no numbered definition; the complex case is Example 3.19; Def.~3.18 is the definition of the Picard group); Gualtieri, \emph{Branes on Poisson varieties}, \S4.1.}
+\end{defn}
+\begin{defn}[Poisson module]\tC
+A holomorphic vector bundle $E$ with a flat $A$-connection $\nabla:\Gamma(E)\to\Gamma(A^*\otimes E)$, i.e.\ satisfying $\nabla_{\xi}(fs)=f\nabla_\xi s+(\sigma^\sh\xi)(f)s$ and $[\nabla_a,\nabla_b]=\nabla_{[a,b]_\sigma}$ ($a,b$ holomorphic 1-forms). Here $A=(T^*)_\sigma$.
+\src{LGSX, Def.~4.15 and Lemma~4.16; Gualtieri, \emph{Branes on Poisson varieties}, \S2--4.}
+\end{defn}
+
+\begin{prop}[Generalized holomorphic bundles $=$ Poisson modules, and the Dolbeault model]\label{prop:ident}
+Let $(X,\sigma)$ be as above.
+\begin{enumerate}
+\item[(a)] A generalized holomorphic bundle with respect to $\Jc_\sigma$ is the same thing as a holomorphic vector bundle with a Poisson module structure. \tC\ Gualtieri, \emph{Branes on Poisson varieties}, Prop.~8; LGSX Lemma~4.16. A direct proof is given below (\tP). For line bundles, by Prop.~9 of the same paper, the obstruction is a class $\sigma\cdot\alpha$ in $H^1(T^{1,0})$ together with a class in $H^2_\sigma$, and when structures exist they form an affine space over $H^1_\sigma(X)=\HH^1(\mathcal O)$. \tC
+\item[(b)] Since $L^*=T^{*0,1}\oplus T^{1,0}$, we have $\Gamma(\wedge^kL^*\otimes E)=\bigoplus_{a+b=k}A^{0,a}(\wedge^bT\otimes E)$ and $d_L=\dbar+(-1)^ad_A$, where $d_A=[\sigma,\cdot]+V\wedge$ acts on the coefficients in a holomorphic frame. Hence
+\[H^k_{GC}(E)=H^k\bigl(\Gamma(\wedge^\bullet L^*\otimes E),d_L\bigr)=\mathbb H^k\bigl(X;(\wedge^\bullet T\otimes E,\ [\sigma,\cdot]+V\wedge)\bigr)=:\HH^k(E).\]
+\tC\ This is LGSX Thm.~4.19 ($H^*(A,E)=H^*(T^{0,1}\bowtie A^{1,0},E)$, with $H^*(A,E)$ defined as sheaf cohomology in Def.~4.17). \tP\ The structure of the proof is given below, but it depends on Mokri's theorem on matched pairs (Matched pairs of Lie algebroids, Glasgow Math.\ J.\ 39 (1997) 167--181, doi:10.1017/S0017089500032055; year and DOI checked, volume/pages from memory \tQ; LGSX Lemma~4.16: a complex vector bundle is an $A$-module iff it is a $T^{0,1}X\bowtie A^{1,0}$-module; the proof of Thm.~4.19 is only stated to be similar to that of Thm.~4.11) and on LGSX Lemma~4.22 (not re-derived).
+\end{enumerate}
+\end{prop}
+\begin{proof}[Proof of (a) (sketch)]
+($\Leftarrow$) Given a Poisson module structure and a holomorphic frame $\{e_s\}$, put $\nabla_{\bar\Xi}\sum f_se_s=\sum(\bar\Xi f_s)e_s$ (holomorphic structure) and $\nabla_\xi\sum f_se_s=\sum((\sigma^\sh\xi)f_s)e_s+f_s\nabla_\xi e_s$ ($\xi\in A^{1,0}$). This is the unique extension forced by the Leibniz rule, and it is well defined because $\nabla_\xi e_s$ is holomorphic. Flatness: the $(\bar\Xi,\bar\Upsilon)$ components follow from integrability of the holomorphic structure; the $(\bar\Xi,\xi)$ components are equivalent to ``$\nabla_\xi$ maps holomorphic sections to holomorphic sections'', which holds by construction; the $(\xi,\eta)$ components are the $C^\infty$-linear extension of flatness of the Poisson module (for holomorphic $\xi,\eta$) (the curvature is a tensor).
+($\Rightarrow$) Restricting a flat $L$-connection to $T^{0,1}$ gives a holomorphic structure (Koszul--Malgrange); flatness of mixed type shows that $\nabla_\xi$ maps holomorphic sections to holomorphic sections, and the module conditions follow from the Leibniz rule and flatness.\qedhere
+\end{proof}
+\begin{proof}[Structure of the proof of (b)]
+By the general theory of matched pairs (Mokri), the Chevalley--Eilenberg complex of $L\cong T^{0,1}\bowtie A^{1,0}$ (Prop.~\ref{prop:Jsigma}(b)) is the total complex of $C(T^{0,1};\,C(A^{1,0};E))$. Here the $T^{0,1}$ direction is the Dolbeault resolution of $\wedge^bT\otimes E$ (differential $\dbar$), and the $A^{1,0}$ direction is $C(A;E)=(\wedge^bT\otimes E,\ [\sigma,\cdot]+V\wedge)$. The two differentials anti-commute with the Koszul sign $(-1)^a$. The total complex is a fine resolution of the complex $(\wedge^\bullet T\otimes E,d_A)$, so its cohomology is the hypercohomology.\qedhere
+\end{proof}
+
+\begin{rem}[\tC\ Note on integrability]
+A notion of Lie groupoid integrating the complex Lie algebroid $L=L_\sigma$ itself was not found in the literature surveyed. Thms.~3.17 and 3.22 of LGSX arXiv:0803.2031 relate integrability of a holomorphic Lie algebroid $A$ to that of the real Poisson structures $\mathrm{Re}\,\sigma$, $\mathrm{Im}\,\sigma$, but do not treat $T^{0,1}\bowtie A^{1,0}$ (Rem.~4.14 of that paper only poses it as a question). Thm.~7.1 of Bailey--Gualtieri, arXiv:1611.03850 (title \tQ), states the equivalence between a generalized complex structure integrating to a weak holomorphic symplectic groupoid (a Morita-class notion) and integrability of its underlying real Poisson structure. \tP\ For the smooth cubic $\sigma$ on $\mathbb{CP}^2$, the leaves of $\mathrm{Im}\,\sigma$ are the open leaf $U$ (isotropy $0$) and the points of $D$ (isotropy $\mathrm{aff}(1,\C)$, with trivial centre); by Crainic--Fernandes, Ann.\ Math.\ 157 (2003) 575--620 (arXiv:math/0105033) Cor.~5.2 (``if all $N_x$ are trivial, then integrable'') $\mathrm{Im}\,\sigma$ is integrable. The hypotheses of Bailey--Gualtieri were checked only through the summary obtained \tQ.
+\end{rem}
+
+\subsection{On generalized holomorphic sections}\label{sec:ghfun}
+\begin{obs}\tP\label{obs:casimir}
+A generalized holomorphic section ($\dbar_Es=0$) of a Poisson module $(E,\nabla)$ is a flat (Casimir-type) section: $\HH^0(E)=\{s\in H^0(X,E):\nabla_\xi s=0\ (\forall\xi)\}$. Near a point of type $0$ ($\sigma$ non-degenerate), $\nabla$ corresponds via $\sigma^\sh$ to an ordinary flat connection, and flat sections are locally constant.
+\end{obs}
+\begin{proof}
+$\HH^0=\ker(d_A:H^0(E)\to H^0(T\otimes E))$, and $d_As=(\xi\mapsto\nabla_\xi s)$ (Prop.~\ref{prop:ident}(b)).
+\end{proof}
+\begin{rem}\tK
+This means that, in the regular case of non-zero type as well (the Pal--Poddar framework), generalized holomorphic sections are locally constant in the leaf directions, so they cannot give an embedding of $M$ into projective space. A generalized Kodaira embedding theorem will have to be reformulated as a map to the leaf space (or to the quotient separated by Casimir sections). The present note does not treat the generalization of the Kodaira embedding theorem itself.
+\end{rem}
+

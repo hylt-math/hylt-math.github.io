@@ -1,0 +1,102 @@
+%--------------------------------------------------------------
+\section{The log-symplectic case: Poisson modules $=$ logarithmic flat connections}\label{sec:logsymp}
+%--------------------------------------------------------------
+\subsection{Setting}
+Let $X$ be a compact complex manifold ($\dim_\C X=n=2k$), $\sigma$ a holomorphic Poisson structure, and $D\subset X$ a reduced divisor (simple normal crossings; for surfaces, ordinary double points are also allowed).
+Put $T_D=T_X(-\log D)$, $B=\Omega^1(\log D)$.
+
+\begin{defn}[Log-symplectic]\tC
+$\sigma$ is called log-symplectic along $D$ if $\sigma\in H^0(\wedge^2T_D)$ and $\sigma^\sh:B\to T_D$ is an isomorphism (equivalently, $\omega:=\sigma^{-1}\in H^0(\Omega^2(\log D))$ is non-degenerate). Then $\mathrm{div}(\sigma^k)=D$, i.e.\ $-K_X=\mathcal O(D)$.
+\src{Goto, \emph{Unobstructed deformations of generalized complex structures induced by $C^\infty$ logarithmic symplectic structures}, arXiv:1501.03398 (journal and pages unverified \tQ); Gualtieri--Li, \emph{Symplectic groupoids of log symplectic manifolds}, IMRN 2014, arXiv:1206.3674; Pym, \emph{Constructions and classifications of projective Poisson varieties}, Lett.\ Math.\ Phys.\ 108 (2018) 573--632 (checked). The journal of Gualtieri--Li and the publication data of Goto are unverified \tQ.}
+For surfaces this means that $\sigma\in H^0(-K_X)$ has a reduced zero divisor with only ordinary double points. Locally $\sigma=h\,\partial_1\wedge\partial_2$ with $h=zu$ (smooth points) or $h=z_1z_2u$ (double points), $u$ a unit.
+\end{defn}
+
+\subsection{Statement}
+\begin{thm}[Poisson modules $=$ logarithmic flat connections]\tP\label{thm:main1}
+Let $(X,D,\sigma)$ be log-symplectic (any even dimension, $D$ simple normal crossings) and $E$ a holomorphic line bundle carrying a Poisson module structure.
+\begin{enumerate}
+\item[(a)] For a local frame $e$, a holomorphic vector field $V$ is defined by $\nabla_\beta e=\beta(V)e$, and $[\sigma,V]=0$ (a Poisson vector field). Under a change of frame $e\mapsto ge$, $V$ changes only by a Hamiltonian term of the form $X_{\log g}$.
+\item[(b)] $V$ is automatically logarithmic: $V\in T_D$. Hence the $A$-module structure extends uniquely to a $B$-module structure, and via the isomorphism $\sigma^\sh:B\cong T_D$ it is the same thing as a flat connection $\nabla^{\log}:E\to\Omega^1(\log D)\otimes E$ with logarithmic poles.
+\item[(c)] The residue of $\nabla^{\log}$ along $D_i$ is a constant $r_i\in\C$, and $c_1(E)=-\sum_ir_i[D_i]$ in $H^2(X;\C)$.
+\item[(d)] Near a point of $D$ one can choose a frame with $\nabla^{\log}e=\sum_ir_i\,\dlog z_i\,e$.
+\item[(e)] The subcomplex $C(T_D;E)=(\wedge^bT_D\otimes E,d_E)\subset C(A;E)$ is isomorphic via $\wedge^b\sigma^\sh$ to the logarithmic de Rham complex $\mathrm{DR}_{\log}(E)$.
+\end{enumerate}
+\end{thm}
+\begin{hyptab}
+Log-symplectic ($\sigma^\sh:B\cong T_D$) & To identify the Lie algebroid structure $(T_D^*)_\sigma$ on $B$ with $T_D$, and to treat Poisson modules as ordinary flat connections (with logarithmic poles). & Lemma~\ref{lem:iso}, Theorem (b), (e).\\\midrule
+$D$ reduced, simple normal crossings & To estimate the pole order from each factor of the local equation $f=z_1\cdots z_s$ independently. & Lemma~\ref{lem:log} (deducing $V(z_i)\in(z_i)$ from $V(f)\in(f)$).\\\midrule
+$X$ compact & For the relation between $c_1(E)$ and the residues (an equality of global cohomology classes). & (c). That the residues are constant is local.\\\midrule
+$\sigma$ Poisson ($[\sigma,\sigma]=0$) & $A$ becomes a Lie algebroid and $d_E^2=0$. & Lemma~\ref{lem:flat}.
+\end{hyptab}
+
+\begin{lem}[Flatness $\Leftrightarrow$ Poisson vector field]\tP\label{lem:flat}
+For a local frame $e$ put $\Theta(\beta):=\nabla_\beta e/e$. Then $\nabla_a\nabla_be=(\sigma^\sh a)(\Theta b)e+\Theta(a)\Theta(b)e$. Hence flatness $[\nabla_a,\nabla_b]=\nabla_{[a,b]_\sigma}$ is equivalent to
+$(\sigma^\sh a)(\Theta b)-(\sigma^\sh b)(\Theta a)=\Theta([a,b]_\sigma)$, i.e.\ $\Theta$ is a 1-cocycle of the Lichnerowicz complex: $\Theta(\beta)=\beta(V)$, $[\sigma,V]=0$.
+In local coordinates with $\sigma=h\partial_1\wedge\partial_2$, $a=\Theta(dz_1)$, $b=\Theta(dz_2)$, the condition reads $h(a_1+b_2)=h_1a+h_2b$, i.e.\ $V(h)=h\,\mathrm{div}V$. The differential $d_E$ is, on $C^0$, $d_E(fe)=(-\sigma^\sh(df)+fV)e$, and for $c=X\otimes e$, $X=p\partial_1+q\partial_2$,
+\[(d_Ec)(dz_1,dz_2)=h(p_1+q_2)-h_1p-h_2q+qa-pb.\]
+\end{lem}
+\begin{lem}[$V$ is logarithmic]\tP\label{lem:log}
+Let $f=z_1\cdots z_s$ be a local equation of $D$. From $L_V\sigma=0$ we get $L_V\sigma^k=0$. Since $\sigma^k=f'\partial_1\wedge\cdots\wedge\partial_n$ ($f'=f\cdot$unit), $V(f')-f'\,\mathrm{div}V=0$, hence $V(f)\in(f)$. Now $V(f)/f=\sum_iV(z_i)/z_i$, and the $i$-th term has a pole only along $\{z_i=0\}$. Since the whole is holomorphic, each $V(z_i)/z_i$ is holomorphic, i.e.\ $V(z_i)\in(z_i)$.
+\end{lem}
+\begin{lem}[$\sigma^\sh:B\to T_D$ is an isomorphism of Lie algebroids]\tP\ (standard)\label{lem:iso}
+$\sigma\in\wedge^2T_D$ is a non-degenerate Poisson structure on the Lie algebroid $T_D$. That $\omega=\sigma^{-1}$ is $d_{T_D}$-closed follows from $\omega$ being closed on $U$ (the inverse of a Poisson structure) and from the fact that a section of $\Omega^3(\log D)$ vanishing on a dense open set is $0$. For a non-degenerate Poisson structure coming from a closed 2-form, $\sigma^\sh$ preserves brackets. Hence $(T_D^*)_\sigma=B\cong T_D$.
+\end{lem}
+\begin{lem}[Residues, local normal form, $c_1$]\tP\ /\ \tC\label{lem:res}
+Let $\nabla^{\log}e=\theta e$ with $\theta\in\Omega^1(\log D)$; $\theta$ is closed by flatness. The residue $\theta_i|_{D_i}$ along $D_i$ is seen to be constant by restricting $d\theta$ to $D_i$. Since $\theta-\sum r_i\dlog z_i$ is a closed holomorphic 1-form, it equals $dg$, and for the frame $e'=e^{-g}e$ we get $\nabla^{\log}e'=\sum r_i\dlog z_i\,e'$ (this is (d)). The relation $c_1(E)=-\sum r_i[D_i]$ is the Esnault--Viehweg residue formula (\tC\ Esnault--Viehweg, \emph{Logarithmic de Rham complexes and vanishing theorems}, Invent.\ Math.\ 86 (1986) 161--194, \S2; Deligne, \emph{\'Equations diff\'erentielles \`a points singuliers r\'eguliers}, LNM 163, Springer 1970, Ch.~II. Sign check: for $\mathcal O(D)$ with the canonical section flat, the residue is $-1$ and $c_1=[D]$).
+The set of all module structures with the same $c_1$ is a torsor under $H^0(\Omega^1(\log D))=\ker(\C^c\to H^2(X;\C))$ (Deligne), of dimension $c-\rho$. If $D$ is irreducible the structure is unique; if reducible, it forms an affine family of residue vectors.
+\end{lem}
+\begin{proof}[Proof of Theorem~\ref{thm:main1}]
+(a) Lemma~\ref{lem:flat}. (b) By Lemma~\ref{lem:log}, $\Theta$ extends to $B$, and since flatness is an equality on a dense open set it persists after the extension. Combine with Lemma~\ref{lem:iso}. (c), (d) Lemma~\ref{lem:res}. (e) Lemma~\ref{lem:iso}.
+\end{proof}
+
+%--------------------------------------------------------------
+\section{The simplest non-trivial example: $\mathbb{CP}^2$ and a smooth cubic}\label{sec:cp2}
+%--------------------------------------------------------------
+Let $F$ be a smooth homogeneous cubic polynomial on $\mathbb C^3$ and $\Pi^{ij}=\epsilon_{ijk}\partial_kF$. Then $\Pi$ is a homogeneous Poisson structure (of weight 0) whose contraction with the Euler vector field is $0$, and it defines a holomorphic Poisson structure $\sigma\in H^0(\wedge^2T)=H^0(\mathcal O(3))$ on $\mathbb{CP}^2$. $\sigma$ vanishes to first order along $D=\{F=0\}$ (a smooth cubic curve). This is a standard construction (identification of the source \tQ; the vanishing order along $D$ was checked by a local computation). Below $E=\mathcal O(m)$.
+
+\subsection{Which $\mathcal O(m)$ are generalized holomorphic}
+\begin{prop}\tP\label{prop:cp2mod}
+For every $m\in\Z$ the bundle $\mathcal O(m)$ has exactly one Poisson module structure, and the residue of its logarithmic connection is $r=-m/3$.
+\end{prop}
+\begin{proof}
+By Theorem~\ref{thm:main1}(c), $r=-m/3$ (as $[D]=3H$). Existence: vanishing of the Atiyah class of $\mathcal O(m)$ in $H^1(\Omega^1(\log D))$ is equivalent to $c_1\in\C[D]$ (exact sequence $H^0(\mathcal O_D)\to H^1(\Omega^1)\to H^1(\Omega^1(\log D))$), and $m[H]\in\C\cdot3[H]$. The curvature is an element of $H^0(\Omega^2(\log D))=\C\omega$ with residue $dr=0$, hence zero (flat). Uniqueness: the difference of two logarithmic connections lies in $H^0(\Omega^1(\log D))=0$ (the connecting map sends $1\mapsto[D]=3H\ne0$).\qedhere
+\end{proof}
+Another view: for the Casimir $F$ of $\Pi$, $F^{m/3}$ gives a (multivalued) flat section of $\mathcal O(m)$ on $U=\mathbb{CP}^2\setminus D$. $\mathcal O(m)|_U$ is a rank-one local system $L_m$ with monodromy $e^{-2\pi im/3}$ around $D$. The period 3 corresponds to $\pi_1(U)=\Z/3$. \tP\ Locally $\nabla e=-\tfrac m3\dlog z\,e$.
+
+\subsection{Result}
+\begin{thm}\tP\label{thm:cp2}
+The dimensions $[\dim\HH^0,\dots,\dim\HH^4]$ of the generalized Dolbeault cohomology
+\[\HH^*(\mathcal O(m))=\mathbb H^*\bigl(\mathbb{CP}^2;(\wedge^\bullet T(m),d_\sigma)\bigr)\]
+are as follows.
+\begin{center}\small
+\begin{tabular}{lll}\toprule
+$m$ & dimensions & Interpretation\\\midrule
+$m\in3\Z_{\ge0}$ & $[1,0,2,0,0]$ & $H^*(U;\C)$. $\HH^0=\C F^{m/3}$ is a Casimir section\\
+$m\in3\Z_{\le-6}$ & $[0,0,2,0,1]$ & $H^*_c(U;\C)$\\
+otherwise (including $m=-3$) & $[0,0,3,0,0]$ & $H^*(U;L_m)$ ($m\notin3\Z$); $m=-3$ is special\\\bottomrule
+\end{tabular}
+\end{center}
+The total Euler characteristic is always $3=\chi(\mathbb{CP}^2)$.
+\end{thm}
+\begin{hyptab}
+$D$ smooth, $\sigma$ vanishing to first order along $D$ & The differential of the quotient complex $Q$ is a constant multiple of the isomorphism $d\sigma|_D:N_D\to\wedge^2T|_D$. & Step (3) of the proof. $Q$ is acyclic for $m\ne-3$.\\\midrule
+$\pi_1(U)=\Z/3$ (Milnor fibre $\simeq$ a bouquet of 8 copies of $S^2$) & To determine the cohomology of $U$ explicitly. & Right-hand side of the table in step (2).\\\midrule
+$m\ne-3$ & The differential $-(1+m/3)\cdot(d\sigma|_D)$ of $Q$ is not the zero map. & Only $m=-3$ is treated separately (step (4)).
+\end{hyptab}
+\begin{proof}[Steps of the proof]
+(1) By Proposition~\ref{prop:cp2mod} and Theorem~\ref{thm:main1}(e), the subcomplex $C_{\log}=(\wedge^bT_D\otimes\mathcal O(m))\cong\mathrm{DR}_{\log}$.
+(2) In a local frame $\nabla^{\log}e=r\,\dlog z\,e$ ($r=-m/3$). At the stalk at a point of $D$, the logarithmic de Rham complex acts on the monomial $z^ne$ by the factor $(n+r)=(n-m/3)$. The stalk cohomology is $[1,1]$ for $m\in3\Z_{\ge0}$ and $0$ otherwise. Hence for $m\in3\Z_{\ge0}$ the natural map $\mathrm{DR}_{\log}\to Rj_*L_m$ is a stalkwise quasi-isomorphism ($\mathbb H(C_{\log})=H^*(U;\C)$), and otherwise $j_!L_m\to\mathrm{DR}_{\log}$ is a quasi-isomorphism ($\mathbb H(C_{\log})=H_c^*(U;L_m)$). Topology of $U$: the Milnor fibre $F=1$ is a bouquet of $\mu=8$ copies of $S^2$, $U=\{F=1\}/\mu_3$, and $H^2=\C^8=2+3+3$ (trivial character and two non-trivial characters). Since $U$ is affine, $H^k=0$ for $k>2$. Hence $H^*(U)=[1,0,2,0,0]$, $H^*(U;L)=[0,0,3,0,0]$ for a non-trivial character, and by Verdier duality $H^*_c(U;\C)=[0,0,2,0,1]$.
+(3) The quotient $Q=C(A;\mathcal O(m))/C_{\log}$ is a complex on $D$ with $Q^1=N_D(m)=\mathcal O_D(m+3)$, $Q^2=\wedge^2T(m)|_D=\mathcal O_D(m+3)$. Setting $z=0$ in the formula of Lemma~\ref{lem:flat} gives $d_Q=-u(1-r)p$, and in invariant form $d_Q=-(1+m/3)\cdot(d\sigma|_D)$. Since $d\sigma|_D$ is an isomorphism, $Q$ is acyclic for $m\ne-3$, and $\HH^*(\mathcal O(m))=\mathbb H^*(C_{\log})$.
+(4) $m=-3$: the terms $E_1^{a,b}=H^a(\wedge^bT(-3))$ are 1-dimensional at $(2,0),(1,1),(0,2)$ (Bott); all lie in total degree 2, so all further differentials vanish and the result is $[0,0,3,0,0]$. No sign check is needed.
+\end{proof}
+\begin{rem}[\tV]
+The table above agrees with a direct computation, for $m=-15,\dots,15$ and the Fermat and Hesse cubics, of the differential $d_1$ of the spectral sequence $E_1^{a,b}=H^a(\wedge^bT(m))$ by exact linear algebra modulo the prime $32003$ (for $m\ge-2$ as a complex of global sections, for $m\le-4$ as a Cech computation with Laurent monomials) (scripts: \texttt{cp2/poisson.py, table.py, neg\_check.py, predict.py}).
+\end{rem}
+\begin{rem}[\tC\ Related work]
+Eq.~(11), $0\to T^*\xrightarrow{\sigma}T\to T|_D\to0$, and Prop.~8 of Hitchin, \emph{Deformations of holomorphic Poisson manifolds}, arXiv:1105.4775 (Moscow Math.\ J.\ 12 (2012) 567--591) are related, but this result for $\mathbb{CP}^2$ itself is stated neither in that paper nor in Gualtieri's (as far as surveyed).
+\end{rem}
+
+\begin{obs}[How the dependence on $m$ appears]\tP
+The total Euler characteristic does not depend on $m$ (a topological invariant). The dependence on $m$ appears only in the Poincar\'e polynomial, in particular in the period-3 jumps and in $\HH^0$ (the Casimir section $F^{m/3}$). Even for $m\gg0$, $\HH^2$ stays 2- or 3-dimensional, so Serre vanishing in total degree does not hold.
+\end{obs}
+

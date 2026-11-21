@@ -1,0 +1,131 @@
+%--------------------------------------------------------------
+\section{Riemann--Roch-type formulas}\label{sec:RR}
+%--------------------------------------------------------------
+\subsection{The total Euler characteristic is a topological invariant}
+\begin{prop}\tP\label{prop:euler}
+Let $X$ be a compact complex manifold, $\sigma$ any holomorphic Poisson structure, and $E$ a Poisson module of rank $\rk E$. Then
+\[\sum_k(-1)^k\dim\HH^k(E)=\sum_b(-1)^b\chi(X,\wedge^bT\otimes E)=(-1)^n\,\rk E\cdot\chi(X).\]
+\end{prop}
+\begin{proof}
+The complex $C(A;E)=(\wedge^bT\otimes E,d)$ has a filtration by $b$ (the stupid filtration), and the spectral sequence $E_1^{a,b}=H^a(X,\wedge^bT\otimes E)$ is finite-dimensional and converges to $\HH^{a+b}$. The Euler characteristic equals that of the $E_1$ term, and $\sum_b(-1)^b\chi(\wedge^bT\otimes E)$ is, by Hirzebruch--Riemann--Roch (Theorem~\ref{thm:HRR}),
+$\int\ch(E)\Td(T)\sum_b(-1)^b\ch(\wedge^bT)$. Since $\Td(T)=\prod\frac{x_i}{1-e^{-x_i}}$ and $\sum_b(-1)^b\ch(\wedge^bT)=\prod(1-e^{x_i})$, the product is $\prod(-x_ie^{x_i})=(-1)^ne^{c_1}c_n(T)$. As $c_n$ is of top degree, only the rank of $\ch(E)$ contributes, giving $(-1)^n\rk E\int c_n(T)=(-1)^n\rk E\,\chi(X)$.\qedhere
+\end{proof}
+\begin{rem}[\tP\ Meaning]
+For $\mathbb{P}^1$ and $E=\mathcal O(m)$ the formula reads $\chi(\mathcal O(m))-\chi(\mathcal O(m+2))=(m+1)-(m+3)=-2$ (independent of $m$). That is, the Riemann--Roch formula for the \emph{total} Euler characteristic of the generalized Dolbeault complex is a topological formula that does not see $c_1(E)$, and is not a generalization of the classical $\chi(M,E)=\int\ch(E)\Td(M)$. The classical $\chi(M,E)$ corresponds to the Euler characteristic of the ``column'' $b=0$, $H^\bullet(X,E)$. For a general $\Jc$ this column is not preserved by $d$, and some refinement is needed.
+\end{rem}
+
+\subsection{Closed formula for the Poincar\'e polynomial}
+\begin{thm}[Riemann--Roch-type closed formula (surfaces)]\tP\ (depends on Theorem~\ref{thm:main2} and the hypotheses below)\label{thm:B}
+In the setting of Theorem~\ref{thm:main2} assume in addition: (H1) $H^1(X;\C)=0$ (for $b_1(U)=c-\rho$); (H2) $U$ is affine (for vanishing in degrees $\ge3$); (H3) all components have the same residue $r_i=r\ne1$; (H4) if $r\notin\Z$, then $H^0(U;L_U)=H^1(U;L_U)=0$ (G2: see the remark below). Put $b_1=c-\rho$ ($c$ the number of components, $\rho$ the dimension of the span of $[D_i]\in H^2(X;\C)$), $\chi_U=\chi(X)-\mu$, $b_2=\chi_U-1+b_1$. Then
+\begin{align*}
+P_E(t)&=1+b_1t+(b_2+\mu)t^2 &&(r\in\Z_{\le0}),\\
+P_E(t)&=(b_2+\mu)t^2+b_1t^3+t^4 &&(r\in\Z_{\ge2}),\\
+P_E(t)&=\chi(X)\,t^2 &&(r\notin\Z).
+\end{align*}
+Equivalently: $P_E(t)=\chi(X)t^2+[r\le0]\,\Delta(t)+[r\ge2]\,t^4\Delta(1/t)$, $\Delta(t)=(1+t)(1+(b_1-1)t)$.
+\end{thm}
+\begin{hyptab}
+(H1) $H^1(X;\C)=0$ & From the Gysin sequence $H^0(D)\to H^2(X)$, $H^1(U)=\ker(\C^c\to H^2(X))$. & $b_1(U)=c-\rho$.\\\midrule
+(H2) $U$ affine & Artin vanishing. & $b_3=b_4=0$, hence $b_2=\chi_U-1+b_1$.\\\midrule
+(H3) equal residues & $\mathcal F$ is either $Rj_*$ or $j_!$. & Theorem~\ref{thm:main2}(i), (ii).\\\midrule
+(H4) $H^0(U;L)=H^1(U;L)=0$ for $r\notin\Z$ & So that $H^*(U;L)=[0,0,\chi_U]$. & The row $r\notin\Z$. For nodal curves on $\mathbb{CP}^2$, $\pi_1(U)$ is abelian (Fulton, Ann.\ Math.\ 111 (1980) 407--409; Deligne, S\'em.\ Bourbaki 543). \tC\\\midrule
+$r_i\ne1$ & Hypothesis of Theorem~\ref{thm:main2}. & Lemma~\ref{lem:Q}.
+\end{hyptab}
+\begin{proof}
+Substitute into Theorem~\ref{thm:main2}(i), (ii): $H^*(U)=[1,b_1,b_2,0,0]$ ($r\in\Z_{\le0}$, trivial local system), $H_c^*(U)$ (by Poincar\'e duality $[0,0,b_2,b_1,1]$, $r\in\Z_{\ge2}$), $H^*(U;L)=[0,0,\chi_U,0,0]$ ($r\notin\Z$: from (H2), (H4) and $\chi(U;L)=\chi(U)$), and add $\mu t^2$. The equivalent form uses $\chi(X)=\chi_U+\mu=1-b_1+b_2+\mu$.
+\end{proof}
+\begin{rem}[Properties\ \tP]
+(i) $P_E(-1)=\chi(X)$ for all $r$ (consistent with Prop.~\ref{prop:euler}, $n=2$). (ii) The duality $P_{2-r}(t)=t^4P_r(1/t)$ is evident from the formula (a formula-level consequence of Theorem~\ref{thm:dual}). (iii) $\mu$ and $b_2$ are absorbed into $\chi(X)t^2$, and the jump term $\Delta$ depends only on $b_1$ (the number of linear relations among the $[D_i]$). (iv) For $E=L_0^m$, the quasi-polynomial in $m$ that classical Riemann--Roch would give is the constant $\chi(X)$, and the dependence on $m$ appears only through the integrality (period $N$) and the sign of the residue $r=-ma$.
+\end{rem}
+\begin{rem}[\tQ\ On G2]
+(H4) was checked in the eight verified examples (four curves on $\mathbb{CP}^2$ and four on $\mathbb{CP}^1\times\mathbb{CP}^1$). For the smooth $(2,2)$ curve and the two $(1,1)$ curves on $\mathbb{CP}^1\times\mathbb{CP}^1$ we cited Timmerscheidt (\emph{Mixed Hodge theory for unitary local systems}, J.\ reine angew.\ Math.\ 379 (1987) 152--171) and Arapura (\emph{Geometry of cohomology support loci for local systems I}, arXiv:alg-geom/9612006, J.\ Algebraic Geom.\ 6 (1997) 563--597 (volume/pages from memory \tQ), the torsion-translate theorem) (applicability not fully checked \tQ). In general $H^1(U;L_\chi)=0\Leftrightarrow\chi\notin V^1(U)$ (the first characteristic variety), which can fail for non-nodal $D$ (e.g.\ three concurrent lines) (Libgober, Arapura).
+\end{rem}
+\tV\ The closed formula agrees with the exact computations for a total of 196 values: $\mathbb{CP}^2$ (smooth, nodal, conic plus secant, triangle; $m=-15..15$) and $\mathbb{CP}^1\times\mathbb{CP}^1$ (4 examples, $m=-9..8$) (0 mismatches, \texttt{cp2/ncd\_global\_check.py}). The formula-level symmetry $r\leftrightarrow2-r$ was checked on a grid of 73 rational values of $r$ (\texttt{cp2/serre\_rr\_check.py}).
+
+\subsection{Index-theoretic outlook}\label{sec:index}
+The content of this subsection is conjectural; no index theorem is proved.
+\begin{obs}[\tK\ Indicial-root picture (qualitative)]
+At smooth points the logarithmic complex acts on the monomial $z^ne$ by the factor $(n-r)$ (Lemma~\ref{lem:stalk}). An indicial root exists exactly when $r\in\Z$; for $r\notin\Z$ the weight-graded complexes are acyclic and $P_r=\chi(X)t^2$. For $r\in\Z$, what remains is a subquotient of the cohomology of the boundary $\partial U$ of a tubular neighbourhood of $D$ (via the Gysin sequence, $H^*(D)\otimes(1\oplus t)$), and since $\chi(\partial U)=0$ it is invisible in the Euler characteristic. This is qualitatively consistent with Melrose's APS / b-calculus picture (Melrose, \emph{The Atiyah--Patodi--Singer Index Theorem}, A K Peters 1993).
+\end{obs}
+\begin{conj}[Index-type Riemann--Roch (log-symplectic surfaces)]\tK\label{conj:I3}
+(a) $\sum(-1)^k\dim\HH^k(L)=\int_Xc_2(T_X(-\log D))+\mu=\chi(X)$ is given by an Atiyah--Singer-type integral without boundary term. (b) The jump term $J(r)=P_r(t)-\chi(X)t^2$ is non-zero only for $r\in\Z\setminus\{1\}$, equal to $\Delta(t)$ for $r\le0$ and to $t^4\Delta(1/t)$ for $r\ge2$. $\Delta(t)$ is the Poincar\'e polynomial of a certain subquotient of the kernel $H^*(\partial U)$ of the indicial roots (fixed by the weight filtration of the long exact sequence $H_c^*(U)\to H^*(U)\to H^*(\partial U)$). (c) In general dimension and for non-normal-crossing $D$, the jump term contains local terms governed by the spectral numbers of the singularities (\S\ref{sec:local}).
+\end{conj}
+\begin{rem}[\tC\ State of the literature and obstacles]
+\begin{itemize}
+\item \emph{Analogy with the $b$-index}: Braverman--Loizides--Song, \emph{Geometric quantization of $b$-symplectic manifolds}, arXiv:1910.10016 shows that the quantization index of a $b$-symplectic manifold is given by $\int\mathrm{Td}({}^bTM)\mathrm{Ch}(L)$ and that the boundary term vanishes in the limit (title and authors checked \tC). This is analogous to the fact that the Euler characteristic here is of the form $\chi(X)=\int c_2(T_X(-\log D))+\mu$, independent of $r$.
+\item \emph{Index on Lie groupoids}: Pflaum--Posthuma--Tang, \emph{The index of geometric operators on Lie groupoids}, arXiv:1308.0236 (Indag.\ Math.\ 25 (2014) 1--18); Qiao--So, arXiv:2304.13345 (boundary groupoids; no eta term in codimension $\ge2$); Ammann--Lauter--Nistor, arXiv:math/0304044; Mazzeo--Melrose, arXiv:math/9812120; Hausel--Hunsicker--Mazzeo, arXiv:math/0207169 (Duke Math.\ J.\ 122 (2004), pages \tQ). Titles and authors were checked; applicability to the present problem was not.
+\item \emph{Poisson cohomology}: Lanius, arXiv:1605.03854 ($C^\infty$ Poisson cohomology of log-symplectic manifolds). This is a different object from the holomorphic Poisson hypercohomology of this note; there is only an analogy in the structure ``$b$-part $+$ boundary term''.
+\item \emph{What was not found}: an index theorem for the complex Lie algebroid $L=T^{0,1}\bowtie A^{1,0}$, or a $b$-Dolbeault index with the residue as a weight. The real Lie algebroid $T_X(-\log D)$ is integrable for smooth $D$ by Gualtieri--Li, arXiv:1206.3674. \tC\ The normal crossing case was not checked.
+\item \emph{Unimodularity}: the Pflaum--Posthuma--Tang trace requires an invariant density, which for Poisson structures corresponds to the vanishing of the modular class. In the log-symplectic case the modular vector field is expected to vanish thanks to the logarithmic volume form, but this was not checked \tQ.
+\end{itemize}
+\end{rem}
+
+%--------------------------------------------------------------
+\section{The toric case and higher dimensions}\label{sec:toric}
+%--------------------------------------------------------------
+\subsection{Toric log-symplectic structures}
+Let $X$ be a smooth projective toric variety ($N=\Z^n$, $n=2k$) with rays $u_i$ ($i\in I$) and $D$ the toric boundary (simple normal crossings). With respect to the logarithmic frame $E_j=z_j\partial_j$, a constant non-degenerate skew-symmetric matrix $A$ gives $\sigma=\tfrac12\sum A_{ij}E_i\wedge E_j$ (torus-invariant, log-symplectic along $D$). Give $L=\mathcal O(\sum a_iD_i)$ the flat logarithmic connection $d+\rho$ ($\rho\in M_\C$). The residues are $r_i=\langle\rho,u_i\rangle-a_i$, and $c_1(L)=-\sum r_i[D_i]$. \tP\ Every module is of this form ($H^0(\Omega^1(\log D))=M_\C$, Lemma~\ref{lem:res}).
+
+\begin{thm}[Weight formula]\tP\ \tV\label{thm:weight}
+Assume $E_1^{a,b}=H^a(X,\wedge^bT\otimes L)=0\ (a>0)$ (e.g.\ in the range of Theorem~\ref{thm:A1}). For $\chi\in M$ put $c_i(\chi)=\langle\chi,u_i\rangle+a_i$, $C(\chi)=\{i:c_i(\chi)=-1\}$, $W(\chi)=\mathrm{span}(u_i:i\in C(\chi))$, $s=\dim W$. Then
+\[P_{\HH}(t)=\sum_{\chi\in\Lambda}t^{s(\chi)}(1+t)^{n-s(\chi)},\quad\Lambda=\{\chi\in M:c_i(\chi)\ge-1\ \forall i,\ A(\chi+\rho)\in W(\chi)\}.\]
+\end{thm}
+\begin{hyptab}
+Toric, torus-invariant $\sigma$, constant $A$ & The complex of global sections decomposes by torus characters $\chi\in M$ ($T$-weights), and each weight is a finite-dimensional linear algebra problem. & Proof: determination of the weight-$\chi$ subcomplex $G^b_\chi$.\\\midrule
+$E_1^{a>0}=0$ & $\HH^*$ equals the cohomology of the complex of global sections. & Theorem~\ref{thm:A1}(b).\\\midrule
+Non-degenerate $A$ & $\sigma^\sh:B\cong T_D$ holds, and $\wedge^b\sigma^\sh$ sends the logarithmic de Rham differential $(\chi+\rho)\wedge$ to $v_\chi\wedge$ ($v_\chi=A(\chi+\rho)$). & Lemma~\ref{lem:iso}.
+\end{hyptab}
+\begin{proof}[Sketch of proof]
+The condition for $z^\chi w$ ($w\in\wedge^bN_\C$) to be a holomorphic section of $\wedge^bT\otimes L$ is: $c_i(\chi)\ge-1$ along each $D_i$, and if $c_i(\chi)=-1$ then $u_i\wedge w=0$. So the weight-$\chi$ part is $G^b_\chi=\{w\in\wedge^bN_\C:u_i\wedge w=0\ (i\in C(\chi))\}$ (empty if some $c_i<-1$), and $G^\bullet_\chi\cong\wedge^{\bullet-s}(N/W)\otimes\wedge^sW$. The differential is $v_\chi\wedge$. If $v_\chi\bmod W=0$ the differential is $0$ and the Poincar\'e polynomial is $t^s(1+t)^{n-s}$; otherwise the complex is acyclic.
+\end{proof}
+\tV\ The closed formula agrees with a direct linear-algebra computation (\texttt{cp2/toric\_hh.py}) in 60 random cases ($\mathbb P^2$, $\mathbb P^1\times\mathbb P^1$, $\mathbb P^4$, $\mathbb P^2\times\mathbb P^2$, $(\mathbb P^1)^4$).
+
+\begin{cor}\tP
+(a) If $E_1^{a>0}=0$, the total Euler characteristic is the number of weights with $s(\chi)=n$ (the number of vertices) $=\chi(X)$. (Consistent with Prop.~\ref{prop:euler}.) (b) Origin of the contributions: $s=0$ means $A(\chi+\rho)=0$, i.e.\ $\chi=-\rho$, and if $\rho\in M$ and all $r_i\le0$ it contributes $(1+t)^n=H^*(U)$ (the $Rj_*$ case). $s=n$ always satisfies the condition and gives the vertex weights, one $t^n$ each. For $0<s<n$ one needs $x=\chi+\rho\in A^{-1}W$ and $\langle x,u_i\rangle=r_i-1\ (i\in C)$, which has solutions only at ``resonances'' on the integral lattice. (c) For $s=n-1$ and all $r_i=1\ (i\in C)$, the condition holds automatically and classes $t^{n-1}(1+t)$ appear, in number equal to the number of lattice points on the toric curve $C$, namely $\deg(L|_C)+1$ (corresponding to the resonance $r_i=1$ in dimension 2).
+\end{cor}
+
+\subsection{Generic $\sigma$ and dimension 4}
+\begin{obs}[\tV]
+For generic $A$ (entries that are integers of very large size), $\Lambda=\{\text{vertices}\}\cup\{\text{resonances}\}\cup\{-\rho\}$ ($-\rho$ is included when $\rho\in M$ and all $r_i\le1$), and $P_{\HH}=$ ($U$-part) $+\#\text{vertices}\cdot t^n+$ (resonance classes for $r=1$). The $U$-part is $(1+t)^n$ if $\rho\in M$ and all $r_i\le0$, and $0$ otherwise. In exact arithmetic modulo the prime $2^{61}-1$, there were 0 mismatches in 3626 cases ($\mathbb P^4$ ($m=1,2$), $\mathbb P^2\times\mathbb P^2$, $(\mathbb P^1)^4$, $\mathbb P^1\times\mathbb P^3$, $\mathbb P^1\times\mathbb P^1\times\mathbb P^2$, $\rho\in\{-2,..,1\}^4$ and three non-integral $\rho$). Examples: $\mathbb P^4$, $m=1$: $[1,4,6,4,6]$; $\mathbb P^2\times\mathbb P^2$: $[1,4,6,4,10]$.
+\end{obs}
+\begin{obs}[New phenomenon: dependence on the arithmetic of $\sigma$\ \tV]\label{obs:arith}
+In dimension 4, $\HH^*$ is not determined by $(X,D,L,\text{residues})$ alone. For the product structure $\sigma$ on $\mathbb P^2\times\mathbb P^2$ (block-diagonal $A$) it is $[1,4,12,16,16]$ (the product of the results for two surfaces, K\"unneth), and for generic $A$ it is $[1,4,6,4,10]$. The difference $(0,0,6,12,6)=6t^2(1+t)^2$ is $t^2H^*(O_\tau)$ for six codimension-2 strata $\{\text{double point of one factor}\}\times(\mathbb C^*)^2$. Mechanism: on a stratum with $|C|=2$, if $u_i,u_j$ are symplectic with respect to $\sigma$, then $x_C(A,r)\in A^{-1}W$ is uniquely determined, and it contributes only under the arithmetic condition that this is a lattice translate of $\rho$. \tK\ $\HH$ jumps up on countably many proper analytic subsets of the parameter space of log-symplectic structures (upper semicontinuity of generalized Dolbeault cohomology), and the generic value is the minimum.
+\end{obs}
+\begin{conj}[General simple normal crossings $D$]\tK
+For a general (non-toric) simple-normal-crossings log-symplectic $(X^{2k},D)$, general $\sigma$, and $L$ with constant residues $r_i\ne1$: $\HH^*(L)=H^*(X;\mathcal F)\oplus\bigoplus_{p\in D_{(n)}}\C[-n]$ ($D_{(n)}$ the set of points where $n$ components meet). Consistency with the Euler characteristic holds only when the $\chi$ of the lower-dimensional strata $D_k^\circ$ vanish (true in the toric case, unproved in general). The computations of \S\ref{sec:toric} are for the toric case only.
+\end{conj}
+
+%--------------------------------------------------------------
+\section{Local theory of non-nodal singularities}\label{sec:local}
+%--------------------------------------------------------------
+When $D$ has cusps, tacnodes, triple points etc., Theorem~\ref{thm:main2} does not apply. What follows are computational observations and conjectures. Local model: $\sigma=h\,\partial_z\wedge\partial_w$, module $\mathcal O\,h^s$, $d_0f=(hf_w+sfh_w)\partial_z-(hf_z+sfh_z)\partial_w$, $d_1(p,q)=h(p_z+q_w)-(1-s)(h_zp+h_wq)$. Globally $s=r=-m/3$ ($\mathbb{CP}^2$), $-m/2$ ($\mathbb{CP}^1\times\mathbb{CP}^1$).
+
+\subsection{Stalk cohomology}
+\tV\ For germs of quasi-homogeneous isolated singularities, the stalk dimensions $(h^0,h^1,h^2)$ were computed by weight-graded exact linear algebra (script \texttt{local\_stalk.py} etc.) (assuming that the cohomology of the formal germ equals that of the convergent germ):
+\begin{center}\small
+\begin{tabular}{lccc}\toprule
+Singularity & generic $s$ & $s$ an integer $\le0$ & $s$ a spectral number mod $\Z$, $s<\mathrm{lct}$\\\midrule
+smooth ($z$) & $(0,0,0)$ & $(1,1,0)$ & ---\\
+double point ($zw$) & $(0,0,1)$ & $(1,2,2)$ & ---\\
+cusp ($z^2-w^3$) & $(0,0,2)$ & $(1,1,2)$ & $(0,1,3)$\\
+tacnode ($z^2-w^4$) & $(0,0,3)$ & $(1,2,4)$ & $(0,1,4)$\\
+$A_4$ ($z^2-w^5$) & $(0,0,4)$ & $(1,1,4)$ & ---\\
+$D_4$ ($zw(z-w)$) & $(0,0,4)$ & $(1,3,6)$ & $(0,1,5)$\\
+$D_5$ ($w(z^2-w^3)$) & $(0,0,5)$ & $(1,2,6)$ & $(0,1,6)$\\\bottomrule
+\end{tabular}
+\end{center}
+\begin{obs}[\tV\ Empirical rule]
+In terms of the spectral numbers (lct is the smallest spectral number: smooth and double point $1$, cusp $5/6$, tacnode $3/4$, $D_4$ $2/3$, $D_5$ $5/8$), for $s\ne1$,
+\[\text{stalk}_p=\C^{\mu_p}[-2]\ \oplus\ \begin{cases}\text{stalk}(Rj_*L_s)_p&(s<\mathrm{lct}_p)\\0&(s>\mathrm{lct}_p)\end{cases}\]
+($\mu_p$ is the Milnor number $=$ Tjurina number). The stalk of $Rj_*$ is governed by the monodromy of the Milnor fibre: one class when $s\equiv\alpha_j\bmod\Z$ ($\alpha_j$ a spectral number), and a contribution to $H^0,H^1$ when $s\in\Z$. All 7 types, $s\in\frac1{12}\Z$ or $\frac18\Z$, $|s|\le5$: no contradiction. The explanation via Milnor monodromy is a consistency argument, not a proof. For $s=1$ (the twist by $K_X$) the stalk is infinite-dimensional ($d_Q=0$), but globally it can be handled by the $E_1$-term argument (Prop.~\ref{prop:K}).
+\end{obs}
+\subsection{The triple-point anomaly and a global conjecture}
+\tV\ On $\mathbb{CP}^2$ with $xy(x-y)$ (a triple point): $m=1,2,4,5,\ldots$ and $m=-1$ give $[0,1,4,0,0]$, $m=-5,-7,-8$ give $[0,0,4,1,0]$, and $m=-2,-3,-4$ give $[0,0,3,0,0]$. By the empirical rule above, with the $D_4$ spectral numbers $\{2/3,1,1,4/3\}$, $\mathrm{lct}=2/3$, $s=-m/3$: for $m\ge-1$, $s<2/3$ adds $H^*(U;L)=(0,1,0)$ giving $[0,1,4,0,0]$; for $m\le-5$, $s>2/3$ adds $H_c^*=(0,0,0,1,0)$ giving $[0,0,4,1,0]$; the anomalous $m=-2,-4$ have $s=2/3,4/3$, where one class of $\C^4$ (degree 2) and one class of $H_c$ (degree 3) cancel (the $d_3$ of the spectral sequence $H^p(X,\mathcal H^q)\Rightarrow\HH$). \tK\ This explanation is conjectural. The spectral numbers of the cusp ($5/6,7/6$), tacnode ($3/4,5/4$) and $D_5$ ($5/8,\ldots$) do not lie in $\frac13\Z$, and on $\mathbb{CP}^1\times\mathbb{CP}^1$ ($s\in\frac12\Z$) the spectral numbers of $A_k$ have no half-integer other than $1$, so no anomaly appears.
+
+\tV\ Unequal residues: for a triple point with module $\prod h_i^{s_i}$ ($h=zw(z-w)$), in 533 random $(s_1,s_2,s_3)\in(\frac16\Z\cap[-2,2])^3$ ($s_i\ne1$) the stalk is $\C^4[-2]\oplus R$, where $R=H^*(U_{\rm loc};L_s)$ if $s_1+s_2+s_3<2$ and $0$ otherwise. Whereas for a double point the threshold is per branch, the threshold at a triple point is on the \emph{sum} of the residues. \tK\ General principle: the threshold is the ratio of the weight of the module to the logarithmic canonical weight with respect to the symmetric torus action on the germ.
+
+\begin{conj}[Refined Riemann--Roch (equal residues, isolated singularities)]\tK
+Let $X$ be a compact surface, $\sigma\in H^0(-K_X)$ with zero curve $D$ reduced with only isolated singularities, $L$ a Poisson module with $c_1(L)=sK_X$, $L_s$ the rank-one local system on $U$ (monodromy $e^{2\pi is}$ around each branch), and $\mathcal F_s$ the constructible complex which is $L_s$ on $U$ and at $p\in D$ is the stalk of $Rj_*L_s$ if $s<\mathrm{lct}_p$ and $0$ if $s>\mathrm{lct}_p$. (a) For $s\notin\mathrm{Sp}(D)$ (the spectral numbers of all singularities of $D$, together with $1$): $\HH^*=H^*(X;\mathcal F_s)\oplus\bigoplus_p\C^{\mu_p}[-2]$. (b) The Euler characteristic is always $\chi(X)$ ($\chi(D)=\sum\mu_p$, from $\delta$-invariants \tP). (c) For $s\ll0$, $\mathcal F_s=Rj_*L_s$, and $\HH^*=H^*(U;L_s)\oplus\bigoplus\C^{\mu_p}[-2]$ depends only on $s\bmod\Z$ and vanishes in degrees $\ge3$. (d) For $s\in\mathrm{Sp}(D)$, rank-one cancellations can occur.
+\tV\ On $\mathbb{CP}^2$ (smooth, nodal, cuspidal, conic plus secant, conic plus tangent, triangle, triple point) and $\mathbb{CP}^1\times\mathbb{CP}^1$ (4 examples), for $m=-15..15$ ($-9..8$), no contradiction except in (d). Not proved: the stalk results are only for quasi-homogeneous germs, and the global identification $\mathbb H(C_m)\simeq(\mathcal F_s+\text{skyscraper})$ is a fit. For non-reduced $D$ (double line, double conic) the stalks are infinite-dimensional and the global dimensions grow linearly in $m$ (slope $\deg\mathcal O(1)|_C$: $1$ for a double line on $\mathbb{CP}^2$, $2$ for a double conic on $\mathbb{CP}^1\times\mathbb{CP}^1$).
+\end{conj}
+

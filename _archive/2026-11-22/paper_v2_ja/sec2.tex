@@ -1,0 +1,70 @@
+%--------------------------------------------------------------
+\section{一般化複素幾何の基礎}\label{sec:gc}
+%--------------------------------------------------------------
+\subsection{定義}
+\begin{defn}[一般化複素構造]\tC\label{def:GC}
+$\Jc:\bT\to\bT$ が $\Jc^2=-1$ かつ内積を保つとき一般化概複素構造という。$+i$ 固有束 $L\subset\bT_\C$ が Courant 括弧で閉じるとき $\Jc$ は可積分（一般化複素構造）であるという。
+\src{Hitchin, \emph{Generalized Calabi--Yau manifolds}, Q.\ J.\ Math.\ 54 (2003) 281--308, arXiv:math/0209099；Gualtieri, \emph{Generalized complex geometry}, Ann.\ Math.\ 174 (2011) 75--123, arXiv:math/0703298, \S3（型 Def.\ 3.5、標準束 Def.\ 3.7、一般化 Calabi--Yau Def.\ 3.17、Picard 群 Def.\ 3.18。番号は原文で確認）；Gualtieri 博士論文 arXiv:math/0401221。}
+\end{defn}
+\begin{ex}\tC
+複素構造 $I$：$L=T^{0,1}\oplus T^{*1,0}$（型 $n$）。シンプレクティック構造 $\omega$：$L=\{X-i\omega(X)\}$（型 $0$）。
+\src{Hitchin 2003（導入）；Gualtieri 2011, \S3（複素構造・シンプレクティック構造の例。具体的な例番号は確認できず。\S4 の Def.\ 4.1 は正則点の定義で、旧稿の「例 4.1--4.2」は存在しない）\tQ。}
+\end{ex}
+\begin{defn}[型]\tC
+$\mathrm{type}(\Jc)_p=\mathrm{codim}_\C\,\pi_T(L_p)$（$\pi_T:\bT\to T$）。型が局所定数な点を正則点という。型は一般に跳ぶ。
+\src{Gualtieri 2011, \S3 および Abouzaid--Boyarchenko, \emph{Local structure of generalized complex manifolds}, J.\ Symplectic Geom.\ 4 (2006) 43--62, arXiv:math/0511049。}
+\end{defn}
+\begin{prop}[楕円型複体]\tC\label{prop:ellip}
+$L$ は複素 Lie 亜群（アンカー $\pi_T|_L$）で、$L^*\cong\Lb$ により $\wedge^\bullet L^*$ に Lie 亜群微分 $d_L$ が入る。$(\wedge^\bullet L^*,d_L)$ は楕円型複体で、コンパクト多様体上で一般化 Dolbeault コホモロジー $H^k(\wedge L^*,d_L)$ は有限次元。スピノール束 $K$ を用いると $\wedge^{n-k}\Lb\cdot K\cong U^k$ 上で $d_L$ は $\dbar:U^k\to U^{k-1}$ に対応する。
+\src{Gualtieri 2011, Prop.\ 3.13（$(\wedge L^*,d_L)$ は楕円型）、Cor.\ 3.14（コンパクトなら有限次元コホモロジー）。\S\ref{sec:duality} の証明中、$\Jc_\sigma$ の場合には楕円性を主シンボルから直接確かめる（\tP）。}
+\end{prop}
+
+\subsection{$\beta$-変換 $\Jc_\sigma$ と一般化正則束}\label{sec:setting}
+$X$ を複素多様体、$\sigma$ を正則 Poisson 構造とする。
+
+\begin{prop}\tC\label{prop:Jsigma}
+(a) $L_\sigma=T^{0,1}\oplus\{\sigma^\sh\xi+\xi:\xi\in T^{*1,0}\}$ は $\bT_\C$ の極大迷零部分束で、可積分である。対応する一般化複素構造 $\Jc_\sigma$ の型は $p\in X$ で $n-\mathrm{rk}\,\sigma^\sh_p$（$\mathrm{rk}$ は複素階数）。特に $\sigma$ が非退化な点では型 0（シンプレクティック型）、$\sigma$ が零の点では型 $n$（複素型）。
+(b) $(\Xi,\xi)\mapsto(\Xi+\sigma^\sh\xi,\xi)$ は複素 Lie 亜群の同型 $T^{0,1}\bowtie(T^{1,0})^*_\sigma\to L_\sigma$ である（左辺は matched pair で、LGSX では $T^{0,1}\bowtie A^{1,0}$ と書く）。
+\src{(a) Gualtieri, \emph{Branes on Poisson varieties}, arXiv:0710.2719, Prop.\ 5；Laurent-Gengoux--Stiénon--Xu（以下 LGSX）, \emph{Holomorphic Poisson manifolds and holomorphic Lie algebroids}, IMRN 2008, Art.\ ID rnn088, arXiv:0707.4253, Thm.\ 2.7 と Rem.\ 2.8（そこでは $\Jc_\pi$, $\pi=\pi_R+i\pi_I$ と書く）。型の公式は筆者の整理で、Gualtieri の例（$\mathbb{CP}^2$ 等）と整合する（\tQ）。(b) LGSX Thm.\ 4.21 と Lemma 4.22（$\Jc_{4\pi}$ の因子 4 は $\pi=\pi_R+i\pi_I$ の規格化による。LGSX Prop.\ 3.7）。Gualtieri の論文と LGSX で固有値の符号の取り方が異なる（$\ker(\Jc\mp i)$）が、複素共役で移るので以下の主張には影響しない。}
+\end{prop}
+
+\begin{defn}[一般化正則束]\tC
+複素ベクトル束 $E$ に平坦 $L$-接続 $\dbar_E:\Gamma(E)\to\Gamma(L^*\otimes E)$（$\dbar_E^2=0$）が与えられたもの。
+\src{Gualtieri 2011, \S3（一般化正則束は Thm.\ 3.15 の後に散文で導入され、番号付きの定義はない。複素構造の場合は Example 3.19。Def.\ 3.18 は Picard 群の定義）；Gualtieri, \emph{Branes on Poisson varieties}, \S4.1。}
+\end{defn}
+\begin{defn}[Poisson 加群]\tC
+正則ベクトル束 $E$ と平坦 $A$-接続 $\nabla:\Gamma(E)\to\Gamma(A^*\otimes E)$、すなわち $\nabla_{\xi}(fs)=f\nabla_\xi s+(\sigma^\sh\xi)(f)s$、$[\nabla_a,\nabla_b]=\nabla_{[a,b]_\sigma}$（$a,b$ は正則 1-形式）を満たすもの。ここで $A=(T^*)_\sigma$。
+\src{LGSX, Def.\ 4.15 と Lemma 4.16；Gualtieri, \emph{Branes on Poisson varieties}, \S2--4。}
+\end{defn}
+
+\begin{prop}[一般化正則束 $=$ Poisson 加群、および Dolbeault モデル]\label{prop:ident}
+$(X,\sigma)$ を上の通りとする。
+\begin{enumerate}
+\item[(a)] $\Jc_\sigma$ に関する一般化正則束は、正則ベクトル束に Poisson 加群構造を与えたものと同じである。\tC\ Gualtieri, \emph{Branes on Poisson varieties}, Prop.\ 8；LGSX Lemma 4.16。直接の証明は下に示す（\tP）。直線束に対しては、Gualtieri 同 Prop.\ 9 により、障害は $H^1(T^{1,0})$ の類 $\sigma\cdot\alpha$ と $H^2_\sigma$ の類で、構造が存在するとき $H^1_\sigma(X)=\HH^1(\mathcal O)$ 上のアフィン空間をなす。\tC
+\item[(b)] $L^*=T^{*0,1}\oplus T^{1,0}$ より $\Gamma(\wedge^kL^*\otimes E)=\bigoplus_{a+b=k}A^{0,a}(\wedge^bT\otimes E)$ で、$d_L=\dbar+(-1)^ad_A$、ただし $d_A=[\sigma,\cdot]+V\wedge$ は正則枠の係数に作用する。したがって
+\[H^k_{GC}(E)=H^k\bigl(\Gamma(\wedge^\bullet L^*\otimes E),d_L\bigr)=\mathbb H^k\bigl(X;(\wedge^\bullet T\otimes E,\ [\sigma,\cdot]+V\wedge)\bigr)=:\HH^k(E).\]
+\tC\ これは LGSX Thm.\ 4.19（$H^*(A,E)=H^*(T^{0,1}\bowtie A^{1,0},E)$、$H^*(A,E)$ は Def.\ 4.17 で層コホモロジーとして定義）。\tP\ 証明の構造は下に示すが、matched pair に関する Mokri の定理（Matched pairs of Lie algebroids, Glasgow Math.\ J.\ 39 (1997) 167--181, doi:10.1017/S0017089500032055。年・DOI は確認、巻頁は記憶\tQ。LGSX Lemma 4.16：複素ベクトル束が $A$-加群であることと $T^{0,1}X\bowtie A^{1,0}$-加群であることは同値。Thm.\ 4.19 の証明は Thm.\ 4.11 と同様とだけ記される）と LGSX Lemma 4.22（再導出していない）に依存する。
+\end{enumerate}
+\end{prop}
+\begin{proof}[(a) の証明（概略）]
+($\Leftarrow$) Poisson 加群構造と正則枠 $\{e_s\}$ があるとき、$\nabla_{\bar\Xi}\sum f_se_s=\sum(\bar\Xi f_s)e_s$（正則構造）、$\nabla_\xi\sum f_se_s=\sum((\sigma^\sh\xi)f_s)e_s+f_s\nabla_\xi e_s$（$\xi\in A^{1,0}$）とおく。これは Leibniz 則から強制される唯一の拡張で、$\nabla_\xi e_s$ が正則なので定義可能。平坦性は、$(\bar\Xi,\bar\Upsilon)$ 型は正則構造の可積分性、$(\bar\Xi,\xi)$ 型は「$\nabla_\xi$ は正則切断を正則切断に写す」ことと同値で構成から従い、$(\xi,\eta)$ 型は Poisson 加群の平坦性（正則 $\xi,\eta$ について）を $C^\infty$-線形に拡張したもの（曲率はテンソル）。
+($\Rightarrow$) 平坦 $L$-接続を $T^{0,1}$ に制限すると正則構造（Koszul--Malgrange）、混合型の平坦性から $\nabla_\xi$ は正則切断を正則切断に写し、Leibniz 則と平坦性から加群の条件が出る。\qedhere
+\end{proof}
+\begin{proof}[(b) の証明の構造]
+$L\cong T^{0,1}\bowtie A^{1,0}$（命題 \ref{prop:Jsigma}(b)）の Chevalley--Eilenberg 複体は、matched pair の一般論（Mokri）により、$T^{0,1}$ の複体 $C(T^{0,1};\,C(A^{1,0};E))$ の全複体になる。ここで $T^{0,1}$ 方向は $\wedge^bT\otimes E$ の Dolbeault 分解（微分 $\dbar$）で、$A^{1,0}$ 方向は $C(A;E)=(\wedge^bT\otimes E,\ [\sigma,\cdot]+V\wedge)$。2つの微分は Koszul 符号 $(-1)^a$ のもとで反可換。全複体は複体 $(\wedge^\bullet T\otimes E,d_A)$ の細かい分解なので、そのコホモロジーは超コホモロジーである。\qedhere
+\end{proof}
+
+\begin{rem}[\tC\ 積分可能性に関する注意]
+複素 Lie 亜群 $L=L_\sigma$ 自体を積分する Lie 亜群の概念は、調べた範囲の文献には見つからなかった。LGSX arXiv:0803.2031 の Thm.\ 3.17, 3.22 は、正則 Lie 亜群 $A$ と実 Poisson 構造 $\mathrm{Re}\,\sigma$, $\mathrm{Im}\,\sigma$ の積分可能性の関係を述べるが、$T^{0,1}\bowtie A^{1,0}$ は扱わない（同論文 Rem.\ 4.14 は問題として提起するのみ）。Bailey--Gualtieri, arXiv:1611.03850（題名は\tQ）の Thm.\ 7.1 は、一般化複素構造が弱正則シンプレクティック亜群（Morita 類の概念）に積分されることと、その実 Poisson 構造が積分可能であることの同値を述べる。\tP\ $\mathbb{CP}^2$ の滑らかな3次曲線 $\sigma$ では、$\mathrm{Im}\,\sigma$ の葉は開葉 $U$（等方群 0）と $D$ の各点（等方群 $\mathrm{aff}(1,\C)$、中心が自明）で、Crainic--Fernandes, Ann.\ Math.\ 157 (2003) 575--620（arXiv:math/0105033）Cor.\ 5.2「すべての $N_x$ が自明なら積分可能」により $\mathrm{Im}\,\sigma$ は積分可能。Bailey--Gualtieri の仮定は取得した要約でのみ確認\tQ。
+\end{rem}
+
+\subsection{一般化正則切断について}\label{sec:ghfun}
+\begin{obs}\tP\label{obs:casimir}
+Poisson 加群 $(E,\nabla)$ の一般化正則切断（$\dbar_E s=0$）は、$\HH^0(E)=\{s\in H^0(X,E):\nabla_\xi s=0\ (\forall\xi)\}$、すなわち平坦（Casimir 型）切断である。型 0 の点（$\sigma$ 非退化）の近くでは $\nabla$ は $\sigma^\sh$ により通常の平坦接続に対応し、平坦切断は局所定数になる。
+\end{obs}
+\begin{proof}
+$\HH^0=\ker(d_A:H^0(E)\to H^0(T\otimes E))$ で、$d_A s=(\xi\mapsto\nabla_\xi s)$ である（命題 \ref{prop:ident}(b)）。
+\end{proof}
+\begin{rem}\tK
+これは、型が正則で 0 でない場合（Pal--Poddar の枠組み）にも葉の方向に局所定数となり、一般化正則切断が $M$ から射影空間への写像として埋め込みを与えることはできないことを意味する。Kodaira 埋め込み定理の一般化は、葉空間（あるいは Casimir 切断が分離する商）への写像として定式化し直す必要がある。本ノートでは Kodaira 埋め込みの一般化そのものは扱っていない。
+\end{rem}

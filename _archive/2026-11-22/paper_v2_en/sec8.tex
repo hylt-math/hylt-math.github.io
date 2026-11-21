@@ -1,0 +1,37 @@
+%--------------------------------------------------------------
+\section{Status of the claims and extent of verification}\label{sec:ledger}
+%--------------------------------------------------------------
+\subsection{Status of each claim}
+\begin{center}\footnotesize
+\begin{tabular}{>{\raggedright\arraybackslash}p{4.0cm}>{\raggedright\arraybackslash}p{3.0cm}>{\raggedright\arraybackslash}p{8.4cm}}\toprule
+Claim & Status & Dependencies / gaps\\\midrule
+Theorem~\ref{thm:main1} (Poisson module $=$ log connection) & \tP & Any even dimension, simple normal crossings. The residue formula $c_1=-\sum r_i[D_i]$ is quoted from Esnault--Viehweg.\\
+Theorem~\ref{thm:cp2} (table for $\mathbb{CP}^2$) & \tP\ \tV & Hand derivation and exact computation for $m=-15..15$ agree. Depends on the identification of complexes (Prop.~\ref{prop:ident}(b)).\\
+Theorem~\ref{thm:main2} (main theorem for surfaces) & \tP & Prop.~\ref{prop:ident}(b) (LGSX Thm.~4.19 and Mokri's theorem), Deligne's comparison, the Laurent-tail computation of local cohomology (standard but not written out). Requires $r_i\ne1$.\\
+Theorem~\ref{thm:B} (closed formula) & \tP\ \tV & Theorem~\ref{thm:main2} plus (H1)--(H4). (H4) ($H^1(U;L_\chi)=0$) was checked in 8 examples; in general it is a condition on $V^1(U)$. Agrees for 196 values.\\
+Theorem~\ref{thm:A1} (Serre-type) & \tP & Only classical Serre (Hartshorne III.5.2) and the acyclic resolution lemma. Any dimension.\\
+Theorem~\ref{thm:A2} (periodic stabilization) & \tP & Depends on Theorem~\ref{thm:main2} and its hypotheses ($X$ simply connected, $U$ affine).\\
+Prop.~\ref{prop:euler} (Euler characteristic) & \tP & HRR only.\\
+Theorem~\ref{thm:dual} (duality) & \tP\ \tV & Lemmas D and E machine-checked for $n\le4$. The agreement of the Koszul signs of the $\dbar$ part and the $d$ part is by hand only. Hodge theory for elliptic complexes is standard.\\
+Theorem~\ref{thm:weight} (weight formula) & \tP\ \tV & Assumes $E_1^{a>0}=0$. Agreement with linear algebra in 60 examples, and in 3626 examples with generic $A$.\\
+Obs.~\ref{obs:arith} (arithmetic dependence of $\sigma$) & \tV & A few examples in dimension 4. The explanation of the mechanism is a sketch.\\
+Local theory in \S\ref{sec:local} and the triple-point explanation & \tV\ \tK & Quasi-homogeneous germs only. The global identification is a fit.\\
+Conjectures~\ref{conj:A3}, \ref{conj:I3} & \tK & Neither definitions nor proofs are complete.\\
+Generalization of the Kodaira embedding theorem & --- & Not treated (\S\ref{sec:open}).\\\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Unverified or delicate items (\tQ)}
+\begin{itemize}
+\item \textbf{Bibliographic data (from memory)}: the journal and pages of Goto, the IMRN volume/pages of Gualtieri--Li, the OUP data of Gualtieri ``Branes'', the volume/pages of Mokri, of Arapura, the journal of Lang--Jia--Liu, the IMRN Art.\ ID of LGSX, the volume/issue of Pal--Poddar. The numbers in Deligne LNM 163, Crainic--Fernandes, Fulton, Esnault--Viehweg. The numbers and contents of Thm.~8.9, Prop.~9.3, Ex.~10.18, Prop.~11.8, Lemma~11.9, Ex.~13.10 of Pal--Poddar. (Checked in v2: Hitchin Moscow Math.\ J.\ 12 (2012) 567--591, Pym Lett.\ Math.\ Phys.\ 108 (2018) 573--632, Hausel--Hunsicker--Mazzeo Duke 122 (2004) 485--548, Timmerscheidt J.\ reine angew.\ Math.\ 379 (1987) 152--171, title and authors of Pal--Poddar.)
+\item \textbf{Gualtieri 2011 (arXiv:math/0703298)}: of roughly 160,000 characters, the first roughly 100,000 (up to the middle of \S3) were read closely; \S4 (the Darboux theorem etc.) was not read in full. In v2 the following were checked: type Def.~3.5, canonical bundle Def.~3.7, ellipticity Prop.~3.13/Cor.~3.14, Picard group Def.~3.18, Darboux Thm.~4.3 (regular points), regular points Def.~4.1; the type-jumping example is in \S4.1, $\rho=z_1+dz_1\wedge dz_2$ on $\mathbb R^4$.
+\item \textbf{Hitchin, \emph{Poisson modules and generalized geometry} (arXiv:0905.3227, title and author checked)}: it only states in the introduction that GH bundles $=$ Poisson modules; it contains no $\Jc_\sigma$ notation, no identification of hypercohomology, no obstruction by the Atiyah class, no $\mathbb{CP}^2$ example and no Lie algebroid $L$ (according to the text obtained). This note instead cites Branes on Poisson varieties (arXiv:0710.2719) and LGSX. (v1 attributed this paper to Gualtieri and said ``confirmed''; that was wrong in both author and content.)
+\item \textbf{$\mathrm{Pic}(\Jc)=\mathbb H^1(\mathcal L_{\log})$}: could not be checked in the text of any reference. This note does not use it. What was used is only the direct derivation of existence and uniqueness of Poisson module structures.
+\item \textbf{LGSX Lemma~4.22, Mokri's theorem}: not re-derived. The standard facts of Hodge theory and elliptic complexes, and Esnault--Viehweg, Deligne, Fulton--Deligne, Timmerscheidt, Arapura and Crainic--Fernandes, are quoted, and their ranges of applicability were not checked against the sources.
+\item \textbf{The two papers of Hu}: for 2403.10876 the first roughly 200,000 characters (about 500,000 in the full expanded HTML); for 2403.13424 only the overview and the statements of theorems.
+\item \textbf{Pal--Poddar}: \S\S5--11, 13 were re-read (22 November 2026); the extraction went through summaries, so details of formulas are unverified.
+\item \textbf{Limits of the computations}: exact linear algebra was done for a finite range of $m$, a finite number of curves (Fermat and Hesse cubics, etc.), and modulo primes ($32003$, $2^{61}-1$). Dependence on the choice of curve (random smooth curves), and whether reduction modulo $p$ represents the characteristic-0 result, were not verified.
+\end{itemize}
+
+\subsection{Record of the work}
+All scripts use exact arithmetic in Python (standard library) and were saved in \texttt{cp2/} (\texttt{poisson.py, table.py, neg\_check.py, predict.py, sing\_table.py, p1p1.py, local\_stalk.py, local\_unequal.py, ncd\_cochain\_check.py, ncd\_local\_weights.py, ncd\_global\_check.py, serre\_rr\_check.py, serre\_dual\_check.py, duality\_ndim.py, duality\_ndim\_exact.py, toric\_hh.py, toric\_crit.py, toric\_generic\_check2.py, index\_route\_check.py}).

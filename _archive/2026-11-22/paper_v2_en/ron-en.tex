@@ -1,0 +1,98 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=24mm]{geometry}
+\usepackage{xspace}
+\usepackage{xcolor,booktabs,longtable,array,enumitem,fancyhdr,titlesec}
+\usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black]{hyperref}
+\setlength{\parindent}{1em}
+\setlength{\parskip}{2pt}
+\linespread{1.08}
+\emergencystretch=4em
+\setlist{itemsep=1pt,topsep=3pt}
+\setlength{\tabcolsep}{4pt}
+
+%%% --- status tags ---
+\newcommand{\tP}{\textcolor{green!45!black}{\textbf{[Proved]}}\xspace}
+\newcommand{\tC}{\textcolor{blue!55!black}{\textbf{[Lit.]}}\xspace}
+\newcommand{\tV}{\textcolor{violet!80!black}{\textbf{[Verified numerically]}}\xspace}
+\newcommand{\tK}{\textcolor{red!70!black}{\textbf{[Conjecture]}}\xspace}
+\newcommand{\tQ}{\textcolor{orange!85!black}{\textbf{[To be verified]}}\xspace}
+
+%%% --- theorem-like environments ---
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[section]
+\newtheorem{thm}[defn]{Theorem}
+\newtheorem{prop}[defn]{Proposition}
+\newtheorem{lem}[defn]{Lemma}
+\newtheorem{cor}[defn]{Corollary}
+\newtheorem{ex}[defn]{Example}
+\newtheorem{rem}[defn]{Remark}
+\newtheorem{obs}[defn]{Observation}
+\newtheorem{conj}[defn]{Conjecture}
+\newcommand{\src}[1]{\par\noindent{\small\textcolor{blue!55!black}{\textbf{[Source]}~#1}}\par}
+
+\newenvironment{hyptab}{\par\medskip\noindent{\small\textbf{Hypotheses and their roles}}\par\nopagebreak\small\noindent\begin{tabular}{>{\raggedright\arraybackslash}p{3.3cm}>{\raggedright\arraybackslash}p{5.5cm}>{\raggedright\arraybackslash}p{5.9cm}}\toprule Hypothesis & Why it is needed & Where it enters the proof\\\midrule}{\\\bottomrule\end{tabular}\par\medskip}
+
+%%% --- notation ---
+\newcommand{\R}{\mathbb R}\newcommand{\C}{\mathbb C}\newcommand{\Z}{\mathbb Z}
+\newcommand{\bT}{\mathbb T}
+\newcommand{\Lb}{\overline L}
+\newcommand{\Jc}{\mathcal J}
+\newcommand{\dbar}{\bar\partial}
+\newcommand{\ch}{\mathrm{ch}}\newcommand{\Td}{\mathrm{Td}}
+\newcommand{\rk}{\mathrm{rk}}
+\newcommand{\HH}{\mathrm{HH}}
+\newcommand{\Res}{\mathrm{Res}}
+\newcommand{\dlog}{\mathrm{dlog}\,}
+\newcommand{\sh}{\sharp}
+
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small Generalized holomorphic line bundles and Poisson structures}
+\fancyhead[R]{\small Research note 2026-11-22}
+\fancyfoot[C]{\small\thepage}
+\titleformat{\section}{\large\bfseries\sffamily}{\thesection}{0.8em}{}
+\titleformat{\subsection}{\normalsize\bfseries\sffamily}{\thesubsection}{0.8em}{}
+
+\begin{document}
+
+\begin{center}
+{\LARGE\bfseries\sffamily Cohomology of generalized holomorphic line bundles on generalized complex structures from holomorphic Poisson structures\\[3pt]}
+{\large Serre-type vanishing, duality and Riemann--Roch-type formulas via examples}\\[12pt]
+{\large Research and writing: Claude \ ; \ Problem posing: Mori}\\[3pt]
+22 November 2026 (\textbf{v2})\\[3pt]
+{\small (A personal research note. It has not been peer-reviewed and is not a preprint.\\
+Some proof details and bibliographic data are unverified; such places are marked explicitly by \tQ\ in the text.)}
+\end{center}
+
+\begin{abstract}
+\noindent
+We collect the results of an investigation of generalized-complex analogues of the ``three treasures'' of complex geometry (the Hirzebruch--Riemann--Roch theorem, Serre's vanishing theorem and Kodaira's embedding theorem), attacking the problem from the simplest non-trivial examples.
+The objects are the generalized complex structure $\Jc_\sigma$ obtained from a holomorphic Poisson structure $\sigma$ by a $\beta$-transform (its type jumps along the divisor $D$ where $\sigma$ vanishes), and the generalized Dolbeault cohomology $\HH^*(L)$ of a generalized holomorphic line bundle $L$ on it.
+The main results are as follows.
+(1) If $\sigma$ is log-symplectic along $D$, a generalized holomorphic structure on $L$ is the same thing as a logarithmic flat connection along $D$; the residues $r_i$ are constants and $c_1(L)=-\sum r_i[D_i]$.
+(2) On a surface with $D$ having only ordinary double points, $\HH^k(L)=H^k(X;\mathcal F)\oplus\C^{\mu}[-2]$, where $\mathcal F$ is a constructible complex determined by the residues and $\mu$ is the number of double points. The total Euler characteristic is $\chi(X)$, independent of $L$; the dependence on $L$ appears only in the Poincar\'e polynomial.
+(3) On a projective manifold of any dimension with a $\beta$-transformed structure, for an ample Poisson module $L_0$ and $m\gg0$ the terms of transversal Dolbeault degree $a>0$ vanish and $\HH^k(L_0^m)=0$ for $k>n$ (a Serre-type theorem). Vanishing in total degree fails even for $\sigma=0$.
+(4) On any compact complex manifold with any holomorphic Poisson structure, $\HH^k(L)^*\cong\HH^{2n-k}(L^\vee\otimes K_X^2)$.
+(5) A weight formula in the toric case, the dependence of $\HH$ on the arithmetic of $\sigma$ in dimension 4, and computations of the local term at a triple point (partly conjectural).
+A generalized Kodaira embedding theorem and a general generalized Riemann--Roch formula have not been obtained. The index-theoretic outlook (b-calculus, indicial roots) is at the level of conjecture.
+\end{abstract}
+
+\paragraph{How to read this note.}
+Each statement carries one of the following tags: \tC\ quoted from the literature (source given), \tP\ proved by the author (after quoting standard facts; for the main ones a proof or proof sketch is included), \tV\ checked by computer, e.g.\ exact linear algebra (not a proof), \tK\ conjecture or outlook, \tQ\ unverified points (bibliographic data recalled from memory, or the range of applicability of a cited result not checked).
+Even statements tagged \tP\ depend on the cited literature they build on. The dependencies are collected in \S\ref{sec:ledger}.
+
+\tableofcontents
+
+\input{sec1.tex}
+\input{sec2.tex}
+\input{sec3.tex}
+\input{sec4.tex}
+\input{sec5.tex}
+\input{sec6.tex}
+\input{sec7.tex}
+\input{sec8.tex}
+\input{sec9.tex}
+\input{refs.tex}
+
+\end{document}

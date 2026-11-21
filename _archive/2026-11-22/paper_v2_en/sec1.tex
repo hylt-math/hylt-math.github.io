@@ -1,0 +1,88 @@
+%--------------------------------------------------------------
+\section{Notation}\label{sec:notation}
+%--------------------------------------------------------------
+Overly general symbols (wedge product, differentials, etc.) are omitted.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{3.4cm}>{\raggedright\arraybackslash}p{11.6cm}}
+\toprule Symbol & Meaning\\ \midrule\endhead
+$X$ & compact complex manifold, $\dim_\C X=n$ ($n$ is even in the log-symplectic case)\\
+$T,\ T^*,\ \Omega^p$ & holomorphic tangent bundle, holomorphic cotangent bundle, sheaf of holomorphic $p$-forms. $K_X=\Omega^n$\\
+$\bT=T\oplus T^*$ & generalized tangent bundle. Pairing $\langle X+\xi,Y+\eta\rangle=\tfrac12(\xi(Y)+\eta(X))$, Courant (Dorfman) bracket $[X+\xi,Y+\eta]=[X,Y]+\mathcal L_X\eta-\iota_Yd\xi$\\
+$\Jc$ & generalized complex structure: $\Jc^2=-1$, preserves the pairing, and its $\pm i$ eigenbundles are closed under the Courant bracket\\
+$L$ & eigenbundle of $\Jc$ (maximal isotropic subbundle of $\bT_\C$, a complex Lie algebroid). $L^*\cong\Lb$\\
+$\sigma$ & holomorphic Poisson structure: $\sigma\in H^0(X,\wedge^2T)$, $[\sigma,\sigma]=0$ (Schouten bracket)\\
+$\sigma^\sh$ & $T^*\to T$, $\xi\mapsto\sigma(\xi,\cdot)$\\
+$\Jc_\sigma$ & generalized complex structure determined by $\sigma$ ($\beta$-transform). $L_\sigma=T^{0,1}\oplus\{\sigma^\sh\xi+\xi:\xi\in T^{*1,0}\}$\\
+$A=(T^*)_\sigma$ & holomorphic Lie algebroid: anchor $\sigma^\sh$, bracket $[a,b]_\sigma=\mathcal L_{\sigma^\sh a}b-\mathcal L_{\sigma^\sh b}a-d\sigma(a,b)$\\
+$D=\sum D_i$ & degeneracy divisor of $\sigma$ (reduced; simple normal crossings, or only ordinary double points for surfaces)\\
+$T_D=T_X(-\log D)$,\ $B=\Omega^1(\log D)$ & logarithmic tangent and cotangent bundles. $T_D$ is a Lie algebroid, $B=T_D^*$\\
+$U$ & $X\setminus D$\\
+log-symplectic & $\sigma\in H^0(\wedge^2T_D)$ and $\sigma^\sh:B\to T_D$ is an isomorphism\\
+$L$ (as a line bundle) & to be distinguished from the eigenbundle of $\bT_\C$ by context. The line bundle is often written $E$, $L_0$, $\mathcal O(m)$, etc.\ (\S\ref{sec:setting})\\
+Poisson module & holomorphic vector bundle $(E,\nabla)$ with a flat $A$-connection $\nabla$. The same thing as a generalized holomorphic (GH) bundle (Prop.~\ref{prop:ident})\\
+$V$ & holomorphic vector field defined by $\nabla_\beta e=\beta(V)e$ for a local frame $e$ (Poisson vector field, Lemma~\ref{lem:flat})\\
+$r_i$ & residue (a constant) of the logarithmic connection along $D_i$\\
+$C(A;E)$ & $(\wedge^bT\otimes E,\ d_E=[\sigma,\cdot]+V\wedge)$ (Chevalley--Eilenberg complex of $A$)\\
+$\HH^k(E)$ & $H^k(X;C(A;E))$: generalized Dolbeault cohomology (Prop.~\ref{prop:ident})\\
+$E_1^{a,b}$ & $H^a(X,\wedge^bT\otimes E)$: $E_1$ term of the spectral sequence converging to $\HH^{a+b}$ ($a$ is called the transversal degree)\\
+$\mathrm{DR}_{\log}(E)$ & logarithmic de Rham complex $(\Omega^\bullet(\log D)\otimes E,\nabla^{\log})$\\
+$Q$ & quotient complex $C(A;E)/C(T_D\text{-subcomplex})$, supported on $D$\\
+$\mu$ & (surfaces) number of ordinary double points of $D$\\
+$c,\ \rho,\ b_1$ & number $c$ of irreducible components of $D$, dimension $\rho$ of the span of $[D_i]\in H^2(X;\C)$, $b_1=c-\rho$\\
+$j_1:U\hookrightarrow X',\ j_2:X'\hookrightarrow X$ & open embeddings (Thm.~\ref{thm:main2})\\
+$L_U$ & local system on $U$ of $\nabla$-flat sections (rank 1, monodromy $e^{2\pi ir_i}$ around $D_i$)\\
+$P_E(t)$ & $\sum_k\dim\HH^k(E)\,t^k$: Poincar\'e polynomial\\
+$[\,\cdot\,]$ (tables) & shorthand for $[\dim\HH^0,\dim\HH^1,\dots,\dim\HH^{2n}]$\\
+\bottomrule
+\end{longtable}
+
+%--------------------------------------------------------------
+\section{The classical three treasures: statements, hypotheses, and where they enter the proofs}\label{sec:classical}
+%--------------------------------------------------------------
+To make the target of the generalization clear, we recall the standard statements of the classical versions and the skeletons of their proofs. The content is standard textbook material and is not new.
+
+\begin{thm}[Hirzebruch--Riemann--Roch]\tC\label{thm:HRR}
+Let $M$ be a compact complex manifold and $E$ a holomorphic vector bundle. Then
+$\chi(M,E)=\sum_q(-1)^q\dim H^q(M,\mathcal O(E))=\int_M\ch(E)\Td(T^{1,0}M).$
+\src{Hirzebruch, \emph{Neue topologische Methoden in der algebraischen Geometrie}, Springer 1956 (projective algebraic case); Atiyah--Singer, Ann.\ Math.\ 87 (1968) 484--530, 531--545, 546--604 (general compact complex manifolds, index of the Dolbeault complex). Textbook: Huybrechts, \emph{Complex Geometry}, Springer 2005, \S5.1.}
+\end{thm}
+\begin{hyptab}
+Compactness & The cohomology is finite-dimensional. & The Dolbeault complex is elliptic, hence Fredholm, so the index is defined.\\\midrule
+Holomorphic structure & Condition $\dbar_E^2=0$ for a complex to exist. & Definition of the complex $(\Omega^{0,\bullet}(E),\dbar_E)$.\\\midrule
+(Form of the conclusion) $\ch(E)$ & The index is the integral of topological data of the principal symbol. & Atiyah--Singer index theorem. $\Td$ arises from the symbol, and $E$ enters not through its rank but through $\ch(E)$.
+\end{hyptab}
+
+\begin{thm}[Serre's vanishing theorem]\tC\label{thm:Serre}
+Let $X$ be a projective scheme over a field, $\mathcal O(1)$ a very ample line bundle and $\mathcal F$ a coherent sheaf. Then there is $m_0$ such that for $m\ge m_0$: (a) $H^q(X,\mathcal F(m))=0\ (q>0)$; (b) $\mathcal F(m)$ is generated by global sections.
+\src{Serre, \emph{Faisceaux alg\'ebriques coh\'erents}, Ann.\ Math.\ 61 (1955) 197--278; modern proof in Hartshorne, \emph{Algebraic Geometry}, GTM 52, Springer 1977, Theorem III.5.2.}
+\end{thm}
+\begin{hyptab}
+Coherence & Finite generation gives a surjection $\bigoplus\mathcal O(-N_i)\twoheadrightarrow\mathcal F$. & To reduce to the known computation on $\mathbb P^N$.\\\midrule
+Ampleness & Twisting $\mathcal F(m)$ by large $m$ kills higher cohomology. & It is the conclusion itself.\\\midrule
+Projectivity & $X$ embeds as a closed subscheme of $\mathbb P^N$, and $H^q(\mathbb P^N,\mathcal O(m))$ can be computed directly by the Cech complex. & When running the descending induction on $q$ (vanishing for $q>\dim X$) on the long exact sequence for the kernel $\mathcal K$ of the surjection.
+\end{hyptab}
+
+\begin{thm}[Kodaira--Akizuki--Nakano vanishing]\tC\label{thm:KAN}
+Let $M$ be a compact K\"ahler manifold and $E$ a positive holomorphic Hermitian line bundle. If $p+q>n$ then $H^q(M,\Omega^p\otimes E)=0$. In particular $H^q(M,K_M\otimes E)=0\ (q>0)$.
+\src{Kodaira, Proc.\ Nat.\ Acad.\ Sci.\ USA 39 (1953) 1268--1273; Akizuki--Nakano, Proc.\ Japan Acad.\ 30 (1954) 266--272. Textbooks: Griffiths--Harris, \emph{Principles of Algebraic Geometry}, Wiley 1978, Ch.~1 \S2; Huybrechts \S5.2.}
+\end{thm}
+\begin{hyptab}
+Compactness & (i) Hodge theory ($H^q\cong\ker\Delta_{\dbar_E}$); (ii) no boundary terms in integration by parts. & Existence of harmonic representatives, and the integral estimate below.\\\midrule
+K\"ahler & The K\"ahler identity $[\Lambda,\dbar]=-i\partial^*$. & Derivation of the Bochner--Kodaira--Nakano identity $\Delta_{\dbar_E}=\Delta_{\partial_E}+[i\Theta_E,\Lambda]$.\\\midrule
+Positive ($i\Theta_E>0$) & The curvature term $[i\Theta_E,\Lambda]$ is positive definite for $p+q>n$. & For $s\in\ker\Delta_{\dbar_E}$, in $0=\|\partial_Es\|^2+\|\partial_E^*s\|^2+\langle[i\Theta_E,\Lambda]s,s\rangle$ the last term is $>0$ unless $s=0$.
+\end{hyptab}
+
+\begin{thm}[Kodaira's embedding theorem]\tC\label{thm:Kod}
+Let $M$ be a compact complex manifold and $L$ a positive holomorphic line bundle. Then $M$ is projective, and for sufficiently large $m$ the map $M\to\mathbb P(H^0(M,L^m)^*)$ defined by $|L^m|$ is an embedding.
+\src{Kodaira, Ann.\ Math.\ 60 (1954) 28--48; Griffiths--Harris Ch.~1 \S4; Huybrechts \S5.3.}
+\end{thm}
+\begin{hyptab}
+$L$ positive & The curvature form $i\Theta_L$ is a K\"ahler form, so $M$ is K\"ahler. & Ensures the situation where Kodaira vanishing can be used.\\\midrule
+Compactness & $H^0(M,L^m)$ is finite-dimensional, so the map to projective space is defined. & Construction of the map.\\\midrule
+Enough holomorphic sections & The standard proof blows up a point $x$ to get $\tilde M$ with exceptional divisor $E_x$ and deduces surjectivity of $H^0(L^m)\to L^m\otimes\mathcal O/\mathfrak m_x^2$ from vanishing (Kodaira vanishing) of $H^1(\tilde M,\pi^*L^m\otimes\mathcal O(-2E_x))$. & Separation of points and of tangent vectors. The point is that no dimension estimate from Riemann--Roch is needed.
+\end{hyptab}
+
+\begin{rem}\tK\ (Hints for the generalization)
+Classically, four items share the work: (1) Hodge theory (ellipticity), (2) K\"ahler identities $\Rightarrow$ BKN identity, (3) positivity of curvature, (4) abundance of global sections. In generalized complex geometry, (1) holds as the elliptic complex $(\wedge L^*\otimes E,d_L)$ (Prop.~\ref{prop:ellip}). The line-bundle-coefficient versions of (2) and (3) have not yet been written in the generalized K\"ahler framework. (4) does not hold in the classical form, because generalized holomorphic sections become Casimir sections of a Poisson module (\S\ref{sec:ghfun}). The present note studies these points in the simplest non-trivial examples (type-jumping $\beta$-transforms).
+\end{rem}
+

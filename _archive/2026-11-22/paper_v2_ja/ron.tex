@@ -1,0 +1,132 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\setmainfont[BoldFont={Noto Sans CJK JP Bold}]{Noto Serif CJK JP}
+\setsansfont[BoldFont={Noto Sans CJK JP Bold}]{Noto Sans CJK JP}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=24mm]{geometry}
+\usepackage{xcolor,booktabs,longtable,array,enumitem,fancyhdr,titlesec}
+\usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black]{hyperref}
+\setlength{\parindent}{1em}
+\setlength{\parskip}{2pt}
+\linespread{1.17}
+\emergencystretch=4em
+\setlist{itemsep=1pt,topsep=3pt}
+\setlength{\tabcolsep}{4pt}
+
+%%% --- Japanese line breaking for XeTeX (no xeCJK available) ---
+\makeatletter
+\XeTeXinterchartokenstate=1
+\newXeTeXintercharclass\cjkc
+\newXeTeXintercharclass\cjkclose
+\newXeTeXintercharclass\cjkopen
+\def\setcjkrange#1#2{\@tempcnta=#1 \@whilenum\@tempcnta<#2 \do{\XeTeXcharclass\@tempcnta=\cjkc \advance\@tempcnta by 1 }}
+\setcjkrange{"3000}{"30FF}
+\setcjkrange{"4E00}{"9FFF}
+\setcjkrange{"FF00}{"FFEF}
+\setcjkrange{"2010}{"2027}
+\setcjkrange{"25A0}{"25FF}
+\setcjkrange{"2190}{"21FF}
+\@tempcnta=0
+\def\setclose#1{\XeTeXcharclass#1=\cjkclose}
+\def\setopen#1{\XeTeXcharclass#1=\cjkopen}
+\setclose{"3001}\setclose{"3002}\setclose{"FF0C}\setclose{"FF0E}\setclose{"FF09}\setclose{"300D}\setclose{"300F}\setclose{"3011}\setclose{"FF1A}\setclose{"FF1B}\setclose{"FF01}\setclose{"FF1F}\setclose{"30FC}
+\setopen{"FF08}\setopen{"300C}\setopen{"300E}\setopen{"3010}
+\def\cjkglue{\hskip0pt plus 0.25pt minus 0.1pt\relax}
+\XeTeXinterchartoks\cjkc\cjkc={\cjkglue}
+\XeTeXinterchartoks\cjkclose\cjkc={\cjkglue}
+\XeTeXinterchartoks\cjkclose\cjkopen={\cjkglue}
+\XeTeXinterchartoks\cjkc\cjkopen={\cjkglue}
+\XeTeXinterchartoks\cjkclose\cjkclose={}
+\XeTeXinterchartoks\cjkc\cjkclose={}
+\XeTeXinterchartoks 0 \cjkc={\cjkglue}
+\XeTeXinterchartoks \cjkc 0={\cjkglue}
+\XeTeXinterchartoks 0 \cjkopen={\cjkglue}
+\XeTeXinterchartoks \cjkclose 0={\cjkglue}
+\makeatother
+
+%%% --- status tags ---
+\newcommand{\tP}{\textcolor{green!45!black}{\textbf{【証明済】}}}
+\newcommand{\tC}{\textcolor{blue!55!black}{\textbf{【文献】}}}
+\newcommand{\tV}{\textcolor{violet!80!black}{\textbf{【計算で確認】}}}
+\newcommand{\tK}{\textcolor{red!70!black}{\textbf{【予想】}}}
+\newcommand{\tQ}{\textcolor{orange!85!black}{\textbf{【要確認】}}}
+
+%%% --- theorem-like environments ---
+\theoremstyle{definition}
+\newtheorem{defn}{定義}[section]
+\newtheorem{thm}[defn]{定理}
+\newtheorem{prop}[defn]{命題}
+\newtheorem{lem}[defn]{補題}
+\newtheorem{cor}[defn]{系}
+\newtheorem{ex}[defn]{例}
+\newtheorem{rem}[defn]{注意}
+\newtheorem{obs}[defn]{観察}
+\newtheorem{conj}[defn]{予想}
+\newcommand{\src}[1]{\par\noindent{\small\textcolor{blue!55!black}{\textbf{[出典]}~#1}}\par}
+\renewcommand{\proofname}{証明}
+
+\newenvironment{hyptab}{\par\medskip\noindent{\small\textbf{仮定と、その役割}}\par\nopagebreak\small\noindent\begin{tabular}{>{\raggedright\arraybackslash}p{3.3cm}>{\raggedright\arraybackslash}p{5.5cm}>{\raggedright\arraybackslash}p{5.9cm}}\toprule 仮定 & なぜ必要か & 証明のどこで効くか\\\midrule}{\\\bottomrule\end{tabular}\par\medskip}
+
+%%% --- notation ---
+\newcommand{\R}{\mathbb R}\newcommand{\C}{\mathbb C}\newcommand{\Z}{\mathbb Z}
+\newcommand{\bT}{\mathbb T}
+\newcommand{\Lb}{\overline L}
+\newcommand{\Jc}{\mathcal J}
+\newcommand{\dbar}{\bar\partial}
+\newcommand{\ch}{\mathrm{ch}}\newcommand{\Td}{\mathrm{Td}}
+\newcommand{\rk}{\mathrm{rk}}
+\newcommand{\HH}{\mathrm{HH}}
+\newcommand{\Res}{\mathrm{Res}}
+\newcommand{\dlog}{\mathrm{dlog}\,}
+\newcommand{\sh}{\sharp}
+
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small 一般化複素幾何の「三種の神器」：具体例からのアプローチ}
+\fancyhead[R]{\small 調査ノート 2026-11-22}
+\fancyfoot[C]{\small\thepage}
+\titleformat{\section}{\large\bfseries\sffamily}{\thesection}{0.8em}{}
+\titleformat{\subsection}{\normalsize\bfseries\sffamily}{\thesubsection}{0.8em}{}
+
+\begin{document}
+\sloppy
+
+\begin{center}
+{\LARGE\bfseries\sffamily 正則 Poisson 構造に付随する一般化複素構造上の\\[3pt]一般化正則直線束のコホモロジー}\\[8pt]
+{\large Serre 型消滅・双対性・Riemann--Roch 型公式への\\具体例からのアプローチ}\\[12pt]
+{\large Claude（調査・執筆）\ ／\ 森（問題設定）}\\[3pt]
+2026年11月22日（\textbf{v2}）\\[3pt]
+{\small （個人用の調査ノート。査読を受けておらず、プレプリントでもありません。\\
+証明の細部と引用の書誌情報には未確認の箇所があり、本文中に\tQ\ で明示してあります。）}
+\end{center}
+
+\begin{abstract}
+\noindent
+複素幾何の「三種の神器」（Hirzebruch--Riemann--Roch の定理、Serre の消滅定理、Kodaira の埋め込み定理）の一般化複素幾何版を、最も簡単な非自明な例から攻めるという方針で調べた結果をまとめる。
+対象は、正則 Poisson 構造 $\sigma$ から $\beta$-変換で得られる一般化複素構造 $\Jc_\sigma$（$\sigma$ が消える因子 $D$ の上で型が跳ぶ）と、その上の一般化正則直線束 $L$ の一般化 Dolbeault コホモロジー $\HH^*(L)$ である。
+主な結果は次の通り。
+(1) $\sigma$ が $D$ に沿って対数シンプレクティックのとき、$L$ の一般化正則構造は $D$ に沿った対数的平坦接続と同じものであり、留数 $r_i$ は定数で $c_1(L)=-\sum r_i[D_i]$ となる。
+(2) 曲面で $D$ が通常二重点のみをもつ場合、$\HH^k(L)=H^k(X;\mathcal F)\oplus\C^{\mu}[-2]$（$\mathcal F$ は留数で決まる構成可能複体、$\mu$ は二重点の個数）。全 Euler 標数は $\chi(X)$ で $L$ によらず、$L$ への依存は Poincaré 多項式のみに現れる。
+(3) 任意次元の射影多様体上の $\beta$-変換構造では、ample な Poisson 加群 $L_0$ について $m\gg0$ のとき横断 Dolbeault 次数 $a>0$ の項が消え、$\HH^k(L_0^m)=0\ (k>n)$ となる（Serre 型定理）。全次数での消滅は $\sigma=0$ でも成り立たない。
+(4) 任意のコンパクト複素多様体・任意の正則 Poisson 構造で $\HH^k(L)^*\cong\HH^{2n-k}(L^\vee\otimes K_X^2)$ が成り立つ。
+(5) トーリックな場合の weight 公式、4 次元での $\sigma$ の算術への依存、三重点での局所項の計算（一部は予想）。
+一般化 Kodaira 埋め込み定理および一般の一般化 Riemann--Roch 公式は得られていない。指数理論的な見通し（b-計算、指標根）は予想の段階である。
+\end{abstract}
+
+\paragraph{本ノートの読み方。}
+各記述に次のタグを付ける。\tC\ 文献からの引用（出典を明記）、\tP\ 筆者が証明したもの（標準的事実を引用した上で、主要なものは証明または証明の概略を載せる）、\tV\ 厳密な線形代数などの計算機による確認（証明ではない）、\tK\ 予想・見通し、\tQ\ 未確認の点（書誌情報を記憶に頼った箇所、引用の適用範囲が未確認の箇所など）。
+\tP\ と付けた命題でも、前提として引用した文献の結果に依存している。依存関係は \S\ref{sec:ledger} にまとめた。
+
+\tableofcontents
+
+\input{sec1.tex}
+\input{sec2.tex}
+\input{sec3.tex}
+\input{sec4.tex}
+\input{sec5.tex}
+\input{sec6.tex}
+\input{sec7.tex}
+\input{sec8.tex}
+\input{sec9.tex}
+\input{refs.tex}
+
+\end{document}

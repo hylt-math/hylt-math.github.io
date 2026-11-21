@@ -1,0 +1,87 @@
+%--------------------------------------------------------------
+\section{記号表}\label{sec:notation}
+%--------------------------------------------------------------
+一般的すぎる記号（外積、微分など）は省く。
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{3.4cm}>{\raggedright\arraybackslash}p{11.6cm}}
+\toprule 記号 & 意味\\ \midrule\endhead
+$X$ & コンパクト複素多様体、$\dim_\C X=n$（対数シンプレクティックの場合は $n$ は偶数）\\
+$T,\ T^*,\ \Omega^p$ & 正則接束、正則余接束、正則 $p$-形式の層。$K_X=\Omega^n$\\
+$\bT=T\oplus T^*$ & 一般化接束。内積 $\langle X+\xi,Y+\eta\rangle=\tfrac12(\xi(Y)+\eta(X))$、Courant（Dorfman）括弧 $[X+\xi,Y+\eta]=[X,Y]+\mathcal L_X\eta-\iota_Yd\xi$\\
+$\Jc$ & 一般化複素構造。$\Jc^2=-1$、内積を保ち、$\pm i$ 固有束が Courant 括弧で閉じる\\
+$L$ & $\Jc$ の固有束（$\bT_\C$ の極大迷零部分束、複素 Lie 亜群）。$L^*\cong\Lb$\\
+$\sigma$ & 正則 Poisson 構造：$\sigma\in H^0(X,\wedge^2T)$、$[\sigma,\sigma]=0$（Schouten 括弧）\\
+$\sigma^\sh$ & $T^*\to T$、$\xi\mapsto\sigma(\xi,\cdot)$\\
+$\Jc_\sigma$ & $\sigma$ から決まる一般化複素構造（$\beta$-変換）。$L_\sigma=T^{0,1}\oplus\{\sigma^\sh\xi+\xi:\xi\in T^{*1,0}\}$\\
+$A=(T^*)_\sigma$ & 正則 Lie 亜群：アンカー $\sigma^\sh$、括弧 $[a,b]_\sigma=\mathcal L_{\sigma^\sh a}b-\mathcal L_{\sigma^\sh b}a-d\sigma(a,b)$\\
+$D=\sum D_i$ & $\sigma$ の退化因子（簡約、単純正規交差または曲面の通常二重点のみ）\\
+$T_D=T_X(-\log D)$,\ $B=\Omega^1(\log D)$ & 対数接束、対数余接束。$T_D$ は Lie 亜群、$B=T_D^*$\\
+$U$ & $X\setminus D$\\
+対数シンプレクティック & $\sigma\in H^0(\wedge^2T_D)$ かつ $\sigma^\sh:B\to T_D$ が同型\\
+$L$（直線束として）& 文脈で $\bT_\C$ の固有束と区別する。直線束の方は $E$、$L_0$、$\mathcal O(m)$ 等と書くことも多い（\S\ref{sec:setting}）\\
+Poisson 加群 & 平坦 $A$-接続 $\nabla$ をもつ正則ベクトル束 $(E,\nabla)$。一般化正則（GH）束と同じもの（命題 \ref{prop:ident}）\\
+$V$ & 局所枠 $e$ に対し $\nabla_\beta e=\beta(V)e$ で定まる正則ベクトル場（Poisson ベクトル場、補題 \ref{lem:flat}）\\
+$r_i$ & $D_i$ に沿った対数接続の留数（定数）\\
+$C(A;E)$ & $(\wedge^bT\otimes E,\ d_E=[\sigma,\cdot]+V\wedge)$（$A$ の Chevalley--Eilenberg 複体）\\
+$\HH^k(E)$ & $H^k(X;C(A;E))$：一般化 Dolbeault コホモロジー（命題 \ref{prop:ident}）\\
+$E_1^{a,b}$ & $H^a(X,\wedge^bT\otimes E)$：$\HH^{a+b}$ へ収束するスペクトル系列の $E_1$ 項（$a$ を横断次数と呼ぶ）\\
+$\mathrm{DR}_{\log}(E)$ & 対数 de Rham 複体 $(\Omega^\bullet(\log D)\otimes E,\nabla^{\log})$\\
+$Q$ & 商複体 $C(A;E)/C(T_D\text{-部分複体})$。$D$ 上に台をもつ\\
+$\mu$ & （曲面）$D$ の通常二重点の個数\\
+$c,\ \rho,\ b_1$ & $D$ の既約成分数 $c$、$[D_i]\in H^2(X;\C)$ の張る空間の次元 $\rho$、$b_1=c-\rho$\\
+$j_1:U\hookrightarrow X',\ j_2:X'\hookrightarrow X$ & 開埋め込み（定理 \ref{thm:main2}）\\
+$L_U$ & $U$ 上の $\nabla$-平坦切断の局所系（階数 1、$D_i$ まわりのモノドロミー $e^{2\pi ir_i}$）\\
+$P_E(t)$ & $\sum_k\dim\HH^k(E)\,t^k$：Poincaré 多項式\\
+$[\,\cdot\,]$（表） & $[\dim\HH^0,\dim\HH^1,\dots,\dim\HH^{2n}]$ の略記\\
+\bottomrule
+\end{longtable}
+
+%--------------------------------------------------------------
+\section{古典の三種の神器：主張・仮定・証明のどこで効くか}\label{sec:classical}
+%--------------------------------------------------------------
+一般化の目標を明確にするため、古典版の標準的な主張と証明の骨格を整理する。内容は教科書の標準的なもので、新しい結果ではない。
+
+\begin{thm}[Hirzebruch--Riemann--Roch]\tC\label{thm:HRR}
+$M$ をコンパクト複素多様体、$E$ を正則ベクトル束とすると
+$\chi(M,E)=\sum_q(-1)^q\dim H^q(M,\mathcal O(E))=\int_M\ch(E)\Td(T^{1,0}M).$
+\src{Hirzebruch, \emph{Neue topologische Methoden in der algebraischen Geometrie}, Springer 1956（射影代数的な場合）；Atiyah--Singer, Ann.\ Math.\ 87 (1968) 484--530, 531--545, 546--604（一般のコンパクト複素多様体、Dolbeault 複体の指数）。教科書：Huybrechts, \emph{Complex Geometry}, Springer 2005, \S5.1。}
+\end{thm}
+\begin{hyptab}
+コンパクト & コホモロジーが有限次元になる。 & Dolbeault 複体が楕円型なので Fredholm、指数が定義できる。\\\midrule
+正則構造 & $\dbar_E^2=0$ が複体を作る条件。 & 複体 $(\Omega^{0,\bullet}(E),\dbar_E)$ の定義。\\\midrule
+（結論の形）$\ch(E)$ & 指数が主シンボルの位相的データの積分になる。 & Atiyah--Singer 指数定理。シンボルから $\Td$ が現れ、$E$ は階数ではなく $\ch(E)$ として入る。
+\end{hyptab}
+
+\begin{thm}[Serre の消滅定理]\tC\label{thm:Serre}
+$X$ を体上の射影的スキーム、$\mathcal O(1)$ を非常に豊富な直線束、$\mathcal F$ を連接層とする。このとき $m_0$ があって、$m\ge m_0$ ならば (a) $H^q(X,\mathcal F(m))=0\ (q>0)$、(b) $\mathcal F(m)$ は大域切断で生成される。
+\src{Serre, \emph{Faisceaux alg\'ebriques coh\'erents}, Ann.\ Math.\ 61 (1955) 197--278；現代的証明は Hartshorne, \emph{Algebraic Geometry}, GTM 52, Springer 1977, Theorem III.5.2。}
+\end{thm}
+\begin{hyptab}
+連接性 & 有限生成性により全射 $\bigoplus\mathcal O(-N_i)\twoheadrightarrow\mathcal F$ が取れる。 & $\mathbb P^N$ 上の既知の計算に帰着するため。\\\midrule
+豊富性 & ねじり $\mathcal F(m)$ を大きくすると高次コホモロジーが効かなくなる。 & 結論そのもの。\\\midrule
+射影的 & $\mathbb P^N$ に閉埋め込みでき、$H^q(\mathbb P^N,\mathcal O(m))$ を Cech 複体で直接計算できる。 & 全射の核 $\mathcal K$ の長完全列に対して $q$ について下降帰納法（$q>\dim X$ で消える）を回すとき。
+\end{hyptab}
+
+\begin{thm}[Kodaira--Akizuki--Nakano 消滅]\tC\label{thm:KAN}
+$M$ をコンパクト Kähler 多様体、$E$ を正の正則 Hermite 直線束とする。$p+q>n$ ならば $H^q(M,\Omega^p\otimes E)=0$。特に $H^q(M,K_M\otimes E)=0\ (q>0)$。
+\src{Kodaira, Proc.\ Nat.\ Acad.\ Sci.\ USA 39 (1953) 1268--1273；Akizuki--Nakano, Proc.\ Japan Acad.\ 30 (1954) 266--272。教科書：Griffiths--Harris, \emph{Principles of Algebraic Geometry}, Wiley 1978, Ch.\ 1 \S2；Huybrechts \S5.2。}
+\end{thm}
+\begin{hyptab}
+コンパクト & (i) Hodge 理論（$H^q\cong\ker\Delta_{\dbar_E}$）、(ii) 部分積分で境界項が出ない。 & 調和表現の存在と、下の積分評価。\\\midrule
+Kähler & Kähler の恒等式 $[\Lambda,\dbar]=-i\partial^*$。 & Bochner--Kodaira--Nakano の恒等式 $\Delta_{\dbar_E}=\Delta_{\partial_E}+[i\Theta_E,\Lambda]$ の導出。\\\midrule
+正（$i\Theta_E>0$） & 曲率項 $[i\Theta_E,\Lambda]$ が $p+q>n$ で正定値になる。 & $s\in\ker\Delta_{\dbar_E}$ に対し $0=\|\partial_Es\|^2+\|\partial_E^*s\|^2+\langle[i\Theta_E,\Lambda]s,s\rangle$ の最後の項が $>0$ なので $s=0$。
+\end{hyptab}
+
+\begin{thm}[Kodaira の埋め込み定理]\tC\label{thm:Kod}
+$M$ をコンパクト複素多様体、$L$ を正の正則直線束とすると、$M$ は射影的で、十分大きな $m$ について $|L^m|$ が定める写像 $M\to\mathbb P(H^0(M,L^m)^*)$ は埋め込みである。
+\src{Kodaira, Ann.\ Math.\ 60 (1954) 28--48；Griffiths--Harris Ch.\ 1 \S4；Huybrechts \S5.3。}
+\end{thm}
+\begin{hyptab}
+$L$ が正 & 曲率形式 $i\Theta_L$ が Kähler 形式になり、$M$ が Kähler になる。 & Kodaira 消滅を使える状況の確保。\\\midrule
+コンパクト & $H^0(M,L^m)$ が有限次元で射影空間への写像が定義できる。 & 写像の構成。\\\midrule
+正則切断が十分多い & 標準的証明は点 $x$ での爆発 $\tilde M$、例外因子 $E_x$ を取り、$H^1(\tilde M,\pi^*L^m\otimes\mathcal O(-2E_x))$ の消滅（Kodaira 消滅）から $H^0(L^m)\to L^m\otimes\mathcal O/\mathfrak m_x^2$ の全射性を導く。 & 点の分離と接ベクトルの分離。Riemann--Roch の次元評価を使わずに済むのが要点。
+\end{hyptab}
+
+\begin{rem}\tK\ （一般化への示唆）
+古典では (1) Hodge 理論（楕円型）、(2) Kähler 恒等式 $\Rightarrow$ BKN 恒等式、(3) 曲率の正値性、(4) 大域切断の多さ、の4点が役割を分担している。一般化複素幾何では、(1) は楕円型複体 $(\wedge L^*\otimes E,d_L)$ として成立する（命題 \ref{prop:ellip}）。(2),(3) の直線束係数版は一般化 Kähler の枠組みではまだ書かれていない。(4) は、一般化正則切断が Poisson 加群の Casimir 切断になる（\S\ref{sec:ghfun}）ため、古典と同じ形では成り立たない。本ノートはこれらを、最も簡単な非自明な例（型が跳ぶ $\beta$-変換）で調べたものである。
+\end{rem}

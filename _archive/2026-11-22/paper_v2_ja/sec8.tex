@@ -1,0 +1,37 @@
+%--------------------------------------------------------------
+\section{主張の状態一覧と検証の範囲}\label{sec:ledger}
+%--------------------------------------------------------------
+\subsection{主張ごとの状態}
+\begin{center}\footnotesize
+\begin{tabular}{>{\raggedright\arraybackslash}p{4.0cm}>{\raggedright\arraybackslash}p{3.0cm}>{\raggedright\arraybackslash}p{8.4cm}}\toprule
+主張 & 状態 & 依存・穴\\\midrule
+定理 \ref{thm:main1}（Poisson 加群 $=$ 対数接続） & \tP & 任意の偶数次元・単純正規交差。留数公式 $c_1=-\sum r_i[D_i]$ は Esnault--Viehweg の引用。\\
+定理 \ref{thm:cp2}（$\mathbb{CP}^2$ の表） & \tP\ \tV & 手計算の導出と $m=-15..15$ の厳密計算が一致。複体の同一視（命題 \ref{prop:ident}(b)）に依存。\\
+定理 \ref{thm:main2}（曲面の主定理） & \tP & 命題 \ref{prop:ident}(b)（LGSX Thm.\ 4.19 と Mokri の定理）、Deligne の比較、局所コホモロジーの Laurent 尾の計算（標準だが未記述）。$r_i\ne1$ が必要。\\
+定理 \ref{thm:B}（閉公式） & \tP\ \tV & 定理 \ref{thm:main2} に加え (H1)--(H4)。(H4)（$H^1(U;L_\chi)=0$）は 8 例で確認、一般には $V^1(U)$ の条件。196 個の値で一致。\\
+定理 \ref{thm:A1}（Serre 型） & \tP & 古典 Serre（Hartshorne III.5.2）と非輪状分解のみ。任意次元。\\
+定理 \ref{thm:A2}（周期的安定化） & \tP & 定理 \ref{thm:main2} とその仮定（$X$ 単連結、$U$ アファイン）に依存。\\
+命題 \ref{prop:euler}（Euler 標数） & \tP & HRR のみ。\\
+定理 \ref{thm:dual}（双対性） & \tP\ \tV & 補題 D, E は $n\le4$ で機械確認。$\dbar$ 部分と $d$ 部分の Koszul 符号の整合性は手計算のみ。楕円型複体の Hodge 理論は標準。\\
+定理 \ref{thm:weight}（weight 公式） & \tP\ \tV & $E_1^{a>0}=0$ を仮定。60 例の線形代数との一致、3626 例の一般 $A$ での一致。\\
+観察 \ref{obs:arith}（$\sigma$ の算術依存） & \tV & 4 次元の少数の例。機構の説明は概略。\\
+\S\ref{sec:local} の局所理論・3 重点の説明 & \tV\ \tK & 準斉次 germ のみ。大域同定は当てはめ。\\
+予想 \ref{conj:A3}, \ref{conj:I3} & \tK & 定義・証明ともに未了。\\
+Kodaira 埋め込みの一般化 & --- & 扱っていない（\S\ref{sec:open}）。\\\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{未確認・要注意の項目（\tQ）}
+\begin{itemize}
+\item \textbf{書誌情報（記憶に基づく）}：Goto の掲載誌・巻頁、Gualtieri--Li の IMRN 巻頁、Gualtieri ``Branes'' の OUP 書誌、Mokri の巻頁、Arapura の巻頁、Lang--Jia--Liu の掲載誌、LGSX の IMRN Art.\ ID、Pal--Poddar の掲載巻・頁。Deligne LNM 163、Crainic--Fernandes、Fulton、Esnault--Viehweg の番号。Pal--Poddar の Thm.\ 8.9, Prop.\ 9.3, Ex.\ 10.18, Prop.\ 11.8, Lemma 11.9, Ex.\ 13.10 の番号と内容。（v2 で確認済み：Hitchin Moscow Math.\ J.\ 12 (2012) 567--591、Pym Lett.\ Math.\ Phys.\ 108 (2018) 573--632、Hausel--Hunsicker--Mazzeo Duke 122 (2004) 485--548、Timmerscheidt J.\ reine angew.\ Math.\ 379 (1987) 152--171、Pal--Poddar の題名・著者。）
+\item \textbf{Gualtieri 2011（arXiv:math/0703298）}：約 16 万字のうち先頭約 10 万字（\S3 の途中まで）を精読。\S4（Darboux の定理など）は未精読。v2 で、型 Def.\ 3.5、標準束 Def.\ 3.7、楕円性 Prop.\ 3.13/Cor.\ 3.14、Picard 群 Def.\ 3.18、Darboux Thm.\ 4.3（正則点）、Def.\ 4.1（正則点の定義）を確認した。型の跳びの例は \S4.1、$\rho=z_1+dz_1\wedge dz_2$（$\R^4$）。
+\item \textbf{Hitchin, \emph{Poisson modules and generalized geometry}（arXiv:0905.3227、題名・著者は確認済み）}：GH 束 $=$ Poisson 加群を序論で述べるのみで、$\Jc_\sigma$ の記号、超コホモロジーの同定、Atiyah 類による障害、$\mathbb{CP}^2$ の例、Lie 亜群 $L$ は含まれない（取得した本文による）。本ノートは代わりに Branes on Poisson varieties（arXiv:0710.2719）と LGSX を引用した。（v1 は著者を Gualtieri と誤記し、「確認した」としていたが、著者名と内容の両面で誤りだった。）
+\item \textbf{Pic$(\Jc)=\mathbb H^1(\mathcal L_{\log})$}：どの文献でも本文を確認できなかった。本ノートは使っていない。使ったのは、Poisson 加群構造の存在と一意性の直接導出のみ。
+\item \textbf{LGSX Lemma 4.22、Mokri の定理}：再導出していない。Hodge 理論・楕円型複体の標準的事実と、Esnault--Viehweg、Deligne、Fulton--Deligne、Timmerscheidt、Arapura、Crainic--Fernandes は引用であり、適用範囲を原典で確認していない。
+\item \textbf{Hu の 2 論文}：2403.10876 は先頭約 20 万字（全体は約 50 万字）まで、2403.13424 は概要と定理の主張のみ。
+\item \textbf{Pal--Poddar}：\S\S5--11, 13 を再読した（2026-11-22）。抽出は要約を介しており、式の細部は未確認。
+\item \textbf{計算の限界}：厳密な線形代数は有限の範囲の $m$、有限個の曲線（Fermat 型・Hesse 型の 3 次曲線など）、素数を法とする計算（$32003$、$2^{61}-1$）。曲線の取り方への依存（ランダムな滑らかな曲線）と、法 $p$ での還元が標数 0 の結果を代表することは検証していない。
+\end{itemize}
+
+\subsection{作業の記録}
+スクリプトはすべて Python（標準ライブラリ）による厳密算術で、\texttt{cp2/} に保存した（\texttt{poisson.py, table.py, neg\_check.py, predict.py, sing\_table.py, p1p1.py, local\_stalk.py, local\_unequal.py, ncd\_cochain\_check.py, ncd\_local\_weights.py, ncd\_global\_check.py, serre\_rr\_check.py, serre\_dual\_check.py, duality\_ndim.py, duality\_ndim\_exact.py, toric\_hh.py, toric\_crit.py, toric\_generic\_check2.py, index\_route\_check.py}）。

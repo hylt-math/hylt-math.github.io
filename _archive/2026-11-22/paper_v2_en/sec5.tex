@@ -1,0 +1,106 @@
+%--------------------------------------------------------------
+\section{Serre-type theorems}\label{sec:serre}
+%--------------------------------------------------------------
+\subsection{Correspondence with the classical case}
+The generalized counterparts of the ingredients of the classical Serre vanishing theorem (Theorem~\ref{thm:Serre}) are as follows (\tK\ the correspondence is the author's organization).
+\begin{center}\small
+\begin{tabular}{p{4.6cm}p{9.8cm}}\toprule
+Classical & Counterpart in this note\\\midrule
+Coherent sheaf $\mathcal F$ & Each term $K^b=\wedge^bT\otimes E$ of the Lie algebroid complex ($E$ a generalized holomorphic bundle). It is coherent.\\
+Ample $\mathcal O(1)$ & An ample holomorphic line bundle $L_0$ which is also a Poisson module (generalized holomorphic). The Poisson structure is needed only so that $C(A;\cdot)$ is a complex; it plays no role in positivity.\\
+Projective & $X$ projective (because $L_0$ exists).\\
+$H^q(\mathcal F(m))=0\ (q>0)$ & $E_1^{a,b}=H^a(X,\wedge^bT\otimes E\otimes L_0^m)=0$ (\emph{$a>0$: the transversal (Dolbeault) degree}).\\
+Conclusion: $H^*(\mathcal F(m))$ is concentrated in degree 0 & $\HH^*$ is the cohomology of the finite-dimensional complex of global sections $(\Gamma(\wedge^\bullet T\otimes E\otimes L_0^m),d)$.\\\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Serre-type theorem in any dimension}
+\begin{thm}[Serre-type theorem ($\beta$-transforms)]\tP\label{thm:A1}
+Let $X$ be a compact complex projective manifold ($\dim_\C X=n$), $\sigma$ any holomorphic Poisson structure ($[\sigma,\sigma]=0$; neither non-degeneracy nor a logarithmic condition is needed), $E$ a generalized holomorphic vector bundle (Poisson module), and $L_0$ an ample holomorphic line bundle with a Poisson module structure. Then there is $m_0$ depending only on $X,\sigma,E,L_0$ such that for $m\ge m_0$:
+\begin{enumerate}
+\item[(a)] $H^a(X,\wedge^bT\otimes E\otimes L_0^m)=0$ for all $a>0$ and all $b$;
+\item[(b)] $\HH^k(E\otimes L_0^m)\cong H^k\bigl(\Gamma(X,\wedge^\bullet T\otimes E\otimes L_0^m),\,d\bigr)$. In particular $\HH^k=0$ for $k>n$;
+\item[(c)] $\HH^0(E\otimes L_0^m)=$ the space of all flat (Casimir) holomorphic sections.
+\end{enumerate}
+\end{thm}
+\begin{hyptab}
+$X$ projective, $L_0$ ample & The hypotheses of classical Serre themselves. & (a): apply Hartshorne III.5.2 to the finitely many ($b=0,\dots,n$) coherent sheaves $\wedge^bT\otimes E$.\\\midrule
+$L_0$ a Poisson module (and $E$) & $L_0^m$ gets the tensor-product module structure, so $C(A;E\otimes L_0^m)$ is a complex. & Definition of the complex $K^\bullet=C(A;E\otimes L_0^m)$. Unrelated to positivity.\\\midrule
+$[\sigma,\sigma]=0$ & $d^2=0$. & Same.\\\midrule
+(not needed) non-degeneracy of $\sigma$, normal crossings & --- & Not used in this theorem.
+\end{hyptab}
+\begin{proof}
+$L_0^m$ has the tensor-product module structure (Leibniz rule). Applying Serre's theorem (Theorem~\ref{thm:Serre}, Hartshorne III.5.2) to the $n+1$ coherent sheaves $\wedge^bT\otimes E$ and taking $m_0$ the maximum of the thresholds gives (a). Each $K^b$ is $\Gamma$-acyclic, so for the bounded complex $K^\bullet$ (whose differential is $\C$-linear but not $\mathcal O$-linear) the spectral sequence $E_1^{a,b}=H^a(K^b)$ is concentrated at $a=0$ and $R\Gamma(K^\bullet)=\Gamma(K^\bullet)$ (acyclic resolution lemma). This is (b). Since $b\le n$, it vanishes for $k>n$. (c) is $H^0$ of the $\Gamma$-complex: $\HH^0=\ker(d_A:H^0(E)\to H^0(T\otimes E))$, i.e.\ flat sections.\qedhere
+\end{proof}
+\begin{rem}[Vanishing in total degree is false]\tP
+For $\sigma=0$ (a complex structure), $\HH^k(L)=\bigoplus_{a+b=k}H^a(X,\wedge^bT\otimes L)$, so even for $m\gg0$ we have $H^0(\wedge^bT\otimes L^m)\ne0$, hence $\HH^b\ne0\ (b=0,\dots,n)$. For $m=0$ on $\mathbb{CP}^2$ this gives $[1,8,10,0,0]$ (\tV). Only the transversal degree $a>0$ and total degrees $>n$ vanish; ``Serre vanishing in total degree'' does not hold.
+\end{rem}
+\begin{rem}[\tV\ Effective thresholds]
+By Bott's formula, the condition for $E_1^{a>0}=0$ is $m\ge-2$ on $\mathbb{CP}^2$ (for $m=-3$ the three terms $(2,0),(1,1),(0,2)$ are all non-zero), and $m\ge-1$ on $\mathbb{CP}^1\times\mathbb{CP}^1$ with $L_0=\mathcal O(1,1)$ ($m=-2$ is the exception $K_X$). Both agree with the range in which degrees $\ge3$ vanish in the computed tables.
+\end{rem}
+
+\subsection{Periodic stabilization}
+\begin{thm}[Periodic stabilization (log-symplectic surfaces)]\tP\ (depends on Theorem~\ref{thm:main2} and its hypotheses)\label{thm:A2}
+Let $X$ be a simply connected projective surface, $\sigma$ log-symplectic along $D$ (anticanonical, only ordinary double points), $L_0$ a line bundle with a Poisson module structure whose residues are $\rho_i=-a_i$ ($a_i\in\mathbb Q_{>0}$, constant along each component), and $U=X\setminus D$ affine ($D$ ample). Let $N$ be the least common multiple of the denominators of the $a_i$. If $m\ge1$ then
+\[\HH^k(L_0^m)=0\ (k\ge3),\qquad\HH^*(L_0^m)=H^*(U;L_U^{(m)})\oplus\C^\mu[-2],\]
+where $L_U^{(m)}$ is the local system with monodromy $e^{-2\pi ima_i}$ around $D_i$. In particular $\HH^*(L_0^m)$ depends only on $m\bmod N$.
+\end{thm}
+\begin{hyptab}
+Residues $-ma_i<0$ & $r_i\ne1$ and not a positive integer. & Theorem~\ref{thm:main2}(i): $\mathcal F=Rj_*L_U$.\\\midrule
+$U$ affine ($D$ ample) & Artin vanishing $H^k(U;L)=0\ (k>2)$. & Vanishing in degrees $\ge3$. (Theorem~\ref{thm:A1}(b) gives the same conclusion from projectivity and ampleness and makes affineness unnecessary.)\\\midrule
+$X$ simply connected & The abelianization of $\pi_1(U)$ is generated by meridians. & The local system is determined by $m\bmod N$.\\\midrule
+$a_i\in\mathbb Q_{>0}$ & $c_1(L_0)$ is a positive rational combination of the boundary components (``positive with respect to the boundary''). & Periodicity.
+\end{hyptab}
+\tV\ Period 3 for $\mathbb{CP}^2$ ($L_0=\mathcal O(1)$, $a=1/3$), period 2 for $\mathbb{CP}^1\times\mathbb{CP}^1$ ($L_0=\mathcal O(1,1)$, $a=1/2$), for $m\ge1$. Confirmed for all eight computed examples.
+
+\begin{conj}[General case]\tK\label{conj:A3}
+For a general generalized complex manifold $M$ and a generalized holomorphic line bundle $L_0$ that is ``positive'' in a suitable sense (candidate: ample on the leaf space of the regular locus, and with positive residues along the locus where the type jumps), $\HH^*(L_0^m)$ vanishes in total degrees $>n_{\max}$ for $m\gg0$ and is periodic in $m$. For a general $\Jc$ that is neither a $\beta$-transform nor of regular type, there is no way to define the ``$E_1$ term of a coherent filtration $K^b$'', and this is the main obstruction to going beyond Theorem~\ref{thm:A1}.
+\end{conj}
+
+\subsection{Relation to the theorem of Pal--Poddar}
+\begin{prop}[Consistency in the product case]\tP\label{prop:PPprod}
+Let $M=Y\times X$ ($Y$ a compact symplectic manifold, $X$ a projective complex manifold) and $E=\mathrm{pr}_Y^*F\boxtimes\mathrm{pr}_X^*G_0^m$ ($F$ a flat bundle on $Y$, $G_0$ ample). Then the generalized Dolbeault complex is the tensor product of the de Rham complex of $Y$ and a complex on $X$, and
+\[\HH^k=\bigoplus_{j+b+a=k}H^j_{dR}(Y;F)\otimes H^a(X,\wedge^bT_X\otimes G_0^m)\]
+(K\"unneth). By classical Serre the terms with $a>0$ vanish for $m\gg0$, and the remaining $H^j_{dR}(Y;F)\otimes H^0(X,\wedge^bT_X\otimes G_0^m)$ are in general non-zero up to total degree $\dim Y+\dim_\C X$. Hence Serre-type vanishing for $\mathrm{pr}_X^*G_0^m$ holds only for the transversal degree $a$.
+\end{prop}
+\src{Pal--Poddar, \emph{Strong generalized holomorphic principal bundles}, arXiv:2404.18113, \S11, Thm.~11.12: if $M$ is a compact generalized complex manifold of regular type $k$ with $M/\mathcal S$ a K\"ahler orbifold and $E$ is a positive SGH line bundle, then (1) $H^q(M,(\mathcal G^*M)^p\otimes E)=0$ for $p+q>k$, and (2) for every SGH vector bundle $E'$ there is $m_0$ such that $H^q(M,E'\otimes E^m)=0$ for $m\ge m_0$, $q>0$.}
+\begin{rem}[\tQ]
+The groups $H^q(M,(\mathcal G^*M)^p\otimes E)$ of Pal--Poddar (which by Cor.~8.10 are $H^{p,q}_{d_L}(M,E)$) are sheaf cohomology groups of transversal forms that are constant along the leaves, and $q$ is the transversal (complex) degree (confirmed by re-reading \S\S5--11, 13; the extraction went through summaries, so details of formulas are unverified). Hence the reading of the proposition above (vanishing only in the transversal degree $a$) is consistent with Thm.~11.12. The groups are not the same, however: Pal--Poddar use exterior powers of $\mathcal G^*M$, this note tensors with $\wedge^bT$ (tangent side), and moreover the $\HH$ of this note is the total complex including the leafwise de Rham factor. The proposition above is a computation in the product case and is not itself a verification of Thm.~11.12. Theorem~\ref{thm:A1} does not assume regular type or an orbifold leaf space, and includes type-jumping $\beta$-transforms (e.g.\ types $0$ and $n$ coexisting), at the price of requiring the underlying complex manifold to be projective (in the $\beta$-transform case only).
+\end{rem}
+
+%--------------------------------------------------------------
+\section{Duality}\label{sec:duality}
+%--------------------------------------------------------------
+\begin{thm}[Serre duality for generalized holomorphic line bundles]\tP\label{thm:dual}
+Let $X$ be any compact complex manifold ($\dim_\C X=n$), $\sigma$ any holomorphic Poisson structure (no K\"ahler, projective, log-symplectic or non-degeneracy assumption is needed; $\sigma=0$ is included), and $L$ a line bundle that is a Poisson module. Then for all $k$
+\[\HH^k(L)^*\;\cong\;\HH^{2n-k}\bigl(L^\vee\otimes K_X^{2}\bigr).\]
+$L^\vee\otimes K_X^2$ carries the tensor-product module structure (frame $e'$ with $ee'=\omega^2$ and $V'=-V+2V_K=-V-2M$; the canonical module structure on $K_X$ is $V_K^k=\sum_i\partial_i\sigma^{ki}$, and $M^j=\sum_i\partial_i\sigma^{ij}$ is the modular vector field with respect to $\omega=dz_1\wedge\cdots\wedge dz_n$).
+\end{thm}
+\begin{hyptab}
+$X$ compact & Closed range and finite-dimensionality of elliptic complexes; no boundary terms in Stokes. & Step (4) (identification of the dual).\\\midrule
+$[\sigma,\sigma]=0$, $L$ a Poisson module & $D^2=0$, $D'^2=0$ ($L'$ is also a module). & To treat them as complexes.\\\midrule
+(not needed) K\"ahler / non-degenerate / logarithmic & Ellipticity is checked directly from the principal symbol, and the transposition is an identity of local operators, so no global primitive is needed. & Steps (1), (3).
+\end{hyptab}
+\begin{proof}[Proof (sketch)]
+(0) Dolbeault model: $\mathrm{Tot}^k(L)=\bigoplus_{a+b=k}A^{0,a}(\wedge^bT\otimes L)$, $D=\dbar+d_K$ ($d_K(\phi\otimes Pe)=(-1)^a\phi\otimes d(Pe)$, $d=[\sigma,\cdot]+V\wedge$). $D^2=0$ follows from $\dbar^2=0$, $d^2=0$, $\dbar d_K+d_K\dbar=0$ (Prop.~\ref{prop:ident}(b)).
+(1) Ellipticity (\tP): at a real cotangent vector $\xi\ne0$, the principal symbol of $D$ is the exterior product with $v(\xi)=(\xi^{0,1},\sigma^\sh\xi^{1,0})\in L^*=T^{*0,1}\oplus T^{1,0}$, and $(\wedge L^*,v\wedge)$ is exact if and only if $v\ne0$. If $v=0$ then $\xi^{0,1}=0$, and since $\xi$ is real, $\xi=0$. Hence the complex is elliptic at every point, including points where $\sigma$ degenerates (this is a direct verification, in the present case, of Gualtieri's Prop.~\ref{prop:ellip}). The same holds for $L'$.
+(2) Perfect pairing: integrating $E^b(L)\times E^{n-b}(L')\to\wedge^nT\otimes K^2=K$ and $A^{0,a}\times A^{0,n-a}\to A^{0,n}(K)=A^{n,n}$ gives $\mathrm{Tot}^k(L)\times\mathrm{Tot}^{2n-k}(L')\to\C$ (a perfect pairing at each point).
+(3) Transposition: from the following two identities, the formal transpose $D^t$ equals $-(-1)^{\deg}D'$.
+\end{proof}
+\begin{lem}[Lemma D: top-degree part of the Schouten bracket]\tP\ \tV\label{lem:D}
+For $T=\sum_j(-1)^ju_j\,\partial_1\wedge\cdots\widehat{\partial_j}\cdots\wedge\partial_n\in\wedge^{n-1}T$ we have $[\sigma,T]_{\rm top}=-\sum_{i,j}\partial_i(\sigma^{ij}u_j)+2\sum_jM^ju_j$ and $(M\wedge T)_{\rm top}=\sum_jM^ju_j$.
+\end{lem}
+\begin{lem}[Lemma E: transposition identity]\tP\ \tV\label{lem:E}
+For $P\in\wedge^bT$, $Q\in\wedge^{n-b-1}T$ (smooth coefficients), $d=[\sigma,\cdot]+V\wedge$, $d'=[\sigma,\cdot]+V'\wedge$, $V'=-V-2M$, and $\langle P,Q\rangle:=(P\wedge Q)_{\rm top}$, we have
+\[\langle dP,Q\rangle+(-1)^b\langle P,d'Q\rangle=-\sum_i\partial_i\Bigl(\sum_j\sigma^{ij}u_j\Bigr),\quad T=P\wedge Q=\sum_j(-1)^ju_j\partial_{\hat j}.\]
+Proof: the Leibniz rule $[\sigma,P\wedge Q]=[\sigma,P]\wedge Q+(-1)^bP\wedge[\sigma,Q]$ ($\sigma$ has even degree); the $V$-terms give $V\wedge P\wedge Q+(-1)^bP\wedge(-V)\wedge Q=0$, and the $M$-term is $-2M\wedge T$. The result follows from Lemma~D.
+\tV\ For $n=2,3,4$, with random polynomial and Laurent monomial data and arbitrary bivector fields $\sigma$ (the identity itself holds even if $\sigma$ is not Poisson), the identity was confirmed in exact arithmetic (\texttt{cp2/duality\_ndim\_exact.py}). The constant $c=-2$ and the sign $(-1)^b$ were found by solving a system of equations independently of the derivation (\texttt{cp2/duality\_ndim.py}). $[\sigma,M]=0$ and $d^2=0$ ($V=M$, $\sigma$ Poisson) were also confirmed.
+\end{lem}
+\begin{proof}[Continuation of the proof of Theorem~\ref{thm:dual}]
+(3) continued: the right-hand side of Lemma~E is an exact form of the type $\partial_iF^i\,\omega\wedge d\bar z^{1\cdots n}=\pm d(F^i\iota_{\partial_i}\omega\wedge d\bar z^{1\cdots n})$ (the $\dbar$ component vanishes against $d\bar z^{1\cdots n}$), so by Stokes its integral is $0$. The $\dbar$ part is the classical Serre duality computation: $\langle\dbar\alpha,\beta\rangle=-(-1)^{a+b}\langle\alpha,\dbar\beta\rangle$. The $d$ part is $\langle d_K\alpha,\beta\rangle=-(-1)^{a+b}\langle\alpha,d'_K\beta\rangle$. That the two signs agree was checked by hand (not machine-checked \tQ). Since $D^t$ is a local operator, the equality in coordinate charts gives globally $\langle D\alpha,\beta\rangle=-(-1)^{\deg\alpha}\langle\alpha,D'\beta\rangle$.
+(4) Conclusion: $D,D'$ are elliptic complexes on a closed manifold, transposes of each other (up to sign) with respect to the perfect pairing. By Hodge theory for elliptic complexes, $\HH^k$ is finite-dimensional with closed range, $\HH^k(L)^*$ is the cohomology of the transposed complex (with distributional coefficients), and by elliptic regularity it equals the one with smooth coefficients, $\HH^{2n-k}(L')$.\qedhere
+\end{proof}
+\begin{rem}[Consistency checks\ \tV]
+(i) $\sigma=0$: classical Serre duality (using $\wedge^bT^*=\wedge^{n-b}T\otimes K$). (ii) $\mathbb{CP}^2$, $K^2=\mathcal O(-6)$: $m\leftrightarrow-m-6$; $\mathbb{CP}^1\times\mathbb{CP}^1$, $K^2=\mathcal O(-4,-4)$: $m\leftrightarrow-m-4$ (consistent with the tables in \S\ref{sec:cp2} and \S\ref{sec:main2}). (iii) In the log-symplectic case the residue of $K_X$ is $1$ ($r=1$ in Prop.~\ref{prop:K}), so the residue of $L'$ is $2-r_i$; this is the origin of the symmetry $r\leftrightarrow2-r$ in the formula of the main theorem (in any even dimension).
+\end{rem}
+

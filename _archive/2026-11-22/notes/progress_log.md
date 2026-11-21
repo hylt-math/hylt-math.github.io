@@ -29,3 +29,18 @@
 - Euler characteristic = #vertices = chi(X) proved in toric case.
 - Local: triple point xy(x-y) with unequal residues: stalk = C^4[-2] + H^*(U_loc;L) iff s1+s2+s3<2 (533 random cases, 0 mismatches). Node: per-branch threshold; triple point: threshold on sum.
 - Not done: cusp/tacnode families on other surfaces, unequal residues globally non-toric, sheaf-theoretic check of F-part for mixed residues, P^1xP^1 irreducible cases beyond earlier notes.
+
+## 2026-11-22 ラウンド0 作業B（Pal–Poddar 再読）
+- arXiv:2404.18113 の題名は "Strong generalized holomorphic principal bundles"（Debjit Pal, Mainak Poddar）、Ann. Sc. Norm. Super. Pisa Cl. Sci.（DOI 10.2422/2036-2145.202501_026）。著者の食い違いは再現せず。Lang–Jia–Liu は "The Atiyah class of generalized holomorphic vector bundles" (DGA 90, 2023)。
+- Thm 11.12 の主張・証明・仮定の役割を確定。使う群は横断（葉に沿って定数）な形式の層コホモロジー。本ノートの「横断次数でのみ消滅」の読みと整合。群は別物（余接側 vs ∧^bT、葉方向 de Rham 因子の有無）。
+- 番号訂正: Hodge/Serre 双対は Thm 11.2, 11.4, 11.6, 11.7（v1 は 8.9, 8.10 としていた）。
+- 詳細: pp_recheck.md、v1 への訂正リストは pp_patch_list.md。v2 に反映予定（作業Aの結果と合わせる）。
+
+## 2026-11-22 (Task A: 引用検証)
+- 検証結果は verify_citations.md、修正案は verify_patch_list.md（tex は未編集）。
+- 重要な訂正: arXiv:0905.3227 の著者は Hitchin（Gualtieri ではない）。Pal–Poddar の題名は "Strong generalized holomorphic principal bundles"（著者の食い違いは再現せず、Ann. SNS Pisa Cl. Sci. 73 (2026) forthcoming）。Gualtieri 2011: 楕円性は Prop 3.13/Cor 3.14、Def 3.18 は Pic、一般化 Darboux は Thm 4.3、「Example 4.1–4.2」は存在しない。Lang–Jia–Liu は arXiv:2102.07177。Timmerscheidt は J. reine angew. Math. 379 (1987) 152–171。Pym は LMP 108 (2018) 573–632。HHM は Duke 122 (2004) 485–548。Hitchin 1105.4775 は Moscow Math. J. 12 (2012) 567–591。
+- Hu 2403.10876: 証明中の BKN の符号のずれを本文で確認（主張は古典と整合）。
+- 未確認のまま: Goto・Gualtieri–Li・Mokri・Arapura・LJL の掲載巻頁、Pal–Poddar の Thm 8.9 他、Crainic–Fernandes 等。
+
+## 2026-11-22 (v2 build)
+- paper_v2/: citation corrections from verify_patch_list.md and pp_patch_list.md applied to ja/en sources (Hitchin 0905.3227; Gualtieri 2011 numbering; Pal–Poddar title/authors/numbers; Lang–Jia–Liu 2102.07177; Hu sign slip confirmed; bibliographic data). Added §Revision notes (sec9.tex). Built ron.pdf (ja, 32pp) and paper_en/ron-en.pdf (en, 33pp). Math statements unchanged. Fixed \mathscr -> \mathcal in sec5.tex (ja).
