@@ -1,0 +1,1329 @@
+\input{pre_course.tex}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{arrows.meta,positioning,calc}
+\fancyhead[L]{\small 第4巻　Riemann 面と Riemann--Roch の定理}
+% --- 本巻の記号 ---
+\newcommand{\Oc}{\mathcal O}
+\newcommand{\CP}{\mathbb{CP}}
+\newcommand{\Div}{\mathrm{Div}}
+\newcommand{\Jac}{\mathrm{Jac}}
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\divv}{\operatorname{div}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\Lat}{\Lambda}
+\newcommand{\Ker}{\operatorname{Ker}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+\renewcommand{\contentsname}{目次}
+\usepackage{fontspec}\newfontfamily\lmfont{Latin Modern Roman}
+\newcommand{\Cech}{{\lmfont \v{C}ech}}
+\begin{document}
+\sloppy
+\begin{center}
+{\LARGE\bfseries\sffamily 第4巻　Riemann 面と Riemann--Roch の定理（曲線版）}\\[8pt]
+{\large 学習コース「一般化幾何への道」}\\[6pt]
+{\large 執筆：Claude\ ／\ 企画：森}\\[3pt]
+2026年11月22日（v1）\\[3pt]
+{\small （外部の査読は受けていない教材。執筆者とは別の AI による独立検査と、可能な範囲の計算での検算は行った。標準的な結果には出典を付け、確認できていないものは\tQ\ で示す。）}
+\end{center}
+
+\begin{goalbox}{この巻の学習目標}
+\begin{itemize}
+\item コンパクト Riemann 面の正則写像の局所形（$w=z^e$）と、写像の次数・分岐を使いこなせる。有理型関数・有理型 1 形式の位数と留数を計算し、留数定理から「主因子の次数は $0$」を導ける。
+\item 因子 $D$、次数、主因子、線形同値、直線束 $\Oc(D)$ を扱い、$\mathrm{Pic}(X)=\mathrm{Div}(X)/\mathrm{Princ}(X)$ と $\deg$ が Chern 数であることを説明できる。
+\item \textbf{Serre 双対}（主張と証明の骨子）と層の完全列 $0\to\Oc(D-p)\to\Oc(D)\to\C_p\to0$ から、\textbf{Riemann--Roch の定理} $h^0(D)-h^0(K-D)=\deg D+1-g$ を完全に証明できる。
+\item Riemann--Hurwitz の公式を証明し、種数の計算（超楕円曲線、Fermat 曲線、平面曲線）に使える。解析的種数と位相的種数の一致を理解する。
+\item $g=0,1,2$ の曲線を分類（$\CP^1$、楕円曲線、$y^2=f(x)$）し、標準写像と埋め込み（$\deg D\ge2g+1$ で非常に豊富）を Riemann--Roch から導ける。
+\item Abel の定理・Jacobi 多様体の主張と例、Weierstrass の gap と Weierstrass 点を計算できる。
+\item \textbf{橋渡し}：Riemann--Roch を「$\bar\partial$ 作用素の指数 $=\deg D+1-g$」と読み、Serre・Kodaira 消滅（第5巻）、Hirzebruch--Riemann--Roch（第6巻）、Atiyah--Singer（第8巻）、統合論文の公式との関係を説明できる。
+\end{itemize}
+\end{goalbox}
+\begin{goalbox}{前提と記法}
+第2巻（複素多様体、$\bar\partial$、Dolbeault 補題、正則ベクトル束、Chern 接続・第1 Chern 類）と第3巻（層、\Cech{}・層コホモロジー、完全列、Dolbeault 定理、指数完全列）を既知とする。ただし本巻で使う定義と主張は\S\ref{sec:coh}で簡潔に再掲する。\\
+本巻で $X$ は \textbf{連結なコンパクト Riemann 面}（複素 1 次元の連結コンパクト複素多様体）を表す。$K=K_X$ は標準束 $T^{*1,0}X=\Omega^1_X$ またはその因子類。\tC\ は標準的な結果（出典を併記）、\tP\ は本文で証明したもの、\tQ\ は記憶に基づく・未確認の箇所を表す。層コホモロジーの次元は $h^i(\mathcal F)=\dim_{\C}H^i(X,\mathcal F)$ と書く。
+\end{goalbox}
+\tableofcontents
+\newpage
+\section*{この巻の読み方}
+\addcontentsline{toc}{section}{この巻の読み方}
+\begin{itemize}
+\item \textbf{最短ルート}：\S\ref{sec:surf}（局所形・留数）$\to$ \S\ref{sec:div}（因子と直線束）$\to$ \S\ref{sec:coh}（Serre 双対の主張）$\to$ \S\ref{sec:rr}（Riemann--Roch）。
+\item \textbf{種数と分類に進む人}：\S\ref{sec:rh}（Riemann--Hurwitz）$\to$ \S\ref{sec:g012}（$g=0,1,2$）$\to$ \S\ref{sec:embed}（標準写像と埋め込み）。\S\ref{sec:abel}、\S\ref{sec:weier} は Jacobi 多様体と Weierstrass 点で、読み飛ばしてもよい。
+\item \textbf{第5〜8巻、統合論文に進む人}：\S\ref{sec:index}（$\bar\partial$ の指数としての Riemann--Roch）と\S\ref{sec:bridge}を先に読むとよい。
+\item 問題は節末にあり、全問の解答は巻末にある。計算を含む解答の多くは Python（numpy と自作コード）で検算した。検算した項目は解答の節の冒頭に一覧する。
+\end{itemize}
+
+\section{Riemann 面：局所形、次数、有理型関数と 1 形式}\label{sec:surf}
+
+\subsection{定義と基本的な例}
+\begin{defn}[Riemann 面]
+\emph{Riemann 面}とは、連結な複素 1 次元複素多様体のことである。座標近傍 $(U,z)$ の座標変換が正則（第2巻）であり、$z$ を\emph{局所座標}という。
+\end{defn}
+
+\begin{ex}[$\C$、$\CP^1$]
+$\C$ は座標 $z$ をもつ非コンパクトな Riemann 面。Riemann 球面 $\CP^1=\C\cup\{\infty\}$ は 2 枚の座標 $z$（$\C$ 上）と $w=1/z$（$\CP^1\setminus\{0\}$ 上）で覆われる。連結・コンパクトである。
+\end{ex}
+
+\begin{ex}[複素トーラス（楕円曲線）$E=\C/\Lat$]\label{ex:torus}
+$\Lat=\Z\omega_1+\Z\omega_2$（$\omega_1,\omega_2$ は $\R$ 上 1 次独立）とし $E=\C/\Lat$ とおく。$\C$ の座標 $z$ は、$\Lat$ の平行移動で不変な $dz$ を $E$ 上の正則 1 形式として定める。$E$ は位相的にトーラス $S^1\times S^1$ で、コンパクトである。$\Lat$ を $\Lat'=c\Lat$（$c\in\C^*$）に取り替えると $E\cong\C/\Lat'$（$z\mapsto cz$）である。以下、$\Lat=\Z+\Z\tau$（$\Im\tau>0$）としてよい。
+\end{ex}
+
+\begin{ex}[平面曲線と超楕円曲線]\label{ex:hyper}
+$F(x,y)$ を多項式とし、$C=\{F=0\}\subset\C^2$ が非特異（$(F_x,F_y)\ne(0,0)$ on $C$）なら、陰関数定理により $C$ は Riemann 面（連結なら）。特に \textbf{超楕円曲線} $y^2=f(x)$（$f$ は重根をもたない $m$ 次多項式）を考える。$F=y^2-f(x)$ で、$F_y=2y$、$F_x=-f'(x)$ だから特異点は $y=0$ かつ $f(x)=f'(x)=0$ だが、$f$ は重根をもたないのでない。局所座標は、$y\ne0$ の点では $x$、$y=0$ の点（$f$ の根）では $y$ が取れる。
+
+\emph{無限遠のコンパクト化。} $m=2g+1$ または $m=2g+2$ とする（$g\ge1$）。$t=1/x$、$s=y/x^{g+1}$ とおくと $s^2=t^{2g+2}f(1/t)=:\tilde f(t)$ で、$\tilde f$ は多項式である。
+\begin{itemize}
+\item $m=2g+2$ のとき $\tilde f(0)=f$ の最高次の係数 $\ne0$：$t=0$ の上に $s=\pm\sqrt{\tilde f(0)}$ の 2 点 $\infty_\pm$ があり、それぞれ局所座標 $t$。
+\item $m=2g+1$ のとき $\tilde f(t)=t\,h(t)$、$h(0)\ne0$：$t=0$ の上に 1 点 $\infty$ があり、$s^2=t\,h(t)$ から $t=s^2/h(t)$ なので局所座標は $s$（$t$ は $s$ の関数として 2 位の零点をもつ）。
+\end{itemize}
+こうして得た連結コンパクト Riemann 面 $X_f$ を\emph{超楕円曲線}（$g=1$ は楕円曲線）という。写像 $x:X_f\to\CP^1$ は 2 重被覆で、$f$ の $m$ 個の根（と $m$ 奇数なら $\infty$）で分岐する。分岐点の総数は $2g+2$ 個である。$g$ が確かに種数であることは \S\ref{sec:rh} で示す。
+\end{ex}
+
+\subsection*{2 枚の葉を貼り合わせる描像}
+$f(x)=(x-e_1)(x-e_2)(x-e_3)(x-e_4)$（$e_i$ は相異なる）の場合、$y=\sqrt{f(x)}$ は $x\in\C$ の 2 価関数で、$e_i$ のまわりを一周すると符号が変わる（モノドロミー $-1$）。$\CP^1$ のコピー（\emph{葉}）を 2 枚用意し、それぞれに線分 $[e_1,e_2]$、$[e_3,e_4]$ に沿って切れ目を入れて、1 枚目の切れ目の上側を 2 枚目の下側に、下側を上側に貼り合わせると、$y$ は貼り合わせた面上の 1 価正則関数になる。これが $X_f$（種数 $1$）である。2 つの球面を 2 本の「管」でつないだ形で、穴が 1 つ空く。
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+\foreach \yy in {0,3}{
+  \draw[thick,rounded corners=8pt] (-0.5,\yy) rectangle (7.5,\yy+1.8);
+  \draw[very thick,red!70!black] (1,\yy+0.9)--(2.4,\yy+0.9);
+  \draw[very thick,red!70!black] (4.6,\yy+0.9)--(6,\yy+0.9);
+  \foreach \x in {1,2.4,4.6,6}{\fill (\x,\yy+0.9) circle (1.4pt);}
+}
+\foreach \x/\n in {1/1,2.4/2,4.6/3,6/4}{\node[font=\scriptsize,below] at (\x,3.85) {$e_\n$};}
+\draw[dashed,gray] (1.7,3.9)--(1.7,0.9);\draw[dashed,gray] (5.3,3.9)--(5.3,0.9);
+\node[right,font=\small] at (7.6,3.9) {葉 1};\node[right,font=\small] at (7.6,0.9) {葉 2};
+\end{tikzpicture}
+\end{center}
+（切れ目 $[e_1,e_2]$、$[e_3,e_4]$ に沿って 2 枚の葉を交差して貼る。写像 $x$ は各葉を $\CP^1$ に重ねる $2:1$ 写像で、分岐点は $e_1,\dots,e_4$。）局所的には、$e_i$ のまわりの座標 $y$（$x-e_i\sim y^2$）が \emph{平方根} の 1 価化にあたる。同様に $\deg f=2g+2$ なら $2g+2$ 個の分岐点を $g+1$ 本の切れ目で結べばよい。
+
+\subsection{正則写像の局所形}
+\begin{thm}[局所正規形]\label{thm:localform}
+$f:X\to Y$ を Riemann 面の非定数正則写像、$p\in X$ とする。このとき整数 $e=e_p(f)\ge1$ と、$p$ のまわりの座標 $z$、$f(p)$ のまわりの座標 $w$ で $z(p)=0=w(f(p))$、$w\circ f=z^e$ をみたすものがある。
+\end{thm}
+\begin{proof}
+任意の座標をとって $f$ を $w=f(z)$、$f(0)=0$ の形にする。$f\not\equiv0$ だから（一致の定理）$f(z)=z^e u(z)$、$u$ 正則、$u(0)\neq0$。$u$ は $0$ の近くで $e$ 乗根 $v$（$v^e=u$、$v(0)\ne0$）をもつ。$\tilde z:=z\,v(z)$ は $\tilde z'(0)=v(0)\ne0$ なので $0$ のまわりの新しい座標で、$f=\tilde z^{\,e}$。 
+\end{proof}
+$e_p$ を $p$ における\emph{分岐指数}という。$e_p>1$ の点を\emph{分岐点}（ramification point）、$f(p)$ を\emph{分岐値}（branch point）という。$e_p=\ord_p(f^*w)$ である。次が成り立つ。
+\begin{itemize}
+\item 開写像性：非定数正則写像は開写像。特に $X$ がコンパクトなら像は開かつ閉、よって $f$ は全射。
+\item 分岐点は孤立している（$X$ コンパクトなら有限個。局所形で $z\ne0$ では $dw/dz=ez^{e-1}\ne0$）。
+\end{itemize}
+
+\begin{thm}[写像の次数]\label{thm:degree}
+$X,Y$ をコンパクト Riemann 面、$f:X\to Y$ を非定数正則写像とする。$\sum_{p\in f^{-1}(q)}e_p$ は $q\in Y$ によらない定数 $d=\deg f$ である。
+\end{thm}
+\begin{proof}
+$q\in Y$ を固定し、$f^{-1}(q)=\{p_1,\dots,p_k\}$ とする（コンパクト集合内の離散閉集合なので有限）。局所形により、$p_i$ の互いに素な近傍 $U_i$ と $q$ のまわりの座標円板 $V$ で、$f:U_i\cap f^{-1}(V)\to V$ が $z\mapsto z^{e_i}$ となるものがある。$X\setminus\bigcup U_i$ はコンパクトで $q$ の逆像を含まないから、その $f$ による像は $q$ を含まない閉集合。そこで $V$ を小さくとり $f^{-1}(V)\subset\bigcup U_i$ とできる。すると $q'\in V\setminus\{q\}$ の逆像は各 $U_i$ に $e_i$ 個ずつ、すべて非分岐点（$z^{e_i}=c\ne0$ は相異なる $e_i$ 個の根）で、$\sum e=\sum e_i$。$q'=q$ でも同じ値。よって $q\mapsto\sum_{p\in f^{-1}(q)}e_p$ は局所定数。$Y$ は連結だから定数。 
+\end{proof}
+分岐因子 $R_f=\sum_p(e_p-1)\,p$ を\emph{分岐因子}（ramification divisor）という。$\deg f=1$ なら $f$ は全単射で、局所形から逆写像も正則（双正則）。
+
+\begin{ex}\label{ex:degs}
+(i) $f:\CP^1\to\CP^1$、$f(z)=z^n$：$z=0$ と $\infty$ で $e=n$、他では $e=1$。$\deg f=n$、$\deg R_f=2(n-1)$。\\
+(ii) $f(z)=z^3-3z$：有限点の分岐は $f'=3z^2-3=0$、すなわち $z=\pm1$（$e=2$）。$\infty$ は $z=\infty$ が $e=3$ の分岐点（$w=1/f\sim w_0^3$）。$\deg f=3$、$\deg R_f=1+1+2=4$。\\
+(iii) $x:X_f\to\CP^1$（例 \ref{ex:hyper}）：$\deg x=2$。
+\end{ex}
+
+\subsection{有理型関数と有理型 1 形式}
+\begin{defn}
+$X$ 上の\emph{有理型関数}とは、離散的な点の集合（極）を除いて正則で、各極のまわりで $z^{-n}\times$（正則）の形をもつ関数。有理型関数全体は体 $\mathcal M(X)$ をなす。点 $p$ での\emph{位数} $\ord_p(f)\in\Z$ は、座標 $z$ に関する $f$ の Laurent 展開の最低次数（$f\not\equiv0$）。$\ord_p(f)>0$ なら零点、$<0$ なら極。局所座標によらない。\\
+\emph{有理型 1 形式}とは、局所的に $\omega=g(z)\,dz$（$g$ は有理型）と書ける 1 形式。座標変換 $z=\varphi(w)$ で $\omega=g(\varphi(w))\varphi'(w)\,dw$、$\varphi'\ne0$ だから $\ord_p\omega:=\ord_0g$ は座標によらず、$\mathrm{Res}_p\,\omega:=\frac1{2\pi i}\oint_{\partial D_p}\omega$（$D_p$ は $p$ を中心とする小円板）は $g$ の $z^{-1}$ の係数に等しく、これも座標によらない。
+\end{defn}
+$f$ を有理型関数とすると、$f$ は正則写像 $f:X\to\CP^1$ とみなせる（極を $\infty$ に送る）。定数でなければ $\deg f$ 個の逆像をもつ。
+\begin{thm}[留数定理]\label{thm:residue}
+コンパクト Riemann 面上の有理型 1 形式 $\omega$ について $\sum_{p}\mathrm{Res}_p\,\omega=0$。
+\end{thm}
+\begin{proof}
+極の集合 $\{p_1,\dots,p_k\}$ のまわりの小円板 $D_i$ を取り、$X'=X\setminus\bigcup D_i$（境界つきコンパクト曲面）上で $d\omega=0$（$\omega$ は正則 1 形式で $d\omega=\partial\omega+\bar\partial\omega$、$\bar\partial\omega=0$、$\partial\omega$ は $(2,0)$ 形式で 0）。Stokes より $0=\int_{X'}d\omega=-\sum_i\oint_{\partial D_i}\omega=-2\pi i\sum\mathrm{Res}_{p_i}\omega$。 
+\end{proof}
+\begin{cor}[有理型関数の零点と極の数]\label{cor:zeropole}
+$f\not\equiv0$ を有理型関数とすると $\sum_p\ord_p(f)=0$。つまり零点の個数（重複込み）と極の個数は等しく、これは $\deg f$ に等しい。
+\end{cor}
+\begin{proof}
+$\omega=df/f$ は有理型 1 形式で、$f=z^nu$（$u(0)\ne0$）なら $df/f=(n/z+u'/u)dz$、よって $\Res_p(df/f)=\ord_p f$。留数定理を適用する。後半は $\deg f=\#f^{-1}(0)$（重複込み）$=\sum_{\ord_p f>0}\ord_pf$ による（局所形で $e_p=\ord_p f$）。
+\end{proof}
+\begin{cor}
+単純な極を 1 点だけにもつ有理型 1 形式（他では正則）は存在しない。
+\end{cor}
+
+\begin{ex}[$\CP^1$ 上]\label{ex:formsP1}
+$\omega=dz$：$\C$ 上では正則で零点なし。$w=1/z$ で $dz=-w^{-2}dw$ だから $\infty$ で位数 $-2$（2 位の極）。したがって $\CP^1$ 上の正則 1 形式は $0$ のみ（$g(z)dz$ が $\infty$ で正則なら $g$ は多項式で $\ord_\infty=-\deg g-2<0$）。$\omega=dz/z$ は $0$ で留数 $1$、$\infty$ で留数 $-1$。
+\end{ex}
+\begin{ex}[$E=\C/\Lat$]
+$dz$ は $E$ 上の至るところ正則で零点をもたない 1 形式。したがって $E$ 上の任意の正則 1 形式は $c\,dz$（$f\,dz$ の $f$ は $E$ 上の正則関数で、最大値の原理により定数）。有理型関数は $\Lat$ 周期の有理型関数 $=$ 楕円関数。Weierstrass の $\wp$ は $\wp(z)=1/z^2+\sum_{\lambda\ne0}\bigl(1/(z-\lambda)^2-1/\lambda^2\bigr)$ で、極は格子点だけで、そこで 2 位の極をもつ。$E$ 上の次数 $2$ の有理型関数である。
+\end{ex}
+\begin{ex}[$y^2=x^3-x$ 上の有理型関数]\label{ex:ellfun}
+$E_0:y^2=x^3-x$（$g=1$、例 \ref{ex:hyper}、$m=3$）。$x$ は $x=0$ の点 $P_0=(0,0)$ で、座標 $y$ に対し $x=-y^2/(1-x^2)$ だから $\ord_{P_0}x=2$。$\infty$ では例 \ref{ex:hyper} の座標 $s=y t^{2}$（$t=1/x$）に対し $x=t^{-1}$、$t=s^2/h$ なので $\ord_\infty x=-2$。つまり $\divv(x)=2P_0-2\infty$。同様に $y$ は $P_0,P_1=(1,0),P_{-1}=(-1,0)$ で 1 位の零点、$\infty$ で $\ord=-3$：$\divv(y)=P_0+P_1+P_{-1}-3\infty$。また $\omega=dx/y$ は至るところ正則で零点なし：有限点で $y\ne0$ なら座標 $x$ で $dx/y=dx/y$ は零点なし、$y=0$ では $2y\,dy=(3x^2-1)dx$ なので $dx/y=2dy/(3x^2-1)$ は零点なし、$\infty$ では $dx=-t^{-2}dt$、$dt=d(s^2/h)=(2s/h-\dots)ds$ より $\ord_\infty(dx)=-3$（$t^{-2}$ は 4 位の極、$dt$ は $s$ の 1 位の零点）、$y$ は $-3$ 位なので $\ord_\infty(dx/y)=-3-(-3)=0$。
+\end{ex}
+
+\begin{keybox}{要点（§1）}
+正則写像は局所的に $z\mapsto z^e$。コンパクトなら $\deg f=\sum_{f(p)=q}e_p$ は $q$ によらない（定理 \ref{thm:degree}）。留数定理（定理 \ref{thm:residue}）から、有理型関数の零点の数と極の数は等しい（系 \ref{cor:zeropole}）。これが「主因子の次数は $0$」の源である。
+\end{keybox}
+
+\begin{prob}{基本}\label{p:local}
+(a) $f(z)=z+1/z$ は $\CP^1\to\CP^1$ の正則写像で、$\deg f$ と分岐点・分岐値をすべて求めよ。(b) $f(z)=z^2(z-1)$（多項式）について同様に求め、$\sum_p(e_p-1)=2\deg f-2$ を確かめよ。
+\end{prob}
+\begin{prob}{基本}\label{p:divP1}
+$\CP^1$ 上の有理型関数 $f=(z-1)/(z^2+1)$ の、すべての零点と極（$\infty$ を含む）と位数を求め、$\sum\ord_p f=0$ を確かめよ。また有理型 1 形式 $\omega=dz/(z(z-1))$ の各点での位数と留数を求め、留数の和が $0$ であることを確かめよ。
+\end{prob}
+\begin{prob}{標準}\label{p:residue}
+(a) 留数定理を使い、$\CP^1$ 上の有理型関数 $f$ の零点と極の個数が等しいことを、$f$ が有理関数であることを使わずに示せ（定理 \ref{thm:residue} から系 \ref{cor:zeropole} を導く部分を自分で書け）。(b) $\CP^1$ 上に、$0$ と $\infty$ だけに 1 位の極をもち（他で正則）留数が $a,b$ である 1 形式が存在するための条件を求めよ。
+\end{prob}
+\begin{prob}{標準}\label{p:ell0}
+$E_0:y^2=x^3-x$ 上で、$\divv(x-1)$、$\divv(x+1)$ と $\divv(y/x)$ を求めよ（記号は例 \ref{ex:ellfun}）。
+\end{prob}
+
+\section{因子と直線束}\label{sec:div}
+
+\subsection{因子、次数、主因子}
+\begin{defn}[因子]
+$X$ 上の\emph{因子}とは、$X$ の点の有限個を除いて $0$ をとる整数値関数 $D=\sum_pn_p\,p$、すなわち $X$ の点で生成される自由 Abel 群 $\Div(X)$ の元。\emph{次数}は $\deg D=\sum n_p$。$D\ge0$（\emph{有効}）とは全ての $n_p\ge0$。有理型関数 $f\not\equiv0$ に対し\emph{主因子} $\divv(f)=\sum_p\ord_p(f)\,p$、有理型 1 形式 $\omega\not\equiv0$ に対し $\divv(\omega)=\sum\ord_p(\omega)\,p$ とおく。
+\end{defn}
+$\divv(fg)=\divv f+\divv g$ だから、主因子全体 $\mathrm{Princ}(X)\subset\Div(X)$ は部分群。系 \ref{cor:zeropole} から $\deg\divv(f)=0$、つまり $\mathrm{Princ}(X)\subset\Div^0(X)$（次数 $0$ の因子）。商群
+\[
+\mathrm{Cl}(X)=\Div(X)/\mathrm{Princ}(X)
+\]
+を\emph{因子類群}といい、$D\sim D'$（\emph{線形同値}）とは $D-D'\in\mathrm{Princ}$ のこと。$\deg$ は $\mathrm{Cl}(X)\to\Z$ を定める。
+
+\emph{標準因子。} 有理型 1 形式 $\omega\ne0$ をとると、別の $\omega'$ は $\omega'=h\omega$（$h$ は有理型関数）だから $\divv\omega'\sim\divv\omega$。この類を\emph{標準因子類} $K=K_X$ という（$K_X\in\mathrm{Cl}(X)$）。$\Div$ の元としては $\divv(\omega)$ を代表にとる。
+
+\begin{ex}[$\CP^1$]\label{ex:Clp1}
+$\CP^1$ の因子 $D=\sum n_ip_i$（$p_i\in\C$）と $n_\infty\infty$ について、$\deg D=0$ なら $f=\prod(z-p_i)^{n_i}$ が $\divv f=D$ を与える（$\infty$ の位数は $-\sum n_i=n_\infty$ で合う）。ゆえに $\mathrm{Princ}=\Div^0$、$\mathrm{Cl}(\CP^1)\cong\Z$（$\deg$）。例 \ref{ex:formsP1} から $\divv(dz)=-2\infty$、$K_{\CP^1}$ は次数 $-2$ の類。
+\end{ex}
+\begin{ex}[楕円曲線]\label{ex:Clell}
+$E=\C/\Lat$ では $\divv(dz)=0$、$K_E\sim0$（$\deg K=0=2g-2$、$g=1$）。$\mathrm{Cl}(E)\to\Z$ の核 $\Div^0/\mathrm{Princ}$ は後で $E$ 自身と同一視される（\S\ref{sec:g012}、\S\ref{sec:abel}）。
+\end{ex}
+
+\subsection{$L(D)$ と大域切断}
+\begin{defn}
+因子 $D$ に対し $L(D)=\{f\in\mathcal M(X)\mid f=0\ \text{または}\ \divv(f)+D\ge0\}$ とおき、$\ell(D)=\dim_\C L(D)$ とする。つまり $D=\sum n_pp$ なら、$f$ は $n_p>0$ の点で高々 $n_p$ 位の極をもち、$n_p<0$ の点で少なくとも $|n_p|$ 位の零点をもつ。
+\end{defn}
+\begin{prop}\label{prop:ellbasic}
+(a) $D\sim D'$ なら $L(D)\cong L(D')$。(b) $\deg D<0$ なら $L(D)=0$。(c) $L(0)=\C$（$X$ はコンパクトで正則関数は定数）。(d) 点 $p$ について $L(D-p)\subset L(D)$ は余次元 $\le1$。(e) $\ell(D)\le\max(0,\deg D+1)$。特に $L(D)$ は有限次元。
+\end{prop}
+\begin{proof}
+(a) $D'=D+\divv(h)$ とすると $f\mapsto fh^{-1}$ が $L(D)\to L(D')$ の同型を与える（$\divv(f/h)+D'=\divv f+D$）。(b) $f\in L(D)$、$f\ne0$ なら $\deg(\divv f+D)=\deg D<0$ だが有効因子の次数は $\ge0$ で矛盾。(c) 正則関数は $X\to\C$ の連続関数で最大値をとり、最大値の原理で定数。(d) $n=D(p)$、座標 $z$ をとり、$f\in L(D)$ の Laurent 展開 $f=a_{-n}z^{-n}+\dots$ の $z^{-n}$ の係数 $a_{-n}$ を対応させる線形写像 $L(D)\to\C$ の核が $L(D-p)$。(e) (d) を繰り返し、$\deg D\ge0$ なら $D$ から $\deg D+1$ 個の点を引いて次数 $-1$ の因子にする。$\ell(D)\le(\deg D+1)+\ell(\text{次数}-1\text{の因子})=\deg D+1$。$\deg D<0$ なら (b)。 
+\end{proof}
+
+\subsection{直線束 $\Oc(D)$ と $\mathrm{Pic}(X)=\mathrm{Cl}(X)$}
+\begin{defn}[$\Oc(D)$]
+$\Oc(D)$ を、開集合 $U$ に対し $\Oc(D)(U)=\{f\ \text{は }U\text{ 上の有理型関数}\mid f=0\ \text{または}\ \divv(f)+D\ge0\ \text{on }U\}$ で定まる層とする。点 $p$ の近くで座標 $z$、$n=D(p)$ なら $\Oc(D)$ は $z^{-n}$ を生成元とする階数 1 の自由 $\Oc$-加群：\emph{直線束}（局所自由層）。$H^0(X,\Oc(D))=L(D)$ である。
+\end{defn}
+$\Oc(D)\otimes\Oc(E)\cong\Oc(D+E)$、$\Oc(D)^{-1}\cong\Oc(-D)$（有理型関数の積）。$\Oc(0)=\Oc$。$D\ge0$ なら $\Oc\subset\Oc(D)$ で、定数関数 $1\in H^0(\Oc(D))$ の零点因子はちょうど $D$ である（座標 $z$ での生成元 $z^{-n}$ に対し $1=z^n\cdot z^{-n}$）。
+
+\begin{thm}[$\mathrm{Pic}(X)\cong\mathrm{Cl}(X)$]\label{thm:pic}
+$D\mapsto\Oc(D)$ は同型 $\mathrm{Cl}(X)\xrightarrow{\ \sim\ }\mathrm{Pic}(X)$ を与える。ここで $\mathrm{Pic}(X)$ は正則直線束の同型類のなす群（積は $\otimes$）で、層コホモロジーでは $\mathrm{Pic}(X)\cong H^1(X,\Oc^*)$ である（第3巻）。
+\end{thm}
+\begin{proof}
+\emph{準同型・well-defined。} $D'=D+\divv h$ なら $f\mapsto fh^{-1}$ で $\Oc(D)\cong\Oc(D')$。\\
+\emph{単射。} $\varphi:\Oc(D)\to\Oc(D')$ を同型とする。$U=X\setminus\mathrm{supp}(D+D')$ 上では $\Oc(D)|_U=\Oc(D')|_U=\Oc_U$ で、$\varphi$ は $h=\varphi(1)$ による乗法（$h$ は $U$ 上の正則関数でゼロにならない）。台上の点で $\varphi$ は生成元を生成元に写すから、$h$ は台上で有理型に拡張し、$h\,\Oc(D)=\Oc(D')$ すなわち $\divv(h)+D'-D=0$ となる。よって $D\sim D'$。\\
+\emph{全射。} 直線束 $L$ は非零の有理型切断 $s$ をもつ（補題 \ref{lem:meromsec}、\S\ref{sec:rr}）。$D:=\divv(s)$（局所自明化で $s$ を関数とみて位数をとる）とおく。局所的に $f\in\Oc(D)\mapsto fs$ が $L$ の正則切断を与え、$\Oc(D)\cong L$。 
+\end{proof}
+\begin{defn}[直線束の次数]
+$L\cong\Oc(D)$ なら $\deg L:=\deg D$。$\deg\divv(f)=0$ より $L$ のみによる。$\deg(L\otimes M)=\deg L+\deg M$。
+\end{defn}
+補題 \ref{lem:meromsec} の証明で用いるのは Serre 双対ではなく有限性定理だけである（循環はない）。
+
+\begin{thm}[$\deg=c_1$]\label{thm:degc1}
+$L$ を正則直線束、$h$ を Hermite 計量、$\Theta$ を Chern 接続の曲率（第2巻）とするとき
+\[
+\deg L=\int_X\frac{i}{2\pi}\Theta=\int_Xc_1(L).
+\]
+\end{thm}
+\begin{proof}[証明（\tP）]
+$s\ne0$ を有理型切断、$p_1,\dots,p_k$ をその零点・極とし、$s$ を局所正則枠 $e$ で $s=fe$ と書く。$|s|^2_h=|f|^2h(e,e)$。零点・極の外で $\partial\bar\partial\log|f|^2=0$ だから、$\Theta=-\partial\bar\partial\log h(e,e)=-\partial\bar\partial\log|s|_h^2$。$\partial\bar\partial=d\bar\partial$ だから $\frac i{2\pi}\Theta=-d\bigl[\frac i{2\pi}\bar\partial\log|s|_h^2\bigr]$。$p_j$ を中心とする半径 $\epsilon$ の円板 $D_j$ を除いた領域に Stokes を使うと、
+\[
+\int_{X\setminus\cup D_j}\tfrac i{2\pi}\Theta=\sum_j\oint_{\partial D_j}\tfrac i{2\pi}\bar\partial\log|s|_h^2.
+\]
+ここで $\partial D_j$ は反時計回り（$X\setminus D_j$ の境界とは逆向き）。$p_j$ の近くで $|s|^2_h=|z|^{2n_j}\cdot(\text{滑らかで正})$、$n_j=\ord_{p_j}s$ だから $\bar\partial\log|z|^{2n_j}=n_j\,d\bar z/\bar z$、$\oint d\bar z/\bar z=-2\pi i$。滑らかな部分の寄与は $\epsilon\to0$ で $0$。よって各 $j$ の寄与は $\frac i{2\pi}n_j(-2\pi i)=n_j$。$\epsilon\to0$ として $\int_X\frac i{2\pi}\Theta=\sum n_j=\deg\divv(s)$。 
+\end{proof}
+この定理により $\deg L$ は第2巻の $\deg\Oc(k)=k$（$\CP^1$）などの計算と整合する。
+
+\begin{ex}[$\CP^1$ 上の $\Oc(k)$]\label{ex:Ok}
+$\Oc(k):=\Oc(k\cdot\infty)$ と書く（$\Oc(1)=\Oc([\mathrm{pt}])$。第2巻の $\Oc(k)$ と同型：切断は 2 次元 $\{z_0,z_1\}$ の斉次 $k$ 次式で、$\deg=k$）。大域切断は $L(k\infty)=\{$次数 $\le k$ の多項式$\}$、$h^0(\Oc(k))=k+1$（$k\ge0$）、$k<0$ なら $0$。$\mathrm{Pic}(\CP^1)=\Z$、$\Oc(k)\otimes\Oc(l)=\Oc(k+l)$。$K_{\CP^1}=\Oc(-2)$（$T_{\CP^1}=\Oc(2)$：例 \ref{ex:formsP1}）。
+\end{ex}
+\begin{ex}[楕円曲線上]
+$E=\C/\Lat$ で $\deg D=n$。後に（\S\ref{sec:rr}）$h^0(\Oc(D))=n$ $(n\ge1)$ を示す。$\deg D=0$ のとき $L=\Oc(D)$ が自明なら $h^0=1$、そうでなければ $h^0=0$（$f\in L(D)\setminus0$ なら $\divv f+D\ge0$ で次数 $0$ だから $=0$、$D\sim0$）。$\mathrm{Pic}^0(E)\cong E$。
+\end{ex}
+
+\begin{keybox}{要点（§2）}
+因子 $D$ $\to$ 直線束 $\Oc(D)$、$H^0(\Oc(D))=L(D)=\{f:\divv f+D\ge0\}$。$\mathrm{Pic}=\mathrm{Cl}=\Div/\mathrm{Princ}$、次数は $c_1$ の積分。$D\sim D'\Rightarrow L(D)\cong L(D')$、$\deg D<0\Rightarrow L(D)=0$、$\ell(D)\le\deg D+1$。
+\end{keybox}
+
+\begin{prob}{基本}\label{p:LD}
+$\CP^1$ 上の因子 $D=3[0]-[1]+2[\infty]$ について、$\deg D$ と $L(D)$ の基底、$\ell(D)$ を求めよ。
+\end{prob}
+\begin{prob}{標準}\label{p:eldim}
+命題 \ref{prop:ellbasic}(d), (e) を使って、$\deg D\ge0$ のとき $\ell(D)\le\deg D+1$ を示せ。また $X=\CP^1$ では等号が成り立つこと、種数 $g\ge1$ の $X$ では $\deg D=1$ のとき $\ell(D)\le1$ であることを示せ（ヒント：$\ell(D)=2$ なら次数 $1$ の有理型関数が得られる。定理 \ref{thm:degree}）。
+\end{prob}
+\begin{prob}{標準}\label{p:pullback}
+$f:X\to Y$ を次数 $d$ の正則写像とする。因子の引き戻し $f^*(q)=\sum_{f(p)=q}e_p\,p$ を線形に拡張し $f^*:\Div(Y)\to\Div(X)$ とする。(a) $\deg f^*D=d\deg D$。(b) $f^*\divv(h)=\divv(f^*h)$。したがって $f^*:\mathrm{Pic}(Y)\to\mathrm{Pic}(X)$ が定まる。(c) $f:\CP^1\to\CP^1$、$f(z)=z^2$ について $f^*[1]$、$f^*[0]$、$f^*\Oc(k)$ を求めよ。
+\end{prob}
+\begin{prob}{標準}\label{p:Kp1}
+$\CP^1$ 上で、任意の有理型 1 形式 $\omega\ne0$ の $\divv(\omega)$ は次数 $-2$ であることを示せ。また $K_{\CP^1}=\Oc(-2)$ を $\deg$ と定理 \ref{thm:pic} から結論せよ。
+\end{prob}
+\begin{prob}{発展}\label{p:distinct}
+種数 $g\ge1$ のコンパクト Riemann 面 $X$ で、相異なる 2 点 $p\ne q$ は線形同値でないことを示せ。（ヒント：$p\sim q$ なら $\divv f=p-q$ の $f$ が次数 $1$ の写像 $X\to\CP^1$ を与える。双正則になるので $g=0$。）これは $\CP^1$ との重要な違いである。
+\end{prob}
+
+\section{コホモロジーの再掲、有限性定理、Serre 双対}\label{sec:coh}
+
+\subsection{第3巻の再掲}
+本巻で使う道具を簡潔に再掲する（証明は第3巻）。$X$ をコンパクト Riemann 面とする。
+\begin{itemize}
+\item \textbf{層コホモロジー。} 層 $\mathcal F$ に対し $H^q(X,\mathcal F)$ が定まり、$H^0=$ 大域切断。層の完全列 $0\to\mathcal F'\to\mathcal F\to\mathcal F''\to0$ に対し長完全列 $0\to H^0(\mathcal F')\to H^0(\mathcal F)\to H^0(\mathcal F'')\to H^1(\mathcal F')\to H^1(\mathcal F)\to H^1(\mathcal F'')\to H^2(\mathcal F')\to\cdots$ が成り立つ。細層（滑らかな関数の層 $\mathcal A^{p,q}$ 加群）の高次コホモロジーは $0$。
+\item \textbf{摩天楼層。} 点 $p$ とベクトル空間 $V$ について、$p$ に茎 $V$ をもち他で $0$ の層 $V_p$ では $H^0(V_p)=V$、$H^q(V_p)=0$（$q\ge1$）。
+\item \textbf{Dolbeault 定理。} $L$ を正則直線束とする。$\mathcal A^{0,q}(L)$ を $L$ に値をもつ滑らかな $(0,q)$ 形式の層、$\bar\partial_L$ を $L$ の正則構造が定める作用素とすると、$\bar\partial$-Poincaré 補題（第2巻）により
+\[
+0\to\Oc(L)\to\mathcal A^0(L)\xrightarrow{\bar\partial_L}\mathcal A^{0,1}(L)\to0
+\]
+は層の完全列で、$\mathcal A^q(L)$ は細層。したがって
+\[
+H^0(X,L)=\ker\bar\partial_L,\qquad H^1(X,L)=\frac{\Gamma(X,\mathcal A^{0,1}(L))}{\bar\partial_L\Gamma(X,\mathcal A^0(L))},\qquad H^q(X,L)=0\ (q\ge2).
+\]
+\item \textbf{指数完全列。} $0\to\Z\to\Oc\xrightarrow{\exp(2\pi i\,\cdot)}\Oc^*\to0$。
+\end{itemize}
+種々の層について、$H^q(X,\Oc(D))$ を $H^q(D)$、$h^q(D)=\dim H^q(D)$ と略記し、
+\[
+\chi(D)=h^0(D)-h^1(D)
+\]
+とおく（Euler 標数）。$H^q=0$（$q\ge2$）なので $\chi(D)=\sum(-1)^qh^q(D)$。
+
+\subsection{有限性と Serre 双対}
+\begin{thm}[有限性定理]\label{thm:finite}
+$X$ がコンパクト Riemann 面で $L$ が正則直線束なら、$H^q(X,L)$ は有限次元。
+\end{thm}
+\src{Forster, \emph{Lectures on Riemann Surfaces}, 第II章 §14（A Finiteness Theorem；目次で確認）。Griffiths--Harris 第0章（楕円型作用素 $\bar\partial_L$ の Fredholm 性）\tQ（節番号）。}
+\emph{証明の方針。} (i) 楕円型作用素論：$\bar\partial_L:\mathcal A^0(L)\to\mathcal A^{0,1}(L)$ は楕円型（シンボルが $\xi\mapsto$ 同型）で、コンパクト多様体上では Fredholm。核と余核は有限次元。(ii) 関数解析：座標円板の小さな円板への制限が Montel の定理でコンパクト作用素となり、\Cech{} 複体への Schwartz の有限性定理を使う（Forster の方法）。
+
+\begin{thm}[Serre 双対]\label{thm:serre}
+$L$ を正則直線束とする。
+\[
+H^1(X,L)\times H^0(X,K\otimes L^{-1})\longrightarrow H^1(X,K)\xrightarrow{\ \int\ }\C,
+\qquad([\alpha],\omega)\mapsto\int_X\alpha\wedge\omega
+\]
+は完全対合である。特に $H^1(X,L)\cong H^0(X,K\otimes L^{-1})^*$、すなわち $D$ に対し
+\[
+h^1(D)=h^0(K-D).
+\]
+さらに $H^1(X,K)\cong\C$（積分による）。
+\end{thm}
+ここで $\alpha\in\mathcal A^{0,1}(L)$ は $L$ 値 $(0,1)$ 形式、$\omega$ は $K\otimes L^{-1}$ の正則切断で、$\alpha\wedge\omega$ は縮約 $L\otimes L^{-1}\to\C$ で $(1,1)$ 形式（$=$ 2 形式）になる。
+\src{Forster 第II章 §17（The Serre Duality Theorem；目次で確認。§16 が Riemann--Roch の定理）。Griffiths--Harris 第0章・第1章（解析的な証明）\tQ（節番号）。Hartshorne III §7（代数的な別証明）。Huybrechts 第4章 \tQ（章の割り当ては記憶による）。}
+
+\paragraph{証明の骨子。}
+\begin{enumerate}
+\item \emph{対合は well-defined。} $\alpha=\bar\partial_L\beta$（$\beta\in\mathcal A^0(L)$）なら $\alpha\wedge\omega=\bar\partial(\beta\omega)=d(\beta\omega)$ （$\beta\omega$ は $(1,0)$ 形式で、$\bar\partial\omega=0$、$\partial(\beta\omega)$ は $(2,0)$ 形式なので $0$）。Stokes より $\int=0$。$\omega$ が正則であることと $\bar\partial$ の Leibniz 則を使っている。
+\item \emph{$H^1(X,K)\cong\C$。} $H^1(X,K)=\mathcal A^{1,1}(X)/\bar\partial\mathcal A^{1,0}(X)=\mathcal A^{1,1}/d\mathcal A^{1,0}$。積分は $d\mathcal A^{1,0}$ 上で $0$（Stokes）、全射（$\mathcal A^{1,1}=\mathcal A^2$ の台がコンパクトに小さい正の形式）。単射は、$\int\eta=0$ なら $\eta$ が $\bar\partial$-完全であることで、これは $H^2_{dR}(X;\C)\cong\C$（積分による）と Hodge 理論（$\partial\bar\partial$-補題 $\Rightarrow$ $\eta=\bar\partial\gamma$）による。
+\item \emph{対合の非退化。} $\bar\partial_L$ の値域は閉（Fredholm 性）。$\mathcal A^{0,1}(L)$ 上の連続線形汎関数で $\mathrm{Im}\,\bar\partial_L$ 上で $0$ のもの全体が $H^1(X,L)^*$。それは超関数 $T$ で $\bar\partial_L^*T=0$ をみたすもの（$\bar\partial_L^*$ は形式的随伴）とみなせて、$\bar\partial_L^*$ の楕円型正則性により $T$ は滑らか。計量を使い $\bar\partial_L^*=-*\partial *$ と書くと、$T$ は $K\otimes L^{-1}$ の正則切断を与える。逆に正則切断は $T$ を与える。これが $H^1(X,L)^*\cong H^0(X,K\otimes L^{-1})$ で、対合から決まる写像と一致する。
+\end{enumerate}
+この骨子は、次数 $1$ の楕円型作用素 $\bar\partial_L$ の \emph{核と余核がそれぞれ互いの随伴の核と同一視される}ことを述べている。第5巻の Hodge 理論（Hodge 分解）、第7巻（楕円型作用素）で完全な証明を学ぶ。代数的な別証明（Serre の「アデール」による証明、あるいは $K$ が双対化層であることの証明）が Hartshorne III、Serre の \emph{Groupes algébriques et corps de classes} にある。
+
+\begin{cor}\label{cor:serrecor}
+$g:=h^1(\Oc)=h^0(K)$（\emph{解析的種数}）とおく。このとき $h^1(D)=h^0(K-D)$、$h^1(K)=1$、$h^0(K)=g$。
+\end{cor}
+解析的種数は位相的種数に等しい（定理 \ref{thm:genus}）ので、以後 $g$ と書く。
+
+\begin{ex}[$\CP^1$ 上の \Cech{} 計算：Serre 双対の実際]\label{ex:cechP1}
+$X=\CP^1$ を $U_0=\C$（座標 $z$）と $U_1=\CP^1\setminus\{0\}$（座標 $w=1/z$）で覆い、$\Oc(D)$ に $D=-k[\infty]$（$k\ge2$）をとる。$\Oc(D)(U_0)=\mathrm{Hol}(\C)$、$\Oc(D)(U_1)=\{f$ は $U_1\setminus\{\infty\}$ 上の正則関数で $\infty$ で $k$ 位以上の零点$\}$。\Cech{} の $1$ コサイクルは $U_{01}=\C^*$ 上の正則関数 $\sum_{n\in\Z}a_nz^n$ で、コバウンダリは $\mathrm{Hol}(\C)=\{n\ge0\}$ と $\{\sum_{n\le-k}a_nz^n\}$（$w=1/z$ の整級数で $w^k$ で割り切れるもの）の和。
+\[
+H^1(\Oc(-k\infty))=\mathrm{span}\{z^{-1},z^{-2},\dots,z^{-(k-1)}\},\quad h^1=k-1.
+\]
+一方 $K\otimes\Oc(k\infty)=\Oc(-2\infty+k\infty)=\Oc((k-2)\infty)$ の大域切断は $\omega=z^m\,dz$（$0\le m\le k-2$、$\infty$ で位数 $-m-2\ge-k$）、$h^0=k-1$。対合は $\langle z^{-j},z^mdz\rangle=\Res_{z=0}(z^{-j+m}dz)=\delta_{m,j-1}$ で、完全対合になっている（問 \ref{p:cechP1}）。
+\end{ex}
+
+\subsection{Mittag-Leffler 問題と $H^1$：Serre 双対の留数による表示}
+$H^1(X,\Oc(D))$ の古典的な意味を述べる。$\mathcal M$ を有理型関数の層とする。層の完全列
+\[
+0\to\Oc(D)\to\mathcal M\to\mathcal M/\Oc(D)\to0
+\]
+で、$\mathcal M/\Oc(D)$ は摩天楼層で、点 $p$ での茎は $\{$Laurent の主要部$\}=\mathcal M_p/z^{-n_p}\Oc_p$（$n_p=D(p)$）、すなわち \emph{$D$ で許される位数を超える極の部分}を表す。$H^1(X,\mathcal M)=0$（\tC\ 出典：Forster 第II章、$\mathcal M$ は座標円板上の Mittag-Leffler の定理により \Cech{} 的に非輪状）を使うと、長完全列から
+\[
+0\to H^0(\Oc(D))=L(D)\to\mathcal M(X)\to\bigoplus_pP_p(D)\to H^1(X,\Oc(D))\to0,
+\]
+ここで $P_p(D)=\mathcal M_p/\Oc(D)_p$。つまり
+\[
+H^1(X,\Oc(D))\ \cong\ \frac{\{\text{主要部の（有限）集合 }(P_p)_p\}}{\{\text{大域有理型関数の主要部}\}}.
+\]
+\textbf{$H^1$ は Mittag-Leffler 問題（与えられた主要部をもつ有理型関数の存在）の障害の空間}である。例えば $D=0$ なら：与えられた極と主要部をもつ（それ以外で正則な）有理型関数があるか。\\
+\emph{$\CP^1$ ：} $H^1(\Oc)=0$ なので任意の主要部をもつ有理型関数がある（部分分数分解）。\\
+\emph{種数 $g$：} 主要部 $(P_p)$ と正則 1 形式 $\omega$ に対し $\langle(P_p),\omega\rangle:=\sum_p\Res_p(P_p\omega)$ とおく。主要部が大域有理型関数 $f$ のもの（$P_p=f$ の $p$ での主要部）なら、$\omega$ が正則なので $\Res_p(P_p\omega)=\Res_p(f\omega)$ で、留数定理（定理 \ref{thm:residue}）により和は $0$。よって $\langle\,\cdot\,,\omega\rangle$ は商 $H^1(\Oc)$ 上の線形汎関数で、これが Serre 双対の対合の留数表示である（Weil、Serre によるアデール的証明の出発点）。したがって定理 \ref{thm:serre} は「主要部 $(P_p)$ に対し、全ての正則 1 形式 $\omega\in H^0(K)$ で $\sum_p\Res_p(P_p\omega)=0$ が成り立つことが、$(P_p)$ が大域有理型関数の主要部であるための必要十分条件」という Riemann--Roch 以前の古典的な形になる。
+\begin{ex}[楕円曲線上の 2 つの単純な極]\label{ex:MLE}
+$E=\C/\Lat$、$\omega=dz$。点 $a\ne b$ に単純な極をもち留数 $r_a,r_b$ であるような $E$ 上の有理型関数（他で正則）が存在するための条件は、$\Res_a(P_a\,dz)+\Res_b(P_b\,dz)=r_a+r_b=0$。このとき実際に存在する。Riemann--Roch（$\deg(a+b)=2>2g-2=0$）から $h^0(a+b)=2$ で、$L(a+b)=\langle1,f\rangle$。$f$ は非定数で極は $a,b$ のみ、極が 1 点のみなら次数 $1$ で $g=0$ に矛盾するので両方が 1 位の極。留数定理から $\Res_af\,dz=-\Res_bf\,dz\ne0$。定数倍して任意の $r_a=-r_b$ が得られる。つまり条件 $r_a+r_b=0$ は必要十分で、障害の空間 $H^1(\Oc)=\C$ は留数の和という 1 つの数で測られる。
+\end{ex}
+$g=1$ 以上では、1 つの単純な極だけをもつ有理型関数は存在しない（留数定理）。これも $H^1(\Oc)\ne0$ の現れである。
+
+\begin{keybox}{要点（§3）}
+$H^1(X,L)=\mathrm{coker}\bar\partial_L$（有限次元）。Serre 双対：$H^1(X,L)^*\cong H^0(X,K\otimes L^{-1})$、特に $h^1(\Oc(D))=h^0(\Oc(K-D))$、$h^1(\Oc)=h^0(K)=g$、$H^1(X,K)\cong\C$。解析的な証明の核は $\bar\partial_L$ の楕円性（核・余核の有限性と随伴との同一視）。
+\end{keybox}
+
+\begin{prob}{基本}\label{p:ses}
+$p\in X$ とする。層の列 $0\to\Oc(D-p)\to\Oc(D)\xrightarrow{r}\C_p\to0$ を、$r$ を「$z^{-n}$ の係数を取る」写像（$n=D(p)$）として定義し、完全であることを示せ。また長完全列を書き、$h^0(D)-h^0(D-p)\le1$ を導け。
+\end{prob}
+\begin{prob}{標準}\label{p:cechP1}
+例 \ref{ex:cechP1} を $k=4$ で確かめよ：$H^1(\Oc(-4\infty))$ の基底、$H^0(K\otimes\Oc(4\infty))$ の基底を求め、対合の行列が単位行列（適切な基底の順序で）になることを示せ。また $k=1$ で $h^1(\Oc(-\infty))=0$ を示せ。
+\end{prob}
+\begin{prob}{標準}\label{p:Serredual}
+Serre 双対を使い、$h^1(\Oc(D))=0$ となるための必要十分条件を $K-D$ で表せ。また $\deg D>2g-2$ なら $h^1(\Oc(D))=0$ であることを（命題 \ref{prop:ellbasic}(b) と $\deg K=2g-2$、ここでは $\deg K=2g-2$ を既知として）示せ。（$\deg K=2g-2$ は\S\ref{sec:rr}で証明する。）
+\end{prob}
+
+\section{Riemann--Roch の定理}\label{sec:rr}
+
+\subsection{主張と証明}
+\begin{thm}[Riemann--Roch]\label{thm:rr}
+$X$ を種数 $g$ のコンパクト Riemann 面、$D$ を $X$ 上の因子とすると
+\[
+h^0(D)-h^0(K-D)=\deg D+1-g .
+\]
+同値な言い方として、Euler 標数 $\chi(D)=h^0(\Oc(D))-h^1(\Oc(D))=\deg D+1-g$。
+\end{thm}
+\tC\ \tP\quad 以下で Serre 双対（定理 \ref{thm:serre}）と有限性定理（定理 \ref{thm:finite}）を既知として完全に証明する。
+
+\begin{lem}[点を 1 つ足すと $\chi$ が $1$ 増える]\label{lem:chistep}
+任意の因子 $D$ と点 $p$ について $\chi(D)=\chi(D-p)+1$。
+\end{lem}
+\begin{proof}
+問 \ref{p:ses} より層の列 $0\to\Oc(D-p)\to\Oc(D)\to\C_p\to0$ は完全。長完全列
+\[
+0\to H^0(D-p)\to H^0(D)\to H^0(\C_p)=\C\to H^1(D-p)\to H^1(D)\to H^1(\C_p)=0
+\]
+（右端は $H^1(\C_p)=0$ による）。完全列の次元の交代和は $0$ なので（各項は有限次元：定理 \ref{thm:finite}）
+\[
+h^0(D-p)-h^0(D)+1-h^1(D-p)+h^1(D)=0,
+\]
+すなわち $\chi(D)-\chi(D-p)=1$。
+\end{proof}
+\begin{proof}[Riemann--Roch の証明]
+(1) 任意の因子 $D=\sum n_p\,p$ は、$0$ に点を有限回足し引きして得られる。補題 \ref{lem:chistep} と $\deg(D+p)=\deg D+1$ から、$\chi(D)-\deg D$ は $D\mapsto D\pm p$ で不変。よって $\chi(D)-\deg D=\chi(0)-0$。\\
+(2) $\chi(0)=h^0(\Oc)-h^1(\Oc)=1-g$：$h^0(\Oc)=1$（命題 \ref{prop:ellbasic}(c)）、$h^1(\Oc)=g$（系 \ref{cor:serrecor}）。\\
+(3) したがって $\chi(D)=\deg D+1-g$。Serre 双対 $h^1(D)=h^0(K-D)$ を代入すれば主張。
+\end{proof}
+Riemann--Roch の証明には 2 つの入力：(a) 有限性定理（$\chi$ が定義される）、(b) Serre 双対（$h^1$ を $h^0$ に書き換える）が使われた。\textbf{Euler 標数の公式 $\chi(D)=\deg D+1-g$ は (b) なしで成り立つ}。これが高次元の一般化（HRR、Atiyah--Singer）に移るときの本質的な形である（\S\ref{sec:index}）。
+
+\begin{lem}[直線束は有理型切断をもつ]\label{lem:meromsec}
+$L$ を $X$ 上の正則直線束とすると、非零の有理型切断 $s$ が存在する。
+\end{lem}
+\begin{proof}
+$\Oc(L)\subset\Oc(L)\otimes\Oc(p)=:L(p)$ についても補題 \ref{lem:chistep} と同じ議論（層の列 $0\to L\to L(p)\to\C_p\to0$）で $\chi(L(np))=\chi(L)+n$。$H^1(L)$ は有限次元なので $n$ が大きければ $h^0(L(np))\ge\chi(L(np))>0$。非零の切断 $s\in H^0(L(np))$ は $L$ の（$p$ に極をもつ）有理型切断。
+\end{proof}
+これで定理 \ref{thm:pic} の全射性の証明が完結する。
+
+\subsection{結論の数々}
+\begin{cor}\label{cor:rr}
+(a) $\deg K=2g-2$、$h^0(K)=g$。(b) $\deg D>2g-2$ なら $h^1(D)=0$、$h^0(D)=\deg D+1-g$。(c) 一般に $h^0(D)\ge\deg D+1-g$（\emph{Riemann の不等式}）。(d) $\deg D\ge g$ なら $D$ は有効因子と線形同値。(e) $g=0\iff h^0(\Oc(p))=2$（一点 $p$ について）$\iff X\cong\CP^1$。
+\end{cor}
+\begin{proof}
+(a) $D=K$ を代入：$h^0(K)-h^0(0)=\deg K+1-g$。$h^0(K)=g$、$h^0(0)=1$ より $g-1=\deg K+1-g$。(b) $\deg(K-D)<0$ なので $h^0(K-D)=0$（命題 \ref{prop:ellbasic}(b)）。(c) $h^0(K-D)\ge0$。(d) (c) より $h^0(D)\ge1$、非零の $f\in L(D)$ をとれば $D'=D+\divv f\ge0$ で $D'\sim D$。(e) 問 \ref{p:distinct} の逆向き：$g=0$ なら $h^0(p)\ge2$、非定数 $f\in L(p)$ は単純な極 1 点をもつから次数 $1$ の写像 $X\to\CP^1$ で双正則。逆に $\CP^1$ なら $g=h^1(\Oc)=0$。
+\end{proof}
+定理 \ref{thm:rr} は、$\deg D<0$ での $h^0=0$ と $\deg D>2g-2$ での $h^1=0$（系 \ref{cor:rr}(b)）を併せて、次数が範囲外の因子の $h^0(D)$ を完全に決める：$\deg D<0\Rightarrow h^0=0$、$\deg D>2g-2\Rightarrow h^0=\deg D+1-g$。残るのは $0\le\deg D\le2g-2$ の\emph{特別因子}の範囲で、そこでは $h^0(D)$ は $D$ の線形同値類に依存して跳ぶ。次の Clifford の定理がその範囲を押さえる。
+\begin{lem}[Hopf 型の補題]\label{lem:hopf}
+$D,E$ を有効因子とすると $h^0(D+E)\ge h^0(D)+h^0(E)-1$。
+\end{lem}
+\begin{proof}[証明（\tP）]
+点 $p\in X$ をとる。$L(D)$ は有限次元で、各 $f\in L(D)\setminus0$ に位数 $\ord_pf\in\Z$ が定まる。Gauss の消去法により、$L(D)$ の基底 $f_0,\dots,f_a$（$a+1=h^0(D)$）で $\ord_pf_0<\dots<\ord_pf_a$（互いに異なる）をとれる（位数が等しい 2 元は、係数をそろえて引くと位数が真に上がる。この操作を繰り返す）。同様に $L(E)$ の基底 $g_0,\dots,g_b$ を $\ord_pg_0<\dots<\ord_pg_b$ にとる。積 $f_ig_j\in L(D+E)$ のうち
+\[
+f_0g_0,\ f_0g_1,\dots,f_0g_b,\ f_1g_b,\dots,f_ag_b
+\]
+（$a+b+1$ 個）の $p$ での位数は $\ord f_0+\ord g_0<\ord f_0+\ord g_1<\dots<\ord f_0+\ord g_b<\ord f_1+\ord g_b<\dots<\ord f_a+\ord g_b$ と真に増加する。異なる位数をもつ関数は 1 次独立なので $h^0(D+E)\ge a+b+1=h^0(D)+h^0(E)-1$。
+\end{proof}
+\begin{thm}[Clifford]\label{thm:clifford}
+$D$ を $h^0(D)>0$ かつ $h^0(K-D)>0$ をみたす因子とすると
+\[
+h^0(D)\le\tfrac12\deg D+1 .
+\]
+\end{thm}
+\begin{proof}[証明（\tP）]
+$h^0(D)>0$、$h^0(K-D)>0$ より $D\sim D'\ge0$、$K-D\sim E'\ge0$ で、$D'+E'\sim K$。補題 \ref{lem:hopf} から $h^0(K)=h^0(D'+E')\ge h^0(D')+h^0(E')-1=h^0(D)+h^0(K-D)-1$。すなわち $h^0(D)+h^0(K-D)\le g+1$。一方 Riemann--Roch：$h^0(D)-h^0(K-D)=\deg D+1-g$。辺々足すと $2h^0(D)\le\deg D+2$。 
+\end{proof}
+等号の場合（$D\sim0$、$D\sim K$、または超楕円曲線で $D$ が $g^1_2$ の整数倍）の分類は \tC\ （Hartshorne 第IV章 §5\tQ、Griffiths--Harris 第2章 §1\tQ）。Clifford の定理は、特別因子（$0\le\deg D\le2g-2$）での $h^0$ の上限を与える：次数 $d$ の $\Oc(D)$ は高々 $\CP^{\lfloor d/2\rfloor}$ に写像される。
+
+\subsection{例}
+\begin{ex}[$\CP^1$、$g=0$]
+$K=\Oc(-2)$、$D=\Oc(k)$：$h^0(\Oc(k))=k+1$ $(k\ge-1)$、$h^1(\Oc(k))=h^0(\Oc(-2-k))=-k-1$ $(k\le-2)$。Riemann--Roch：$h^0-h^1=k+1$ がすべての $k\in\Z$ で成立（$k\ge-1$ なら $h^1=0$、$k\le-2$ なら $h^0=0$）。
+\end{ex}
+\begin{ex}[楕円曲線、$g=1$]\label{ex:ellRR}
+$K\sim0$。$\deg D=n\ge1$ なら $h^0(D)=n$、$h^1(D)=h^0(-D)=0$。$\deg D=0$：$h^0(D)-h^0(-D)=0$、$D\sim0$ なら $1$、そうでなければ $0$。この例で $h^0(\Oc(D))$ は $D$ の類で跳ぶが、$\chi=\deg D$ は跳ばない。
+\end{ex}
+\begin{ex}[$g=2$：表]\label{ex:g2}
+$\deg K=2$、$h^0(K)=2$。$h^0(D)=\ell$ の表（ここで $h^1(D)=h^0(K-D)$）。
+\begin{center}
+\begin{tabular}{c|l|l}
+\toprule
+$\deg D$ & $(h^0,h^1)$ & 条件\\
+\midrule
+$<0$ & $(0,\,1-\deg D)$ & 常に\\
+$0$ & $(1,2)$ または $(0,1)$ & $D\sim0$ のとき前者\\
+$1$ & $(1,1)$ または $(0,0)$ & $D\sim p$（有効）のとき前者\\
+$2$ & $(2,1)$ または $(1,0)$ & $D\sim K$ のとき前者\\
+$\ge3$ & $(\deg D-1,\,0)$ & 常に\\
+\bottomrule
+\end{tabular}
+\end{center}
+（導出は問 \ref{p:g2table}。次数 $2$ で $h^0=2$ なら $h^1=1$、$K-D$ は次数 $0$ で $h^0(K-D)=1$ だから $K-D\sim0$。）
+\end{ex}
+\begin{ex}[超楕円曲線 $y^2=f(x)$、$\deg f=2g+1$：$h^0(n\infty)$]\label{ex:hyperRR}
+無限遠点 $\infty$ で $x$ の位数は $-2$、$y$ の位数は $-(2g+1)$（例 \ref{ex:ellfun} と同様）。したがって $x^a$、$x^ay$ は $\infty$ にのみ極をもち、極の位数は $2a$、$2a+2g+1$ で、すべて異なる。ゆえに $x^a$ $(2a\le n)$ と $x^ay$ $(2a+2g+1\le n)$ は $L(n\infty)$ の 1 次独立な元で、その個数は $\#\{m\le n\mid m\in\langle2,2g+1\rangle\}$（$m=0$ を含む）。実は等号である（\S\ref{sec:weier} の gap 定理：$\infty$ の gap はちょうど $g$ 個で、半群 $\langle2,2g+1\rangle$ の gap も $1,3,\dots,2g-1$ の $g$ 個）。$g=2$：$h^0(n\infty)=1,1,2,2,3,4,5,\dots$（$n=0,1,2,\dots$）で、$n=5$ では基底 $\{1,x,x^2,y\}$、$h^0=4=5+1-2$。\\
+数値計算で $1\le g\le7$、$0\le n<6g$ について $h^0(n\infty)-h^0(K-n\infty)=n+1-g$ を確かめた。ここで $K$ の正則切断は $x^i\,dx/y$（$0\le i\le g-1$）で、$\infty$ での位数は $2g-2-2i$（\S\ref{sec:g012}）なので $h^0(K-n\infty)=\#\{i\mid2g-2-2i\ge n\}$。
+\end{ex}
+
+\begin{ex}[$y^2=x^3-x$ 上で $L(D)$ を具体的に求める]\label{ex:LDE0}
+$E_0:y^2=x^3-x$、$g=1$（例 \ref{ex:ellfun}）。$P_0=(0,0)$、$P_{\pm1}=(\pm1,0)$、$\infty$ とする。$\divv x=2P_0-2\infty$、$\divv y=P_0+P_1+P_{-1}-3\infty$。
+\begin{itemize}
+\item $D=2P_0$（$\deg2$、$h^0=2$）：$L(D)=\langle1,\ 1/x\rangle$。実際 $1/x$ は $P_0$ のみに 2 位の極をもつ。
+\item $D=P_0+P_1$（$\deg2$、$h^0=2$）：$f=y/(x(x-1))$。$P_0$ で $\ord=1-2=-1$、$P_1$ で $\ord=1-2=-1$、$P_{-1}$ で $\ord=1$（零点）、$\infty$ で $\ord=-3+4=1$（零点）：$\divv f=P_{-1}+\infty-P_0-P_1$。$L(D)=\langle1,f\rangle$。
+\item $D=3\infty$（$\deg3$、$h^0=3$）：$L(D)=\langle1,x,y\rangle$。$D=P_0+P_1+P_{-1}$ は $3\infty$ と線形同値（$\divv y$ より）、$L(D)=\frac1y\langle1,x,y\rangle$（$f\mapsto f/y$）。
+\item $D=P_0-\infty$（$\deg0$、$D\not\sim0$）：$h^0=0$（$P_0\ne\infty$、問 \ref{p:distinct}）。ただし $2D=2P_0-2\infty=\divv x\sim0$：$P_0$ は $\Pic^0(E_0)\cong E_0$ の 2 分点（$2D\sim0$）。
+\end{itemize}
+\end{ex}
+\begin{ex}[$y^2=x^5-x$（$g=2$）：gap との対応]\label{ex:g2gap}
+$\infty$ は分岐点で $x$ の極 $2$、$y$ の極 $5$。$L(n\infty)$ の基底：$n=0$：$\{1\}$、$n=1$：$\{1\}$、$n=2$：$\{1,x\}$、$n=3$：$\{1,x\}$（$h^0=2$）、$n=4$：$\{1,x,x^2\}$、$n=5$：$\{1,x,x^2,y\}$、$n=6$：$+x^3$、$n=7$：$+xy$。$h^0$ は $1,1,2,2,3,4,5,6$（$n=0,\dots,7$）で、Riemann--Roch の $n+1-g=n-1$ に $n\ge3$ で一致（$n=3>2g-2=2$）。$n=1,3$ の $h^0$ が増えない $\iff$ $1,3$ が gap（\S\ref{sec:weier}）。$D=2\infty\sim K$（$\divv(dx/y)=2\infty$）、$h^0(K)=2$ ✓。
+\end{ex}
+
+\subsection{ベクトル束版（主張のみ）}
+$E$ を階数 $r$ の正則ベクトル束とするとき、$\chi(X,E)=h^0(E)-h^1(E)=\deg E+r(1-g)$。\tC\ 出典：Hartshorne 第IV章（曲線）、Forster 第II章。\tQ（定理番号は未確認。）部分直線束による帰納と、本文の補題 \ref{lem:chistep} と同様の層の完全列で証明される。
+
+\begin{keybox}{要点（§4）}
+Riemann--Roch：$\chi(D)=h^0(D)-h^1(D)=\deg D+1-g$（$\chi$ の形は Serre 双対なし）。$h^1(D)=h^0(K-D)$ で書き換えたものが古典的な形。帰結：$\deg K=2g-2$、$\deg D>2g-2\Rightarrow h^1(D)=0$（1 次元の消滅定理）。特別因子 $0\le\deg D\le2g-2$ では $h^0(D)$ が因子類に依存して跳ぶ。
+\end{keybox}
+
+\begin{prob}{基本}\label{p:ellh0}
+楕円曲線 $E$ 上、$D=3p$、$D=p+q$（$p\ne q$）、$D=p-q$ の $h^0$ と $h^1$ を求めよ。$p-q\sim0$ となる条件は。
+\end{prob}
+\begin{prob}{基本}\label{p:P1h0}
+$\CP^1$ 上、$D=\Oc(-5)$ について $h^0$、$h^1$ を求め、\Cech{} 計算（例 \ref{ex:cechP1} の方法）でも確かめよ。
+\end{prob}
+\begin{prob}{標準}\label{p:g2table}
+$g=2$ の曲線 $X$ で、$\deg D=0,1,2,3$ の因子について $h^0(D)$ と $h^1(D)$ の可能な値を、Riemann--Roch と次の事実（問 \ref{p:distinct} と系 \ref{cor:rr}(e)）から決めて表を作り、例 \ref{ex:g2} の表と一致することを確かめよ。$\deg D=2$ で $h^0(D)=2$ なら $D\sim K$（理由を述べよ）。
+\end{prob}
+\begin{prob}{標準}\label{p:Pnvect}
+$\CP^1$ 上、Euler 列 $0\to\Oc\to\Oc(1)^{\oplus2}\to T_{\CP^1}\to0$ から $\chi(T_{\CP^1})$ を計算し、Riemann--Roch（直線束）$\chi(\Oc(2))=3$ と比べよ。また $h^0(T_{\CP^1})=3=\dim\mathrm{PGL}_2(\C)$ を説明せよ。
+\end{prob}
+\begin{prob}{標準}\label{p:conj}
+種数 $2$ の曲線 $X$ で、$p+q\sim K$ となる $q$ は各点 $p$ について（$p$ の関数として）ただ 1 つあり、それを $\iota(p)$ と書くと $\iota:X\to X$ は位数 $2$ の自己同型（\emph{超楕円対合}）になることを示せ。（ヒント：$h^0(K-p)=1$ を問 \ref{p:g2table} から使う。）
+\end{prob}
+
+\section{Riemann--Hurwitz の公式と種数}\label{sec:rh}
+
+\subsection{1 形式の引き戻し}
+$f:X\to Y$ を非定数正則写像、$\eta$ を $Y$ 上の有理型 1 形式とする。$f^*\eta$ は $X$ 上の有理型 1 形式（$\eta=g(w)dw$ なら $f^*\eta=g(f(z))f'(z)\,dz$）。
+\begin{lem}\label{lem:pullbackord}
+$p\in X$、$e=e_p(f)$ とすると $\ord_p(f^*\eta)=e\cdot\ord_{f(p)}(\eta)+(e-1)$。
+\end{lem}
+\begin{proof}
+局所形（定理 \ref{thm:localform}）で $w=z^e$。$\eta=w^m u(w)\,dw$（$u(0)\ne0$、$m=\ord_{f(p)}\eta$）とすると $f^*\eta=z^{em}u(z^e)\cdot ez^{e-1}\,dz$。$\ord_pf^*\eta=em+e-1$。
+\end{proof}
+したがって
+\begin{equation}\label{eq:KRH}
+\divv(f^*\eta)=f^*\divv(\eta)+R_f,\qquad K_X\sim f^*K_Y+R_f.
+\end{equation}
+
+\begin{thm}[Riemann--Hurwitz]\label{thm:RH}
+$f:X\to Y$ をコンパクト Riemann 面の次数 $d$ の非定数正則写像とし、$g_X,g_Y$ を（解析的）種数とする。
+\[
+2g_X-2=d\,(2g_Y-2)+\deg R_f,\qquad \deg R_f=\sum_{p\in X}(e_p-1).
+\]
+\end{thm}
+\begin{proof}
+式 \eqref{eq:KRH} の次数をとる。$\deg K_X=2g_X-2$（系 \ref{cor:rr}(a)）、$\deg f^*K_Y=d\deg K_Y=d(2g_Y-2)$（問 \ref{p:pullback}）。
+\end{proof}
+\begin{cor}\label{cor:RHcons}
+(a) $g_X\ge g_Y$。(b) $g_Y=0$ なら $\deg R_f=2g_X-2+2d$。(c) $g_X=g_Y\ge2$ なら $d=1$（双正則）。(d) $g_X=g_Y=1$ なら $R_f=0$（不分岐被覆）。(e) $g_Y\ge2$ で $d\ge2$ なら $g_X>g_Y$。
+\end{cor}
+\begin{proof}
+$\deg R_f\ge0$。(a) $g_Y=0$ のとき自明。$g_Y\ge1$ なら $2g_X-2\ge d(2g_Y-2)\ge2g_Y-2$。(c) $2g-2=d(2g-2)+\deg R_f$ より $(d-1)(2g-2)+\deg R_f=0$、$g\ge2$ なら $d=1$。他も同様。 
+\end{proof}
+\begin{ex}[超楕円曲線の種数]\label{ex:hypergenus}
+$x:X_f\to\CP^1$（例 \ref{ex:hyper}）、$d=2$、分岐は $f$ の根（$m$ 個）と $m$ 奇数のとき $\infty$ の合計 $2g+2$ 個の点で、$e=2$。非分岐は各点で相異なる 2 点を持つ（$y=\pm\sqrt{f(x)}$）。$\deg R=2g+2$、$2g_X-2=2(-2)+2g+2$ より $g_X=g$。したがって $m=2g+1$ または $2g+2$ の超楕円曲線の種数は $g$。（$g_X$ は解析的種数。位相的種数との一致は定理 \ref{thm:genus}。）
+\end{ex}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.95]
+\draw[thick] (0,0) .. controls (0,1.5) and (5,1.5) .. (5,0) .. controls (5,-1.5) and (0,-1.5) .. (0,0);
+\draw[thick] (1.3,0.05) .. controls (2,-0.55) and (3,-0.55) .. (3.7,0.05);
+\draw[thick] (1.6,-0.1) .. controls (2.1,0.3) and (2.9,0.3) .. (3.4,-0.1);
+\foreach \x in {0.35,1.2,3.8,4.65}{\fill[red!70!black] (\x,0) circle (1.6pt);}
+\draw[->,thick] (2.5,-1.75)--(2.5,-2.9) node[midway,right]{$x$\ （$2:1$）};
+\draw[thick] (-0.3,-3.5)--(5.3,-3.5);
+\foreach \x/\n in {0.35/1,1.2/2,3.8/3,4.65/4}{\fill[red!70!black] (\x,-3.5) circle (1.6pt);\node[below,font=\small] at (\x,-3.55) {$e_\n$};}
+\node[right,font=\small] at (5.4,-3.5) {$\CP^1$};
+\node[right,font=\small] at (5.2,0) {$X$ ($g=1$、分岐点 4 個)};
+\end{tikzpicture}
+\end{center}
+\begin{ex}[Fermat 曲線]\label{ex:fermat}
+$C_d:x^d+y^d=1$（$d\ge2$）の射影閉包 $x^d+y^d=z^d$ は非特異で、射影 $\pi:C_d\to\CP^1$、$(x,y)\mapsto x$ は次数 $d$（各 $x$ に $y^d=1-x^d$ の $d$ 根）。分岐点は $y=0$（$x^d=1$、$d$ 個）で、そこで $y$ が座標、$x-x_0\sim-y^d/(dx_0^{d-1})$ だから $e=d$。無限遠：$x=\infty$ では $y^d=-x^d$ より $(y/x)^d=-1$、$d$ 個の相異なる点で非分岐。$\deg R=d(d-1)$。$2g-2=-2d+d(d-1)=d(d-3)$、$g=\frac{(d-1)(d-2)}2$。$d=3$：$g=1$、$d=4$：$g=3$、$d=5$：$g=6$。
+\end{ex}
+\begin{ex}[超楕円曲線の一般化：$y^n=\prod_{i=1}^m(x-a_i)$]\label{ex:superell}
+$a_i$ は相異なる、$n\ge2$。$x:X\to\CP^1$ は次数 $n$ の巡回被覆（$y\mapsto\zeta_ny$）。各 $a_i$ で $y$ が座標、$x-a_i\sim y^n$ で $e=n$。$\infty$ では $x=t^{-1}$ として $y^n\sim t^{-m}$、点の個数は $d=\gcd(n,m)$ で、各点で $e=n/d$。$\deg R=m(n-1)+d(n/d-1)=m(n-1)+n-d$。RH：$2g-2=-2n+m(n-1)+n-d$、すなわち
+\[
+g=\frac{(n-1)(m-1)-(d-1)}2,\qquad d=\gcd(n,m).
+\]
+$n=2$、$m=2g+1$：$g$ ✓。$n=m=d_0$（$y^{d_0}=x^{d_0}-1$ に相当、$\gcd=d_0$）：$g=(d_0-1)(d_0-2)/2$ で Fermat 曲線（例 \ref{ex:fermat}）と一致。$(n,m)=(3,4)$：$g=3$（$y^3=x^4-1$ は種数 3 の平面 4 次曲線）、$(3,5)$：$g=4$。数値で $2\le n\le7$、$1\le m\le9$ の全てについて RH からの値と公式が一致することを確認した。
+\end{ex}
+\begin{ex}[被覆 $y^2=x^6-1\to y^2=u^3-1$]\label{ex:quot}
+$X:y^2=x^6-1$（$g=2$）から楕円曲線 $E:y^2=u^3-1$ への写像 $(x,y)\mapsto(x^2,y)$ は次数 $2$。$2\cdot2-2=2\cdot0+\deg R$、$\deg R=2$：分岐点は $x=0$ の上の 2 点 $(0,\pm i)$（$x\mapsto-x$ の固定点）。
+\end{ex}
+
+\subsection{種数の同一視：$g_{\text{解析}}=g_{\text{位相}}$}
+Riemann--Roch で $g=h^0(K)=h^1(\Oc)$ と定義した種数が、曲面としての種数（Euler 標数 $\chi_{\rm top}(X)=2-2g_{\rm top}$）と一致することを、Riemann--Hurwitz を用いて示す。
+\begin{thm}\label{thm:genus}
+$g_{\rm an}:=h^1(X,\Oc)=h^0(X,K)$ はコンパクト Riemann 面 $X$ の（位相的な）種数 $g_{\rm top}$ に等しい。
+\end{thm}
+\begin{proof}[証明（\tP\ ただし古典的な位相の事実を使う）]
+(1) 非定数有理型関数 $f$ が存在する：$\deg D\ge g_{\rm an}+1$ の因子 $D=n\,p$ をとると Riemann--Roch（不等式）$h^0(D)\ge\deg D+1-g_{\rm an}\ge2$。$L(D)\setminus\C$ の元が非定数有理型関数。$f:X\to\CP^1$ とみなし $d=\deg f$ とする。\\
+(2) Riemann--Hurwitz（解析版、定理 \ref{thm:RH}）：$2g_{\rm an}-2=-2d+\deg R_f$。\\
+(3) 位相版：$\CP^1$ を、分岐値をすべて頂点として含む三角形分割とする。各辺、各面の逆像は $d$ 個の辺、面で、頂点 $q$ の逆像の個数は $d-\sum_{f(p)=q}(e_p-1)$。したがって $\chi_{\rm top}(X)=d\cdot\chi_{\rm top}(\CP^1)-\deg R_f$、すなわち $2-2g_{\rm top}=2d-\deg R_f$。\\
+(2)(3) を足して $2g_{\rm an}-2+2-2g_{\rm top}=0$。 
+\end{proof}
+以後、種数を $g$ と書く。位相的種数 $=$ 穴の数 $=\frac12b_1(X)$。これと整合する検算：$\deg T_X=2-2g=\chi_{\rm top}(X)$（Poincaré--Hopf：有理型ベクトル場の零点の位数の和が Euler 標数）。
+
+\subsection{自己同型の個数}
+\begin{thm}[Hurwitz の定理]
+$g\ge2$ のコンパクト Riemann 面の自己同型群は有限群で、$|\Aut(X)|\le84(g-1)$。
+\end{thm}
+\src{Hurwitz (1893)；Hartshorne IV 練習問題 2.5\tQ；Miranda（自己同型を扱う章は未確認）\tQ。}
+\emph{証明（有限性を認めた上で、\tP）：} $G=\Aut(X)$ が有限であること（\tC：Schwarz--de Franchis、あるいは $\Aut$ が Lie 群で離散かつコンパクト）を認める。商 $Y=X/G$ は種数 $h$ のコンパクト Riemann 面で、商写像 $\pi:X\to Y$ は次数 $|G|$。点 $q\in Y$ の逆像の各点の分岐指数は共通の値 $m_q$（固定群の位数）をとり、$m_q\ge2$ となる $q$ は有限個 $q_1,\dots,q_r$。$R_\pi$ の次数は $\sum_i|G|(1-1/m_i)$（$q_i$ の逆像は $|G|/m_i$ 点、各点で $e-1=m_i-1$）。Riemann--Hurwitz：
+\[
+2g-2=|G|\Bigl(2h-2+\sum_{i=1}^r\bigl(1-\tfrac1{m_i}\bigr)\Bigr).
+\]
+$g\ge2$ なので括弧内は正。$\mu:=2h-2+\sum(1-1/m_i)>0$ の下限を考える。$h\ge2$ なら $\mu\ge2$。$h=1$ なら $r\ge1$ で $\mu\ge1/2$。$h=0$：$-2+\sum(1-1/m_i)>0$ で、$r\ge3$ が必要。$r=3$ の $(m_1,m_2,m_3)$ では $\mu=1-\sum1/m_i$ の最小の正の値は $(2,3,7)$ の $1/42$。$r=4$ なら $\mu\ge-2+4\cdot\frac12=0$ で正にするには $(2,2,2,3)$：$\mu=1/6$、$r\ge5$ ならさらに大きい。よって $\mu\ge1/42$、$|G|\le(2g-2)\cdot42=84(g-1)$。（$\mu$ の最小値 $1/42$ は計算機でも確認：$h\le2$、$r\le5$、$m_i\le44$ の探索で最小正値が $(h;m_i)=(0;2,3,7)$ の $1/42$。）等号は $G$ が $(2,3,7)$ 三角群の商のとき。Klein の 4 次曲線 $x^3y+y^3z+z^3x=0$（$g=3$）で $|G|=168=84\cdot2$ \tC。
+
+\begin{keybox}{要点（§5）}
+$K_X\sim f^*K_Y+R_f$ から $2g_X-2=d(2g_Y-2)+\deg R_f$。応用：$y^2=f(x)$（$\deg f=2g+1,2g+2$）の種数は $g$、Fermat 曲線 $x^d+y^d=1$ の種数は $(d-1)(d-2)/2$。解析的種数と位相的種数は一致。
+\end{keybox}
+
+\begin{prob}{基本}\label{p:RHbasic}
+次数 $d\ge2$ の正則写像 $\CP^1\to\CP^1$（有理関数）で、$\deg R=2d-2$ であることを示せ。次数 $3$ の例で、分岐点がちょうど $4$ 個の単純分岐点（$e=2$）になるものを挙げよ。
+\end{prob}
+\begin{prob}{標準}\label{p:Rcount}
+種数 $g$ のコンパクト Riemann 面 $X$ から $\CP^1$ への次数 $d$ の写像の分岐数 $\deg R_f$ を $g,d$ で表せ。$g=2,d=2$（$\deg R=6$）、$g=3,d=3$（$\deg R=10$）、$g=1,d=2$ で確かめよ。さらに $g=1,d=2$ の場合 $\deg R=4$ で、$\wp$ の分岐点は $e_1,e_2,e_3$ に対応する 2 分点 $\omega_1/2,\omega_2/2,(\omega_1+\omega_2)/2$ と $0$ の 4 点であることを説明せよ。
+\end{prob}
+\begin{prob}{標準}\label{p:fermat}
+例 \ref{ex:fermat} の計算を $d=4,5,6$ で数値的に確かめ、さらに写像 $(x,y)\mapsto y$ を使っても同じ種数を得ることを示せ。$d=3$ で $g=1$ となることから、$C_3$ は楕円曲線であることを説明せよ。
+\end{prob}
+\begin{prob}{発展}\label{p:quotient}
+例 \ref{ex:quot} を確かめよ：$X:y^2=x^6-1$ の対合 $\sigma(x,y)=(-x,y)$ の固定点は $2$ 点、商 $X/\sigma$ は $y^2=u^3-1$ で $g=1$ であること、また $\tau(x,y)=(-x,-y)$ による商が $u=x^2$、$v=xy$ で $v^2=u(u^3-1)$ という別の楕円曲線になることを示せ（$\tau$ の固定点は無限遠の $2$ 点）。これらの商の種数が $1$ であることを Riemann--Hurwitz で確かめ、$\sigma\tau=\iota$ が超楕円対合であることを注意せよ。
+\end{prob}
+
+\section{$g=0,1,2$ の曲線の分類}\label{sec:g012}
+
+\subsection{$g=0$}
+\begin{thm}\label{thm:g0}
+種数 $0$ のコンパクト Riemann 面は $\CP^1$ に双正則同値。
+\end{thm}
+\begin{proof}
+系 \ref{cor:rr}(e)。$p\in X$ をとる。$g=0$ だから $h^0(p)\ge1+1-0=2$。非定数 $f\in L(p)$ は $p$ でのみ高々 1 位の極（定数でないので実際に 1 位の極）をもち、次数 $1$ の正則写像 $f:X\to\CP^1$ は双正則（定理 \ref{thm:degree} と局所形）。
+\end{proof}
+単連結性（一意化定理）を使わず、代数的に示せた。
+
+\subsection{$g=1$：楕円曲線}
+\begin{prop}\label{prop:g1}
+種数 $1$ のコンパクト Riemann 面 $X$ では (a) $K\sim0$、すなわち至るところ零点をもたない正則 1 形式 $\omega$ がある（定数倍を除き一意）。(b) 点 $O\in X$ を固定すると $h^0(nO)=n$（$n\ge1$）。(c) $\Pic^0(X)\to X$、$[D]\mapsto$（$D+O\sim q$ をみたす唯一の $q$）は全単射で、$X$ に $O$ を単位元とする可換群構造を与える。
+\end{prop}
+\begin{proof}
+(a) $\deg K=0$、$h^0(K)=g=1$。$\omega\ne0$ をとると $\divv\omega\ge0$ で次数 $0$ だから $\divv\omega=0$。(b) $n\ge1$ なら $\deg(nO)=n>2g-2=0$。系 \ref{cor:rr}(b)：$h^0=n+1-1=n$。(c) $\deg D=0$ なら $D+O$ は次数 $1$ で、系 \ref{cor:rr}(d) から有効、すなわち $D+O\sim q$。$q$ は問 \ref{p:distinct} により一意（$q\sim q'$ なら $q=q'$）。逆に各 $q$ に対し $[q-O]$ が対応。
+\end{proof}
+
+\subsubsection*{Weierstrass 標準形}
+$O\in X$ を固定。$h^0(2O)=2$ だから、$1$ と独立な $x\in L(2O)$（$O$ で位数 $-2$ の極）、$h^0(3O)=3$ から $y\in L(3O)$（$O$ で位数 $-3$ の極）をとれる。$L(6O)$ は 6 次元（$h^0(6O)=6$）で、そこに $1,x,y,x^2,xy,x^3,y^2$ の 7 個の元があるので 1 次従属：$a_0y^2+a_1xy+a_2x^3+\dots=0$。$O$ での極の位数が $6$ になるのは $x^3$ と $y^2$ だけなので、両者の係数は $0$ でない。標数 $0$ で、$y$ を（$x$ の 1 次式を加えて）平方完成し、$x$ を平行移動して $x^2$ の項を消し、さらに $x\mapsto\lambda^2x$、$y\mapsto\lambda^3y$ の倍率で $x^3$ と $y^2$ の係数をそろえると
+\begin{equation}\label{eq:weierstrass}
+y^2=x^3+ax+b .
+\end{equation}
+さらに $|3O|$ は非常に豊富（定理 \ref{thm:veryample}：$\deg=3=2g+1$）で、$(1:x:y):X\to\CP^2$ は非特異な 3 次曲線への埋め込み。非特異 $\iff$ $\Delta=-16(4a^3+27b^2)\ne0$（右辺の 3 次式が重根をもたないこと）。したがって
+\begin{thm}[楕円曲線の Weierstrass 標準形]\label{thm:weier}
+種数 $1$ のコンパクト Riemann 面はすべて、非特異 3 次曲線 $y^2=x^3+ax+b$（$4a^3+27b^2\ne0$）の射影閉包に同型。
+\end{thm}
+\tP\ （埋め込み定理 \ref{thm:veryample} を用いる。$g=1$ では系 \ref{cor:rr} だけから出る。）
+
+\subsubsection*{$\C/\Lat$ との関係}
+\begin{thm}[一意化（$g=1$）]\label{thm:uniformg1}
+種数 $1$ のコンパクト Riemann 面は、ある格子 $\Lat\subset\C$ による $\C/\Lat$ に双正則同値。格子の同値類は $\tau\in\mathbb H/\mathrm{SL}_2(\Z)$（$\Lat=\Z+\Z\tau$）で、楕円曲線の同型類を与える。
+\end{thm}
+\src{Griffiths--Harris 第2章（Abel--Jacobi と楕円曲線）\tQ（節番号）；Forster 第II章（§20 Abel の定理の議論）\tQ（$g=1$ の一意化を扱う節は未確認）。Hartshorne IV §4（楕円曲線）。}
+\emph{骨子}：$\omega$ を (a) の 1 形式とし $u(P)=\int_O^P\omega$ とおく。経路による不定性は周期格子 $\Lat=\{\int_\gamma\omega\mid\gamma\in H_1(X,\Z)\}$ で、Riemann の双線形関係から $\Lat$ は $\C$ 内の格子。写像 $u:X\to\C/\Lat$ は正則で $du=\omega\ne0$ ゆえ不分岐の被覆写像、$u_*:H_1(X,\Z)\to\Lat=H_1(\C/\Lat,\Z)$ は全射なので被覆次数は $1$。（Weierstrass の $\wp$ の側からは、$x=\wp$、$y=\wp'/2$ が式 \eqref{eq:weierstrass}（$a=-g_2/4$、$b=-g_3/4$）を与える。）
+
+\subsubsection*{楕円関数と $\wp$：証明つき}
+$E=\C/\Lat$ 上の有理型関数を $\Lat$-周期的な $\C$ 上の有理型関数（\emph{楕円関数}）とみなす。基本平行四辺形 $P=\{a+s\omega_1+t\omega_2\mid0\le s,t<1\}$ をとる。
+\begin{thm}\label{thm:ellfun}
+(a) 極をもたない楕円関数は定数。(b) 楕円関数の留数の和は $0$。したがって 1 位の極 1 つだけの楕円関数はない。(c) 楕円関数 $f\not\equiv0$ の零点 $z_i$ と極 $w_j$（それぞれ重複込みで $P$ 内）について $\sum z_i-\sum w_j\in\Lat$。
+\end{thm}
+\begin{proof}
+(a) 最大値の原理（命題 \ref{prop:ellbasic}(c)）。(b) 定理 \ref{thm:residue}（$f\,dz$ に対して）。(c) $\partial P$ 上に零点・極がないよう $a$ をとる。偏角の原理により $\frac1{2\pi i}\oint_{\partial P}z\frac{f'(z)}{f(z)}dz=\sum z_i-\sum w_j$。$g(z)=zf'/f$ とおくと $f'/f$ は周期的で $g(z+\omega_2)=g(z)+\omega_2f'/f(z)$。下辺と上辺（逆向き）の和は $\int_a^{a+\omega_1}(g(z)-g(z+\omega_2))dz=-\omega_2\int_a^{a+\omega_1}\frac{f'}{f}dz=-\omega_2\bigl[\log f\bigr]_a^{a+\omega_1}=-\omega_2\cdot2\pi i\,n$（$f(a+\omega_1)=f(a)$ なので $\log f$ の変化は $2\pi i$ の整数倍 $n$）。右辺と左辺（逆向き）の和も同様に $\omega_1\cdot2\pi i\,m$。したがって $\sum z_i-\sum w_j=m\omega_1-n\omega_2\in\Lat$。 
+\end{proof}
+\emph{Weierstrass の $\wp$ 関数。} $\sum'_{\lambda\in\Lat}|\lambda|^{-s}$ は $s>2$ で収束する。
+\[
+\wp(z)=\frac1{z^2}+\sum_{\lambda\in\Lat\setminus0}\Bigl(\frac1{(z-\lambda)^2}-\frac1{\lambda^2}\Bigr)
+\]
+は、広義一様収束し、$\Lat$ の各点に 2 位の極をもつ有理型関数、偶関数で、$\wp'(z)=-2\sum_\lambda(z-\lambda)^{-3}$ は $\Lat$ 周期的な奇関数。したがって $\wp(z+\omega_i)-\wp(z)$ は定数で、$z=-\omega_i/2$ を代入して $\wp(\omega_i/2)-\wp(-\omega_i/2)=0$ （偶関数）より $\wp$ も周期的。すなわち $\wp$ は $E$ 上の次数 $2$ の楕円関数。$0$ のまわりの Laurent 展開（$G_{2k}=\sum'\lambda^{-2k}$）：
+\[
+\wp(z)=z^{-2}+3G_4z^2+5G_6z^4+7G_8z^6+\cdots .
+\]
+\begin{thm}[$\wp$ の微分方程式]\label{thm:wpode}
+$\wp'^2=4\wp^3-g_2\wp-g_3$、$g_2=60G_4$、$g_3=140G_6$。さらに $e_k=\wp(\omega_k/2)$（$\omega_3=\omega_1+\omega_2$）は相異なり、$\wp'^2=4(\wp-e_1)(\wp-e_2)(\wp-e_3)$。
+\end{thm}
+\begin{proof}[証明（\tP）]
+展開から $\wp'=-2z^{-3}+6G_4z+20G_6z^3+\cdots$、$\wp'^2=4z^{-6}-24G_4z^{-2}-80G_6+O(z^2)$、$\wp^3=z^{-6}+9G_4z^{-2}+15G_6+O(z^2)$。ゆえに
+\[
+\wp'^2-4\wp^3+60G_4\wp+140G_6=O(z^2)
+\]
+（$-24-36=-60$、$-80-60=-140$。多項式演算で検算済）。左辺は楕円関数で、$\Lat$ の各点で（極が消えて）正則かつ $0$ になるので、定理 \ref{thm:ellfun}(a) により $\equiv0$。後半：$\wp'$ は奇関数で次数 $3$ だから、$\omega_k/2$（$k=1,2,3$、$\equiv-\omega_k/2$ mod $\Lat$）で $\wp'=0$ となり、これが $3$ つの零点のすべて（単純）。$\wp-e_k$ は次数 $2$ で $\omega_k/2$ で $\wp'=0$ より 2 重の零点をもつので、零点はそこだけ。よって $e_k$ は相異なる。$\wp'^2$ と $4\prod(\wp-e_k)$ の零点・極の因子が一致し、最高次の係数も $4$ で一致する。 
+\end{proof}
+\begin{thm}[楕円関数体]\label{thm:ellfield}
+$\mathcal M(E)=\C(\wp)\oplus\C(\wp)\wp'$（すなわち $\C(\wp,\wp')$）。
+\end{thm}
+\begin{proof}[証明の骨子（\tP）]
+$f$ を楕円関数とすると $f=f_{\rm even}+f_{\rm odd}$、$f_{\rm even}=(f(z)+f(-z))/2$、$f_{\rm odd}/\wp'$ は偶関数。偶関数 $F\not\equiv0$ は、零点・極の因子が $a\leftrightarrow-a$ で対称（半周期点では位数が偶数）。$\wp-\wp(a)$ は因子 $[a]+[-a]-2[0]$（半周期 $a$ では $2[a]-2[0]$）をもつ。$a$ を $\pm$ の代表系から選んで $h=\prod_a(\wp-\wp(a))^{\ord_aF}$（$a\ne0$ で、半周期点 $a$ では指数を $\ord_aF/2$ にする）とおくと、$F/h$ は $0$ 以外で零点・極なし、$0$ では $\divv$ の次数が $0$ なので零点・極もなく楕円関数で定数（定理 \ref{thm:ellfun}(a)）。 
+\end{proof}
+定理 \ref{thm:wpode} と定理 \ref{thm:ellfield} は、$g=1$ の曲線が Weierstrass 型の方程式 $y^2=4x^3-g_2x-g_3$ ($x=\wp,y=\wp'$) で表されること（Riemann--Roch からの定理 \ref{thm:weier}）の、$\Lat$ 側からの別の証明である。判別式 $\Delta=g_2^3-27g_3^2=16\prod_{j<k}(e_j-e_k)^2\ne0$。（逆に任意の $(g_2,g_3)$、$\Delta\ne0$ はある格子から得られる：\tC、Silverman 第VI章（楕円関数）。）
+
+\begin{ex}[$\Lat=\Z+\Z i$]\label{ex:wp}
+$\wp$ は $\wp'^2=4\wp^3-g_2\wp-g_3$、$g_2=60\sum'\lambda^{-4}$、$g_3=140\sum'\lambda^{-6}$ をみたす。$\Lat=\Z[i]$ では $i\Lat=\Lat$ より $g_3=0$。数値計算で $g_2=189.07272\ldots$（$=\Gamma(1/4)^8/(16\pi^2)$ と数値的に一致）、$\wp'^2=4\wp^3-g_2\wp$、$e_1,e_2,e_3=0,\pm\sqrt{g_2}/2=\pm6.87518\ldots$、$j=1728$ を確認した。方程式 $y^2=x^3-x$（例 \ref{ex:ellfun}）は $\Z[i]$ の格子に同型（$x\mapsto cx$ のスケーリングで $g_3=0$ の型）。
+\end{ex}
+
+\begin{ex}[$y^2=x^3-x$ の周期格子]\label{ex:periodE0}
+$E_0:y^2=x^3-x$ で $x=\wp$、$Y=2y=\wp'$ とおくと $Y^2=4x^3-4x$、すなわち $g_2=4$、$g_3=0$。格子は $\Lat_0$ で $g_2(\Lat_0)=4$、$\Lat_0$ は $i$ 倍で不変（$g_3=0$）なので $\Lat_0=c\,\Z[i]$ で、$g_2(c\Z[i])=c^{-4}g_2(\Z[i])$ だから $c=(g_2(\Z[i])/4)^{1/4}=(189.0727\ldots/4)^{1/4}=2.62205755\ldots$。一方、実周期 $=\int_{E_0(\R)}dx/Y$ は $2\int_1^\infty\frac{dx}{\sqrt{4x^3-4x}}=\int_1^\infty\frac{dx}{\sqrt{x^3-x}}$（$e_1=1$ が最大の根）で、数値積分で $2.62205755429\ldots$ と得られ、$c$ と $14$ 桁一致する。値は Gauss の\emph{レムニスケート定数} $\varpi=2\int_0^1\frac{dt}{\sqrt{1-t^4}}=\Gamma(1/4)^2/(2\sqrt{2\pi})$ に等しい（変数変換 $x=u^{-2}$ で $\int_1^\infty\frac{dx}{\sqrt{x^3-x}}=2\int_0^1\frac{du}{\sqrt{1-u^4}}$）。したがって $E_0\cong\C/\varpi\Z[i]$。これは「$\omega=dx/y$ の周期 $=$ 格子」（Abel--Jacobi）の最も具体的な計算例である。
+\end{ex}
+
+\subsubsection*{群構造と弦の法則}
+命題 \ref{prop:g1}(c) の群構造は $\C/\Lat$ の加法に一致する（Abel の定理、\S\ref{sec:abel}）。Weierstrass 標準形（$O$ は無限遠点）では、直線 $y=mx+c$ に対し $y-mx-c$ は $O$ に 3 位の極をもつ有理型関数（$y$ の極が 3 位、$x$ の極は 2 位）で、$\divv(y-mx-c)=P_1+P_2+P_3-3O$。ここで $P_1,P_2,P_3$ は直線と曲線の 3 つの交点（重複込み）。したがって $P_1+P_2+P_3\sim3O$、群の言葉で $P_1+P_2+P_3=0$。逆に 3 点の和が $0$ なら共線。これが\emph{弦の法則}。
+\begin{ex}[数値的確認]\label{ex:chord}
+$\Lat=\Z+\Z\tau$、$\tau=0.3+1.1i$ で、$z_1=0.21+0.17i$、$z_2=0.4-0.3i$、$z_3=-(z_1+z_2)$ のとき、$3$ 点 $(\wp(z_k),\wp'(z_k))$ は共線（$\det[1,\wp(z_k),\wp'(z_k)]\approx3\times10^{-13}$）。また $\wp'^2-4\wp^3+g_2\wp+g_3$ の誤差は $10^{-11}$ 以下（$q$-展開で計算）。
+\end{ex}
+
+\subsection{$g=2$：超楕円曲線}
+\begin{thm}\label{thm:g2}
+種数 $2$ のコンパクト Riemann 面は、ある重根をもたない 5 次または 6 次多項式 $f$ により $y^2=f(x)$（例 \ref{ex:hyper}）に同型。正則 1 形式の空間は $\langle dx/y,\ x\,dx/y\rangle$、$|K|$ が定める写像 $X\to\CP^1$ は $x$ である。
+\end{thm}
+\begin{proof}
+$h^0(K)=2$、$\deg K=2$。(1) $|K|$ は基点をもたない：$h^0(K-p)=1<2$ を示す。Riemann--Roch：$h^0(p)-h^0(K-p)=1+1-2=0$、$h^0(p)=1$（$g\ge1$、問 \ref{p:eldim}）ゆえ $h^0(K-p)=1$。(2) 2 つの基底 $\omega_1,\omega_2$ に対し $x=\omega_2/\omega_1$ は有理型関数で、基点なしだから $x$ は正則写像 $X\to\CP^1$ で次数 $2$（$x^{-1}(q)$ は $K$ の元の零因子、次数 $2$）。(3) $\C(x)\subset\mathcal M(X)$ は次数 $2$ の拡大（$[\mathcal M(X):\C(x)]=\deg x$；\tC）。標数 $0$ の 2 次拡大は $y^2=f(x)$（$f\in\C(x)$）、$f$ の分母と 2 乗因子を $y$ に吸収して $f\in\C[x]$ を重根なしにできる。(4) $X$ と $X_f$ はともにコンパクト Riemann 面で、関数体が同型だから双正則同値（\tC）。(5) 種数 $2$ は例 \ref{ex:hypergenus} から $\deg f\in\{5,6\}$。 
+\end{proof}
+\src{Griffiths--Harris 第2章 \tQ（節番号）、Miranda 第VII章（Applications of Riemann--Roch；超楕円曲線の項は\tQ）、Hartshorne IV §5。関数体と曲線の対応：Hartshorne I §6。}
+\begin{cor}
+$g=2$ のコンパクト Riemann 面のモジュライは $6$ 点の $\mathrm{PGL}_2(\C)$ の作用による商で、次元は $6-3=3=3g-3$。
+\end{cor}
+一般に $g\ge2$ の曲線のモジュライ空間 $\mathcal M_g$ の次元は $3g-3$ \tC\ （Riemann。第5巻の Kodaira--Spencer 理論で $H^1(X,T_X)$ の次元 $3g-3$ として出る：Riemann--Roch と Serre 双対で $h^1(T)=h^0(K^2)=3g-3$）。超楕円曲線（$2g+2$ 点 $-3$）は次元 $2g-1$ で、$g=2$ で $3g-3$ と一致し、$g\ge3$ では真の部分多様体。
+
+\begin{center}
+\begin{tabular}{c|l|l}
+\toprule
+$g$ & 曲線 & 備考\\
+\midrule
+$0$ & $\CP^1$ & $\Pic=\Z$、モジュライは点\\
+$1$ & $\C/\Lat$、$y^2=x^3+ax+b$ & $\Pic^0\cong E$、モジュライ $\mathbb H/\mathrm{SL}_2(\Z)$（次元 1）\\
+$2$ & $y^2=f_5(x),\,f_6(x)$ & 全て超楕円、モジュライ次元 $3$\\
+$\ge3$ & 超楕円 or 標準埋め込み & \S\ref{sec:embed}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{変形とモジュライの次元：$-\chi(T_X)=3g-3$}\label{subsec:moduli}
+複素構造の無限小変形は $H^1(X,T_X)$ が支配し（Kodaira--Spencer 理論、第5巻）、無限小自己同型は $H^0(X,T_X)$ である。$T_X=K^{-1}$ は次数 $2-2g$ の直線束なので、Riemann--Roch と Serre 双対で全て計算できる：
+\[
+h^0(T_X)-h^1(T_X)=\chi(T_X)=(2-2g)+1-g=3-3g,\qquad h^1(T_X)=h^0(K^{\otimes2}).
+\]
+\begin{center}
+\begin{tabular}{c|c|c|c}
+\toprule
+$g$ & $h^0(T_X)$（無限小自己同型） & $h^1(T_X)$（無限小変形） & $h^1-h^0$\\
+\midrule
+$0$ & $3$（$\mathfrak{sl}_2$） & $0$ & $-3$\\
+$1$ & $1$（平行移動 $\partial_z$） & $1$（$\tau$ の変化） & $0$\\
+$\ge2$ & $0$（$\deg T<0$） & $h^0(K^2)=4g-4+1-g=3g-3$ & $3g-3$\\
+\bottomrule
+\end{tabular}
+\end{center}
+$g\ge2$ では $\deg K^2=4g-4>2g-2$ だから Riemann--Roch から $h^0(K^2)=3g-3$（検算：$g=2$ で $3$、超楕円曲線の分岐点 6 点の自由度 $6-3$ と一致）。まとめると、\textbf{モジュライの次元 $-$ 自己同型群の次元 $=-\chi(T_X)=3g-3$}（$g=0,1$ でも成立：$-3$、$0$）。この Riemann の個数勘定は、「変形複体 $(\bar\partial_{T_X})$ の指数 $=\chi(T_X)$」という指数定理の最初の例でもあり、第5巻の Kodaira--Spencer 理論、第8巻の指数定理で同じ形が高次元に現れる。
+
+\subsubsection*{よくある間違い}
+\begin{itemize}
+\item $\Oc(D)$ の符号：$f\in L(D)\iff\divv f+D\ge0$。$D=3p$ は $p$ に \emph{3 位までの極} を許す（零点を課すのは $D=-3p$）。
+\item $h^0(D)=\deg D+1-g$ は $\deg D>2g-2$ で成り立つ。$0\le\deg D\le2g-2$ では一般に $h^0(D)\ge\deg D+1-g$ のみで、$h^1(D)=h^0(K-D)$ の寄与がある。
+\item 楕円曲線は $\deg D=0$ で $h^0$ が跳ぶ：$D\sim0$ なら $1$、$D\not\sim0$ なら $0$。$\CP^1$ では $\deg D=0$ なら常に $D\sim0$。
+\item 標準写像 $\varphi_K$ は $g=1$ では定数、$g=2$ では $\CP^1$ への 2 重被覆で、埋め込みではない。
+\end{itemize}
+
+\begin{keybox}{要点（§6）}
+$g=0$：$\CP^1$。$g=1$：$\C/\Lat$ $=$ 非特異 3 次曲線 $y^2=x^3+ax+b$、群構造は $\Pic^0\cong E$ から。$g=2$：$y^2=f(x)$、$\deg f=5,6$、$|K|$ が $x:X\to\CP^1$。いずれも Riemann--Roch だけで導けた。
+\end{keybox}
+
+\begin{prob}{基本}\label{p:gstar}
+$y^2=x^3+ax+b$ が非特異であるための必要十分条件が $4a^3+27b^2\ne0$ であることを示せ。$\Z[i]$ の格子について、$g_2=189.0727\ldots$、$g_3=0$ から判別式 $g_2^3-27g_3^2\ne0$ を確かめ、$y^2=x^3-x$ の判別式も計算せよ。
+\end{prob}
+\begin{prob}{標準}\label{p:y5}
+$X:y^2=x^5-x$（$g=2$）について、$dx/y$、$x\,dx/y$ の因子を求め（有限点と $\infty$ で）、$\deg=2$ であることを確かめよ。分岐点（$x$ の分岐値）6 点を挙げ、Möbius 変換で 3 点を $0,1,\infty$ に移したときの残り 3 点が曲線のモジュライ（3 パラメータ）に対応することを説明せよ。
+\end{prob}
+\begin{prob}{標準}\label{p:chord}
+Weierstrass 型 $y^2=x^3+ax+b$ で、(a) 点 $P=(x_0,y_0)$ の逆元 $-P=(x_0,-y_0)$ を示せ（$\divv(x-x_0)=P+(-P)-2O$）。(b) 接線の傾き $m=(3x_0^2+a)/(2y_0)$ を用いて $2P$ の座標を求めよ。(c) $y^2=x^3-x$ 上で $P=(0,0)$ は位数 $2$ であることを示し、$2$ 分点を全て求めよ。
+\end{prob}
+\begin{prob}{標準}\label{p:Hodiv}
+超楕円曲線 $y^2=f(x)$、$\deg f=2g+1$、で、$x^i\,dx/y$ $(0\le i\le g-1)$ が正則であること、$\divv(x^i\,dx/y)$ の次数が $2g-2$ であることを、有限点と無限遠点 $\infty$ の局所座標（例 \ref{ex:hyper}）で確かめよ。$i=g$ ではどうなるか。
+\end{prob}
+\begin{prob}{発展}\label{p:j}
+楕円曲線 $E_\tau=\C/(\Z+\Z\tau)$ と $E_{\tau'}$ が同型であることと、ある $\begin{pmatrix}a&b\\c&d\end{pmatrix}\in\mathrm{SL}_2(\Z)$ で $\tau'=(a\tau+b)/(c\tau+d)$ となることが同値であることを示せ（ヒント：同型は $z\mapsto\lambda z$ の形）。また $\tau=i$ の格子が $i$ 倍で不変であることから $g_3=0$、$\tau=e^{2\pi i/3}$ で $g_2=0$ を示せ。
+\end{prob}
+
+\section{標準写像と曲線の埋め込み}\label{sec:embed}
+
+\subsection{完備線形系と射影空間への写像}
+$D$ を因子、$V=H^0(X,\Oc(D))$、$n=h^0(D)-1$ とする。$V$ の基底 $s_0,\dots,s_n$ に対し $x\mapsto(s_0(x):\dots:s_n(x))$ は、基点（全ての $s_i$ が $0$ になる点）を除いて定義される。基点をもたないとき、正則写像
+\[
+\varphi_D:X\to\mathbb P(V^*)=\CP^n
+\]
+が得られる（超平面 $=$ $V$ の元の零点因子 $\in|D|$）。$\deg\varphi_D^*(\text{超平面})=\deg D$。\emph{基点}は、$p$ について $H^0(D-p)=H^0(D)$ のとき。
+
+\begin{lem}\label{lem:criteria}
+$D$ を因子とする。
+\begin{enumerate}
+\item[(i)] $|D|$ が $p$ で基点をもたない $\iff h^0(D-p)=h^0(D)-1$。
+\item[(ii)] $|D|$ が基点をもたないとき、$p\ne q$ について $\varphi_D(p)\ne\varphi_D(q)$ $\iff h^0(D-p-q)=h^0(D)-2$。
+\item[(iii)] $|D|$ が基点をもたないとき、$\varphi_D$ が $p$ で immersion（$d\varphi_D\ne0$） $\iff h^0(D-2p)=h^0(D)-2$。
+\end{enumerate}
+特に、すべての $p,q$（$p=q$ も許す）で $h^0(D-p-q)=h^0(D)-2$ ならば $\varphi_D$ は埋め込み（\emph{非常に豊富}）。
+\end{lem}
+\begin{proof}
+(i) 命題 \ref{prop:ellbasic}(d) により $H^0(D-p)\subset H^0(D)$ は余次元 $\le1$ で、余次元 $1$ の補空間は $s\mapsto s(p)$ で測る。余次元 $0$ $\iff$ すべての $s$ が $p$ で $0$（基点）。(ii) 基点なしとして $\varphi_D(p)=\varphi_D(q)$ $\iff$ $s\mapsto(s(p),s(q))$ の像が 1 次元 $\iff$ 2 つの条件 $s(p)=0$、$s(q)=0$ が従属 $\iff$ $H^0(D-p-q)$ の余次元が $1$。(iii) 座標 $z$ で $\varphi_D=(s_0:\dots:s_n)$ を局所自明化して $(1:u_1:\dots)$ の形にすると、immersion $\iff$ ある $s$ で $s(p)=0$ かつ $s'(p)\ne0$ $\iff$ $H^0(D-p)\supsetneq H^0(D-2p)$ $\iff$ $h^0(D-2p)=h^0(D)-2$。 
+\end{proof}
+
+\begin{thm}[高次の因子は非常に豊富]\label{thm:veryample}
+$\deg D\ge2g$ なら $|D|$ は基点をもたず、$\deg D\ge2g+1$ なら $\varphi_D:X\to\CP^{\deg D-g}$ は埋め込みである。
+\end{thm}
+\begin{proof}
+$\deg D\ge2g$ のとき、任意の $p$ で $\deg(D-p)\ge2g-1>2g-2$ なので、系 \ref{cor:rr}(b)：$h^0(D-p)=\deg D-1+1-g=h^0(D)-1$（$h^0(D)=\deg D+1-g$）。補題 \ref{lem:criteria}(i)。$\deg D\ge2g+1$ のとき $\deg(D-p-q)\ge2g-1$ なので同様に $h^0(D-p-q)=h^0(D)-2$。補題 \ref{lem:criteria}(ii)(iii)。像の次数は $\deg D$、$h^0(D)=\deg D+1-g$ なので $\CP^{\deg D-g}$ への埋め込み。 
+\end{proof}
+\begin{cor}[Riemann]\label{cor:projective}
+すべてのコンパクト Riemann 面は射影空間に閉部分多様体として埋め込まれる（射影代数曲線）。
+\end{cor}
+\begin{ex}[定理 \ref{thm:veryample} の例]\label{ex:veryample}
+$g=0$：$\deg D=k\ge1$ で $\Oc(k)$、$\CP^1\to\CP^k$ は $z\mapsto(1:z:\dots:z^k)$（有理正規曲線、$k=2$ は円錐曲線、$k=3$ はねじれ 3 次曲線）。$g=1$：$\deg D=3$ は平面 3 次曲線（$\CP^2$）、$\deg D=4$ は $\CP^3$ の 2 つの 2 次曲面の完全交叉、$\deg D=2$ は $\CP^1$ への 2 重被覆（基点なしだが埋め込みではない）：\emph{評価 $\deg D\ge2g+1$ は $g=1$ で最良}。$g=2$：$\deg D=5$ は $\CP^3$ への埋め込み。
+\end{ex}
+
+\begin{ex}[楕円曲線の $|4O|$：2 つの 2 次曲面の交わり]\label{ex:4O}
+$E:y^2=x^3+ax+b$、$O=\infty$。$L(4O)=\langle1,x,y,x^2\rangle$（$h^0(4O)=4$、極の位数 $0,2,3,4$）。$(u_0:u_1:u_2:u_3)=(1:x:y:x^2)$ により $E\hookrightarrow\CP^3$（定理 \ref{thm:veryample}、$4\ge2g+1=3$）。像は $u_1^2=u_0u_3$、$u_2^2=u_1u_3+au_0u_1+bu_0^2$ の 2 つの 2 次曲面の完全交叉（次数 $2\cdot2=4=\deg D$ ✓）。$|3O|$ の座標 $(1:x:y)$ は同じ曲線を平面 3 次曲線 $y^2z=x^3+axz^2+bz^3$ として埋め込む（$|4O|$ はこれに座標 $x^2$ を 1 つ加えたもの）。\end{ex}
+
+\subsection{標準写像}
+$g\ge1$ のとき $K$ の完備線形系 $|K|$ を考え、$h^0(K)=g$、$\varphi_K:X\to\CP^{g-1}$。基点の有無と像の次数：$\deg K=2g-2$。
+\begin{thm}\label{thm:canonical}
+$X$ を種数 $g\ge2$ のコンパクト Riemann 面とする。
+\begin{enumerate}
+\item[(a)] $|K|$ は基点をもたない。$\varphi_K:X\to\CP^{g-1}$。
+\item[(b)] $\varphi_K$ が埋め込みでない $\iff$ $X$ は\emph{超楕円}、すなわち次数 $2$ の正則写像 $X\to\CP^1$ が存在する。
+\item[(c)] $X$ が超楕円ならば $\varphi_K$ は $2:1$ で、像は $\CP^{g-1}$ の有理正規曲線（次数 $g-1$、$g=2$ では $\CP^1$ 全体、$g=3$ では円錐曲線）。$x$ を超楕円写像とすると $\varphi_K=(1:x:\dots:x^{g-1})$（$\omega_i=x^i\omega_0$）。
+\item[(d)] $X$ が超楕円でなければ $\varphi_K$ は次数 $2g-2$ の曲線 $X\subset\CP^{g-1}$ への埋め込み（\emph{標準曲線}）。
+\end{enumerate}
+\end{thm}
+\begin{proof}
+(a) $h^0(p)=1$（問 \ref{p:eldim}）。Riemann--Roch：$h^0(p)-h^0(K-p)=2-g$ より $h^0(K-p)=g-1=h^0(K)-1$。補題 \ref{lem:criteria}(i)。\\
+(b), (d) 任意の $p,q$（$p=q$ 可）で $h^0(K-p-q)$ を調べる。Riemann--Roch（$D=p+q$）：$h^0(p+q)-h^0(K-p-q)=3-g$、すなわち $h^0(K-p-q)=g-3+h^0(p+q)$。これが $h^0(K)-2=g-2$ に等しい $\iff$ $h^0(p+q)=1$。したがって $\varphi_K$ が埋め込み $\iff$ すべての $p,q$ で $h^0(p+q)=1$ $\iff$ $h^0(p+q)\ge2$ となる $p,q$ が存在しない。$h^0(p+q)\ge2$ なら非定数 $f\in L(p+q)$ が存在し、$f:X\to\CP^1$ は次数 $\le2$ の写像で、次数 $1$ ならば $g=0$ なので次数 $2$。逆に次数 $2$ の写像 $f$ があれば $D=f^*(\mathrm{pt})$ について $1,f\in L(D)$、$h^0(D)\ge2$、$D=p+q$。\\
+(c) $X$ が超楕円なら、定理 \ref{thm:g2} の (3), (4) と同じ論法（関数体の 2 次拡大）で $X\cong X_f$（$y^2=f(x)$、例 \ref{ex:hyper}）で、例 \ref{ex:hypergenus} から $\deg f\in\{2g+1,2g+2\}$。問 \ref{p:Hodiv}（$\deg f=2g+1$）により $x^i\,dx/y$（$0\le i\le g-1$）は $g$ 個の 1 次独立な正則 1 形式で、$h^0(K)=g$ だからこれが基底。$\deg f=2g+2$ のときも、$\infty_\pm$ で座標 $t=1/x$、$dx=-t^{-2}dt$、$y=s\,t^{-(g+1)}$（$s\ne0$）なので $\ord_{\infty_\pm}(x^i\,dx/y)=-i-2+(g+1)=g-1-i\ge0$、有限点では $\deg f=2g+1$ と同じ計算で零点も極もなく（$x^i$ の零点を除く）、同じく $g$ 個の独立な正則 1 形式が得られる。ゆえに $\varphi_K=(1:x:\dots:x^{g-1})$ で、像は有理正規曲線、$x$ が 2 重被覆だから写像次数は $2$。\tC\ （「関数体の 2 次拡大が $y^2=f$ の形」は標数 $0$ の平方完成）。
+\end{proof}
+\begin{ex}[$g=3$]\label{ex:g3}
+$g=3$、非超楕円：$\varphi_K:X\hookrightarrow\CP^2$ は次数 $2g-2=4$ の平面曲線、すなわち滑らかな平面 4 次曲線。逆に滑らかな平面 4 次曲線 $C$ は $g=3$（例 \ref{ex:fermat}）で非超楕円。$K_C=\Oc_C(1)$（直線で切る）。超楕円 $g=3$ では像は $\CP^2$ の円錐曲線 $\{[1:x:x^2]\}$ の 2 重被覆。
+\end{ex}
+\begin{ex}[2 次式の数え上げ（標準曲線）]\label{ex:quadrics}
+標準曲線 $X\subset\CP^{g-1}$（$g\ge3$ 非超楕円）で、$H^0(\Oc_X(2))=H^0(2K)$ の次元は Riemann--Roch（$\deg2K=4g-4>2g-2$）で $4g-4+1-g=3g-3$。一方 $\CP^{g-1}$ の 2 次式は $\binom{g+1}2=\frac{g(g+1)}2$ 次元。制限写像 $\mathrm{Sym}^2H^0(K)\to H^0(2K)$ は（Max Noether の定理 \tC：標準曲線は射影正規）全射で、核（$X$ を含む 2 次曲面の空間）の次元は
+\[
+\tfrac{g(g+1)}2-(3g-3)=\tfrac{(g-2)(g-3)}2.
+\]
+$g=3$：$0$（4 次曲線は 2 次曲線に入らない）、$g=4$：$1$（$\CP^3$ の 2 次曲面上の 6 次曲線で、3 次曲面との完全交叉）、$g=5$：$3$（$X$ が 3 角（trigonal）でなければ 3 つの 2 次曲面の完全交叉。Petri の定理の場合）\tC。
+\end{ex}
+\begin{ex}[平面曲線]\label{ex:planecurve}
+滑らかな平面曲線 $C\subset\CP^2$ の次数 $d$ では、$g=\frac{(d-1)(d-2)}2$ で $K_C=\Oc_C(d-3)$（\emph{随伴公式}、第2巻の超曲面の項、Hartshorne II 8）\tC。次数の整合 $\deg K_C=d(d-3)=2g-2$ ✓。$h^0(\Oc_C(m))$ は $m\ge0$ で $\binom{m+2}2-\binom{m-d+2}2$（二項係数は $m-d\ge0$ のときだけ値をもち、$m<d$ では後項 $0$ とする）で、Riemann--Roch（$\deg=dm$）と整合する：$h^1(\Oc_C(m))=h^0(\Oc_C(d-3-m))$（Serre 双対）として、$d=3,\dots,7$、$m=0,\dots,3d-1$ で $h^0-h^1=dm+1-g$ を数値的に確認した。
+\end{ex}
+
+\subsection{Riemann 面 $=$ 代数曲線}
+系 \ref{cor:projective} は、コンパクト Riemann 面が射影空間内の代数曲線であることを示す。実は 3 つの対象が同値である。
+\begin{thm}[Riemann の存在定理・GAGA（1 次元）]\label{thm:equiv}
+次の圏は同値：(i) コンパクト Riemann 面（正則写像を射とする）、(ii) $\C$ 上の非特異射影代数曲線（正則写像は代数的）、(iii) $\C$ 上の 1 変数代数関数体（$\C$ 上超越次数 $1$ の有限生成拡大、$\C$ 上の体の射、反変）。
+\end{thm}
+\tC\ 出典：Hartshorne 第I章 §6（(ii)$\leftrightarrow$(iii)）、Forster 第II章（(i)$\to$(ii)：本巻の系 \ref{cor:projective}）、Griffiths--Harris 第1章 §3（Chow の定理）\tQ。本巻の対応する要素：
+\begin{itemize}
+\item (i)$\to$(iii)：$X\mapsto\mathcal M(X)$。$\mathcal M(X)$ が $\C$ 上超越次数 $1$ で有限生成であることは、非定数有理型関数 $f$ の存在（定理 \ref{thm:genus} の証明）と $[\mathcal M(X):\C(f)]=\deg f$ から従う。
+\item (i)$\to$(ii)：系 \ref{cor:projective}（Riemann--Roch）。Chow の定理により、射影空間内の閉複素部分多様体は代数的。
+\item 例：種数 $0$：$\C(z)$、種数 $1$：$\C(x,y)$、$y^2=x^3+ax+b$、種数 $2$：$\C(x)[y]/(y^2-f_{5,6}(x))$。
+\end{itemize}
+この同値により、本巻の結果（Riemann--Roch、Riemann--Hurwitz、標準写像）は、複素解析的な言葉でも、代数的な言葉（$\C$ を代数閉体 $k$ に取り替えて、標数に注意しながら）でも同じ形で成り立つ。一般次元ではこの同値が GAGA（Serre）となる：射影多様体上の解析的連接層のコホモロジーは代数的連接層のコホモロジーに一致する（第3巻、第5巻）。
+
+\subsection{1 次元の Kodaira 型の定理}
+\begin{defn}
+直線束 $L$ が\emph{正}（\emph{豊富}、ample）とは、$\deg L>0$。
+\end{defn}
+\begin{thm}[Kodaira 埋め込み・消滅（1 次元版）]\label{thm:kodaira1}
+$L$ を $X$ 上の直線束とする。
+\begin{enumerate}
+\item[(a)] （\emph{Kodaira 消滅}）$\deg L>0$ なら $H^1(X,K\otimes L)=0$。
+\item[(b)] （\emph{Serre 消滅}）$\deg L>0$ なら $m\gg0$ で $H^1(X,L^m)=0$。実際 $m\deg L>2g-2$ で十分。
+\item[(c)] （\emph{Kodaira 埋め込み}）$\deg L>0$ なら $m\ge\frac{2g+1}{\deg L}$ をみたす $m$ で $L^m$ は非常に豊富で、$\varphi_{L^m}:X\hookrightarrow\CP^N$。
+\item[(d)] 逆に $L$ が非常に豊富（$\varphi_L$ が埋め込み）なら $\deg L>0$。
+\end{enumerate}
+\end{thm}
+\begin{proof}
+(a) Serre 双対：$H^1(K\otimes L)^*\cong H^0(K\otimes(K\otimes L)^{-1})=H^0(L^{-1})$、$\deg L^{-1}<0$ なので $0$（命題 \ref{prop:ellbasic}(b)）。(b) $\deg L^m=m\deg L>2g-2$ なら系 \ref{cor:rr}(b)。(c) 定理 \ref{thm:veryample}。(d) 埋め込みの像の次数 $=\deg L>0$（非定数の写像）。 
+\end{proof}
+この定理の (a), (b), (c) は第5巻の高次元の Kodaira 消滅定理、Serre 消滅定理、Kodaira 埋め込み定理の \emph{$n=1$ での特別な場合}である（\S\ref{sec:index}）。特に (a) は第5巻で Kähler 恒等式と Bochner--Kodaira--Nakano の公式から $H^q(X,K\otimes L)=0$ $(q>0)$ を示すとき、曲率 $\frac i{2\pi}\Theta>0$（$\deg L=\int c_1(L)>0$）が条件になるのと対応している。
+
+\begin{keybox}{要点（§7）}
+$\deg D\ge2g$：基点なし、$\deg D\ge2g+1$：埋め込み（Riemann--Roch だけで証明）。標準写像：$g\ge2$ で基点なし、埋め込み $\iff$ 非超楕円。超楕円なら有理正規曲線への 2 重被覆。$g=3$ の非超楕円曲線は平面 4 次曲線。$\deg L>0$ が 1 次元での「正」（Kodaira 消滅と埋め込み）。
+\end{keybox}
+
+\begin{prob}{基本}\label{p:ratnormal}
+$\CP^1$ 上の $\Oc(k)$ の $\varphi:\CP^1\to\CP^k$ の像が有理正規曲線であることを示し、$k=2$ で円錐曲線 $xz=y^2$ であること、$k=3$ でねじれ 3 次曲線であることを確かめよ。
+\end{prob}
+\begin{prob}{標準}\label{p:planequartic}
+滑らかな平面 4 次曲線 $C$ について、$g=3$ と $K_C=\Oc_C(1)$ を認めて、$h^0(K_C)=3$ が 1 次式のなす空間に対応すること、標準写像が $C\subset\CP^2$ の包含であることを示せ。超楕円 $g=3$ の曲線 $y^2=f_8(x)$（$f_8$ は 8 次）では標準写像の像が円錐曲線 $\{[1:x:x^2]\}$ であることを確かめよ。
+\end{prob}
+\begin{prob}{発展}\label{p:g4}
+$g=4$ の非超楕円曲線について $h^0(2K)=9$ を示し、$\mathrm{Sym}^2H^0(K)$（次元 $10$）から $H^0(2K)$ への写像が全射なら $\CP^3$ の 2 次曲面にのる（核が 1 次元）こと、標準曲線の次数が $6$ であることを確かめよ。
+\end{prob}
+
+\section{Abel の定理と Jacobi 多様体（主張と例）}\label{sec:abel}
+この節は主張と例のみ。証明は Griffiths--Harris 第2章、Forster 第II章 §20（Abel の定理）§21（Jacobi の逆問題）、Miranda 第VIII章（Abel's Theorem）などにある（Forster と Miranda の章・節名は目次で確認。GH の節番号は\tQ）。
+
+\subsection{$\Pic^0$ は複素トーラス}
+指数完全列 $0\to\Z\to\Oc\to\Oc^*\to0$ の長完全列（第3巻）：
+\[
+H^1(X,\Z)\to H^1(X,\Oc)\to H^1(X,\Oc^*)=\Pic(X)\xrightarrow{c_1}H^2(X,\Z)\to H^2(X,\Oc)=0 .
+\]
+$H^2(X,\Z)=\Z$ で $c_1=\deg$（定理 \ref{thm:degc1}）。$H^1(X,\Z)\cong\Z^{2g}$、$H^1(X,\Oc)\cong\C^g$（Serre 双対）なので
+\[
+\Pic^0(X)=\Ker(\deg)\cong H^1(X,\Oc)/H^1(X,\Z)=\C^g/\Z^{2g}
+\]
+\tC\ 。$\Z^{2g}\to\C^g$ の像が格子であることは Hodge 分解 $H^1(X,\C)=H^{1,0}\oplus H^{0,1}$（第5巻）による（下の証明）。これは 2 次元実トーラスの複素版で、$g=1$ では $E$ 自身、$g=0$ では点。
+\emph{$\Z^{2g}\to\C^g$ の像が格子であることの証明（\tP\ ただし Hodge 数を既知とする）。} $H^1(X,\R)\to H^1(X,\Oc)=H^{0,1}$ を、実 1 コサイクル（調和 1 形式 $\alpha$）の $(0,1)$ 部分への射影 $\alpha\mapsto\alpha^{0,1}$ とする。$\alpha$ は実形式だから $\alpha^{1,0}=\overline{\alpha^{0,1}}$ で、$\alpha^{0,1}=0$ なら $\alpha=0$：実線形写像として単射。$\dim_\R H^1(X,\R)=2g=\dim_\R H^{0,1}$（$h^{0,1}=h^1(\Oc)=g$）なので同型。ゆえに $H^1(X,\Z)\otimes\R\to H^1(\Oc)$ は実同型で、$H^1(X,\Z)\cong\Z^{2g}$ の像は $\C^g=\R^{2g}$ の格子。
+\begin{defn}[Jacobi 多様体]
+$\Jac(X)=H^0(X,K)^*/H_1(X,\Z)$、ここで $\gamma\in H_1(X,\Z)$ は $\omega\mapsto\int_\gamma\omega$ と同一視する。コンパクト複素トーラスで次元 $g$、$\Jac(X)\cong\Pic^0(X)$ \tC\ 。\emph{Abel--Jacobi 写像} $\mu:X\to\Jac(X)$、$\mu(p)=\bigl(\omega\mapsto\int_{p_0}^p\omega\bigr)$ mod 周期。$\mu$ を $\Div^0$ に拡張して $\mu(\sum n_ip_i)=\sum n_i\mu(p_i)$（$\deg=0$ なら基点によらない）。
+\end{defn}
+\begin{thm}[Abel]\label{thm:abel}
+$D\in\Div^0(X)$ について $D$ が主因子 $\iff\mu(D)=0\in\Jac(X)$。
+\end{thm}
+\begin{thm}[Jacobi の逆問題]
+$\mathrm{Sym}^gX\to\Jac(X)$ は全射（双有理）。
+\end{thm}
+$\mathrm{Pic}^0=\Div^0/\mathrm{Princ}\xrightarrow{\ \sim\ }\Jac(X)$ が Abel の定理（単射）と逆問題から従う（全射）。
+\begin{thm}[Torelli]
+$X\mapsto(\Jac(X),\text{主偏極 }\Theta)$ は $\mathcal M_g$ から主偏極 Abel 多様体のモジュライへの単射。
+\end{thm}
+\src{Griffiths--Harris 第2章（Abel、Jacobi、Torelli）\tQ。}
+
+\begin{ex}[$g=1$：Abel の定理と楕円関数]\label{ex:abelg1}
+$E=\C/\Lat$、$\omega=dz$、$\mu(p)=z(p)\bmod\Lat$。Abel の定理は、$p_1+\dots+p_n-q_1-\dots-q_n$ が主因子（すなわち $E$ 上の有理型関数の零点 $p_i$、極 $q_j$）$\iff\sum z(p_i)-\sum z(q_j)\in\Lat$ を述べる。これは楕円関数の古典的性質（零点の和 $-$ 極の和 $\in\Lat$）。例 \ref{ex:chord}：$z_1+z_2+z_3=0$ のとき $\wp$ と $\wp'$ から共線が出る。$n=2$：$p+(-p)\sim2O$、すなわち $\wp(z)=\wp(-z)$ の関数が次数 2。
+\end{ex}
+\begin{ex}[$g=0$ と $g\ge1$ の違い]
+$\CP^1$：$\Pic^0=0$、任意の 2 点が線形同値。$g\ge1$：$p\ne q$ なら $p\not\sim q$（問 \ref{p:distinct}）、$\mu:X\to\Jac(X)$ は単射（Abel の定理の系）。
+\end{ex}
+\begin{ex}[$g=2$：$\mathrm{Sym}^2X\to\Jac(X)$]
+$\mathrm{Sym}^2X\to\Pic^2(X)$、$p+q\mapsto[p+q]$。$p+q\not\sim K$ の類では $h^0(p+q)=1$ なので $p+q$ は類から一意に決まり単射、$p+q\sim K$ の類（$q=\iota(p)$、問 \ref{p:conj}）では $\CP^1$ 全体が 1 点に潰れる（$|K|\cong\CP^1$）。$\mathrm{Sym}^2X\to\Pic^2$ は $|K|\cong\CP^1$ を 1 点に潰す双有理射（blow-down）で、$\Jac(X)$ は $\mathrm{Sym}^2X$ の blow-down。
+\end{ex}
+\begin{ex}[特別な因子と跳び（Brill--Noether の入口）]\label{ex:BN}
+$\Pic^d(X)\ni L$ に対し $h^0(L)$ は $L$ とともに跳ぶ。$\chi(L)=d+1-g$ は定数。跳びの軌跡 $W_d^r=\{L\mid h^0(L)\ge r+1\}\subset\Pic^d$。$g=1$、$d=0$：$W^0_0=\{\Oc\}$（点）。$g=2$、$d=2$：$W^1_2=\{K\}$。一般の $g$ では、$\rho:=g-(r+1)(g-d+r)\ge0$ なら $W^r_d\ne\emptyset$ で、$W^r_d\ne\emptyset$ のときは常に $\dim W^r_d\ge\rho$ \tC\ （Brill--Noether 数、Kleiman--Laksov, Griffiths--Harris）。
+\end{ex}
+
+\begin{keybox}{要点（§8）}
+$\Pic^0(X)=H^1(\Oc)/H^1(\Z)\cong\Jac(X)=H^0(K)^*/H_1(X,\Z)$、$\dim_\C=g$。Abel：$D\sim0\iff\mu(D)=0$。$g=1$ なら $E\cong\Pic^0(E)$ で、楕円関数の零点・極の和の条件になる。$h^0$ の跳びは $\Pic^d$ の閉部分集合上。
+\end{keybox}
+
+\begin{prob}{基本}\label{p:pic0dim}
+$g=0,1,2$ で $\Pic^0(X)\cong H^1(X,\Oc)/H^1(X,\Z)$ の複素次元と実次元を求めよ。$g=1$ のとき $E\to\Pic^0(E)$、$p\mapsto[p-O]$ が全単射であること（命題 \ref{prop:g1}(c)）と合わせて $E\cong\C/\Lat\cong\Pic^0(E)$ を説明せよ。
+\end{prob}
+\begin{prob}{標準}\label{p:abelell}
+$E=\C/(\Z+\Z\tau)$ で、$z_1,z_2\in\C$ と $\wp$ について、2 点 $z_1,z_2$ で 1 位の零点、$0$ と $z_1+z_2$ で 1 位の極をもつ有理型関数が存在することを Abel の定理で説明せよ。このような関数を、$\wp$ と $\wp'$ の 1 次分数式で具体的に書け（ヒント：直線 $\det[1,\wp(z),\wp'(z)]$ を $z_1,z_2$ で $0$ にする）。
+\end{prob}
+\begin{prob}{発展}\label{p:BN}
+$g=3$ で $W^1_2$（次数 $2$ で $h^0\ge2$ の類）が空でないことと超楕円性が同値であることを示せ（定理 \ref{thm:canonical}）。また $g=3$ 非超楕円の曲線で $d=3$、$h^0(L)=2$ の $L$（$g^1_3$）は、平面 4 次曲線上の点 $p$ を通る直線束による射影で与えられることを説明せよ。
+\end{prob}
+
+\section{Weierstrass の gap と Weierstrass 点}\label{sec:weier}
+
+\subsection{gap 定理}
+$p\in X$ とし、$g\ge1$ とする。
+\begin{defn}
+正の整数 $n$ が $p$ の\emph{非 gap}（pole number）とは、$p$ にのみ位数ちょうど $n$ の極をもち他で正則な有理型関数が存在すること、すなわち $h^0(np)>h^0((n-1)p)$。そうでない正の整数 $n$ を $p$ の\emph{gap}という。
+\end{defn}
+\begin{thm}[Weierstrass の gap 定理]\label{thm:gap}
+(a) $p$ の gap はちょうど $g$ 個で、すべて $2g-1$ 以下。それらを $1=n_1<\dots<n_g\le2g-1$ とする。(b) 非 gap の集合は和で閉じる（半群）。(c) $n$ が gap $\iff$ 位数ちょうど $n-1$ で $p$ で消える正則 1 形式が存在する：gap の集合は $\{\ord_p(\omega)+1\mid\omega\in H^0(K)\setminus0\}$。
+\end{thm}
+\begin{proof}
+(a) $h^0(np)-h^0((n-1)p)\in\{0,1\}$（命題 \ref{prop:ellbasic}(d)）なので、$1\le n\le N$ の非 gap の個数は $h^0(Np)-h^0(0)=h^0(Np)-1$、gap の個数は $N-h^0(Np)+1$。$N\ge2g-1$ なら Riemann--Roch（$\deg=N>2g-2$）で $h^0(Np)=N+1-g$、よって gap の個数は $g$。gap の個数は $N$ に関して非減少で $N\ge2g-1$ で一定 $g$ だから、全ての gap は $\le2g-1$ にあり、総数は $g$。なお $n=1$ は常に gap（$g\ge1$、問 \ref{p:eldim}）。(b) $f_1,f_2$ が極 $n_1,n_2$ なら $f_1f_2$ の極は $n_1+n_2$。(c) Riemann--Roch と Serre 双対：$h^0(np)-h^0(K-np)=n+1-g$ を $n$ と $n-1$ で引き算：
+\[
+h^0(np)-h^0((n-1)p)=1+h^0(K-np)-h^0(K-(n-1)p).
+\]
+$h^0(K-(n-1)p)-h^0(K-np)\in\{0,1\}$ で、$1$ のとき左辺は $0$（gap）：すなわち $K-(n-1)p$ の切断で $K-np$ に入らないもの $=$ $p$ で位数ちょうど $n-1$ の正則 1 形式がある。 
+\end{proof}
+$n$ が gap のとき $n=\ord_p\omega+1$。通常の点では $\ord_p$ は $0,1,\dots,g-1$ をとり、gap は $\{1,2,\dots,g\}$。
+
+\begin{defn}[Weierstrass 点]
+$p$ が\emph{Weierstrass 点}とは、gap の列が $\{1,\dots,g\}$ でないとき（すなわち $\ord_p\omega\ge g$ となる $\omega\ne0$ がある）。\emph{重み}を $w(p)=\sum_{i=1}^g(n_i-i)$ で定める。
+\end{defn}
+\begin{thm}
+Weierstrass 点は有限個で、重みの和は $g^3-g=(g-1)g(g+1)$。特に $g\ge2$ なら Weierstrass 点が存在する。
+\end{thm}
+\src{Griffiths--Harris 第2章（Weierstrass 点と Wronskian）\tQ（節番号）、Miranda 第VII章 \tQ（Weierstrass 点の項の有無は未確認）、Hartshorne IV 練習問題\tQ（番号は未確認）。証明の方針：正則 1 形式の基底の Wronskian が $K^{g(g+1)/2}$ の切断を与え、その零点を重みつきで数える。}
+
+\subsection{例}
+\begin{ex}[$g=0$、$g=1$]
+$g=0$：gap はなく（$g=0$ 個）、すべての正の整数が非 gap（$h^0(n\,p)=n+1$）。$g=1$：gap は常に $\{1\}$（$h^0(np)=n$）、重み $0$：Weierstrass 点なし（$g^3-g=0$ と整合）。非 gap は $\{2,3,\dots\}=\langle2,3\rangle$。$\wp$ ($x$) と $\wp'$ ($y$) の極の位数 $2,3$。
+\end{ex}
+\begin{ex}[超楕円曲線 $y^2=f(x)$、$\deg f=2g+1$、$p=\infty$]\label{ex:hyperweier}
+$x,y$ の極の位数 $2,2g+1$ から、非 gap は $\langle2,2g+1\rangle$、gap は $\{1,3,5,\dots,2g-1\}$ ($g$ 個)。重みは $\sum_{i=1}^g(2i-1-i)=g(g-1)/2$。$\infty$ だけでなく、$2g+2$ 個の分岐点 $p$（$f$ の根と $\infty$）のすべてで、$1/(x-x(p))$ が $p$ にのみ 2 位の極をもつので $2$ が非 gap であり、したがって偶数はすべて非 gap、$\le2g-1$ の奇数がちょうど $g$ 個の gap である。重みの和は $(2g+2)\cdot\frac{g(g-1)}2=g^3-g$ で、すべての Weierstrass 点をつくす。数値計算で $g\le5$ の重み（$0,1,3,6,10$）と合計（$0,6,24,60,120$）を確認した。$g=2$：Weierstrass 点は $6$ 個の分岐点で gap $\{1,3\}$、それ以外の点は gap $\{1,2\}$。
+\end{ex}
+\begin{ex}[Fermat 4 次曲線 $x^4+y^4=z^4$、$g=3$]\label{ex:fermatW}
+$g=3$、$g^3-g=24$。標準写像は包含 $C\subset\CP^2$（例 \ref{ex:g3}）で、$H^0(K)=\{\text{直線 }\ell\}$、正則 1 形式 $\omega_\ell$ の因子は直線切断 $\ell\cdot C$ である。したがって $\ord_p(\omega_\ell)$ は $\ell$ と $C$ の $p$ での交点重複度。$p\notin\ell$ で $0$、$p\in\ell$ で横断なら $1$、接線なら接触位数 $k\ge2$。接線の接触位数が $k=2$（通常点）、$3$（変曲点）、$4$（超変曲点）に応じて $\{\ord_p\omega\}=\{0,1,k\}$、gap $=\{1,2,k+1\}$、重み $k-2$。$C$ の点 $(0:1:\zeta)$（$\zeta^4=1$）での接線は $y=\zeta^3z$ で、これを $x^4+y^4-z^4$ に代入すると $x^4+z^4(\zeta^{12}-1)=x^4$、接触位数 $4$（超変曲点）、gap $\{1,2,5\}$、重み $2$。$xyz=0$ 上の同様の点は $3\times4=12$ 個で、重みの合計 $12\times2=24=g^3-g$。したがって、これが全ての Weierstrass 点であり、他に変曲点（重み $1$）はない。
+\end{ex}
+
+\begin{keybox}{要点（§9）}
+各点で gap はちょうど $g$ 個で $\le2g-1$。gap $\leftrightarrow$（正則 1 形式の零の位数）$+1$。Weierstrass 点の重み総和 $g^3-g$。超楕円：分岐点が Weierstrass 点で gap は奇数 $1,3,\dots,2g-1$。Fermat 4 次：12 個の超変曲点（gap $1,2,5$）。
+\end{keybox}
+
+\begin{prob}{基本}\label{p:gaps1}
+楕円曲線と、$y^2=x^5+1$（$g=2$）の無限遠点 $\infty$ の非 gap 半群と gap を求めよ。半群 $\langle2,5\rangle$ の gap を数え、gap 定理(a) と一致することを確かめよ。
+\end{prob}
+\begin{prob}{標準}\label{p:gapproof}
+gap 定理(a)，(b)，(c) を自分で書き下せ。また、$g=2$ の曲線の任意の点で gap は $\{1,2\}$ か $\{1,3\}$ のどちらかであることを示せ。$\{1,3\}$ となる点は何か。
+\end{prob}
+\begin{prob}{標準}\label{p:weight}
+$y^2=f(x)$、$\deg f=2g+1$ の無限遠点の重み $g(g-1)/2$ を計算し、$g=2,3,4$ で $(2g+2)\cdot g(g-1)/2=g^3-g$ を確かめよ。また $g=3$ 超楕円曲線では Weierstrass 点が $8$ 個の分岐点でちょうど尽くされること、重みの総和が $24$ であることを確認せよ。
+\end{prob}
+\begin{prob}{発展}\label{p:fermatW}
+例 \ref{ex:fermatW} の計算を確かめよ：点 $(0:1:\zeta)$（$\zeta^4=1$）での接線 $y=\zeta^3z$ との交点が $x^4=0$ であること、したがって超変曲点で gap が $\{1,2,5\}$ であること。通常の（変曲点でない）点の gap は $\{1,2,3\}$ であること。
+\end{prob}
+
+\section{Riemann--Roch は $\bar\partial$ 作用素の指数である}\label{sec:index}
+この節は第5巻（Hodge、Kodaira）、第6巻（HRR）、第8巻（Atiyah--Singer）、統合論文への橋である。これまでの結果を 1 つの見方にまとめる。
+
+\subsection{$\bar\partial$ の指数}
+$L$ を $X$ 上の正則直線束とし、$\bar\partial_L:\Gamma(X,\mathcal A^0(L))\to\Gamma(X,\mathcal A^{0,1}(L))$ を考える（\S\ref{sec:coh}）。これは 1 階の楕円型微分作用素で、コンパクト $X$ 上 Fredholm である（第7巻）：
+\[
+\ker\bar\partial_L=H^0(X,L),\qquad\mathrm{coker}\,\bar\partial_L=H^1(X,L),
+\]
+\[
+\boxed{\ \mathrm{ind}\,\bar\partial_L=h^0(L)-h^1(L)=\chi(L)=\deg L+1-g\ }
+\]
+Riemann--Roch の定理は、「Dolbeault 作用素の指数 $=$ 位相的データ（次数と種数）」という命題である。
+\begin{itemize}
+\item \textbf{指数は変形で不変。} $C^\infty$ 直線束 $L_{\rm top}$ の正則構造は $\bar\partial_L+a$（$a\in\mathcal A^{0,1}$）で連続的に変えられ、指数は Fredholm 作用素の連続族上で一定。複素構造 $J$ を $X$ のモジュライで動かしても同じ。したがって $\chi(L)$ は $\deg L=c_1(L)[X]$ と $g$ だけで決まる。
+\item \textbf{核の次元は跳ぶ。} $\deg L=0$ の楕円曲線では $h^0(L)=1$（$L=\Oc$）または $0$（他）、$h^1=h^0$。指数は $0$ のまま、核と余核が同時に跳ぶ（例 \ref{ex:ellRR}、例 \ref{ex:BN}）。
+\item \textbf{Serre 双対は随伴。} $\bar\partial_L$ の形式的随伴 $\bar\partial_L^*$ の核が $\mathrm{coker}\,\bar\partial_L$ と同一視される（定理 \ref{thm:serre} の骨子 3）。指数 $=\dim\ker\bar\partial_L-\dim\ker\bar\partial_L^*$ という Fredholm 指数の標準形。
+\end{itemize}
+\begin{ex}[複素トーラス上の Landau 準位]\label{ex:landau}
+$E=\C/(\Z+\Z\tau)$、$\deg L=k>0$ とすると $h^0(L)=k$（例 \ref{ex:ellRR}）。$L$ の正則切断は、$z\mapsto z+1$ で不変、$z\mapsto z+\tau$ で $e^{-2\pi ikz-\pi ik\tau}$ 倍される整関数と同一視でき、基底は $\theta$ 関数
+\[
+\vartheta_j(z)=\sum_{n\in\Z}\exp\Bigl(\pi ik\,(n+\tfrac jk)^2\tau+2\pi ik\,(n+\tfrac jk)z\Bigr),\qquad j=0,\dots,k-1.
+\]
+$k=1,2,3,5$、$\tau=0.2+0.9i$ で、数値的に $\vartheta_j(z+1)=\vartheta_j(z)$、$\vartheta_j(z+\tau)=e^{-2\pi ikz-\pi ik\tau}\vartheta_j(z)$（相対誤差 $10^{-14}$ 程度）と、$k$ 個の関数の 1 次独立性（$k+2$ 点での値の行列の階数 $=k$）を確認した。物理では、一様磁場中のトーラス上の荷電粒子の最低 Landau 準位の縮退度が磁束量子数 $k$ という事実であり、指数 $k$ が $\deg L=\int c_1$ という位相的な量であることの現れ。
+\end{ex}
+
+\subsection{指数定理による読み方}
+Todd 類 $\Td(X)=1+\tfrac12c_1(T^{1,0}X)+\cdots$、Chern 指標 $\ch(L)=1+c_1(L)+\cdots$ を用いると、Riemann 面では
+\[
+\chi(L)=\int_X\ch(L)\,\Td(X)=\int_X\Bigl(c_1(L)+\tfrac12c_1(T_X)\Bigr)=\deg L+\tfrac12\chi_{\rm top}(X)=\deg L+(1-g).
+\]
+ここで $\int c_1(T_X)=\deg T_X=2-2g=\chi_{\rm top}(X)$（Poincaré--Hopf、§\ref{sec:rh}）。ベクトル束 $E$（階数 $r$）でも $\chi(E)=\int\ch(E)\Td(X)=\deg E+r(1-g)$（\S\ref{sec:rr}の最後）。
+
+\begin{center}
+\begin{tikzcd}[column sep=1.0em,row sep=1.2em,every cell/.append style={font=\footnotesize}]
+\text{Riemann--Roch（曲線）}\arrow[r]&\text{HRR（第6巻）}\arrow[r]&\text{Atiyah--Singer（第8巻）}\arrow[r]&\text{族の指数（第9巻）}
+\end{tikzcd}
+\end{center}
+\begin{itemize}
+\item \textbf{第6巻（HRR）：} コンパクト複素多様体 $X$（$\dim_\C=n$）と正則ベクトル束 $E$ について $\chi(X,E)=\sum_q(-1)^q\dim H^q(X,E)=\int_X\ch(E)\Td(X)$（Hirzebruch）。$n=1$ が本巻の定理。曲面（$n=2$）では $\chi(L)=\chi(\Oc)+\frac12L\cdot(L-K)$（Riemann--Roch for surfaces）。Riemann 面の公式 $\chi(L)=\chi(\Oc)+\deg L$ と同じ形で、2 次の項（交点数）が増える。
+\item \textbf{第8巻（Atiyah--Singer）：} Dolbeault 作用素 $\sqrt2(\bar\partial+\bar\partial^*):\Gamma(\Lambda^{0,\rm even}\otimes E)\to\Gamma(\Lambda^{0,\rm odd}\otimes E)$ の指数が $\chi(X,E)$。HRR はその特別な場合。符号定理、Dirac 作用素も同じ枠組み。一例：$K^{1/2}$（スピン構造）と結合した Dolbeault 作用素 $\bar\partial:\Gamma(K^{1/2})\to\Gamma(K^{1/2}\otimes\bar K)$ は Dirac 作用素で、指数は $\chi(K^{1/2})=(g-1)+1-g=0$（Riemann 面上の Dirac 作用素の指数は $0$）。
+\item \textbf{第9巻（族）：} $L$ を動かす（$\Pic^d(X)$ 上の族）と指数は $K$ 群の元（指数束）$[H^0]-[H^1]$ になる。$d>2g-2$ なら $H^1=0$ で $H^0$ が階数 $d+1-g$ のベクトル束（Picard 束）。この束の Chern 指標は $\Pic^d$ の $\Theta$ 因子の類で書ける（$\ch=(d-g+1)-\theta$ \tQ）。
+\end{itemize}
+
+\subsection{消滅定理の 1 次元版}
+定理 \ref{thm:kodaira1} と系 \ref{cor:rr}(b) をまとめる：
+\begin{center}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.40\textwidth}>{\raggedright\arraybackslash}p{0.52\textwidth}}
+\toprule
+1 次元（本巻） & 高次元（第5巻）\\
+\midrule
+$\deg D>2g-2\Rightarrow H^1(X,\Oc(D))=0$ & Kodaira 消滅：$L$ が正なら $H^q(X,K\otimes L)=0$（$q>0$）。Nakano：$H^q(X,\Omega^p\otimes L)=0$（$p+q>n$）\\
+$m\deg L>2g-2$ で $H^1(L^m)=0$ & Serre 消滅：$L$ が豊富なら $m\gg0$ で $H^q(X,E\otimes L^m)=0$（$q>0$）\\
+$\deg L>0\Rightarrow L^m$ 非常に豊富 & Kodaira 埋め込み：$L>0$ なら $L^m$ は非常に豊富\\
+Serre 双対 $H^1(L)^*\cong H^0(K\otimes L^{-1})$ & Serre 双対 $H^q(E)^*\cong H^{n-q}(E^*\otimes K)$\\
+\bottomrule
+\end{tabular}
+\end{center}
+特に、Kodaira 消滅の「$K\otimes L$、$L>0$」は 1 次元では $\deg(K\otimes L)>2g-2$ にほかならない。HRR により $\chi(L)$ が位相的に決まり、消滅定理により $\chi(L)=h^0(L)$ となる：「指数公式 $+$ 消滅 $=$ 切断の個数」が、第5〜6巻の「豊富な直線束の $h^0$ を数える」ための標準的な手順である。
+
+\subsection{統合論文との対応}\label{sec:unified}
+統合論文のうち、§1 の要旨、§3（定理 18、注意 21）、§4（定理 22、注意 23）、§10（定理 92、予想 94）の記述を参照し、1 次元で対応する部分を以下に整理する。\textbf{ここでの対応は形式的な類似であって、統合論文の定理の特殊化ではない。論文の他の部分（定義の細部、証明）は未読で、対応の細部は\tQ}。
+\paragraph{(1) Euler 標数は $c_1(E)$ に依らない。}統合論文：全 Euler 標数は $(-1)^n\rk(E)\chi(X)$。$n=1$ の対応する複体を、$E$ と $E\otimes T_X$ を 2 つの項にもつ複体（微分は何であれ）とみなすと、
+\begin{align*}
+\chi(E)-\chi(E\otimes T_X)&=\bigl(\deg E+r(1-g)\bigr)-\bigl(\deg E+r\deg T_X+r(1-g)\bigr)\\
+&=-r\deg T_X=-r(2-2g)=(-1)^1\,r\,\chi_{\rm top}(X)
+\end{align*}
+で、$\deg E$ に依らない（Riemann--Roch の $\deg$ の項が打ち消す）。上の式が統合論文の定理 22 の $n=1$ の場合（$\sum_b(-1)^b\chi(X,\wedge^bT\otimes E)=(-1)^n\rk(E)\chi(X)$）と一致することは、微分のかたちを見ずに項の Euler 標数だけで確認できる算術。なお $n=1$ では Poisson 構造は $\sigma=0$ に限られるので、統合論文の複体の微分は $O$-線形な部分だけになるはずだが、複体の同定は確認していない。\tQ
+\paragraph{(2) 双対性。}統合論文：$\mathbb H^k(L)^*\cong\mathbb H^{2n-k}(L^\vee\otimes K^2)$。$n=1$：項ごとに Serre 双対 $H^i(E\otimes T)^*\cong H^{1-i}(E^\vee\otimes K\otimes K)$ と $H^i(E)^*\cong H^{1-i}(E^\vee\otimes K)$ を使うと、双対複体の項は $E^\vee\otimes K^2$ と $(E^\vee\otimes K^2)\otimes T=E^\vee\otimes K$。つまり複体 $(E\to E\otimes T)$ の双対は $(E^\vee\otimes K^2\to(E^\vee\otimes K^2)\otimes T)$ の形になり、項の次元の対応としては統合論文の $K^2$ の捻り（定理 18）と整合する。微分の双対が実際にこの複体の微分に一致するか、次数 $2n-k$ のずれの符号は確認していない。\tQ
+\paragraph{(3) $\sigma$ が $D$ 上で消える最も簡単な型の跳び。}1 次元には Poisson 双ベクトル（$\wedge^2T_X=0$）が存在しないので、類似物として \emph{正則ベクトル場} $\sigma\in H^0(X,T_X)=H^0(X,K^{-1})$ を考える。$\sigma\ne0$ とし $D=\divv(\sigma)$（零点の因子）とおく。$\deg D=\deg T_X=2-2g\ge0$ より $g\le1$：
+\begin{itemize}
+\item $g=1$：$\sigma=\partial_z$、$D=\emptyset$。$\sigma^{-1}=dz$ は零点も極もない 1 形式（シンプレクティック形式の類似）。
+\item $g=0$：$\sigma=z\partial_z$、$D=[0]+[\infty]$。$\sigma^{-1}=dz/z$ は $D$ に 1 位の極（留数 $\pm1$）をもつ \emph{対数 1 形式}（対数シンプレクティックの類似）で、$K(D)\cong\Oc$、すなわち $\Omega^1_X(\log D)\cong\Oc$。
+\end{itemize}
+縮約 $\iota_\sigma:K\to\Oc$（$\omega\mapsto\omega(\sigma)$）は層の完全列
+\[
+0\to K\xrightarrow{\ \iota_\sigma\ }\Oc\to\Oc_D\to0
+\]
+を与え、長完全列と Serre 双対は $\chi(\Oc)-\chi(K)=\deg D$、すなわち $(1-g)-(g-1)=2-2g$、つまり Riemann--Roch の $D=0$ の場合である。$\sigma$ が $D$ 上で消えることは、$\iota_\sigma$ が同型でなくなり、摩天楼層 $\Oc_D$ の分だけ cohomology が「跳ぶ」ことと対応する：
+\begin{center}
+\begin{tabular}{l|c|c}
+\toprule
+& $H^\bullet$ の次元 $(b_0,b_1,b_2)$ & 備考\\
+\midrule
+$g=1$、$D=\emptyset$（$\sigma$ は零点なし） & $(1,2,1)=H^\bullet(E)$ & 跳びなし\\
+$g=0$、$D=\{0,\infty\}$、対数 de Rham & $(1,1,0)=H^\bullet(\CP^1\setminus D)$ & $H^\bullet(\CP^1)=(1,0,1)$ から跳ぶ\\
+\bottomrule
+\end{tabular}
+\end{center}
+対数 de Rham 複体 $\Omega^\bullet_X(\log D)=(\Oc\xrightarrow{d}K(D))$ の超コホモロジーは $H^\bullet(X\setminus D;\C)$（Deligne \tC）で、$g=0$ の場合 $\Oc\to\Oc\cdot\frac{dz}z$、$f\mapsto df=\sigma(f)\frac{dz}z$（$\sigma=z\partial_z$）。Euler 標数は $\chi_{\rm top}(X)-\deg D=\chi_{\rm top}(X\setminus D)$。$\C^*$ の 1 次元類 $[dz/z]$ は $D$ 上の留数 $1$ で検出される。統合論文の対数シンプレクティック曲面では、$\wedge^nT=K^{-1}$ の切断 $\sigma^k$ が反標準因子 $D$ に 1 位で消え、留数 $r_i$ が $\mathbb Z$ に入るかどうかで cohomology の次元が跳ぶ。上の 1 次元の例は、「反標準因子 $D$ に 1 位で消える切断があり、対数 de Rham 複体が $H^\bullet(X\setminus D)$ を与える」という点だけの形式的な類似で、留数 $r_i$（ここでは自明な局所系、$r=0$）による跳びの機構までは再現しない。\tQ\ （1 次元には Poisson 構造がないので、統合論文の定義と同じ設定ではない。類似として読むこと。）
+
+\begin{keybox}{要点（§10）}
+Riemann--Roch $\iff$ $\mathrm{ind}\,\bar\partial_L=\deg L+1-g=\int\ch(L)\Td(X)$。指数は位相的で、核・余核の次元は跳ぶ。$n$ 次元では HRR（第6巻）、一般の楕円複体では Atiyah--Singer（第8巻）、族では指数束（第9巻）。消滅 $H^1(\Oc(D))=0$（$\deg D>2g-2$）は Serre 消滅・Kodaira 消滅の 1 次元版。ベクトル場 $\sigma$ が $D$ で消える 1 次元の類似では cohomology が変わる（$g=0$、$D=\{0,\infty\}$：$(1,0,1)\to(1,1,0)$。統合論文の定理ではなく形式的な類比）。
+\end{keybox}
+
+\begin{prob}{基本}\label{p:index}
+$L$ が種数 $g$ の曲線上で $\deg L=d$ のとき、$\mathrm{ind}\,\bar\partial_L$ を $d,g$ で表せ。$L=K^{1/2}$（$2\deg L=2g-2$）、$L=K$、$L=T_X$ のときの指数を求めよ。
+\end{prob}
+\begin{prob}{標準}\label{p:landau}
+$\vartheta_j$（例 \ref{ex:landau}）が $z\mapsto z+1$ で不変であることを定義から示し、$z\mapsto z+\tau$ に対する変換則を（和の添字の取り替えで）導け。$k=1$ の $\vartheta_0$ の零点が $E$ 上ちょうど 1 点であることを、偏角の原理（$\deg L=1$）から説明せよ。
+\end{prob}
+\begin{prob}{標準}\label{p:euler1}
+種数 $g$ の曲線上のランク $r$、次数 $d$ の束 $E$ について、$\chi(E)-\chi(E\otimes T_X)$ を計算し、$c_1$ に依らないことを確かめよ。さらに $E=\Oc$、$g=0,1,2$ で値を求めよ。
+\end{prob}
+\begin{prob}{発展}\label{p:logdr}
+$X=\CP^1$、$D=[0]+[\infty]$、$\sigma=z\partial_z$ で、複体 $\Oc\xrightarrow{d}K(D)$（$K(D)\cong\Oc\cdot dz/z$）の超コホモロジーを \Cech{} 計算（2 枚の座標円板）で求め、$(1,1,0)$ であることを確かめよ。
+\end{prob}
+
+\section*{解答}
+\addcontentsline{toc}{section}{解答}
+計算を含む解答は \texttt{verify.py}（numpy と自作コード。sympy は環境にないので使っていない）で独立に検算した。検算した項目：
+$\wp'^2=4\wp^3-g_2\wp-g_3$（$q$-展開による $\wp,\wp',g_2,g_3$、$\tau=i$ と $\tau=0.3+1.1i$）、3 点の共線 $\det[1,\wp,\wp']\approx10^{-13}$（例 \ref{ex:chord}）、$g_2(\Z[i])=189.0727\ldots=\Gamma(1/4)^8/(16\pi^2)$、$g_3(\Z[i])\approx0$、$g_2(\Z[\rho])\approx0$（問 \ref{p:j}）、$\theta$ 関数の準周期性と 1 次独立性（$k=1,2,3,5$、例 \ref{ex:landau}、問 \ref{p:landau}）、$y^2=f(x)$（$\deg f=2g+1$）で $g=1,\dots,7$、$0\le n<6g$ の $h^0(n\infty)-h^0(K-n\infty)=n+1-g$（例 \ref{ex:hyperRR}）、gap と重み（問 \ref{p:gaps1}、\ref{p:weight}）、平面曲線 $d=3,\dots,7$ の Riemann--Roch（例 \ref{ex:planecurve}）、Fermat 曲線の種数（問 \ref{p:fermat}）、分岐数（問 \ref{p:local}、\ref{p:RHbasic}、\ref{p:Rcount}）、$\chi(E)-\chi(E\otimes T)$（問 \ref{p:euler1}）、2 倍公式（問 \ref{p:chord}）、標準曲線を含む 2 次曲面の個数（例 \ref{ex:quadrics}）、超変曲点の接触（問 \ref{p:fermatW}）。それ以外（証明・定性的な議論）は検算していない。
+
+\begin{sol}{\ref{p:local}}
+(a) $f=(z^2+1)/z$ は次数 $2$。$f'=1-1/z^2=0\iff z=\pm1$ で、$e=2$、分岐値 $f(\pm1)=\pm2$。$z=0$、$\infty$ は単純な極（$e=1$）。$\sum(e-1)=2=2\cdot2-2$ ✓。\\
+(b) $f=z^3-z^2$、次数 $3$。$f'=z(3z-2)$：$z=0$（$e=2$、値 $0$）、$z=2/3$（$e=2$、値 $-4/27$）。$\infty$ は 3 位の極で $e=3$。$\sum(e-1)=1+1+2=4=2\cdot3-2$ ✓。
+\end{sol}
+\begin{sol}{\ref{p:divP1}}
+$f$：零点 $z=1$（1 位）と $\infty$（$f\sim1/z$、$\ord_\infty=1$）、極 $z=\pm i$（1 位）。$\sum\ord=1+1-1-1=0$ ✓。\\
+$\omega$：$0$ で 1 位の極（$\Res=-1$）、$1$ で 1 位の極（$\Res=+1$）。$\infty$（$w=1/z$）では $z(z-1)=(1-w)/w^2$、$dz=-dw/w^2$ より $\omega=-dw/(1-w)$ で正則、$\ord_\infty\omega=0$。他は位数 $0$。$\sum\Res=-1+1=0$ ✓、$\deg\divv\omega=-1-1+0=-2=2g-2$ ✓。
+\end{sol}
+\begin{sol}{\ref{p:residue}}
+(a) $f\not\equiv0$ 有理型、$p$ で $f=z^nu$（$u(0)\ne0$）なら $df/f=(n/z+u'/u)dz$ で $\Res_p(df/f)=n=\ord_pf$。$df/f$ は有理型 1 形式なので定理 \ref{thm:residue} より $\sum_p\ord_pf=0$。すなわち零点の数 $=$ 極の数。\\
+(b) 留数の和 $=0$ より $a+b=0$ が必要。このとき $\omega=a\,dz/z$ が条件をみたす（$\infty$ では $-a$）。（$g(z)dz$ に $c\,dz$ や $z^{-2}dz$ などを足すと $\infty$ や $0$ で 2 位以上の極になるので、他に形はない。）
+\end{sol}
+\begin{sol}{\ref{p:ell0}}
+$x-1$ は $P_1=(1,0)$ で座標 $y$ に対し $x-1=y^2/(x(x+1))$ なので $\ord_{P_1}=2$、$\infty$ で $-2$：$\divv(x-1)=2P_1-2\infty$。同様に $\divv(x+1)=2P_{-1}-2\infty$。$\divv(y/x)=\divv y-\divv x=(P_0+P_1+P_{-1}-3\infty)-(2P_0-2\infty)=-P_0+P_1+P_{-1}-\infty$（次数 $0$ ✓）。
+\end{sol}
+\begin{sol}{\ref{p:LD}}
+$\deg D=3-1+2=4$。$f\in L(D)$：$0$ で高々 3 位の極、$\infty$ で高々 2 位の極、$1$ で零点、他で正則。$f=P(z)/z^3$（$P$ 多項式）、$\infty$ で $\ord=3-\deg P\ge-2\Rightarrow\deg P\le5$、$P(1)=0$。基底：$(z-1)z^j/z^3$、$j=0,\dots,4$、つまり $(z-1)/z^3,(z-1)/z^2,(z-1)/z,\ z-1,\ (z-1)z$。$\ell(D)=5=\deg D+1$（$g=0$、系 \ref{cor:rr}(b)）。
+\end{sol}
+\begin{sol}{\ref{p:eldim}}
+命題 \ref{prop:ellbasic}(d) より $\ell(D)\le\ell(D-p)+1$。$\deg D=d\ge0$ なら $D$ から $d+1$ 個の点を引いて得た次数 $-1$ の因子 $D'$ は $\ell(D')=0$（命題 (b)）。よって $\ell(D)\le d+1$。$\CP^1$ では $\ell(\Oc(d))=d+1$（例 \ref{ex:Ok}）で等号。$g\ge1$、$\deg D=1$：$\ell(D)\ge2$ なら $L(D)\ne0$ から $D$ は有効因子 $q$ と線形同値（$D+\divv f_0\ge0$ で次数 $1$）で、$L(q)$ に非定数の $f$ があり、$f$ は $q$ のみに高々 1 位の極（定数でないので 1 位）をもつ。$\deg f=1$、定理 \ref{thm:degree} より $f$ は双正則 $X\cong\CP^1$、$g=0$ に矛盾。
+\end{sol}
+\begin{sol}{\ref{p:pullback}}
+(a) $\deg f^*q=\sum_{f(p)=q}e_p=d$（定理 \ref{thm:degree}）。線形に拡張。(b) $p$ で $w\circ f=z^e$ なので $\ord_p(h\circ f)=e\cdot\ord_{f(p)}h$。したがって $\divv(h\circ f)=\sum_pe_p\ord_{f(p)}(h)\,p=f^*\divv(h)$。よって $f^*$ は主因子を主因子に写し $\mathrm{Cl}(Y)\to\mathrm{Cl}(X)$ を定める。(c) $f(z)=z^2$：$f^*[1]=[1]+[-1]$、$f^*[0]=2[0]$、$f^*[\infty]=2[\infty]$。$f^*\Oc(k)=f^*\Oc(k[\infty])=\Oc(2k[\infty])=\Oc(2k)$（次数 $2k$）。
+\end{sol}
+\begin{sol}{\ref{p:Kp1}}
+$\omega=g(z)dz$（$g$ は有理型関数）。$\divv\omega=\divv g+\divv dz=\divv g-2[\infty]$（例 \ref{ex:formsP1}）。$\deg\divv g=0$ なので $\deg=-2$。例 \ref{ex:Clp1}：$\mathrm{Cl}(\CP^1)\cong\Z$（$\deg$）なので $K\sim-2[\infty]$、$K=\Oc(-2)$。
+\end{sol}
+\begin{sol}{\ref{p:distinct}}
+$p\sim q$、$p\ne q$ なら $\divv f=p-q$ の有理型関数 $f$ があり、$f$ は $q$ のみに 1 位の極をもつので次数 $1$ の正則写像 $X\to\CP^1$。定理 \ref{thm:degree} と局所形から双正則、よって $X\cong\CP^1$、$g=0$。$g\ge1$ に矛盾。
+\end{sol}
+\begin{sol}{\ref{p:ses}}
+$n=D(p)$ とし $r$：$f=\sum_{m\ge-n}a_mz^m\mapsto a_{-n}$。核は $a_{-n}=0$ の $f$、すなわち $\ord_p f\ge-n+1=-(D-p)(p)$ で $\Oc(D-p)_p$ に等しい。全射：$z^{-n}\mapsto1$。$p$ 以外では $\Oc(D-p)=\Oc(D)$、$\C_p=0$。よって完全。長完全列：$0\to H^0(D-p)\to H^0(D)\xrightarrow{r}\C\to H^1(D-p)\to H^1(D)\to0$。$h^0(D)-h^0(D-p)=\dim\mathrm{Im}(r)\le1$。
+\end{sol}
+\begin{sol}{\ref{p:cechP1}}
+$k=4$：$H^1(\Oc(-4\infty))$ は $U_{01}=\C^*$ 上の $\sum a_nz^n$ を、$\{n\ge0\}$（$U_0$ 上の正則関数）と $\{n\le-4\}$（$U_1$ 側）の和で割ったもの。基底 $z^{-1},z^{-2},z^{-3}$。$K\otimes\Oc(4\infty)=\Oc(2\infty)$ の切断は $z^m\,dz$（$m=0,1,2$、$\infty$ で $\ord=-m-2\ge-4$）。対合 $\langle z^{-j},z^m\,dz\rangle=\Res_{z=0}z^{m-j}dz=\delta_{m,j-1}$：$j=1,2,3$ と $m=0,1,2$ を対応させると単位行列。$k=1$：コバウンダリは $n\ge0$ と $n\le-1$ で全ての $n\in\Z$ をつくすので $H^1=0$。
+\end{sol}
+\begin{sol}{\ref{p:Serredual}}
+Serre 双対で $h^1(D)=h^0(K-D)$ だから、$h^1(D)=0\iff L(K-D)=0$（すなわち $K-D$ の類に有効因子がない）。$\deg D>2g-2$ なら $\deg(K-D)=2g-2-\deg D<0$ で、命題 \ref{prop:ellbasic}(b) により $L(K-D)=0$。
+\end{sol}
+\begin{sol}{\ref{p:ellh0}}
+$g=1$、$K\sim0$。$D=3p$：$\deg>0=2g-2$、$h^1=0$、$h^0=3$。$D=p+q$：$h^0=2$、$h^1=0$。$D=p-q$（$p\neq q$）：次数 $0$、$h^0(D)\ne0$ なら $D\sim0$ だが $p\not\sim q$（問 \ref{p:distinct}）なので $h^0=0$、$h^1=h^0(-D)=h^0(q-p)=0$。$p=q$ なら $D=0$：$h^0=h^1=1$。$p-q\sim0\iff p=q$。
+\end{sol}
+\begin{sol}{\ref{p:P1h0}}
+$h^0(\Oc(-5))=0$、$h^1=h^0(K+5)=h^0(\Oc(3))=4$。Riemann--Roch：$0-4=-5+1$ ✓。\Cech{}（例 \ref{ex:cechP1}、$k=5$）：$z^{-1},\dots,z^{-4}$ で $h^1=4$ ✓。
+\end{sol}
+\begin{sol}{\ref{p:g2table}}
+$g=2$、$\chi(D)=\deg D-1$。$\deg D<0$：$h^0=0$、$h^1=1-\deg D$。$\deg0$：$\chi=-1$。$D\sim0$ なら $h^0=1$、$h^1=2$、他は $h^0=0$（$f\in L(D)\setminus0$ なら $\divv f+D\ge0$ で次数 $0$ なので $D\sim0$）、$h^1=1$。$\deg1$：$\chi=0$、$h^0\le1$（問 \ref{p:eldim}）で、$h^0=1\iff D\sim p$（有効）、$h^1=h^0$。$\deg2$：$\chi=1$、$h^1=h^0-1\ge0$ なので $h^0\ge1$（すなわち有効）。$h^0(D)=2\Rightarrow h^1=1=h^0(K-D)$、$\deg(K-D)=0$ で $h^0(K-D)=1$ だから $K-D\sim0$、$D\sim K$。逆に $D\sim K$ なら $h^0=2$。それ以外は $(1,0)$。$\deg\ge3>2g-2$：$h^1=0$、$h^0=\deg D-1$。
+\end{sol}
+\begin{sol}{\ref{p:Pnvect}}
+$\chi(\Oc)=1$、$\chi(\Oc(1)^{\oplus2})=2\cdot2=4$ なので $\chi(T)=4-1=3$。$T=\Oc(2)$（例 \ref{ex:Ok}）、$\chi(\Oc(2))=2+1=3$ ✓。$h^1(T)=h^0(K\otimes T^{-1})=h^0(\Oc(-4))=0$ なので $h^0(T)=3$：$(a+bz+cz^2)\partial_z$ で $\mathfrak{sl}_2(\C)=\mathrm{Lie}\,\mathrm{PGL}_2(\C)$、$\dim=3$（$\Aut(\CP^1)=\mathrm{PGL}_2(\C)$ の Lie 環）。
+\end{sol}
+\begin{sol}{\ref{p:conj}}
+$g=2$。Riemann--Roch（$D=p$）：$h^0(p)-h^0(K-p)=0$、$h^0(p)=1$ なので $h^0(K-p)=1$、$\deg(K-p)=1$。$K-p\sim q$ となる有効因子（点）$q$ がただ 1 つ存在（唯一性は問 \ref{p:distinct}）。$\iota(p):=q$。$K-\iota(p)\sim p$ より $\iota(\iota(p))=p$（位数 $2$）。正則性：$p+\iota(p)\in|K|$、$|K|$ は $\varphi_K=x:X\to\CP^1$ のファイバーで（定理 \ref{thm:g2}）、$\iota$ は $x$ の被覆変換。分岐点以外では局所的に $x$ の逆写像の分枝の入れ替えで正則、分岐点では連続で孤立特異点除去により正則。固定点は分岐点（$2p\sim K$ となる $p$）の 6 点。
+\end{sol}
+\begin{sol}{\ref{p:RHbasic}}
+$f=P/Q$（互いに素）の次数 $d=\max(\deg P,\deg Q)$。Riemann--Hurwitz（$g_X=g_Y=0$）：$-2=-2d+\deg R$ より $\deg R=2d-2$。次数 $3$ で 4 個の単純分岐点：$f(z)=z^2+1/z$。次数は $\infty$ で 2 位の極と $0$ で 1 位の極の計 $3$。$f'=2z-1/z^2=0\iff2z^3=1$ で 3 個の単純な臨界点（$f''\neq0$）、値 $f=3z^2$ は 3 つの相異なる値（$\approx1.89,\,-0.94\pm1.64i$）。$\infty$ は $e=2$ で値 $\infty$。計 $3+1=4$ の単純な分岐点（$e=2$）で、$\deg R=4=2\cdot3-2$ ✓。
+\end{sol}
+\begin{sol}{\ref{p:Rcount}}
+$\deg R=2g-2-d(-2)=2g-2+2d$。$(g,d)=(2,2)$：$6$、$(3,3)$：$10$、$(1,2)$：$4$ ✓。$g=1,d=2$：$\wp:E\to\CP^1$ は次数 $2$（$0$ で 2 位の極）で、$e_0=2$。$\wp'$ の零点は半周期 $\omega_1/2,\omega_2/2,(\omega_1+\omega_2)/2$（$\wp'$ は奇関数で次数 $3$、これらで 1 位の零点）で、そこで $\wp$ は臨界。計 $4$ ✓。
+\end{sol}
+\begin{sol}{\ref{p:fermat}}
+$g=(d-1)(d-2)/2$：$d=4,5,6$ で $3,6,10$（検算済）。$y$ への射影も対称（$x\leftrightarrow y$）で同じ。$d=3$：$g=1$、$C_3$ は非特異 3 次曲線で種数 1 のコンパクト Riemann 面だから楕円曲線（定理 \ref{thm:weier}、\ref{thm:uniformg1}）。
+\end{sol}
+\begin{sol}{\ref{p:quotient}}
+$\sigma(x,y)=(-x,y)$ の固定点：有限点で $x=0$、$y^2=-1$：$(0,\pm i)$。無限遠では $(t,s)\mapsto(-t,-s)$ で $\infty_\pm$ を入れ替える。固定点 $2$ 個。$X/\sigma$ の関数体は $(u,y)=(x^2,y)$ で生成され $y^2=u^3-1$（$\deg=3$ の楕円曲線）。$R=2$：$2=2(2g_Y-2)+2\Rightarrow g_Y=1$ ✓。$\tau(x,y)=(-x,-y)$：有限点の固定点は $x=y=0$ だが曲線上にない。無限遠では $(t,s)\mapsto(-t,s)$ で $\infty_\pm$ はともに固定。固定点 $2$ 個。不変量 $u=x^2$、$v=xy$：$v^2=u(u^3-1)$（$u$ の 4 次、重根なし、$g=1$）。RH：$2=2(2g_Y-2)+2$、$g_Y=1$ ✓。$\sigma\tau(x,y)=(x,-y)=\iota$。
+\end{sol}
+\begin{sol}{\ref{p:gstar}}
+$F=y^2-x^3-ax-b$。特異点 $\iff F=F_x=F_y=0\iff y=0$、$x^3+ax+b=0$、$3x^2+a=0$（3 次式と導関数の共通根 $=$ 重根）$\iff$ 判別式 $-4a^3-27b^2=0$。$\Z[i]$：$g_2^3\approx6.759\times10^6$（数値）、$g_3=0$ なので $g_2^3-27g_3^2\ne0$。$y^2=x^3-x$：$a=-1,b=0$、$4a^3+27b^2=-4\ne0$、$\Delta=-16\cdot(-4)=64$。
+\end{sol}
+\begin{sol}{\ref{p:y5}}
+$f=x(x-1)(x+1)(x^2+1)$、$g=2=(5-1)/2$。分岐値は根 $0,\pm1,\pm i$ と $\infty$（5 次で奇数）の計 $6$ 点。公式 $\ord_\infty(x^i\,dx/y)=2g-2-2i$（問 \ref{p:Hodiv}）：$dx/y$ は有限点で零点なし、$\ord_\infty=2$：$\divv(dx/y)=2\infty$。$x\,dx/y$：$x$ は $P_0=(0,0)$ で 2 位の零点、$\infty$ で $-2$：$\ord_\infty=2-2=0$、$\divv(x\,dx/y)=2P_0$。次数 $2$ ✓。6 点を $\mathrm{PGL}_2(\C)$（3 次元）の作用で 3 点を $0,1,\infty$ に移すと、残り 3 点 $\lambda_1,\lambda_2,\lambda_3$ が 3 つの連続パラメータ（$3g-3=3$）。
+\end{sol}
+\begin{sol}{\ref{p:chord}}
+(a) $x-x_0$ は $P=(x_0,y_0)$ と $P'=(x_0,-y_0)$ に 1 位の零点（$y_0\ne0$）、$O$ に 2 位の極：$P+P'\sim2O$、群で $P+P'=0$。(b) 接線 $y=y_0+m(x-x_0)$ を $y^2=x^3+ax+b$ に代入した 3 次式 $x^3-m^2x^2+\dots$ の根の和は $m^2$、2 重根 $x_0$ より第 3 根 $x_3=m^2-2x_0$、$y_3=y_0+m(x_3-x_0)$。$2P+R=0$（$R=(x_3,y_3)$）ゆえ $2P=-R=(m^2-2x_0,\,-y_0-m(x_3-x_0))$（数値で曲線上にあることを確認）。(c) $y=0$ の点は $-P=P$ で $2P=O$。$P=(0,0)$ は位数 2。2 分点は $O,(0,0),(1,0),(-1,0)$。
+\end{sol}
+\begin{sol}{\ref{p:Hodiv}}
+有限点で $y\ne0$：座標 $x$、$dx/y$ は正則で零点なし。$y=0$（$f$ の根 $a$）：座標 $y$、$2y\,dy=f'(x)dx$ なので $dx/y=2dy/f'(x)$、$f'(a)\ne0$ で零点なし。$x^i$ は正則で $x=0$ の点で位数 $i\cdot e$。無限遠 $\infty$（$m=2g+1$）：$t=1/x$、$s=y t^{g+1}$、局所座標 $s$、$t\sim s^2$。$x=t^{-1}$（位数 $-2$）、$y=st^{-(g+1)}$（位数 $1-2g-2=-(2g+1)$）、$dx=-t^{-2}dt$（位数 $-4+1=-3$）。$\ord_\infty(x^idx/y)=-2i-3+(2g+1)=2g-2-2i\ge0\iff i\le g-1$。次数：$\infty$ で $2g-2-2i$、$x=0$ 上の点（$x$ の 2 重被覆で 2 点か分岐点 1 点で、合計 $2i$）で、$2g-2$ ✓。$i=g$：$\ord_\infty=-2$（2 位の極）で正則でない。よって $x^i dx/y$（$0\le i\le g-1$）が $H^0(K)$ の基底。
+\end{sol}
+\begin{sol}{\ref{p:j}}
+同型 $\phi:\C/\Lat\to\C/\Lat'$ は双正則で、普遍被覆（$\C$）に持ち上げて $z\mapsto\lambda z+c$、$c$ は平行移動で消せて $\lambda\Lat=\Lat'$。$\Lat=\Z+\Z\tau$、$\Lat'=\Z+\Z\tau'$ のとき $(\lambda\tau,\lambda)=(\tau',1)M$（$M\in\mathrm{GL}_2(\Z)$）。$\Im\tau,\Im\tau'>0$ から $\det M=+1$、$\tau=(a\tau'+b)/(c\tau'+d)$ の形（$\tau$ と $\tau'$ の役割を入れ替えても同様）。逆も同じ計算で $\lambda=c\tau'+d$。$\Lat=\Z[i]$：$i\Lat=\Lat$ より $\sum'(i\lambda)^{-6}=i^{-6}\sum'\lambda^{-6}=-\sum'\lambda^{-6}$ だから $g_3=0$。$\rho=e^{2\pi i/3}$ の格子 $\Z+\Z\rho$：$\rho\Lat=\Lat$、$\rho^{-4}=\rho^{-1}\ne1$ より $g_2=0$。数値でも $g_3(i)\approx2\times10^{-13}$、$g_2(\rho)\approx2\times10^{-13}$。
+\end{sol}
+\begin{sol}{\ref{p:ratnormal}}
+$\varphi(z)=(1:z:\dots:z^k)$ は $\CP^1$ から $\CP^k$ への埋め込み（定理 \ref{thm:veryample}、$g=0$、$\deg=k\ge1$）で、像は $x_ix_j=x_{i+1}x_{j-1}$ をみたす次数 $k$ の曲線（有理正規曲線）。$k=2$：$(x_0:x_1:x_2)=(1:z:z^2)$ より $x_0x_2=x_1^2$、円錐曲線。$k=3$：$(1:z:z^2:z^3)$、ねじれ 3 次曲線。
+\end{sol}
+\begin{sol}{\ref{p:planequartic}}
+$g=3$、$K_C=\Oc_C(1)$。制限写像 $H^0(\Oc_{\CP^2}(1))\to H^0(\Oc_C(1))$ は単射（$C$ は直線でない）で、$\dim=3=g=h^0(K)$ だから全単射。したがって $\varphi_K=(\ell_0:\ell_1:\ell_2)=$ 包含 $C\hookrightarrow\CP^2$。超楕円 $g=3$、$y^2=f_8(x)$：基底 $dx/y,\,x\,dx/y,\,x^2dx/y$（問 \ref{p:Hodiv}）、$\varphi_K=(1:x:x^2)$、像は円錐曲線 $\{x_0x_2=x_1^2\}$、写像次数 $2$。
+\end{sol}
+\begin{sol}{\ref{p:g4}}
+$\deg2K=4g-4=12>2g-2$ なので $h^0(2K)=12+1-4=9$。$\mathrm{Sym}^2H^0(K)$ は $\binom{4+1}2=10$ 次元で、$\mathrm{Sym}^2H^0(K)\to H^0(2K)$ の核の次元 $\ge10-9=1$。核は標準曲線を含む 2 次曲面。全射なら核は厳密に $1$ 次元。標準曲線の次数は $\deg K=2g-2=6$。$g=3$：$6-6=0$、$g=5$：$15-12=3$ ✓（一般式 $(g-2)(g-3)/2$）。
+\end{sol}
+\begin{sol}{\ref{p:pic0dim}}
+$\Pic^0=H^1(\Oc)/H^1(\Z)=\C^g/\Z^{2g}$：$g=0$：点（次元 $0$）。$g=1$：複素 $1$、実 $2$。$g=2$：複素 $2$、実 $4$。$g=1$：$E\to\Pic^0(E)$、$p\mapsto[p-O]$ は全単射（命題 \ref{prop:g1}(c)）、Abel の定理により $\mu:E\to\Pic^0(E)\cong\C/\Lat$ と一致する（$\mu(p)=\int_O^p\omega$）。
+\end{sol}
+\begin{sol}{\ref{p:abelell}}
+零点 $z_1,z_2$、極 $0,z_1+z_2$ の因子 $D=[z_1]+[z_2]-[0]-[z_1+z_2]$ は $\deg0$、$\mu(D)=z_1+z_2-0-(z_1+z_2)=0$。Abel の定理（例 \ref{ex:abelg1}）で主因子。具体的に：$\ell(z)=\det\begin{pmatrix}1&\wp(z)&\wp'(z)\\1&\wp(z_1)&\wp'(z_1)\\1&\wp(z_2)&\wp'(z_2)\end{pmatrix}$ は $z_1,z_2$ と第 3 の零点 $z_3=-(z_1+z_2)$（弦の法則）に零点、$0$ に 3 位の極。$h(z)=\wp(z)-\wp(z_1+z_2)$ は $\pm(z_1+z_2)$ に零点、$0$ に 2 位の極。$f=\ell/h$ は $z_3=-(z_1+z_2)$ の零点が打ち消し合い、零点 $z_1,z_2$、極 $z_1+z_2$ と $0$（$3-2=1$ 位）。（一般の位置の $z_1,z_2$ に対して。）
+\end{sol}
+\begin{sol}{\ref{p:BN}}
+$W^1_2\ne\emptyset$ $\iff$ 次数 $2$ で $h^0\ge2$ の類があり、その類に属する有効因子 $p+q$ で $h^0(p+q)\ge2$。これは定理 \ref{thm:canonical} の (b) の証明の通り、次数 $2$ の写像 $X\to\CP^1$ の存在、すなわち超楕円性と同値。$g=3$ 非超楕円は平面 4 次曲線 $C\subset\CP^2$（例 \ref{ex:g3}）。$p\in C$ を通る直線の束は $C$ から $\CP^1$ への射影（$p$ からの射影）を定め、ファイバーは $p$ 以外の 3 点：次数 $3$、$h^0(K-p)=2$（$g-1$）、$L=K-p$ が $g^1_3$。
+\end{sol}
+\begin{sol}{\ref{p:gaps1}}
+楕円曲線：$h^0(n\infty)=n$ より gap は $\{1\}$、非 gap は $\langle2,3\rangle=\{2,3,\dots\}$。$y^2=x^5+1$：$x$ の極 $2$、$y$ の極 $5$、非 gap $\langle2,5\rangle=\{0,2,4,5,6,7,\dots\}$、gap $\{1,3\}$ の $2$ 個 $=g$ ✓（定理 \ref{thm:gap}(a)、$\le2g-1=3$）。一般に $\langle2,2g+1\rangle$ の gap は奇数 $1,3,\dots,2g-1$ の $g$ 個。
+\end{sol}
+\begin{sol}{\ref{p:gapproof}}
+(a)(b)(c) は定理 \ref{thm:gap} の証明の通り。$g=2$：gap は $1$ と、$2$ か $3$ のどちらか（$\le2g-1=3$ で、ちょうど $2$ 個）。$2$ が非 gap $\iff h^0(2p)=2$、$\deg(2p)=2$ で $h^0=2$ なら $2p\sim K$（問 \ref{p:g2table}）、$\iff p$ は $\iota$ の固定点 $\iff$ $p$ は 6 個の分岐点（$x$ の分岐点、定理 \ref{thm:g2}）。それ以外では gap $\{1,2\}$。したがって gap $\{1,3\}$ となる点は超楕円対合の 6 個の固定点で、Weierstrass 点。
+\end{sol}
+\begin{sol}{\ref{p:weight}}
+gap $\{1,3,\dots,2g-1\}$（$n_i=2i-1$）、重み $\sum_{i=1}^g(2i-1-i)=\sum(i-1)=g(g-1)/2$。$g=2,3,4$：重み $1,3,6$、$(2g+2)$ 倍が $6,24,60=g^3-g$ ✓（検算済）。$g=3$ 超楕円：Weierstrass 点の重みの総和は $g^3-g=24$、$8$ 個の分岐点の重みの和 $8\times3=24$ で尽くされる（他に重みをもつ点はない）。
+\end{sol}
+\begin{sol}{\ref{p:fermatW}}
+$F=x^4+y^4-z^4$。$(0:1:\zeta)$、$\zeta^4=1$ での接線は $F_yy+F_zz=0$、すなわち $4y_0^3y-4z_0^3z=0$（$y_0=1,z_0=\zeta$）、すなわち $y=\zeta^3z$。$F|_{y=\zeta^3z}=x^4+z^4(\zeta^{12}-1)=x^4$（$\zeta^{12}=1$）。$p$ で $x$ が座標なので接触位数 $4$：超変曲点。$\ord$ の集合 $\{0,1,4\}$、gap $\{1,2,5\}$、重み $0+0+2=2$。通常点では接線の接触位数 $2$、$\{0,1,2\}\to$ gap $\{1,2,3\}$。$x=0$ に 4 点、$y=0$ に 4 点、$z=0$（$x^4+y^4=0$）に 4 点の合計 $12$ 点。$z=0$ の点でも同様に接触位数 $4$（検算済）。重みの和 $24=g^3-g$。
+\end{sol}
+\begin{sol}{\ref{p:index}}
+$\mathrm{ind}=d+1-g$。$K^{1/2}$（$d=g-1$）：$0$。$K$（$d=2g-2$）：$g-1$（$=h^0(K)-h^1(K)=g-1$ ✓）。$T_X$（$d=2-2g$）：$3-3g$（$g=0$ で $3$、$g=1$ で $0$、$g=2$ で $-3=-h^1(T)=-(3g-3)$ ✓、$h^0(T)=0$ for $g\ge2$）。
+\end{sol}
+\begin{sol}{\ref{p:landau}}
+$\vartheta_j(z+1)$：項は $\exp(2\pi ik(n+j/k))=e^{2\pi ij}e^{2\pi ikn}=1$ 倍されるので不変。$\vartheta_j(z+\tau)$：項の指数は $\pi ik(n+\tfrac jk)^2\tau+2\pi ik(n+\tfrac jk)(z+\tau)=\pi ik[(n+1+\tfrac jk)^2-1]\tau+2\pi ik(n+\tfrac jk)z$ $=\pi ik(n'+\tfrac jk)^2\tau+2\pi ik(n'+\tfrac jk)z-\pi ik\tau-2\pi ikz$（$n'=n+1$）。よって $\vartheta_j(z+\tau)=e^{-\pi ik\tau-2\pi ikz}\vartheta_j(z)$ ✓。零点の個数：平行四辺形 $P$（頂点 $a,a+1,a+1+\tau,a+\tau$）の境界で $\frac1{2\pi i}\oint\vartheta'/\vartheta\,dz$。左右の辺は周期性で打ち消す。上辺では $\vartheta'/\vartheta(z+\tau)=\vartheta'/\vartheta(z)-2\pi ik$。下辺 $-$ 上辺 $=\int_a^{a+1}2\pi ik\,dz=2\pi ik$ で、$\frac1{2\pi i}\cdot2\pi ik=k$。$k=1$ で零点 1 個。
+\end{sol}
+\begin{sol}{\ref{p:euler1}}
+$\chi(E)=d+r(1-g)$、$\chi(E\otimes T)=(d+r\deg T)+r(1-g)$（$\deg(E\otimes T)=d+r\deg T$）。差 $=-r\deg T=-r(2-2g)=r(2g-2)$。$d$ に依らない。$E=\Oc$（$r=1$）：$g=0,1,2$ で $-2,0,2$。
+\end{sol}
+\begin{sol}{\ref{p:logdr}}
+複体 $K^\bullet=(\Oc\xrightarrow{\ \delta\ }\Oc)$、$\delta f=zf'$（$K(D)\cong\Oc\cdot dz/z$ の枠で $df=zf'\,dz/z$）。層の完全列 $0\to K^1[-1]\to K^\bullet\to K^0\to0$ の長完全列
+\[
+\cdots\to H^k(K^1)\to\mathbb H^k(K^\bullet)\to H^k(K^0)\xrightarrow{\delta}H^k(K^1)\to\cdots
+\]
+で $H^k(\Oc)=(\C,0,0)$、$\delta:H^0(\Oc)=\C\to H^0(\Oc)$ は定数 $\mapsto0$。$\mathbb H^0=\ker\delta=\C$（1）。$\mathbb H^1$：$\mathrm{coker}(\delta_0)=\C$ と $\ker(H^1(\Oc)\to\cdot)=0$ より 1。$\mathbb H^2$：$H^1(K^1)=0$ と $H^2(K^0)=0$ より $0$。よって $(1,1,0)$。Euler 標数 $0=\chi(\C^*)$ ✓。\Cech{} でも同様（2 枚の円板の $\C^*$ の $dz/z$ が $\mathbb H^1$ の生成元）。
+\end{sol}
+
+\section{この巻の理解チェック}\label{sec:check}
+次の 10 問（正誤または短答）に、本文を見ずに答えよ。解答は直後にある。
+\begin{enumerate}
+\item 非定数正則写像 $f:X\to Y$（コンパクト Riemann 面）の局所形は $w=z^e$ である。（正誤）
+\item コンパクト Riemann 面上の有理型関数の零点の個数と極の個数は等しい。この事実は何の定理から出るか。
+\item $\mathrm{Pic}(X)\cong\mathrm{Div}(X)/\mathrm{Princ}(X)$ で、$\deg:\mathrm{Pic}(X)\to\Z$ は $c_1$ の積分に一致する。（正誤）
+\item Riemann--Roch の定理を $h^0,h^1$ と $\deg D,g$ で述べよ。また Serre 双対を使った書き換えを述べよ。
+\item $\deg D>2g-2$ のとき $h^0(\Oc(D))$ はいくつか。$\deg K$ はいくつか。
+\item 種数 $g$ の曲線から $\CP^1$ への次数 $d$ の写像の分岐数（$\deg R$）を $g,d$ で表せ。
+\item $g=1$ のとき、$h^0(\Oc(n\,p))$（$n\ge1$）はいくつか。$p-q\sim0$ となるのはいつか。
+\item $g=2$ の曲線は常に $y^2=f(x)$ の形か。その理由（標準写像）を述べよ。
+\item $\deg D\ge2g+1$ なら $|D|$ は何を与えるか。標準写像 $\varphi_K$ が埋め込みになる必要十分条件は（$g\ge3$）。
+\item Riemann--Roch の $\chi(D)=\deg D+1-g$ は何の指数か。この公式の高次元版と、Kodaira 消滅の 1 次元版を挙げよ。
+\end{enumerate}
+\paragraph{解答。}
+(1) 正（定理 \ref{thm:localform}）。(2) 留数定理（$\Res_p(df/f)=\ord_pf$ を足す）。(3) 正（定理 \ref{thm:pic}、\ref{thm:degc1}）。(4) $h^0(D)-h^1(D)=\deg D+1-g$、$h^1(D)=h^0(K-D)$ より $h^0(D)-h^0(K-D)=\deg D+1-g$。(5) $h^0(D)=\deg D+1-g$（$h^1=0$）、$\deg K=2g-2$。(6) $\deg R=2g-2+2d$。(7) $h^0(np)=n$、$p-q\sim0\iff p=q$。(8) はい。$h^0(K)=2$、$|K|$ は基点なしで $x:X\to\CP^1$ は次数 $2$、関数体の 2 次拡大から $y^2=f(x)$（$\deg f=5,6$）。(9) 射影空間への埋め込み（$\varphi_D:X\hookrightarrow\CP^{\deg D-g}$）。標準写像が埋め込み $\iff$ 超楕円でない。(10) $\bar\partial$ 作用素の指数 $\mathrm{ind}\,\bar\partial_L=h^0-h^1$。高次元版は HRR $\chi(X,E)=\int\ch(E)\Td(X)$。Kodaira 消滅の 1 次元版は $\deg L>0\Rightarrow H^1(X,K\otimes L)=0$（$\deg>2g-2$ で $h^1=0$）。
+
+\section{次巻以降への橋渡しと統合論文との対応}\label{sec:bridge}
+\paragraph{第5巻（Hodge 理論と Kodaira 型定理）へ。}本巻の Serre 双対は $\bar\partial$ の楕円性（余核 $=$ 随伴の核）に依拠していた。第5巻では Hodge の定理（調和形式）、Kähler 恒等式 $[\Lambda,\bar\partial]=-i\partial^*$ を使って、Serre 双対と $H^{p,q}\cong\overline{H^{q,p}}$、Lefschetz 分解を一般次元で示す。1 次元での $\deg L>0\Rightarrow H^1(K\otimes L)=0$（§\ref{sec:embed}）は、Bochner--Kodaira--Nakano の公式による Kodaira 消滅の特別な場合。Kodaira 埋め込み定理（豊富な $L$ の高いべきが非常に豊富）は定理 \ref{thm:kodaira1}(c) の高次元版、Kodaira--Spencer 理論は \S\ref{sec:g012} のモジュライ（$h^1(T_X)=3g-3$）の高次元版。
+\paragraph{第6巻（特性類と HRR）へ。}§\ref{sec:index} の $\chi(L)=\int\ch(L)\Td(X)$ を、Chern 類（splitting principle）と Todd 類から一般次元で証明する。曲面の Noether の公式 $\chi(\Oc)=\frac1{12}(K^2+c_2)$ と Riemann--Roch for surfaces $\chi(L)=\chi(\Oc)+\frac12L(L-K)$ は本巻の $\chi(L)=\chi(\Oc)+\deg L$ の次の階。
+\paragraph{第7--8巻（楕円型作用素と Atiyah--Singer）へ。}本巻の $\bar\partial_L:\mathcal A^0(L)\to\mathcal A^{0,1}(L)$ の指数は \S\ref{sec:index}。第7巻で $\bar\partial_L$ が楕円型、Fredholm、指数が不変であることを証明し、第8巻で $\mathrm{ind}=\int\ch(L)\Td(X)$ を Atiyah--Singer の特別な場合として導く（Dolbeault 作用素、符号定理）。
+\paragraph{第9巻（族の指数定理）へ。}$L\in\Pic^d(X)$ の族 $\bar\partial_L$ の指数束と Jacobi 多様体（\S\ref{sec:abel}）。Grothendieck--Riemann--Roch との関係。
+\paragraph{第11--13巻へ。}1 次元でも $\bar\partial_E$ が「$T^{0,1}$ 上の平坦接続 $=$ $T^{0,1}$-加群」（第2巻）という見方は生きており、第13巻の一般化正則束の Dolbeault 型複体の超コホモロジーの出発点。§\ref{sec:unified} の 1 次元モデル（$\sigma\in H^0(T_X)$ が $D$ で消えるとコホモロジーが跳ぶ）は、第11巻（Poisson 幾何、対数シンプレクティック）の導入としての形式的な類似。
+
+\paragraph{統合論文との対応。}統合論文の §1 の要旨と §3、§4、§10 の一部の記述だけを照合した範囲での対応で、定義の細部や証明は未読のため\tQ。表は「本巻のどの結果が、統合論文のどの主題の 1 次元での類似・前提になるか」を示すもので、統合論文の定理が本巻から従うという意味ではない：
+\begin{center}
+\begin{tabular}{p{0.38\textwidth}p{0.5\textwidth}}
+\toprule
+統合論文の主題 & 本巻で効く箇所\\
+\midrule
+Serre 型の消滅と双対性 & Serre 双対（定理 \ref{thm:serre}）、$H^1(\Oc(D))=0$（$\deg D>2g-2$）、Kodaira 消滅の 1 次元版（定理 \ref{thm:kodaira1}）\\
+全 Euler 標数 $(-1)^n\rk(E)\chi(X)$ が $c_1$ に依らない & 問 \ref{p:euler1}、\S\ref{sec:unified}(1)（$n=1$ の算術）\\
+双対性 $\mathbb H^k(L)^*\cong\mathbb H^{2n-k}(L^\vee\otimes K^2)$ & 項ごとの Serre 双対（\S\ref{sec:unified}(2)）\\
+対数シンプレクティック曲面、Poincaré 多項式と留数 & 対数 de Rham 複体と $\C^*$ の例（\S\ref{sec:unified}(3)、問 \ref{p:logdr}）\\
+Kodaira 型、埋め込み & \S\ref{sec:embed}（$\deg D\ge2g+1$）。ただし統合論文は、$\sigma$ が稠密な開集合で非退化なら一般化正則切断（平坦な切断）の空間は高々 1 次元で、それによる Kodaira 写像は定値になる（命題 79）と述べている。本巻の埋め込みは通常の正則切断によるもので、同じ形では一般化されない\\
+Riemann--Roch 型公式・指数予想 & Riemann--Roch（定理 \ref{thm:rr}）と $\bar\partial$ の指数（\S\ref{sec:index}）。統合論文の指数予想（予想 94）は未証明の予想\\
+正則型（通常の複素構造）との比較 & \S\ref{sec:index}：$\chi$ は位相的、$h^0$ は跳ぶ\\
+\bottomrule
+\end{tabular}
+\end{center}
+注意：古典の $\chi(L)=\deg L+1-g$ が $c_1$ に線形に依存するのに対し、統合論文の全 Euler 標数は $c_1(E)$ に\emph{依らず} $(-1)^n\rk(E)\chi(X)$ である（定理 22）。統合論文自身が、これは古典の Riemann--Roch の一般化にはなっていないと述べている（注意 23）。次数ごとの次元に対する Poincaré 多項式の公式（定理 92）は「RR 型」と呼ばれているが、本巻の Riemann--Roch の拡張として証明されたものではなく、指数定理による統一は未証明の予想（予想 94）である。本巻の結果は、これらを読むための 1 次元の基準点として使う。
+
+\section*{参考文献}
+\addcontentsline{toc}{section}{参考文献}
+\begin{itemize}
+\item O.~Forster, \emph{Lectures on Riemann Surfaces}, GTM 81, Springer, 1981. 第I章（被覆、§1--11）、第II章（コンパクト Riemann 面：§12 コホモロジー、§13 Dolbeault の補題、§14 有限性定理、§15 完全列、§16 Riemann--Roch、§17 Serre 双対、§18 主要部をもつ関数、§20 Abel の定理、§21 Jacobi の逆問題）。本巻の証明の主な出典。節題は出版社・著者の目次で確認した。
+\item R.~Miranda, \emph{Algebraic Curves and Riemann Surfaces}, Graduate Studies in Mathematics 5, AMS, 1995. 第I--III章（基本的な定義、関数と写像、例）、第IV章（積分）、第V章（因子と有理型関数）、第VI章（代数曲線と Riemann--Roch）、第VII章（Riemann--Roch の応用）、第VIII章（Abel の定理）、第IX--XI章（層と \Cech{} コホモロジー、直線束）。章題は出版社の目次で確認。Riemann--Hurwitz や Weierstrass 点が各章のどこにあるかは未確認\tQ。
+\item P.~Griffiths, J.~Harris, \emph{Principles of Algebraic Geometry}, Wiley, 1978. 第0章（層、Dolbeault、有限性）、第2章（曲線：Abel の定理、Jacobi 多様体、Riemann--Roch、Weierstrass 点、標準曲線、Clifford の定理）。
+\item R.~Hartshorne, \emph{Algebraic Geometry}, GTM 52, Springer, 1977. 第III章（層コホモロジー、Serre 双対）、第IV章（曲線：Riemann--Roch、Riemann--Hurwitz、埋め込み、楕円曲線）。
+\item E.~Arbarello, M.~Cornalba, P.~Griffiths, J.~Harris, \emph{Geometry of Algebraic Curves I}, Springer, 1985. （Brill--Noether 理論、Weierstrass 点）章の割り当ては未確認\tQ。
+\item D.~Huybrechts, \emph{Complex Geometry: An Introduction}, Springer, 2005. 第2章、第4章（ベクトル束、Serre 双対）、第5章（Kodaira 消滅、HRR）。章の割り当ては記憶による\tQ。
+\item C.~Voisin, \emph{Hodge Theory and Complex Algebraic Geometry I}, Cambridge, 2002. 第2章、Hodge 分解と Kodaira 消滅に関する章（章番号は未確認\tQ）。
+\item J.~H.~Silverman, \emph{The Arithmetic of Elliptic Curves}, GTM 106, Springer. 第III章（Weierstrass 方程式、群法則）、第VI章（複素数体上の楕円曲線、楕円関数）。
+\item M.~F.~Atiyah, I.~M.~Singer, The index of elliptic operators III, Ann.\ of Math.\ 87 (1968)。（Riemann--Roch の指数定理による再解釈、第8巻）
+\item P.~Deligne, Théorie de Hodge II, Publ.\ Math.\ IHÉS 40 (1971)。（対数 de Rham 複体 $\Omega^\bullet(\log D)$ と $H^\bullet(X\setminus D)$、\S\ref{sec:unified}）\tQ。
+\item 統合論文：\emph{一般化複素幾何の「三種の神器」へのアプローチ：正則 Poisson 構造の例から}（本サイト、PDF 日本語版 v1。本巻の対応づけに使ったのは §1 の要旨、§3 定理 18 と注意 21、§4 定理 22・注意 23、§10 の定理 92・予想 94 の記述のみで、他の部分は読んでいない）。
+\end{itemize}
+
+\section*{付録：本巻の規約と公式の早見表}
+\addcontentsline{toc}{section}{付録：規約と公式の早見表}
+\begin{center}
+\begin{tabular}{p{0.3\textwidth}p{0.6\textwidth}}
+\toprule
+項目 & 内容\\
+\midrule
+因子と次数 & $\Div(X)\ni D=\sum n_pp$、$\deg D=\sum n_p$、$\divv(f)=\sum\ord_p(f)\,p$、$\deg\divv(f)=0$\\
+$L(D)$ & $\{f:\divv f+D\ge0\}=H^0(X,\Oc(D))$、$\ell(D)=h^0(D)$\\
+Riemann--Roch & $h^0(D)-h^0(K-D)=\deg D+1-g$\\
+標準因子 & $\deg K=2g-2$、$h^0(K)=g$、$K_{\CP^1}=\Oc(-2)$、$K_E=\Oc$\\
+Serre 双対 & $H^1(X,L)^*\cong H^0(X,K\otimes L^{-1})$\\
+Riemann--Hurwitz & $2g_X-2=d(2g_Y-2)+\sum(e_p-1)$\\
+超楕円曲線 & $y^2=f(x)$、$\deg f=2g+1,2g+2$、$H^0(K)=\langle x^idx/y\rangle_{i<g}$\\
+平面曲線 & $\deg d$、$g=\binom{d-1}2$、$K=\Oc(d-3)$\\
+埋め込み & $\deg D\ge2g+1$：$\varphi_D$ 埋め込み、$\deg D\ge2g$：基点なし\\
+Weierstrass 点 & gap $g$ 個（$\le2g-1$）、重みの総和 $g^3-g$\\
+指数 & $\mathrm{ind}\,\bar\partial_L=\deg L+1-g=\int\ch(L)\Td(X)$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section*{記号表}
+\addcontentsline{toc}{section}{記号表}
+\begin{longtable}{p{0.2\textwidth}p{0.72\textwidth}}
+\toprule
+記号 & 意味\\
+\midrule
+$X$、$g$ & コンパクト Riemann 面、種数\\
+$K=K_X$ & 標準束（因子類）$=\Omega^1_X$\\
+$\Div,\ \mathrm{Princ},\ \mathrm{Cl},\ \Pic$ & 因子群、主因子の群、因子類群、直線束の群\\
+$\divv(f),\ \ord_p,\ \Res_p$ & 主因子、位数、留数\\
+$\Oc(D),\ L(D)$ & 因子 $D$ の直線束、$H^0(\Oc(D))$\\
+$h^i(D),\ \ell(D),\ \chi(D)$ & $\dim H^i(X,\Oc(D))$、$h^0$、$h^0-h^1$\\
+$e_p,\ R_f,\ \deg f$ & 分岐指数、分岐因子、写像の次数\\
+$\varphi_D,\ |D|$ & $D$ が定める射影写像、完備線形系\\
+$\Jac(X),\ \mu$ & Jacobi 多様体、Abel--Jacobi 写像\\
+$\wp,\ \Lat$ & Weierstrass の $\wp$ 関数、格子\\
+$\bar\partial_L$ & $L$ の Dolbeault 作用素、$\mathrm{ind}=h^0-h^1$\\
+$\C_p$ & $p$ に茎 $\C$ をもつ摩天楼層\\
+\bottomrule
+\end{longtable}
+\end{document}
