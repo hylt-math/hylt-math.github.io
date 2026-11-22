@@ -1,0 +1,98 @@
+
+\section{族と指数束：例から}\label{sec:intro}
+\paragraph{動機。}第7巻で、閉多様体上の楕円型作用素 $P$ は Fredholm で、$\ind P=\dim\Ker P-\dim\Coker P$ は主シンボルのホモトピー類だけで決まることを学んだ。第8巻ではこの整数が位相的な公式で書けることを見た。本巻では、作用素が\emph{パラメータ $b\in B$ に依存して動く}場合を考える。$\dim\Ker$ と $\dim\Coker$ は $b$ とともに跳ぶので、「核のなすベクトル束」は一般には存在しない。しかし差は一定で、しかも\emph{整数よりも細かい情報}、すなわち $K^0(B)$ の元が残る。この節は例だけで動機をつくる。
+
+\subsection{族の定義}
+\begin{defn}[楕円型作用素の族]\label{def:family}
+$\pi:M\to B$ をファイバー束（ファイバー $Z$ は閉多様体、$B$ はコンパクト）、$E,F\to M$ を Hermite ベクトル束とする。\emph{（垂直な）微分作用素の族}とは、$M$ 上の微分作用素 $D:\Gamma(M,E)\to\Gamma(M,F)$ で、$B$ 方向の微分を含まないもの（$[D,\pi^*f]=0$、$f\in C^\infty(B)$）。各 $b$ への制限を $D_b:\Gamma(Z_b,E_b)\to\Gamma(Z_b,F_b)$ と書く。主シンボルは垂直余接束 $T_Z^*M$ 上で定義され、$\sigma(D)(x,\xi)\in\Hom(E_x,F_x)$、$\xi\in T^*_{Z,x}M$。すべての $b$ で $D_b$ が楕円型のとき、$D$ を\emph{楕円型の族}という。
+\end{defn}
+局所自明化 $\pi^{-1}(U)\cong U\times Z$ をとれば、$D_b$ は固定された多様体 $Z$ 上の作用素で、係数が $b$ に滑らかに依存するもの。Sobolev 空間 $H^m\to H^0$ の作用素としてはノルム連続な Fredholm 作用素の族である（第7巻）。したがって $b\mapsto\ind D_b$ は局所定数で、$B$ が連結なら一定。
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth,scale=0.9]
+\draw[thick] (0,0) -- (8,0); \node[right] at (8,0) {$B$};
+\foreach \x in {1,3,5,7}{\draw[blue!60!black,thick] (\x,0.4) ellipse (0.35 and 1.0); \fill (\x,0) circle (1.5pt); \draw[dotted] (\x,0)--(\x,-0.1);}
+\node[above] at (4,2.2) {$M$（各点にファイバー $Z_b$）};
+\draw[->] (4,2.2) -- (4,1.5);
+\node[below,font=\scriptsize] at (1,-0.1) {$D_b$};
+\node[below,font=\scriptsize] at (3,-0.1) {$D_b$};
+\node[above,font=\scriptsize,red!60!black] at (6,1.5) {$\dim\Ker$ が跳ぶ};
+\node[below,font=\scriptsize] at (7,-0.1) {$D_b$};
+\draw[->,thick,green!40!black] (1,-1.1) -- (7,-1.1) node[right,font=\small] {$\ind D\in K(B)$};
+\end{tikzpicture}
+\end{center}
+\subsection{例1：円周上の $d/d\theta-c$}
+$B=\C\ni c$、$M=B\times S^1$、$P_c=\frac d{d\theta}-c$。第7巻のとおり、周期解 $e^{c\theta}$ が存在するのは $c\in i\Z$ のときだけで、$P_c^*=-\frac d{d\theta}-\bar c$ の核も同じ条件で1次元。
+\begin{center}
+\begin{tikzpicture}[scale=0.8,>=Stealth]
+\draw[->] (-0.5,0)--(8.5,0) node[right] {$\mathrm{Im}\,c$};
+\draw[->] (0,-0.3)--(0,2.2);
+\foreach \x/\l in {1/-2,2.5/-1,4/0,5.5/1,7/2}{ \fill (\x,1.4) circle (2pt); \draw[dotted] (\x,0)--(\x,1.4); \node[below,font=\scriptsize] at (\x,0) {$\l i$};}
+\draw (-0.2,1.4)--(8.3,1.4);\node[right,font=\scriptsize] at (8.3,1.4) {$\dim\Ker=1$（点だけ）};
+\foreach \x in {-0.2,0.5}{}
+\draw[thick,blue] (0,0)--(8.3,0); \node[above,blue,font=\scriptsize] at (6.5,0.05) {$\dim\Ker=0$};
+\node[red!60!black,font=\scriptsize,align=left] at (3,2.2) {$\ind P_c=\dim\Ker-\dim\Coker=0$（常に）};
+\end{tikzpicture}
+\end{center}
+核の次元は離散的な点で跳ぶが、指数は $0$。この例は $\Ker P_c=\Coker P_c$ が同時に跳ぶので、指数束は $K^0(\C)=\Z$ の元 $0$ で、新しい情報はない。次の例からが本題である。
+
+\subsection{例2：楕円曲線上の平坦直線束の族}
+\begin{ex}[$\bar\partial+a$ の族]\label{ex:torusfam}\tP\
+$E=\C/(2\pi\Z+2\pi i\Z)$（正方形トーラス、座標 $z=x+iy$）、$a\in\C$ とし、$P_a=\bar\partial+a=\frac12(\partial_x+i\partial_y)+a:C^\infty(E)\to C^\infty(E)$（$(0,1)$ 形式を関数と同一視）。Fourier 基底 $e_k=e^{i(k_xx+k_yy)}$ で
+\[
+P_ae_k=\Bigl(\tfrac i2(k_x+ik_y)+a\Bigr)e_k,\qquad P_a^*e_k=\overline{\bigl(\tfrac i2(k_x+ik_y)+a\bigr)}\,e_k.
+\]
+$P_a$ が非可逆になるのは $a\in\Lambda^\vee:=\tfrac12(\Z+i\Z)$ のときだけで、そのとき核・余核はそれぞれ1次元（ただ1つの $e_k$）。$a$ と $a+\ell$（$\ell\in\Lambda^\vee$）は $e_{k(\ell)}$ 倍のゲージ変換で互いに移りあうので、族は $B=\C/\Lambda^\vee$（トーラス）上の族と見てよい。これは $B=\mathrm{Pic}^0(E)=E^\vee$ 上の、平坦（ユニタリ）直線束 $L_a$ の $\bar\partial$-作用素の族である。
+\end{ex}
+$B=E^\vee$ では、\emph{1点}（$a=0$）でだけ核・余核が1次元に跳ぶ。第3巻・第4巻のとおり $h^0(L_a)=h^1(L_a)=0$（$a\ne0$）、$=1$（$a=0$）。この族の指数束は、\S\ref{sec:Fred} で構成すると
+\[
+\ind(P_a)=[\Oc(-p)]-[\Oc]\in K^0(E^\vee),\qquad \ch=-\theta=-[\mathrm{pt}],\quad c_1=-1
+\]
+（$p=0$ の点、$\theta$ は点類。\S\ref{sec:Fred} 例 \ref{ex:torusindex} と \S\ref{sec:GRR} の GRR で再導出する）。ゼロ次の情報（階数）は $0$ だが、\emph{1次の情報}が $-1$ で、これが消えないことが「跳びの位置」を覚えている。次数 $k\ge1$ の直線束 $L_k$ に平坦接続のパラメータ $(\alpha,\beta)\in T^2$ を付けた族では、$\Ker\bar\partial$ は跳ばずに $k$ 次元の（Landau 準位の）ベクトル束をなし、その $c_1$ は $-1$ である（\S\ref{sec:AS}、数値確認あり。階数 $k$ によらない）。
+
+\subsection{例3：Riemann 面の族 $\bar\partial_L$ と Picard 束}
+$\Sigma$ を種数 $g$ のコンパクト Riemann 面、$\mathrm{Pic}^d(\Sigma)$ を次数 $d$ の正則直線束全体（第4巻の Jacobi 多様体 $\Jac(\Sigma)=\mathrm{Pic}^0$ の平行移動、実次元 $2g$ のトーラス）とする。\textbf{Poincaré 束} $\Pc\to\Sigma\times\mathrm{Pic}^d$ は、$\Pc|_{\Sigma\times\{L\}}\cong L$ をみたす直線束（$\{p_0\}\times\mathrm{Pic}^d$ 上で自明になるよう正規化する）。$B=\mathrm{Pic}^d$、$M=\Sigma\times B$、$D=\bar\partial_{\Pc}$ とすると、各ファイバーで $\Ker=H^0(\Sigma,L)$、$\Coker\cong H^1(\Sigma,L)$、$\ind D_b=d+1-g$（Riemann--Roch、第4巻）。
+\begin{itemize}
+\item $d>2g-2$ なら $h^1(L)=0$ で、$h^0=d+1-g$ は一定。$\Ker$ は階数 $d+1-g$ のベクトル束 $\pi_*\Pc$（\textbf{Picard 束}）をなす。
+\item $0\le d\le2g-2$ では、$h^0$ が跳ぶ（Brill--Noether 軌跡 $W^r_d$ 上）。$\Ker$ は束ではないが指数束は定義できる。（$d<0$ では $h^0=0$ で $h^1=g-1-d$ は一定、跳びはない。）
+\end{itemize}
+\tC\ いずれの場合も（$d<0$ も含め）指数束は $\ch=(d+1-g)-\theta$（$\theta$ は Jacobi 多様体の $\Theta$ 因子の類）で、$c(\ind)=e^{-\theta}$。これは \S\ref{sec:GRR} で GRR から導く（第4巻の\tQ\ 付きの記述 $\ch=(d-g+1)-\theta$ の裏づけになる）。
+
+\subsection{例4：Toeplitz 型の族}
+$H^2=\ell^2(\mathbb N)$ の基底 $e_0,e_1,\dots$、片側シフト $Se_n=e_{n+1}$。$b\in S^2\subset\R^3$ に対し $P_\pm(b)=\frac12(1\pm b\cdot\sigma)$（$\sigma$ は Pauli 行列、$\C^2$ 上の射影）とおき、$H^2\otimes\C^2$ 上の作用素
+\[
+A_b=S\otimes P_+(b)+1\otimes P_-(b)
+\]
+を考える（シンボル $f_b(z)=zP_+(b)+P_-(b)\in U(2)$ の Toeplitz 作用素）。
+\begin{ex}\label{ex:toeplitzS2}\tP\
+$x=\sum e_n\otimes x_n$、$x_n=p_n+q_n$（$p_n\in P_+\C^2$、$q_n\in P_-\C^2$）とすると $A_bx=\sum_n(e_{n+1}\otimes p_n+e_n\otimes q_n)$。したがって $A_b$ は単射で、値域は $\bigl(\bigoplus_{n\ge1}e_n\otimes P_+\C^2\bigr)\oplus\bigl(\bigoplus_{n\ge0}e_n\otimes P_-\C^2\bigr)$（閉）、$\Coker A_b=e_0\otimes P_+(b)\C^2\cong P_+(b)$。核・余核の次元は一定で、$\Coker$ は $S^2$ 上の直線束 $P_+$（$b$ における $b\cdot\sigma$ の固有値 $+1$ の固有直線）。よって
+\[
+\ind A=-[P_+]\in K^0(S^2).
+\]
+$c_1(P_+)=-1$（曲率の積分、問 \ref{p:toeplitz}）なので $\ch(\ind A)=-1+x$（$x\in H^2(S^2;\Z)$ は向きの生成元、$\int x=1$）。
+\end{ex}
+この族は、シンボルの族 $f:S^1\times B\to U(2)$ が $K^1(S^1\times B)\to K^0(B)$ の元を与えるという \emph{Toeplitz 指数写像}（Bott 周期性の一つの形）の例でもある。実は $b\mapsto A_b$ が $[S^2,\Fred]\cong K(S^2)$ の生成元を与える（\S\ref{sec:Fred}）。
+
+\subsection{例5：Weyl 点（$B=\R^3$、自己随伴な族）}
+$H(b)=b\cdot\sigma=\begin{pmatrix}b_3&b_1-ib_2\\b_1+ib_2&-b_3\end{pmatrix}$（$b\in B=\R^3$、有限次元 $\C^2$ 上の自己随伴行列の族）。$H(b)^2=|b|^2$ なので $b\ne0$ で可逆、$b=0$ でだけ $\Ker H(b)=\C^2$ に跳ぶ。$b\neq0$ では固有値 $\pm|b|$ の固有直線の束 $P_\pm$ が定義され、球面 $S^2_\varepsilon=\{|b|=\varepsilon\}$ 上で $P_+$ は問 \ref{p:toeplitz} の束そのもの：$\int_{S^2}c_1(P_+)=-1$。つまり\textbf{核が跳ぶ唯一の点 $b=0$ が、Chern 数 $\mp1$ の「単極子」（Berry 位相の Dirac モノポール）の源になっている}。ここでは $H$ を $\R^3$ 上の族として $K$ 群の元に翻訳することはせず（$b=0$ のまわりの球面上の射影束 $P_+$ を使う）、\emph{射影束 $P_+$ の $c_1$ が、跳びの点の個数（重複度つき）を数える}という事実だけを使う：本巻 例 \ref{ex:localmodel}（\S\ref{sec:Fred}）の「単純零点 $\Rightarrow$ $c_1=\mp1$」の、実 3 次元版である。これは物理で Weyl 点の「トポロジカル電荷」と呼ばれる量で、スペクトル流（\S\ref{sec:Fred}）が $S^1$ 上の族で $0$ を横切る固有値を数えるのと同じ型の位相的カウントである。
+
+\subsection{なぜ $K(B)$ か}
+\begin{keybox}{要点（\S\ref{sec:intro}）}
+\begin{itemize}
+\item 楕円型作用素の族 $D=(D_b)$ に対し、$\dim\Ker D_b$ は上半連続（跳ぶ）、指数 $\ind D_b$ は一定。
+\item 跳びがなければ $\Ker D,\Coker D$ は $B$ 上のベクトル束で、$\ind D:=[\Ker D]-[\Coker D]\in K^0(B)$。跳びがあっても、\emph{安定化}（\S\ref{sec:Fred}）でこの類が定義できる。
+\item 例：トーラスの $\bar\partial+a$（1点で跳び、$c_1=-1$）、Picard 束（$\ch=(d+1-g)-\theta$）、Toeplitz 族（$-[P_+]$）。
+\item 族の指数定理（\S\ref{sec:AS}）は、この $K^0(B)$ の類をシンボルの類と特性類で計算する。
+\end{itemize}
+\end{keybox}
+
+\subsection*{この節の問題}
+\begin{prob}{基本}\label{p:S1jump}
+$b(\theta)=c+\varepsilon\cos\theta$（$c\in\C$、$\varepsilon\in\R$）に対し $P_c=\frac d{d\theta}-b$ の核と、形式的随伴 $P_c^*$ の核を求め、$\dim\Ker$ が跳ぶ $c$ の集合と指数を答えよ。
+\end{prob}
+\begin{prob}{標準}\label{p:torusfam}
+例 \ref{ex:torusfam} で、(a) $\dim\Ker P_a\le1$ を示し、跳ぶ $a$ の集合を求めよ。(b) $\Ker P_a$ と $\Ker P_a^*$ が同じ $e_k$ で張られることを示し、$\ind P_a=0$ を確かめよ。(c) $k=(k_1,k_2)\in\Z^2$ と $\ell=\frac i2(k_1+ik_2)\in\Lambda^\vee$ について、$e_k^{-1}P_ae_k=P_{a+\ell}$（$e_k$ 倍による共役）を示せ。
+\end{prob}
+\begin{prob}{標準}\label{p:toeplitz}
+例 \ref{ex:toeplitzS2} の主張を確かめよ。(a) $A_b$ の値域と余核を求めよ。(b) $P_+(b)$ の単位固有ベクトルを $u=(\cos\frac\theta2,e^{i\varphi}\sin\frac\theta2)$（$b=(\sin\theta\cos\varphi,\sin\theta\sin\varphi,\cos\theta)$）にとり、接続 $\nabla=d+\langle u,du\rangle$ の曲率から $\int_{S^2}c_1(P_+)$ を求めよ（向きは $d\theta\wedge d\varphi$）。(c) $\ch(\ind A)$ を求めよ。
+\end{prob}

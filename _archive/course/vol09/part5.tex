@@ -1,0 +1,109 @@
+
+\section{熱核・超接続・局所族指数定理}\label{sec:heat}
+\S\ref{sec:AS} は指数束の \emph{$K$ 理論的な類}を計算した。この節は、同じ類の Chern 指標を\emph{微分形式のレベル}で、Chern--Weil のように局所的な公式で表す Bismut の理論を述べる。主張と証明の方針が中心で、証明の細部は再現しない。
+
+\subsection{McKean--Singer の公式（再掲）}
+$D=\begin{pmatrix}0&D^-\\D^+&0\end{pmatrix}$（$D^-=(D^+)^*$）を $\Z/2$ 次数つき閉多様体上の自己随伴な楕円型作用素とする。\tC\ （第8巻）$\Ker D^\pm$ は滑らかで有限次元。非零固有値の固有空間は $D^+$ で $S^+\leftrightarrow S^-$ と対応するので、\emph{超トレース}（$\Str=\Tr_+-\Tr_-$）について
+\[
+\ind D^+=\Str\,e^{-tD^2}=\Tr e^{-tD^-D^+}-\Tr e^{-tD^+D^-}\qquad(\text{すべての }t>0).
+\]
+各固有値で $\Tr e^{-tD^-D^+}$ と $\Tr e^{-tD^+D^-}$ の寄与が打ち消すためである。族に拡張すると、$b$ ごとに $\Str e^{-tD_b^2}=\ind D_b$（定数）。これは次元の跳びに依らない。
+\begin{ex}\label{ex:heattorus}\tP\
+平坦トーラス上の $\bar\partial_a=\bar\partial+a$（例 \ref{ex:torusfam}）では、$\bar\partial_a^*\bar\partial_a$ と $\bar\partial_a\bar\partial_a^*$ はともに $e_k$ を固有ベクトルとして固有値 $|\lambda_k|^2$、$\lambda_k=\frac i2(k_x+ik_y)+a$ をもつので、$\Str e^{-tD_a^2}=0$（$a\in\C$ のすべて、$t>0$）。個別のトレース $\Tr e^{-t\bar\partial_a^*\bar\partial_a}=\sum_ke^{-t|\lambda_k|^2}$ は Poisson の和公式で $t\to0$ のとき $\frac{4\pi}t$ に（指数的小さな誤差で）漸近する。$S^1$ 上で $\sum_ne^{-t(n+0.3)^2}=\sqrt{\pi/t}$ を $t=0.05,0.01$ で小数点以下 8 桁まで確認した。
+\end{ex}
+
+\subsection{超接続と Chern 指標形式}
+有限階数の $\Z/2$ 次数つきベクトル束 $\mathcal E=\mathcal E^+\oplus\mathcal E^-\to B$ に対し、\emph{超接続}（Quillen）とは、$\Omega(B;\mathcal E)$ 上の奇数次の1階作用素 $\mathbb A=\nabla+A_0+A_2+\cdots$ で、$\nabla$ は次数を保つ接続、$A_0\in\Gamma(\mathrm{End}^{\rm odd}\mathcal E)$、$A_j\in\Omega^j(B;\mathrm{End}\,\mathcal E)$ のもの。\emph{曲率} $\mathbb A^2$ は $\Omega(B)$-線形で、
+\[
+\ch(\mathbb A)=\Str\,\exp\bigl(-\mathbb A^2\bigr)\quad(\text{のち に }2\pi i\text{ で正規化}:\ \varphi(\omega)=(2\pi i)^{-k}\omega\ \ (\omega\in\Omega^{2k}))
+\]
+は閉形式で、類は $\ch(\mathcal E^+)-\ch(\mathcal E^-)$ に等しい。\tC\ 超接続によらず、変形で $\frac d{dt}\ch(\mathbb A_t)=-d\,\Str\bigl(\tfrac{d\mathbb A_t}{dt}e^{-\mathbb A_t^2}\bigr)$（\emph{Chern--Simons 超越}、完全形式）。
+\src{Quillen, \emph{Superconnections and the Chern character}, Topology 24 (1985) 89--95。BGV, 第1章（超代数、超接続）。}
+\paragraph{パラメータ $t$ をもつ超接続。}$D$ が $\mathcal E$ の奇数次の自己準同型で $\nabla$ と合わせるとき $\mathbb A_t=\nabla+\sqrt t\,D$。$\mathbb A_t^2=tD^2+\sqrt t[\nabla,D]+\nabla^2$。$t\to0$ では $\ch(\mathbb A_t)\to\ch_\nabla(\mathcal E^+)-\ch_\nabla(\mathcal E^-)$（Chern--Weil）。$D$ のランクが一定で $t\to\infty$ とすると、$\ch(\mathbb A_t)\to\ch(\Ker D^+)-\ch(\Ker D^-)$（射影接続）。つまり超接続の $t$ 族は、複体 $[\mathcal E^+\xrightarrow D\mathcal E^-]$ の類を「核の束」の類へ移す。この構造が、無限次元の族 $D$ に拡張される。
+\begin{prop}[Chern--Simons 超越]\label{prop:CS}\tP\ （次の公式を既知として）
+$\mathbb A_t$ を（有限階数の）超接続の滑らかな族とし、$\dot{\mathbb A}_t=\frac d{dt}\mathbb A_t$（奇数次）とする。(a) $\Str e^{-\mathbb A_t^2}$ は閉。(b) $\frac d{dt}\Str e^{-\mathbb A_t^2}=-d\,\Str\bigl(\dot{\mathbb A}_te^{-\mathbb A_t^2}\bigr)$。特に類は $t$ に依らない。
+\end{prop}
+\begin{proof}
+既知の公式（Quillen、\tC）：$X\in\Omega(B;\mathrm{End}\,\mathcal E)$ に対し $d\,\Str X=\Str[\mathbb A,X]$（次数つき交換子）。Bianchi：$[\mathbb A,\mathbb A^2]=0$。(a) $d\Str e^{-\mathbb A^2}=\Str[\mathbb A,e^{-\mathbb A^2}]=0$。(b) $\frac d{dt}\mathbb A^2=[\mathbb A,\dot{\mathbb A}]$。$\mathbb A^2$ と $e^{-\mathbb A^2}$ の可換性とトレースの巡回性から $\frac d{dt}\Str e^{-\mathbb A^2}=-\Str\bigl(\tfrac d{dt}(\mathbb A^2)\,e^{-\mathbb A^2}\bigr)=-\Str\bigl([\mathbb A,\dot{\mathbb A}]e^{-\mathbb A^2}\bigr)=-\Str[\mathbb A,\dot{\mathbb A}e^{-\mathbb A^2}]=-d\Str(\dot{\mathbb A}e^{-\mathbb A^2})$（3 つ目の等号は $[\mathbb A,e^{-\mathbb A^2}]=0$ とグレード Leibniz）。\qedhere
+\end{proof}
+\begin{ex}[階数 $(1,1)$：核の跳びの点に集中する]\label{ex:superconn}\tP\
+$B=\C$、$\mathcal E^\pm=\underline\C$（自明）、$D=\begin{pmatrix}0&\bar f\\f&0\end{pmatrix}$（$f:\C\to\C$ 正則、$f=z$）、$\nabla=d$。$\mathbb A_t=d+\sqrt tD$。$\Z/2$ 次数と微分形式の次数を合わせた符号規約（グレードつきテンソル積）のもとで、$\mathbb A_t^2=t|f|^2+\sqrt tN$、$N=\begin{pmatrix}0&d\bar f\\df&0\end{pmatrix}$ で、$N^2=\mathrm{diag}(-d\bar f\wedge df,\ d\bar f\wedge df)$。したがって
+\[
+\Str\,e^{-\mathbb A_t^2}=e^{-t|f|^2}\cdot\tfrac t2\Str(N^2)=-t\,e^{-t|f|^2}\,d\bar f\wedge df.
+\]
+$f=z$：$d\bar z\wedge dz=2i\,dx\wedge dy$。$\varphi$ を施して $\C$ 上で積分すると
+\[
+\frac1{2\pi i}\int_{\C}-t\,e^{-t|z|^2}\,2i\,dxdy=-\frac{2i\pi}{2\pi i}=-1\qquad(\text{すべての }t>0).
+\]
+（数値積分で $t=0.1,1,10$ とも $-1.0000$。）$t\to\infty$ では $-te^{-t|z|^2}\frac{2i}{2\pi i}dxdy=-\frac t\pi e^{-t|z|^2}dxdy\to-\delta_0$、すなわち $-[\text{点}]$。したがって $\ch(\ind)$ は \emph{核が跳ぶ点 $z=0$ に集中する $-1$ の点類}で、例 \ref{ex:localmodel}（$\ch=-[p]$）と、定理 \ref{thm:Thom} の $\int\ch(\beta)=-1$（Bott 類）と整合する。符号規約（グレードつき）は\tQ\ だが、絶対値 $1$ は規約によらない。
+\end{ex}
+\begin{rem}
+指数束 $-[\Oc_p]$ という \emph{跳びの位置の情報}が、$t\to\infty$ の超接続の Chern 指標形式の極限として見える：$\ch(\mathbb A_t)$ は $t\to\infty$ で $\Ker D$ が跳ぶ集合（ここでは $z=0$）に台をもつカレントに収束する。これは Bismut--Quillen の議論の最も簡単な場合である。
+\end{rem}
+
+\subsection{Bismut 超接続}
+ファイバー束 $\pi:M\to B$ のファイバー $Z$ はスピン、垂直接束 $T_ZM$ に計量 $g_Z$、水平分布 $T_HM\subset TM$ ($T_ZM\oplus T_HM=TM$) を選ぶ。スピノル束 $\mathsf S\to M$、$W\to M$ Hermite ベクトル束（接続つき）。$\mathcal E=\Gamma(Z_b,\mathsf S\otimes W)$（$\Z/2$ 次数つきの無限次元 Hilbert 束）、$\nabla^{\mathcal E}$ を水平持ち上げによる接続（体積の変化の補正つきでユニタリ）、$D_b$ をファイバー Dirac 作用素とする。水平分布の可積分性の障害 $T\in\Omega^2(B;T_ZM)$、$T(U,V)=-P_Z[U^H,V^H]$（垂直成分）。
+\begin{defn}[Bismut 超接続]\label{def:Bismut}\tC\ \tQ\ （係数）
+\[
+B_t=\nabla^{\mathcal E}+\sqrt t\,D-\frac1{4\sqrt t}\,c(T),
+\]
+ここで $c(T)$ は $T$ の Clifford 乗法（形式の次数は2、$\Z/2$ 次数は偶）。$t>0$。
+\end{defn}
+\src{Bismut, \emph{The Atiyah--Singer index theorem for families of Dirac operators: two heat equation proofs}, Invent.\ Math.\ 83 (1986) 91--151。BGV 第10章。係数 $\frac1{4\sqrt t}$ と符号は文献の規約に依る\tQ。}
+$B_t^2=tD^2+\cdots$ は垂直方向の2階楕円型（族）作用素で、$e^{-B_t^2}$ は滑らかな核をもち $\Str\,e^{-B_t^2}$ は $B$ 上の微分形式である。
+\begin{thm}[局所族指数定理（Bismut）]\label{thm:Bismut}\tC\
+(i) $\ch(B_t):=\varphi\Str\,e^{-B_t^2}$ は閉形式で、その類は $t$ に依らず $\ch(\ind D)\in H^{\ev}(B;\R)$ に等しい。
+(ii) \textbf{局所公式}：極限 $t\to0$ が存在し、$B$ 上の形式として
+\[
+\lim_{t\to0}\ch(B_t)=\int_Z\Ahat(R^Z)\,\ch(F^W),
+\]
+ここで $R^Z$ は $(T_ZM,g_Z,T_HM)$ から決まる垂直接束の接続の曲率、$F^W$ は $W$ の曲率（二つとも $\frac i{2\pi}$ で規格化して Chern 根 $x_j$ をとり $\Ahat=\prod\frac{x_j/2}{\sinh(x_j/2)}$）。
+\end{thm}
+\src{Bismut 1986（上掲）、BGV 第9章（指数束）、第10章（族の指数定理、定理 10.23 付近）\tQ{}（定理番号）。}
+(i) と (ii) の組み合わせが定理 \ref{thm:ASfamch} のスピン版 $\ch(\ind D_W)=\int_Z\Ahat(T_ZM)\ch(W)$ を与える。\emph{右辺は $B$ 上の閉形式で、類は計量・水平分布に依らず、$\Ahat(R^Z)$ が Chern--Weil の形式になっている。}
+
+\paragraph{証明の方針。}\tC\ (1) \textbf{熱核の漸近展開}：$e^{-B_t^2}(x,x)$ は $t\to0$ で、形式の次数に応じた $t$ の冪の和で展開できる（BGV 第2章の熱核の理論の族版）。(2) \textbf{項 $-\frac{c(T)}{4\sqrt t}$ の役割}：形式の次数 $k$ を $t^{-k/2}$ でスケールすると、$B_t$ は「$t$ に依らない」極限をもつ形になり、$t\to0$ の発散項が消える。この項がなければ極限は存在しない。(3) \textbf{Getzler の再スケーリング}：Clifford 変数 $c(e_i)$ を $t^{-1/2}$ 倍し、Grassmann 変数と同一視する。$B_t^2$ は調和振動子型の作用素に収束し、Mehler の公式で $\Ahat(R^Z)$ が出る（第8巻の $B=\mathrm{pt}$ の場合の族版）。(4) \textbf{$t\to\infty$ と $K$ 理論の指数束}：(i) の「類が $\ch(\ind D)$」は、$\Ker D$ の次元が一定の場合は $t\to\infty$ で $\ch(\Ker D^+)-\ch(\Ker D^-)$（射影接続）に収束することから、一般の場合は安定化（定理 \ref{thm:indexbundle}）を使った有限次元の議論に帰着することから従う。
+
+\paragraph{超越形式（予告）。}$\Ker D$ の次元が一定なら、$t\in(0,\infty)$ に沿う Chern--Simons 超越 $\int_0^\infty\cdots dt$ により
+\[
+\ch\bigl(\nabla^{\Ker D^+}\bigr)-\ch\bigl(\nabla^{\Ker D^-}\bigr)=\int_Z\Ahat(R^Z)\ch(F^W)+d\widetilde\eta\qquad(\widetilde\eta\ \text{は}\ B\ \text{上の形式}).
+\]
+この \emph{形式の差}（$\widetilde\eta$）が $\eta$ 形式の原型であり、ファイバーに境界がある場合の Bismut--Cheeger の $\eta$ 形式（第10巻）、奇数次元ファイバーの Bismut--Freed の族版 $\eta$ 不変量（BGV 第9章以降、\tQ）につながる。
+
+\paragraph{2 次元の局所計算の感触。}\tC\ 閉曲面 $Z$ 上の Dirac 作用素 $D_E$（$E$ は Hermite 直線束）では、Lichnerowicz の公式（第8巻）$D_E^2=\nabla^*\nabla+\frac{\mathrm{scal}}4+\mathfrak F$、$\mathfrak F=c(e_1)c(e_2)F_{12}$（$F=F_{12}\,dx\wedge dy$、$\mathsf S^\pm$ 上で $c(e_1)c(e_2)=\mp i$）をみたす。熱核の主要項は $e^{-t\nabla^*\nabla}(x,x)\sim\frac1{4\pi t}(1+O(t))$ で、$\mathsf S$ 上でスカラー（恒等）に比例する項は $\Str$ で消える。残るのは $\mathfrak F$ を含む項で、
+\[
+\Str e^{-tD_E^2}(x,x)=\frac1{4\pi t}\bigl(-t\,\Str\mathfrak F\bigr)+O(t)=-\frac1{4\pi}\bigl(-iF_{12}-iF_{12}\bigr)+O(t)=\frac i{2\pi}F_{12}+O(t).
+\]
+$\int_Z$ をとると $\ind D_E=\int_Z\frac i{2\pi}F=\int c_1(E)$（第8巻の 2 次元捻り Dirac 作用素の定理と同じ符号）。$\Ahat$ は 2 次元では $1$ なので Gauss 曲率は寄与しない。4 次元以上では同じ計算に Getzler の再スケーリングが必要になり、族では Grassmann 変数（底の微分形式）も同時にスケールされる。
+
+\subsection{Quillen 計量と determinant line bundle（概念）}
+正則な族 $\pi:M\to B$、正則ベクトル束 $E$（Hermite 計量つき、Kähler ファイバー）に対し、\emph{determinant line bundle}（Knudsen--Mumford）
+\[
+\lambda(E)=\bigotimes_q\bigl(\det R^q\pi_*E\bigr)^{(-1)^q}=\det(\ind D),
+\]
+（跳びがあるときは指数束の $\det$ による定義）。$\lambda(E)$ には、$L^2$ 計量と ファイバーの Laplacian のゼータ正則化行列式 $\prod_q\det(\Delta_q)^{(-1)^qq}$ から決まる\textbf{Quillen 計量}が入る。\tC\ Bismut--Gillet--Soulé：その Chern 接続の曲率は $\ch(\ind)$ の 2 次部分を表す：
+\[
+c_1\bigl(\lambda(E),\|\ \|_Q\bigr)=\Bigl[\int_Z\Td(R^Z)\ch(F^E)\Bigr]_{(2)}.
+\]
+\src{Bismut--Gillet--Soulé, \emph{Analytic torsion and holomorphic determinant bundles I--III}, Comm.\ Math.\ Phys.\ 115 (1988) 49--78, 79--126, 301--351。Quillen, \emph{Determinants of Cauchy--Riemann operators over a Riemann surface}, Funct.\ Anal.\ Appl.\ 19 (1985)。}
+\begin{ex}\label{ex:detline}\tP\ （第3節の局所模型から）
+トーラスの族 $P_a$（$B=E^\vee$）では、$\lambda=\det(\ind P_a)=\det\Ker\otimes\det\Coker^{-1}$ の\emph{双対}が、正準切断 $\det P_a$（注意 \ref{rem:detsection}）をもち、これは $a=0$ に単純零点をもつ。したがって $\lambda^{-1}\cong\Oc(p)$、$c_1(\lambda)=-1$。指数束の $c_1=-\theta$ の次数 $-1$ と一致する。Quillen 計量では $\|\det P_a\|^2_Q=\det_\zeta(P_a^*P_a)$ で、これは（Ray--Singer、Kronecker の第二極限公式）テータ関数の絶対値で書かれる\tQ\ （式は書かない）。
+\end{ex}
+
+\begin{keybox}{要点（\S\ref{sec:heat}）}
+McKean--Singer：$\Str e^{-tD^2}$ は $t$ に依らず指数に等しい。Quillen の超接続 $\mathbb A_t=\nabla+\sqrt tD$：$\ch(\mathbb A_t)$ は閉で類は $[\mathcal E^+]-[\mathcal E^-]$、$t\to\infty$ で核に集中する。Bismut 超接続 $B_t=\nabla+\sqrt tD-\frac{c(T)}{4\sqrt t}$：$\lim_{t\to0}\ch(B_t)=\int_Z\Ahat(R^Z)\ch(F^W)$（局所族指数定理）。証明は Getzler の再スケーリング。Quillen 計量の曲率は $[\int_Z\Td\,\ch]_{(2)}$。
+\end{keybox}
+
+\subsection*{この節の問題}
+\begin{prob}{標準}\label{p:superconn}
+例 \ref{ex:superconn} を自分で計算せよ。(a) $\mathbb A_t^2$ を求め、$\Str e^{-\mathbb A_t^2}$ を求めよ。(b) $\int_{\C}\varphi\Str e^{-\mathbb A_t^2}$ が $t$ に依らないことを示し、値を求めよ。(c) $f=z^2$ のとき値は？（$f$ の零点の重複度と比べよ。）
+\end{prob}
+\begin{prob}{基本}\label{p:heattorus}
+平坦トーラスで $\Str e^{-tD_a^2}=0$ を示し、$\Tr e^{-t\bar\partial_a^*\bar\partial_a}=\sum_ke^{-t|\lambda_k|^2}$ の $t\to0$ の主要項が $4\pi/t$ であることを Poisson の和公式から導け。（$|\lambda_k|^2=\frac14|k-w|^2$、$w=2ia$ の形に注意。）
+\end{prob}
+\begin{prob}{標準}\label{p:detline}
+トーラスの族 $P_a$ で、$\lambda^{-1}=\det(\Coker)\otimes\det(\Ker)^{-1}$ の正準切断 $\det P_a$ が $a=0$ にちょうど 1 位の零点をもつことを局所模型から示し、$\deg\lambda=-1$ を導け。Picard 束（階数 $r=d+1-g$ の $\mathcal E$、$\ch=r-\theta$）の $\det$ の $c_1$ を求めよ。
+\end{prob}
+\begin{prob}{標準}\label{p:CStransg}
+命題 \ref{prop:CS}(b) を、階数 $(1,1)$ の例 \ref{ex:superconn}（$\mathbb A_t=d+\sqrt tD$）で確かめよ：$\dot{\mathbb A}_t=\frac1{2\sqrt t}D$ として $\Str(\dot{\mathbb A}_te^{-\mathbb A_t^2})$ の 1 形式部分を計算し、$-d$ をとると $\frac d{dt}\bigl(-t\,e^{-t|f|^2}d\bar f\wedge df\bigr)$ に一致することを $f=z$ で示せ。
+\end{prob}

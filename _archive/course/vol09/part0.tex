@@ -1,0 +1,86 @@
+\input{pre_course.tex}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{arrows.meta,positioning,calc}
+\fancyhead[L]{\small 第9巻　族の指数定理}
+% --- 本巻の記号 ---
+\newcommand{\Oc}{\mathcal O}
+\newcommand{\CP}{\mathbb{CP}}
+\newcommand{\Ker}{\operatorname{Ker}}
+\newcommand{\Coker}{\operatorname{Coker}}
+\newcommand{\Ran}{\operatorname{Ran}}
+\newcommand{\Ahat}{\widehat{A}}
+\newcommand{\Fred}{\mathrm{Fred}}
+\newcommand{\Str}{\operatorname{Str}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\Jac}{\mathrm{Jac}}
+\newcommand{\Sym}{\operatorname{Sym}}
+\newcommand{\Gr}{\mathrm{Gr}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\Un}{\mathrm{U}}
+\newcommand{\Spin}{\mathrm{Spin}}
+\newcommand{\Cl}{\mathrm{Cl}}
+\newcommand{\ip}[2]{\langle #1,#2\rangle}
+\newcommand{\vol}{\mathrm{vol}}
+\newcommand{\sgn}{\operatorname{sign}}
+\newcommand{\sfl}{\operatorname{SF}}
+\newcommand{\ev}{\mathrm{ev}}
+\newcommand{\Pc}{\mathcal P}
+\newcommand{\TZ}{T_{Z}M}
+\renewcommand{\contentsname}{目次}\renewcommand{\figurename}{図}
+\usepackage{fontspec}\newfontfamily\lmfont{Latin Modern Roman}
+\begin{document}
+\sloppy
+\begin{center}
+{\LARGE\bfseries\sffamily 第9巻　族の指数定理}\\[4pt]
+{\large\sffamily （族と指数束、$K$ 理論と Atiyah--J\"anich の定理、Atiyah--Singer IV、Bismut 超接続、Grothendieck--Riemann--Roch、Gauss--Manin）}\\[8pt]
+{\large 学習コース「一般化幾何への道」}\\[6pt]
+{\large 執筆：Claude\ ／\ 企画：森}\\[3pt]
+2026年11月22日（v1）\\[3pt]
+{\small （外部の査読は受けていない教材。執筆者とは別の AI による独立検査と、可能な範囲の計算（Python：\texttt{fractions}、numpy）での検算は行った。標準的な結果には出典を付け、確認できていない出典・記述は\tQ\ で示す。）}
+\end{center}
+
+\begin{goalbox}{この巻の学習目標}
+\begin{itemize}
+\item \textbf{族と指数束}：ファイバー束 $\pi:M\to B$ と、各ファイバー上の楕円型作用素の族 $D=(D_b)_{b\in B}$ を考える。$\dim\Ker D_b$、$\dim\Coker D_b$ は $b$ とともに\emph{跳ぶ}が、差は一定である。このとき指数は整数ではなく、\textbf{$K^0(B)$ の元（指数束）}になる。$S^1$ 上の $\frac d{d\theta}-b$、トーラス上の $\bar\partial+a$、Riemann 面の Picard 束、Toeplitz 型の族の例で、跳びと指数束を具体的に見る。
+\item \textbf{$K$ 理論}：$K^0(B)$、コンパクト台の $K$ 理論 $K_c$、$K^1$、Chern 指標 $\ch:K(B)\to H^{\ev}(B;\Q)$、Bott 周期性と Thom 同型（主張）、Gysin 写像 $\pi_!$ を、例（$S^2,T^2,\CP^n$）とともに整理する。
+\item \textbf{指数束の構成}：Fredholm 作用素の族 $T:B\to\Fred(H)$ に対し、核・余核の次元が跳ぶ場合を\emph{安定化}（有限次元部分空間 $V$ を足す）で扱い、$\ind T=[K_V]-[V]\in K(B)$ を定義して、整合性を\emph{証明する}。Atiyah--J\"anich の定理（$[B,\Fred]\cong K(B)$）の主張と骨子、スペクトル流と $K^1$。
+\item \textbf{族の指数定理}：Atiyah--Singer IV の主張 $\ind_a=\ind_t:K_c(T^*_ZM)\to K(B)$ とコホモロジー版 $\ch(\ind D)=(-1)^n\pi_*\bigl(\ch(\sigma(D))\Td(T_ZM\otimes\C)\bigr)$（符号・向きの規約を明記し、確信のない部分は\tQ）、証明の方針（埋め込み、Thom 同型、Bott 周期性）、特殊化（Dolbeault、Dirac、de Rham）。
+\item \textbf{局所族指数定理}：熱核と McKean--Singer、Quillen の超接続、\textbf{Bismut 超接続} $B_t=\nabla+\sqrt tD-\frac1{4\sqrt t}c(T)$、$\lim_{t\to0}\ch(B_t)=\int_Z\Ahat(R^Z)\ch(E)$ の主張と証明の方針（Getzler の再スケーリング）。階数 $(1,1)$ の例で、指数束の Chern 指標形式が核の跳びの点に集中する様子を計算する。
+\item \textbf{応用}：Dolbeault 作用素の族は \textbf{Grothendieck--Riemann--Roch} $\ch(\pi_!E)=\pi_*(\ch(E)\Td(T_\pi))$ そのもの。$\CP^1$-束の直像（Lagrange の恒等式で検算）、Picard 束 $\ch=(d+1-g)-\theta$、Gauss--Manin 接続とコホモロジー束（Legendre 族の Picard--Fuchs 方程式とモノドロミー）、determinant line bundle と Quillen 計量（概念）、第10巻の族版 $\eta$ 形式への予告。
+\item \textbf{統合論文との対応}：統合論文 \S8 の「正則型」（葉がシンプレクティック、ファイバー束、Gauss--Manin 束 $V^j$）と、「対数シンプレクティック型」の比較。各次数の次元が $m$ の多項式になること、「全 Euler 標数は $m$ によらない」こと、葉空間との関係を、族・直像・指数の言葉で述べる。\emph{統合論文の主張は過大に書かない}（指数予想は予想のまま）。
+\end{itemize}
+\end{goalbox}
+\begin{goalbox}{前提と記法}
+第8巻（Atiyah--Singer の指数定理、Dirac 作用素、$K$ 理論の入口）、第7巻（楕円型作用素、Fredholm 指数）、第6巻（Chern 指標、Todd 類、HRR）、第3巻（層、直像 $R^q\pi_*$、超コホモロジー）を既知とする。\emph{必要な定義と主張は本巻で再掲する}（特に \S\ref{sec:K}、\S\ref{sec:AS}）。\\
+$B$ は\textbf{コンパクト Hausdorff 空間}（多くの場合は閉多様体）、$\pi:M\to B$ は\textbf{ファイバー束}（滑らかな固有な沈め込み、ファイバー $Z_b=\pi^{-1}(b)$ は閉多様体、$n=\dim_{\R}Z_b$）。$T_ZM=\Ker d\pi$（垂直接束）、$T_Z^*M$（垂直余接束）。$E,F\to M$ は Hermite ベクトル束。\\
+\textbf{規約（第1・6・8巻と同じ）。}$c_1=\frac i{2\pi}F$、Chern 根 $x_i$、$\ch=\sum e^{x_i}$、$\Td=\prod\frac{x_i}{1-e^{-x_i}}$、$\Ahat=\prod\frac{x_i/2}{\sinh(x_i/2)}$（したがって $\Td(X)=\Ahat(X)e^{c_1(X)/2}$）。主シンボルは $\sigma_m(P)(x,\xi)=\sum a_\alpha(x)(i\xi)^\alpha$（$i$ を含める）。Clifford 代数は $v^2=-|v|^2$。ファイバー積分 $\pi_*:H^k(M)\to H^{k-n}(B)$ は\emph{ファイバーの向き}を使う（複素ファイバーでは複素構造の向き）。層のコホモロジー・直像は第3巻に従い、$\pi_!E=\sum_i(-1)^iR^i\pi_*E$。\\
+\tC\ は標準的な結果（出典を併記）、\tP\ は本文で証明したもの、\tQ\ は記憶に基づく・未確認の箇所を表す。\textbf{族の指数定理、Bott 周期性、Atiyah--J\"anich、Bismut の局所定理、GRR の証明は本巻では再現しない}（\tC\ ）。再現するのは、指数束の構成と整合性、各特殊化の計算、階数 $(1,1)$ の超接続の計算、直像・Gauss--Manin・統合論文の例の検算である。
+\end{goalbox}
+\setcounter{tocdepth}{2}\tableofcontents
+\newpage
+\section*{この巻の読み方}
+\addcontentsline{toc}{section}{この巻の読み方}
+\begin{itemize}
+\item \textbf{最短ルート}：\S\ref{sec:intro}（例）$\to$ \S\ref{sec:K}（$K$ 理論の復習）$\to$ \S\ref{sec:Fred}（指数束の構成）$\to$ \S\ref{sec:AS}（定理の主張）$\to$ \S\ref{sec:GRR}（GRR）。
+\item \textbf{位相寄りに読む人}：\S\ref{sec:K}、\S\ref{sec:Fred}（Atiyah--J\"anich、スペクトル流）、\S\ref{sec:AS} の証明の方針。
+\item \textbf{解析寄りに読む人}：\S\ref{sec:heat}（熱核、超接続、Bismut）。
+\item \textbf{代数幾何寄りに読む人}：\S\ref{sec:GRR}（GRR、Picard 束、Gauss--Manin）。
+\item \textbf{統合論文に進む人}：\S\ref{sec:unified} と \S\ref{sec:bridge}。
+\item 主張と証明の区別：\tC\ \tP\ \tQ\ のタグを各所に付けた。問題は各節末に置き、全問の解答は巻末にある。検算した項目は巻末の付録に一覧する。
+\end{itemize}
+\begin{center}
+\begin{tikzpicture}[node distance=5mm,font=\small,>=Stealth,every node/.style={draw,rounded corners=2pt,inner sep=3pt,fill=blue!4,align=center}]
+\node (in) {族と指数束\\[-1pt]{\scriptsize \S1 例}};
+\node[right=of in] (k) {$K$ 理論\\[-1pt]{\scriptsize \S2}};
+\node[right=of k] (fr) {指数束の構成\\[-1pt]{\scriptsize \S3 Fredholm 族}};
+\node[right=of fr,fill=orange!12] (as) {族の指数定理\\[-1pt]{\scriptsize \S4 Atiyah--Singer IV}};
+\node[below=7mm of k,fill=green!6] (heat) {熱核・Bismut 超接続\\[-1pt]{\scriptsize \S5 局所族指数}};
+\node[right=of heat,fill=green!6] (grr) {GRR・Gauss--Manin\\[-1pt]{\scriptsize \S6}};
+\node[right=of grr,fill=orange!10] (uni) {統合論文との対応\\[-1pt]{\scriptsize \S7}};
+\draw[->] (in)--(k); \draw[->] (k)--(fr); \draw[->] (fr)--(as);
+\draw[->] (as.south)--++(0,-2mm)-|(heat.north);
+\draw[->] (heat)--(grr); \draw[->] (grr)--(uni);
+\end{tikzpicture}
+\end{center}

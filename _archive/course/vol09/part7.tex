@@ -1,0 +1,91 @@
+
+\section{統合論文との対応：正則型（Gauss--Manin）と対数シンプレクティック型}\label{sec:unified}
+統合論文（\texttt{generalized-geometry-poisson-unified}、v1）の \S8（正則型）、\S10（Riemann--Roch 型の公式と指数予想）を、族・直像・指数の言葉で読み直す。
+\begin{rem}[この節の注意]\label{rem:caution}
+(1) 統合論文は査読を受けていない研究ノートで、本節で引く主張のうち、定理 67（正則型の $\mathrm{HH}^*$）は論文自身が\tQ\ を付けている（二重複体の $E_2$ の同定が概略）。(2) 統合論文の $\mathrm{HH}^k(E)$ は、Poisson 加群の複体 $(\wedge^\bullet T\otimes E,\ d_E=[\sigma,\cdot]+V\wedge)$ の超コホモロジーである（$\bar\partial$ や $d_\sigma$ の複体ではない）。(3) 論文は族の指数定理を使っていない。本節の「指数・族」の言葉は\emph{解釈と類比}であり、論文の結果の証明ではない。(4) 指数予想（予想 94）は予想のままである。
+\end{rem}
+
+\subsection{正則型：平坦なシンプレクティックファイバー束}
+論文の設定 (S)：$X$ をコンパクト複素多様体、$\Gamma=\pi_1(X)$、$(Y,\omega_Y)$ をコンパクト連結なシンプレクティック多様体、$\rho:\Gamma\to\mathrm{Symp}(Y)$、$M=(Y\times\widetilde X)/\Gamma$。射影 $\pi:M\to X$ は\emph{ファイバー束}（ファイバー $Y$）で、\textbf{葉はファイバー $Y_x$、葉空間は $X$}。$E=\pi^*G$（$G$ は $X$ 上の正則直線束、論文の SGH 束）。
+\begin{thm}[論文の定理 67（要約）]\label{thm:HH67}
+（(S) と (HL)：$Y$ が hard Lefschetz をみたす、のもとで。論文は\tQ\ とする。）$V^j=R^j\pi_*\underline\C$ を $H^j(Y)$ を係数とする平坦束（Gauss--Manin）とすると
+\[
+\mathrm{HH}^k(M,E)\cong\bigoplus_{a+b+j=k}H^a\bigl(X,\ \wedge^bT_X\otimes V^j\otimes G\bigr).
+\]
+\end{thm}
+\paragraph{族の言葉での読み方。}(i) \textbf{葉方向の de Rham 複体}は、各ファイバー $Y_x$ 上の楕円複体の族（$\pi$ に沿う de Rham 族、\S\ref{sec:special}(c)）で、そのコホモロジー層が Gauss--Manin 束 $V^j$ である。ファイバーがコンパクトなので $\dim H^j(Y_x)=b_j(Y)$ は\emph{跳ばない}（Hodge 理論）。これが「正則型」で核の次元が一定で、指数束が $\sum(-1)^j[V^j]$ という\emph{平坦な}仮想束になる理由である。(ii) \textbf{Leray スペクトル系列}の $E_2$ 項は $H^a(X,R^j\pi_*\underline\C\otimes\cdots)$ で、定理 \ref{thm:HH67} の右辺と同じ形である。退化（$d_r=0$、$r\ge2$）は、論文では Deligne の補題と hard Lefschetz による（Deligne, Publ.\ Math.\ IH\'ES 35：滑らかな射影的射の Leray の退化と同じ機構）。(iii) 横断方向は $X$ 上の Dolbeault（係数 $\wedge^bT_X\otimes V^j\otimes G$）。
+
+\subsection{全 Euler 標数が $m$ に依らないこと}
+$E=\pi^*G^m$（$G$ の $m$ 乗）とする。
+\begin{prop}\label{prop:EulerMfam}\tP\ \tC\ （定理 \ref{thm:HH67} を仮定して）
+$\displaystyle\sum_k(-1)^k\dim\mathrm{HH}^k(M,E)=\chi(Y)\cdot(-1)^{\dim X}\chi(X)$、$m$ に依らない。
+\end{prop}
+\begin{proof}
+$\sum_j(-1)^jb_j(Y)=\chi(Y)$（$\ch(V^j)=b_j$ は平坦束なので階数のみ）。残りは $\sum_b(-1)^b\chi(X,\wedge^bT_X\otimes G^m)=(-1)^n\chi_{\rm top}(X)$（第6巻の統合論文との対応の節、HRR と $\prod(1-e^{x_i})\frac{x_i}{1-e^{-x_i}}=\prod(-x_ie^{x_i})$、$c_n$ が最高次を使い切る）。
+\end{proof}
+族の言葉では：「葉方向 de Rham 族の指数束 $\sum(-1)^j[V^j]$ の $\ch$ は $\chi(Y)\in H^0(X)$（高次は $0$）」を使い、$X$ 上で $\wedge^\bullet T_X\otimes G^m$ の Dolbeault 族の Euler 標数を HRR（$B=\mathrm{pt}$ の指数定理）で計算した結果である。\emph{ここで族の指数定理が効くのは「平坦な指数束の $\ch$ は階数だけ」という自明な形だけ}で、GRR の非自明な部分は使われない。$m$ に依らないのは、$\ch(G^m)$ の高次が $c_n(T_X)$ に掛かって落ちるためである（第6巻の同節の注意）。
+
+\subsection{各次数の次元は $m$ の多項式（系 68）}
+$X$ が射影的、$G$ が豊富で、$m\ge m_0$ なら Serre 消滅で $H^a(X,\wedge^bT_X\otimes V^j\otimes G^m)=0$（$a>0$）、
+\[
+\dim\mathrm{HH}^k(M,E^m)=\sum_{b+j=k}b_j(Y)\int_X\ch(\wedge^bT_X)\,e^{m\,c_1(G)}\Td(X).
+\]
+これは $m$ の多項式（次数 $\dim X$、先頭係数 $\sum_{b+j=k}b_j(Y)\binom{n}{b}\frac{\int c_1(G)^n}{n!}$）。族の言葉では、$X$ から点への「族」（$B=\mathrm{pt}$）の HRR $\chi(X,W\otimes G^m)$（$W=\wedge^bT_X\otimes V^j$ を階数 $\binom nb b_j$ の束と見る）。
+\begin{ex}[論文の例 72 の検算と、系 68 による $\CP^2$ の計算]\label{ex:poly}\tP\
+$X=\CP^1$、$G=\Oc(m)$、$m\ge-1$：$H^0(\Oc(m))=m+1$、$H^0(T\otimes\Oc(m))=m+3$。$P_{\mathrm{HH}}(t)=P_Y(t)\,\bigl((m+1)+(m+3)t\bigr)$。$Y=S^2$：$P_Y=1+t^2$ で $m=0,1,3$ について $(1,3,1,3),(2,4,2,4),(4,6,4,6)$、Euler 標数 $-4=\chi(S^2)\cdot(-1)\cdot\chi(\CP^1)$。$Y=T^2$：$P_Y=(1+t)^2$ で $(m+1,3m+5,3m+7,m+3)$（$m=-1,\dots,7$ で恒等的に確認）、Euler 標数 $0$。いずれも $m$ の1次式。
+$X=\CP^2$、$G=\Oc(m)$（論文の例ではなく、系 68 を使った本巻の計算。$m\ge0$ で $H^{>0}$ は消える）：$h^0(\wedge^bT(m))=\binom{m+2}2,\ 3\binom{m+3}2-\binom{m+2}2,\ \binom{m+5}2$（$b=0,1,2$、$m\ge0$）。$m=1,2,3$、$Y=S^2$：$P=(3,15,18,15,15),(6,24,27,24,21),(10,35,38,35,28)$、Euler $6=2\cdot3$。$Y=T^2$：$(3,21,48,45,15),(6,36,75,66,21),(10,55,108,91,28)$、Euler $0$。いずれも $\chi(Y)\chi(\CP^2)$ に一致（付録）。
+\end{ex}
+
+\subsection{対数シンプレクティック型との比較}
+$X$ を $\sigma$ が対数シンプレクティックな多様体（例：$\CP^2$、$D$ は滑らかな3次曲線）とすると、$\sigma$ は $U=X\setminus D$ で非退化、$D$ 上で退化する。シンプレクティック葉は\emph{開葉 $U$} と、$D$ の（点の）葉。論文 \S10.2：
+\begin{itemize}
+\item \textbf{（A）正則型}：次数ごとの次元は、$m\ge m_0$（$X$ 射影的、$G$ 豊富）で $m$ の多項式。
+\item \textbf{（B）対数シンプレクティック型}：留数 $r=-m/3$ の整数性による\emph{周期的な跳び}。$\CP^2$、滑らかな3次曲線で、$m\ge-3$ のとき $m\in3\Z_{\ge0}$ なら $(1,0,2,0,0)$、それ以外は $(0,0,3,0,0)$（論文の例 37、【計算で確認】とされる。本巻では再計算していない）。
+\item \textbf{（C）全 Euler 標数}：どちらでも $m$ に依らない（$\chi(Y)\chi(X)(-1)^n$、あるいは $\chi(\CP^2)=3$）。
+\end{itemize}
+後者の Euler 標数は、$(1,0,2,0,0)$ で $1+2=3$、$(0,0,3,0,0)$ で $3$。
+\paragraph{族・指数の言葉での類比（解釈であり、定理ではない）。}
+\begin{enumerate}
+\item \textbf{跳びの機構が同じ形。}\S\ref{sec:intro} のトーラスの族 $\bar\partial+a$ では、$\bar\partial_a$ が非可逆になるのは、直線束 $L_a$ の指標（ホロノミー）が自明になる点 $a\in\Lambda^\vee$ で、核・余核が1次元に跳ぶ。指数は一定（$0$）。対数シンプレクティック型でも、$H^*(U;\mathbb L_U)$（$\mathbb L_U$ は $D$ のまわりのモノドロミー $e^{2\pi ir}$ をもつ階数1局所系）の次元は $e^{2\pi ir}=1$（$r\in\Z$）のとき跳び、$\chi(U;\mathbb L_U)=\chi(U)$ は跳ばない。\emph{「指標が自明になる点で個別の次元が跳び、Euler 標数（指数）は一定」}という構造は、局所系の指標多様体を底とする族での指数束と同じ形である。
+\item \textbf{葉空間。}正則型の葉空間は $X$（Hausdorff な複素多様体）で、Gauss--Manin 束 $V^j$ は $X$ 上の平坦束として定まり、族の指数・GRR・Hodge 理論が使える（論文 定理 83 の「葉空間版 Kodaira」も $X$ 上の話）。対数シンプレクティック型では、開葉 $U$ が稠密で葉空間は非 Hausdorff（1点 $+$ 近傍の点たち）になり、「底」$B$ としての $X$ が存在しない。Gauss--Manin 束の代わりに、構成可能層（$j_!\mathbb L_U\to Rj_*\mathbb L_U$、留数で選ぶ）が現れる。論文 §8.5 の表の対応（「葉方向 de Rham $\leftrightarrow$ $H^j(U;\mathbb L_U)$」「Gauss--Manin $\leftrightarrow$ $e^{2\pi ir}$ のモノドロミー」）はこの事実の言い換えである。
+\item \textbf{Legendre 族との比較。}\S\ref{sec:GRR} の Legendre 族では、特異ファイバー $\lambda=0$ のまわりのモノドロミーが冪単行列 $\begin{pmatrix}1&2\\0&1\end{pmatrix}$（Picard--Lefschetz）で、$\lambda$ を動かしたときに Gauss--Manin 束が非自明に捩れる。対数シンプレクティック型の $e^{2\pi ir}$（スカラー、階数1）は、その最も簡単な（半単純な）版。
+\item \textbf{指数予想との関係。}論文の予想 94 (I2)--(I3) は、$D_L$ を重み（留数）つき Sobolev 空間で Fredholm とみなしたときの指数が $(-1)^n\chi(X)$ で、$r\in\Z$ を横切るときの $j_!$ 型と $Rj_*$ 型の閉拡大の差が境界のコホモロジーの部分商、というもの。重みパラメータ $r$ を動かす族と見たとき、$r\in\Z$ は\emph{非 Fredholm な壁}で、壁越えは \S\ref{sec:Fred} のスペクトル流・第10巻の APS 型に対応する。これらは論文でも\textbf{予想}（未証明）であり、本巻は「どの言葉で考えるべきか」を示すにとどまる。
+\end{enumerate}
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{>{\raggedright\arraybackslash}p{3.1cm}>{\raggedright\arraybackslash}p{5.4cm}>{\raggedright\arraybackslash}p{5.9cm}}
+\toprule
+ & 正則型（論文 \S8） & 対数シンプレクティック型（\S5--\S10）\\
+\midrule
+葉 & コンパクトなファイバー $Y_x$ & 開葉 $U$（稠密）と $D$ の点\\
+葉空間 & $X$（Hausdorff） & 非 Hausdorff\\
+葉方向コホモロジー & $V^j=H^j(Y)$（Gauss--Manin、平坦） & $H^j(U;\mathbb L_U)$、モノドロミー $e^{2\pi ir}$\\
+各次数の次元 & $m\ge m_0$ で $m$ の多項式（系 68） & 周期的に跳ぶ（例 37）\\
+全 Euler 標数 & $\chi(Y)(-1)^n\chi(X)$、$m$ に依らず & $(-1)^n\chi(X)$、$m$ に依らず\\
+族・指数の言葉 & 葉方向 de Rham 族の平坦な指数束 $\sum(-1)^j[V^j]$ & 重みつき Fredholm（予想 94）、スペクトル流（予想）\\
+\bottomrule
+\end{tabular}
+\end{center}
+\begin{keybox}{要点（\S\ref{sec:unified}）}
+正則型は「ファイバー束 $M\to X$ の葉方向 de Rham 族」で、核の次元は一定、指数束は平坦な $\sum(-1)^j[V^j]$、各次数の次元は HRR で $m$ の多項式、全 Euler 標数は $\chi(Y)(-1)^n\chi(X)$。対数シンプレクティック型では底（葉空間）が Hausdorff でなく、局所系の指標が自明になる $r\in\Z$ で次元が跳び、Euler 標数は不変。論文は族の指数定理を使っておらず、指数予想は未証明。本節の対応は解釈である。
+\end{keybox}
+
+\subsection*{この節の問題}
+\begin{prob}{基本}\label{p:Y1}
+$X=\CP^1$、$G=\Oc(m)$、$Y=S^2,T^2$ について $P_{\mathrm{HH}}(t)=P_Y(t)\bigl((m+1)+(m+3)t\bigr)$ を $m=0,2$ で書き下し、Euler 標数を求めて $\chi(Y)(-1)^1\chi(\CP^1)$ と比べよ。$Y=T^2$ で係数が $(m+1,3m+5,3m+7,m+3)$ になることを示せ。
+\end{prob}
+\begin{prob}{標準}\label{p:Y2}
+$X=\CP^2$、$G=\Oc(m)$、$Y=S^2$ で $m=1,2$ の $P_{\mathrm{HH}}(t)$ を求めよ。$\chi(\wedge^bT(m))$ は Euler 完全列 $0\to\Oc(m)\to\Oc(m+1)^3\to T(m)\to0$、$\wedge^2T=\Oc(3)$ を使え。Euler 標数 $=\chi(Y)\chi(\CP^2)=6$ を確かめよ。
+\end{prob}
+\begin{prob}{標準}\label{p:Y3}
+系 68 の公式で、$\dim\mathrm{HH}^k$ の $m$ についての次数と先頭係数を求めよ。$X=\CP^1$、$Y=T^2$、$k=1$ で先頭係数 $3$ を確かめ、$\sum_{b+j=k}b_j\binom nb\int c_1(G)^n/n!$ と一致することを示せ。
+\end{prob}
+\begin{prob}{標準}\label{p:Y4}
+(a) 対数シンプレクティック型 $\CP^2$、滑らかな3次曲線 $D$ で、$m=0,3,6$ なら $(1,0,2,0,0)$、$m=1,2,4,5$ なら $(0,0,3,0,0)$ という報告（論文の例 37）について、各場合の Euler 標数を計算し、$\chi(\CP^2)=3$ と照合せよ。(b) これは $m$ の多項式で書けるか。理由を述べよ。
+\end{prob}
+\begin{prob}{発展}\label{p:Y5}
+トーラスの族 $\bar\partial+a$ の核が跳ぶ点の集合 $\Lambda^\vee$ と、階数1の局所系 $\mathbb L_\chi$（$\chi\in\C^*$）の $H^*(\C^*;\mathbb L_\chi)$ が $\chi=1$ でのみ非零になる事実を並べ、(i) どちらの場合も「跳ぶ点を除くと次元が一定」「Euler 標数は一定」であること、(ii) 違い（前者は指数束 $=-[\Oc_p]$ が非自明な $K$ 類を与える）を、$H^*(\C^*;\mathbb L_\chi)$ の次元（$\chi=1$：$1,1$、$\chi\ne1$：$0,0$）を計算して述べよ。
+\end{prob}
+\begin{prob}{標準}\label{p:Y6}
+$X=\CP^1\times\CP^1$、$G=\Oc(1,1)$、$G^m=\Oc(m,m)$、$Y=S^2$ で、$\chi(\wedge^bT_X\otimes G^m)$（$b=0,1,2$）を $T_X=\Oc(2,0)\oplus\Oc(0,2)$ から求め、$m=1$ で $P_{\mathrm{HH}}(t)$ と Euler 標数 $=\chi(S^2)\chi(X)=8$ を確かめよ。$\sum_b(-1)^b\chi(\wedge^bT_X\otimes G^m)=4=\chi(X)$ が $m$ に依らないことも示せ。
+\end{prob}

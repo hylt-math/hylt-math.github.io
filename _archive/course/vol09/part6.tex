@@ -1,0 +1,120 @@
+
+\section{Grothendieck--Riemann--Roch、Gauss--Manin、Picard 束}\label{sec:GRR}
+\subsection{直像と GRR}
+第3巻の直像 $R^q\pi_*E$（前層 $V\mapsto H^q(\pi^{-1}V,E)$ の層化）と、第6巻の HRR を族に拡張したものが GRR である。$\pi:M\to B$ を固有な正則沈め込み（$B$ はコンパクト複素多様体、$E$ は正則ベクトル束）とする。
+\begin{thm}[GRR]\label{thm:GRR}\tC\
+$\pi_!E:=\sum_q(-1)^q[R^q\pi_*E]\in K(B)$ に対し $\ch(\pi_!E)=\pi_*\bigl(\ch(E)\,\Td(T_\pi)\bigr)$。$B=\mathrm{pt}$ で HRR（第6巻）。
+\end{thm}
+$h^q(Z_b,E_b)$ が定数なら、$R^q\pi_*E$ は局所自由でファイバーは $H^q(Z_b,E_b)$（Grauert）。一般には $B$ の各点の近傍で、有限階数の自由加群の複体 $K^0\to K^1\to\cdots\to K^N$ で $R^q\pi_*E$ をコホモロジーにもち、任意の底変換 $B'\to B$ で $H^q(Z_{b'},E_{b'})$ を与えるものがある（Hartshorne III \S12、Mumford の複体）。\emph{これは \S\ref{sec:Fred} の安定化 $K_V\to V$ の代数版そのもの}で、$\pi_!E=\sum(-1)^i[K^i]$ が指数束である。
+
+\paragraph{Grauert の定理と指数束の対応。}
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{>{\raggedright\arraybackslash}p{5.2cm}>{\raggedright\arraybackslash}p{8.8cm}}
+\toprule
+正則（代数）側 & 解析（Fredholm）側\\
+\midrule
+$h^q(Z_b,E_b)$ は上半連続 & $\dim\Ker D_b$ は上半連続\\
+$\chi(Z_b,E_b)$ は定数 & $\ind D_b$ は定数\\
+$h^q$ が定数なら $R^q\pi_*E$ は局所自由 & 核・余核の次元が定数なら束（問 \ref{p:kerbundle}）\\
+有限自由加群の複体 $K^\bullet$ で $R^q\pi_*$ を計算 & 許容部分空間 $V$、$K_V\to V$（定理 \ref{thm:indexbundle}）\\
+$\pi_!E=\sum(-1)^i[K^i]\in K(B)$ & $\ind D=[K_V]-[V]\in K(B)$\\
+\bottomrule
+\end{tabular}
+\end{center}
+この対応で、定理 \ref{thm:dolbfam} は「同じ有限次元近似の2つの記述」である。
+
+\paragraph{GRR の証明の方針（Grothendieck）。}\tC\ $\pi$ が射影的なら、$\pi$ は閉埋め込み $i:M\hookrightarrow\CP^N\times B$ と射影 $p:\CP^N\times B\to B$ の合成。(1) $p$ の場合：$p_!\Oc(k)=H^*(\CP^N,\Oc(k))\otimes\Oc_B$（自明束）で、$\ch$ は $\chi(\CP^N,\Oc(k))=\int e^{kh}\Td(\CP^N)$ に等しく、GRR は Künneth（と $\CP^N$ 上の HRR）に帰着。(2) $i$ の場合：$\ch(i_!x)=i_*\bigl(\ch(x)\Td(N_i)^{-1}\bigr)$（\S\ref{sec:Bott} の閉埋め込みの Gysin 公式。$x=\Oc_M$ なら Koszul 分解と $\ch$ の計算）。(3) 合成：$\Td(T_\pi)=\Td(T_{\CP^N\times B/B})|_M\cdot\Td(N_i)^{-1}$。これは $0\to T_\pi\to T_{p}|_M\to N_i\to0$ から。(1)(2)(3) を合わせて $\ch(\pi_!E)=p_*\bigl(i_*(\ch(E)\Td(N_i)^{-1})\Td(T_p)\bigr)=\pi_*(\ch(E)\Td(T_\pi))$。\S\ref{sec:AS} の位相的指数（埋め込み $+$ Thom $+$ Bott）と同じ構造で、法束の Todd 類の逆数が現れる点も同じである。
+
+\subsection{例1：射影束 $\CP(V)\to B$ の直像}
+$V\to B$ をランク $r$ のベクトル束、$\pi:\CP(V)\to B$（$V$ の直線の空間）、$\Oc(-1)\subset\pi^*V$ を tautological 部分束、$h=c_1(\Oc(1))$、$V$ の Chern 根を $a_1,\dots,a_r$ とする。$\ch$ の乗法性と Euler 完全列 $0\to\Oc\to\pi^*V\otimes\Oc(1)\to T_\pi\to0$ から
+\[
+\Td(T_\pi)=\prod_{j=1}^r\frac{a_j+h}{1-e^{-(a_j+h)}},\qquad\prod_j(h+a_j)=0.
+\]
+ファイバー積分は $\pi_*\bigl(f(h)\bigr)=\sum_i f(-a_i)\Big/\prod_{j\ne i}(a_j-a_i)$（$\pi_*h^m=0$（$m<r-1$）、$\pi_*h^{r-1}=1$、一般に $\pi_*h^m$ は $-a_i$ の完全斉次対称式、\tC\ Fulton, 第3章の Segre 類）。$f=e^{kh}\Td(T_\pi)$ を入れると、$j=i$ の因子は $h=-a_i$ で $\frac00\to1$ で、
+\[
+\ch(\pi_!\Oc(k))=\sum_{i=1}^re^{-ka_i}\prod_{j\ne i}\frac1{1-e^{-(a_j-a_i)}}.
+\]
+\begin{prop}\label{prop:Pbundle}\tP\ \tC\
+$x_i=e^{-a_i}$（$V^\vee$ の $\ch$ の根）とおくと、右辺 $=\sum_ix_i^k\prod_{j\ne i}(1-x_j/x_i)^{-1}$ は、$k\ge0$ で $h_k(x)$（完全斉次対称式 $=\ch\,\Sym^kV^\vee$）、$-r<k<0$ で $0$、$k\le-r$ で $(-1)^{r-1}(x_1\cdots x_r)^{-1}h_{-k-r}(x^{-1})$（$=(-1)^{r-1}\ch(\det V\otimes\Sym^{-k-r}V)$）。すなわち（Lagrange 補間の恒等式）
+\[
+\begin{aligned}
+&\pi_*\Oc(k)=\Sym^kV^\vee\quad(k\ge0),\qquad\pi_!\Oc(k)=0\quad(-r<k<0),\\
+&\pi_!\Oc(k)=(-1)^{r-1}\,\det V\otimes\Sym^{-k-r}V\quad(k\le-r)
+\end{aligned}
+\]
+\end{prop}
+\begin{proof}
+$k\ge0$：$h_k(x)=\sum_ix_i^{k+r-1}/\prod_{j\ne i}(x_i-x_j)$（Lagrange の公式）。$x_i^k\prod_{j\ne i}(1-x_j/x_i)^{-1}=x_i^{k+r-1}/\prod_{j\ne i}(x_i-x_j)$ と一致。$-r<k<0$：同じ和が $0$（次数 $k+r-1<r-1$ のとき）。$k\le-r$：$x\mapsto x^{-1}$ で同様の変形。数値確認：$r=2,3,4$、$k=-9,\dots,7$、ランダムな $a_i$ で相対誤差 $2.7\times10^{-12}$ 以下（付録）。
+\end{proof}
+最後の項は相対 Serre 双対（$\omega_\pi=\Oc(-r)\otimes\pi^*\det V^\vee$）と整合する：$R^{r-1}\pi_*\Oc(k)\cong\bigl(\pi_*(\Oc(-k)\otimes\omega_\pi)\bigr)^\vee=\bigl(\Sym^{-k-r}V^\vee\otimes\det V^\vee\bigr)^\vee$。$r=2$、$k=-2$：$\pi_!\Oc(-2)=-\det V$（$\det V$ は $h^1$ の束）。
+\begin{ex}[Hirzebruch 曲面]\label{ex:Hirz}\tP\
+$B=\CP^1$、$V=\Oc\oplus\Oc(n)$、$F_n=\CP(V)\to\CP^1$。$\chi(F_n,\Oc(k))=\chi(\CP^1,\pi_!\Oc(k))$（Leray、第3巻）、$\pi_*\Oc(k)=\Sym^kV^\vee=\bigoplus_{i=0}^k\Oc(-ni)$ なので $\chi=\sum_{i=0}^k(1-ni)$：$n=2$、$k=0,\dots,4$ で $1,0,-3,-8,-15$。
+\end{ex}
+
+\subsection{例2：Picard 束}\label{sec:Picard}
+$C$ を種数 $g$ の曲線、$J=\mathrm{Pic}^d(C)$ とし、Poincaré 束 $\Pc\to C\times J$ を $\{p_0\}\times J$ で自明に正規化する。$\eta\in H^2(C)$（点類）、$\theta\in H^2(J)$（$\Theta$ の類）とすると、\tC\ （ACGH 第I巻、Poincaré 束と Picard 束の章\tQ{}）
+\[
+c_1(\Pc)=d\eta+\gamma,\quad\gamma\in H^1(C)\otimes H^1(J),\quad\gamma^2=-2\eta\theta,\quad\gamma\eta=0,\ \gamma^3=0.
+\]
+GRR：$\Td(T_C)=1+(1-g)\eta$（$T_C$ の次数 $2-2g$）。$\ch(\Pc)\Td=e^{d\eta}(1+\gamma-\eta\theta)(1+(1-g)\eta)$ の $\eta$ の係数（$C$ に沿う積分）は $d+(1-g)-\theta$。
+\begin{thm}\label{thm:Picard}\tP\ （関係式 $\gamma^2=-2\eta\theta$ を既知として）
+$\ch(\pi_!\Pc)=(d+1-g)-\theta$、$c(\pi_!\Pc)=e^{-\theta}$。
+\end{thm}
+\begin{proof}
+前半は上の計算。後半：$\log c=\sum_{k\ge1}(-1)^{k-1}(k-1)!\,\ch_k$ で、$\ch_k=0$（$k\ge2$）、$\ch_1=-\theta$ から $\log c=-\theta$。
+\end{proof}
+外積代数で $H^*(C\times J)$ を実装し（$H^*(C)$ の基底 $1,\alpha_i,\beta_i,\eta$ と $\Lambda^*(a_i,b_i)$、グレードつきの積）、$\gamma^2=-2\eta\theta$ と $\ch$ の $\eta$ 係数が $(d+1-g)-\theta$ であることを $g=1,2,3$、$d=-2,0,1,3,2g$ で確認した（付録）。$g=1$、$d=0$：$-\theta$（例 \ref{ex:torusindex} と一致、$\Pc$ の Mukai の変換 $R\pi_*\Pc=\Oc_0[-1]$\tQ\ と整合）。
+\paragraph{帰結。}\tC\ (i) $d>2g-2$ なら $\mathcal E_d=\pi_*\Pc$ は階数 $d+1-g$ の束で $c(\mathcal E_d)=e^{-\theta}$、$c_k=(-1)^k\theta^k/k!$。(ii) $\int_C\iota^*\theta=g$（Abel--Jacobi 像 $[C]=\theta^{g-1}/(g-1)!$、$\theta^g=g!$ より $\theta\cdot[C]=g$）から、Abel--Jacobi 曲線に制限した Picard 束の次数は $-g$（問 \ref{p:AJdeg}、$C\times C$ 上の GRR でも $2-2g+d_0-(d_0+2-g)=-g$ で一致することを確認）。(iii) Poincaré の公式 $[W_d]=\theta^{g-d}/(g-d)!$ はこの $c=e^{-\theta}$ から（Porteous の公式で）従う\tC\ （導出は本巻では行わない）。
+\begin{ex}\label{ex:g2}\tP\
+$g=2$、$d=3$：階数 $2$、$\ch=2-\theta$、$c_1=-\theta$、$c_2=\theta^2/2=1$（$\theta^2=2$）。$d=1$：$\ch=0-\theta$、階数 $0$ の指数束。$h^0(L)>0$ となるのは $L=\Oc(p)$（Brill--Noether 軌跡 $W_1=\Theta\cong C$）で、核が跳ぶのは $\Theta$ 上。
+\end{ex}
+
+\subsection{例3：楕円曲線の族と Hodge 束}
+$\pi:S\to B$ を（滑らかな固有な）楕円曲線の族、$\lambda=\pi_*\Omega^1_{S/B}$（Hodge 束）。$T_\pi=\pi^*\lambda^{-1}$。GRR で $\ch(\pi_!\Oc)=\pi_*\Td(T_\pi)$、右辺は $B$ からの引き戻しのファイバー積分で $0$。左辺は $1-\ch(R^1\pi_*\Oc)=1-e^{-c_1(\lambda)}$（Serre 双対 $R^1\pi_*\Oc\cong\lambda^{-1}$）。ゆえに $c_1(\lambda)=0$（有理係数）。（問 \ref{p:Hodgedeg}。）特異ファイバーがあるときは $\pi$ が滑らかでなく、$\deg\lambda=\chi(\Oc_S)=e(S)/12$（楕円曲面。K3：$24/12=2$）\tC\ （Barth--Hulek--Peters--Van de Ven, 第V章）。
+
+\subsection{Gauss--Manin 接続とコホモロジー束}
+$\pi:M\to B$ をファイバー束（Ehresmann：固有な沈め込みは局所自明）とする。\tC\
+\begin{itemize}
+\item $R^q\pi_*\underline\C$ は \emph{局所系}で、ファイバーが $H^q(Z_b;\C)$。対応する平坦ベクトル束 $\mathcal H^q=R^q\pi_*\underline\C\otimes_{\underline\C}C^\infty_B$ の平坦接続を \textbf{Gauss--Manin 接続} $\nabla^{GM}$ という（モノドロミー表現 $\pi_1(B)\to\GL(H^q(Z))$）。
+\item $\pi$ が正則で Kähler ファイバーなら、$\mathcal H^q\otimes\Oc_B$ は正則束で $\nabla^{GM}$ は正則平坦接続（Katz--Oda）、Hodge 部分束 $F^p\mathcal H^q$ があり $\mathrm{gr}^p_F\mathcal H^{p+q}\cong R^q\pi_*\Omega^p_{M/B}$、Griffiths 横断性 $\nabla^{GM}F^p\subset F^{p-1}\otimes\Omega^1_B$。
+\end{itemize}
+\paragraph{指数束の言葉。}de Rham の族（\S\ref{sec:special}(c)）の指数束 $\sum(-1)^q[\mathcal H^q]$ は平坦で $\ch=\chi(Z)$。Dolbeault の族で $\Omega^p$ 係数にした指数束 $\pi_!\Omega^p_{M/B}=\sum_q(-1)^q[\mathrm{gr}^p_F\mathcal H^{p+q}]$。GRR で
+\[
+\sum_{p,q}(-1)^{p+q}\ch(R^q\pi_*\Omega^p)=\pi_*\Bigl(\prod_{j=1}^n(1-e^{-x_j})\cdot\prod_j\frac{x_j}{1-e^{-x_j}}\Bigr)=\pi_*c_n(T_\pi)=\chi(Z).
+\]
+左辺は $\ch(\sum(-1)^{p+q}[\mathrm{gr}^p_F\mathcal H^{p+q}])=\ch(\sum(-1)^k[\mathcal H^k])$（濾過の次数づけは $\ch$ を変えない）。したがって、\emph{GRR は Gauss--Manin 束の平坦性の Chern 指標への帰結と整合し、de Rham 族の指数定理は Chern--Gauss--Bonnet}（第6巻）に帰着する。
+\begin{ex}[Legendre 族]\label{ex:Legendre}\tP\ \tC\
+$y^2=x(x-1)(x-\lambda)$、$B=\CP^1\setminus\{0,1,\infty\}$。周期 $\omega(\lambda)=\int_\gamma\frac{dx}y$（$\gamma$ は $H_1$ の平坦切断、$\frac{dx}y$ は正則 1 形式）は Picard--Fuchs 方程式 $\lambda(1-\lambda)\omega''+(1-2\lambda)\omega'-\frac14\omega=0$ をみたす。解の一つは $_2F_1(\frac12,\frac12;1;\lambda)=\sum_n\bigl(\frac{(1/2)_n}{n!}\bigr)^2\lambda^n$。この級数が方程式をみたすことを $\lambda^{37}$ まで有理数で厳密に確認した（付録）。モノドロミー（基底の取り方による）：$M_0=\begin{pmatrix}1&2\\0&1\end{pmatrix}$（$\lambda=0$）、$M_1=\begin{pmatrix}1&0\\-2&1\end{pmatrix}$（$\lambda=1$）、$M_\infty=(M_0M_1)^{-1}$（$\lambda=\infty$）。$M_0M_1=\begin{pmatrix}-3&2\\-2&1\end{pmatrix}$、跡 $-2$ で $-1$ 倍の冪単行列と共役（$I_2^*$ 型）。$M_0M_1M_\infty=1$。
+\end{ex}
+\src{Katz--Oda, \emph{On the differentiation of de Rham cohomology classes with respect to parameters}, J.\ Math.\ Kyoto Univ.\ 8 (1968)。Voisin, \emph{Hodge Theory and Complex Algebraic Geometry I}, 第9--10章（変分）\tQ{}。Legendre 族のモノドロミー：行列の取り方は規約に依る\tQ。}
+
+\subsection{族版 APS・$\eta$ 形式への予告（第10巻）}
+\tC\ ファイバーが境界つき（$\partial Z\ne\emptyset$）の族では、局所公式に境界項 $\widetilde\eta$（Bismut--Cheeger の $\eta$ 形式）が付き、$\ch(\ind D)=\int_Z\Ahat\ch-\widetilde\eta+\cdots$ の形になる。奇数次元閉ファイバーの族では $\ind\in K^1(B)$、$\eta$ 不変量の族版が現れ、スペクトル流（\S\ref{sec:Fred}）と結びつく。詳細は第10巻（APS、$b$-計算）。\tQ\ 係数と符号は原典で確認する。
+
+\begin{keybox}{要点（\S\ref{sec:GRR}）}
+GRR $\ch(\pi_!E)=\pi_*(\ch(E)\Td(T_\pi))$。$\CP(V)\to B$：$\pi_!\Oc(k)=\Sym^kV^\vee$（$k\ge0$）、$0$（$-r<k<0$）、$(-1)^{r-1}\det V\otimes\Sym^{-k-r}V$（$k\le-r$）。Picard 束：$\ch=(d+1-g)-\theta$、$c=e^{-\theta}$。Gauss--Manin：ファイバーのコホモロジーは平坦束、Hodge 部分束の $\mathrm{gr}$ が $R^q\pi_*\Omega^p$。
+\end{keybox}
+
+\subsection*{この節の問題}
+\begin{prob}{基本}\label{p:Pbundle1}
+$r=2$ の命題 \ref{prop:Pbundle} を、$x_1,x_2$ で直接計算せよ：$k=-1$ で $0$、$k=-2$ で $-1/(x_1x_2)$、$k=3$ で $x_1^3+x_1^2x_2+x_1x_2^2+x_2^3$。$k=-2$ の結果が $R^1\pi_*\Oc(-2)=\det V$ と相対 Serre 双対から一致することを述べよ。
+\end{prob}
+\begin{prob}{標準}\label{p:Lagrange}
+$r=3$ で $\sum_ix_i^k\prod_{j\ne i}(1-x_j/x_i)^{-1}=h_k(x_1,x_2,x_3)$（$k=0,1,2$）を、通分して手計算または数値で確かめよ（$x=(2,3,5)$ など）。
+\end{prob}
+\begin{prob}{標準}\label{p:Hirz}
+$F_n=\CP(\Oc\oplus\Oc(n))$（$n=1,2$）について、$\chi(F_n,\Oc(k))=\sum_{i=0}^k(1-ni)$ を $k=0,\dots,4$ で表にし、$F_1$（$\CP^2$ の 1 点ブローアップ）で $\Oc(1)$ の $\chi$ が $1$ であることを、$h^0(\CP^1,\Oc\oplus\Oc(-1))=1$ から確かめよ。
+\end{prob}
+\begin{prob}{標準}\label{p:Legendre}
+(a) $\omega=\sum c_n\lambda^n$、$c_n=\bigl(\frac{(1/2)_n}{n!}\bigr)^2$ が Picard--Fuchs 方程式をみたすための係数の漸化式 $(n+1)^2c_{n+1}=(n+\frac12)^2c_n$ を導け。(b) $M_0,M_1$ から $M_\infty$ を計算し、跡と行列式を求めよ。
+\end{prob}
+\begin{prob}{標準}\label{p:Hodgedeg}
+滑らかな楕円曲線の族で $\lambda=\pi_*\Omega^1_{S/B}$ とすると $c_1(\lambda)=0$（有理係数）であることを GRR から示せ（本文の議論を詳しく書け）。K3 の楕円ファイブレーション（特異ファイバー $24$ 個、各 $e=1$ の結節型）で $\deg\lambda=2$ と $12\deg\lambda=24$ を照合せよ。
+\end{prob}
+\begin{prob}{標準}\label{p:derhamGRR}
+$\prod_j(1-e^{-x_j})\cdot\prod_j\frac{x_j}{1-e^{-x_j}}=\prod x_j=c_n$ を確認し、Gauss--Manin 束 $\mathcal H^k$ が平坦ゆえ $\ch(\mathcal H^k)=\dim H^k$ であることから、$\sum(-1)^k\ch(\mathcal H^k)=\chi(Z)$ が $\pi_*c_n(T_\pi)=\chi(Z)$ と整合することを述べよ。
+\end{prob}
+\begin{prob}{標準}\label{p:Picardg}
+$g=2,3$ の Picard 束（$d>2g-2$）の $\ch$、$c_1,c_2$ を求め、$\int_J c_g(\mathcal E)$（$=(-1)^g$）を計算せよ。$g=3$、$d=5$ で階数 $3$、$c_3=-\theta^3/6=-1$ を確かめよ。
+\end{prob}

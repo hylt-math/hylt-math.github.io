@@ -1,0 +1,110 @@
+
+%==========================================================================
+\section{この巻の理解チェック（自己診断 10 問）}\label{sec:check}
+正誤（○／×）または短答で答えよ。解答は各問の直後。
+\begin{enumerate}
+\item 楕円型作用素の族 $D_b$ では、$\dim\Ker D_b$ は $b$ について一定である。\\
+\textbf{解答。}×。上半連続で跳びうる（例：$\frac d{d\theta}-c$、$c\in i\Z$）。指数 $\dim\Ker-\dim\Coker$ が一定。
+\item 族の指数 $\ind D$ はどの群の元か。\\
+\textbf{解答。}$K^0(B)$（偶数次元・次数つき）、自己随伴型・奇数次元では $K^1(B)$。
+\item 核・余核が跳ぶ族の指数束は、どのように定義するか。\\
+\textbf{解答。}許容部分空間 $V$（$\Ran T_b+V=H_1$）をとり $[T^{-1}(V)]-[V]$（安定化）。$V$ に依らない。
+\item Atiyah--J\"anich の定理は何を主張するか。\\
+\textbf{解答。}$\ind:[B,\Fred]\to K(B)$ が全単射（$B$ コンパクト）。$\Fred\simeq\Z\times BU$。
+\item 族の指数定理 $\ind_a=\ind_t$ の位相的指数は、どの3段階で構成されるか。\\
+\textbf{解答。}ファイバー束の埋め込み、Thom 同型 $K_c(T^*_ZM)\to K_c(B\times\C^N)$、Bott 周期性の逆。
+\item Dolbeault 作用素の族の $\ch(\ind D)$ の公式は何と呼ばれるか。\\
+\textbf{解答。}Grothendieck--Riemann--Roch $\ch(\pi_!E)=\pi_*(\ch(E)\Td(T_\pi))$。
+\item $\ch(\Pc$ の Picard 束 $)$（$d>2g-2$）は。\\
+\textbf{解答。}$(d+1-g)-\theta$、$c=e^{-\theta}$。
+\item Bismut 超接続の極限 $\lim_{t\to0}\ch(B_t)$ は何か。\\
+\textbf{解答。}$\int_Z\Ahat(R^Z)\ch(F^W)$（局所族指数定理）。
+\item de Rham の族（閉ファイバー）の指数束の $\ch$ は何か。\\
+\textbf{解答。}$\chi(Z)\in H^0(B)$（Gauss--Manin により平坦なので階数だけ）。
+\item 統合論文は族の指数定理を用いて正則型の $\mathrm{HH}^*$ を計算したか。\\
+\textbf{解答。}×。用いていない。Leray と Lefschetz（定理 67）、HRR を用いる。指数予想（予想 94）は予想のまま。
+\end{enumerate}
+
+%==========================================================================
+\section{次巻への橋渡しと統合論文との対応}\label{sec:bridge}
+\paragraph{第10巻（APS・$b$-計算）へ。}本巻の\emph{スペクトル流}（\S\ref{sec:Fred}）は、APS の指数定理で $\frac\partial{\partial t}+D_t$ の指数として現れる。族版では、ファイバーが境界をもつと局所指数形式に Bismut--Cheeger の $\eta$ 形式が加わり（\S\ref{sec:GRR} 末）、非コンパクト・境界つきでは Fredholm 性が壊れる（第7巻）ので、$b$-計算・Lie 構造つき無限遠が必要になる。
+\paragraph{第11〜13巻へ。}Lie 亜代数・Poisson 加群・一般化正則束の複体 $(\wedge^\bullet T\otimes E,d_E)$ の超コホモロジー $\mathrm{HH}^*$ が、本巻の語彙（直像、Leray、Gauss--Manin）でどう読めるかは \S\ref{sec:unified} に述べた。
+\paragraph{統合論文との対応（まとめ）。}
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{>{\raggedright\arraybackslash}p{4.8cm}>{\raggedright\arraybackslash}p{9cm}}
+\toprule
+統合論文 & 本巻の語彙\\
+\midrule
+\S4 定理 22（全 Euler 標数） & 指数の不変性。HRR（$B=\mathrm{pt}$ の指数定理）。\\
+\S8 設定 (S)、定理 67 & ファイバー束 $M\to X$、葉方向 de Rham 族、Gauss--Manin 束 $V^j$、Leray の退化（Deligne）。\\
+\S8 系 68（次数別多項式） & HRR（$\chi(X,W\otimes G^m)$）、Serre 消滅。\\
+\S8.5、\S10.2（跳び・周期的） & 局所系の指標が自明になる点での次元の跳びと指数の不変性（\S\ref{sec:intro} のトーラスの族と同じ構造）。\\
+\S10.4 予想 94（指数予想） & 重みつき Fredholm 性、スペクトル流・APS・$b$-計算（第10巻）。\textbf{予想のまま}。\\
+\bottomrule
+\end{tabular}
+\end{center}
+過大に書かないための確認：(1) 論文は族の指数定理を用いていない。(2) 定理 67 は論文自身が\tQ\ とする部分を含む。(3) 例 37（$\CP^2$、3次曲線）の数値は本巻では再計算していない（論文の記述）。(4) 本巻が検算したのは、正則型の例（例 72）の数値、系 68 を使った $\CP^2$、$\CP^1\times\CP^1$ の数値（論文の例ではなく本巻独自の計算）と Euler 標数の整合性、および一般の族の指数・GRR・Gauss--Manin の例である。
+
+%==========================================================================
+\section*{参考文献}
+\addcontentsline{toc}{section}{参考文献}
+\begin{itemize}
+\item M.~F.~Atiyah, I.~M.~Singer, \emph{The index of elliptic operators IV}, Ann.\ of Math.\ 93 (1971) 119--138。節構成と定理番号は\tQ（査読者も原典を確認できていない）。
+\item M.~F.~Atiyah, \emph{$K$-theory}, Benjamin, 1967。第1--2章（$K$ 理論、Chern 指標）、付録（Fredholm 作用素）。
+\item M.~F.~Atiyah, \emph{Bott periodicity and the index of elliptic operators}, Quart.\ J.\ Math.\ Oxford 19 (1968)。
+\item M.~F.~Atiyah, F.~Hirzebruch, \emph{Riemann--Roch theorems for differentiable manifolds}, Bull.\ AMS 65 (1959)。
+\item M.~F.~Atiyah, V.~K.~Patodi, I.~M.~Singer, \emph{Spectral asymmetry and Riemannian geometry III}, Math.\ Proc.\ Camb.\ Phil.\ Soc.\ 79 (1976)（スペクトル流）。
+\item M.~F.~Atiyah, I.~M.~Singer, \emph{Index theory for skew-adjoint Fredholm operators}, Publ.\ Math.\ IH\'ES 37 (1969)。
+\item K.~J\"anich, \emph{Vektorraumb\"undel und der Raum der Fredholm-Operatoren}, Math.\ Ann.\ 161 (1965)。
+\item N.~Kuiper, \emph{The homotopy type of the unitary group of Hilbert space}, Topology 3 (1965)。
+\item N.~Berline, E.~Getzler, M.~Vergne, \emph{Heat Kernels and Dirac Operators}, Springer。第9章（The Index Bundle）、第10章（The Family Index Theorem）（章題は出版社の目次で確認、定理番号は書かない）。
+\item J.-M.~Bismut, \emph{The Atiyah--Singer index theorem for families of Dirac operators: two heat equation proofs}, Invent.\ Math.\ 83 (1986) 91--151\tQ{}（頁）。
+\item D.~Quillen, \emph{Superconnections and the Chern character}, Topology 24 (1985)；\emph{Determinants of Cauchy--Riemann operators over a Riemann surface}, Funct.\ Anal.\ Appl.\ 19 (1985)。
+\item J.-M.~Bismut, H.~Gillet, C.~Soul\'e, \emph{Analytic torsion and holomorphic determinant bundles I--III}, Comm.\ Math.\ Phys.\ 115 (1988)。
+\item A.~Borel, J.-P.~Serre, \emph{Le th\'eor\`eme de Riemann--Roch}, Bull.\ SMF 86 (1958)。W.~Fulton, \emph{Intersection Theory}, 第15章。R.~Hartshorne, \emph{Algebraic Geometry}, III \S12、付録 A。
+\item E.~Arbarello, M.~Cornalba, P.~Griffiths, J.~Harris, \emph{Geometry of Algebraic Curves I}, Springer（Poincaré 束・Picard 束・Poincaré の公式の章\tQ{}）。
+\item W.~Barth, K.~Hulek, C.~Peters, A.~Van de Ven, \emph{Compact Complex Surfaces}, 第V章（楕円曲面）。
+\item N.~Katz, T.~Oda, \emph{On the differentiation of de Rham cohomology classes with respect to parameters}, J.\ Math.\ Kyoto Univ.\ 8 (1968)。C.~Voisin, \emph{Hodge Theory and Complex Algebraic Geometry I, II}。
+\item H.~B.~Lawson, M.-L.~Michelsohn, \emph{Spin Geometry}, 第III章。J.~Roe, \emph{Elliptic Operators, Topology and Asymptotic Methods}。
+\item P.~Deligne, \emph{Th\'eor\`eme de Lefschetz et crit\`eres de d\'eg\'en\'erescence de suites spectrales}, Publ.\ Math.\ IH\'ES 35 (1968)。
+\item 統合論文：\texttt{generalized-geometry-poisson-unified}（v1）\S4、\S8、\S10。
+\end{itemize}
+
+\section*{記号表}
+\addcontentsline{toc}{section}{記号表}
+\begin{tabular}{lp{11cm}}
+$\pi:M\to B$、$Z_b$ & ファイバー束、ファイバー\\
+$T_ZM$、$T^*_ZM$ & 垂直接束、垂直余接束\\
+$D=(D_b)$、$\sigma(D)$ & 楕円型作用素の族、主シンボル\\
+$K(B)=K^0(B)$、$K_c$、$K^1$ & $K$ 理論、コンパクト台、奇数次\\
+$\ind D\in K(B)$ & 指数束\\
+$\Fred(H)$ & Fredholm 作用素の空間\\
+$\sfl$ & スペクトル流\\
+$\pi_!$、$\pi_*$ & $K$ 理論の直像（Gysin）または $\sum(-1)^iR^i\pi_*$、ファイバー積分\\
+$\Pc$、$\theta$ & Poincaré 束、$\Theta$ 因子の類\\
+$\mathbb A_t$、$B_t$ & Quillen 超接続、Bismut 超接続\\
+$\Str$、$\varphi$ & 超トレース、$(2\pi i)^{-k}$ による正規化\\
+$\Ahat$、$\Td$ & $\Ahat$ 類、Todd 類\\
+$V^j=R^j\pi_*\underline\C$ & Gauss--Manin 束（局所系）\\
+$\mathrm{HH}^k(E)$ & 一般化 Dolbeault コホモロジー（統合論文）\\
+$\lambda(E)$ & determinant line bundle\\
+\end{tabular}
+
+\section*{付録：検算した項目}
+\addcontentsline{toc}{section}{付録：検算した項目}
+Python（numpy と標準ライブラリ。sympy は使えない）で検算した。スクリプトは \texttt{vol09/verify9.py}、\texttt{chk\_landau.py}、\texttt{chk\_poincare.py}（執筆者）と、査読者による別実装 \texttt{verify9\_review.py}（Landau 族の符号の較正、スペクトル流、Toeplitz、Hirzebruch 曲面と $\CP^n$ の $\chi$、Legendre、階数 $(1,1)$ の超接続をグレードつきテンソル積の符号規則まで明示して実装、Lagrange 恒等式を有理数で厳密に）。
+\begin{itemize}
+\item $S^1$ 上の $\frac d{d\theta}-(c+1.5\cos\theta)$：Fourier 行列（$|n|\le60$）の最小特異値は $c=0$：$2\times10^{-16}$、$c=2i$：$10^{-16}$、$c=3i$：$3\times10^{-16}$、$c=0.5$：$0.122$、$c=0.3+i$：$0.066$。
+\item スペクトル流：$-i\frac d{d\theta}+t$ で $+1$、$-i\frac d{d\theta}-t$ で $-1$（固有値 $|n|\le5$、$2001$ 分割）。
+\item Landau 準位の族：$k=1,2,3$ で準周期性の残差 $\le10^{-13}$、格子法（$14\times14$）のプラケット位相の和 $/2\pi$ は $1.0000$（$k=1,2,3$）。$c_1$ はその符号を反転したもの（$S^2$ 上の $P_+$ で較正）で、$c_1=-1$（$(\alpha,\beta)$ の向き、GRR の $-\theta$ と一致）。
+\item Poincaré 束：外積代数による $H^*(C\times J)$ の実装で $\gamma^2=-2\eta\theta$ と、$\ch(\pi_!\Pc)=(d+1-g)-\theta$ を $g=1,2,3$、$d=-2,0,1,3,2g$ で確認（$d+1-g=0$ のとき零係数の扱いで形式的に不一致と出るのは出力の artifact）。$\ch=r-\theta$ から $c=e^{-\theta}$（$g\le4$、有理数）。$\theta\cdot[C]=g$、$C\times C$ の GRR で $\deg=-g$（$g\le4$、$d_0\le5$）。
+\item $\CP(V)$ の GRR の Lagrange 恒等式：$r=2,3,4$、$k=-9,\dots,7$、ランダムな $a_i$、最大相対誤差 $2.7\times10^{-12}$。$x=(2,3,5)$ の手計算（問 \ref{p:Lagrange}）。
+\item Legendre 族：$_2F_1(\frac12,\frac12;1;\lambda)$ の係数が Picard--Fuchs 方程式を $\lambda^{37}$ まで有理数で厳密にみたす。$M_0M_1M_\infty=1$、$\operatorname{tr}M_\infty=-2$。
+\item 統合論文 例 72 の数値：$Y=S^2,T^2$、$X=\CP^1$（$m=0,1,3$）、$T^2$ の $(m+1,3m+5,3m+7,m+3)$（$m=-1,\dots,7$）。本巻独自（系 68 から）：$X=\CP^2$、$Y=S^2,T^2$、$m=1,2,3$（Euler 標数 $6$ と $0$）、$X=\CP^1\times\CP^1$、$m=1$。
+\item Toeplitz 族：$P_+(b)$ の曲率積分 $\frac i{2\pi}\int\mathrm{Tr}(P[\partial_\theta P,\partial_\varphi P])\,d\theta\,d\varphi=-1.00001$（$c_1(P_+)=-1$）。有限切断で $A^*(e_0\otimes u_+)=0$（$10^{-16}$）。
+\item 階数 $(1,1)$ の超接続の積分：$t=0.1,1,10$ で $-1.0000$（符号規約は\tQ）。平坦トーラスの熱トレース：$\Str=0$、$S^1$ で $\sum e^{-t(n+0.3)^2}=\sqrt{\pi/t}$（$t=0.05,0.01$、$8$ 桁）。
+\item $K(\CP^2)$ の $\ch$ 格子の行列式 $1$、$\Sym^2$ の Adams 公式（誤差 $4\times10^{-16}$）、K3 の $\Ahat=2$、Hirzebruch 曲面の $\chi$ の表。
+\end{itemize}
+\textbf{検算していないもの}：族の指数定理、Bismut の局所定理、Atiyah--J\"anich、GRR、Bott 周期性の証明（\tC）。Poincaré 束の関係式 $\gamma^2=-2\eta\theta$ の符号は、外積代数での計算が代数的な整合性のみで、幾何的な符号は文献と $g=1$ の Chern 数（絶対値）に頼る。統合論文の例 37 の数値。$\mathrm{HH}$ と Gauss--Manin の同定（定理 67）。符号・向きの規約（\tQ）。
+\end{document}

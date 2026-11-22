@@ -1,0 +1,132 @@
+
+%==========================================================================
+\section{問題の解答}\label{sec:solutions}
+\subsection*{\S\ref{sec:intro}}
+\begin{sol}{\ref{p:S1jump}}
+$P_cu=0$ は $u'=(c+\varepsilon\cos\theta)u$、解 $u=C\exp(c\theta+\varepsilon\sin\theta)$。$\sin$ は $2\pi$ 周期なので周期解の条件は $e^{2\pi c}=1$、すなわち $c\in i\Z$。$P_c^*=-\frac d{d\theta}-\bar c-\varepsilon\cos\theta$（$\varepsilon$ 実）の核は $v=C\exp(-\bar c\theta-\varepsilon\sin\theta)$、周期条件 $e^{-2\pi\bar c}=1$、すなわち $\bar c\in i\Z$、$c\in i\Z$。よって $\dim\Ker=\dim\Coker=1$（$c\in i\Z$）、$0$（それ以外）。指数 $0$。Fourier 行列の最小特異値（$\varepsilon=1.5$）：$c=0$ で $2\times10^{-16}$、$c=2i$ で $10^{-16}$、$c=0.5$ で $0.122$。
+\end{sol}
+\begin{sol}{\ref{p:torusfam}}
+(a) $P_ae_k=\lambda_ke_k$、$\lambda_k=\frac i2(k_x+ik_y)+a$。$\lambda_k=0\iff a=\frac12(k_y-ik_x)$。異なる $k$ は異なる $a$ を与えるので、各 $a$ で高々1つの $k$、$\dim\Ker\le1$。跳ぶ集合は $\Lambda^\vee=\frac12(\Z+i\Z)$。(b) $P_a^*e_k=\bar\lambda_ke_k$ なので $\Ker P_a^*$ は同じ $e_k$ で張られる。$\Coker=\Ker P_a^*$ と同次元なので $\ind=0$。(c) $\bar\partial(e_{k_0}u)=e_{k_0}(\bar\partial u+\frac i2(k_{0x}+ik_{0y})u)$ なので $e_{k_0}^{-1}P_ae_{k_0}=P_{a+\ell}$、$\ell=\frac i2(k_{0x}+ik_{0y})=\frac12(-k_{0y}+ik_{0x})\in\Lambda^\vee$（$k_0$ が $\Z^2$ を動くと $\ell$ は $\Lambda^\vee$ 全体を動く）。
+\end{sol}
+\begin{sol}{\ref{p:toeplitz}}
+(a) 本文のとおり：$x_n=p_n+q_n$、$A_bx=\sum_n(e_{n+1}\otimes p_n+e_n\otimes q_n)$。単射。値域：モード $0$ は $q_0$ だけ、$n\ge1$ は $p_{n-1}+q_n$ で $\C^2$ 全体。余核 $=e_0\otimes P_+\C^2$。(b) $u=(\cos\frac\theta2,e^{i\varphi}\sin\frac\theta2)$、$A=\langle u,du\rangle=i\sin^2\frac\theta2\,d\varphi$、$F=dA=i\sin\frac\theta2\cos\frac\theta2\,d\theta\wedge d\varphi=\frac i2\sin\theta\,d\theta\wedge d\varphi$。$c_1=\frac i{2\pi}F=-\frac1{4\pi}\sin\theta\,d\theta\wedge d\varphi$、$\int_{S^2}c_1=-\frac{1}{4\pi}\cdot2\cdot2\pi=-1$。数値積分でも $-1.0000$（$120\times120$ 分割、誤差 $3\times10^{-5}$）。(c) $\ind A=-[P_+]$、$\ch(P_+)=1+c_1=1-x$、$\ch(\ind A)=-1+x$。
+\end{sol}
+\subsection*{\S\ref{sec:K}}
+\begin{sol}{\ref{p:KS2}}
+$\ch(H-1)=c_1(H)=-x$。$\ch((H-1)^2)=x^2=0$、$K(S^2)=\Z^2$ は捩れなしで $\ch\otimes\Q$ が同型だから $\ch$ は単射、よって $(H-1)^2=0$。$a+b(H-1)\mapsto a-bx$。像は $\{a+cx:a,c\in\Z\}$（$H^0\oplus H^2$ の整数格子）。
+\end{sol}
+\begin{sol}{\ref{p:Sym2}}
+$\Sym^2$ の根は $2a,a+b,2b$。$\ch=3+3(a+b)+\frac12(4a^2+(a+b)^2+4b^2)+\cdots=3+3c_1+\frac12(5(a+b)^2-8ab)=3+3c_1+\frac{5c_1^2-8c_2}2$。Adams：$\ch V=2+c_1+q$、$q=\frac{c_1^2-2c_2}2$。$(\ch V)^2=4+4c_1+c_1^2+4q=4+4c_1+3c_1^2-4c_2$、$\psi^2\ch V=2+2c_1+4q=2+2c_1+2c_1^2-4c_2$。和の半分は $3+3c_1+\frac{5c_1^2-8c_2}2$。一致（数値でも $4\times10^{-16}$）。$\ch\Lambda^2V=e^{a+b}=1+c_1+\frac{c_1^2}2+\cdots$。
+\end{sol}
+\begin{sol}{\ref{p:KCP2}}
+座標 $(\ch_0,\ch_1,\ch_2)$（$\ch_1$ は $h$ の係数、$\ch_2$ は $h^2$ の係数）：$\ch(1)=(1,0,0)$、$\ch\Oc(1)=(1,1,\frac12)$、$\ch\Oc(2)=(1,2,2)$。行列式 $1$。格子の基底 $(1,0,0),(0,1,\frac12),(0,0,1)$（$(1,2,2)-(1,0,0)-2(0,1,\frac12)=(0,0,1)$）。よって $\ch_0,\ch_1\in\Z$ で $\ch_2\in\frac12\ch_1+\Z$（$\ch_1$ が奇数なら $\ch_2$ は半整数）。$\ch$ は整数係数でなく、$\Q$ 上同型。
+\end{sol}
+\begin{sol}{\ref{p:KT2}}
+$T^2$ 上の複素ベクトル束は階数と $c_1\in\Z$ で分類される（$U(n)$ 束は 2 次元複体上では $c_1$ だけ）。したがって $K(T^2)\to\Z\oplus\Z$、$(r,c)$ は全単射、$\ch=r+cx$ は単射で像は $\Z\oplus\Z$。$K^1(T^2)=[T^2,\GL_\infty]$ の生成元：$(\theta_1,\theta_2)\mapsto e^{i\theta_1}$ と $e^{i\theta_2}$（$S^1\times S^1$ から $U(1)$ への射影）。Künneth で $K^1(T^2)=K^1(S^1)\otimes K^0(S^1)\oplus K^0(S^1)\otimes K^1(S^1)=\Z^2$。
+\end{sol}
+\begin{sol}{\ref{p:Bottclass}}
+$r=1$、$V=\C$、$X=\mathrm{pt}$：$\ch(\beta)=(-1)^1U\cdot e^0\Td(V)^{-1}$、次数の最高部分は $-U$、$\int_{\C}U=1$ なので $-1$。実際 $\ch(\Lambda^0)-\ch(\Lambda^1)=1-e^x=-x-\cdots$、零切断への制限 $-x=-e(V)$。$\beta\boxtimes\beta$ は $\ch$ が乗法的で $(-1)^2=+1$。
+\end{sol}
+\begin{sol}{\ref{p:gysin}}
+$\ch(i_!1)=i_*(1)=x$。一方 $\ch([\Oc(1)]-1)=e^x-1=x$（$x^2=0$）。$\ch$ は単射なので $i_!(1)=[\Oc(1)]-1$。また $\ch(\Oc(1))+\ch(\Oc(-1))=e^x+e^{-x}=2+x^2=2$、よって $[\Oc(1)]+[\Oc(-1)]=2$。完全列 $0\to\Oc(-1)\to\Oc\to\Oc_p\to0$ から $[\Oc_p]=1-[\Oc(-1)]=[\Oc(1)]-1$。
+\end{sol}
+\begin{sol}{\ref{p:Ktable}}
+$K^*(S^1)=(\Z,\Z)$、$K^*(T^2)=(\Z^2,\Z^2)$。$T^3=T^2\times S^1$：$K^0(T^3)=K^0(T^2)\otimes K^0(S^1)\oplus K^1(T^2)\otimes K^1(S^1)=\Z^2\oplus\Z^2=\Z^4$、$K^1(T^3)=K^0\otimes K^1\oplus K^1\otimes K^0=\Z^4$。$2^{n-1}=4$。$K^1(S^3)=[S^3,\GL_\infty]=\Z$、生成元は包含 $SU(2)\hookrightarrow U(2)\subset\GL_\infty$（$\pi_3(U)=\Z$ の生成元）。
+\end{sol}
+\subsection*{\S\ref{sec:Fred}}
+\begin{sol}{\ref{p:CP1jump}}
+$\ell_b=\C w$ のとき $T_bw=w_1$。$w_1=0$ すなわち $b=[0:1]$ でのみ $T_b=0$：核 $\ell_b$（1次元）、余核 $\C$（1次元）。他の $b$ では同型。指数束 $=[\Oc(-1)]-[\C]$（許容部分空間 $V=\C$、$K_V=\ell$）。$\ch=e^{-x}-1=-x$。$=-[\Oc_p]$（問 \ref{p:gysin}）。
+\end{sol}
+\begin{sol}{\ref{p:additive}}
+定数次元なら核・余核・値域は束で、六項完全列（第7巻）の各写像は束写像の定数階数のもの。完全列の交代和は $K(B)$ で $0$：$[\Ker T]-[\Ker ST]+[\Ker S]-[\Coker T]+[\Coker ST]-[\Coker S]=0$。移項して $[\Ker ST]-[\Coker ST]=([\Ker T]-[\Coker T])+([\Ker S]-[\Coker S])$。
+\end{sol}
+\begin{sol}{\ref{p:SFprob}}
+端点 $t=0,1$ で $D_t$ は可逆でない（$0$ が固有値）ので、本文の規約どおり $D_t-\varepsilon$（$0<\varepsilon<\frac13$）で数える。固有値は $n+3t-\varepsilon$（$n\in\Z$）で、$t=(\varepsilon-n)/3\in(0,1)$ となるのは $n=0,-1,-2$ の 3 つ、いずれも傾き $+3$ の上向きの横切りである（$n=-3$ は $t=1+\varepsilon/3>1$ で区間外）。したがって $\sfl=3$。$\varepsilon<0$（$|\varepsilon|<\frac13$）に取っても、横切るのは $n=-1,-2,-3$ の 3 本で同じ値になる。
+
+一般の $f$（$f(1)-f(0)=N\in\Z$）：$a=f(0)-\varepsilon\notin\Z$ となるよう $\varepsilon$ を小さく選び、$b=f(1)-\varepsilon=a+N$ とおく。固有値 $n+f(t)-\varepsilon$ が $0$ を横切ることは、連続関数 $g(t)=f(t)-\varepsilon$ が整数 $j=-n$ を横切ることと同じである。各整数 $j$ について、$g$ が $j$ を上向きに横切る回数から下向きに横切る回数を引いた符号つきの数は、端点の位置だけで $\mathbf 1[b>j]-\mathbf 1[a>j]$ に等しい（中間値の定理）。これを全ての $j\in\Z$ で足すと $\lfloor b\rfloor-\lfloor a\rfloor=N$。ゆえに $\sfl=N$（$f$ が単調でなくても、ホモトピー不変性を使わずに示せた）。
+\end{sol}
+\begin{sol}{\ref{p:kerbundle}}
+$K_0=\Ker T_{b_0}$、$\Pi_0$ をその上への直交射影。$K_0^\perp$ 上 $T_{b_0}$ は下に有界（$\ge c$）。$\|T_b-T_{b_0}\|<c$ なら $T_b$ も $K_0^\perp$ で単射。したがって $x\in\Ker T_b$、$\Pi_0x=0$ なら $x=0$：$\Pi_0:\Ker T_b\to K_0$ は単射。次元が等しいので同型。この同型が局所自明化（逆写像の連続性は $\Ker T_b$ の射影の連続性による）。
+\end{sol}
+\begin{sol}{\ref{p:projbundle}}
+$A_b(\sum e_n\otimes(p_n+q_n))=\sum(e_{n+1}\otimes p_n+e_n\otimes q_n)$（$p_n\in\mathrm{Im}P_b$、$q_n\in\Ker P_b$）。単射、モード $0$ の像は $q_0$ のみ、$n\ge1$ では $p_{n-1}+q_n$ が全体。余核 $=e_0\otimes\mathrm{Im}P_b$、次元一定。ゆえに $\ind A=-[\mathrm{Im}P]$、$A^*$ の核は $e_0\otimes\mathrm{Im}P_b$、余核 $0$、$\ind A^*=+[\mathrm{Im}P]$。$B$ コンパクトなら任意の仮想束 $[E]-[F]$ は部分束 $E,F\subset\underline{\C}^N$ の $\ind A_E^*+\ind A_F$（直和）として得られる。全射。$S^2$、$P=P_+$：$\ch=-(1-x)=-1+x$。
+\end{sol}
+\subsection*{\S\ref{sec:AS}}
+\begin{sol}{\ref{p:trivfam}}
+定義：$\Ker D_b=\Ker D_0$（定数）で $\Ker D=B\times\Ker D_0$（自明束）、$\ind D=(\dim\Ker D_0-\dim\Coker D_0)\cdot1$。$W$ でひねると $\Ker=B\times\Ker D_0\otimes W$、$\ind=\ind D_0\cdot[W]$。定理 \ref{thm:ASfamch}：シンボルは $B$ に依らず、$\pi_*$ は $B$ の因子 $\ch(W)$ を外に出し、残りは $\ind D_0$（$B=\mathrm{pt}$ の公式）。よって $\ch=\ind D_0\ch(W)$。
+\end{sol}
+\begin{sol}{\ref{p:FM}}
+$\ch=d-\theta$。$d=-1$：$-1-\theta$（$\ind=-[\Coker]$、$\Coker$ は階数 $1$、$c_1=+1$）。$d=0$：階数 $0$、$c_1=-1$。$d=1$：階数 $1$、$c_1=-1$、傾き $-1$。$d=2$：階数 $2$、$c_1=-1$、傾き $-\frac12$。一般に $d\ge1$ で傾き $-1/d$（階数と次数が互いに素）。$d=1$：$E^\vee$ 上の次数 $-1$ の直線束は $\Oc(-p)$（$p$ は点）の形。どの点かは Poincaré 束の正規化で決まる（Mukai 変換の議論\tQ）。
+\end{sol}
+\begin{sol}{\ref{p:AJdeg}}
+(i) $\ch(\mathcal E_N)=(N+1-g)-\theta$ なので $\deg\iota^*\mathcal E_N=-\int_C\iota^*\theta=-g$。(ii) $M=\Oc(\Delta+D_0\times C)$ を $\mathrm{pr}_2$ に沿って押し出す。$c_1(M)=\Delta+d_0f$（$d_0=\deg D_0=N-1$）、$\Td(T_{\mathrm{pr}_2})=1+(1-g)f$。$\mathrm{pr}_{2*}$ で $C$ 上の次数は、次数2の部分 $\frac12c_1(M)^2+(1-g)c_1(M)f$ の積分 $=\frac12(\Delta^2+2d_0\Delta f)+(1-g)\Delta f=(1-g)+d_0+(1-g)=2-2g+d_0$。階数は次数1の部分 $c_1(M)\cdot[\mathrm{fibre}]$ と $(1-g)$ で $(d_0+1)+(1-g)=d_0+2-g=N+1-g$。正規化：$\{p_0\}\times C$ への制限が $\Oc(p_0)$ なので $\mathrm{pr}_2^*\Oc(-p_0)$ を掛け、次数は階数だけ減って $2-2g+d_0-(d_0+2-g)=-g$。(i) と一致。
+\end{sol}
+\begin{sol}{\ref{p:AhatK3}}
+$\Ahat=1-\frac{p_1}{24}$、$\sigma=\frac{p_1}3$（第6巻）から $\Ahat=-\frac{\sigma}8$。K3：$\sigma=-16$、$\Ahat=2$。$T^4$：$p_1=0$、$\Ahat=0$。階数はそれぞれ $2,0$。$\CP^2$：$w_2=c_1\bmod2=3h\bmod2=h\ne0$ でスピンでない（$\Ahat=-\frac{1}{8}$ は整数でない）。
+\end{sol}
+\begin{sol}{\ref{p:product}}
+$\Ker(D_1\boxtimes D_2)=\Ker D_1\hat\otimes\Ker D_2$（次数つきテンソル積）、余核も同様。次数つきテンソル積の $\Z/2$ 次数に関する Euler 数は積：$\ind=\ind D_1\cdot\ind D_2$（束としても $[\Ker D_1^\pm]\boxtimes[\Ker D_2^\pm]$ の交代和）。$\ch(\ind D_1\boxtimes\ind D_2)=\ch(\ind D_1)\boxtimes\ch(\ind D_2)$。$K3\times K3$：$\Ahat=2\cdot2=4$（$\Ahat$ は乗法的）。
+\end{sol}
+\begin{sol}{\ref{p:Tdahat}}
+$\frac x{1-e^{-x}}=\frac{xe^{x/2}}{e^{x/2}-e^{-x/2}}=\frac{x/2}{\sinh(x/2)}e^{x/2}$。全 Chern 根について積をとり $\Td=\Ahat\,e^{c_1/2}$。Riemann 面：$\Td=1+\frac{c_1}2$、$\Ahat=1$（次数 $4$ 未満）。$\ch(L)\Td=\ch(L\otimes K^{-1/2})\Ahat$ なので、$\bar\partial_L$ は Dirac $D_{L\otimes K^{-1/2}}$ に対応、指数 $=\int c_1(L\otimes K^{-1/2})=d-(g-1)=d+1-g$。
+\end{sol}
+\begin{sol}{\ref{p:SU2sphere}}
+(a) $x=2h$：$\Td=\frac{2h}{1-e^{-2h}}$、$\Ahat e^{x/2}=\frac{h}{\sinh h}e^h=\frac{2he^h}{e^h-e^{-h}}=\frac{2h}{1-e^{-2h}}$。一致。(b) $\Sym^{k-1}V^\vee$ の階数 $k$、$\frac{\sinh ka}{\sinh a}\to k$（$a\to0$）。(c) $k=2$：$\frac{\sinh2a}{\sinh a}=2\cosh a=e^a+e^{-a}=\ch V$（根 $\pm a$）。$\ind D_{\Oc(2)}=V$（$\Sym^1V^\vee\cong V$）。
+\end{sol}
+\begin{sol}{\ref{p:oddfam}}
+固有値 $n+Nt$ は $t=-n/N$（$N>0$ のとき $n=-1,\dots,-N$）で上向きに $0$ を横切る、計 $N$ 回（端点の扱いは問 \ref{p:SFprob} の $D_t-\varepsilon$ の規約）。$\sfl=N$（問 \ref{p:SFprob} の一般の $f$ の議論でもよい）。$\int_0^1f'dt=N$。境界条件：$D_1=e^{-iN\theta}D_0e^{iN\theta}$ のとき（$N\in\Z$）に限り $t=0$ と $t=1$ が貼り合わさり $B=S^1$ 上の族になる（ゲージ変換で同一視できる）。$N\notin\Z$ では $D_1$ と $D_0$ はスペクトルが一致せず、貼り合わせができない。
+\end{sol}
+\subsection*{\S\ref{sec:heat}}
+\begin{sol}{\ref{p:superconn}}
+(a) $\mathbb A_t^2=tD^2+\sqrt t(dD)+\cdots=t|f|^2+\sqrt tN$（$\nabla=d$ は平坦で $D^2=\mathrm{diag}(|f|^2,|f|^2)$ は $N$ と可換）。グレードつきテンソル積での積により $N^2=\mathrm{diag}(-d\bar f\wedge df,\ +d\bar f\wedge df)$。$e^{-\mathbb A_t^2}=e^{-t|f|^2}(1-\sqrt tN+\frac t2N^2)$（2 形式まで）、$\Str=\Tr_+-\Tr_-$ で $\Str(1)=0$、$\Str(N)=0$、$\Str(N^2)=-2d\bar f\wedge df$。ゆえに $\Str e^{-\mathbb A_t^2}=-t\,e^{-t|f|^2}\,d\bar f\wedge df$。(b) $f=z$：$d\bar z\wedge dz=2i\,dx\wedge dy$、$\int_\C te^{-t|z|^2}dxdy=\pi$（$t$ に依らない）。$\varphi$（$\frac1{2\pi i}$）を掛けて $-\frac{2i\pi}{2\pi i}=-1$。(c) $f=z^2$：$d\bar f\wedge df=4|z|^2\,d\bar z\wedge dz$、極座標で $\frac1{2\pi i}\int(-t)e^{-t|z|^4}\cdot4|z|^2\cdot2i\,dxdy=-\frac{8it}{2\pi i}\cdot2\pi\int_0^\infty r^3e^{-tr^4}dr=-8t\cdot\frac1{4t}=-2$。零点の重複度 $2$ に等しい。符号はグレードの規約\tQ。
+\end{sol}
+\begin{sol}{\ref{p:heattorus}}
+$D_a^2$ は $\bar\partial_a^*\bar\partial_a\oplus\bar\partial_a\bar\partial_a^*$ で、どちらも $e_k$ が固有ベクトルで固有値 $|\lambda_k|^2$。$\Str=\Tr_+-\Tr_-=0$。$|\lambda_k|^2=\frac14|(k_x+ik_y)-2ia|^2=\frac14|k-w|^2$（$w$ は $2ia$ に対応する $\R^2$ の点）。Poisson：$\sum_{k\in\Z^2}e^{-t|k-w|^2/4}=\sum_{m\in\Z^2}\widehat{(\cdot)}(m)e^{2\pi im\cdot w}$、$m=0$ の項は $\int_{\R^2}e^{-t|x|^2/4}dx=\frac{4\pi}t$、他は $e^{-4\pi^2|m|^2/t}$ 程度の小さな項。
+\end{sol}
+\begin{sol}{\ref{p:detline}}
+局所模型で $V=\C e_0$、$K_V\to V$ は $a$ 倍で、$\det P_a$ は局所的に $a\cdot$（単数）。$a$ は $B$ の局所複素座標で 1 位の零点。$\lambda^{-1}$ は正則切断が 1 点で単純零点をもつから次数 $1$、$\deg\lambda=-1$（$=c_1(\ind)$ の次数）。Picard 束：$c_1(\det\mathcal E)=c_1(\mathcal E)=\ch_1=-\theta$。
+\end{sol}
+\begin{sol}{\ref{p:CStransg}}
+$\dot{\mathbb A}_t=\frac1{2\sqrt t}D$。$e^{-\mathbb A_t^2}$ の 1 形式部分は $-\sqrt t\,e^{-t|f|^2}N$。$D=\begin{pmatrix}0&\bar f\\f&0\end{pmatrix}$、$N=\begin{pmatrix}0&d\bar f\\df&0\end{pmatrix}$ で $DN=\mathrm{diag}(\bar f\,df,\ f\,d\bar f)$、$\Str(DN)=\bar f\,df-f\,d\bar f$。グレードつきテンソル積では、1 形式に奇数の $D$ を左から掛けるとき Koszul 符号 $-1$ が付くので、$\Str(\dot{\mathbb A}_te^{-\mathbb A_t^2})=+\frac12e^{-t|f|^2}(\bar f\,df-f\,d\bar f)$。$f=z$ で $d\bigl(e^{-t|z|^2}(\bar z\,dz-z\,d\bar z)\bigr)=e^{-t|z|^2}\bigl(2-2t|z|^2\bigr)d\bar z\wedge dz$（$d|z|^2\wedge(\bar z\,dz-z\,d\bar z)=2|z|^2d\bar z\wedge dz$ と $d(\bar z\,dz-z\,d\bar z)=2d\bar z\wedge dz$）。ゆえに $-d\Str(\dot{\mathbb A}_te^{-\mathbb A_t^2})=-(1-t|z|^2)e^{-t|z|^2}d\bar z\wedge dz$。一方 $\frac d{dt}\bigl(-te^{-t|z|^2}d\bar z\wedge dz\bigr)=-(1-t|z|^2)e^{-t|z|^2}d\bar z\wedge dz$。一致。
+\end{sol}
+\subsection*{\S\ref{sec:GRR}}
+\begin{sol}{\ref{p:Pbundle1}}
+$r=2$：$f_k=\frac{x_1^{k+1}-x_2^{k+1}}{x_1-x_2}$（$\sum_ix_i^k\prod_{j\neq i}(1-x_j/x_i)^{-1}=\frac{x_1^{k+1}}{x_1-x_2}+\frac{x_2^{k+1}}{x_2-x_1}$）。$k=-1$：$0$。$k=-2$：$\frac{x_1^{-1}-x_2^{-1}}{x_1-x_2}=-\frac1{x_1x_2}$。$k=3$：$\frac{x_1^4-x_2^4}{x_1-x_2}=x_1^3+x_1^2x_2+x_1x_2^2+x_2^3$。$-\frac1{x_1x_2}=-\ch(\det V)$（$x_i=e^{-a_i}$ は $V^\vee$ の根なので $\frac1{x_1x_2}=e^{a_1+a_2}=\ch\det V$）。$\ind=-[R^1]$ なので $R^1\pi_*\Oc(-2)=\det V$。相対 Serre 双対：$\omega_\pi=\Oc(-2)\otimes\det V^\vee$ と $R^1\pi_*\omega_\pi\cong\Oc$ から $R^1\pi_*\Oc(-2)=\det V$。一致。
+\end{sol}
+\begin{sol}{\ref{p:Lagrange}}
+$x=(2,3,5)$：$i=1$：$(1-\frac32)(1-\frac52)=\frac34$、$\frac43$。$i=2$：$(1-\frac23)(1-\frac53)=-\frac29$、$-\frac92$。$i=3$：$(1-\frac25)(1-\frac35)=\frac6{25}$、$\frac{25}6$。$k=0$：$\frac43-\frac92+\frac{25}6=1$。$k=1$：$\frac83-\frac{27}2+\frac{125}6=10=h_1$。$k=2$：$\frac{16}3-\frac{81}2+\frac{625}6=69=h_2(2,3,5)=4+9+25+6+10+15$。一致。
+\end{sol}
+\begin{sol}{\ref{p:Hirz}}
+$\pi_*\Oc(k)=\Sym^k(\Oc\oplus\Oc(-n))=\bigoplus_{i=0}^k\Oc(-ni)$、$\chi=\sum_{i=0}^k(1-ni)$。$n=1$：$1,1,0,-2,-5$。$n=2$：$1,0,-3,-8,-15$。$F_1$、$k=1$：$\Oc\oplus\Oc(-1)$、$h^0=1$、$h^1=0$、$\chi=1$。
+\end{sol}
+\begin{sol}{\ref{p:Legendre}}
+(a) $\lambda^n$ の係数：$(n+1)nc_{n+1}-n(n-1)c_n+(n+1)c_{n+1}-2nc_n-\frac14c_n=(n+1)^2c_{n+1}-(n+\frac12)^2c_n$。$c_n=\bigl(\frac{(1/2)_n}{n!}\bigr)^2$ なら $\frac{c_{n+1}}{c_n}=\bigl(\frac{n+1/2}{n+1}\bigr)^2$。(b) $M_0M_1=\begin{pmatrix}-3&2\\-2&1\end{pmatrix}$、逆行列 $M_\infty=\begin{pmatrix}1&-2\\2&-3\end{pmatrix}$、跡 $-2$、行列式 $1$。
+\end{sol}
+\begin{sol}{\ref{p:Hodgedeg}}
+$T_\pi=\pi^*\lambda^{-1}$（$\Omega^1_{S/B}=\pi^*\lambda$）。$\Td(T_\pi)=1-\frac12\pi^*c_1(\lambda)+\cdots$ は $B$ からの引き戻しで、ファイバー積分で $0$。GRR 左辺 $\ch(\Oc)-\ch(R^1\pi_*\Oc)=1-e^{-c_1(\lambda)}$（$R^1\pi_*\Oc\cong\lambda^{-1}$、Serre 双対）。$c_1(\lambda)=0$（$H^*(B;\Q)$ で、$e^{-c_1}=1$ から）。K3 の楕円ファイブレーション：$\deg\lambda=\chi(\Oc_{K3})=2$、$12\deg\lambda=24=e(K3)=24\cdot1$。一致（\tC\ BHPV 第V章）。
+\end{sol}
+\begin{sol}{\ref{p:derhamGRR}}
+$(1-e^{-x})\cdot\frac x{1-e^{-x}}=x$ なので積は $\prod x_j=c_n(T_\pi)$。$\pi_*c_n(T_\pi)=\int_Zc_n(T_Z)=\chi(Z)$（Chern--Gauss--Bonnet、ファイバーごと、第6巻）。他方、$\mathcal H^k$ は平坦で $\ch(\mathcal H^k)=\dim H^k$（高次 Chern 類は有理係数で $0$）なので $\sum(-1)^k\ch(\mathcal H^k)=\chi(Z)$。一致。
+\end{sol}
+\begin{sol}{\ref{p:Picardg}}
+$c(\mathcal E)=e^{-\theta}$。$g=2$、$d=3$：階数 $2$、$c_1=-\theta$、$c_2=\frac{\theta^2}2$、$\theta^2=2$ なので $\int c_2=1=(-1)^2$。$g=3$、$d=5$：階数 $3$、$c_1=-\theta$、$c_2=\frac{\theta^2}2$、$c_3=-\frac{\theta^3}6$、$\theta^3=3!=6$、$\int c_3=-1=(-1)^3$。
+\end{sol}
+\subsection*{\S\ref{sec:unified}}
+\begin{sol}{\ref{p:Y1}}
+$m=0$：$S^2$：$(1+t^2)(1+3t)=1+3t+t^2+3t^3$、Euler $-4$。$T^2$：$(1+t)^2(1+3t)=1+5t+7t^2+3t^3$、Euler $0$。$m=2$：$S^2$：$(1+t^2)(3+5t)=3+5t+3t^2+5t^3$、Euler $-4$。$T^2$：$3+11t+13t^2+5t^3$、Euler $0$。$-4=2\cdot(-1)\cdot2$、$0=0$。一般：$(1+2t+t^2)((m+1)+(m+3)t)$ の係数は $m+1$、$(m+3)+2(m+1)=3m+5$、$2(m+3)+(m+1)=3m+7$、$m+3$。
+\end{sol}
+\begin{sol}{\ref{p:Y2}}
+$\chi(\Oc(m))=\binom{m+2}2$、$\chi(T(m))=3\binom{m+3}2-\binom{m+2}2$、$\chi(\wedge^2T(m))=\binom{m+5}2$。$m=1$：$3,15,15$、$m=2$：$6,24,21$。$P_Y=1+t^2$：$m=1$：$3+15t+(15+3)t^2+15t^3+15t^4$、$m=2$：$6+24t+27t^2+24t^3+21t^4$。Euler：$3-15+18-15+15=6$、$6-24+27-24+21=6$。$\chi(S^2)\chi(\CP^2)=2\cdot3=6$。
+\end{sol}
+\begin{sol}{\ref{p:Y3}}
+$\int_X\ch(\wedge^bT)e^{mc_1(G)}\Td(X)$ は $m$ の多項式で、最高次は $\rk(\wedge^bT)\frac{m^n}{n!}\int c_1(G)^n=\binom nb\frac{\int c_1(G)^n}{n!}m^n$。$X=\CP^1$、$n=1$、$G=\Oc(1)$（$\int c_1(G)=1$）、$Y=T^2$、$k=1$：$(b,j)=(0,1)$ で $b_1=2$、$(1,0)$ で $b_0=1$：先頭係数 $2\cdot1+1\cdot1=3$。$3m+5$ の係数と一致。
+\end{sol}
+\begin{sol}{\ref{p:Y4}}
+(a) $(1,0,2,0,0)$：$1-0+2-0+0=3$、$(0,0,3,0,0)$：$3$。どちらも $\chi(\CP^2)=3$（$m$ に依らない）。(b) 多項式ではない：$m\in3\Z_{\ge0}$ とそれ以外で値が異なり（例えば $k=0$ の次元が $m\equiv0\bmod 3$ のとき $1$、そうでないとき $0$）、有界で周期的。多項式（有界なら定数）では書けない。理由は、跳びが留数 $r=-m/3$ の整数性（$H^*(U;\mathbb L_U)$ の指標が自明になるか）で決まり、$H^0(X,\wedge^bT\otimes\Oc(m))$ が増えても $d_1$ がほぼ完全になってコホモロジーに残らないため（論文 観察 76）。
+\end{sol}
+\begin{sol}{\ref{p:Y5}}
+トーラスの族：跳ぶ点は $\Lambda^\vee$（$a$ が自明な指標に対応）で、そこで $\dim\Ker=\dim\Coker=1$、他は $0$。$H^*(\C^*;\mathbb L_\chi)$：$\chi=1$ で $H^0=H^1=\C$、$\chi\ne1$ で $0$。(i) どちらも跳ぶ点の外で次元一定（$0$）、Euler 標数 $0$ は一定。(ii) 違い：前者は $a$ を動かす底 $B=E^\vee$ をもち、指数束 $-[\Oc_p]$ が $B$ の $K^0$ の非自明な元（$c_1=-1$）として跳びの位置と重複度を記憶する。後者（局所系）は \emph{同様の指標多様体上の指数束}を考えれば類似の類が現れるが、論文の設定ではまだ族として定式化されていない（類比）。
+\end{sol}
+\begin{sol}{\ref{p:Y6}}
+$\chi(\Oc(m,m))=(m+1)^2$、$\chi(\Oc(2+m,m))+\chi(\Oc(m,2+m))=2(m+3)(m+1)$、$\chi(\wedge^2T\otimes G^m)=\chi(\Oc(m+2,m+2))=(m+3)^2$。$m=1$：$4,16,16$。$P_{\mathrm{HH}}=(1+t^2)(4+16t+16t^2)=4+16t+20t^2+16t^3+16t^4$、Euler $4-16+20-16+16=8=2\cdot4$。交代和 $(m+1)^2-2(m+3)(m+1)+(m+3)^2=\bigl((m+3)-(m+1)\bigr)^2=4=\chi(X)$（$m$ に依らない）。
+\end{sol}

@@ -1,0 +1,136 @@
+
+\section{Atiyah--Singer の族の指数定理}\label{sec:AS}
+\subsection{設定と主張}
+$\pi:M\to B$（$B$ コンパクト）、$D$ をファイバー楕円型作用素の族とする。第8巻の定義を再掲する。$D$ の主シンボル $\sigma(D)$ は、垂直余接束 $T^*_ZM$ のゼロ切断の外で同型 $\pi^*E\to\pi^*F$ で、複体として $K_c(T^*_ZM)$ の元 $[\sigma(D)]$ を定める。$T^*_ZM$ は $M$ 上のベクトル束で、全空間は $B$ 上の\emph{ファイバー束}（ファイバー $T^*Z$）。解析的指数 $\ind_a:K_c(T_Z^*M)\to K(B)$ は定理 \ref{thm:ellfamilyindex}。
+\paragraph{位相的指数。}$M$ をファイバー束の埋め込み $j:M\hookrightarrow B\times\R^N$（$B$ 上）とする（$M$ はコンパクトなのでとれる）。垂直接束 $T_ZM\cong T^*_ZM$（計量で同一視）は $B\times\R^N\times\R^N=B\times\C^N$ の部分多様体の全空間で、法束は $\pi^*(\nu\otimes\C)$（$\nu$ は $j$ の法束）という複素ベクトル束。したがって
+\[
+\ind_t:\ K_c(T^*_ZM)\xrightarrow{\ \text{Thom}\ }K_c(B\times\C^N)\xrightarrow{\ \text{Bott}^{-1}\ }K(B).
+\]
+\begin{thm}[Atiyah--Singer IV, 族の指数定理]\label{thm:ASfam}\tC\
+$\ind_a=\ind_t:K_c(T^*_ZM)\to K(B)$。すなわちファイバー楕円型作用素の族 $D$ に対し $\ind D=\ind_t[\sigma(D)]\in K(B)$（奇数次元・自己随伴型では $K^1(B)$）。$B=\mathrm{pt}$ では第8巻の Atiyah--Singer の指数定理。
+\end{thm}
+\src{Atiyah--Singer, \emph{The index of elliptic operators IV}, Ann.\ of Math.\ 93 (1971) 119--138（族の指数定理は第3節の主定理。節の割り当てと定理番号 3.1 は記憶に基づく\tQ。節題の記憶：Continuous families of elliptic operators、The index of elliptic families、The topological index、Multiplicativity of the index）。本巻の記号は原典と異なる（原典は $Z$ をファイバー束、$TZ$ を垂直接束とする）。}
+\begin{thm}[コホモロジー版]\label{thm:ASfamch}\tC\ \tQ\ （符号・向き）
+$n=\dim_{\R}Z$、$\pi_*:H_c^{*}(T^*_ZM;\Q)\to H^{*-2n}(B;\Q)$ をファイバー（$T^*Z$、実次元 $2n$）に沿う積分、とすると
+\[
+\ch(\ind D)=(-1)^n\,\pi_*\Bigl(\ch\bigl[\sigma(D)\bigr]\cdot\Td(T_ZM\otimes\C)\Bigr)\in H^{\ev}(B;\Q).
+\]
+\end{thm}
+\paragraph{規約と【要確認】の箇所。}(1) $T^*_ZM$ の向きは、$T_ZM\oplus T^*_ZM=T_ZM\otimes\C$ の複素構造の向き（第8巻の規約）。(2) $\ch[\sigma(D)]\in H^*_c(T^*_ZM)$ は、シンボル複体の $\ch$ で、Thom 類の規約に依る（定理 \ref{thm:Thom} の符号）。(3) 符号 $(-1)^n$ は、第8巻の $B=\mathrm{pt}$ の公式と同じ記号を用いた。$n$ が偶数（偶数次元ファイバーの 2 項複体）のときは $(-1)^n=1$ で、符号の問題は(1)(2)に集約される。\emph{実質的な符号は、Dolbeault 作用素で GRR と一致するよう固定されている}（\S\ref{sec:special}）。奇数次元 $n$ の符号と、$K^1$ 版（$\ch:K^1(B)\to H^{\rm odd}(B)$、定理 \ref{thm:ch}(c)）の細部は\tQ\ とする。
+
+\paragraph{Dolbeault 作用素での符号の固定。}\tQ\ $Z$ が複素 $m$ 次元（$n=2m$）、$D=\bar\partial_E+\bar\partial_E^*$ のとき、シンボル複体 $\bigl(\Lambda^{0,\bullet},\ i\xi^{0,1}\wedge\bigr)$ は、$T^*_ZM$ 上の Koszul 複体 $\lambda_V$（$V=T^{*0,1}$ に同型な複素ベクトル束、$\xi\mapsto\xi^{0,1}$）の類に $\pi^*E$ を掛けたもの。したがって $\ch[\sigma]=\ch(E)\cdot(\pm)U\cdot(\text{$e^{c_1}\Td^{-1}$ の形の因子})$（定理 \ref{thm:Thom}）。符号は 2 か所から来る：Thom 類の符号 $(-1)^m$ と、$T^*_ZM$ の向き（シンボル平面の複素構造から決まる向き）と $T_ZM\oplus T^*_ZM=T_ZM\otimes\C$ の向きの比較で出る $(-1)^m$。これらの符号の積が $+1$ になること（GRR との整合条件）は、本巻では確認していない\tQ。符号を除く部分は代数的な事実で確かめられる：$\ch(\sigma)$ の因子 $e^{c_1(T_ZM)}\Td(T_ZM)^{-1}$ に $\Td(T_ZM\otimes\C)=\Td(T_ZM)\Td(\overline{T_ZM})$ を掛けると、根ごとに $e^{x}\Td(-x)=\Td(x)$ なので $\Td(T_ZM)$ だけが残る。
+
+\subsection{証明の方針}
+\begin{enumerate}
+\item \textbf{位相的指数は解析的指数の公理をみたす}：ともに (i) $K_c$ の元の和に加法的、(ii) 関手性（ファイバー束の埋め込みに沿った Thom 同型の下で不変、「$\ind(i_!x)=\ind(x)$」）、(iii) 基底の変換 $f^*$ に自然、(iv) 自明な場合（$M=B\times\R^N$ の $\C^N$ に沿う Bott 類）で $1$ を与える。
+\item \textbf{埋め込みによる帰着}：$M\hookrightarrow B\times\R^N$ の下で、一般のファイバー束上の指数を、$B\times\R^N$（コンパクト化 $B\times S^N$）上の指数に帰着する。解析側では、$i_!$ に対応する作用素の構成（シンボルの押し出し）を擬微分作用素で行う。
+\item \textbf{$B\times S^N$ 上の指数は Bott 周期性で計算できる}：Bott 生成元 $\beta^N$ に対応する $S^N$ 上の作用素の指数は $1$（第8巻 \S5 の規格化）。
+\item \textbf{$\ch$ との関係}：Thom 同型と $\ch$ の関係（定理 \ref{thm:Thom}）、$\nu\oplus T_ZM=\underline\R^N$ から $\Td(\nu\otimes\C)^{-1}=\Td(T_ZM\otimes\C)$、Bott 類の $\ch$ の積分の規格化（$\pm1$）から、公式 $\ch(\ind D)=(-1)^n\pi_*(\ch[\sigma]\Td(T_ZM\otimes\C))$ が従う。これが「$\Td(T_{\C}Z)$ がなぜ現れるか」の答えである：\emph{埋め込みの法束の Thom 類の $\ch$ の逆数}。
+\end{enumerate}
+\tC\ 証明の全体は Atiyah--Singer IV と、Atiyah, \emph{Bott periodicity and the index of elliptic operators} にある。熱核による別証明は \S\ref{sec:heat}。
+\begin{center}
+\begin{tikzcd}[column sep=huge]
+K_c(T^*_ZM)\arrow[r,"\text{Thom}"]\arrow[dr,swap,"\ind_t"] & K_c(B\times\C^N)\arrow[d,"\text{Bott}^{-1}"]\\
+ & K(B)
+\end{tikzcd}
+\end{center}
+
+\subsection{基本的な性質}
+\begin{prop}\label{prop:famprops}\tC\ \tP\ （(a)(b) は定義から）
+\begin{enumerate}
+\item[(a)] \textbf{一点への制限}：$i_b:\mathrm{pt}\to B$ の引き戻しで $i_b^*\ind D=\ind D_b\in K(\mathrm{pt})=\Z$。$\ch_0(\ind D)=\ind D_b$。
+\item[(b)] \textbf{底の引き戻し}：$f:B'\to B$ に対し $\ind(f^*D)=f^*\ind D$（$f^*D$ は引き戻し束上の族）。
+\item[(c)] \textbf{底の束でひねる}：$W\to B$ ベクトル束なら $\ind(D\otimes\pi^*W)=\ind D\cdot[W]$（$K(B)$ の積）。コホモロジーで $\ch(\ind D\otimes W)=\ch(\ind D)\ch(W)$（射影公式）。
+\item[(d)] \textbf{積}：$D_1$ が $B_1$ 上、$D_2$ が $B_2$ 上の族なら外部積 $D_1\boxtimes D_2$ の指数束は $\ind D_1\boxtimes\ind D_2$。
+\item[(e)] \textbf{合成}（多重度性）：$M\to B'\to B$ のとき、ファイバー楕円型の族 $D$ の指数は2段階で計算できる（Atiyah--Singer IV の乗法性の節の主題\tQ）。
+\end{enumerate}
+\end{prop}
+\begin{keybox}{要点（\S\ref{sec:AS}の前半）}
+族の指数定理：$\ind D=\ind_t[\sigma(D)]\in K(B)$。$\ch(\ind D)=(-1)^n\pi_*(\ch\sigma(D)\,\Td(T_ZM\otimes\C))$。証明の方針は「埋め込み、Thom 同型、Bott 周期性」で、$\Td$ は法束の Thom 類の $\ch$ の逆数から現れる。符号・向きの規約は\tQ（Dolbeault で固定）。
+\end{keybox}
+
+\subsection{特殊化}\label{sec:special}
+\subsubsection{(a) Dolbeault 作用素の族と GRR}
+$\pi:M\to B$ を、複素多様体 $Z$ をファイバーとする正則な沈め込み（コンパクト Kähler ファイバー）、$E\to M$ を正則ベクトル束とする。$D=\bar\partial_E+\bar\partial_E^*:\Omega^{0,\ev}(Z_b;E)\to\Omega^{0,\mathrm{odd}}(Z_b;E)$ は楕円型の族。
+\begin{thm}\label{thm:dolbfam}\tC\
+$\ind D=\pi_!E=\sum_q(-1)^q[R^q\pi_*E]\in K(B)$（$h^q(Z_b,E_b)$ が定数なら $R^q\pi_*E$ はベクトル束でファイバーは $H^q(Z_b,E_b)$。一般には安定化と同じ、有限長の複体 $K^\bullet$ による）。そしてコホモロジー版は \textbf{Grothendieck--Riemann--Roch}：
+\[
+\ch(\pi_!E)=\pi_*\bigl(\ch(E)\,\Td(T_\pi)\bigr),\qquad T_\pi=T_ZM\ \text{（正則垂直接束）}.
+\]
+\end{thm}
+\paragraph{整合性：定理 \ref{thm:ASfamch} との一致。}$n=2m$（実次元）。Dolbeault シンボル複体の $\ch[\sigma]$ を Thom 類で書くと $\ch(E)\cdot\Td(T_ZM)^{-1}\cdot(\text{Thom類})$（符号込み）で、$\Td(T_ZM\otimes\C)=\Td(T_ZM)\Td(\overline{T_ZM})$ のうち $\overline{T_ZM}$ の寄与が Thom 類の逆数と相殺し、$\Td(T_ZM)$ だけが残る。この符号をちょうど GRR に一致させるように定理 \ref{thm:ASfamch} の規約を固定する（符号の整合：$B=\mathrm{pt}$ では HRR、第6巻）。
+\src{GRR：Borel--Serre, Bull.\ SMF 86 (1958)。Fulton, \emph{Intersection Theory}, 第15章。Hartshorne, 付録 A \S5。族の Dolbeault 作用素の指数が $\pi_!$ になること：Atiyah--Singer IV の例、Hartshorne III \S12（Grauert の定理、cohomology and base change）。}
+\paragraph{$B$ で射影公式を使う。}GRR の絶対版 $\ch(\pi_!E)\Td(B)=\pi_*(\ch(E)\Td(M))$ と $\Td(M)=\pi^*\Td(B)\Td(T_\pi)$（$0\to T_\pi\to TM\to\pi^*TB\to0$ の乗法性）から、射影公式 $\pi_*(\pi^*\alpha\cdot\beta)=\alpha\pi_*\beta$ で $\Td(B)$ を消すと相対版が得られる。
+
+\subsubsection{(b) Dirac 作用素の族}
+垂直接束 $T_ZM$ にスピン構造（$\mathrm{Spin}$ 構造）と計量をとり、スピノル束 $\mathsf S\to M$、$W\to M$ を Hermite ベクトル束とすると、ファイバー Dirac 作用素 $D_W:\Gamma(\mathsf S^+\otimes W)\to\Gamma(\mathsf S^-\otimes W)$ の族を得る。
+\begin{cor}\label{cor:Diracfam}\tC\
+$\ch(\ind D_W)=\pi_*\bigl(\Ahat(T_ZM)\,\ch(W)\bigr)=\int_Z\Ahat(T_ZM)\ch(W)\in H^{\ev}(B;\Q)$。偶数次元ファイバーで有効。奇数次元では右辺は $H^{\rm odd}(B;\Q)$ の元（$K^1$ の $\ch$）。
+\end{cor}
+\paragraph{Dolbeault との関係。}$X$ が複素のとき $\Td(X)=\Ahat(X)e^{c_1(X)/2}$ で、$\Lambda^{0,\bullet}=\mathsf S\otimes K^{-1/2}$（spin$^c$）で $\bar\partial+\bar\partial^*$ は Dirac 型作用素に一致するので、GRR は spin$^c$ 版（$\Ahat\,e^{c/2}$）の特殊な場合である。
+\begin{ex}\label{ex:Ahatrank}\tP\
+$\ch_0(\ind D)=\Ahat(Z)$（ファイバーの $\Ahat$ 種数）。$Z=K3$：$\Ahat=-p_1/24=2$（$p_1=-48$）。符号数 $\sigma=-16$、$\Ahat=-\sigma/8=2$（4次元スピン多様体）。$Z=T^4$：$\Ahat=0$。したがって K3 ファイバーの Dirac 族の指数束は階数 $2$ の（仮想）束で、$\ch=2+\cdots$。$T^4$ ファイバー束では $\ch_0=0$。
+\end{ex}
+\begin{ex}[$SU(2)$ 束の球面束]\label{ex:SU2}\tP\
+$V\to B$ を階数 2、$c_1(V)=0$（$SU(2)$ 束）、$\pi:\CP(V)\to B$（ファイバー $S^2$）とする。$T_\pi$ の複素直線束としての $c_1$ は $2h+c_1(V)=2h$（Euler 完全列）で偶数なので、$T_\pi$ にスピン構造があり $K_\pi^{-1/2}=T_\pi^{1/2}=\Oc(1)$、$\Lambda^{0,\bullet}=\mathsf S\otimes\Oc(1)$。したがってファイバー Dirac 作用素 $D_{\Oc(k)}$（$\mathsf S\otimes\Oc(k)$ に値）は $\bar\partial_{\Oc(k-1)}$ に等しく、命題 \ref{prop:Pbundle} より $\ind D_{\Oc(k)}=\pi_!\Oc(k-1)=\Sym^{k-1}V^\vee$（$k\ge1$）。コホモロジー版 $\ch=\pi_*(e^{kh}\Ahat(T_\pi))$ で確かめる。$\Ahat(T_\pi)=\frac{h}{\sinh h}$（$x=2h$）。$V$ の Chern 根を $\pm a$ とすると $\pi_*f(h)=\frac{f(a)-f(-a)}{2a}$（\S\ref{sec:GRR}）なので
+\[
+\pi_*\Bigl(e^{kh}\frac h{\sinh h}\Bigr)=\frac{1}{2a}\cdot\frac{a}{\sinh a}\bigl(e^{ka}-e^{-ka}\bigr)=\frac{\sinh(ka)}{\sinh a}=\sum_{j=0}^{k-1}e^{(k-1-2j)a}=\ch\Sym^{k-1}V.
+\]
+（$V\cong V^\vee$ なので $\Sym^{k-1}V^\vee$ と同じ。）$k=1$：階数 $1$ の自明束（$S^2$ 上の $\Oc(1)$ で捩った Dirac 作用素の調和スピノルは 1 次元）。公式 $\sinh(ka)/\sinh a$ の $a=0$ の値 $k$ は階数 $=\Ahat$ 積分 $=\deg\Oc(k)=k$。
+\end{ex}
+\subsubsection{(c) de Rham 作用素の族}
+$D=d+d^*:\Omega^{\ev}(Z_b)\to\Omega^{\rm odd}(Z_b)$ は楕円型で、$\ind D_b=\chi(Z)$。核は調和形式 $=H^\bullet(Z_b;\R)$（Hodge）で次元は一定なので束をなし、$\ind D=[H^{\ev}]-[H^{\rm odd}]$。これらは \S\ref{sec:GRR} の Gauss--Manin 接続により\emph{平坦}なので、$\ch$ は階数だけ：$\ch(\ind D)=\chi(Z)\in H^0(B)$。定理 \ref{thm:ASfamch} は $\int_Ze(T_ZM)=\chi(Z)$（Chern--Gauss--Bonnet、ファイバーごとの Euler 数；高次の項は Euler 類の次数で消える）と整合する。
+
+\subsection{例：Poincaré 束の族と Landau 準位}
+\begin{ex}[楕円曲線の Poincaré 族]\label{ex:torusGRR}\tP\ \tC\
+$E$ を楕円曲線、$E^\vee$ を双対、$\Pc\to E\times E^\vee$ を Poincaré 束、$L_d$ を次数 $d$ の $E$ 上の直線束とし、族 $\bar\partial_{\Pc\otimes L_d}$ を考える。$H^*(E\times E^\vee)$ で $c_1(\Pc)=\gamma\in H^1(E)\otimes H^1(E^\vee)$、$\gamma^2=-2\eta\theta$（$\eta,\theta$ は点類）、$\gamma\eta=\gamma\theta=0$（\tC\ 一般の種数 $g$ では \S\ref{sec:GRR}）。$\ch(\Pc\otimes L_d)=e^{d\eta+\gamma}=1+d\eta+\gamma-\eta\theta$、$E$ は平坦なので $\Td(T_\pi)=1$。$E$ に沿って積分すると $\eta$ の係数が残り
+\[
+\ch(\ind)=d-\theta\qquad(\text{階数 }d,\ c_1=-1).
+\]
+$d=0$ は例 \ref{ex:torusindex} と一致。$d\ge1$：核は階数 $d$ の束（跳びなし）、$\Coker=0$。$d\le-1$：$\ind=-[\Coker]$、階数 $|d|$。$d=1$ なら次数 $-1$ の直線束。Mukai の Fourier 変換との関係は\tQ（問 \ref{p:FM}）。
+\end{ex}
+\begin{ex}[Landau 準位の Chern 数（数値確認）]\label{ex:landauChern}\tP\
+第7巻の定理（$T^2$ 上の $\bar\partial_{L_k}$、核は $k$ 次元）に平坦接続のパラメータ $(\alpha,\beta)\in[0,2\pi]^2$（境界条件 $u(x+2\pi,y)=e^{iky+i\alpha}u$、$u(x,y+2\pi)=e^{i\beta}u$）を付けた族を考える。核の基底は
+\[
+u_\rho(x,y)=\sum_{j\in\Z}e^{ij\alpha-2\pi n_0j-\pi kj^2}\exp\bigl(nx-\tfrac k{4\pi}x^2\bigr)e^{iny},\qquad n_0=\rho+\tfrac\beta{2\pi},\ n=n_0+jk\ (\rho=0,\dots,k-1).
+\]
+$\Ker$ は $T^2_{(\alpha,\beta)}$ 上の階数 $k$ の束である。周期的なゲージ $v=e^{-i(\alpha x+\beta y)/2\pi}u$ で固定した Hilbert 空間に移し、射影接続の曲率を格子法（Fukui--Hatsugai--Suzuki、$14\times14$ 分割）で積分すると、$k=1,2,3$ でいずれも \emph{格子のプラケット位相の和 $/2\pi=+1$} である。$c_1=\frac i{2\pi}\int F$ はこの符号を反転したもの（$S^2$ 上の $P_+$、$c_1=-1$、で較正した。問 \ref{p:toeplitz}）なので、$(\alpha,\beta)$ の順の向きで\emph{$c_1=-1$}。この向きは $B=E^\vee$ の複素向きに一致する（$v$ は $\partial_x+i\partial_y$ に定数項 $\frac i{2\pi}(\alpha+i\beta)$ を加えた作用素の核なので、$\alpha+i\beta$ が正則座標）。したがって階数 $k$ でも $c_1=-1$ で、$\ch=k-\theta$（例 \ref{ex:torusGRR}）と符号まで一致する。量子 Hall 効果の TKNN 整数に当たる（物理の文献では符号の規約が異なることが多い）。
+\end{ex}
+
+\begin{ex}[奇数次元ファイバー：$S^1$ 上の平坦接続の族]\label{ex:oddfam}\tP\ \tQ\ （符号）
+$B=[0,1]/\{0\sim1\}$、$M=B\times S^1$、$D_t=-i\frac d{d\theta}+f(t)$（$f:[0,1]\to\R$、$f(1)-f(0)=N\in\Z$。例 \ref{ex:SF} と問 \ref{p:SFprob}）。$D_t=-i\bigl(\frac d{d\theta}+if(t)\bigr)$ は自明直線束 $E$ の接続 $\nabla=d+if(t)\,d\theta$（$B\times S^1$ 上）で捩れた Dirac 作用素。曲率 $F=if'(t)\,dt\wedge d\theta$、$c_1(E)=\frac i{2\pi}F=-\frac{f'(t)}{2\pi}dt\wedge d\theta$。$\ch^{\rm odd}(\ind D)=\int_{S^1}\ch(E)=\int_{S^1}c_1(E)$ は $B$ 上の 1 形式で、絶対値は $f'(t)dt$（$\int_{S^1}d\theta=2\pi$ が分母の $2\pi$ と打ち消す）。$\int_B$ は $|f(1)-f(0)|=|N|$ で、スペクトル流 $\sfl=N$ の絶対値と一致する。符号はファイバー積分の規約と $K^1$ の $\ch$ の向きに依る\tQ：$\theta$ について（右から）積分して $B$ 上で積分すると $\int_B\int_{S^1}c_1(E)=-N$ で、スペクトル流 $\sfl=+N$ と逆符号になる。したがって $K^1$ の $\ch$ の規約には $-1$ が入るはずだが、これは本巻では確認していない。
+\end{ex}
+\begin{keybox}{要点（\S\ref{sec:AS}）}
+\begin{itemize}
+\item Dolbeault の族：$\ind D=\pi_!E$、$\ch(\pi_!E)=\pi_*(\ch(E)\Td(T_\pi))$ は GRR。
+\item Dirac の族：$\ch(\ind D_W)=\int_Z\Ahat(T_ZM)\ch(W)$、階数は $\Ahat(Z)$（K3：$2$）。
+\item de Rham の族：$\ind=[H^{\ev}]-[H^{\rm odd}]$ は平坦で $\ch=\chi(Z)$。
+\item 楕円曲線の Poincaré 族：$\ch=d-\theta$（$c_1=-1$）。
+\end{itemize}
+\end{keybox}
+
+\subsection*{この節の問題}
+\begin{prob}{基本}\label{p:trivfam}
+自明な族 $M=B\times Z$、$D_b=D_0$（一定）の指数束は $(\ind D_0)\cdot1\in K(B)$ で、$W\to B$ でひねった $D\otimes\pi^*W$ の指数束は $(\ind D_0)[W]$ であることを、定義（核・余核が束なら $[\Ker]-[\Coker]$）と定理 \ref{thm:ASfamch}（$\ch=\ind D_0\cdot\ch(W)$）の両方から確かめよ。
+\end{prob}
+\begin{prob}{標準}\label{p:FM}
+例 \ref{ex:torusGRR} で $d=-1,0,1,2$ の階数、$c_1$、傾き（次数 / 階数）を求めよ。$d=1$ の指数束は次数 $-1$ の直線束 $\Oc(-p)$ であることを、$E^\vee$ の次数 $-1$ の直線束の同型類が点 $p$ で決まることから説明せよ（Mukai 変換との関係は\tQ）。
+\end{prob}
+\begin{prob}{発展}\label{p:AJdeg}
+$C$ を種数 $g$ の曲線、$N>2g-2$、$\mathrm{Pic}^N$ 上の Picard 束 $\mathcal E_N$（階数 $N+1-g$、$\ch=(N+1-g)-\theta$）を、$\iota:C\to\mathrm{Pic}^N$、$p\mapsto\Oc(D_0+p)$（$\deg D_0=N-1$）で引き戻した束の次数を2通りで求めよ。(i) $\int_C\iota^*\theta=g$（\tC\ 一般の事実）から。(ii) $C\times C$ 上の直線束 $\Oc(\Delta+\mathrm{pr}_1^*D_0)$ に GRR を適用し（$\Delta^2=2-2g$、$\Delta\cdot f=1$、$f$ は $\{pt\}\times C$ の類、$f^2=0$）、$\{p_0\}\times C$ 上の自明化のための捩り $\mathrm{pr}_2^*\Oc(-p_0)$ も考慮して。
+\end{prob}
+\begin{prob}{基本}\label{p:AhatK3}
+4次元スピン多様体 $Z$ で $\Ahat(Z)=-p_1/24=-\sigma/8$（$p_1=3\sigma$、第6巻）を確かめ、K3（$\sigma=-16$）、$T^4$ の Dirac 族の指数束の階数を求めよ。$\CP^2$ はスピンでないことを $w_2$ で述べよ。
+\end{prob}
+\begin{prob}{標準}\label{p:product}
+$D_1$（$B_1$ 上）、$D_2$（$B_2$ 上）の外部積 $D_1\boxtimes D_2$ の指数束が $\ind D_1\boxtimes\ind D_2$ であることを（核・余核が束の場合に）示し、$\ch$ が $\ch\boxtimes\ch$ になることを確認せよ。$Z=K3\times K3$ の Dirac 作用素の指数を求めよ。
+\end{prob}
+\begin{prob}{基本}\label{p:Tdahat}
+$\Td(X)=\Ahat(X)e^{c_1(X)/2}$ を Chern 根（$\frac x{1-e^{-x}}=\frac{x/2}{\sinh(x/2)}e^{x/2}$）から示せ。これを使い、Riemann 面 $\Sigma_g$ 上の $\bar\partial_L$（$\deg L=d$）の指数 $d+1-g$ を Dirac 作用素 $D_{L\otimes K^{-1/2}}$ の指数 $\int c_1(L\otimes K^{-1/2})$ と照合せよ（$\deg K^{-1/2}=1-g$）。
+\end{prob}
+\begin{prob}{標準}\label{p:SU2sphere}
+例 \ref{ex:SU2} で、(a) $\Td(T_\pi)$ と $\Ahat(T_\pi)e^{c_1(T_\pi)/2}$ の一致を $x=2h$ で確かめ、(b) $\ind D_{\Oc(k)}=\Sym^{k-1}V^\vee$ の階数が $k$ であることと $\ch_0=\sinh(ka)/\sinh a|_{a=0}=k$ の一致を示せ。(c) $k=2$ の指数束の $\ch$ を求め、$V$ 自身と一致することを述べよ。
+\end{prob}
+\begin{prob}{標準}\label{p:oddfam}
+例 \ref{ex:oddfam} で $f(t)=Nt$ のとき、$D_t$ の固有値 $n+Nt$ の $0$ の横切りを数えて $\sfl=N$ を確かめ、$\int_0^1f'(t)dt=N$ と一致することを述べよ。$f$ が $t=0,1$ で境界条件 $f(1)-f(0)\notin\Z$ ならこの族は $S^1$ 上の族でないことを説明せよ。
+\end{prob}

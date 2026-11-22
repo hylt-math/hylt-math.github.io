@@ -1,0 +1,90 @@
+
+\section{Fredholm 作用素の族と指数束}\label{sec:Fred}
+\subsection{Fredholm 作用素の空間}
+$H_0,H_1$ を可分 Hilbert 空間、$\Fred(H_0,H_1)\subset\mathcal B(H_0,H_1)$ を Fredholm 作用素全体（作用素ノルムの位相）とする。$\Fred$ は開集合で、指数は局所定数（第7巻）。$H_0=H_1=H$ のとき $\Fred(H)$。
+\begin{thm}[Kuiper]\label{thm:Kuiper}\tC\
+無限次元 Hilbert 空間の $\GL(H)$ はノルム位相で可縮。
+\end{thm}
+\src{Kuiper, \emph{The homotopy type of the unitary group of Hilbert space}, Topology 3 (1965)。}
+$B$ 上のベクトル束を扱うとき、Kuiper の定理により無限次元 Hilbert 束は自明化できる。以下ではまず、$H_0,H_1$ が$B$ 上定数の場合（ノルム連続な族 $T:B\to\Fred(H_0,H_1)$）を扱う。楕円型作用素の族では、局所自明化のもとでこの場合に帰着する（\S\ref{sec:fam-ell}）。
+
+\subsection{安定化による指数束の構成}
+\begin{thm}[指数束]\label{thm:indexbundle}\tP\
+$B$ をコンパクト Hausdorff 空間、$T:B\to\Fred(H_0,H_1)$ を連続とする。
+\begin{enumerate}
+\item 有限次元部分空間 $V\subset H_1$ で、すべての $b$ で $\Ran T_b+V=H_1$ となるものが存在する（\emph{許容部分空間}）。
+\item 許容 $V$ に対し $K_V=\bigsqcup_bK_{V,b}$、$K_{V,b}=T_b^{-1}(V)=\{x\in H_0:T_bx\in V\}$ は階数 $\dim V+\ind T$ の（$H_0$ の部分束としての）ベクトル束。
+\item $[K_V]-[V]\in K(B)$ は $V$ のとり方によらない。これを $\ind T\in K(B)$ と書く。
+\item $\Ker T_b,\Coker T_b$ の次元が $b$ によらなければ、これらはベクトル束で $\ind T=[\Ker T]-[\Coker T]$。
+\item $\ind T$ は $B$ 上のホモトピー、コンパクト摂動 $T+K$（$K_b$ コンパクト、連続）、引き戻し $f^*$ で不変・自然。$\ind(T\oplus T')=\ind T+\ind T'$、$\ind(ST)=\ind S+\ind T$。
+\end{enumerate}
+\end{thm}
+\begin{proof}
+(1) 各 $b_0$ で $\Ran T_{b_0}$ の有限次元補空間 $V_{b_0}$ をとる。$S_b:H_0\oplus V_{b_0}\to H_1$、$(x,v)\mapsto T_bx+v$ はノルム連続な族で $S_{b_0}$ は全射。全射は開条件なので、$b_0$ の近傍で全射。コンパクト性で有限個の近傍が覆い、$V=\sum V_{b_j}$ とすればよい。
+
+(2) $S_b:H_0\oplus V\to H_1$ は全射な Fredholm 作用素の連続な族。$\Ker S_b=\{(x,-T_bx):T_bx\in V\}\cong K_{V,b}$、次元は $\dim V+\ind T$（定数）。局所自明性：$b_0$ で $K_0=\Ker S_{b_0}$、$\Pi_0$ をその上への直交射影とする。$(S_b,\Pi_0):H_0\oplus V\to H_1\oplus K_0$ は連続な Fredholm 族で $b_0$ で同型だから、$b_0$ の近傍で同型。すると $\Pi_0:\Ker S_b\to K_0$ は単射（$(S_b,\Pi_0)$ の単射性）で、全射（$(0,k)$ の原像が $\Ker S_b$ に入る）。これが局所自明化 $\Ker S_b\cong K_0$ を与える。
+
+(3) 許容部分空間 $V\subset V'$ なら $K_V\subset K_{V'}$ で、$x\mapsto[T_bx]$ は商 $K_{V',b}/K_{V,b}\to V'/V$ を与える。全射：$v'\in V'$ に対し $\Ran T_b+V=H_1$ より $v'=T_bx+v$（$v\in V$）、$T_bx=v'-v\in V'$。核は $K_V$。よって $K_{V'}/K_V\cong V'/V$（定数束）で、$[K_{V'}]-[V']=[K_V]-[V]$。一般の $V_1,V_2$ は $V_1+V_2$ と比べる。
+
+(4) $T_b$ の値域は閉で余次元一定なので $\Coker T$ は束（$(\Ran T_b)^\perp\subset H_1$ は連続な部分束）。$K_V\to V$、$x\mapsto T_bx$ は一定の階数をもつ束写像で、核は $\Ker T$（定数次元の核が束になることは問 \ref{p:kerbundle}）、余核は $V/(V\cap\Ran T_b)\cong H_1/\Ran T_b=\Coker T$。完全列 $0\to\Ker T\to K_V\to V\to\Coker T\to0$ の交代和をとって $[K_V]-[V]=[\Ker T]-[\Coker T]$。
+
+(5) $B\times[0,1]$ 上の指数束の両端への制限は、ベクトル束のホモトピー不変性により同型類が等しい。コンパクト摂動はホモトピー $T+sK$ による。自然性：許容 $V$ は引き戻しでも許容。加法性は $V\oplus V'$ で明らか。合成は六項完全列（第7巻）を束の完全列と見る（定数次元の場合）と、一般には $V$ を取り直して同様。
+\end{proof}
+\begin{ex}[跳びの局所模型]\label{ex:localmodel}\tP\
+$B$ を円板、$T_a=(a)\oplus1_{H'}:\C\oplus H'\to\C\oplus H'$（$a\in B$ は座標）。$a=0$ でだけ核・余核が $\C$ に跳ぶ。許容 $V=\C\oplus0$ をとると $K_{V,a}=V$（$a\ne0$ では $T_ax\in V$ なら $x\in V$、$a=0$ では $x\in\C\oplus0$）。束写像 $K_V\to V$ は $a$ 倍で、\emph{単純な零点}をもつ。この局所模型を $B$ 全体に貼り合わせると、許容部分空間は局所的にしか自明でないので、$K_V\to V$ は「1点で単純に零をもつ直線束の射 $s:\mathcal L_K\to\mathcal L_V$」になり、$\mathcal L_K\cong\mathcal L_V(-p)$、
+\[
+\ind=[\mathcal L_V(-p)]-[\mathcal L_V]=\bigl([\Oc(-p)]-1\bigr)[\mathcal L_V]=-[\Oc_p]\cdot[\mathcal L_V].
+\]
+$B$ が1次元複素なら $\ch([\Oc_p])=[p]$（点類）で $[p]\cdot c_1(\mathcal L_V)=0$ なので、$\ch(\ind)=-[p]$、すなわち $c_1=-1$。
+\end{ex}
+\begin{ex}[トーラスの $\bar\partial+a$ の族]\label{ex:torusindex}\tP\
+例 \ref{ex:torusfam} の族は $B=E^\vee$ 上で $a=0$ のみ非可逆で、対角（$e_k$ ごと）に作用するので、局所的には例 \ref{ex:localmodel} そのもの（$V=\C e_0$、$T_ae_0=ae_0$）。零点は単純（$a$ が $B$ の局所複素座標）。ゆえに $\ind(P_a)=-[\Oc_p]\cdot[\mathcal L_V]$、$\ch=-[p]=-\theta$。これは Poincaré 束の GRR（\S\ref{sec:GRR}、$d=0$、$g=1$：$\ch=(d+1-g)-\theta=-\theta$）と一致する。符号（$-$）は「核に零点が付くとき、指数束は $-[\Oc_p]$」というこの局所的な議論による。
+\end{ex}
+\begin{rem}\label{rem:detsection}
+$\ind$ の行列式束 $\det(\ind T)=\det(\Ker)\otimes\det(\Coker)^{-1}$ の双対は、T の「行列式」$\det T\in\det(\Coker)\otimes\det(\Ker)^{-1}$ という\emph{正準切断}をもち、$T_b$ が非可逆な点で零になる（例 \ref{ex:localmodel}：$a$）。\S\ref{sec:GRR} の Quillen 計量の議論で再び現れる。
+\end{rem}
+
+\subsection{Atiyah--J\"anich の定理}
+\begin{thm}[Atiyah--J\"anich]\label{thm:AJ}\tC\
+$B$ がコンパクト Hausdorff のとき、$\ind:[B,\Fred(H)]\to K(B)$ は全単射（$[\,,]$ は自由ホモトピー類）。特に $\Fred(H)\simeq\Z\times BU$、$\pi_0=\Z$、$\pi_1=0$、$\pi_2=\Z$ で、Bott 周期性は $\Omega^2\Fred\simeq\Fred$。
+\end{thm}
+\src{Atiyah, \emph{$K$-theory}, 付録（Fredholm 作用素）；J\"anich, \emph{Vektorraumb\"undel und der Raum der Fredholm-Operatoren}, Math.\ Ann.\ 161 (1965)（頁は\tQ{}）；Atiyah, \emph{Algebraic topology and elliptic operators}, CPAM 20 (1967)。}
+\paragraph{骨子。}\emph{全射性}：$P:B\to\Gr_k(\C^N)$ を射影束とし、$A_b=S\otimes P_b+1\otimes(1-P_b)$（$H^2\otimes\C^N$ 上、例 \ref{ex:toeplitzS2} と同じ形）とすると、例 \ref{ex:toeplitzS2} の議論がそのまま使えて $\ind A=-[\mathrm{Im}P]$。随伴をとれば $+[\mathrm{Im}P]$。直和により任意の $[E]-[F]$ が得られる。\emph{単射性}は、Kuiper の定理（$\GL$ の可縮性）と、指数が一致する2つの族が（許容部分空間 $V$ を持つ有限次元の問題に落として）ホモトピックになることによる。\tC\ 詳細は上の文献。
+\begin{ex}\label{ex:pi2}\tP\ 例 \ref{ex:toeplitzS2} の族 $b\mapsto A_b$ は $\ind=-[P_+]=-H$（$H$ は Hopf 束）で、$[S^2,\Fred]\cong K(S^2)=\Z\oplus\Z(H-1)$ のうち階数 $-1$、$c_1=+1$ の類（$\ch=-1+x$）に対応する。階数の自由度（$\pi_0$ 成分）を補正して $\ind=-(H-1)$ とした類が、$\pi_2(\Fred)=\tilde K(S^2)=\Z\,(H-1)$ の生成元 $H-1$ の逆元に対応する。\end{ex}
+
+\subsection{$K^1$ とスペクトル流}
+自己随伴な Fredholm 作用素の空間 $\Fred^{\rm sa}$ は3つの成分に分かれ（本質的に正、本質的に負、どちらでもない）、「どちらでもない」成分 $\Fred^{\rm sa}_*$ が $K^1$ の分類空間：$[B,\Fred^{\rm sa}_*]\cong K^1(B)$（Atiyah--Singer, \emph{Index theory for skew-adjoint Fredholm operators}, Publ.\ IH\'ES 37, 1969、\tC）。$B=S^1$ の場合、ループ $t\mapsto D_t$ の類は\textbf{スペクトル流} $\sfl(D_t)\in\Z$、すなわち $t$ を $0$ から $1$ まで動かしたとき負から正へ $0$ を横切る固有値の数から、正から負へ横切る数を引いたもの（両端で $D_t$ が可逆でないときは、$D_t-\varepsilon$（$0<|\varepsilon|\ll1$）に取り替えて数える。次の例では $\varepsilon$ の符号によらない）。
+\begin{ex}\label{ex:SF}\tP\
+$D_t=-i\frac d{d\theta}+t$（$S^1$ 上、固有値 $n+t$、$n\in\Z$）。$D_t-\varepsilon$（$\varepsilon>0$ 小）の固有値 $n+t-\varepsilon$ のうち、$0$ を横切るのは $n=0$ の 1 本だけ（$t=\varepsilon$ で上向き）。$\varepsilon<0$ としても横切るのは $n=-1$ の 1 本（$t=1-|\varepsilon|$ で上向き）だけ。したがって $\sfl=+1$。$D_1=e^{-i\theta}D_0e^{i\theta}$ なので $\{D_t\}$ は $B=\R/\Z$ 上の族で、$\ind\in K^1(S^1)=\Z$ は $+1$（$K^1(S^1)=\Z$ の同一視をスペクトル流で行う）。$-i\frac d{d\theta}-t$ なら $-1$。数値（$2001$ 分割、固有値 $|n|\le5$）でも $+1,-1$ を確認した。
+\end{ex}
+\paragraph{奇数次元ファイバーの族。}ファイバーが奇数次元で、各 $D_b$ が自己随伴な1階楕円型作用素のとき、$b\mapsto D_b\in\Fred^{\rm sa}_*$ で指数は $K^1(B)$ に入る。$B=S^1$ のとき、$\sfl(D_t)$ は、写像トーラス上の $\frac\partial{\partial t}+D_t$ の指数に等しい（APS III。\tC\ 第10巻で詳述）。
+
+\subsection{楕円型作用素の族の指数束}\label{sec:fam-ell}
+\begin{thm}\label{thm:ellfamilyindex}\tC\
+$D$ をファイバー束 $\pi:M\to B$（$B$ コンパクト）上の楕円型作用素の族とすると、$\ind D\in K(B)$（偶数次元・次数つきの場合）または $K^1(B)$（自己随伴）が、Sobolev 空間 $H^m(Z_b,E_b)\to H^0(Z_b,F_b)$ の Fredholm 族（局所自明化と、貼り合わせによる Hilbert 束）の指数束として定まる。$\ind D$ は $s$（Sobolev 次数）に依らず、$\sigma(D)$ のホモトピー類にのみ依り、$K_c(T^*_ZM)\to K(B)$ の準同型（\emph{解析的指数} $\ind_a$）を与える。
+\end{thm}
+\src{Atiyah--Singer, \emph{The index of elliptic operators IV}, Ann.\ of Math.\ 93 (1971)、第1--2節\tQ（族の連続性と指数の定義）。}
+証明は定理 \ref{thm:indexbundle} の構成を局所自明化で行い、貼り合わせ関数（ファイバー束の構造群 $\mathrm{Diff}(Z)$ の作用）が束の同型を与えること、および擬微分作用素による $K_c(T^*_ZM)$ の元の実現（定理 \ref{thm:ellfamilyindex} の後半）を要する。\tC\ 以後、$\ind D$ を $[\Ker D]-[\Coker D]$ の記号で書くことがある（跳びがあれば上の意味）。
+
+\paragraph{貼り合わせについて。}\tQ\ ファイバー束の局所自明化 $\pi^{-1}(U_\alpha)\cong U_\alpha\times Z$ をとると、各 $U_\alpha$ 上で $H^m(Z_b)\to H^0(Z_b)$ は定数空間の間のノルム連続な Fredholm 族で、定理 \ref{thm:indexbundle} が使える。重なりでは、貼り合わせ微分同相 $\phi_{\alpha\beta}(b)\in\mathrm{Diff}(Z)$ による引き戻し $\phi_{\alpha\beta}(b)^*$ が $H^s$ のユニタリでない有界な同型を与える。この同型は $b$ について\emph{強連続}（ノルム連続でない）なので、「許容部分空間 $V$ を全体で一貫してとる」ことに注意が要る。Atiyah--Singer IV の第1節\tQ は、(i) 強連続の条件でも指数束が $K(B)$ の元として定まること、(ii) 異なる局所自明化の選択に依らないことを示す。本巻ではこの技術的な部分を再現しない。
+
+\begin{keybox}{要点（\S\ref{sec:Fred}）}
+Fredholm 族 $T:B\to\Fred$ に対し、$V$（有限次元）で $\Ran T_b+V=H_1$ とし $\ind T=[T^{-1}(V)]-[V]$。$V$ によらない（証明した）。核・余核が束なら $[\Ker]-[\Coker]$。跳びの局所模型は「単純零点」で、指数束は $-[\Oc_p]$ 型。Atiyah--J\"anich：$[B,\Fred]\cong K(B)$。自己随伴では $K^1$、スペクトル流。
+\end{keybox}
+
+\subsection*{この節の問題}
+\begin{prob}{基本}\label{p:CP1jump}
+$B=\CP^1$、$\ell_b\subset\C^2$ を $b$ に対応する直線（$\ell=\Oc(-1)$）とし、$T_b:\ell_b\to\C$、$T_b(v)=v_1$（第1座標）を考える。核・余核の次元を $b$ ごとに求め、指数束を $K(\CP^1)$ の元として求め、$\ch$ を計算せよ。
+\end{prob}
+\begin{prob}{標準}\label{p:additive}
+定数次元の場合に、$\ind(ST)=\ind S+\ind T$ を、完全列 $0\to\Ker T\to\Ker ST\to\Ker S\to\Coker T\to\Coker ST\to\Coker S\to0$ から導け。この列が束の完全列であることから、$K(B)$ での交代和の議論を述べよ。
+\end{prob}
+\begin{prob}{標準}\label{p:SFprob}
+$D_t=-i\frac d{d\theta}+3t$（$t\in[0,1]$）のスペクトル流を、固有値 $n+3t$ の横切りを数えて求めよ。$D_t=-i\frac d{d\theta}+f(t)$（$f:[0,1]\to\R$、$f(1)-f(0)=N\in\Z$）のとき $\sfl=N$ を示せ。
+\end{prob}
+\begin{prob}{標準}\label{p:kerbundle}
+$T:B\to\Fred(H_0,H_1)$ で $\dim\Ker T_b$ が一定のとき、$\Ker T$ は $H_0$ の部分束であることを示せ。（ヒント：$b_0$ の近くで、$K_0=\Ker T_{b_0}$ への直交射影 $\Pi_0$ が $\Ker T_b$ 上で単射、$K_0^\perp$ で $T_{b_0}$ が下に有界。）
+\end{prob}
+\begin{prob}{発展}\label{p:projbundle}
+射影束 $P:B\to\Gr_k(\C^N)$ に対し、$A_b=S\otimes P_b+1\otimes(1-P_b)$ の指数束が $-[\mathrm{Im}P]$ であること、$A_b^*$ の指数束が $+[\mathrm{Im}P]$ であることを示せ。これから $\ind:[B,\Fred]\to K(B)$ が全射であることを導け。$B=S^2$、$P=P_+$ のとき、$\ind A\in K(S^2)$ の $\ch$ を答えよ。
+\end{prob}

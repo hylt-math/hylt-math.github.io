@@ -1,0 +1,99 @@
+
+\section{$K$ 理論と Chern 指標}\label{sec:K}
+指数束の入れ物である $K$ 理論を、本巻で使う範囲で再掲する（第8巻 \S4 の続き）。
+
+\subsection{$K^0(B)$、コンパクト台、$K^1$}
+\begin{defn}\label{def:K}
+$B$ をコンパクト Hausdorff 空間とする。$K(B)=K^0(B)$ を、複素ベクトル束の同型類のなす半群の Grothendieck 群とする。$[E]-[F]$ の形の元（\emph{仮想ベクトル束}）からなり、$[E]-[F]=[E']-[F']$ は、ある $G$ で $E\oplus F'\oplus G\cong E'\oplus F\oplus G$ となること。$\otimes$ で可換環、$f:B'\to B$ で引き戻し $f^*$ が定まる（反変）。局所コンパクト空間 $Y$ に対し $K_c(Y)=\Ker\bigl(K(Y^+)\to K(\mathrm{pt})\bigr)$（$Y^+$ は一点コンパクト化）。$K^{-j}(Y)=K_c(Y\times\R^j)$、$K^1(Y)=K_c(Y\times\R)$。
+\end{defn}
+\tC\ 標準的な事実（Atiyah, \emph{$K$-theory}, 第1章と第2章）：
+\begin{enumerate}
+\item ホモトピー不変。$K(\mathrm{pt})=\Z$。$K(B)=\Z\oplus\tilde K(B)$（階数と、階数 $0$ の部分）。
+\item $U\subset X$ 開、$Z=X\setminus U$ 閉のとき、六項完全列 $K^1_c(U)\to K^1(X)\to K^1(Z)\to K_c(U)\to K(X)\to K(Z)$（$K^1(\cdot)$ が右端に戻る）。
+\item $K^1(B)\cong[B,\GL_\infty(\C)]$（写像のホモトピー類）。
+\item \textbf{複体による記述}：$K_c(Y)$ の元は、$Y$ 上のベクトル束の複体 $0\to E_0\to E_1\to\cdots\to E_N\to0$ で、コンパクト集合の外で完全なものの類 $\sum(-1)^i[E_i]$（差の元）で表される。楕円型作用素のシンボルが $K_c(T^*X)$ の元を与えるのは、この記述による（シンボルは $\xi\ne0$ で同型 $\pi^*E\to\pi^*F$、すなわち長さ1の複体）。
+\end{enumerate}
+\begin{ex}\label{ex:KS2}\tC\
+$K(S^2)=\Z\oplus\Z\,(H-1)$、$(H-1)^2=0$（$H$ は Hopf 束 $=\Oc(-1)$）。$K(T^2)=\Z^2$（階数と $c_1$）、$K^1(T^2)=\Z^2$（Künneth）。$K(\CP^n)=\Z[H]/(H-1)^{n+1}$。これらは Bott 周期性（\S\ref{sec:Bott}）から従い、問 \ref{p:KS2}、\ref{p:KCP2} で $\ch$ により確かめる。
+\end{ex}
+
+\subsection{Chern 指標}
+\begin{thm}[Chern 指標]\label{thm:ch}\tC\
+$B$ が有限 CW 複体（特にコンパクト多様体）のとき、第6巻の $\ch(E)=\sum e^{x_i}$ は環準同型 $\ch:K(B)\to H^{\ev}(B;\Q)$ を定める。(a) 自然（$f^*\ch=\ch f^*$）。(b) $\ch\otimes\Q:K(B)\otimes\Q\to H^{\ev}(B;\Q)$ は同型（Atiyah--Hirzebruch）。(c) 同様にコンパクト台のもの $\ch:K_c(Y)\to H^{\ev}_c(Y;\Q)$、奇数版 $\ch:K^1(B)\to H^{\rm odd}(B;\Q)$（$K^1(B)=K_c(B\times\R)$、$H^{\rm odd}(B)\cong H_c^{\ev}(B\times\R)$ による）がある。
+\end{thm}
+\src{Atiyah, \emph{$K$-theory}, 第2章；Atiyah--Hirzebruch, \emph{Vector bundles and homogeneous spaces}（1961）；Karoubi, \emph{$K$-theory}, 第V章\tQ{}（章）。}
+$\ch$ は整数性を持たない（像は格子 $\ch(K)\subset H^{\ev}(B;\Q)$ で、整数係数ではない。問 \ref{p:KCP2}）。$K(B)$ の元は、階数（$\ch_0$）と高次の位相的な情報（$\ch_1=c_1$、$\ch_2=\frac12(c_1^2-2c_2)$、$\dots$）を持つ。
+\begin{ex}[基本的な $\ch$]\label{ex:chbasic}\tP\
+(a) $S^2$：$\ch(H)=1+c_1(H)=1-x$（$x$ は向きの生成元、$x^2=0$）。(b) $T^2$：次数 $k$ の直線束 $L_k$ は $\ch=1+kx$。(c) $\CP^n$：$h=c_1(\Oc(1))$、$\ch(\Oc(j))=e^{jh}$、$h^{n+1}=0$。(d) Adams 作用素 $\psi^k$：$H^{2j}$ 上で $k^j$ 倍、$\ch(\psi^kV)=\psi^k\ch(V)$。$\Sym^2V$ は $\ch(\Sym^2V)=\frac12\bigl(\ch(V)^2+\psi^2\ch(V)\bigr)$（Chern 根 $x_i$ について $\sum_{i\le j}e^{x_i+x_j}=\frac12((\sum e^{x_i})^2+\sum e^{2x_i})$）。階数 2 では $\ch(\Sym^2V)=3+3c_1+\frac{5c_1^2-8c_2}2+\cdots$（問 \ref{p:Sym2}）。
+\end{ex}
+
+\subsection{Bott 周期性、Thom 同型、Gysin 写像}\label{sec:Bott}
+\begin{thm}[Bott 周期性]\label{thm:Bott}\tC\
+$K_c(Y\times\C)\cong K_c(Y)$（外部積 $x\mapsto x\boxtimes\beta$）。ここで $\beta\in K_c(\C)\cong\Z$ は、複体 $0\to\underline\C\xrightarrow{\ z\ }\underline\C\to0$（$\underline\C$ は自明直線束、$z$ は座標を掛ける写像、$z\ne0$ で同型）の類。特に $K^{-2}(Y)\cong K^0(Y)$。
+\end{thm}
+\begin{thm}[Thom 同型]\label{thm:Thom}\tC\
+$V\to X$ を複素ベクトル束とすると、$K(X)\to K_c(V)$、$x\mapsto\pi^*x\cdot\lambda_V$ は同型。ここで $\lambda_V$ は Koszul 複体 $\bigl(\pi^*\Lambda^{\bullet}V,\ v\wedge\bigr)$ の類（$v\ne0$ で完全）。コホモロジーの Thom 類 $U\in H^{2r}_c(V)$（$U|_{X}=e(V)$、ファイバー上で積分 $1$）を使うと
+\[
+\ch(\lambda_V)=(-1)^rU\cdot e^{c_1(V)}\Td(V)^{-1}\qquad(r=\rk V).
+\]
+符号と因子 $e^{c_1(V)}$ は、複体の次数のとり方（$\Lambda^\bullet V$ か $\Lambda^\bullet V^*$、偶奇の割当）に依る規約である。
+\end{thm}
+\src{Atiyah, \emph{Bott periodicity and the index of elliptic operators}（Quart.\ J.\ Math.\ 1968）；Atiyah--Hirzebruch, \emph{Riemann--Roch theorems for differentiable manifolds}（Bull.\ AMS 65, 1959）；Karoubi 第IV章。上の公式は、$\Lambda^\bullet V|_X$ の $\ch=\prod(1-e^{x_i})$ と $\frac{1-e^{x}}x=-\frac{e^x}{\Td(x)}$ から\tP（符号規約は\tQ）。}
+\paragraph{公式の導出（骨子）。}\tP\ Thom 同型 $H^*(X)\cong H_c^{*+2r}(V)$、$\psi\mapsto U\psi$ により、$\ch(\lambda_V)=U\psi(V)$ をみたす $\psi(V)\in H^*(X;\Q)$ が一意に定まる。零切断への制限は $U|_X=e(V)=\prod x_i$、$\ch(\lambda_V)|_X=\ch(\Lambda^\bullet V)=\prod(1-e^{x_i})$。$e(V)$ が零因子でない普遍的な場合（$X=BU(1)^r$）で $\psi=\prod\frac{1-e^{x_i}}{x_i}$ を読み取り、splitting principle で一般の $V$ に拡張する。$\frac{1-e^x}x=-e^x\bigl(\frac{x}{1-e^{-x}}\bigr)^{-1}$ より $\psi=(-1)^re^{c_1(V)}\Td(V)^{-1}$。
+
+\paragraph{$r=1$ の検算。}$V=\C$（$X=\mathrm{pt}$）、$\lambda_V=\beta$ なら $\ch(\beta)=-U$、すなわち $\int_{\C}\ch(\beta)=-1$（$\C$ の複素向き）。この符号は \S\ref{sec:heat} の超接続の計算（Quillen の規約）と一致する（問 \ref{p:Bottclass}）。
+
+\paragraph{Gysin 写像。}複素ベクトル束（より一般に spin$^c$）の構造を持つ固有写像 $f:X\to Y$（\emph{$K$-向きづけられた}写像）に対し、$f_!:K(X)\to K(Y)$ が、埋め込みによる Thom 同型と Bott 周期性の合成で定まる（\S\ref{sec:AS} と同じ構成）。関手的：$(g\circ f)_!=g_!f_!$。コホモロジー版は
+\[
+\ch(f_!x)=f_*\bigl(\ch(x)\Td(T_f)\bigr)\qquad(T_f=TX-f^*TY\ \text{の複素構造})\tag{GRR$_{\rm diff}$}
+\]
+（Atiyah--Hirzebruch の可微分多様体の Riemann--Roch、\tC）。閉埋め込み $i:Z\to X$ では $\ch(i_!x)=i_*\bigl(\ch(x)\Td(N_i)^{-1}\bigr)$。
+\begin{ex}\label{ex:gysinpt}\tP\
+$i:\mathrm{pt}\to S^2=\CP^1$ の Gysin 像 $i_!(1)\in K(S^2)$ は、$\ch(i_!1)=i_*1=x$（点類）で、$i_!(1)=[\Oc(1)]-1=1-[\Oc(-1)]=[\Oc_p]$（$0\to\Oc(-1)\to\Oc\to\Oc_p\to0$）。実際 $\ch(\Oc(1)-1)=e^x-1=x$。\S\ref{sec:Fred} の指数束 $-[\Oc_p]$ はこの $-i_!(1)$ である。
+\end{ex}
+
+\subsection{主な空間の $K$ 群と奇数次 $\ch$}
+\tC\ （Atiyah, \emph{$K$-theory}, 第2章；Bott 周期性と Künneth から）
+\begin{center}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{lcc}
+\toprule
+空間 & $K^0$ & $K^1$\\
+\midrule
+$\mathrm{pt}$ & $\Z$ & $0$\\
+$S^1$ & $\Z$ & $\Z$（巻きつき数）\\
+$S^{2m}$ & $\Z^2$ & $0$\\
+$S^{2m+1}$ & $\Z$ & $\Z$\\
+$T^n$ & $\Z^{2^{n-1}}$ & $\Z^{2^{n-1}}$（$n\ge1$）\\
+$\CP^n$ & $\Z^{n+1}$ & $0$\\
+\bottomrule
+\end{tabular}
+\end{center}
+$K^1(B)=[B,\GL_\infty]$ の $\ch$（奇数版）は、$K^1(B)=K_c(B\times\R)$ に偶数版を使い、$H^{\mathrm{ev}}_c(B\times\R)=H^{\rm odd}(B)$ と同一視したもの。$B=S^1$、$u:S^1\to U(1)$ の巻きつき数 $w$ に対して $\ch(u)=w\cdot[S^1]^*$（$\int_{S^1}\ch(u)=w$）。符号は $S^1\times\R$ の向きの規約に依る\tQ。族の指数定理では、奇数次元ファイバー（\S\ref{sec:AS}）の指数が $K^1(B)$ に入る。
+
+\begin{keybox}{要点（\S\ref{sec:K}）}
+$K(B)$ は仮想ベクトル束、$K_c$ はコンパクト台の複体の類、$K^1$ は $[B,\GL_\infty]$。$\ch:K(B)\otimes\Q\cong H^{\ev}(B;\Q)$。Bott：$K_c(Y\times\C)\cong K_c(Y)$、Thom：$K(X)\cong K_c(V)$、Gysin $f_!$ は関手的で $\ch(f_!x)=f_*(\ch(x)\Td(T_f))$。符号は Koszul 複体の規約に依る。
+\end{keybox}
+
+\subsection*{この節の問題}
+\begin{prob}{基本}\label{p:KS2}
+$K(S^2)=\Z\oplus\Z(H-1)$ を前提に、$\ch(H-1)$ を求め、$(H-1)^2=0$ を $\ch$ から確かめよ。$\ch:K(S^2)\to H^0\oplus H^2$ の像を決定せよ。
+\end{prob}
+\begin{prob}{標準}\label{p:Sym2}
+階数 2 のベクトル束 $V$（Chern 根 $a,b$）について、$\ch(\Sym^2V)$ を Chern 根から次数 2 まで展開し、Adams 作用素の公式 $\frac12(\ch(V)^2+\psi^2\ch(V))$ と一致することを示せ。$\ch(\Lambda^2V)$ も求めよ。
+\end{prob}
+\begin{prob}{標準}\label{p:KCP2}
+$K(\CP^2)$ は $1,\Oc(1),\Oc(2)$ で生成される。$\ch(1),\ch(\Oc(1)),\ch(\Oc(2))$ を基底 $(1,h,h^2)$（$\int h^2=1$）の座標で書き、$\ch(K(\CP^2))\subset H^{\ev}(\CP^2;\Q)$ の格子を決定せよ（$\ch_2$ が半整数になる条件を述べよ）。
+\end{prob}
+\begin{prob}{標準}\label{p:KT2}
+$K(T^2)$ の元は階数と $c_1$ で決まる（$\ch:K(T^2)\to H^0\oplus H^2$ は単射で、像は $\Z\oplus\Z$）ことを、$T^2$ 上のベクトル束が階数と次数で分類されること（第4・6巻）を使って示せ。$K^1(T^2)=\Z^2$ の生成元を（写像 $T^2\to U(1)$ として）2つ挙げよ。
+\end{prob}
+\begin{prob}{標準}\label{p:Bottclass}
+Bott 類 $\beta=[\underline\C\xrightarrow z\underline\C]\in K_c(\C)$ について、定理 \ref{thm:Thom} の公式を $r=1$、$X=\mathrm{pt}$ で使って $\int_{\C}\ch(\beta)$ を求めよ。また $\beta\boxtimes\beta\in K_c(\C^2)$ の $\ch$ の積分を求めよ。
+\end{prob}
+\begin{prob}{基本}\label{p:gysin}
+$i:\mathrm{pt}\to S^2$ について $i_!(1)=[\Oc(1)]-1$ を示し、$[\Oc(1)]+[\Oc(-1)]=2$ が $K(S^2)$ で成り立つことを $\ch$ から確かめよ。
+\end{prob}
+\begin{prob}{基本}\label{p:Ktable}
+$K^*(T^3)$ を Künneth（$K^*(X\times S^1)=K^*(X)\otimes K^*(S^1)$、$\Z/2$ 次数つき）から計算し、表の $T^n$ の行（階数 $2^{n-1}$）を $n=3$ で確かめよ。$K^1(S^3)=\Z$ の生成元を $S^3=SU(2)\to U(2)$（包含）で与えよ。
+\end{prob}
