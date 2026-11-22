@@ -1,0 +1,121 @@
+
+\section{指数問題：解析で定義され、位相で計算される量}\label{sec:intro}
+\paragraph{動機。}第7巻で、閉多様体上の楕円型作用素 $P:\Gamma(E)\to\Gamma(F)$ は Fredholm 作用素であり、その指数
+\[
+\ind P=\dim\Ker P-\dim\Coker P=\dim\Ker P-\dim\Ker P^*
+\]
+が主シンボルの連続変形で変わらないこと（ホモトピー不変性）を学んだ。$\Ker P$ と $\Coker P$ の次元は微分方程式の「解の個数」で、パラメータを動かすと跳ぶことがある。ところが跳ぶのは同時であり、差は変わらない。本巻の主題は、この差が\emph{具体的な位相的公式}で書けるという事実である。公式の形は例から入ると見えやすい。
+
+\subsection{例 1：円周 $S^1$ 上の $d/d\theta$}
+$S^1=\R/2\pi\Z$、$\lambda\in\C$、$P_\lambda=\frac d{d\theta}-\lambda:C^\infty(S^1)\to C^\infty(S^1)$ とする。主シンボルは $i\xi$ で、$\xi\ne0$ で可逆だから楕円型である。
+\begin{ex}\label{ex:S1}\tP\
+$Pu=0$ の解は $u=ce^{\lambda\theta}$。$2\pi$ 周期的であるための条件は $e^{2\pi\lambda}=1$、すなわち $\lambda\in i\Z$。形式的随伴は $P_\lambda^*=-\frac d{d\theta}-\bar\lambda$ で、$P_\lambda^*v=0$ の解 $v=ce^{-\bar\lambda\theta}$ が周期的であるための条件は $\bar\lambda\in i\Z$、すなわち $\lambda\in i\Z$。よって
+\[
+\dim\Ker P_\lambda=\dim\Coker P_\lambda=\begin{cases}1&\lambda\in i\Z\\0&\text{それ以外}\end{cases},\qquad \ind P_\lambda=0.
+\]
+\end{ex}
+$\lambda$ を動かすと $\dim\Ker$ は $\lambda\in i\Z$ で跳ぶが、指数は $0$ のままである。一般に、閉多様体が\emph{奇数次元}のとき、楕円型\emph{微分}作用素の指数は $0$ になる（\tC\ Atiyah--Singer III、\S\ref{sec:AS} の系 \ref{cor:odd} で説明する）。指数が $0$ でない例は、偶数次元か、微分作用素でない作用素（擬微分作用素、\S\ref{sec:K}）で現れる。
+
+\subsection{例 2：Riemann 面の $\dbar_L$}
+$\Sigma$ を種数 $g$ のコンパクト Riemann 面、$L$ を次数 $d=\deg L$ の正則直線束とする。$\dbar_L:\Omega^{0,0}(L)\to\Omega^{0,1}(L)$ は楕円型で（第7巻）、
+\[
+\Ker\dbar_L=H^0(\Sigma,L),\qquad\Coker\dbar_L\cong H^1(\Sigma,L)\quad(\text{Dolbeault の定理、第3巻}).
+\]
+\begin{ex}[Riemann--Roch の再読]\label{ex:RR}\tC\
+$\ind\dbar_L=h^0(L)-h^1(L)=d+1-g$（Riemann--Roch、第4巻。HRR の $n=1$、第6巻）。$g=0,\ L=\Oc(d)$ なら $h^0=d+1,h^1=0$（$d\ge-1$）。$g=1$ なら $\ind=d$：$d=0$ で $L$ が自明なら $h^0=h^1=1$、非自明なら $h^0=h^1=0$ と、個々の次元は跳ぶが指数は $0$ である（第4巻）。
+\end{ex}
+右辺 $d+1-g$ は、$L$ の位相的な不変量 $d=\int c_1(L)$ と $\Sigma$ の位相的な不変量 $g$ だけで書ける。第6巻で見たように
+\[
+d+1-g=\int_\Sigma\Bigl(c_1(L)+\tfrac12c_1(T_\Sigma)\Bigr)=\int_\Sigma\ch(L)\Td(\Sigma)\qquad(\int_\Sigma c_1(T_\Sigma)=2-2g).
+\]
+
+\subsection{例 3：Gauss--Bonnet}
+向きづけられた閉曲面 $\Sigma$ 上の $d+d^*:\Omega^{\rm ev}\to\Omega^{\rm odd}$ の指数は、Hodge 理論（第5・7巻）により $\dim H^0-\dim H^1+\dim H^2=\chi(\Sigma)$ に等しい。他方、Gauss--Bonnet の定理
+\[
+\chi(\Sigma)=\frac1{2\pi}\int_\Sigma K\,dA
+\]
+は、計量のとり方に依らない整数が、局所的な曲率（Gauss 曲率 $K$）の積分で書けることを述べる。左辺は\emph{大域解析}（調和形式の個数）、右辺は\emph{局所幾何}の積分である。
+
+\subsection{見えてきた形}
+三つの例に共通する形を表にする。
+\begin{center}
+{\small\begin{tabular}{l|l|l}
+\toprule
+作用素 & 指数（解析） & 位相的な表示\\
+\midrule
+$\frac d{d\theta}-\lambda$ on $S^1$ & $0$ & 奇数次元の微分作用素\\
+$\dbar_L$ on $\Sigma_g$ & $h^0(L)-h^1(L)$ & $\int\ch(L)\Td(\Sigma)=d+1-g$\\
+$d+d^*$ on $\Sigma$ & $b_0-b_1+b_2$ & $\int e(T\Sigma)=\frac1{2\pi}\int K\,dA$\\
+\bottomrule
+\end{tabular}}
+\end{center}
+\begin{keybox}{Atiyah--Singer の定理の「形」}
+閉多様体 $X$ 上の楕円型作用素 $P$ の指数は、(1) $P$ の主シンボルが定める位相的な対象（$K$ 理論の類 $[\sigma(P)]\in K_c(T^*X)$）に Chern 指標をとったものと、(2) $X$ の特性類（$\Td(T_{\C}X)$）を掛けて積分したもの、である。$\dim\Ker$ と $\dim\Coker$ の個々の値は、この公式には現れない。
+\end{keybox}
+\paragraph{指数定理の位置づけ。}\tC\ 楕円型作用素の指数を主シンボルの位相的な不変量で表す問題は Gel'fand（1960 年代初め）が提起し\tQ\ 、Atiyah--Singer が 1963 年の announcement と 1968 年の論文 I--III（\emph{The index of elliptic operators}, Ann.\ of Math.\ 87）で解決した。Hirzebruch--Riemann--Roch（1954）、符号定理（1953）、Gauss--Bonnet--Chern はその特別な場合である。以下では、この主張を正確に述べる（\S\ref{sec:AS}）ための道具として、まず Dirac 作用素（\S\ref{sec:clifford}）と $K$ 理論（\S\ref{sec:K}）を準備する。
+
+\subsection*{この節の問題}
+\begin{prob}{基本}\label{p:S1ind}
+$S^1$ 上の $P=a(\theta)\frac d{d\theta}+b(\theta)$（$a,b$ は滑らかな複素数値関数、$a$ は零点をもたない）について、$\Ker P$、$\Ker P^*$ を求め、$\ind P=0$ を示せ。（ヒント：1 階の線形常微分方程式の解の周期性。）
+\end{prob}
+\begin{prob}{基本}\label{p:RS}
+種数 $g=0,1,2$ のコンパクト Riemann 面と次数 $d$ の直線束 $L$ について、$\ind\dbar_L=d+1-g$ の値の表を $d=-3,\dots,3$ について作れ。$g=2$ で $L=K$（標準束）のとき $h^0,h^1$ を求めよ。
+\end{prob}
+\begin{prob}{標準}\label{p:GBsurf}
+種数 $g\ge2$ の閉曲面に、Gauss 曲率が一定 $K\equiv-1$ の計量が入る（一意化定理、第4巻）。面積 $A$ を Gauss--Bonnet から求めよ。$g=1$ のとき（平坦トーラス）と $g=0$（球面、$K\equiv1$）についても面積と $\chi$ の関係を述べよ。
+\end{prob}
+
+\section{第7巻の再掲：楕円型作用素・シンボル・指数}\label{sec:recall}
+この節は自己完結のための要約である。証明は第7巻にある。
+\subsection{微分作用素と主シンボル}
+$M$ を $n$ 次元閉多様体、$E,F\to M$ を Hermite ベクトル束とする。\emph{$m$ 階線形微分作用素}は局所座標・局所自明化で $P=\sum_{|\alpha|\le m}a_\alpha(x)\partial^\alpha$（$a_\alpha$ は行列値の滑らかな関数）と書ける作用素 $\Gamma(E)\to\Gamma(F)$。\emph{主シンボル}は
+\[
+\sigma_m(P)(x,\xi)=\sum_{|\alpha|=m}a_\alpha(x)(i\xi)^\alpha\in\Hom(E_x,F_x),\qquad\xi\in T_x^*M.
+\]
+座標によらず、$\sigma_m(P)(x,d\varphi(x))\,u(x)=\lim_{\lambda\to\infty}\lambda^{-m}e^{-i\lambda\varphi}P(e^{i\lambda\varphi}u)(x)$ で定義できる。合成と随伴で $\sigma(PQ)=\sigma(P)\sigma(Q)$、$\sigma(P^*)=\sigma(P)^*$。
+\begin{ex}[基本的な作用素のシンボル]\label{ex:symbols}\tC\ （第7巻）
+\begin{enumerate}
+\item $\Delta=\nabla^*\nabla$（Laplace 型）：$\sigma_2=|\xi|^2$。
+\item $d:\Omega^p\to\Omega^{p+1}$：$\sigma(d)(\xi)=i\,\xi\wedge$。$d^*$：$-i\,\iota_\xi$。$\sigma(d+d^*)(\xi)=i(\xi\wedge-\iota_\xi)$ で、$\sigma(d+d^*)^2=|\xi|^2$。
+\item $X$ 複素多様体：$\dbar:\Omega^{0,q}(E)\to\Omega^{0,q+1}(E)$、$\sigma(\dbar)(\xi)=i\,\xi^{0,1}\wedge$。
+\item Dirac 型作用素（\S\ref{sec:clifford}）：$\sigma(D)(\xi)=i\,c(\xi)$（Clifford 乗法）。$\sigma(D)^2=|\xi|^2$。
+\end{enumerate}
+\end{ex}
+$P$ が\emph{楕円型}とは、すべての $x$ と $\xi\ne0$ で $\sigma_m(P)(x,\xi)$ が可逆（特に $\rk E=\rk F$）であること。
+\subsection{Fredholm 性と指数}
+\begin{thm}[第7巻]\label{thm:fredholm}\tC\
+$P:\Gamma(E)\to\Gamma(F)$ を閉多様体上の楕円型微分作用素とする。
+\begin{enumerate}
+\item $\Ker P\subset\Gamma(E)$ は有限次元、値域は閉で、$\Coker P=\Gamma(F)/\Ran P\cong\Ker P^*$（$P^*$ は形式的随伴）は有限次元。Sobolev 空間 $H^{s+m}(E)\to H^s(F)$ としても Fredholm。
+\item $\ind P=\dim\Ker P-\dim\Ker P^*$ は、主シンボルを楕円型のまま連続に変形しても、またコンパクト作用素（低階の作用素）を加えても変わらない。すなわち、$\ind P$ は $\sigma_m(P)$ の（楕円型シンボルの空間での）ホモトピー類だけで決まる。
+\item 擬微分作用素まで広げても同じ（楕円型擬微分作用素の指数も主シンボルのホモトピー類で決まり、楕円型シンボルはすべて擬微分作用素の主シンボルとして現れる）。
+\end{enumerate}
+\end{thm}
+\begin{ex}\label{ex:selfadj}\tP\
+$P=P^*$ なら $\ind P=0$。実際 $\Ker P^*=\Ker P$。$P$ の階が奇数 $m$ の自己随伴でも同様。
+\end{ex}
+\subsection{楕円複体}
+有限次元ベクトル束の列と微分作用素の列 $0\to\Gamma(E_0)\xrightarrow{P_0}\Gamma(E_1)\to\cdots\xrightarrow{P_{N-1}}\Gamma(E_N)\to0$（$P_{i+1}P_i=0$）が\emph{楕円複体}とは、すべての $x$ と $\xi\ne0$ でシンボル列 $\sigma(P_i)(x,\xi)$ が完全であること。
+\begin{thm}[第7巻]\label{thm:ellcomplex}\tC\
+楕円複体のコホモロジー $H^i=\Ker P_i/\Ran P_{i-1}$ は有限次元で、Hodge 分解 $\Gamma(E_i)=\mathcal H^i\oplus\Ran P_{i-1}\oplus\Ran P_i^*$ をもつ。$\chi(E_\bullet)=\sum(-1)^i\dim H^i$ は、楕円型作用素 $P+P^*:\bigoplus_i\Gamma(E_{2i})\to\bigoplus_i\Gamma(E_{2i+1})$ の指数に等しい。
+\end{thm}
+\begin{ex}[三つの楕円複体]\label{ex:complexes}\tC\
+\begin{itemize}
+\item de Rham 複体：$\chi=\chi_{\rm top}(M)$（Hodge の定理）。
+\item Dolbeault 複体 $(\Omega^{0,\bullet}(E),\dbar)$（$E$ 正則）：$\chi=\chi(X,E)=\sum(-1)^q\dim H^q(X,E)$（Dolbeault の定理＋Hodge 分解。Kähler でなくてもよい）。
+\item 符号複体・Dirac 作用素：§\ref{sec:special}。
+\end{itemize}
+\end{ex}
+\begin{keybox}{要点（\S\ref{sec:intro}--\S\ref{sec:recall}）}
+指数 $\ind P=\dim\Ker P-\dim\Coker P$ は主シンボルのホモトピー類のみに依る。$S^1$ の微分作用素では $0$、$\dbar_L$ では $d+1-g$、$d+d^*$ では $\chi$。Atiyah--Singer の定理は、この「ホモトピー類 $\mapsto$ 整数」の対応を位相的な積分公式で与える。
+\end{keybox}
+\subsection*{この節の問題}
+\begin{prob}{基本}\label{p:ellcheck}
+$T^2=\R^2/2\pi\Z^2$ 上で、(a) $\Delta=-\partial_x^2-\partial_y^2$、(b) $\dbar=\frac12(\partial_x+i\partial_y)$、(c) $P=\partial_x^2-\partial_y^2$、(d) $\partial_x$ の主シンボルを求め、楕円型かどうか判定せよ。(b) について $\sigma(\dbar)(\xi)=\frac i2(\xi_1+i\xi_2)$ が $\xi\ne0$ で可逆であることを確認し、$\ind\dbar$ を求めよ。
+\end{prob}
+\begin{prob}{基本}\label{p:complexind}
+$S^2$ の de Rham 複体について、$P+P^*=d+d^*:\Omega^{\rm ev}\to\Omega^{\rm odd}$ の核と余核の次元を求め、$\ind=\chi(S^2)=2$ を確かめよ。
+\end{prob}
+\begin{prob}{標準}\label{p:selfadj}
+奇数次元閉多様体 $M$ 上の自己随伴な 1 階楕円型作用素 $P$ の指数は $0$ である。一方、$M^{2m}$ 上の $d+d^*:\Omega^{\rm ev}\to\Omega^{\rm odd}$ は自己随伴ではなく、$\ind=\chi(M)$ は $0$ とは限らない。この違いを（$\Omega^{\rm ev}\ne\Omega^{\rm odd}$ に注意して）説明せよ。
+\end{prob}

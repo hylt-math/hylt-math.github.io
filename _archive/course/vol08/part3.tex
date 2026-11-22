@@ -1,0 +1,152 @@
+
+\section{$K$ 理論の入口：シンボルを位相的な対象として見る}\label{sec:K}
+\paragraph{動機。}指数は主シンボルのホモトピー類で決まる（定理 \ref{thm:fredholm}）。ホモトピー類を扱う代数的な枠組みが $K$ 理論である。$P$ のシンボル $\sigma(P)(x,\xi)\in\Hom(E_x,F_x)$ は、$T^*X$ の \emph{ゼロ切断の外側で}可逆な束写像であり、これが $K_c(T^*X)$ の元を定める。指数は $K_c(T^*X)\to\Z$ の準同型になり、Atiyah--Singer の定理はその「位相的な公式」である。
+
+\subsection{$K(X)$}
+$X$ をコンパクト Hausdorff 空間とする。
+\begin{defn}[$K$ 群]\label{def:K}
+$K(X)$ は、複素ベクトル束の同型類のなす半群（直和）の Grothendieck 群。元は $[E]-[F]$、積は $\otimes$。$[E]=[F]$ $\iff$ ある $N$ で $E\oplus\underline\C^N\cong F\oplus\underline\C^N$（安定同型）。
+\end{defn}
+\begin{ex}\label{ex:Kbasic}\tC\
+$K(\mathrm{pt})=\Z$（階数）。$K(\CP^n)=\Z[H]/(H-1)^{n+1}$（$H$ は超平面束、$\Z$ 上階数 $n+1$ の自由加群）。$K(S^2)=\Z\oplus\Z\cdot(H-1)$、$(H-1)^2=0$（Bott）。第6巻の Chern 指標は環準同型 $\ch:K(X)\to H^{\rm ev}(X;\Q)$ を与え、$\ch\otimes\Q:K(X)\otimes\Q\to H^{\rm ev}(X;\Q)$ は有限 CW 複体で同型（Atiyah--Hirzebruch）。たとえば $\CP^1$ で $\ch(H-1)=e^x-1=x$（$x^2=0$）、$\CP^2$ で $\ch(H-1)=x+\frac{x^2}2$。
+\end{ex}
+\subsection{コンパクト台の $K$ 群とシンボル}
+局所コンパクト空間 $Y$ に対し $K_c(Y)=\ker\bigl(K(Y^+)\to K(\infty)\bigr)$（一点コンパクト化）。$Y=V$ が $X$ 上のベクトル束の全空間のときは、$K_c(V)=K(B(V),S(V))$（単位球体束と単位球面束の相対 $K$ 群）である。
+\begin{defn}[シンボルの類]\label{def:symbolclass}
+$E^0,E^1\to X$ をベクトル束、$\sigma:\pi^*E^0\to\pi^*E^1$ を $T^*X$ 上の束写像で\emph{コンパクト集合の外側で同型}なものとする。三つ組 $(E^0,E^1,\sigma)$ は $K_c(T^*X)$ の元を定める。同値関係は、ホモトピー（コンパクト集合の外側で同型のまま）と、「$\sigma$ がいたる所で同型の三つ組は $0$」（および、一般に $(E^0,E^1,\sigma)\sim(E^0\oplus G,E^1\oplus G,\sigma\oplus\mathrm{id})$）。群演算は直和で、逆元は $(E^1,E^0,\sigma^{-1})$。\emph{楕円型作用素 $P:\Gamma(E^0)\to\Gamma(E^1)$ のシンボル類}は $[\sigma(P)]=(E^0,E^1,\sigma_m(P))\in K_c(T^*X)$（主シンボルは $T^*X\setminus0$ で同型で、ゼロ切断はコンパクトだから「コンパクト集合の外で同型」が成り立つ）。
+\end{defn}
+\begin{thm}[指数準同型]\label{thm:indhom}\tC\ （Atiyah--Singer I；Lawson--Michelsohn 第 III 章；Roe）
+楕円型擬微分作用素の指数は、$[\sigma(P)]\in K_c(T^*X)$ のみに依る。$[\sigma(P)]\mapsto\ind P$ は\emph{群準同型} $\ind_a:K_c(T^*X)\to\Z$ を定め、$K_c(T^*X)$ の任意の元は楕円型擬微分作用素のシンボル類として現れる。
+\end{thm}
+\noindent\emph{骨子。}(i) 指数はホモトピー不変（第7巻）。(ii) 直和は直和に移るので加法的。(iii) 同型 $\varphi:E^0\to E^1$ を主シンボルにもつ作用素は $\varphi+(\text{低階})$ で、指数 $0$。(iv) $K_c$ のすべての元は、ホモトピーで次数 $0$ 斉次な（$S^*X$ 上の）三つ組にでき、擬微分作用素に量子化できる。
+\begin{ex}[点]\label{ex:Kpt}\tP\
+$X=\mathrm{pt}$：$K_c(\mathrm{pt})=\Z$（$(E^0,E^1)\mapsto\dim E^0-\dim E^1$）、$P=$ 線形写像 $\C^a\to\C^b$、$\ind=a-b$。
+\end{ex}
+\begin{ex}[Bott 生成元：$\C$ 上の $z$]\label{ex:Bott}\tC\
+$K_c(\C)\cong\Z$ は、三つ組 $\beta=(\C,\C,\ z\cdot)$（$\sigma(z)=z$、$z=0$ でだけ非可逆）で生成される（Bott 周期性の最小の場合）。Dolbeault 作用素 $\dbar=\frac12(\partial_x+i\partial_y)$ のシンボルは $\frac i2(\xi_1+i\xi_2)$、$\xi\in\R^2=\C$ の複素座標 $\xi_1+i\xi_2$ に対し $\beta$ と（定数倍を除き）同じ類を定める。
+\end{ex}
+\subsection{Bott 周期性と Thom 同型（主張）}
+\begin{thm}[Bott 周期性・Thom 同型]\label{thm:Bott}\tC\ （Atiyah--Bott 1964 \emph{On the periodicity theorem for complex vector bundles}, Acta Math.\ 112；Atiyah, \emph{K-theory}）
+$V\to X$ を（階数 $r$ の）複素ベクトル束とし、$\lambda_V=\bigl(\Lambda^{\rm ev}V,\Lambda^{\rm odd}V,\ v\wedge\cdot-\iota_v\bigr)\in K_c(V)$（\emph{Koszul 類}。$\pi^*\Lambda^\bullet V$ 上でトートロジー切断 $v\in\pi^*V$ による外積と内部積。$v\ne0$ で完全）とおく。すると
+\[
+K(X)\xrightarrow{\ a\mapsto\pi^*a\cdot\lambda_V\ }K_c(V)
+\]
+は同型。特に $K_c(\C^N)\cong\Z$（$N$ 個の $\beta$ の外部積で生成）。
+\end{thm}
+$K$ 理論の Thom 同型と、コホモロジーの Thom 同型 $\Phi:H^k(X)\to H^{k+2r}_c(V)$、$\Phi(a)=\pi^*a\cup U$（$U$ は Thom 類、$i^*U=e(V_{\R})=\prod x_i$）の関係が、Todd 類の源である。
+\begin{lem}[Koszul 類の Chern 指標]\label{lem:chKoszul}\tP\
+$V$ の Chern 根を $x_1,\dots,x_r$ とする。$i:X\to V$ をゼロ切断として $i^*\ch(\lambda_V)=\sum_q(-1)^q\ch(\Lambda^qV)=\prod_{j=1}^r(1-e^{x_j})$。$i^*\Phi(a)=e(V)\,a$ だから
+\[
+\ch(\lambda_V)=\Phi\Bigl(\prod_j\frac{1-e^{x_j}}{x_j}\Bigr)=\Phi\bigl((-1)^re^{c_1(V)}\Td(V)^{-1}\bigr).
+\]
+特に、複素共役束 $\overline V\cong V^*$ の Koszul 類 $\lambda_{\overline V}=(\Lambda^{\rm ev}\overline V,\Lambda^{\rm odd}\overline V,\bar v\wedge)\in K_c(V)$（トートロジー切断 $\bar v$ による）では $i^*\ch=\prod(1-e^{-x_j})$、$\ch(\lambda_{\overline V})=\Phi(\Td(V)^{-1})$（$\Phi$ は $V$ の複素向きの Thom 同型）。
+\end{lem}
+\begin{proof}
+$\Lambda^qV$ の根は $\{x_{j_1}+\dots+x_{j_q}\}$ で、$\sum(-1)^q\ch\Lambda^q=\prod(1-e^{x_j})$。（$\ch$ の乗法性は第6巻。）$\Phi$ の性質 $i^*\Phi(a)=e\cdot a$ から、$e=\prod x_j$ で割ったものが $\Phi^{-1}\ch(\lambda_V)$。割り算は、普遍的な場合（$H^*(BU(r))=\Q[c_1,\dots,c_r]$ では $e=c_r$ が非零因子）に多項式として意味をもつ。$\frac{1-e^x}x=-e^x\frac{1-e^{-x}}x=-e^x\Td(x)^{-1}$。
+\end{proof}
+\subsection{例：$S^1$ の指数定理（Toeplitz 作用素）}\label{subsec:S1index}
+$K_c(T^*S^1)=K_c(S^1\times\R)\cong\Z$ で、指数は完全に計算できる。$L^2(S^1)$ の基底 $e_k=e^{ik\theta}$、$P_+$ を $k\ge0$ への射影、$P_-=1-P_+$、$f\in C^\infty(S^1;\C^\times)$ に対し
+\[
+A_f=fP_++P_-:L^2(S^1)\to L^2(S^1).
+\]
+これは次数 $0$ の擬微分作用素で、主シンボルは $\xi>0$ で $f(\theta)$、$\xi<0$ で $1$。
+\begin{thm}[$S^1$ の指数定理]\label{thm:S1index}\tP\
+$A_f$ は Fredholm で、$\ind A_f=-\mathrm{wind}(f)$（$\mathrm{wind}(f)=\frac1{2\pi}\oint d\arg f$ は $f$ の回転数）。
+\end{thm}
+\begin{proof}
+(i) $f$ が滑らかなら交換子 $[P_+,f]$ はコンパクト（$f=\sum f_ke_k$ で $f_k$ は急減少、$[P_+,e_k]$ は階数有限でノルムは $|k|$ 程度、和が収束）。$P_-fP_+=[P_-,f]P_+$（$P_-P_+=0$）もコンパクト。したがって
+\[
+A_gA_f=gP_+fP_++P_-fP_++P_-\equiv gfP_++P_-=A_{gf}\pmod{\text{compact}}.
+\]
+$A_{f^{-1}}A_f\equiv1\equiv A_fA_{f^{-1}}$ だから $A_f$ は Fredholm（Atkinson、第7巻）で、$\ind A_{gf}=\ind A_g+\ind A_f$。(ii) $f=e_1=e^{i\theta}$：$A_fe_k=e_{k+1}$ $(k\ge0)$、$A_fe_k=e_k$ $(k<0)$。単射で、値域は $e_0$ を含まないから余核は 1 次元：$\ind=-1$。加法性から $f=e_w$ で $\ind=-w$。(iii) 一般の $f$ は $f\,e_{-w}$ の回転数が $0$ だから $fe_{-w}=e^h$（$h$ は滑らか）と書け、$f_s=e^{sh}e_w$ $(0\le s\le1)$ が $e_w$ と $f$ を結ぶ。$\|A_f-A_g\|\le\|f-g\|_\infty$ だから $s\mapsto\ind A_{f_s}$ は局所定数で、$\ind A_f=\ind A_{e_w}=-w$。
+\end{proof}
+\begin{cor}\label{cor:S1diff}\tP\
+$S^1$ 上の楕円型擬微分作用素（次数 $0$、主シンボル $\sigma_\pm(\theta)$ を $\xi\gtrless0$ にもつ）の指数は $-\mathrm{wind}(\sigma_+/\sigma_-)$。$m$ 階の楕円型\emph{微分}作用素では $\sigma_\pm=a(\theta)(\pm i)^m$ なので $\sigma_+/\sigma_-=(-1)^m$ は定数で、指数 $0$（例 \ref{ex:S1}）。
+\end{cor}
+\noindent\emph{検算（Python）。}Toeplitz 行列 $T_f=(f_{m-n})_{m,n<60}$ の特異値を計算し、$10^{-6}$ 未満の特異値の個数（$=\ker$ の次元の近似）を数えると、$f=z,z^2,z^{-1},z-0.3,(z-0.3)(z-0.5),(z-2)(z-0.5),z^{-2}(z-0.3)(z-0.5),1+0.3z+0.2z^{-1}$ で、それぞれ $1,2,1,1,2,1,0,0$ 個。回転数（数値積分）は $1,2,-1,1,2,1,0,0$ で、$\ind T_f=-\mathrm{wind}$ と整合する（$z^{-1}$ では $T_f$ が全射で核が 1 次元、$\ind=+1$）。
+
+\subsection{Chern 指標とコホモロジー的な指数}
+$K_c$ の Chern 指標 $\ch:K_c(Y)\to H^{\rm ev}_c(Y;\Q)$ は、$K_c(Y)\otimes\Q$ から $H_c^{\rm ev}(Y;\Q)$ への同型を与える（\tC ）。\emph{ゼロ切断への制限}：$i^*:K_c(T^*X)\to K(X)$ で、$(E^0,E^1,\sigma)\mapsto[E^0]-[E^1]$ （$\sigma$ の可逆性は忘れる）。$i^*\ch=\ch i^*$。この $E^0-E^1$ のコホモロジー類が、指数公式の被積分形式の素材である（\S\ref{sec:AS}）。
+
+\begin{keybox}{要点（\S\ref{sec:K}）}
+楕円型作用素のシンボルは $K_c(T^*X)$ の元を定め、指数は準同型 $\ind_a:K_c(T^*X)\to\Z$。Bott 周期性：$K(X)\cong K_c(V)$、Thom 類は Koszul 類 $\lambda_V$。$\ch(\lambda_V)=\Phi(\prod\frac{1-e^{x_j}}{x_j})$（Todd 類の源）。$S^1$：$\ind A_f=-\mathrm{wind}(f)$。
+\end{keybox}
+\subsection*{この節の問題}
+\begin{prob}{基本}\label{p:KCP2}
+$K(\CP^2)=\Z[H]/(H-1)^3$ の $\Z$ 上の基底を $1,\,H-1,\,(H-1)^2$ と選ぶ。$\ch(H-1)$、$\ch((H-1)^2)$ を $x=c_1(H)$（$x^3=0$）の多項式として求め、$\ch:K(\CP^2)\otimes\Q\to H^{\rm ev}(\CP^2;\Q)$ が同型であることを確かめよ。$\ch(\Omega^1)=3e^{-x}-1$ を $K(\CP^2)$ の元として $H$ の多項式で表せ（Euler 系列）。
+\end{prob}
+\begin{prob}{標準}\label{p:Toeplitz}
+$f(\theta)=e^{2i\theta}+\frac12e^{i\theta}$ と $g(\theta)=e^{-i\theta}(e^{i\theta}-\frac13)(e^{i\theta}-3)$ について、回転数と $\ind A_f$、$\ind A_g$ を求めよ。$A_fA_g$ と $A_{fg}$ の指数が等しいことを確かめよ。
+\end{prob}
+\begin{prob}{標準}\label{p:diffS1}
+$S^1$ 上の楕円型微分作用素 $P=a(\theta)\frac{d^m}{d\theta^m}+(\text{低階})$ の指数が 0 であることを、シンボル類の観点（系 \ref{cor:S1diff}）から示せ。$P$ が自己随伴でなくても成り立つことを、問 \ref{p:S1ind} の直接計算と比べよ。
+\end{prob}
+\begin{prob}{発展}\label{p:koszul}
+直線束 $L\to X$ で $\lambda_L=(\underline\C,L,\ v\cdot)\in K_c(L)$。$i^*\ch(\lambda_L)=1-e^{x}$（$x=c_1(L)$）、$e(L)=x$ から $\Phi^{-1}\ch(\lambda_L)=\frac{1-e^x}x=-1-\frac x2-\frac{x^2}6-\cdots$ を求め、$-e^x\Td(L)^{-1}$ と一致することを確かめよ。複素共役束 $\overline L$ の Koszul 類 $(\underline\C,\overline L,\bar v\wedge)$ では $\Td(L)^{-1}$ そのものになることを示せ。
+\end{prob}
+
+\section{Atiyah--Singer の指数定理：主張}\label{sec:AS}
+$X$ を $n$ 次元の閉じた向きづけられた多様体とする。$T_{\C}X=TX\otimes\C$、$T^*X$ は $TX$ と計量で同一視してベクトル束 $\pi:T^*X\to X$ の全空間とみる。
+\begin{thm}[Atiyah--Singer の指数定理]\label{thm:AS}\tC\ （Atiyah--Singer, \emph{The index of elliptic operators I, III}, Ann.\ of Math.\ 87（1968））
+$P:\Gamma(E^0)\to\Gamma(E^1)$ を $X$ 上の楕円型（擬）微分作用素、$[\sigma(P)]\in K_c(T^*X)$ を主シンボルの類とすると
+\[
+\boxed{\ \ind P=(-1)^n\int_{T^*X}\ch\bigl([\sigma(P)]\bigr)\ \pi^*\Td(T_{\C}X)\ }
+\]
+ここで $T^*X$ には（$T(T^*X)\cong\pi^*(TX\otimes\C)$ の複素構造から来る）向きを入れる。
+\end{thm}
+\paragraph{$X$ 上の積分の形。}$T^*X$ の向きを「底空間の向き、次にファイバーの向き」に取り替えると $(-1)^{n(n-1)/2}$ だけ符号が変わる（$\C$-基底 $e_1,ie_1,\dots$ と $e_1,\dots,e_n,ie_1,\dots,ie_n$ の置換の符号）。Thom 同型 $\Phi:H^*(X)\to H_c^{*+n}(T^*X)$ を使って
+\[
+\ind P=(-1)^{n(n+1)/2}\int_X\Phi^{-1}\bigl(\ch[\sigma(P)]\bigr)\ \Td(T_{\C}X),
+\]
+\[\resizebox{\linewidth}{!}{$\displaystyle \Phi^{-1}\ch[\sigma(P)]=\frac{\ch(E^0)-\ch(E^1)}{e(TX)}\quad(\text{普遍的な場合の多項式としての商。}\ e\cdot\Phi^{-1}\ch[\sigma]=i^*\ch[\sigma]=\ch E^0-\ch E^1).$}\]
+最後の式で $e(TX)$ による商は、Chern 根（$TX\otimes\C$ の根 $\pm y_j$、$n=2m$）の対称式としての多項式の商である（$e=\prod y_j$ は普遍的な場合 $H^*(BSO(2m);\Q)=\Q[p_1,\dots,p_{m-1},e]$ で非零因子）。\emph{以後、$X$ 上の積分の形を使う}。本巻の符号の規約は、\S\ref{sec:special} の 4 つの古典的な場合（Dolbeault、de Rham、符号、Dirac）がすべて正しい符号の古典定理を与えるように固定したものである。
+\begin{rem}[符号・向きの規約についての注意]\label{rem:signs}\tQ\
+他の文献（Lawson--Michelsohn 第 III 章、Berline--Getzler--Vergne 第 4 章、Roe）では、$(-1)^n$、$(-1)^{n(n+1)/2}$、$T^*X$ の向きの取り方、$\sigma$ の定義に $i$ を入れるかどうか、が異なる形で書かれる。それぞれの内部では整合しているが、規約の組み合わせを間違えると全体に $\pm1$ の食い違いが出る。本巻では「複素多様体で Dolbeault $\to\int\ch\Td$」を基準にして、$(-1)^{n(n+1)/2}\int_X$ の形に固定した。各文献との符号の対応を逐一確認したわけではない。
+\end{rem}
+\paragraph{公式の読み方。}
+\begin{center}
+{\small\begin{tabular}{p{3cm}|p{5.5cm}|p{5cm}}
+\toprule
+成分 & 意味 & 由来\\
+\midrule
+$\ch[\sigma(P)]$ & シンボルの位相的な不変量（$E^0-E^1$ の Chern 指標を $e$ で割ったもの） & 解析（作用素の種類）\\
+$\Td(T_{\C}X)$ & $X$ の接束だけで決まる universal な因子 & $X$ の位相（埋め込みの法束の逆）\\
+$(-1)^{n(n+1)/2}$ & 向きの規約 & 符号\\
+$\int_X$ & 次数 $n$ の成分の積分 & 局所指数密度の積分\\
+\bottomrule
+\end{tabular}}
+\end{center}
+\begin{prop}[捻りと積]\label{prop:twist}\tP\ （定理 \ref{thm:AS} を認める）
+ベクトル束 $W\to X$ で捻った作用素 $P_W=P\otimes1_W$（接続つきで、主シンボルが $\sigma(P)\otimes1_W$）では $\ch[\sigma(P_W)]=\ch[\sigma(P)]\cdot\pi^*\ch(W)$ で、
+\[
+\ind P_W=(-1)^{n(n+1)/2}\int_X\Phi^{-1}\ch[\sigma(P)]\,\ch(W)\,\Td(T_{\C}X).
+\]
+\end{prop}
+\begin{proof}
+$K_c(T^*X)$ は $K(X)$ 加群で、$[\sigma(P_W)]=[\sigma(P)]\cdot\pi^*[W]$。$\ch$ は環準同型。$\Phi$ は $H^*(X)$ 加群の準同型（射影公式）なので $\Phi^{-1}$ が $\ch(W)$ を外に出せる。
+\end{proof}
+\begin{cor}[奇数次元]\label{cor:odd}\tP\
+$X$ が奇数次元なら、楕円型\emph{微分}作用素 $P$ の指数は $0$。
+\end{cor}
+\begin{proof}
+$m$ 階の微分作用素の主シンボルは $\sigma(x,-\xi)=(-1)^m\sigma(x,\xi)$。対心写像 $a:T^*X\to T^*X$ は、$a^*[\sigma]=[(-1)^m\sigma]$。$-1\in GL(E)$ は恒等写像と連結（$e^{i\pi s}$）なので、$[(-1)^m\sigma]=[\sigma]$、よって $a^*\ch[\sigma]=\ch[\sigma]$。$\pi\circ a=\pi$ ゆえ $a^*\pi^*\Td=\pi^*\Td$。$a$ はファイバー（$\R^n$）に $-1$ で働き、$n$ 奇数なら $T^*X$ の向きを反転する。積分は $I=(-1)^nI=-I$ ゆえ $I=0$。
+\end{proof}
+\begin{ex}[$S^1$ との対比]\tP\
+$A_f$（定理 \ref{thm:S1index}）は微分作用素ではない：$\sigma_+\ne\sigma_-$ で $a^*[\sigma]\ne[\sigma]$、したがって指数が $-\mathrm{wind}(f)\ne0$ でありうる。
+\end{ex}
+\begin{rem}[整数性]\label{rem:integrality}\tC\
+定理 \ref{thm:AS} の右辺は整数でなければならない。これが、たとえば「$\int_X\ch(E)\Td(X)\in\Z$（HRR の整数性、第6巻）」「閉スピン多様体で $\int\Ahat\in\Z$、$\dim=8k+4$ では偶数」といった、位相的な整数性定理（\S\ref{sec:special}）の源になっている。
+\end{rem}
+\begin{keybox}{要点（\S\ref{sec:AS}）}
+$\ind P=(-1)^{n(n+1)/2}\int_X\frac{\ch E^0-\ch E^1}{e(TX)}\Td(T_{\C}X)$（$T^*X$ 上の積分では $(-1)^n$、複素向き）。解析（シンボルのクラス）と位相（特性類）の分離。捻りでは $\ch(W)$ が掛かる。奇数次元の微分作用素で $0$。符号規約は本巻で固定し、他書との対応は\tQ\ 。
+\end{keybox}
+\subsection*{この節の問題}
+\begin{prob}{基本}\label{p:RSform}
+$X$ をコンパクト Riemann 面（$n=2$）とし、$P=\dbar_L$（楕円複体 $\Omega^{0,0}(L)\to\Omega^{0,1}(L)$ の $\dbar+\dbar^*$）に \S\ref{sec:AS} の公式を適用する。$E^0-E^1=L\otimes(1-\overline{T^*})$ の $\ch$ は、$x=c_1(T_X)$ として $\ch(L)(1-e^{x})$、$e(TX)=x$、$\Td(T_{\C}X)=\frac{x}{1-e^{-x}}\cdot\frac{-x}{1-e^{x}}$。$(-1)^{n(n+1)/2}=-1$ を使って $\ind=\int\ch(L)\Td(X)=\deg L+1-g$ を導け。
+\end{prob}
+\begin{prob}{標準}\label{p:torus4}
+複素 2 次元トーラス $T=\C^2/\Lambda$ 上の正則直線束 $L$（$c_1(L)=\ell$）で $\ind\dbar_L=\frac12\int\ell^2$ を導け（$\Td(T)=1$）。主偏極 $\ell^2=2$ で $\ind=1$。また $\ell=a\,dx_1dy_1+b\,dx_2dy_2$（$T=E_1\times E_2$、$\int dx_idy_i=1$）で $\ind=ab$ を確かめ、$\chi(E_1\times E_2,L_1\boxtimes L_2)=\deg L_1\deg L_2$（Künneth）と比べよ。
+\end{prob}
+\begin{prob}{標準}\label{p:odd}
+(a) 系 \ref{cor:odd} の証明のうち、どの段階で「微分作用素」が使われているかを説明せよ。(b) 例 \ref{ex:S1} の $P_\lambda$ について $\sigma_+/\sigma_-$ を計算し、指数 $0$ と整合することを確かめよ。(c) $S^3$ 上の $d+d^*:\Omega^{\rm ev}\to\Omega^{\rm odd}$ の指数を、(i) Hodge 理論、(ii) 系 \ref{cor:odd} の 2 通りで求めよ（ヒント：$\Omega^{\rm ev}$ と $\Omega^{\rm odd}$ の符号）。
+\end{prob}

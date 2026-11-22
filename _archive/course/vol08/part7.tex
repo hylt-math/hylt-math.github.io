@@ -1,0 +1,178 @@
+
+\section*{解答}
+\addcontentsline{toc}{section}{解答}
+計算を含む解答は Python（\texttt{fractions} と自作の級数コード、numpy。sympy は使っていない）で検算した。検算した項目は付録に一覧する。
+\begin{sol}{\ref{p:S1ind}}
+$Pu=0$ は $u'=-(b/a)u$、$u=c\exp(-\int_0^\theta b/a)$。周期的であるための条件は $\oint b/a\,d\theta\in2\pi i\Z$。$P^*v=-(\bar av)'+\bar bv$、$w=\bar av$ とおくと $w'=(\bar b/\bar a)w$、$w=c\exp(\int\bar b/\bar a)$ が周期的な条件は $\oint\bar b/\bar a\in2\pi i\Z$、複素共役をとると $\oint b/a\in2\pi i\Z$ で同じ条件。よって $\dim\Ker P=\dim\Ker P^*\in\{0,1\}$、$\ind P=0$。
+\end{sol}
+\begin{sol}{\ref{p:RS}}
+$d+1-g$：$g=0$：$-2,-1,0,1,2,3,4$；$g=1$：$-3,\dots,3$；$g=2$：$-4,-3,-2,-1,0,1,2$（$d=-3,\dots,3$）。$g=2$、$L=K$（$d=2$）：$h^0=g=2$、$h^1=h^0(\Oc)=1$、$\ind=1=2+1-2$。
+\end{sol}
+\begin{sol}{\ref{p:GBsurf}}
+$\chi=2-2g=\frac1{2\pi}\int K=-\frac A{2\pi}$ より $A=4\pi(g-1)$。$g=1$：$K=0$、$\chi=0$、面積は任意。$g=0$：$K=1$、$A=2\pi\chi=4\pi$。
+\end{sol}
+\begin{sol}{\ref{p:ellcheck}}
+(a) $\sigma=\xi_1^2+\xi_2^2$、楕円型。(b) $\sigma=\frac12(i\xi_1-\xi_2)=\frac i2(\xi_1+i\xi_2)\neq0$（$\xi\ne0$）、楕円型。$\Ker\dbar$＝コンパクト面上の正則関数＝定数（1 次元）、$\Ker\dbar^*$＝反正則関数＝定数（1 次元）、$\ind=0$（$\int\ch\Td=0$、$g=1$、$d=0$）。(c) $\sigma=-\xi_1^2+\xi_2^2$、$\xi=(1,\pm1)$ で $0$、楕円型でない。(d) $\sigma=i\xi_1$、$\xi=(0,1)$ で $0$、楕円型でない。
+\end{sol}
+\begin{sol}{\ref{p:complexind}}
+$\Omega^{\rm ev}=\Omega^0\oplus\Omega^2$。$\Ker(d+d^*)|_{\Omega^{\rm ev}}=\mathcal H^0\oplus\mathcal H^2$、次元 $2$。余核は $\Ker(d+d^*)|_{\Omega^{\rm odd}}=\mathcal H^1=0$。$\ind=2=\chi(S^2)$。
+\end{sol}
+\begin{sol}{\ref{p:selfadj}}
+$P=P^*:\Gamma(E)\to\Gamma(E)$ では $\Coker P\cong\Ker P^*=\Ker P$ ゆえ $\ind=0$。$d+d^*:\Omega^{\rm ev}\to\Omega^{\rm odd}$ は定義域と値域が異なる束で、随伴は $d+d^*:\Omega^{\rm odd}\to\Omega^{\rm ev}$（別の作用素）なので $\Ker\ne\Coker$ でありうる：$\ind=\sum(-1)^pb_p=\chi$。奇数次元では Poincaré 双対で $\chi=0$、系 \ref{cor:odd} と整合。
+\end{sol}
+\begin{sol}{\ref{p:cl2}}
+$\mathbf i^2=\mathbf j^2=-1$、$\mathbf{ij}=-\mathbf{ji}=\mathbf k$、次元 $4$ で $\Cl(\R^2)=\mathbb H$。$e_1e_2=(i\sigma_x)(i\sigma_y)=-\sigma_x\sigma_y=-i\sigma_z$、$\omega_{\C}=ie_1e_2=\sigma_z$。$\Delta^+=\C(1,0)^T$、$\Delta^-=\C(0,1)^T$。$c(v)=a\,i\sigma_x+b\,i\sigma_y=\begin{pmatrix}0&ia+b\\ia-b&0\end{pmatrix}$、$(1,0)^T\mapsto(0,ia-b)^T=iz\,(0,1)^T$（$z=a+ib$）。
+\end{sol}
+\begin{sol}{\ref{p:chir}}
+$(e_1e_2e_3e_4)^2=(-1)^{4\cdot3/2}\prod e_k^2=(+1)(+1)=1$、$\omega_{\C}^2=(-1)^2\cdot1=1$。$e_k$ は他の 3 個と反可換、自分自身とは可換ゆえ $e_k\omega_{\C}=(-1)^3\omega_{\C}e_k$。$\dim\Delta=4$、$\Delta^\pm$ は $2$ 次元ずつ。$\Spin(4)=\SU(2)_+\times\SU(2)_-$ で $\Delta^+=\C^2\otimes1$、$\Delta^-=1\otimes\C^2$。
+\end{sol}
+\begin{sol}{\ref{p:spin2}}
+$g=\cos\frac\theta2+\sin\frac\theta2\,s$、$s=e_1e_2$、$s^2=-1$。$s$ は $e_1,e_2$ と反可換、$e_3$ と可換。$ge_1g^{-1}=e_1(\cos\frac\theta2-\sin\frac\theta2s)^2=e_1(\cos\theta-\sin\theta\,s)=\cos\theta\,e_1+\sin\theta\,e_2$（$e_1e_1e_2=-e_2$ に注意）。同様に $ge_2g^{-1}=\cos\theta\,e_2-\sin\theta\,e_1$、$ge_3g^{-1}=e_3$。角 $\theta$ の回転。$\theta=2\pi$ で $g=-1$：$\SO(3)$ の閉じた道が $\Spin(3)$ の $1$ から $-1$ への道に持ち上がり、被覆は自明でない（連結）。
+\end{sol}
+\begin{sol}{\ref{p:lichS2}}
+$D^2=\nabla^*\nabla+\frac12\ge\frac12$（$\scal=2$）。Friedrich：$\lambda^2\ge\frac{2}{4\cdot1}\cdot2=1$。実際 $\lambda^2_{\min}=1$（$k=0$）で等号。$D^2$ の固有値 $(k+1)^2$、重複度 $4(k+1)$：$\sum_{m\ge1}4me^{-tm^2}$。Euler--Maclaurin $\sum_{m\ge0}f(m)=\int_0^\infty f+\frac{f(0)}2-\frac{f'(0)}{12}+\cdots$、$f=4me^{-tm^2}$：$\int=\frac2t$、$f(0)=0$、$f'(0)=4$ ゆえ $\frac2t-\frac13+O(t)$。数値：$t=0.01$ で $199.66633$ vs $199.66667$。
+\end{sol}
+\begin{sol}{\ref{p:T2spin}}
+スピン構造は $(a,b)\in\{0,\frac12\}^2$、平面波 $e^{i(k+a)x+i(l+b)y}$。$D$ は平面波の運動量 $p=(k+a,l+b)$ で $\sigma\cdot p$ と働き、固有値 $\pm|p|$（各 1 重）。零モードは $p=0$ が現れる $a=b=0$（周期的・周期的）のときだけで、$\Ker D=\C^2$（$\Spn^+$、$\Spn^-$ に 1 次元ずつ）。他の 3 つは $\Ker D=0$。どの場合も $\ind D^+=0$（$\dim\Ker D^+=\dim\Ker D^-$）。系 \ref{cor:Lich}(b)：$\scal=0$ の調和スピノルは平行で、平行スピノルがあるのは自明なスピン構造だけ。
+\end{sol}
+\begin{sol}{\ref{p:spinc}}
+(a) $\chi(\CP^2,\Oc(j))=\frac{(j+1)(j+2)}2$。(b) $c_1(L)/2=\frac32H$、$\Ahat=1-\frac{p_1}{24}=1-\frac{H^2}8$。$e^{(j+3/2)H}\Ahat$ の $H^2$ の係数は $\frac{(j+3/2)^2}2-\frac18=\frac{j^2+3j}{2}+1=\frac{(j+1)(j+2)}2$ ✓。(c) $j=-\frac32$ なら $\int\Ahat=-\frac18$。$\CP^2$ がスピンなら $\ind D^+=\int\Ahat\in\Z$ のはずで矛盾。ゆえにスピン構造なし。
+\end{sol}
+\begin{sol}{\ref{p:psc}}
+(a) $E$ 平坦なら $F^E=0$、$D_E^2=\nabla^*\nabla+\frac{\scal}4$、$\scal>0$ で $\Ker D_E=0$。$\ind D_E^+=\int\Ahat\ch(E)=\rk(E)\Ahat(M)$（平坦なら $\ch_k=0$、$k>0$、有理係数）、$=0$ より $\Ahat(M)=0$。(b) K3：$\Ahat=2\ne0$、psc 計量なし。$T^4$：$p_1=0$、$\Ahat=0$ で、$\Ahat$ からは何も言えない（$T^4$ に psc がないことは Gromov--Lawson、Schoen--Yau による別の議論）。(c) 単位球面の積計量で $\scal=2+2=4>0$、Lichnerowicz で $\Ahat=0$。別法：$p_1=0$、または $\Ahat=-\sgn/8=0$。
+\end{sol}
+\begin{sol}{\ref{p:KCP2}}
+$x=c_1(H)$、$x^3=0$。$\ch(H-1)=e^x-1=x+\frac{x^2}2$、$\ch((H-1)^2)=x^2$。$1,\ x+\frac{x^2}2,\ x^2$ は $1,x,x^2$ に対し三角行列、可逆：$\Q$ 上同型（$\Z$ 上では $\frac12$ が現れる）。Euler 系列 $0\to\Oc\to\Oc(1)^3\to T\to0$：$[T]=3H-1$、$[\Omega^1]=3H^{-1}-1$。$(H-1)^3=0$ より $H^{-1}=H^2-3H+3$、$[\Omega^1]=3H^2-9H+8$。検算：$\ch=3e^{2x}-9e^x+8=2-3x+\frac32x^2=3e^{-x}-1$ ✓。
+\end{sol}
+\begin{sol}{\ref{p:Toeplitz}}
+$f=z(z+\frac12)$：零点 $0,-\frac12$ が単位円内、$\mathrm{wind}=2$、$\ind A_f=-2$。$g=z^{-1}(z-\frac13)(z-3)=z-\frac{10}3+z^{-1}$：$-1+1+0=0$、$\ind A_g=0$。$fg$ の回転数 $2$、$\ind A_{fg}=-2=\ind A_f+\ind A_g$。$A_fA_g\equiv A_{fg}$（コンパクト作用素を除いて）なので指数も等しい。Toeplitz 行列の微小特異値は $f$ で 2 個、$g$ で 0 個（数値）。
+\end{sol}
+\begin{sol}{\ref{p:diffS1}}
+$m$ 階の微分作用素 $P$ に $(1+\Delta)^{-m/2}$（同型、指数 $0$）を合成して 0 階にし、主シンボル $\sigma_\pm=a(\theta)(\pm i)^m$。$\sigma_+/\sigma_-=(-1)^m$ は定数で回転数 $0$、系 \ref{cor:S1diff} より $\ind P=0$。自己随伴性は使っていない（問 \ref{p:S1ind} の直接計算と整合）。理由は「シンボル類が $K_c(T^*S^1)=\Z$ で $0$」であること。
+\end{sol}
+\begin{sol}{\ref{p:koszul}}
+$\frac{1-e^x}x=-(1+\frac x2+\frac{x^2}6+\cdots)$。$-e^x\Td(x)^{-1}=-e^x\frac{1-e^{-x}}x=-\frac{e^x-1}x$ で一致。$\overline L$ の Koszul 類では $i^*\ch=1-e^{-x}$、$\Phi^{-1}\ch=\frac{1-e^{-x}}x=\Td(x)^{-1}$。
+\end{sol}
+\begin{sol}{\ref{p:RSform}}
+$x=c_1(T_X)$、$\ch(E^0-E^1)=\ch(L)(1-e^x)$、$e=x$、$\Td(T_{\C}X)=t(x)$。補題 \ref{lem:rootcalc}(i)：$\frac{(1-e^x)t(x)}x=-\Td(x)$。$(-1)^{n(n+1)/2}=(-1)^3=-1$ ゆえ $\ind=\int\ch(L)\Td(x)$、次数 2 の部分 $\int(c_1(L)+\frac x2)=d+\frac{2-2g}2=d+1-g$。
+\end{sol}
+\begin{sol}{\ref{p:torus4}}
+$T_T$ は自明、$\Td=1$。$\ind=\int\frac{\ell^2}2$。主偏極 $\ell^2=2$ で $1$。$\ell=a\alpha_1+b\alpha_2$（$\alpha_i=dx_i\wedge dy_i$、$\int\alpha_i=1$）：$\ell^2=2ab\,\alpha_1\alpha_2$、$\ind=ab$。Künneth：$\chi(L_1\boxtimes L_2)=\chi(L_1)\chi(L_2)=\deg L_1\deg L_2=ab$ ✓。
+\end{sol}
+\begin{sol}{\ref{p:odd}}
+(a) 微分作用素のシンボルが $\xi$ の多項式で $\sigma(x,-\xi)=(-1)^m\sigma(x,\xi)$ となる所。擬微分作用素では使えない。(b) $\sigma=i\xi$、$\sigma_+/\sigma_-=-1$、回転数 $0$、指数 $0$。(c) $S^3$：Betti 数 $1,0,0,1$、$\Omega^{\rm ev}$ 側 $b_0+b_2=1$、$\Omega^{\rm odd}$ 側 $b_1+b_3=1$、$\ind=0$（Hodge）。系 \ref{cor:odd} でも $0$。
+\end{sol}
+\begin{sol}{\ref{p:deRhamAS}}
+(a) 被積分形式は $(-1)^m\prod(-y_j)=y$（$m=1$）、$\int y=\chi(S^2)=2$。(b) $y_1y_2=c_2(T\CP^2)=3H^2$、$\int=3$。一般に $\int c_n(T\CP^n)=n+1$ ✓。
+\end{sol}
+\begin{sol}{\ref{p:CP4}}
+$\Lg_2=\frac{7\cdot10-5^2}{45}=1$、$\sgn(\CP^4)=1$。$\CP^2\times\CP^2$：$\Lg$ は乗法的で $\sgn=1\cdot1$。交叉形式は $H^4$（基底 $a^2,ab,b^2$）上 $\begin{pmatrix}0&0&1\\0&1&0\\1&0&0\end{pmatrix}$、符号数 $1+0=1$ ✓。
+\end{sol}
+\begin{sol}{\ref{p:Rokhlin}}
+$c=(1+4H+6H^2)(1-dH+d^2H^2)$：$c_1=(4-d)H$、$c_2=(d^2-4d+6)H^2$、$\int H^2=d$。$\int p_1=d[(4-d)^2-2(d^2-4d+6)]=d(4-d^2)$。$\sgn=\frac{p_1}3=-\frac{d(d^2-4)}3$、$\Ahat=-\frac{p_1}{24}=\frac{d(d^2-4)}{24}$。(a) $d$ 奇数なら $d,d\pm2$ すべて奇数で分子が奇数、$24$ で割れず $\Ahat\notin\Z$、スピンでない。(b) $d=2e$：$\Ahat=\frac{8e(e^2-1)}{24}=\frac{e(e-1)(e+1)}3$。連続 3 整数の積は 6 の倍数ゆえ $\frac{e(e^2-1)}{3}$ は偶数。$\sgn=-8\Ahat\in16\Z$。
+\end{sol}
+\begin{sol}{\ref{p:twistS}}
+$\prod_{j=1}^2(2+\frac{y_j^2}4+\cdots)=4+\frac{y_1^2+y_2^2}2=4+\frac{p_1}2$。$\Ahat=1-\frac{p_1}{24}$。次数 4：$4\cdot(-\frac{p_1}{24})+\frac{p_1}2=\frac{p_1}3=\Lg_1$。$\ind D_{\Spn}^+=\int\frac{p_1}3=\sgn(M)$。
+\end{sol}
+\begin{sol}{\ref{p:E8}}
+(a) Rokhlin で $\sgn\in16\Z$、$\pm8$ は不可。(b) K3：$\sgn=-16$。(c) 単連結 4 次元多様体で交叉形式が偶なら $w_2=0$（スピン）。$E_8$ 形式は偶で $\sgn=8$。滑らかなら Rokhlin に反するので滑らかな構造はない。(d) K3\#K3：スピン、$\sgn=-32$、$\Ahat=-\sgn/8=4$（偶数）。
+\end{sol}
+\begin{sol}{\ref{p:CY}}
+(a) $(1+H)^6(1-6H+36H^2-216H^3+1296H^4)$：$c_1=0$、$c_2=15-36+36=15$、$c_3=-70$、$c_4=435$。$\Td_4=\frac{3\cdot225-435}{720}H^4=\frac{H^4}3$、$\int H^4=6$、$\chi(\Oc)=2=\Ahat$。($\int c_4=2610=e$。) (b) 実 6 次元で $\Ahat$ は次数 $0,4$ のみ、$\int\Ahat=0$。$\chi(\Oc)=\frac{c_1c_2}{24}=0$ ✓。
+\end{sol}
+\begin{sol}{\ref{p:CP3k}}
+$\int e^{kH}(1-\frac{4H^2}{24})=\frac{k^3}6-\frac k6=\frac{(k-1)k(k+1)}6=\binom{k+1}3=\chi(\Oc(k-2))$。$k=0,\pm1$ のとき $\Oc(k-2)=\Oc(-2),\Oc(-1),\Oc(-3)$ は $\CP^3$ で非輪状（全コホモロジーが $0$）、よって指数だけでなく $\Ker D^\pm$ もともに $0$。$k=0$ は psc と整合。
+\end{sol}
+\begin{sol}{\ref{p:TdSn}}
+(a) $\nu$ 自明ゆえ $\nu_{\C}$ 自明、$\Td(\nu_{\C})=1$、$\Td(T_{\C}S^2)=\Td(\nu_{\C})^{-1}=1$。(b) 根 $\pm y$、$y^2=0$（$H^4(S^2)=0$）、$t(y)=1-\frac{y^2}{12}+\cdots=1$ ✓。$X$ 形の公式：$\ind\dbar_{\Oc(d)}=(-1)^3\int\ch(\Oc(d))\frac{1-e^x}x=\int\ch(L)(1+\frac x2+\cdots)=d+\frac12\int x=d+1$ ✓。
+\end{sol}
+\begin{sol}{\ref{p:thomch}}
+$\lambda_L=(\underline\C,L,v)$：$i^*\ch=1-e^x$、$\Phi^{-1}\ch=\frac{1-e^x}x$、最低次の項 $-1$。外部積で $\lambda_{\C^N}=\lambda_{\C}^{\boxtimes N}$、$\ch$ は乗法的で $\ch(\beta^N)=\Phi\bigl(\prod\frac{1-e^{x_j}}{x_j}\bigr)$、$\C^N$ 上のコホモロジーは $H^{2N}_c$ だけなので $=(-1)^N\Phi(1)$、$\int=(-1)^N$。$\ind_t$ と $\int\ch$ はどちらも線形で、生成元 $\beta^N$ での値が $1$ と $(-1)^N$ だから $\ind_t(b)=(-1)^N\int\ch(b)$。
+\end{sol}
+\begin{sol}{\ref{p:S1AS}}
+$|\xi|>R$ で $\chi=1$、$\omega=d(\frac1{2\pi i}\frac{d\sigma}\sigma)=0$ なのでコンパクト台。$\int_{S^1\times[-R',R']}\omega=\oint_{\partial}\chi\frac1{2\pi i}\frac{d\sigma}\sigma=\pm\bigl(\mathrm{wind}\,\sigma_+-\mathrm{wind}\,\sigma_-\bigr)$（$\xi=R'$ と $-R'$ の 2 つの境界円周）。$\sigma_-=1$ なら $|\,\cdot\,|=|\mathrm{wind}f|=|\ind A_f|$ ✓。
+\end{sol}
+\begin{sol}{\ref{p:MSS2}}
+1 形式：Hodge 分解 $\Omega^1=d\Omega^0\oplus\ast d\Omega^0$（調和 1 形式なし）。固有値 $l(l+1)$（$l\ge1$）、重複度 $2(2l+1)$、$\Tr_1=2(\Tr_0-1)$（$l=0$ を除く）。$\Tr_2=\Tr_0$。$\Tr_0-\Tr_1+\Tr_2=2\Tr_0-2\Tr_0+2=2$、$t$ によらない。
+\end{sol}
+\begin{sol}{\ref{p:a1S2}}
+$f(s)=2se^{-ts^2}$：$\int_0^\infty f=\frac1t$、$f'(0)=2$。$\sum_{l\ge0}f(l+\frac12)=\frac1t+\frac1{12}+O(t)$。$e^{t/4}=1+\frac t4$ を掛け $\frac1t+\frac14+\frac1{12}=\frac1t+\frac13$。$(4\pi t)^{-1}\cdot4\pi(1+t\frac{\scal}6)=\frac1t+\frac13$（$\scal=2$）、$a_1=\frac K3$ と一致。
+\end{sol}
+\begin{sol}{\ref{p:landau}}
+(a) $\frac B{4\pi\sinh Bt}=\frac1{4\pi t}(1-\frac{B^2t^2}6+\cdots)$、$t^1$ の項なし、$a_1=0$（$\scal=0$、$\mathcal E=0$）。$t^2$ の項 $-\frac{B^2}6$ は $a_2=\frac1{12}\sum F_{ij}F_{ij}=\frac1{12}\cdot2(-iB)^2=-\frac{B^2}6$ と一致。(b) $\frac B{4\pi\sinh Bt}(e^{tB}-e^{-tB})=\frac B{2\pi}$。(c) 面積 $4\pi^2$、$B=\frac k{2\pi}$、$\ind=\frac B{2\pi}4\pi^2=k$。数値 $\Tr_s=k$。(d) $D^-D^+=H_B-B$ の最低固有値 $B-B=0$（$B>0$）：零モードは $\Spn^+$（$\ind D^+=+k$）。
+\end{sol}
+\begin{sol}{\ref{p:dirac2d}}
+$F^W=-i\Theta_W$（$\Theta_W$ はエルミート行列値 2 形式、$\theta=\tr\Theta_W/dA$）。$\Spn^\pm\otimes W$ で $\frak F=\mp\Theta_W$（行列）、$\tr a_1^\pm=r(-\frac K6)\pm\theta$。$\ind=\frac1{4\pi}\int2\theta\,dA=\frac1{2\pi}\int\tr\Theta_W=\deg W$。$g=2$：$K^{1/2}=\vartheta$（$\deg=1$）、$W=\vartheta$ で $\Spn^+\otimes W=K$、$\chi(K)=h^0-h^1=2-1=1=\deg W$ ✓。
+\end{sol}
+\begin{sol}{\ref{p:gen}}
+(a) $\str(a)=\tr(\omega_{\C}a)$。$\tr\omega_{\C}=0$（$\dim\Delta^+=\dim\Delta^-$）、$c_1$ は奇で $\omega_{\C}c_1$ も奇（$\Delta^\pm$ を入れ替える）のでトレース $0$。$c_1c_2=-i\omega_{\C}$、$\str(c_1c_2)=-i\tr(1)=-2i$。(b) $c_1c_2c_3c_4=-\omega_{\C}$、$\str=-\tr1=-4$。$0<|I|<4$ の単項式 $c_I$ では $\omega_{\C}c_I\propto c_J$（$J$ は $I$ の補集合で $\emptyset\ne J\ne\{1,2,3,4\}$。$I=\emptyset$ は (a) と同じく $\tr\omega_{\C}=0$）。$c_J$ はある $c_k$ と反可換（$|J|$ 偶数なら $k\in J$、奇数なら $k\notin J$）で $\tr c_J=\tr(c_k^{-1}c_Jc_k)=-\tr c_J$ より $0$。(c) 曲率 $R^{\Spn}$、$F^E$ は Clifford 生成元を 2 個ずつ運び、$\nabla^2R$ 型の項や $\scal/4$（生成元 0 個）を含む項は生成元が 4 個に満たず超跡で消える。残るのは $(R^{\Spn})^2$（$\to\Ahat_1\rk E$、$\propto p_1$）、$R^{\Spn}F^E$（$\tr_E F^E\cdot$（$R^{\Spn}$ のトレース部分）$=0$、$\Ahat$ に次数 2 がないこと）、$(F^E)^2$（$\to\ch_2(E)$）で、$[\Ahat\ch(E)]_4=\rk E\Ahat_1+\ch_2(E)$ の形と整合。
+\end{sol}
+\begin{sol}{\ref{p:cobord}}
+(a) $\sgn(\partial W)=0$。$\CP^2$（$1$）、K3（$-16$）は $\ne0$ なので境界でない。(b) 二重 $DW=W\cup_{\partial}W$ は閉奇数次元で $\chi=0=2\chi(W)-\chi(\partial W)$、よって $\chi(\partial W)=2\chi(W)$。$M_1\sim M_2$ なら $\chi(M_1)+\chi(M_2)=\chi(\partial W)$ は偶数、$\chi\bmod2$ は不変（$\chi$ 自体は不変でない、$\chi(S^2)=2\ne\chi(\mathrm{pt}^{\sqcup0})$ など）。(c) $\CP^2$：$(3,1)$、K3：$(24,-16)$、$S^2\times S^2$：$(4,0)$。偶奇が一致。
+\end{sol}
+\begin{sol}{\ref{p:quinticD}}
+$p_1=-20H^2$、$\Ahat=1+\frac56H^2$。$\int e^{kH}\Ahat=5\bigl(\frac{k^3}6+\frac{5k}6\bigr)=\frac{5k^3+25k}6$。$k=1,2,3$：$5,15,35$。$\chi(\Oc(k))$ と一致（$K$ 自明で $D_L\cong\sqrt2(\dbar+\dbar^*)_L$）。
+\end{sol}
+\begin{sol}{\ref{p:CP3tab}}
+$k=-5,\dots,5$。Dolbeault $\binom{k+3}3$：$-4,-1,0,0,0,1,4,10,20,35,56$。Dirac $\binom{k+1}3$：$-20,-10,-4,-1,0,0,0,1,4,10,20$。Serre：$\chi(\Oc(k))=-\chi(\Oc(-k-4))$（例 $k=0$：$1$ と $-1$）。Dirac 側：$\frac{k^3-k}6$ は $k$ の奇関数。理由：実 6 次元で $\Ahat$ は複素次数 $0,2$ のみ、積分には $\ch_{\rm odd}$ だけが寄与し、$\ch_j(E^*)=(-1)^j\ch_j(E)$ で符号が反転する。
+\end{sol}
+\begin{sol}{\ref{p:hypHirz}}
+$(1+H^2)^6=1+6H^2+15H^4$、$(1+d^2H^2)^{-1}=1-d^2H^2+d^4H^4$：$p_1=(6-d^2)H^2$、$p_2=(15-6d^2+d^4)H^4$。$7p_1^2-4p_2=7(36-12d^2+d^4)-60+24d^2-4d^4=192-60d^2+3d^4$。$\Ahat=\frac{d(192-60d^2+3d^4)}{5760}=\frac{d(d^4-20d^2+64)}{1920}=\frac{d(d^2-4)(d^2-16)}{1920}$。$d=2,4$ で $0$：Fano（Yau の定理で Ricci 正の Kähler 計量、$\scal>0$）、スピン（$d$ 偶数）で Lichnerowicz と整合。$d=6$：$\frac{6\cdot32\cdot20}{1920}=2=\chi(\Oc)$ ✓。
+\end{sol}
+\begin{sol}{理解チェック}
+(1) 偽。個々の次元は跳ぶ（例 \ref{ex:S1}）、差だけが不変。(2) $0$。シンボルの $\sigma_+/\sigma_-$ が定数（$\sigma(-\xi)=(-1)^m\sigma(\xi)$）。(3) $\Cl_4\cong M_4(\C)$、$\Spin(4)\cong\SU(2)\times\SU(2)$。(4) $D^2=\nabla^*\nabla+\frac{\scal}4$。$\scal>0$ なら $\Ker D=0$、$\Ahat(M)=0$。(5) スピンでない。$\Ahat(\CP^2)=-\frac18\notin\Z$。(6) $TX\oplus\nu$ が自明で、法束の複素化の Thom 同型が $\ch$ を $\Td(\nu_{\C})^{-1}=\Td(T_{\C}X)$ だけずらす。(7) Dirac：$\int\Ahat\ch(E)$、符号：$\int\Lg$、de Rham：$\int e$、Dolbeault：$\int\ch(E)\Td$。(8) $\chi(\Oc)=2$、$e=24$、$\sgn=-16$、$\Ahat=2$。(9) $\ind D^+=\Tr e^{-tD^-D^+}-\Tr e^{-tD^+D^-}$。$D^+$ が非零固有空間を同型に写す。(10) 全 Euler 標数 $=(-1)^n\rk(E)\chi(X)$ は $b$ による濾過の各段 $\chi(\wedge^bT\otimes E)$ への古典 HRR から出て、$c_1(E)$ を見ない。AS が直接使えない理由：対象が非コンパクトな $U=X\setminus D$ の重み付き空間（留数が整数だと Fredholm でない）、複素 Lie 亜代数で実構造なし、等（論文 \S10.4）。
+\end{sol}
+
+\section*{付録：検算した項目}
+\addcontentsline{toc}{section}{付録：検算した項目}
+Python（\texttt{fractions}、numpy、scipy。\texttt{lib8.py}、\texttt{verify8.py}、出力 \texttt{verify8.out}）で次を検算した。第6巻のコードは参照せず再実装した。
+\begin{itemize}
+\item Clifford：$n=4$ の $\gamma$ 行列の関係、乱数の代数的曲率テンソルで $\sum R_{ijkl}\gamma_i\gamma_j\gamma_k\gamma_l=2\scal$（誤差 $10^{-13}$）、$S^4$ で $24$、$\omega_{\C}^2=1$、$\Spin(3)$ の回転の持ち上げと $\exp(\pi e_1e_2)=-1$、$\sigma(D)^2=|\xi|^2$、Fock モデル（$m\le3$）で $\omega_{\C}=+1\Leftrightarrow$ 偶数次。
+\item Toeplitz：8 個の $f$ で微小特異値の個数 $=|\mathrm{wind}|$、問 \ref{p:Toeplitz} の $f,g$。
+\item 熱核：$S^1,T^2,S^2$（関数・1 形式・Dirac）、McKean--Singer の和 $=2$、$a_1$、Landau 準位の $\Tr_s=k$、Mehler（有限差分）。
+\item 根ごとの級数：補題 \ref{lem:rootcalc}(i)--(iv)、$\Td=e^{x/2}\Ahat$、$\frac x{\tanh(x/2)}=2\Lg(\frac x2)$。
+\item 特性数：$\chi(\CP^n,\Oc(k))=\binom{n+k}n$（$n\le7$、$|k|\le12$）、$\CP^{2j}$ の符号数 $1$（$j\le4$）、$\CP^3$ と $\CP^5$ の $\ind D_{\Oc(k)}$、$\CP^3$ の超曲面 $d\le8$ の $\chi(\Oc),e,\sgn,\Ahat$、$\CP^5$ の超曲面 $d\le8$ の $\Ahat$、五次 3 次元超曲面と六次 CY4。
+\end{itemize}
+独立検査（執筆者とは別の AI）では、別実装 \texttt{verify9.py}（Fock 空間と Jordan--Wigner の $\gamma$ 行列、乱数の代数的曲率テンソル（$n=3,\dots,6$）での Lichnerowicz の代数補題、Hodge 星 $\tau$ の $\tau^2=1$・反可換性・トーラス指標、乱数の有理根での 4 作用素の符号 $(-1)^{n(n+1)/2}$、Chern 類から Pontryagin 類を経由した超曲面の特性数、Toeplitz 作用素と $A_f$ の核・余核の別々の次元、$S^2$ と $T^2$ のスペクトル、Mehler の公式の Hermite 展開による確認など 157 項目）で再計算し、Landau 準位の例の符号（$H_B$ の共変微分の向き）の 1 か所を直した。\par\medskip\noindent\textbf{検算していないもの：}指数定理本体、Bott 周期性、スピン構造の存在、熱核の漸近展開、Getzler の収束、Hodge の定理、Rokhlin の四元数構造による偶数性、$\Lambda^\pm\cong\Spn^\pm\otimes\Spn$ の符号（4 次元の $p_1(\Lambda^\pm)$ のみ文献で確認）、$S^2$ の Dirac スペクトル（熱跡の漸近との整合のみ確認）、論文の引用箇所。
+
+\section*{記号表}
+\addcontentsline{toc}{section}{記号表}
+\begin{tabular}{lp{10cm}}
+$\sigma(P)$ & 主シンボル（$i$ を含める規約）\\
+$K(X),K_c(Y)$ & $K$ 群、コンパクト台の $K$ 群\\
+$\ind_a,\ind_t$ & 解析的指数、位相的指数\\
+$\Cl(V),\Cl_n$ & Clifford 代数（$v^2=-|v|^2$）、その複素化\\
+$\Spin(n),\Spinc(n)$ & スピン群、spin$^c$ 群\\
+$\Spn=\Spn^+\oplus\Spn^-$ & スピノル束、$\omega_{\C}=i^me_1\cdots e_{2m}$ の $\pm1$\\
+$c(v)$ & Clifford 乗法\\
+$D,D_E$ & Dirac 作用素、$E$ で捻ったもの\\
+$\Phi$ & Thom 同型（コホモロジー）、$\lambda_V$ は Koszul 類\\
+$t(x)$ & $\Td(x)\Td(-x)=x^2/(e^{x/2}-e^{-x/2})^2$\\
+$\Ahat,\Lg,\Td,e$ & $\Ahat$ 類、$\Lg$ 類、Todd 類、Euler 類\\
+$\Tr,\str$ & 跡、超跡\\
+$k_t(x,y)$ & 熱核\\
+$\mathbb H^k(E)$ & 統合論文の超コホモロジー\\
+\end{tabular}
+
+\section*{参考文献}
+\addcontentsline{toc}{section}{参考文献}
+書名と章（または節）まで。定理番号は確信がないため書かない。\tQ\ は章番号・巻・ページが記憶に基づくもの。
+\begin{enumerate}
+\item M.~F.~Atiyah, I.~M.~Singer, \emph{The index of elliptic operators I, III}, Ann.\ of Math.\ 87 (1968)。II も同巻。IV は Ann.\ of Math.\ 93 (1971)\tQ\ 。
+\item H.~B.~Lawson, M.-L.~Michelsohn, \emph{Spin Geometry}, Princeton. 第I章（Clifford 代数とスピン群）、第II章（スピン幾何、Lichnerowicz）、第III章（Dirac 作用素と指数）、付録 D（spin$^c$）\tQ\ （章の対応）。
+\item N.~Berline, E.~Getzler, M.~Vergne, \emph{Heat Kernels and Dirac Operators}, Springer. 第2章（熱核の漸近展開）、第3章（Clifford 加群）、第4章（Dirac 作用素の指数密度、Getzler）\tQ\ 。
+\item J.~Roe, \emph{Elliptic Operators, Topology and Asymptotic Methods}, Longman. 熱核と指数定理の章\tQ\ 。
+\item P.~Gilkey, \emph{Invariance Theory, the Heat Equation, and the Atiyah--Singer Index Theorem}, CRC.
+\item M.~F.~Atiyah, R.~Bott, A.~Shapiro, \emph{Clifford modules}, Topology 3 (1964), Suppl.~1.
+\item M.~F.~Atiyah, R.~Bott, \emph{On the periodicity theorem for complex vector bundles}, Acta Math.\ 112 (1964)。M.~F.~Atiyah, \emph{K-Theory}.
+\item M.~F.~Atiyah, R.~Bott, V.~K.~Patodi, \emph{On the heat equation and the index theorem}, Invent.\ Math.\ 19 (1973)。E.~Getzler, Comm.\ Math.\ Phys.\ 92 (1983)\tQ\ 。
+\item H.~P.~McKean, I.~M.~Singer, \emph{Curvature and the eigenvalues of the Laplacian}, J.\ Differential Geom.\ 1 (1967)。
+\item R.~Palais (ed.), \emph{Seminar on the Atiyah--Singer Index Theorem}, Ann.\ of Math.\ Studies 57。
+\item F.~Hirzebruch, \emph{Topological Methods in Algebraic Geometry}, Springer。J.~Milnor, J.~Stasheff, \emph{Characteristic Classes}（第6巻と同じ）。
+\item T.~Friedrich, \emph{Dirac Operators in Riemannian Geometry}, AMS。C.~Bär, J.\ Math.\ Soc.\ Japan 48 (1996)\tQ\ （球面のスペクトル）。
+\item N.~Hitchin, \emph{Harmonic spinors}, Adv.\ Math.\ 14 (1974)。S.~Stolz, Ann.\ of Math.\ 136 (1992)\tQ\ 。
+\item M.~Atiyah, \emph{Riemann surfaces and spin structures}, Ann.\ Sci.\ ENS 4 (1971)\tQ\ 。
+\item R.~Melrose, \emph{The Atiyah--Patodi--Singer Index Theorem}, A K Peters（第10巻へ）。
+\item 統合論文：\texttt{generalized-geometry-poisson-unified}（2026-11-22）v1 の \S10。第6巻、第7巻。
+\end{enumerate}
+\end{document}

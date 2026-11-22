@@ -1,0 +1,180 @@
+
+\section{Clifford 代数・スピン群・スピノル・Dirac 作用素}\label{sec:clifford}
+\paragraph{動機。}Dolbeault 作用素 $\dbar+\dbar^*$、$d+d^*$、符号作用素はどれも「シンボルの 2 乗が $|\xi|^2$」である 1 階の作用素（Dirac 型）の例で、その背後にはシンボルを Clifford 乗法 $c(\xi)$（$c(\xi)^2=-|\xi|^2$）で与えるという共通の構造がある。この構造を最も純粋に実現するのが、スピン多様体上のスピノルに作用する Dirac 作用素である。Dirac 作用素の指数は $\Ahat$ 種数（\S\ref{sec:special}）で、Lichnerowicz の公式（本節）と合わせて「スカラー曲率が正なら $\Ahat=0$」という、指数定理の最初の幾何学的応用を与える。
+
+\subsection{Clifford 代数}
+$V$ を内積つきの実ベクトル空間（$\dim V=n$）とする。
+\begin{defn}[Clifford 代数]\label{def:Cl}
+$\Cl(V)=T(V)/\langle v\otimes v+|v|^2\cdot1\rangle$。$V\hookrightarrow\Cl(V)$ で、$vw+wv=-2\ip vw$ が成り立つ。直交基底 $e_1,\dots,e_n$ をとると、$e_i^2=-1$、$i\ne j$ で $e_ie_j=-e_je_i$、$\{e_I=e_{i_1}\cdots e_{i_k}\}_{i_1<\dots<i_k}$ が基底で $\dim\Cl(V)=2^n$。偶数個の積で張られる部分 $\Cl^0$ と奇数個で張られる $\Cl^1$ による $\Z/2$ 次数をもつ。$\Cl_n:=\Cl(\R^n)\otimes_{\R}\C$。
+\end{defn}
+\begin{ex}\label{ex:Cl12}\tP\
+$n=1$：$\Cl(\R)=\C$（$e_1=i$）、$\Cl_1=\C\oplus\C$（$e_1\mapsto\pm i$）。$n=2$：$\Cl(\R^2)=\mathbb H$（$e_1=\mathbf i,\ e_2=\mathbf j,\ e_1e_2=\mathbf k$。$(e_1e_2)^2=-e_1^2e_2^2=-1$）。$\Cl_2\cong M_2(\C)$：$e_1\mapsto i\sigma_x=\begin{pmatrix}0&i\\i&0\end{pmatrix}$、$e_2\mapsto i\sigma_y=\begin{pmatrix}0&1\\-1&0\end{pmatrix}$ は $e_i^2=-1$、$e_1e_2=-e_2e_1$ を満たし、$1,e_1,e_2,e_1e_2$ が $M_2(\C)$ の基底（次元 $4=4$）。
+\end{ex}
+\begin{prop}[複素 Clifford 代数の構造]\label{prop:Clstruct}\tP\
+$\Cl_{n+2}\cong\Cl_n\otimes_{\C}M_2(\C)$。したがって $\Cl_{2m}\cong M_{2^m}(\C)$、$\Cl_{2m+1}\cong M_{2^m}(\C)\oplus M_{2^m}(\C)$。
+\end{prop}
+\begin{proof}
+$\Cl_{n+2}$ の生成元 $e_1,\dots,e_{n+2}$ に対し $\omega=i\,e_{n+1}e_{n+2}$ とおく。$\omega^2=-e_{n+1}e_{n+2}e_{n+1}e_{n+2}=e_{n+1}^2e_{n+2}^2=1$。$\omega$ は $e_1,\dots,e_n$ と可換（2 回の符号）、$e_{n+1},e_{n+2}$ と反可換。$\tilde e_k=e_k\omega$ $(k\le n)$ とおくと、$\tilde e_k^2=e_k\omega e_k\omega=e_k^2\omega^2=-1$、$\tilde e_k\tilde e_l=-\tilde e_l\tilde e_k$ $(k\ne l)$、さらに $\tilde e_k$ は $e_{n+1},e_{n+2}$ と可換。よって $\langle\tilde e_1,\dots,\tilde e_n\rangle\cong\Cl_n$ と $\langle e_{n+1},e_{n+2}\rangle\cong\Cl_2\cong M_2(\C)$ が可換な部分代数として $\Cl_{n+2}$ を生成し、次元 $2^n\cdot4=2^{n+2}$ から $\Cl_{n+2}\cong\Cl_n\otimes\Cl_2$。$\Cl_0=\C$、$\Cl_1=\C\oplus\C$ から帰納する。
+\end{proof}
+したがって $n=2m$ のとき、$\Cl_n$ の既約表現は（同型を除き）一つだけで、次元 $2^m$ の\emph{スピノル表現} $\Delta_n=\C^{2^m}$。$n=2m+1$ のときは同型でない 2 つの既約表現があり、同じ次元 $2^m$ をもつ。本巻では主に偶数次元を扱う。
+
+\paragraph{カイラリティ（$n=2m$）。}\tP\ $\omega_{\C}=i^m e_1e_2\cdots e_{2m}$ とおく。$(e_1\cdots e_{2m})^2=(-1)^{m(2m-1)}\prod e_k^2=(-1)^m$ ゆえ $\omega_{\C}^2=i^{2m}(-1)^m=1$。$\omega_{\C}$ は各 $e_k$ と反可換。$\Delta=\Delta^+\oplus\Delta^-$（$\omega_{\C}=\pm1$ の固有空間、次元は $2^{m-1}$ ずつ）と分けると、偶数次の元は $\Delta^\pm$ を保ち、奇数次の元（特に Clifford 乗法 $c(v)$）は $\Delta^\pm\leftrightarrow\Delta^\mp$ を入れ替える。
+
+\begin{ex}[Fock 空間モデル]\label{ex:Fock}\tP\ （Python で $m\le3$ を検算）
+$\R^{2m}=\C^m$（$e_{2j}=ie_{2j-1}$ の複素構造、向きは $(e_1,e_2,\dots)$）とし、$\Delta=\Lambda^\bullet\C^m$（$\varepsilon_j$ を $j$ 番目の基底による外積、$\iota_j$ をその随伴＝内部積）に
+\[
+c(e_{2j-1})=\varepsilon_j-\iota_j,\qquad c(e_{2j})=i(\varepsilon_j+\iota_j)
+\]
+で Clifford 乗法を定める。$(\varepsilon_j-\iota_j)^2=-(\varepsilon_j\iota_j+\iota_j\varepsilon_j)=-1$、$(i(\varepsilon_j+\iota_j))^2=-1$、異なる生成元は反可換、で $c(v)^2=-|v|^2$ を満たす。$e_{2j-1}e_{2j}$ は $j$ 番目の因子の真空 $1$ に $-i$、満たされた状態に $+i$ で働くので、$\omega_{\C}=i^m(-i)^m=+1$ が真空に、一般に $\omega_{\C}=(-1)^{\deg}$。よって $\Delta^+=\Lambda^{\rm ev}\C^m$、$\Delta^-=\Lambda^{\rm odd}\C^m$。これが複素多様体上の $\Lambda^{0,\bullet}$ モデルの点での形である。
+\end{ex}
+
+\subsection{スピン群とスピノル表現}
+\begin{defn}[スピン群]\label{def:Spin}
+$\Spin(n)=\{v_1v_2\cdots v_{2r}\in\Cl^0(\R^n)\ :\ |v_i|=1\}$。$\mathrm{Ad}:\Spin(n)\to\SO(n)$、$\mathrm{Ad}_g(v)=gvg^{-1}$。
+\end{defn}
+単位ベクトル $v$ では $v^{-1}=-v$、$wv=-vw-2\ip vw$ だから $vwv^{-1}=-v(wv)=v^2w+2\ip vw\,v=-w+2\ip vw\,v=-R_v(w)$（$R_v(w)=w-2\ip vwv$ は $v^\perp$ に関する鏡映）。2 つの積では符号が打ち消し合い $\mathrm{Ad}_{vw}=R_vR_w\in\SO(n)$。\tC\ $\mathrm{Ad}$ は全射で核は $\{\pm1\}$、すなわち $\Spin(n)\to\SO(n)$ は 2 重被覆。$n\ge3$ では $\Spin(n)$ は単連結で $\SO(n)$ の普遍被覆（$\pi_1(\SO(n))=\Z/2$）、$n=2$ では $\Spin(2)=U(1)\to\SO(2)=U(1)$、$z\mapsto z^2$（Lawson--Michelsohn 第 I 章）。
+
+\begin{ex}[回転の持ち上げ]\label{ex:rot}\tP\ （検算済）
+$(e_1e_2)^2=-1$ より $\exp(\tfrac\theta2e_1e_2)=\cos\tfrac\theta2+\sin\tfrac\theta2\,e_1e_2\in\Spin(n)$。これの $\mathrm{Ad}$ は $e_1e_2$ 平面での角 $\theta$ の回転（向きは規約による）。$\theta=2\pi$ で $-1$ になるので、$\theta$ を $0$ から $2\pi$ に動かすと $\SO(n)$ の閉じた道が $\Spin(n)$ の閉じていない道に持ち上がる。これが $\Spin(n)\to\SO(n)$ が自明でない被覆であることの意味である。
+\end{ex}
+\begin{ex}[低次元]\label{ex:lowspin}\tC\
+$\Spin(2)=U(1)$。$\Spin(3)=\SU(2)$（単位四元数、$\Delta_3=\C^2$）。$\Spin(4)=\SU(2)\times\SU(2)$（$\Delta^\pm$ は二つの因子の標準表現 $\C^2$）。$\Spin(6)=\SU(4)$（$\Delta^+=\C^4$、$\Delta^-=(\C^4)^*$）。
+\end{ex}
+\begin{prop}[スピノル表現の指標]\label{prop:spinchar}\tP\
+$n=2m$ とする。$\SO(2m)$ の極大トーラスの角 $\theta_1,\dots,\theta_m$ による $\Spin(2m)$ のトーラスの元 $\exp(\sum_j\frac{\theta_j}2e_{2j-1}e_{2j})$ は、Fock モデルの基底 $\{e_S\}_{S\subset\{1..m\}}$ に $e^{\frac i2(\sum_{j\in S}\theta_j-\sum_{j\notin S}\theta_j)}$ で働く。したがって Chern 根 $x_j$ に対して（$\theta_j\leftrightarrow x_j$）
+\[\resizebox{\linewidth}{!}{$\displaystyle \ch(\Delta^+)-\ch(\Delta^-)=\sum_S(-1)^{|S|}e^{\frac12(\sum_{S}x_j-\sum_{S^c}x_j)}=(-1)^m\prod_{j=1}^m\bigl(e^{x_j/2}-e^{-x_j/2}\bigr),\qquad \ch(\Delta)=\prod_{j}\bigl(e^{x_j/2}+e^{-x_j/2}\bigr).$}\]
+\end{prop}
+\begin{proof}
+$e_{2j-1}e_{2j}$ は例 \ref{ex:Fock} より $j$ 番目の因子の真空に $-i$、満たされた状態に $+i$ で働くから、$\exp(\frac{\theta_j}2e_{2j-1}e_{2j})$ はそれぞれ $e^{-i\theta_j/2},e^{+i\theta_j/2}$ で働く。$S$ を満たされた因子の集合とし、$\Delta^+=\Lambda^{\rm ev}$ は $|S|$ 偶数。符号 $(-1)^{|S|}$ で和をとり $\prod_j(e^{-x_j/2}-e^{x_j/2})=(-1)^m\prod_j(e^{x_j/2}-e^{-x_j/2})$ を得る。
+\end{proof}
+この $(-1)^m$ は $\Delta^\pm$ の名前のつけ方（$\omega_{\C}=+1$）と向きの規約に連動する。以後、\emph{複素多様体では}向きを複素構造から、$S^+=\Lambda^{0,{\rm ev}}\otimes K^{1/2}$ にとる（例 \ref{ex:Fock} と整合）。
+
+\subsection{スピン構造とスピノル束}
+$M$ を向きづけられた $n$ 次元 Riemann 多様体、$P_{\SO}(M)$ を（向きつき直交）枠束とする。
+\begin{defn}[スピン構造]\label{def:spinstr}
+\emph{スピン構造}とは、主 $\Spin(n)$ 束 $P_{\Spin}\to M$ と、$\Spin(n)\to\SO(n)$ と整合する 2 重被覆 $P_{\Spin}\to P_{\SO}(M)$ の組。$M$ が\emph{スピン多様体}であるとはスピン構造をもつこと。
+\end{defn}
+\begin{thm}[スピン構造の存在と分類]\label{thm:spinstr}\tC\ （Milnor 1963；Lawson--Michelsohn 第 II 章）
+$M$ がスピン構造をもつ $\iff w_2(TM)=0\in H^2(M;\Z/2)$。このとき、スピン構造全体は $H^1(M;\Z/2)$ に（非自然に）同型な集合である。複素多様体（概複素多様体）では $w_2=c_1\bmod2$。コンパクト複素多様体 $X$ のスピン構造は、$K_X$ の平方根 $K_X^{1/2}$ の選択と対応する（$H^1(X;\Z/2)$ の捩れ分だけ複数ありうる）。
+\end{thm}
+\begin{ex}\label{ex:spinex}\tC\ ＋\tP\
+\begin{itemize}
+\item $S^n$（$n\ge2$）：$TS^n\oplus\underline\R$ が自明なので $w_2=0$、スピン構造は 1 つ（$H^1=0$）。$T^n$：$2^n$ 個。種数 $g$ の Riemann 面：$2^{2g}$ 個（$K^{1/2}$ の選び方、第4巻の theta 特性）。
+\item $\CP^n$：$w_2=(n+1)H\bmod2$。スピン $\iff n$ 奇数。$\CP^2$ はスピンでない（\S\ref{sec:special}で $\Ahat(\CP^2)=-\frac18\notin\Z$ からも従う）。$\CP^3$ はスピン（$c_1=4H$、$K^{1/2}=\Oc(-2)$）。
+\item K3 曲面：$c_1=0$ ゆえスピン（$K=\Oc$、$K^{1/2}=\Oc$）。
+\item $\CP^3$ の次数 $d$ の曲面 $X_d$：$c_1=(4-d)H$ で、$d$ 偶数なら $c_1$ は 2 で割れるのでスピン。$d$ 奇数のときスピンでないことは、第 \ref{sec:special} 節の $\Ahat(X_d)\notin\Z$ からわかる（$d=3,5,7$ で確認）。
+\end{itemize}
+\end{ex}
+\begin{defn}[スピノル束と Dirac 作用素]\label{def:Dirac}
+$\Spn=P_{\Spin}\times_{\Spin(n)}\Delta_n$（$n$ 偶数なら $\Spn=\Spn^+\oplus\Spn^-$）。Levi-Civita 接続は $P_{\Spin}$ 上の接続に一意的に持ち上がり、$\Spn$ に Hermite 計量と整合する接続 $\nabla^{\Spn}$ を誘導する。Clifford 乗法 $c:TM\otimes\Spn\to\Spn$ は $\nabla$ と両立する（$\nabla_X(c(Y)\psi)=c(\nabla_XY)\psi+c(Y)\nabla_X\psi$）。\emph{Dirac 作用素}は
+\[
+D=\sum_{i=1}^nc(e_i)\nabla^{\Spn}_{e_i}:\Gamma(\Spn)\to\Gamma(\Spn),
+\]
+$\{e_i\}$ は局所直交枠（枠の選び方に依らない）。より一般に、接続つき Hermite ベクトル束 $E$ に対し、\emph{$E$ で捻った Dirac 作用素}は $D_E=\sum c(e_i)\nabla^{\Spn\otimes E}_{e_i}$ on $\Gamma(\Spn\otimes E)$。$n$ 偶数のとき $D_E=\begin{pmatrix}0&D_E^-\\D_E^+&0\end{pmatrix}$、$D_E^\pm:\Gamma(\Spn^\pm\otimes E)\to\Gamma(\Spn^\mp\otimes E)$。
+\end{defn}
+曲率は $R^{\Spn}(X,Y)=\frac14\sum_{k,l}\ip{R(X,Y)e_k}{e_l}\,c(e_k)c(e_l)$、$R^{\Spn\otimes E}=R^{\Spn}\otimes1+1\otimes F^E$（Lawson--Michelsohn 第 II 章 定理 4.14 の形。番号は\tQ\ ）。
+\begin{prop}[基本性質]\label{prop:Diracbasic}
+\begin{enumerate}
+\item $D_E$ は形式的に自己随伴：$\ip{D\psi}{\phi}_{L^2}=\ip\psi{D\phi}_{L^2}$。したがって $D_E^-=(D_E^+)^*$。\tP
+\item $\sigma(D_E)(\xi)=i\,c(\xi)\otimes1$ で $\sigma(D_E)^2=|\xi|^2$。$D_E$ は楕円型、$D_E^+$ も楕円型で $\ind D_E^+=\dim\Ker D_E^+-\dim\Ker D_E^-$。\tP
+\end{enumerate}
+\end{prop}
+\begin{proof}
+(2) $\sigma(c(e_i)\nabla_{e_i})(\xi)=c(e_i)\,i\xi_i$、和は $ic(\xi)$、$c(\xi)^2=-|\xi|^2$ より $(ic(\xi))^2=|\xi|^2$。(1) $c(e_i)$ は歪エルミート（$c(v)^*=-c(v)$、$c(v)^2=-|v|^2$ からユニタリかつ $c(v)^*=c(v)^{-1}=-c(v)$）。点 $p$ で $\nabla e_i=0$ となる枠をとる。ベクトル場 $Y$ を $\ip Y Z=\mathrm{Re}\ip{\psi}{c(Z)\phi}$ で定めると $\mathrm{Re}\ip{D\psi}{\phi}-\mathrm{Re}\ip\psi{D\phi}=-\mathrm{div}(Y)$（計算：$\mathrm{Re}\ip{c(e_i)\nabla_i\psi}\phi=-\mathrm{Re}\ip{\nabla_i\psi}{c(e_i)\phi}=-e_i\mathrm{Re}\ip\psi{c(e_i)\phi}+\mathrm{Re}\ip\psi{c(e_i)\nabla_i\phi}$ ($p$ で)）。発散を積分すると $0$。虚部は $\phi$ を $i\phi$ に置き換えて同様。
+\end{proof}
+
+\subsection{例}
+\begin{ex}[1 次元：円周]\label{ex:DiracS1}\tP\
+$S^1=\R/2\pi\Z$、$\Cl(\R)$ の表現 $c(e)=i$（$\Spn=\underline\C$）。$D=i\frac d{d\theta}$（スピン構造に応じて周期的／反周期的な条件）。周期的スピン構造：$De^{ik\theta}=-ke^{ik\theta}$、スペクトル $\Z$、$\Ker D=\C$（定数）。反周期的：スペクトル $\Z+\frac12$、$\Ker D=0$。スカラー曲率 $0$ でも、スピン構造によって調和スピノルが存在したりしなかったりする。
+\end{ex}
+\begin{ex}[2 次元：Riemann 面]\label{ex:Dirac2d}\tC\ ＋\tP\
+$\Sigma$ を種数 $g$ のコンパクト Riemann 面（Kähler）とし、$K^{1/2}$ を選ぶ。$\Spn=\Lambda^{0,\bullet}\otimes K^{1/2}$、$\Spn^+=K^{1/2}$、$\Spn^-=\Lambda^{0,1}\otimes K^{1/2}\cong K^{-1}\otimes K^{1/2}=K^{-1/2}$（Hermite 計量で $\Lambda^{0,1}=\overline K\cong K^{-1}$）。Dirac 作用素は $D=\sqrt2(\dbar+\dbar^*)$（Kähler の場合。\tC\ ）。よって $D^+=\sqrt2\,\dbar_{K^{1/2}}$ で
+\[
+\ind D^+=\chi(\Sigma,K^{1/2})=\deg K^{1/2}+1-g=(g-1)+1-g=0.
+\]
+$\Ker D^+=H^0(K^{1/2})$ の次元は $K^{1/2}$ の選び方（$2^{2g}$ 通り）によって変わる（その偶奇は変形で不変、Atiyah、Mumford\tQ\ ）が、指数は常に $0$ である。$\Sigma=\CP^1$：$K^{1/2}=\Oc(-1)$、$D^+:\Gamma(\Oc(-1))\to\Gamma(\Oc(1))$ は $H^0(\Oc(-1))=H^1(\Oc(-1))=0$ より同型、すなわち球面上の Dirac 作用素は零モードをもたない（第 \ref{sec:heat} 節で固有値 $\pm(k+1)$ を使う）。
+\end{ex}
+\begin{ex}[4 次元：$\R^4=\mathbb H$ と K3]\label{ex:Dirac4d}\tC\ ＋\tP\
+$\R^4=\mathbb H$（座標 $q=x_0+x_1\mathbf i+x_2\mathbf j+x_3\mathbf k$）、$\Delta^\pm=\mathbb H$ とし、$c(v):\Delta^+\to\Delta^-$ を $q\mapsto vq$、$c(v):\Delta^-\to\Delta^+$ を $q\mapsto-\bar vq$ とすれば $c(v)^2=-\bar vv=-|v|^2$。$D^+=\partial_0+\mathbf i\partial_1+\mathbf j\partial_2+\mathbf k\partial_3$（Cauchy--Fueter 型作用素）、$D^-=-(\partial_0-\mathbf i\partial_1-\mathbf j\partial_2-\mathbf k\partial_3)$ で、$D^-D^+=-\sum_i\partial_i^2$（正の Laplacian）となる。K3 曲面は Ricci 平坦な Kähler 計量（Yau）をもち、$K$ が自明なので $\Spn^+=\Lambda^{0,0}\oplus\Lambda^{0,2}$、$\Spn^-=\Lambda^{0,1}$ で、Kähler の場合 $\Ker D=\bigoplus\mathcal H^{0,q}$：$\dim\Ker D^+=h^{0,0}+h^{0,2}=2$、$\dim\Ker D^-=h^{0,1}=0$。$\ind D^+=2=\Ahat(\text{K3})$（第6巻）。
+\end{ex}
+
+\subsection{Lichnerowicz の公式}
+$\scal$ を $M$ のスカラー曲率（$\scal=\sum_{i,j}\ip{R(e_i,e_j)e_j}{e_i}$。単位球面で $n(n-1)>0$）とする。
+\begin{thm}[Lichnerowicz の公式]\label{thm:Lich}\tP\
+$D^2=\nabla^*\nabla+\frac{\scal}4$ on $\Gamma(\Spn)$。ベクトル束 $E$（接続 $\nabla^E$、曲率 $F^E$）で捻ると
+\[
+D_E^2=\nabla^*\nabla+\frac{\scal}4+\frak F^E,\qquad\frak F^E=\frac12\sum_{i,j}c(e_i)c(e_j)\otimes F^E(e_i,e_j).
+\]
+\end{thm}
+\begin{proof}
+まず $E$ が自明の場合を示す。点 $p$ を固定し、$p$ で $\nabla e_i=0$ となる局所直交枠をとる。$p$ で $\nabla c(e_j)=0$、$[e_i,e_j](p)=\nabla_{e_i}e_j-\nabla_{e_j}e_i=0$。したがって $p$ で
+\[
+D^2\psi=\sum_{i,j}c_ic_j\nabla_i\nabla_j\psi=-\sum_i\nabla_i\nabla_i\psi+\sum_{i<j}c_ic_j(\nabla_i\nabla_j-\nabla_j\nabla_i)\psi=\nabla^*\nabla\psi+\frac12\sum_{i,j}c_ic_jR^{\Spn}(e_i,e_j)\psi.
+\]
+（$c_i=c(e_i)$。第 1 項は $c_i^2=-1$、第 2 項は $c_ic_j=-c_jc_i$ $(i\ne j)$ を使い、$\nabla^*\nabla=-\sum\nabla_i\nabla_i$ at $p$。）$R^{\Spn}=\frac14\sum R_{ijkl}c_kc_l$（$R_{ijkl}=\ip{R(e_i,e_j)e_k}{e_l}$）を代入して
+\[
+D^2=\nabla^*\nabla+\frac18\sum_{i,j,k,l}R_{ijkl}c_ic_jc_kc_l.
+\]
+\emph{代数補題：}$\sum_{ijkl}R_{ijkl}c_ic_jc_kc_l=2\,\scal$。
+
+(a) $i,j,k,l$ がすべて異なる項。集合 $\{i,j,k\}$ を固定し $l$ を別に固定する。$c_ic_jc_k$ は異なる添字では完全反対称で、$R_{ijkl}$ も $(i,j)$ で反対称だから、$(i,j,k)$ の 6 通りの置換は巡回置換 3 通りの和の 2 倍になる。第 1 Bianchi 恒等式 $R_{ijkl}+R_{jkil}+R_{kijl}=0$ により和は $0$。
+
+(b) $i=l,\,j=k\,(i\ne j)$：$R_{ijji}c_ic_jc_jc_i=R_{ijji}\cdot c_i(-1)c_i=R_{ijji}$、和は $\scal$。$i=k,\,j=l\,(i\ne j)$：$R_{ijij}c_ic_jc_ic_j=R_{ijij}\cdot(-c_i^2c_j^2)=-R_{ijij}=R_{ijji}$、和は $\scal$。
+
+(c) 添字がちょうど 1 組だけ一致する項、たとえば $i=k$、$j\ne l$（$j,l\ne i$）：$R_{ijil}c_ic_jc_ic_l=-R_{ijil}c_i^2c_jc_l=R_{ijil}c_jc_l$。$\sum_iR_{ijil}=-\sum_iR_{ijli}=-\Ric_{jl}$ は $(j,l)$ で対称で、$c_jc_l$（$j\ne l$）は反対称だから和は $0$。ほかの一致 $i=l$ ($j\ne k$)、$j=k$ ($i\ne l$)、$j=l$ ($i\ne k$) も同様。$i=j$ または $k=l$ の項は $R_{ijkl}$ の反対称性で $0$。
+
+したがって総和 $=2\scal$、$D^2=\nabla^*\nabla+\frac{\scal}4$。
+
+捻りつきの場合は、$R^{\Spn\otimes E}=R^{\Spn}\otimes1+1\otimes F^E$ を上の第 1 式に代入すると、追加項 $\frac12\sum c_ic_jF^E(e_i,e_j)$ が出る。
+\end{proof}
+\begin{rem}[検算]\label{rem:LichCheck}\tP\
+代数補題は、Python で乱数の代数的曲率テンソル（Bianchi と対称性をみたすもの）と $n=4$ の $\gamma$ 行列（$\gamma_i^2=-1$）を使って $\sum R_{ijkl}\gamma_i\gamma_j\gamma_k\gamma_l=2\,\scal\cdot\mathrm{Id}$ を確かめた（誤差 $10^{-13}$）。単位球面 $S^n$ では $R_{ijkl}=\delta_{jk}\delta_{il}-\delta_{ik}\delta_{jl}$ で、$\sum=n^2-(n-n(n-1))=2n(n-1)=2\scal$ と手計算でも確認できる。
+\end{rem}
+\begin{cor}[Lichnerowicz]\label{cor:Lich}\tP\
+(a) $\scal>0$ なら $\Ker D=0$（$D=D_{E}$、$E$ 平坦自明）。(b) $\scal\ge0$ なら、調和スピノルは平行で、$\scal\not\equiv0$ なら $\Ker D=0$。(c) \emph{閉スピン多様体 $M^{4k}$ が正スカラー曲率の計量をもつなら $\Ahat(M)=0$。}
+\end{cor}
+\begin{proof}
+(a)(b) $D\psi=0$ なら $0=\ip{D^2\psi}\psi_{L^2}=\|\nabla\psi\|^2+\int\frac{\scal}4|\psi|^2$。$\scal\ge0$ ならどちらも $0$：$\nabla\psi=0$ で、$\scal>0$ の点では $\psi=0$、$\psi$ は平行ゆえ恒等的に $0$。(c) $\Ker D^\pm=0$ なので $\ind D^+=0$。指数定理（\S\ref{sec:special}）で $\ind D^+=\Ahat(M)$ だから $\Ahat(M)=0$。
+\end{proof}
+\begin{ex}\label{ex:psc}\tC\ ＋\tP\
+$S^{4k}$ は標準計量で $\scal>0$（$\Ahat=0$）。K3 曲面では $\Ahat=2\ne0$ なので、\emph{正スカラー曲率の計量をもたない}（Ricci 平坦計量は存在するが、$\scal\equiv0$ から $\scal>0$ へは変形できない）。同様に $\CP^3$ の次数 $d=6,8,\ldots$ の曲面 $X_d$ は $\Ahat=8,20,\dots\ne0$ で $\scal>0$ 計量をもたない（第 \ref{sec:examples} 節の表）。逆向きの理論として、単連結な閉スピン多様体 $M^n$（$n\ge5$）が psc 計量をもつことは、$\alpha(M)\in KO_n(\mathrm{pt})$（実 Dirac 作用素の指数。$n=4k$ では $\Ahat(M)$）が $0$ であることと同値である（Gromov--Lawson、Stolz）\tC\ \tQ\ 。Hitchin は 8k+1, 8k+2 次元のエキゾチック球面で $\alpha$-不変量（実 Dirac 作用素の指数の $\Z/2$ 値）が $\ne0$ になるものを示した\tC\ \tQ\ 。
+\end{ex}
+\begin{rem}[Friedrich の不等式]\label{rem:Fried}\tC\
+閉スピン多様体 $M^n$ の Dirac 作用素の任意の固有値 $\lambda$ は、$\lambda^2\ge\frac n{4(n-1)}\min\scal$（Friedrich）をみたす。単位球面 $S^2$ では $\scal=2$ で右辺は $\frac24\cdot2=1$、実際の最小固有値は $\pm1$（第 \ref{sec:heat} 節）で等号。
+\end{rem}
+
+\subsection{spin$^c$ 構造と Dolbeault 作用素}
+$\CP^2$ のようにスピンでない多様体でも、直線束 $L$ で「捻って」平方根を補えば Dirac 作用素が定義できる。
+\begin{defn}[spin$^c$ 構造]\label{def:spinc}
+$\Spinc(n)=\Spin(n)\times_{\Z/2}U(1)$（$\{(g,z)\}/\{(-g,-z)\}$）、$\Spinc(n)\to\SO(n)\times U(1)$、$[g,z]\mapsto(\mathrm{Ad}_g,z^2)$。\emph{spin$^c$ 構造}とは、$P_{\SO}(M)\times_M P_L$（$L$ は \emph{行列式直線束}と呼ばれる Hermite 直線束）への $\Spinc(n)$ 持ち上げ。\tC\ $M$ が spin$^c$ 構造をもつ $\iff W_3(M)=\beta w_2=0$（$\beta$ は Bockstein）、特に $w_2$ が整数係数の類の mod 2 還元であれば十分（向きつき 4 次元多様体はすべて spin$^c$）。形式的に $\Spn_c=\Spn\otimes L^{1/2}$ と書き、$L$ の接続を選べば Dirac 作用素 $D^c$ が定まる。
+\end{defn}
+\begin{prop}\label{prop:dolbeaultDirac}\tC\ （Lawson--Michelsohn 付録 D、Friedrich, \emph{Dirac Operators in Riemannian Geometry}。付録・章の対応は\tQ\ ）
+概複素多様体は行列式束 $L=K^{-1}=\det T^{1,0}$ の spin$^c$ 構造をもち、$\Spn_c=\Lambda^{0,\bullet}$、$\Spn_c^+=\Lambda^{0,{\rm ev}}$。Kähler 多様体では $D^c=\sqrt2(\dbar+\dbar^*)$。ベクトル束 $E$ で捻ると $D^c_E=\sqrt2(\dbar_E+\dbar_E^*)$。一般の spin$^c$ 構造での指数は（指数定理から）$\ind D^{c,+}_E=\int_M e^{c_1(L)/2}\Ahat(M)\ch(E)$。
+\end{prop}
+この最後の式で $L=K^{-1}$ とすると、$e^{c_1(T)/2}\Ahat(M)=\Td(M)$（第6巻、命題「$\Td=e^{c_1/2}\Ahat$」）なので $\int\Td(X)\ch(E)=\chi(X,E)$ すなわち HRR が従う。\emph{HRR は spin$^c$ Dirac 作用素の指数公式の特別な場合}である。
+
+\begin{keybox}{要点（\S\ref{sec:clifford}）}
+$\Cl_{2m}\cong M_{2^m}(\C)$、$\Spin(n)\to\SO(n)$ は 2 重被覆、$w_2=0$ ならスピン構造が存在。$D=\sum c(e_i)\nabla_{e_i}$ は楕円型で自己随伴、$\sigma(D)=ic(\xi)$。\textbf{Lichnerowicz：}$D^2=\nabla^*\nabla+\frac{\scal}4$。$\scal>0\Rightarrow\Ker D=0\Rightarrow\Ahat(M)=0$。Dolbeault 作用素は spin$^c$ Dirac 作用素（$K^{-1}$ の捻り）。
+\end{keybox}
+\subsection*{この節の問題}
+\begin{prob}{基本}\label{p:cl2}
+$\Cl(\R^2)\cong\mathbb H$ を、$e_1=\mathbf i$、$e_2=\mathbf j$ で確かめよ。$\Cl_2\cong M_2(\C)$ の同型 $e_1\mapsto i\sigma_x$、$e_2\mapsto i\sigma_y$ のもとで、$\omega_{\C}=ie_1e_2$ は何か。$\Delta^\pm$ の固有ベクトルを求め、$c(v)$（$v=ae_1+be_2$）が $\Delta^+\to\Delta^-$ を（標準基底で）$iz$ 倍（$z=a+ib$）として働くことを示せ。
+\end{prob}
+\begin{prob}{基本}\label{p:chir}
+$n=4$ で $\omega_{\C}=-e_1e_2e_3e_4$（$i^2=-1$）が $\omega_{\C}^2=1$ を満たし、各 $e_k$ と反可換であることを示せ。$\Delta^\pm$ の次元と、$\Spin(4)=\SU(2)\times\SU(2)$ の作用の下での分解を述べよ。
+\end{prob}
+\begin{prob}{標準}\label{p:spin2}
+$\exp(\frac\theta2e_1e_2)$ が $e_1,e_2$ を角 $\theta$ で回転させ、$e_3$ を固定することを、$\Cl(\R^3)$ の計算で確かめよ（$ge_1g^{-1}$ を計算する）。$\theta=2\pi$ で値が $-1$ であることを使い、$\Spin(3)\to\SO(3)$ が自明な被覆でないことを説明せよ。
+\end{prob}
+\begin{prob}{標準}\label{p:lichS2}
+単位球面 $S^2$ の Dirac 作用素の固有値は $\pm(k+1)$、重複度は各符号で $2(k+1)$（$k=0,1,2,\ldots$）である（Bär\tC\ ）。Lichnerowicz の公式から、固有値の 2 乗の最小値が満たすべき下限を求め、Friedrich の不等式の等号が成り立つことを確かめよ。$D^2$ の熱跡 $\sum e^{-t\lambda^2}$ の $t\to0$ での展開が $\frac2t-\frac13+O(t)$ になることを、固有値から（Euler--Maclaurin で）確かめよ。
+\end{prob}
+\begin{prob}{標準}\label{p:T2spin}
+平坦トーラス $T^2=\R^2/2\pi\Z^2$ の 4 つのスピン構造に対応する Dirac 作用素のスペクトルを、$\Spn=\underline{\C}^2$、$D=-i(\sigma_x\partial_x+\sigma_y\partial_y)$ 型の形から求めよ（スピン構造 $=$ 各方向で周期的か反周期的か）。零モードがあるのはどのスピン構造か。指数が常に $0$ であることを確かめよ。
+\end{prob}
+\begin{prob}{標準}\label{p:spinc}
+$\CP^2$ は spin$^c$ 構造をもつ（行列式束 $L=K^{-1}=\Oc(3)$）。(a) $\Spn_c=\Lambda^{0,\bullet}$ と $\Oc(j)$ による捻りの Dirac 作用素 $D^c_{\Oc(j)}$ の指数を HRR で求めよ。(b) 公式 $\int e^{c_1(L)/2}\Ahat\ch(\Oc(j))$ の次数 4 の部分を $p_1(\CP^2)=3H^2$ を使って計算し、(a) と一致することを確かめよ。(c) 形式的に $j=-\frac32$（\lq\lq 半整数の捻り\rq\rq、すなわちスピン構造に相当）とおくと $\Ahat(\CP^2)=-\frac18$ になる。これが $\CP^2$ にスピン構造がないことをどう示すか述べよ。
+\end{prob}
+\begin{prob}{発展}\label{p:psc}
+(a) $\scal>0$ の閉スピン多様体 $M$ と平坦ベクトル束 $E$ について $\Ker D_E=0$ を示し、$\ind D_E^+=\rk(E)\Ahat(M)=0$ であることを確かめよ。(b) K3 曲面と $T^4$ について、$\Ahat$ の値から何が言えるか（言えないか）を述べよ。(c) $S^2\times S^2$ の積計量に Lichnerowicz の公式を使い、$\Ahat(S^2\times S^2)=0$ を確かめよ（他の方法でも確かめよ）。
+\end{prob}

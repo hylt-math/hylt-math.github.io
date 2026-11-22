@@ -1,0 +1,172 @@
+
+\section{例と検算}\label{sec:examples}
+この節では、第6巻の Chern 類・Todd 類の計算（一変数の形式的べき級数と Chern 根）を\emph{再実装}して、指数公式の各特殊化を数値で確かめる。実装は \texttt{fractions}（厳密な有理数）で、コードは \texttt{lib8.py}、\texttt{verify8.py}。以下の表の値はすべてこのコードの出力である。
+
+\subsection{Dolbeault 指数：$\CP^n$、トーラス、曲線}
+$\CP^n$ では $c(T)=(1+H)^{n+1}$、$\ch(\Oc(k))=e^{kH}$、$\Td(\CP^n)=\bigl(\frac H{1-e^{-H}}\bigr)^{n+1}$（Euler 系列）、$\int H^n=1$。
+\begin{center}
+{\small\begin{tabular}{c|ccccccccccc}
+\toprule
+$k$ & $-5$ & $-4$ & $-3$ & $-2$ & $-1$ & $0$ & $1$ & $2$ & $3$ & $4$ & $5$\\
+\midrule
+$\CP^1$: $\ind\dbar_{\Oc(k)}=k+1$ & $-4$ & $-3$ & $-2$ & $-1$ & $0$ & $1$ & $2$ & $3$ & $4$ & $5$ & $6$\\
+$\CP^2$: $\frac{(k+1)(k+2)}2$ & $6$ & $3$ & $1$ & $0$ & $0$ & $1$ & $3$ & $6$ & $10$ & $15$ & $21$\\
+$\CP^3$: $\frac{(k+1)(k+2)(k+3)}6$ & $-4$ & $-1$ & $0$ & $0$ & $0$ & $1$ & $4$ & $10$ & $20$ & $35$ & $56$\\
+\bottomrule
+\end{tabular}}
+\end{center}
+$n\le7$、$|k|\le12$ で $\int_{\CP^n}e^{kH}\Td=\binom{n+k}n$ を確認した。$\CP^1$ は Riemann 面の $g=0$（例 \ref{ex:RR}）、$S^2$ の Dolbeault 作用素の指数はこの $k+1$ で、$k=-1$ で $0$（$\Oc(-1)$ に正則切断も $H^1$ もない）。トーラス：$T^2$ で $\Td=1$、$\ind\dbar_L=\deg L$。$T^4$ で $\ind\dbar_L=\frac12\int c_1(L)^2$。種数 $g$ の曲線で $\deg L+1-g$。
+
+\subsection{4 つの作用素の指数：$\CP^2$ と K3 曲面}
+\begin{center}
+{\small\begin{tabular}{l|cc}
+\toprule
+ & $\CP^2$ & K3（四次曲面）\\
+\midrule
+$c_1,c_2$ & $3H,\ 3H^2$ & $0,\ 24$\\
+$p_1=c_1^2-2c_2$ & $3$ & $-48$\\
+Dolbeault：$\chi(\Oc)=\int\frac{c_1^2+c_2}{12}$ & $1$ & $2$\\
+de Rham：$\chi_{\rm top}=\int c_2$ & $3$ & $24$\\
+符号：$\sgn=\int\frac{p_1}3$ & $1$ & $-16$\\
+Dirac：$\Ahat=-\int\frac{p_1}{24}$ & $-\frac18$（スピンでない） & $2$\\
+$\sgn=-8\Ahat$（スピンのとき） & --- & $-16=-8\cdot2$ ✓\\
+\bottomrule
+\end{tabular}}
+\end{center}
+K3 では $c_1=0$ なので $\Td=\Ahat$（命題「$\Td=e^{c_1/2}\Ahat$」）、$\chi(\Oc)=\Ahat=2$、$h^{0,0}=h^{0,2}=1$、$h^{0,1}=0$（例 \ref{ex:Dirac4d}）。四次曲面 $X\subset\CP^3$ の根の計算：$c(T)=\frac{(1+H)^4}{1+4H}=1+0\cdot H+6H^2$、$\int_XH^2=4$ から $c_2=24$、$p_1=-2\cdot24=-48$。$\CP^2$ の符号数は $\CP^{2j}$ ($j\le4$) すべてで $1$（$\Lg$ 種数を一変数級数 $\prod\frac{H}{\tanh H}$ の $H^{2j}$ の係数で確認）。$\CP^2\times\CP^2$ では乗法性で $1$。
+
+\subsection{$\CP^3$ のスピン構造と捻り Dirac 作用素}
+$\CP^3$：$e=4$、$c_1=4H$（偶）でスピン、$\Spn=\Lambda^{0,\bullet}\otimes\Oc(-2)$。実 6 次元で $\Ahat$ に次数 6 の成分がなく、$\sgn=0$。$\Oc(k)$ で捻った Dirac 作用素の指数は $\int e^{kH}\Ahat=\frac{k^3}6-\frac k6=\binom{k+1}3=\chi(\CP^3,\Oc(k-2))$（HRR と一致：スピノル束が $K^{1/2}=\Oc(-2)$ を含むため）。
+\begin{center}
+{\small\begin{tabular}{c|ccccccccc}
+\toprule
+$k$ & $-3$ & $-2$ & $-1$ & $0$ & $1$ & $2$ & $3$ & $4$ & $5$\\
+\midrule
+$\ind D_{\Oc(k)}^+=\binom{k+1}3$ & $-4$ & $-1$ & $0$ & $0$ & $0$ & $1$ & $4$ & $10$ & $20$\\
+\bottomrule
+\end{tabular}}
+\end{center}
+$k=0$ で $0$ は Fubini--Study 計量が $\scal>0$ であることと整合（Lichnerowicz、系 \ref{cor:Lich}）。$k=\pm1$ でも $0$：Kähler の場合 $\Ker D_{\Oc(k)}=\bigoplus_q H^{0,q}(\CP^3,\Oc(k-2))$ で、$\Oc(-1),\Oc(-2),\Oc(-3)$ は $\CP^3$ で非輪状（全コホモロジーが $0$）だから核が消える（問 \ref{p:CP3k}）。捻りつき Lichnerowicz $D_E^2=\nabla^*\nabla+\frac{\scal}4+\frak F^E$ の $\frak F^E$ の評価からも同じ結論が出うるが、本巻では確認していない。同様に $\CP^5$（$\dim_{\C}=5$、$K^{1/2}=\Oc(-3)$）で $\ind D_{\Oc(k)}=\chi(\Oc(k-3))$（$k=-3,\dots,4$ で確認）。
+
+\subsection{超曲面と Rokhlin の定理}
+$\CP^3$ の次数 $d$ の曲面 $X_d$（$c(T)=\frac{(1+H)^4}{1+dH}$、$\int H^2=d$）。
+\begin{center}
+{\small\begin{tabular}{c|cccccccc}
+\toprule
+$d$ & $1$ & $2$ & $3$ & $4$ & $5$ & $6$ & $7$ & $8$\\
+\midrule
+$\chi(\Oc)$ & $1$ & $1$ & $1$ & $2$ & $5$ & $11$ & $21$ & $36$\\
+$e$ & $3$ & $4$ & $9$ & $24$ & $55$ & $108$ & $189$ & $304$\\
+$\sgn=-\frac{d(d^2-4)}3$ & $1$ & $0$ & $-5$ & $-16$ & $-35$ & $-64$ & $-105$ & $-160$\\
+$\Ahat=\frac{d(d^2-4)}{24}$ & $-\frac18$ & $0$ & $\frac58$ & $2$ & $\frac{35}8$ & $8$ & $\frac{105}8$ & $20$\\
+スピン？（$c_1=(4-d)H$） & 否 & 可 & 否 & 可 & 否 & 可 & 否 & 可\\
+$\sgn\bmod16$ & $1$ & $0$ & $11$ & $0$ & $13$ & $0$ & $7$ & $0$\\
+\bottomrule
+\end{tabular}}
+\end{center}
+$d$ が偶数のとき（スピン）、$\Ahat\in2\Z$、$\sgn\in16\Z$：Rokhlin の定理と整合。$d$ が奇数のとき $\Ahat\notin\Z$ なのでスピンでない。$\sgn$ の公式は $\Lg$ 種数の直接計算（一変数級数、$d\le8$）と一致し、$e=d(d^2-4d+6)$、$\chi(\Oc)=\binom{d-1}3+1$（\,$d\le8$ の値）も確認した。$d=4$：$(\chi(\Oc),e,\sgn,\Ahat)=(2,24,-16,2)$。$d=6,8$ では $\Ahat\ne0$ なので正スカラー曲率計量はない。
+
+\medskip
+$\CP^5$ の次数 $d$ の超曲面（複素 4 次元）：$\Ahat(X_d)=\frac{d(d^2-4)(d^2-16)}{1920}$（問 \ref{p:hypHirz}）。$d=1$（$\CP^4$）：$\frac{3}{128}$；$d=2$：$0$；$d=3$：$-\frac7{128}$；$d=4$：$0$；$d=5$：$\frac{63}{128}$；$d=6$：$2$（Calabi--Yau 4 次元、$\Ahat=\chi(\Oc)=2$）；$d=7$：$\frac{693}{128}$；$d=8$：$12$。スピンになるのは $d$ 偶数で、$d=2,4$（Fano、Yau の定理で Ricci 正の Kähler 計量が存在し $\scal>0$）で $\Ahat=0$ という Lichnerowicz と整合する値になり、$d=6$ の CY 4 次元は $\Ahat=2\ne0$（Ricci 平坦計量は存在するが $\scal>0$ の計量はない）。
+
+\subsection{熱核・Toeplitz の数値}
+\begin{center}
+{\small\begin{tabular}{l|p{10.5cm}}
+\toprule
+対象 & 数値の結果\\
+\midrule
+$S^2$、McKean--Singer & $\Tr_0-\Tr_1+\Tr_2=2.000000000000$（$t=0.1,0.03,0.01,0.003$）\\
+$S^2$、$\Tr_0-(\frac1t+\frac13)$ & $0.006797,\ 0.002012,\ 0.000668,\ 0.000200$（$\approx\frac t{15}$）\\
+$S^2$、$\Tr_1-(\frac2t-\frac43)$ & $0.013594,\ 0.004023,\ 0.001336,\ 0.000400$（$\approx\frac{2t}{15}$）\\
+$S^2$ Dirac & $4\sum me^{-tm^2}$：$19.66325$ vs $\frac2t-\frac13=19.66667$（$t=0.1$）、$66.33233$ vs $66.33333$（$0.03$）、$199.66633$ vs $199.66667$（$0.01$）\\
+$S^1$ & $\sum e^{-tk^2}$ vs $\sqrt{\pi/t}$：一致（$t=0.5$：$2.5066282880$ vs $2.5066282746$）\\
+$T^2$ & $\Tr_0=31.41592654$ vs $\frac{4\pi^2}{4\pi t}=31.41592654$（$t=0.1$）、$\Tr_0-\Tr_1+\Tr_2=0$\\
+Landau（磁束 $k$） & $\Tr_s=k$（$(k,t)=(3,0.2),(1,1),(5,0.05)$）\\
+Mehler & 例 \ref{ex:Mehler}\\
+Toeplitz $T_f$ & 微小特異値の個数 $=|\mathrm{wind}(f)|$（8 例）\\
+\bottomrule
+\end{tabular}}
+\end{center}
+$S^2$ の Dirac の差（$0.00342,0.00101,0.000334$）は $O(t)$（$\approx\frac t{30}$）で、$a_1$ の係数 $-\frac13$（$D^2=\nabla^*\nabla+\frac12$、$a_1=\frac{\scal}6-\frac{\scal}4=-\frac16$ を階数 $2$、面積 $4\pi$ で）と一致する。
+
+\subsection{根ごとの級数の検算（補題 \ref{lem:rootcalc}）}
+補題 \ref{lem:rootcalc} (i)--(iv) を、$x$ の 10 次までのべき級数（有理数係数）で検算した。$\Td(x)=e^{x/2}\Ahat(x)$、$\frac x{\tanh(x/2)}=2\Lg(\frac x2)$ も同様。
+
+\begin{keybox}{要点（\S\ref{sec:examples}）}
+$\CP^n$：$\ind\dbar_{\Oc(k)}=\binom{n+k}n$。K3：$(\chi(\Oc),e,\sgn,\Ahat)=(2,24,-16,2)$。$\CP^2$：$(1,3,1,-\frac18)$。$X_d\subset\CP^3$：$d$ 偶数で $\sgn\in16\Z$、奇数で $\Ahat\notin\Z$。$\CP^3$：$\ind D_{\Oc(k)}=\binom{k+1}3$。$S^2$ の McKean--Singer、Mehler、Toeplitz も数値確認済み。
+\end{keybox}
+\subsection*{この節の問題}
+\begin{prob}{標準}\label{p:quinticD}
+五次 3 次元超曲面 $X\subset\CP^4$（$c_1=0$、$c_2=10H^2$、$\int H^3=5$）で、$\Oc(k)$ で捻った Dirac 作用素の指数 $\int e^{kH}\Ahat$（$p_1=-2c_2=-20H^2$）を計算し、第6巻の $\chi(\Oc(k))=\frac{5k^3+25k}6$ と一致することを確かめよ。
+\end{prob}
+\begin{prob}{基本}\label{p:CP3tab}
+$\CP^3$ の表（Dolbeault と Dirac）を $k=-5,\dots,5$ について完成させ、Serre 双対 $\chi(\Oc(k))=-\chi(\Oc(-k-4))$ と $\ind D_{\Oc(k)}=-\ind D_{\Oc(-k)}$ を確かめよ。後者の対称性は何に由来するか。
+\end{prob}
+\begin{prob}{標準}\label{p:hypHirz}
+$\CP^5$ の次数 $d$ の超曲面 $X_d$（$\dim_{\C}=4$、$\int H^4=d$）で、$p(T)=\frac{(1+H^2)^6}{1+d^2H^2}$ から $p_1=(6-d^2)H^2$、$p_2=(15-6d^2+d^4)H^4$ を求め、$\Ahat_2=\frac{7p_1^2-4p_2}{5760}$ で $\Ahat(X_d)=\frac{d(d^2-4)(d^2-16)}{1920}$ を示せ。$d=2,4$ で $0$ になる理由を述べ、$d=6$ の値 $2$ を $\chi(\Oc)=2$（問 \ref{p:CY}）と比べよ。
+\end{prob}
+
+\section{統合論文との対応：Riemann--Roch 型公式と指数予想（\S10）}\label{sec:unified}
+統合論文（\texttt{generalized-geometry-poisson-unified}、v1）の \S10「Riemann--Roch 型の公式と指数予想」を、本巻の言葉で位置づける。\emph{過大に書かない}ため、以下は論文の記述（\S10.1--\S10.4）に従う整理であり、論文の主張の再導出ではない（\tQ\ ）。「予想」と明記されたものは未証明である。
+
+\subsection{古典の側：$\chi=\int\ch\,\Td$ は指数定理から従う}
+\begin{itemize}
+\item 古典：コンパクト複素多様体 $X$ と正則ベクトル束 $E$ で $\chi(X,E)=\ind(\dbar_E+\dbar_E^*)=\int_X\ch(E)\Td(X)$（定理 \ref{thm:HRRfromAS}）。左辺は層コホモロジーの Euler 標数、中央は楕円複体（Dolbeault 複体）の指数、右辺は特性類の積分。$\chi(X,E)=\rk(E)\chi(\Oc_X)+(c_1(E)\text{ などに依る項})$ で、$E$ に（直線束の冪 $L^m$ など）変化を与えると、$\chi(L^m)$ は $m$ の多項式になる（漸近 Riemann--Roch、第6巻）。
+\item 統合論文の複体：$X$ コンパクト複素多様体、$\sigma$ 正則 Poisson 構造、$E$ Poisson 加群で、複体 $C(A;E)=(\wedge^\bullet T_X\otimes E,\ d_E=[\sigma,\cdot]+V\wedge)$ の超コホモロジー $\mathbb H^k(E)=\mathbb H^k(X;C(A;E))$（一般化 Dolbeault コホモロジー）。$d_E$ は $\C$-線形だが $\Oc$-線形ではない（第6巻 \S9）。すなわち $\mathrm{HH}$ は「$\dbar$ の複体」でも「$d_\sigma$ だけの複体」でもなく、連接層の複体 $(\wedge^\bullet T_X\otimes E,\,d_E)$ の超コホモロジーである（論文の定義 5）。
+\end{itemize}
+\subsection{論文 \S10 が述べていること}
+\begin{enumerate}
+\item \textbf{全 Euler 標数は古典の側にある。}定理 22（第6巻 \S9）：$\sum_k(-1)^k\dim\mathbb H^k(E)=\sum_b(-1)^b\chi(X,\wedge^bT_X\otimes E)=(-1)^n\rk(E)\chi_{\rm top}(X)$。右辺は $b$ による濾過の各段が Dolbeault 複体であることから、\emph{古典の HRR}（すなわち本巻の定理 \ref{thm:HRRfromAS}、$\Td$ の根ごとの計算と Chern--Gauss--Bonnet）だけで得られる。論文自身もこの定理を「HRR のみ」と位置づけている。特に $c_1(E)$ に依らない（注意 23）。論文 \S10.2 は、これを「素朴な Riemann--Roch『$\chi(E)=\int\ch(E)\Td$ が $c_1(E)$ の多項式』は一般化幾何では\emph{退化}し（$c_1$ を見ない）、情報は次数つきの次元にある」と述べる。
+\item \textbf{Poincaré 多項式の公式（定理 34、定理 92）。}次数ごとの次元 $\dim\mathbb H^k$ を生成する Poincaré 多項式 $P_{\mathbb H}(t)$ について、曲面で定理 34、一般次元（対数シンプレクティック、SNC、$U=X\setminus D$ がアフィン、等の仮定）で定理 92：$P_{\mathbb H}(t)=\chi(X)\,t^n+\sum_{k=0}^{n-1}h^k(U;L_U)\,\bigl(t^k-(-1)^kt^n\bigr)$ の形（仮定の詳細は論文を参照）。これは「Riemann--Roch 型の閉公式」で、位相的な量 $\chi(X)$ と $h^k(U;L_U)$ から次数つきの次元を与える。論文はこれを証明済みとする。
+\item \textbf{次元の 3 つの振る舞い（\S10.2）。}正則型では $m$ の多項式（$m\gg0$）、対数シンプレクティックでは留数の整数性による周期的な跳び（論文の例：$\CP^2$ と滑らかな 3 次曲線で $r=-m/3$）、全 Euler 標数は $m$ に依らない。多項式的な振る舞いが全次数で成り立つのは正則型だけである。
+\item \textbf{指数予想（予想 94、\S10.4：未証明）。}$A=T_X(-\log D)$ を Lie 亜代数とみて、$U=X\setminus D$ 上の複体 $\mathcal D_L=(\wedge^\bullet T\otimes L,\ \dbar+[\sigma,\cdot])$ を、留数 $r$ を重みとする重み付き Sobolev 空間上の閉作用素と考える。(I1) すべての $r_i\notin\Z$ のとき、かつそのときに限り Fredholm、(I2) Fredholm のとき指数 $=\chi(U)+(-1)^n\#D^{(n)}=(-1)^n\chi(X)$、(I3) $r_i\in\Z$ のとき $j_!$ 型と $Rj_*$ 型の二つの閉拡大の差は $H^*(\partial U;L)$ の部分商（APS 型の壁越え）、(I4) 次数つきの精密化。(I2) の値は定理 22、25（証明済）と合致するが、解析的な Fredholm 性と指数公式は\emph{予想}である。
+\end{enumerate}
+\subsection{なぜ Atiyah--Singer の枠で直接は扱えないか}
+論文 \S10.4 の記述に沿って、本巻の枠組み（閉多様体上の楕円型作用素・楕円複体）との違いを整理する。
+\begin{center}
+{\small\begin{tabular}{p{3.4cm}|p{5.8cm}|p{5.2cm}}
+\toprule
+ & 古典（本巻の枠） & 統合論文の複体\\
+\midrule
+複体 & Dolbeault 複体 $(\Omega^{0,\bullet}(E),\dbar)$：$\dbar$ は 1 階微分作用素、Hermite 計量で楕円性、指数 $=\chi(X,E)$ & $(\wedge^\bullet T\otimes E,\ d_E=[\sigma,\cdot]+V\wedge)$ の超コホモロジー。$d_E$ は $\C$-線形で $\Oc$-線形でない。$\dbar$ は複体の微分でなく、Dolbeault モデル $D=\dbar+d_K$（$d_K$ は $d_E$ に Koszul 符号 $(-1)^a$ を付けたもの。論文の命題 6(b)、同定は論文自身が\tQ\ ）の一方向\\
+次数 & 指数 $=$ 1 つの整数（交代和） & 次数つき $\dim\mathbb H^k$ と Poincaré 多項式が主題。交代和は $c_1(E)$ に依らない\\
+底空間 & コンパクト（閉多様体） & 主な対象は $U=X\setminus D$（非コンパクト）、対数極（SNC）\\
+Fredholm 性 & 楕円性から自動 & 重み付き空間で、留数 $r_i\in\Z$ のとき失敗しうる（予想 94 (I1)）\\
+Lie 構造 & $T_X$（接束） & Lie 亜代数 $A=T_X(-\log D)$、複素 Lie 亜代数 $T^{0,1}\ltimes A^{1,0}$（実構造なし）\\
+既存の指数定理 & Atiyah--Singer（閉多様体） & Hu：実 Lie 亜群の設定で別物、Pflaum--Posthuma--Tang：コンパクトな底・ユニモジュラー性等を要する\tQ\ 、文献に重み付き対数 Dolbeault 複体の指数定理は見つからない（論文）\\
+\bottomrule
+\end{tabular}}
+\end{center}
+論文は近い文献として、$b$-対称多様体の幾何学的量子化（Braverman--Loizides--Song）、境界亜群の指数公式（Qiao--So）、Lie 構造をもつ多様体の擬微分作用素（Ammann--Lauter--Nistor）、ファイバー付き境界（Mazzeo--Melrose）、複素対数 Hodge（Hausel--Hunsicker--Mazzeo）を挙げ、いずれも設定が異なり\emph{そのままは適用できない}とする（題名・著者・要旨を確認したのみ\tQ\ ）。したがって、論文の立場は「Hirzebruch--Riemann--Roch が Atiyah--Singer の特別な場合であるのと同様に、一般化幾何での Riemann--Roch は『一般化 Dolbeault 複体の指数定理』として定式化されるべき」であり、その定式化が予想 94 である。これは\emph{未解決}であり、本巻はその見込みを述べるに留める。
+\subsection{本巻の道具がどこで効くか}
+\begin{itemize}
+\item 定理 22（全 Euler 標数）：本巻の定理 \ref{thm:HRRfromAS}（HRR）と補題 \ref{lem:rootcalc}(i)(ii)（Koszul 型の交代和 $\prod(1-e^{x_j})$ を $\Td$ に掛けると $\prod x_j$ だけが残る）、定理 \ref{thm:CGBfromAS}。
+\item 指数予想 (I2)：予想される指数の値 $(-1)^n\chi(X)$ は、論文によれば $c_n(T_X(-\log D))$ の積分に角の寄与 $\#D^{(n)}$ を加えたもので、$b$-接束（対数接束 $T_X(-\log D)$）上の Atiyah--Singer 型の公式として得られると\emph{予想}されている（論文 \S10.4、\tQ\ ）。そのために必要なもの：(1) 重み付き空間での Fredholm 理論（第10巻の $b$-計算、Melrose）、(2) $b$-接束上の $K$ 理論と Thom 同型を使った指数公式（本巻 \S\ref{sec:proofK} の $b$ 版）、(3) APS 型の壁越え（第10巻の $\eta$ 不変量）。(I3) は第10巻、(1)(2) の Lie 亜代数への一般化は第13--14巻の主題。
+\item 熱核の方法（\S\ref{sec:heat}）：Lie 亜代数 $A$ 上の Dirac 型作用素の局所指数密度を調べる出発点（族・境界の拡張は第9・10巻）。
+\end{itemize}
+\begin{keybox}{要点（\S\ref{sec:unified}）}
+古典：$\chi=\int\ch\Td$ は Dolbeault 作用素への指数定理。統合論文の全 Euler 標数は古典 HRR だけで得られ $c_1(E)$ に依らない。次数つきの次元（Poincaré 多項式）の閉公式と、非コンパクト・重み付きの設定での指数予想（予想 94、未証明）が論文の新しい部分で、Atiyah--Singer の枠（閉多様体上の楕円型複体）では直接扱えず、$b$-計算・Lie 亜代数の指数（第10・13・14巻）が必要。
+\end{keybox}
+
+\section{次巻以降への橋渡し}\label{sec:bridge}
+\begin{itemize}
+\item \textbf{第9巻（族の指数）へ。}楕円型作用素の\emph{族}（パラメータ空間 $B$ 上の作用素 $D_b$）では、核と余核の次元が跳ぶので $\Ker,\Coker$ は束にならないが、\emph{指数束} $\ind(D)=[\Ker D]-[\Coker D]\in K(B)$ は $K$ 理論の元として意味をもつ（Atiyah--Singer IV）。その Chern 指標が $\ch(\ind D)=\int_{\rm fibre}\Ahat\,\ch(E)$（Dirac の場合）。Bismut の超接続は、本巻の熱核の方法（McKean--Singer、Getzler）の族版である。正則な族では Grothendieck--Riemann--Roch（第6巻）の解析版になる。
+\item \textbf{第10巻（APS・$b$-計算）へ。}境界つき多様体では、指数定理に境界項（$\eta$ 不変量 $\frac{h+\eta}2$）が現れる：$\ind D=\int\Ahat\,\ch-\frac{h+\eta}2$（APS）。非コンパクト・錐状・Lie 構造つき無限遠では、楕円性だけでは Fredholm にならず、重み付き空間と\emph{指標根}（indicial roots）が鍵になる（Melrose の $b$-計算）。統合論文の予想 94（留数 $r_i\in\Z$ で Fredholm でなくなる）はこの現象である。
+\item \textbf{第11--14巻へ。}Lie 亜代数・Poisson 幾何（第11巻）、一般化複素幾何（第12巻）、一般化正則束と Poisson 加群（第13巻）、統合論文への案内（第14巻）。本巻の指数定理の語彙（シンボル、$K$ 理論、Thom 同型、熱核）は、第13--14巻で「一般化 Dolbeault 複体の指数定理」を定式化するときの参照枠となる。
+\end{itemize}
+\paragraph{この巻で使った事実のうち、証明を再現していないもの。}Atiyah--Singer の指数定理本体（\tC ）、Bott 周期性・Thom 同型、スピン構造の存在と分類（$w_2$）、熱核の漸近展開の存在、Getzler の再スケーリングの収束、Hodge の定理（第5・7巻）、Atiyah--Hitchin--Singer の $p_1(\Lambda^\pm)$、Rokhlin の定理の四元数構造による偶数性、$\Lambda^\pm\cong\Spn^\pm\otimes\Spn$。いずれも\tC\ として使った。\tQ\ は規約と文献の細部にだけ付けた。
+
+\section{この巻の理解チェック}\label{sec:check}
+各問に正誤または短答で答えよ（答は解答の節）。
+\begin{enumerate}
+\item[(1)] 「楕円型作用素 $P$ を連続変形すると、$\dim\Ker P$ と $\dim\Coker P$ はそれぞれ変わらない。」正しいか。
+\item[(2)] $S^1$ 上の楕円型\emph{微分}作用素の指数はいくつか。理由を一言で。
+\item[(3)] Clifford 代数 $\Cl_4=\Cl(\R^4)\otimes\C$ は何と同型か。$\Spin(4)$ は何と同型か。
+\item[(4)] Lichnerowicz の公式 $D^2=\,?$ を書き、$\scal>0$ の閉スピン多様体で何が成り立つか。
+\item[(5)] $\CP^2$ はスピン多様体か。根拠を $\Ahat$ で述べよ。
+\item[(6)] 指数定理で $\Td(T_{\C}X)$ が現れる理由を、埋め込みの法束を使って一言で説明せよ。
+\item[(7)] Dirac $D_E^+$、符号作用素、de Rham 作用素、Dolbeault 作用素の指数を与える特性類の積分を、それぞれ一つずつ書け。
+\item[(8)] K3 曲面の $\chi(\Oc)$、$e$、$\sgn$、$\Ahat$ を書け。
+\item[(9)] McKean--Singer の公式を述べ、なぜ全ての $t>0$ で成り立つのか説明せよ。
+\item[(10)] 統合論文の複体の全 Euler 標数が $c_1(E)$ に依らないことと、古典 HRR $\chi(E)=\int\ch(E)\Td$ との関係を述べ、指数定理が直接適用できない理由を一つ挙げよ。
+\end{enumerate}

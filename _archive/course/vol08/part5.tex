@@ -1,0 +1,216 @@
+
+\section{証明の方針 (1)：埋め込みによる帰着（$K$ 理論による証明）}\label{sec:proofK}
+\paragraph{この節の位置づけ。}\tC\ 指数定理の証明（Atiyah--Singer I、III）の骨格を述べる。各段階の厳密な証明は再現しない。ただし、公式に $\Td(T_{\C}X)$ と $(-1)^n$ がなぜ現れるかは、Thom 同型の Chern 指標の計算（補題 \ref{lem:chKoszul}）だけで追える（命題 \ref{prop:origin}）。主張・証明の区別を各段階に付ける。
+
+\subsection{位相的指数と解析的指数}
+解析的指数 $\ind_a:K_c(T^*X)\to\Z$ は定理 \ref{thm:indhom} で定義済みである。\emph{位相的指数} $\ind_t$ を次のように定義する。$X$ を $\R^N$ に埋め込む（$N$ は十分大きい）。$\nu$ を法束（実階数 $N-n$）、管状近傍を $U\cong\nu$ とする。
+\begin{enumerate}
+\item \textbf{(Thom 同型)}\ $T^*U\cong\pi^*(\nu\otimes\C)$（$T^*X$ 上の複素ベクトル束 $\nu\otimes\C=\nu\oplus i\nu$ の全空間。点 $(v,\eta)\in\nu\oplus\nu^*$ を $v+i\eta$ とみる）。定理 \ref{thm:Bott} から $K_c(T^*X)\xrightarrow{\ \cong\ }K_c(T^*U)$、$a\mapsto a\cdot\lambda_{\nu\otimes\C}$。\tC
+\item \textbf{(外延)}\ 開部分集合の包含 $T^*U\subset T^*\R^N$ から、台がコンパクトな類を零延長して $K_c(T^*U)\to K_c(T^*\R^N)=K_c(\C^N)$。
+\item \textbf{(Bott)}\ $K_c(\C^N)\cong\Z$（定理 \ref{thm:Bott}）。生成元 $\beta^N$ を $\ind_a(\beta^N)=1$ となるものとする。
+\end{enumerate}
+$\ind_t:K_c(T^*X)\to K_c(T^*\R^N)\cong\Z$ をこの合成と定義する。
+\begin{center}
+\begin{tikzcd}[column sep=large,row sep=small]
+K_c(T^*X)\arrow[r,"\text{Thom}"]\arrow[ddr,"\ind_a"',bend right=15] & K_c(T^*U)\arrow[r,"\text{外延}"] & K_c(T^*\R^N)\arrow[d,"\text{Bott}","\cong"']\\
+ & & \Z\arrow[dl,"="]\\
+ & \Z &
+\end{tikzcd}
+\end{center}
+\begin{thm}[Atiyah--Singer I]\label{thm:indai}\tC\
+$\ind_a=\ind_t:K_c(T^*X)\to\Z$。
+\end{thm}
+\paragraph{証明の構造。}\tC\ $\ind_a$ について次の 3 つを示す（Atiyah--Singer I。節番号は\tQ\ ）。
+\begin{enumerate}
+\item[(A)] \emph{点での規格化}：$X=\mathrm{pt}$ で $\ind_a(E^0,E^1)=\dim E^0-\dim E^1$。
+\item[(B)] \emph{開埋め込みの自然性（excision）}：$j:U\hookrightarrow Y$ が（閉多様体 $Y$ への）開埋め込みのとき、$K_c(T^*U)$ の元の指数は、零延長 $j_!:K_c(T^*U)\to K_c(T^*Y)$ の指数に等しい。（台がコンパクトな主シンボルをもつ作用素は、$U$ の外で $1$ と同じ「恒等的な」作用素に延長でき、指数は変わらない。）
+\item[(C)] \emph{Thom 同型との整合}：$V\to X$ が実ベクトル束のとき（$T^*V\to T^*X$ は複素ベクトル束 $\pi^*V_{\C}$）、$\ind_a(a\cdot\lambda_{V_{\C}})=\ind_a(a)$。これが核心で、Bott 周期性の解析的な形（積の作用素の指数が因子の指数の積になる、乗法性）による。
+\end{enumerate}
+(A)(B)(C) から、任意の $X$ で $\ind_a(a)=\ind_a\bigl(j_!(a\cdot\lambda)\bigr)$（$\R^N$ の中の球面 $S^N$ 上）となり、$S^N$ 上で Bott の生成元の指数が $1$ という規格化に帰着する。ホモトピー不変性と Bott 周期性は、ここで「安定化」に使われる。
+
+\subsection{なぜ $\Td(T_{\C}X)$ と $(-1)^n$ が現れるか}
+$\ind_t$ を Chern 指標で書き換える。$q=N-n$ を法束 $\nu$ の実階数とする。
+\begin{enumerate}
+\item \textbf{Bott 生成元の規格化。}補題 \ref{lem:chKoszul} より $\ch(\beta^N)=\Phi\bigl(\prod_{j=1}^N\frac{1-e^{x_j}}{x_j}\bigr)$、最低次の項は $(-1)^N\Phi(1)$。$\int_{\C^N}\Phi(1)=1$（複素向き）と規格化すると $\int_{\C^N}\ch(\beta^N)=(-1)^N$。$\ind_t(\beta^N)=1$ だから、$b\in K_c(\C^N)$ に対し $\ind_t(b)=(-1)^N\int_{\C^N}\ch(b)$。
+\item \textbf{法束の Thom 同型。}$\nu_{\C}=\nu\otimes\C$ の階数は $q$、$\nu_{\C}\cong\overline{\nu_{\C}}$ より $c_1(\nu_{\C})$ は有理係数で $0$。補題 \ref{lem:chKoszul} から $\ch(a\cdot\lambda_{\nu_{\C}})=(-1)^q\,\ch(a)\,\Phi_\nu\bigl(\Td(\nu_{\C})^{-1}\bigr)$。
+\item \textbf{向き。}$T^*\R^N=\C^N$、$T(T^*\R^N)|_{T^*X}=T_{\C}X\oplus\nu_{\C}$ は複素ベクトル束の直和で、複素向きは両者の複素向きの積。したがって $\int_{T^*U}$ は $\int_{T^*X}\circ\,(\text{ファイバー積分 }\Phi_\nu^{-1})$ と符号なしで一致する。
+\item \textbf{Todd 類の相殺。}$TX\oplus\nu\cong\underline{\R}^N$ から $T_{\C}X\oplus\nu_{\C}\cong\underline\C^N$、$\Td$ の乗法性で $\Td(T_{\C}X)\Td(\nu_{\C})=1$、すなわち $\Td(\nu_{\C})^{-1}=\Td(T_{\C}X)$。
+\end{enumerate}
+\begin{prop}[公式の由来]\label{prop:origin}\tP\ （記号の追跡。出典は Atiyah--Singer III。向きの規約の細部は\tQ\ ）
+$\ind_t(a)=(-1)^n\int_{T^*X}\ch(a)\,\pi^*\Td(T_{\C}X)$。
+\end{prop}
+\begin{proof}
+(1)--(4) より
+\[\resizebox{\linewidth}{!}{$\displaystyle \ind_t(a)=(-1)^N\int_{T^*\R^N}\ch(i_!a)=(-1)^N(-1)^q\int_{T^*X}\ch(a)\Td(\nu_{\C})^{-1}=(-1)^{N+N-n}\int_{T^*X}\ch(a)\Td(T_{\C}X)=(-1)^n\int_{T^*X}\ch(a)\Td(T_{\C}X).$}\]
+\end{proof}
+定理 \ref{thm:indai} と合わせると定理 \ref{thm:AS} が得られる。
+\begin{keybox}{なぜ Todd 類か}
+$T^*X$ を $T^*\R^N$ に（法束の複素化 $\nu_{\C}$ の Thom 同型を通じて）埋め込むと、$K$ 理論の Thom 同型は Chern 指標を $\Td(\nu_{\C})^{-1}$ だけずらす（補題 \ref{lem:chKoszul}）。$TX\oplus\nu$ は自明束なので $\Td(\nu_{\C})^{-1}=\Td(T_{\C}X)$。符号 $(-1)^n$ は、Bott 生成元の $\ch$ の符号 $(-1)^N$ と法束の Thom 類の符号 $(-1)^{N-n}$ の積。
+\end{keybox}
+\subsection{証明の全体像}
+\begin{center}
+{\small\begin{tabular}{l|p{7.5cm}|p{4cm}}
+\toprule
+段階 & 内容 & タグ\\
+\midrule
+1 & $K_c(T^*X)$ の定義、指数がシンボル類のみに依る（ホモトピー不変性） & \tC\ （第7巻）\\
+2 & Bott 周期性・Thom 同型 & \tC\ Atiyah--Bott\\
+3 & $\ind_a$ の (A)(B)(C) & \tC\ Atiyah--Singer I\\
+4 & $\ind_a=\ind_t$ & \tC\ \\
+5 & $\ch$ による計算 $\ind_t=(-1)^n\int\ch\,\Td$ & Thom 類の $\ch$：\tP\ 、向き：\tQ\\
+\bottomrule
+\end{tabular}}
+\end{center}
+\begin{keybox}{要点（\S\ref{sec:proofK}）}
+$\ind_a=\ind_t$（$X\hookrightarrow\R^N$、Thom 同型、Bott 周期性）。公式の $\Td(T_{\C}X)$ は埋め込みの法束の Todd 類の逆。$\ind_a=\ind_t$ の証明は (A) 規格化、(B) excision、(C) Thom 同型との整合。
+\end{keybox}
+\subsection*{この節の問題}
+\begin{prob}{基本}\label{p:TdSn}
+$X=S^2\subset\R^3$：法束は自明、$\Td(T_{\C}S^2)=1$ であることを、(a) 自明束 $\Td(\nu_{\C})=1$ から、(b) $T_{\C}S^2$ の根 $\pm y$（$y=c_1(TS^2)$、$y^2=0$）と $t(y)=1-\frac{y^2}{12}+\cdots$ から確かめよ。このとき定理 \ref{thm:AS} は $\ind P=\int_{T^*S^2}\ch[\sigma(P)]$ となる。$\CP^1$ 上の $\dbar_{\Oc(d)}$ のシンボル類でこれが $d+1$ になることを、問 \ref{p:RSform} の計算と結びつけて述べよ。
+\end{prob}
+\begin{prob}{標準}\label{p:thomch}
+$V\to X$ が複素直線束 $L$（根 $x$）のとき $\ch(\lambda_L)=\Phi\bigl(\frac{1-e^x}x\bigr)$、$\lambda_{\C^N}=\lambda_{\C}^{\boxtimes N}$ の最低次の項が $\Phi((-1)^N)$ であることを示し、$\int_{\C^N}\ch(\beta^N)=(-1)^N$（$\int_{\C^N}\Phi(1)=1$）を導け。$\ind_t(b)=(-1)^N\int\ch(b)$ の符号の理由を説明せよ。
+\end{prob}
+\begin{prob}{発展}\label{p:S1AS}
+$K_c(T^*S^1)\ni[\C,\C,\sigma]$（$\sigma(\theta,\xi)\in\C^\times$、$\xi\ne0$、次数 0 斉次）について、$\ch_1$ を表す閉 2 形式 $\omega=d(\chi\cdot\frac1{2\pi i}\frac{d\sigma}\sigma)$（$\chi$ は $|\xi|$ の大きいところで $1$ のカットオフ）を考え、$\int_{T^*S^1}\omega=\pm\bigl(\mathrm{wind}(\sigma_+)-\mathrm{wind}(\sigma_-)\bigr)$ を示せ。これは定理 \ref{thm:S1index} の $|\ind A_f|=|\mathrm{wind}(f)|$ と整合することを述べよ（符号は向きの規約による）。
+\end{prob}
+
+\section{証明の方針 (2)：熱核による証明（McKean--Singer、局所指数定理、Getzler）}\label{sec:heat}
+\paragraph{動機。}$K$ 理論の証明は、指数が位相的であることの理由を説明するが、被積分形式（局所密度）が見えない。熱核による証明は、Dirac 型作用素について、指数を\emph{局所的な幾何学的量の積分として直接}取り出す。以下は鍵となる式と手順で、厳密な証明は出典（Atiyah--Bott--Patodi、Gilkey、Getzler、Berline--Getzler--Vergne、Roe）による。
+
+\subsection{熱核と漸近展開}
+$D=\begin{pmatrix}0&D^-\\D^+&0\end{pmatrix}$ を閉多様体上の Dirac 型作用素（形式的自己随伴、$D^-=(D^+)^*$）とし、$\Delta^\pm$ を $D^\mp D^\pm$（$D^2$ の成分）とする。$\Delta$ は $\nabla^*\nabla+\mathcal E$（$\mathcal E$ は零階の自己準同型）の形で、$\sigma(\Delta)=|\xi|^2$。スペクトルは離散で、固有空間は有限次元（第7巻）。熱作用素 $e^{-t\Delta}$ は滑らかな核 $k_t(x,y)$ をもち、
+\[
+\Tr e^{-t\Delta}=\sum_je^{-t\lambda_j}=\int_M\tr k_t(x,x)\,d\vol(x).
+\]
+\begin{thm}[熱核の漸近展開]\label{thm:heatasym}\tC\ （Minakshisundaram--Pleijel、Seeley、Gilkey；BGV 第 2 章、Roe。章の対応は\tQ\ ）
+$t\downarrow0$ で、$x$ について一様に
+\[
+k_t(x,x)\sim(4\pi t)^{-n/2}\sum_{j\ge0}t^j\,a_j(x),
+\]
+$a_j(x)\in\End(E_x)$ は $\Delta$ の係数（計量、接続、$\mathcal E$）とその微分の局所的な普遍多項式。$a_0=\mathrm{Id}$、$a_1=\frac{\scal}6\mathrm{Id}-\mathcal E$。
+\end{thm}
+\begin{ex}[$S^1$、$T^2$、$S^2$：Weyl の項と $a_1$]\label{ex:heatS2}\tP\ （数値検算済）
+$S^1=\R/2\pi\Z$、$\Delta=-\partial_\theta^2$：$\Tr e^{-t\Delta}=\sum_ke^{-tk^2}=\sqrt{\pi/t}\,(1+O(e^{-\pi^2/t}))$、$(4\pi t)^{-1/2}\cdot2\pi=\sqrt{\pi/t}$ と一致（$t=0.01$ で $17.7245385091$）。$T^2=\R^2/2\pi\Z^2$：$\Tr e^{-t\Delta}=(\sum e^{-tk^2})^2\approx\frac{4\pi^2}{4\pi t}$（$t=0.01$ で $314.159265$）。単位球面 $S^2$：固有値 $l(l+1)$、重複度 $2l+1$：$\Tr_0=\sum_l(2l+1)e^{-tl(l+1)}=\frac1t+\frac13+\frac t{15}+O(t^2)$。$(4\pi t)^{-1}\int(1+t\frac{\scal}6)$、$\scal=2$、面積 $4\pi$ より $\frac1t+\frac13$ ✓。数値（$t=0.01$）：$\Tr_0-(\frac1t+\frac13)=0.000668\approx\frac t{15}=0.000667$。
+\end{ex}
+
+\subsection{McKean--Singer の公式}
+\begin{prop}[McKean--Singer]\label{prop:MS}\tP\
+任意の $t>0$ で $\ind D^+=\Tr e^{-t\Delta^+}-\Tr e^{-t\Delta^-}=\int_M\str k_t(x,x)\,d\vol(x)$、$\str=\tr_{E^+}-\tr_{E^-}$。
+\end{prop}
+\begin{proof}
+$\lambda\ne0$ の固有空間 $E_\lambda(\Delta^+)$ と $E_\lambda(\Delta^-)$ は $D^+$ で同型：$D^+:E_\lambda(D^-D^+)\to E_\lambda(D^+D^-)$ は、$D^+u=0$ なら $\lambda u=D^-D^+u=0$ ゆえ単射、$v\in E_\lambda(D^+D^-)$ なら $v=D^+(\lambda^{-1}D^-v)$ ゆえ全射（$D^-v\in E_\lambda(D^-D^+)$）。したがって非零固有値の寄与は打ち消し合い、残るのは $\lambda=0$ の固有空間：$\dim\Ker\Delta^+-\dim\Ker\Delta^-=\dim\Ker D^+-\dim\Ker D^-=\ind D^+$。
+\end{proof}
+\begin{cor}[局所指数定理の骨格]\label{cor:localindex}\tP\ （定理 \ref{thm:heatasym} を認める）
+$n=2m$ とする。$\sum_j\int\str a_j(x)\,d\vol\cdot t^{j-m}(4\pi)^{-m}$ は $t$ によらない値 $\ind D^+$ に等しいので、$j<m$ で $\int_M\str a_j=0$、
+\[
+\ind D^+=(4\pi)^{-m}\int_M\str a_m(x)\,d\vol(x).
+\]
+\end{cor}
+\noindent すなわち、熱核の漸近展開の \emph{$t^0$ の係数}だけが指数を与え、他の係数は（積分すると）自動的に消える。$t^0$ の係数 $\str a_m(x)$ は、曲率とその微分の多項式の形の\emph{局所的な量}で、公式 $\Ahat\ch$ の $x$ での値（の整数倍）と一致するはずである（局所指数定理、Patodi、Gilkey、Atiyah--Bott--Patodi）。残る問題は、$a_m$ の中身を具体的に計算することで、これが $m$ とともに急激に複雑になる。
+
+\subsection{2 次元の完全な計算}
+$n=2$、$m=1$：必要なのは $a_1=\frac{\scal}6-\mathcal E$ だけで、公式の証明が完全にできる。
+\begin{thm}[熱核による Gauss--Bonnet]\label{thm:GBheat}\tP\ （定理 \ref{thm:heatasym} の $a_1$ を認める）
+向きづけられた閉曲面で $\chi(\Sigma)=\frac1{2\pi}\int_\Sigma K\,dA$。
+\end{thm}
+\begin{proof}
+$d+d^*:\Omega^{\rm ev}\to\Omega^{\rm odd}$ で $(d+d^*)^2=\Delta_{\rm Hodge}$。McKean--Singer：$\chi=\ind=\int\str k_t$、$\str a_1=a_1^{(0)}+a_1^{(2)}-a_1^{(1)}$（$\Omega^{\rm ev}=\Omega^0\oplus\Omega^2$）。$\Omega^0,\Omega^2$（自明束）では $\mathcal E=0$、$a_1=\frac{\scal}6=\frac K3$。$\Omega^1$（階数 2）では Weitzenböck（Bochner）の公式 $\Delta_1=\nabla^*\nabla+\Ric$（第1巻・第5巻）、曲面で $\Ric=K\cdot\mathrm{Id}$（$\scal=2K$）なので $\mathcal E=K$、$\tr a_1^{(1)}=2\cdot\frac K3-2K=-\frac{4K}3$。よって $\str a_1=\frac K3+\frac K3+\frac{4K}3=2K$。$\chi=(4\pi)^{-1}\int2K\,dA=\frac1{2\pi}\int K\,dA$。
+\end{proof}
+\begin{rem}[検算]\label{rem:S2heat}\tP\
+$S^2$：$\Omega^1$ のスペクトルは $l(l+1)$、$l\ge1$、重複度 $2(2l+1)$（完全形式と余完全形式）で、$\Tr_1=2(\Tr_0-1)=\frac2t-\frac43+\frac{2t}{15}+\cdots$。$-\frac43=(4\pi)^{-1}\cdot4\pi\cdot(-\frac{4K}3)$（$K=1$）と一致。$\Tr_0-\Tr_1+\Tr_2=2\Tr_0-2\Tr_0+2=2=\chi(S^2)$ は \emph{全ての $t$ で}成り立つ（$t=0.1,0.03,0.01,0.003$ で数値確認、誤差 $<10^{-12}$）。
+\end{rem}
+\begin{thm}[熱核による 2 次元の捻り Dirac 作用素]\label{thm:Dirac2dheat}\tP\ （定理 \ref{thm:heatasym} の $a_1$ を認める）
+閉 Riemann 面 $\Sigma$（スピン構造 $\Spn=\Spn^+\oplus\Spn^-$）と、接続つき Hermite 直線束 $L$ で $\ind D_L^+=\deg L=\frac i{2\pi}\int F^L$。
+\end{thm}
+\begin{proof}
+定理 \ref{thm:Lich} より $\Delta^\pm=\nabla^*\nabla+\frac{\scal}4+\frak F$、$\frak F=\frac12\sum_{i,j}c_ic_jF(e_i,e_j)=c_1c_2F_{12}$。$\omega_{\C}=ic_1c_2$ が $\Spn^\pm$ で $\pm1$ だから $c_1c_2=\mp i$。ユニタリ接続の曲率は $F=-i\Theta$、$\Theta=\theta\,dA$（$\theta$ は実関数）で、$c_1(L)=[\frac{\Theta}{2\pi}]$、$F_{12}=-i\theta$。したがって $\Spn^+\otimes L$ 上で $\frak F=(-i)(-i\theta)=-\theta$、$\Spn^-\otimes L$ 上で $+\theta$。$\scal=2K$：$\mathcal E^\pm=\frac K2\mp\theta$、$a_1^\pm=\frac{2K}6-\mathcal E^\pm=-\frac K6\pm\theta$。系 \ref{cor:localindex}（$m=1$）：$\ind D^+_L=\frac1{4\pi}\int(a_1^+-a_1^-)\,dA=\frac1{4\pi}\int2\theta\,dA=\frac1{2\pi}\int\Theta=\deg L$。
+\end{proof}
+これは $\chi(\Sigma,K^{1/2}\otimes L)=\deg L$（Riemann--Roch、$\deg K^{1/2}=g-1$）の熱核による証明になっている。$L$ が正の次数をもつとき零モードが $\Spn^+\otimes L=K^{1/2}\otimes L$ の正則切断（$\theta>0$ なら $\Delta^+=\nabla^*\nabla+\frac K2-\theta$ の最低固有値が小さい）に現れることとも整合する。階数 $r$ のベクトル束 $W$ では同様に $\ind D_W^+=\deg W=\int c_1(W)$（問 \ref{p:dirac2d}）。
+
+\begin{ex}[Landau 準位：定曲率の場合の熱核（$\R^2$、$T^2$）]\label{ex:Landau}\tP\
+$\R^2$ で一様磁場 $B>0$（$L$ の曲率 $F=-iB\,dx_1\wedge dx_2$）の Landau ハミルトニアン $H_B=-(\partial_1+\frac{iB}2x_2)^2-(\partial_2-\frac{iB}2x_1)^2$（共変微分 $\nabla_1=\partial_1+\frac{iB}2x_2$、$\nabla_2=\partial_2-\frac{iB}2x_1$ で $[\nabla_1,\nabla_2]=F_{12}=-iB$） のスペクトルは $B(2n+1)$、$n\ge0$、単位面積あたりの縮退度 $\frac B{2\pi}$。したがって熱核の対角成分は
+\[
+k_t^{H_B}(x,x)=\frac B{2\pi}\sum_{n\ge0}e^{-tB(2n+1)}=\frac{B}{4\pi\sinh(Bt)}=\frac1{4\pi t}\cdot\frac{Bt}{\sinh Bt}.
+\]
+平坦な $\R^2$ の捻り Dirac 作用素では定理 \ref{thm:Dirac2dheat} の計算から $D^-D^+=H_B-B$、$D^+D^-=H_B+B$（Pauli 作用素）なので、超跡は
+\[
+\str k_t(x,x)=\frac B{4\pi\sinh Bt}\bigl(e^{tB}-e^{-tB}\bigr)=\frac B{2\pi}\qquad(\text{すべての }t\text{ で一定！}).
+\]
+$\frac B{2\pi}=\frac{i}{2\pi}F_{12}$ は $c_1(L)=[\frac i{2\pi}F]$ の密度で、指数 $=\int\frac B{2\pi}=$ 磁束 $/2\pi$ を与える。トーラス $T^2$ で全磁束 $2\pi k$ なら、$H_B$ のスペクトルは $B(2n+1)$（$B=\frac k{2\pi}$）、各 $n$ の重複度 $k$（Landau 準位。第7巻の調和振動子への帰着）、$\Tr_s=\sum_nk\,e^{-tB\cdot2n}-\sum_nk\,e^{-tB(2n+2)}=k$ \,（$t=0.2,k=3$ で $3.0000000000$、$t=1,k=1$ で $1$、$t=0.05,k=5$ で $5$）。
+\end{ex}
+ここで因子 $\frac{Bt}{\sinh Bt}$ が現れることに注意する。これが $\Ahat(x)=\frac{x/2}{\sinh(x/2)}$ の源である：次の節で述べる Getzler の方法では、一般次元の曲率に対して同じ形の因子 $\det^{1/2}\bigl[\frac{R/2}{\sinh(R/2)}\bigr]$ が出る。
+
+\subsection{Getzler の再スケーリング（概念）}
+\tC\ 一般の $n=2m$ では、$a_m$ を直接計算することは困難（項数が爆発する）である。Getzler（1983, \emph{Pseudodifferential operators on supermanifolds and the Atiyah--Singer index theorem}, Comm.\ Math.\ Phys.\ 92\tQ\ ）は、次の 3 つのアイデアで $\lim_{t\to0}\str k_t(x,x)$ を直接計算した。以下は概念で、収束の証明は出典に譲る。
+\begin{enumerate}
+\item \textbf{超跡の消滅：}Clifford 代数の元 $a=c_{i_1}\cdots c_{i_k}$ に対し $\str(a)=\tr(\omega_{\C}a)$ は、$k<n$ なら $0$（$k=n$ の \emph{頂点のモノミアル} $c_1\cdots c_n$ だけが非零）。\emph{超跡は、$n$ 個の Clifford 生成元が現れる項だけを拾う}。曲率は Clifford 生成元を 2 個ずつ運ぶ（$R^{\Spn}=\frac14\sum R_{ijkl}c_kc_l$、$\frak F^E=\frac12\sum c_ic_jF^E_{ij}$）ので、$a_m$ のうち生き残るのは曲率（$R$ と $F^E$）の $m$ 次の項で、微分を含む項は落ちる。これが「指数密度は曲率の $m$ 次の多項式」の理由である。
+\item \textbf{Clifford 代数の濾過とシンボル写像：}$\Cl(T_xM)$ の次数 $k$ の元の「主部」を $\Lambda^kT_x^*M$ の元に写すシンボル写像 $\sigma:\Cl\to\Lambda$。$\Cl$ を $\Lambda$ とみなし、$c(e_i)\mapsto t^{-1/2}c(e_i)$、$x_i\mapsto t^{-1/2}x_i$（再スケーリング）により $t\to0$ の極限をとる（Getzler 次数：$x_i$ は $-1$、$c(e_i)$ は $+1$）。
+\item \textbf{調和振動子への帰着：}再スケーリング後の極限の作用素は
+\[
+H=-\sum_i\Bigl(\partial_i+\frac14\sum_jR_{ij}x_j\Bigr)^2+F^E,\qquad R_{ij}=\frac12\sum_{k,l}R_{ijkl}\,e^k\wedge e^l\in\Lambda^2,
+\]
+（定数係数の磁場型の調和振動子。係数の $\Lambda^2$ 値は冪零）で、その熱核 $e^{-tH}(0,0)$ は Mehler の公式で閉じた形に書ける：
+\[
+e^{-tH}(0,0)=(4\pi t)^{-n/2}\det{}^{1/2}\Bigl[\frac{tR/2}{\sinh(tR/2)}\Bigr]\,e^{-tF^E}.
+\]
+\end{enumerate}
+この結果と $\Lambda$ 値の成分の積分（$\Lambda^n=\R$）から、
+\[
+\lim_{t\to0}\str k_t^{E}(x,x)\,d\vol=\bigl[\Ahat(M)\,\ch(E)\bigr]_{n}(x)\qquad(\text{適切な }(2\pi i)\text{ の規格化で}).
+\]
+すなわち、定理 \ref{thm:DiracAS} が、\emph{指数の積分の中身が各点で}一致する形で得られる（局所指数定理）。Dolbeault（$=$ spin$^c$ Dirac）、符号作用素（$=$ Dirac を $\Spn$ で捻ったもの）、de Rham も同様の捻り Dirac 作用素の局所公式から従う（BGV 第 4 章。章の対応は\tQ\ ）。
+\begin{ex}[Mehler の公式の数値検算]\label{ex:Mehler}\tP\
+1 次元の調和振動子 $H=-\frac{d^2}{dx^2}+\omega^2x^2$ の熱核は $e^{-tH}(0,0)=\sqrt{\frac\omega{2\pi\sinh2\omega t}}=(4\pi t)^{-1/2}\sqrt{\frac{2\omega t}{\sinh2\omega t}}$、跡は $\Tr e^{-tH}=\frac1{2\sinh\omega t}$（固有値 $\omega(2n+1)$）。有限差分（区間 $[-12,12]$、4001 点）で $(\omega,t)=(1,0.3)$：$\Tr=1.641940$ vs $1.641927$、$K(0,0)=0.499991$ vs $0.499987$。$(2,0.2)$：$1.217294$ vs $1.217279$、$0.598685$ vs $0.598677$。$(0.5,1)$：$0.959520$ vs $0.959517$、$0.260220$ vs $0.260219$。
+\end{ex}
+\begin{rem}[3 つの証明の比較]\label{rem:threeproofs}
+\begin{center}
+{\small\begin{tabular}{p{2.6cm}|p{5cm}|p{5cm}}
+\toprule
+ & 長所 & 短所\\
+\midrule
+$K$ 理論（Atiyah--Singer I, III）& 一般の楕円型作用素（擬微分）、族・同変・実の場合へ拡張 & 局所密度が見えない\\
+熱核（ABP、Getzler、BGV）& 局所的な被積分形式が見える、Dirac 型に限る、APS と族（Bismut）へ自然に拡張 & 一般の楕円型へは Dirac 型に帰着が必要\\
+余境界（Atiyah--Singer 初期）& 幾何的、Hirzebruch の方法の一般化 & 余境界不変性の解析的な証明が別に必要\\
+\bottomrule
+\end{tabular}}
+\end{center}
+\end{rem}
+\begin{keybox}{要点（\S\ref{sec:heat}）}
+\textbf{McKean--Singer}：$\ind D^+=\Tr e^{-t\Delta^+}-\Tr e^{-t\Delta^-}$（全ての $t>0$）。$t\to0$ の漸近展開の $t^0$ の係数が指数：局所指数定理。2 次元は $a_1=\frac{\scal}6-\mathcal E$ だけで Gauss--Bonnet と $\ind D_L=\deg L$ が完全に証明できる。一般次元は Getzler の再スケーリング（Clifford 次数 $+$ Mehler の公式）で $\Ahat\,\ch$ が得られる。
+\end{keybox}
+\subsection*{この節の問題}
+\begin{prob}{基本}\label{p:MSS2}
+$S^2$ の $\Tr_1=2(\Tr_0-1)$ を、1 形式のスペクトル（完全形式と余完全形式、各 $l(l+1)$、$l\ge1$）から導き、McKean--Singer の和 $\Tr_0-\Tr_1+\Tr_2=2$ が全ての $t>0$ で成り立つことを示せ。$\Tr_2=\Tr_0$（Hodge 星）を使え。
+\end{prob}
+\begin{prob}{基本}\label{p:a1S2}
+$\sum_{l\ge0}(2l+1)e^{-tl(l+1)}=\frac1t+\frac13+O(t)$ を、$s=l+\frac12$、$(2l+1)e^{-tl(l+1)}=e^{t/4}\cdot2se^{-ts^2}$、半整数点での和の Euler--Maclaurin（$\sum_{l\ge0}f(l+\frac12)=\int_0^\infty f+\frac1{24}f'(0)+\cdots$）から示し、熱核の係数 $a_1=\frac K3$ と比べよ。
+\end{prob}
+\begin{prob}{標準}\label{p:landau}
+例 \ref{ex:Landau} で、(a) 熱核の対角成分 $\frac B{4\pi\sinh Bt}$ の $t\to0$ の展開 $\frac1{4\pi t}(1-\frac{B^2t^2}6+\cdots)$ を求め、$a_1=\frac{\scal}6-\mathcal E$ との整合性（$\scal=0$）、(b) 超跡が $t$ によらないこと、(c) トーラス（磁束 $k$）で $\ind=k$、(d) $\ind D^+$ の符号と $\Ker D^+$ の位置（$S^+$ か $S^-$ か）を述べよ。
+\end{prob}
+\begin{prob}{標準}\label{p:dirac2d}
+階数 $r$ の Hermite ベクトル束 $W\to\Sigma_g$ で $\ind D_W^+=\deg W$ を、定理 \ref{thm:Dirac2dheat} と同様に示せ。$g=2$、$K^{1/2}=\theta$（$\deg=1$）、$W=\theta$ のとき $\Spn^+\otimes W=K$ で $\ind=\chi(K)=g-1=1=\deg W$ を確かめよ。
+\end{prob}
+\begin{prob}{発展}\label{p:gen}
+(a) $n=2$ で $\str(1)=0$、$\str(c_1)=0$（奇）、$\str(c_1c_2)=-2i$ を、$\str(a)=\tr(\omega_{\C}a)$ から確かめよ。(b) $n=4$ で $\str(c_1c_2c_3c_4)$ の値を求め（$\omega_{\C}=-c_1c_2c_3c_4$）、次数 $<4$ の単項式で $\str=0$ になる理由を説明せよ。(c) $n=4$ の $a_2$ で、超跡に寄与するのは $R^{\Spn}$ の $2$ 乗、$R^{\Spn}F^E$、$(F^E)^2$ の項のみであることを、Getzler 次数の数え方で説明し、その結果 $\ind D_E^+$ が $\int(\Ahat\ch(E))_4$ の形になること（$\ch_2(E)\cdot\rk\Spn^+$ と $\Ahat_1\cdot\rk E$ の和）の整合性を述べよ。
+\end{prob}
+
+\section{証明の方針 (3)：余境界による証明の概念}\label{sec:cobordism}
+\tC\ 指数定理の最初の証明（Atiyah--Singer の announcement、1963、および Palais らのセミナー報告、1965）は、Hirzebruch の HRR の原証明（第6巻）の方法を一般化したもので、次の 3 つの命題に基づく。
+\begin{enumerate}
+\item \textbf{指数の余境界不変性：}楕円型作用素の指数は、（適切な意味での）余境界不変量である。たとえば、$M=\partial W$ かつ作用素が $W$ 上の作用素に延びていれば指数は $0$（Palais、Atiyah--Singer）。符号数 $\sgn(M)$ が $M=\partial W$ なら $0$ という Thom の古典的な事実（符号数は余境界不変）は、符号作用素の場合である。
+\item \textbf{余境界環の計算：}適当な余境界群（$\Omega_*^{SO}\otimes\Q=\Q[\CP^2,\CP^4,\dots]$、Thom；または $U$ 構造つき余境界）は $\CP^{2j}$ の積などで生成される。
+\item \textbf{生成元での確認：}指数も、特性類の積分（右辺）も余境界不変量である。両辺が生成元（$\CP^{2j}$ とその上の束）で一致することを直接確かめれば、すべての $(M,E)$ で一致する。
+\end{enumerate}
+HRR の証明（Hirzebruch）は、まさにこの構造である：右辺 $\int\ch\Td$ が特性数で、左辺 $\chi$ が余境界不変であることを示し、$\CP^n$ で $\binom{n+k}n$ を確かめた（第6巻、$\Td$ の級数が $\CP^n$ での値 $1$ で一意に決まること、命題「Hirzebruch の議論」）。この方法では「指数が余境界不変」の解析的な証明が必要で、これが Atiyah--Singer を $K$ 理論の証明（\S\ref{sec:proofK}）に向かわせた動機のひとつである\tQ\ 。なお、右辺（特性数）の余境界不変性は Stokes の定理から直ちに従う（$M=\partial W$ なら Pontryagin 数・Chern 数は $0$）。左辺（指数）の余境界不変性の解析的な証明（$M=\partial W$ で作用素が $W$ に延びるとき $\ind=0$）は、Palais と Atiyah--Singer による（Calderón 射影子など境界値問題の方法を使う。細部は\tQ\ ）。境界つき多様体の理論（第10巻）は、この境界値問題の側の発展として位置づけられる\tQ\ 。
+\begin{rem}[他の証明]\label{rem:otherproofs}\tC\
+(a) Connes の tangent groupoid による証明、(b) Kasparov の $KK$ 理論と Baum--Douglas の幾何的 $K$ ホモロジーによる $\ind_a=\ind_t$ の定式化、(c) Witten--Alvarez-Gaumé の超対称量子力学による $\Ahat$ の導出（ループ空間 $\to$ 熱核の経路積分）。(b) は第10巻の Lie 亜群の指数の枠組みへ、(c) は第9巻の族の指数（Bismut）へつながる。いずれも本巻では扱わない。
+\end{rem}
+\begin{keybox}{要点（\S\ref{sec:cobordism}）}
+指数は余境界不変、特性数も余境界不変。生成元 $\CP^{2j}$ で一致を確かめれば一般の場合が従う（Hirzebruch の方法）。この構造が HRR の原証明と指数定理の初期の証明の共通部分。
+\end{keybox}
+\subsection*{この節の問題}
+\begin{prob}{基本}\label{p:cobord}
+(a) 閉 4 次元多様体 $M=\partial W$ では $\sgn(M)=0$（Thom）。$\CP^2$、K3 曲面は境界でないことを示せ。(b) 奇数次元のコンパクト多様体 $W$ について $\chi(\partial W)=2\chi(W)$ が成り立つ（$\partial W$ は偶数次元）。これから $\chi$ は余境界不変量ではないが、$\chi\bmod2$ は余境界不変量であることを説明せよ。(c) $\chi(M)\equiv\sgn(M)\pmod2$（4 次元で、交叉形式の階数と符号数の偶奇）を $\CP^2$（$\chi=3,\sgn=1$）、K3（$24,-16$）、$S^2\times S^2$（$4,0$）で確かめよ。
+\end{prob}

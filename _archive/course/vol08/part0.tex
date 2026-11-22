@@ -1,0 +1,88 @@
+\input{pre_course.tex}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{arrows.meta,positioning,calc}
+\fancyhead[L]{\small 第8巻　Atiyah--Singer の指数定理}
+% --- 本巻の記号 ---
+\newcommand{\Oc}{\mathcal O}
+\newcommand{\CP}{\mathbb{CP}}
+\newcommand{\Ker}{\operatorname{Ker}}
+\newcommand{\Ran}{\operatorname{Ran}}
+\newcommand{\Coker}{\operatorname{Coker}}
+\newcommand{\Ahat}{\widehat{A}}
+\newcommand{\Lg}{\mathsf{L}}
+\newcommand{\sgn}{\operatorname{sign}}
+\newcommand{\Cl}{\mathrm{Cl}}
+\newcommand{\Spin}{\mathrm{Spin}}
+\newcommand{\Spinc}{\mathrm{Spin}^c}
+\newcommand{\SO}{\mathrm{SO}}
+\newcommand{\SU}{\mathrm{SU}}
+\newcommand{\U}{\mathrm{U}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\str}{\operatorname{str}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\scal}{\mathrm{scal}}
+\newcommand{\Ric}{\mathrm{Ric}}
+\newcommand{\ip}[2]{\langle #1,#2\rangle}
+\newcommand{\Spn}{\mathsf S}
+\newcommand{\cm}{c}% Clifford 乗法
+\newcommand{\vol}{\mathrm{vol}}
+\newcommand{\Op}{\operatorname{Op}}
+\renewcommand{\contentsname}{目次}\renewcommand{\figurename}{図}
+\usepackage{fontspec}\newfontfamily\lmfont{Latin Modern Roman}
+\begin{document}
+\sloppy
+\begin{center}
+{\LARGE\bfseries\sffamily 第8巻　Atiyah--Singer の指数定理}\\[4pt]
+{\large\sffamily （Clifford 代数・スピン・Dirac 作用素、$K$ 理論の入口、指数公式の主張、Dolbeault $\to$ HRR、符号定理、熱核による証明の概略）}\\[8pt]
+{\large 学習コース「一般化幾何への道」}\\[6pt]
+{\large 執筆：Claude\ ／\ 企画：森}\\[3pt]
+2026年11月22日（v1）\\[3pt]
+{\small （外部の査読は受けていない教材。執筆者とは別の AI による独立検査と、可能な範囲の計算（Python：\texttt{fractions}、numpy）での検算は行った。標準的な結果には出典を付け、確認できていない出典・記述は\tQ\ で示す。）}
+\end{center}
+
+\begin{goalbox}{この巻の学習目標}
+\begin{itemize}
+\item \textbf{指数問題の見方}：楕円型作用素の指数 $\ind P=\dim\Ker P-\dim\Coker P$ が、$\Ker,\Coker$ の次元には依らず、\emph{シンボルの位相的な類}と\emph{多様体の特性類の積分}だけで決まるという Atiyah--Singer の定理の形を、$S^1$、Riemann 面の $\dbar_L$、Gauss--Bonnet の例から理解する。
+\item \textbf{Clifford 代数・スピン・Dirac 作用素}：Clifford 代数、$\Spin(n)$、スピノル、スピン構造と spin$^c$ 構造、Dirac 作用素を定義し、2 次元と 4 次元の例を計算する。\textbf{Lichnerowicz の公式} $D^2=\nabla^*\nabla+\scal/4$ を\emph{完全に証明}し、系として「正スカラー曲率をもつ閉スピン多様体では $\Ahat=0$」を導く。
+\item \textbf{$K$ 理論の入口}：$K(X)$、$K_c(T^*X)$ を定義し、楕円型作用素のシンボルが $K_c(T^*X)$ の元を定めること、Bott 周期性・Thom 同型（主張）、$S^1$ での指数公式（Toeplitz 作用素、完全に証明）を学ぶ。
+\item \textbf{指数定理の主張}：$\ind D=(-1)^n\int_{T^*X}\ch(\sigma(D))\,\Td(T_{\C}X)$ の一般形を述べ、符号・向きの規約を固定したうえで、(i) Dolbeault $\to$ HRR（第6巻との対応）、(ii) de Rham $\to$ Chern--Gauss--Bonnet、(iii) 符号作用素 $\to$ Hirzebruch の符号定理、(iv) Dirac $\to$ $\Ahat$ 種数（整数性、Rokhlin の定理は主張）を、被積分形式の計算として導く。
+\item \textbf{証明の方針}：(1) 埋め込みによる帰着（$K$ 理論による証明の概略。$\Td(T_{\C}X)$ がなぜ現れるか）、(2) 熱核による証明（McKean--Singer の公式を\emph{証明}、局所指数定理、Getzler の再スケーリングの概念）、(3) 余境界による証明の概念。厳密な証明ではなく、鍵となる式と手順、出典を示す。
+\item \textbf{例と検算}：$S^2$、$T^2$、$\CP^n$ の Dolbeault 指数、K3 曲面の $\Ahat=2$、$\CP^2$ の符号数 $1$、$\CP^3$ の例、超曲面での Rokhlin の整合性を第6巻の Chern 類・Todd 類の計算で検算する。$S^1,S^2,T^2$ の Laplacian のスペクトルで McKean--Singer の公式と熱核の漸近展開を数値確認する。
+\item \textbf{橋渡し}：族の指数（第9巻）、APS・$b$-計算（第10巻）、統合論文の \S10（Riemann--Roch 型公式と指数予想）との関係を、過大に書かずに位置づける。
+\end{itemize}
+\end{goalbox}
+\begin{goalbox}{前提と記法}
+第6巻（Chern 類・Chern 指標・Todd 類・Pontryagin 類・Euler 類、HRR の主張、$\Ahat$ 類・$\Lg$ 類、符号定理・$\Ahat$ 種数の主張）と第7巻（微分作用素と主シンボル、楕円性、Fredholm 指数、指数の不変性、楕円複体）を既知とする。\emph{必要な定義と主張は本巻で簡潔に再掲する}（\S\ref{sec:recall}）。\\
+$X$ または $M$ は特に断らなければ\textbf{閉多様体}（コンパクト・境界なし・滑らか）、$n=\dim_{\R}$。複素多様体では $\dim_{\C}X=n_{\C}$ と明記する。$E,F$ は Hermite 計量つき複素ベクトル束。\\
+\textbf{規約（第6・7巻と同じ）。}主シンボル $\sigma_m(P)(x,\xi)=\sum_{|\alpha|=m}a_\alpha(x)(i\xi)^\alpha$（$i$ を含める）。Chern 根 $x_i$、$\ch=\sum e^{x_i}$、$\Td(X)=\prod\frac{x_i}{1-e^{-x_i}}$（$T_X$ の Todd 類）、$\Ahat=\prod\frac{x_i/2}{\sinh(x_i/2)}$、$\Lg=\prod\frac{x_i}{\tanh x_i}$、$e(E_{\R})=c_r(E)$、$\sgn$ は符号数。実ベクトル束の Chern 類・Todd 類は複素化で考える（$\Td(T_{\C}X)=\Td(TX\otimes\C)$）。\\
+Clifford 代数は $v^2=-|v|^2$ の規約（Lawson--Michelsohn と同じ）を採る。\\
+\tC\ は標準的な結果（出典を併記）、\tP\ は本文で証明したもの、\tQ\ は記憶に基づく・未確認の箇所（特に符号・向きの規約、論文の巻・ページ）を表す。\textbf{指数定理そのものの証明は本巻では再現しない}（\tC\ ）。再現するのは、指数定理の主張の各特殊化の計算、Lichnerowicz の公式、McKean--Singer の公式、$S^1$ の指数公式、2 次元の熱核による局所計算である。
+\end{goalbox}
+\tableofcontents
+\newpage
+\section*{この巻の読み方}
+\addcontentsline{toc}{section}{この巻の読み方}
+\begin{itemize}
+\item \textbf{最短ルート}：\S\ref{sec:intro}（動機）$\to$ \S\ref{sec:recall}（第7巻の再掲）$\to$ \S\ref{sec:AS}（定理の主張。$K$ 理論は結果だけでよい）$\to$ \S\ref{sec:special}（特殊化）$\to$ \S\ref{sec:examples}（検算）。
+\item \textbf{幾何寄りに読む人}：\S\ref{sec:clifford}（スピン・Dirac、Lichnerowicz）と \S\ref{sec:special} の Dirac $\to\Ahat$、Rokhlin。
+\item \textbf{解析寄りに読む人}：\S\ref{sec:heat}（McKean--Singer、熱核、Getzler）と \S\ref{sec:K}（$S^1$ の指数公式）。
+\item \textbf{統合論文に進む人}：\S\ref{sec:unified}（\S10 との対応）と \S\ref{sec:bridge}。
+\item 主張と証明の区別：\tC\ \tP\ \tQ\ のタグを各所に付けた。指数定理の本体、Bott 周期性、Thom 同型、熱核の漸近展開の存在、Getzler の再スケーリングの収束は\tC\ とした。
+\item 問題は各節末に置き、全問の解答は巻末にある。検算した項目は巻末の付録に一覧する。
+\end{itemize}
+\begin{center}
+\begin{tikzpicture}[node distance=5mm,font=\small,>=Stealth,every node/.style={draw,rounded corners=2pt,inner sep=3pt,fill=blue!4,align=center}]
+\node (in) {指数問題\\[-1pt]{\scriptsize \S1, \S2}};
+\node[right=of in] (sp) {スピン・Dirac\\[-1pt]{\scriptsize \S3}};
+\node[right=of sp] (k) {$K$ 理論の入口\\[-1pt]{\scriptsize \S4}};
+\node[right=of k,fill=orange!12] (as) {指数定理の主張\\[-1pt]{\scriptsize \S5}};
+\node[below=7mm of sp,fill=green!6] (spec) {特殊化：HRR・GB・符号・$\Ahat$\\[-1pt]{\scriptsize \S6}};
+\node[right=of spec] (pf) {証明の方針\\[-1pt]{\scriptsize \S7 $K$ 理論 \S8 熱核 \S9 余境界}};
+\node[below=7mm of pf,fill=green!6] (ex) {例と検算\\[-1pt]{\scriptsize \S10}};
+\node[left=of ex,fill=orange!10] (uni) {統合論文・橋渡し\\[-1pt]{\scriptsize \S11, \S12}};
+\draw[->] (in)--(sp); \draw[->] (sp)--(k); \draw[->] (k)--(as);
+\draw[->] (as.south)--++(0,-2mm)-|(spec.north);
+\draw[->] (spec)--(pf); \draw[->] (pf)--(ex); \draw[->] (ex)--(uni);
+\end{tikzpicture}
+\end{center}

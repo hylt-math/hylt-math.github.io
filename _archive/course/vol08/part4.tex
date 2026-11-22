@@ -1,0 +1,138 @@
+
+\section{特殊化：HRR・Chern--Gauss--Bonnet・符号定理・$\Ahat$ 種数}\label{sec:special}
+\paragraph{動機。}定理 \ref{thm:AS} は一般の楕円型作用素に対する主張だが、使い方は「$E^0-E^1$ の $\ch$ を Chern 根で書き、$e(TX)$ で割り、$\Td(T_{\C}X)$ を掛ける」の一点である。ここで根ごとに現れる因子が古典的な特性類の級数になる。本節で、この計算を 4 つの作用素について行う。以下 $n=2m$、$X$ の接束の複素化の Chern 根を $\pm y_1,\dots,\pm y_m$（複素多様体では $T^{1,0}$ の Chern 根を $x_1,\dots,x_m$、$y_j=x_j$）とする。
+
+\subsection{根ごとの基本計算}
+$t(x):=\Td(x)\,\Td(-x)=\dfrac{x}{1-e^{-x}}\cdot\dfrac{-x}{1-e^{x}}=\dfrac{x^2}{(e^{x/2}-e^{-x/2})^2}$（$(1-e^{-x})(1-e^x)=-(e^{x/2}-e^{-x/2})^2$ による）。これが $T_{\C}X$ の根 $\pm x$ の対への $\Td$ の寄与である。
+\begin{lem}[根ごとの計算]\label{lem:rootcalc}\tP\ （Python でべき級数として 10 次まで検算）
+\begin{align*}
+&\text{(i)}\ \frac{(1-e^{x})\,t(x)}{x}=-\frac{x}{1-e^{-x}},\qquad\text{(ii)}\ \frac{(1-e^{x})(1-e^{-x})\,t(x)}{x}=-x,\\
+&\text{(iii)}\ \frac{(e^{x}-e^{-x})\,t(x)}{x}=\frac{x}{\tanh(x/2)},\qquad\text{(iv)}\ \frac{(e^{x/2}-e^{-x/2})\,t(x)}{x}=\frac{x/2}{\sinh(x/2)}.
+\end{align*}
+\end{lem}
+\begin{proof}
+$\frac{t(x)}x=\frac{x}{(2\sinh(x/2))^2}$、$1-e^{x}=-e^{x/2}\,2\sinh\frac x2$、$1-e^{-x}=e^{-x/2}\,2\sinh\frac x2$、$e^x-e^{-x}=4\sinh\frac x2\cosh\frac x2$、$e^{x/2}-e^{-x/2}=2\sinh\frac x2$。(i) $-e^{x/2}\frac x{2\sinh(x/2)}=-\frac x{1-e^{-x}}$。(ii) $-(2\sinh\frac x2)^2\frac x{(2\sinh\frac x2)^2}=-x$。(iii) $\frac{4\sinh\cosh\cdot x}{4\sinh^2}=\frac x{\tanh(x/2)}$。(iv) $\frac{2\sinh\cdot x}{4\sinh^2}=\frac{x/2}{\sinh(x/2)}$。
+\end{proof}
+右辺は順に、Todd、Euler（$\prod x_j$）、$\Lg$（$\frac x{\tanh(x/2)}=2\cdot\frac{x/2}{\tanh(x/2)}$、後述）、$\Ahat$ の根ごとの級数である。
+
+\subsection{Dolbeault 作用素 $\to$ HRR}
+$X$ をコンパクト複素多様体（$\dim_{\C}X=m$、$n=2m$）、$E$ を正則ベクトル束とし、$D=\dbar_E+\dbar_E^*:\Omega^{0,{\rm ev}}(E)\to\Omega^{0,{\rm odd}}(E)$。
+\begin{thm}[HRR]\label{thm:HRRfromAS}\tP\ （定理 \ref{thm:AS} を認める）
+$\ind D=\chi(X,E)=\int_X\ch(E)\Td(X)$。
+\end{thm}
+\begin{proof}
+左辺：$\ind D=\sum(-1)^q\dim H^q(\Omega^{0,\bullet}(E),\dbar)=\sum(-1)^qh^q(X,E)$（例 \ref{ex:complexes}）。右辺：シンボル類は $E^0-E^1=E\otimes\sum_q(-1)^q\Lambda^{0,q}$。$\Lambda^{0,1}=\overline{(T^{1,0})^*}\cong T^{1,0}$（Hermite 計量）の Chern 根は $x_j$ なので、$\ch(E^0-E^1)=\ch(E)\prod_j(1-e^{x_j})$。向きは複素構造で定め、$e(TX)=c_m(T^{1,0})=\prod x_j$、$\Td(T_{\C}X)=\prod_jt(x_j)$。向きの符号 $(-1)^{n(n+1)/2}=(-1)^{m(2m+1)}=(-1)^m$。補題 \ref{lem:rootcalc}(i) より
+\[\resizebox{\linewidth}{!}{$\displaystyle \ind D=(-1)^m\int_X\ch(E)\prod_j\frac{(1-e^{x_j})\,t(x_j)}{x_j}=(-1)^m\int_X\ch(E)\prod_j\Bigl(-\frac{x_j}{1-e^{-x_j}}\Bigr)=\int_X\ch(E)\Td(X).$}\]
+\end{proof}
+第6巻 \S5 の「Atiyah--Singer の公式からの Todd 類の導出（概算）」はこの計算で、符号 $(-1)^m$ が上の向きの規約から出ることが確認できた。Kähler 性や射影性は使っていない（楕円型作用素の指数だから）。シンボル類は、$X$ が複素多様体のとき、$T^*X$ を複素ベクトル束とみた Thom 類（Koszul 類 $\lambda$、補題 \ref{lem:chKoszul}）であり、$\Td^{-1}$ が掛かる理由は Thom 同型の $K$ 理論版とコホモロジー版の違いである。第6巻の HRR の三つの証明（Atiyah--Singer、Hirzebruch、Grothendieck）のうち、解析的な一つが本巻の定理 \ref{thm:AS} である。
+
+\subsection{de Rham 作用素 $\to$ Chern--Gauss--Bonnet}
+$M$ を向きづけられた閉 $2m$ 次元多様体、$D=d+d^*:\Omega^{\rm ev}\to\Omega^{\rm odd}$。
+\begin{thm}[Chern--Gauss--Bonnet]\label{thm:CGBfromAS}\tP\ （定理 \ref{thm:AS} を認める）
+$\ind D=\chi_{\rm top}(M)=\int_Me(TM)$。
+\end{thm}
+\begin{proof}
+左辺は Hodge の定理（例 \ref{ex:complexes}）。右辺：$E^0-E^1=\Lambda^{\rm ev}T^*_{\C}-\Lambda^{\rm odd}T^*_{\C}$。$T^*_{\C}M$ の根は $\pm y_j$ なので $\ch(E^0-E^1)=\prod_j(1-e^{y_j})(1-e^{-y_j})$。$e=\prod y_j$、$\Td(T_{\C}M)=\prod t(y_j)$。符号 $(-1)^{n(n+1)/2}=(-1)^m$。補題 \ref{lem:rootcalc}(ii) より被積分形式は $(-1)^m\prod(-y_j)=\prod y_j=e(TM)$。
+\end{proof}
+この計算の面白い点は、被積分形式の \emph{高次の項がすべて消えて} Euler 類だけが残ることである（(ii) の右辺は $-x$ ちょうど）。統合論文の定理 22（第6巻 \S9）の証明で使われている同じ機構（Koszul 型の交代和 $\prod(1-e^{x_j})$ に $\Td$ を掛けると $(-1)^me^{c_1}\prod x_j$ の形になり、次数の都合で $\prod x_j$ だけが効く）がここにある。
+
+\subsection{符号作用素 $\to$ Hirzebruch の符号定理}
+$M$ を向きづけられた閉 $4k$ 次元多様体（$n=4k$、$m=2k$）、$\ast$ を Hodge 星作用素とし、$\tau:\Omega^p\to\Omega^{n-p}$、$\tau=i^{p(p-1)+2k}\ast$。\tC\ $\tau^2=1$、$d+d^*$ と反可換（Atiyah--Bott--Singer、LM）。$\Omega^\pm$ を $\tau=\pm1$ の固有空間とし、\emph{符号作用素} $D_{\rm sign}=d+d^*:\Omega^+\to\Omega^-$。
+\begin{prop}[$\ind D_{\rm sign}=\sgn(M)$]\label{prop:indsign}\tP\
+$\ind D_{\rm sign}=\sgn(M)$（$H^{2k}(M;\R)$ 上の交叉形式 $Q(\alpha,\beta)=\int\alpha\wedge\beta$ の符号数）。
+\end{prop}
+\begin{proof}
+$\tau$ は $d+d^*$ と反可換なので $\Ker D_{\rm sign}=\mathcal H\cap\Omega^+=\mathcal H^+$、$\Coker D_{\rm sign}\cong\Ker D^-=\mathcal H^-$（$\mathcal H$ は調和形式、$\Ker(d+d^*)=\mathcal H$）。$\ind=\dim\mathcal H^+-\dim\mathcal H^-$。$\tau:\mathcal H^p\to\mathcal H^{n-p}$ だから、$p\ne2k$ では $\mathcal H^p\oplus\mathcal H^{n-p}$ に $\tau$ の $\pm1$ の固有空間は同じ次元ずつ（$\alpha\mapsto\alpha\pm\tau\alpha$）で寄与は $0$。$p=2k$：$\tau=i^{2k(2k-1)+2k}\ast=i^{4k^2}\ast=\ast$。$Q(\alpha,\alpha)=\int\alpha\wedge\ast\alpha=\|\alpha\|^2$（$\tau\alpha=\alpha$）、$\tau\alpha=-\alpha$ なら $-\|\alpha\|^2$。$\mathcal H^{2k}\cong H^{2k}(M;\R)$ 上で $Q$ は $\mathcal H^{2k,+}$ で正定値、$\mathcal H^{2k,-}$ で負定値、両者は $Q$ について直交。よって $\dim\mathcal H^{2k,+}-\dim\mathcal H^{2k,-}=\sgn(M)$。
+\end{proof}
+\begin{thm}[Hirzebruch の符号定理]\label{thm:signAS}\tP\ （定理 \ref{thm:AS} と下の指標の公式を認める）
+$\sgn(M)=\int_M\Lg(TM)$、$\Lg=\prod\frac{y_j}{\tanh y_j}$。
+\end{thm}
+\begin{proof}
+$\Lambda^\bullet T^*_{\C}M\cong\Cl(T)\otimes\C\cong\End(\Spn)=\Spn\otimes\Spn^*\cong\Spn\otimes\Spn$（局所的に。大域的な対応は $\Lambda^\pm\cong\Spn^\pm\otimes\Spn$ という形で $\tau$ が $\omega_{\C}$ に対応する。\tC\ Lawson--Michelsohn 第 III 章）。命題 \ref{prop:spinchar} から $\ch(\Lambda^+-\Lambda^-)=\ch(\Spn^+-\Spn^-)\ch(\Spn)=(-1)^m\prod(e^{y_j}-e^{-y_j})$ で、$m=2k$ は偶数。（符号の独立な確認：$n=4$ では $\ch_2(\Lambda^+-\Lambda^-)=p_1(\Lambda^+)-p_1(\Lambda^-)=4e$ で、これは $\prod2y_j=4e$ の首項と一致する。$p_1(\Lambda^\pm)=p_1\pm2e$ は Atiyah--Hitchin--Singer\tC\ 。）向きの符号 $(-1)^{n(n+1)/2}=(-1)^{2k(4k+1)}=+1$。補題 \ref{lem:rootcalc}(iii) より被積分形式は $\prod_j\frac{y_j}{\tanh(y_j/2)}$。次数 $m=2k$ の成分では、$\frac{y}{\tanh(y/2)}=2\cdot\frac{y/2}{\tanh(y/2)}$ で、$y\mapsto y/2$ が次数 $m$ の成分を $2^{-m}$ 倍し、$2^m$ の因子と打ち消し合うので $\bigl[\prod\frac{y_j}{\tanh(y_j/2)}\bigr]_{m}=\bigl[\prod\frac{y_j}{\tanh y_j}\bigr]_m=\Lg$。
+\end{proof}
+\begin{ex}\label{ex:signCP2}\tP\ （検算）
+$\CP^2$：$p_1=3H^2$、$\Lg_1=\frac13p_1$、$\sgn=\int H^2=1$。$\CP^4$：$\sgn=1$。実際 $\CP^{2j}$ で $\sgn=1$（$j\le4$ を Python で確認）、$\CP^3$ の符号数は（実 6 次元で 4 の倍数でないから）$0$。四次曲面（K3）：$p_1=c_1^2-2c_2=-48$、$\sgn=-16$。次数 $d$ の曲面 $X_d\subset\CP^3$：$\sgn=-\frac{d(d^2-4)}3$（第6巻）。
+\end{ex}
+
+\subsection{Dirac 作用素 $\to\Ahat$ 種数}
+$M$ を閉スピン多様体（$n=2m$）、$E$ を接続つきベクトル束とし、$D_E^+:\Gamma(\Spn^+\otimes E)\to\Gamma(\Spn^-\otimes E)$。
+\begin{thm}[Atiyah--Singer の Dirac 作用素の指数]\label{thm:DiracAS}\tP\ （定理 \ref{thm:AS} を認める）
+$\ind D_E^+=\int_M\Ahat(TM)\ch(E)$。
+\end{thm}
+\begin{proof}
+シンボル類は $\Spn^+\otimes E-\Spn^-\otimes E$。命題 \ref{prop:spinchar} から $\ch(E^0-E^1)=(-1)^m\ch(E)\prod(e^{y_j/2}-e^{-y_j/2})$。向きの符号 $(-1)^m$ と合わせて $+1$。補題 \ref{lem:rootcalc}(iv) より被積分形式は $\ch(E)\prod\frac{y_j/2}{\sinh(y_j/2)}=\ch(E)\Ahat$。
+\end{proof}
+Dolbeault との関係：複素多様体で $K^{1/2}$ をもつとき、$\Spn^\pm=\Lambda^{0,{\rm ev/odd}}\otimes K^{1/2}$、$D=\sqrt2(\dbar_{K^{1/2}}+\dbar_{K^{1/2}}^*)$（Kähler の場合）。したがって $\ind D^+=\chi(X,K^{1/2})=\int\ch(K^{1/2})\Td(X)=\int e^{-c_1/2}\Td=\int\Ahat$ で、第6巻の命題「$\Td=e^{c_1/2}\Ahat$」と整合する。
+\begin{cor}[整数性・Rokhlin]\label{cor:Ahatint}\tC\ （Atiyah--Singer、Borel--Hirzebruch）
+(a) 閉スピン多様体 $M^{4k}$ で $\Ahat(M)=\int\Ahat\in\Z$。(b) $\dim M=8k+4$ ならスピノル束に四元数構造があり、$\Ker D^\pm$ は四元数的ベクトル空間、よって複素次元は偶数で $\Ahat(M)\in2\Z$（Atiyah--Singer V\tQ\ ）。(c) \emph{Rokhlin の定理：}閉スピン 4 次元多様体で $\sgn(M)\in16\Z$。
+\end{cor}
+\begin{proof}
+(a)(b) は $\Ahat=\ind D^+$ と上の四元数構造（\tC\ ）。(c) 4 次元で $\Ahat=-\frac{p_1}{24}$、符号定理（$\Lg_1=\frac{p_1}3$）から $p_1=3\sgn$、よって $\Ahat=-\frac{\sgn}8$。(b) から $\sgn=-8\Ahat\in16\Z$。
+\end{proof}
+\begin{ex}\label{ex:Rokhlin}\tP\ （検算）
+K3：$\sgn=-16$、$\Ahat=2$ で $16$ の倍数。$\CP^2$：$\Ahat=-\frac18\notin\Z$ だからスピンでない（例 \ref{ex:spinex}）。$X_d\subset\CP^3$：$d$ が偶数のとき $\Ahat=\frac{d(d^2-4)}{24}$ は偶数（$d=2:0$、$4:2$、$6:8$、$8:20$）、奇数のとき分子が奇数で整数でない（$d=3:\frac58$、$5:\frac{35}8$、$7:\frac{105}8$）。次の \S\ref{sec:examples} で詳しく扱う。
+\end{ex}
+\begin{rem}[Freedman の $E_8$ 多様体]\label{rem:E8}\tC\
+Freedman は、単連結で交叉形式が $E_8$（符号数 $8$）の閉位相 4 次元多様体の存在を示した。Rokhlin の定理は\emph{滑らかな}スピン多様体についてだけ成り立つので、これは滑らかな構造をもたない。Donaldson の定理（定値形式は対角化可能）と合わせて、4 次元の位相と滑らかな構造の違いの出発点になった。
+\end{rem}
+\begin{rem}[ABS と Dirac 作用素のシンボル]\label{rem:ABS}\tC\
+Atiyah--Bott--Shapiro（\emph{Clifford modules}, Topology 3, Suppl.\ 1, 1964）は、Clifford 加群と $K$ 理論の関係から、スピン構造をもつ（または $\Spin$ 束で整合する）ベクトル束の Thom 同型を構成した。Dirac 作用素のシンボル類 $[\Spn^+,\Spn^-,c(\xi)]$ はこの Thom 類で、指数公式の被積分形式 $\Ahat$ は、この Thom 類の Chern 指標の Thom 同型での引き戻し（補題 \ref{lem:chKoszul} の $\Spin$ 版）である。
+\end{rem}
+
+\subsection{すべては Dirac 型：捻りによる統一}
+\begin{rem}\label{rem:alltwistedDirac}\tP\
+符号作用素は $\Spn^\pm\otimes\Spn$ への Dirac 作用素 $D^+_{\Spn}$（$\Spn$ で捻る）で、定理 \ref{thm:DiracAS} から $\ind=\int\Ahat\,\ch(\Spn)=\int\prod\frac{y_j/2}{\sinh(y_j/2)}\cdot2\cosh\frac{y_j}2=\int\prod\frac{y_j}{\tanh(y_j/2)}$ となり、定理 \ref{thm:signAS} の被積分形式と一致する（4 次元で $\ch(\Spn)=4+\frac{p_1}2$、$\Ahat=1-\frac{p_1}{24}$ の積の次数 4 の部分は $\frac{p_1}3=\Lg_1$、問 \ref{p:twistS}）。Dolbeault 作用素は spin$^c$ Dirac 作用素。つまり、4 つの古典的な作用素はすべて Dirac 作用素を適当なベクトル束で捻ったもの（局所的には）である。
+\end{rem}
+\begin{center}
+\resizebox{\linewidth}{!}{\begin{tikzpicture}[font=\small,>=Stealth,every node/.style={draw,rounded corners=2pt,inner sep=3pt,fill=blue!4,align=center}]
+\node[fill=orange!15] (as) at (0,0) {Atiyah--Singer\\$\ind P=\pm\int\frac{\ch E^0-\ch E^1}{e}\Td(T_{\C}X)$};
+\node (dol) at (-5.5,1.8) {Dolbeault $\dbar_E$\\$\ch(E)\prod(1-e^{x_j})$};
+\node (drh) at (-5.5,-1.8) {de Rham $d+d^*$\\$\prod(1-e^{y_j})(1-e^{-y_j})$};
+\node (sig) at (5.5,1.8) {符号作用素\\$\prod(e^{y_j}-e^{-y_j})$};
+\node (dir) at (5.5,-1.8) {Dirac $D_E^+$\\$\ch(E)\prod(e^{y_j/2}-e^{-y_j/2})$};
+\node[fill=green!8] (hrr) at (-9.8,1.8) {HRR\\$\int\ch(E)\Td$};
+\node[fill=green!8] (gb) at (-9.8,-1.8) {Chern--Gauss--Bonnet\\$\int e$};
+\node[fill=green!8] (sg) at (9.5,1.8) {符号定理\\$\int\Lg$};
+\node[fill=green!8] (ah) at (9.5,-1.8) {$\Ahat$ 種数\\$\int\Ahat\,\ch(E)$};
+\draw[->] (as)--(dol);\draw[->] (as)--(drh);\draw[->] (as)--(sig);\draw[->] (as)--(dir);
+\draw[->] (dol)--(hrr);\draw[->] (drh)--(gb);\draw[->] (sig)--(sg);\draw[->] (dir)--(ah);
+\end{tikzpicture}}
+\end{center}
+\begin{center}
+{\small\begin{tabular}{l|l|l|l}
+\toprule
+作用素 & $E^0-E^1$ の $\ch$（根ごと） & 被積分形式（根ごと） & 定理\\
+\midrule
+$\dbar_E$ ($X$ 複素) & $\ch(E)(1-e^{x})$ & $\Td(x)$ [補題(i)] & HRR\\
+$d+d^*$ & $(1-e^{y})(1-e^{-y})$ & $y$ [(ii)] & Chern--Gauss--Bonnet\\
+$D_{\rm sign}$ ($n=4k$) & $e^{y}-e^{-y}$ & $\frac y{\tanh(y/2)}$ [(iii)] & $\sgn=\int\Lg$\\
+$D_E^+$ (スピン) & $\ch(E)(e^{y/2}-e^{-y/2})$ & $\frac{y/2}{\sinh(y/2)}$ [(iv)] & $\ind=\int\Ahat\ch(E)$\\
+\bottomrule
+\end{tabular}}
+\end{center}
+（符号 $\pm(-1)^m$ は本文のとおり向きの規約と合わせて $+1$ になる。）
+\begin{keybox}{要点（\S\ref{sec:special}）}
+根ごとの計算 $(1-e^x)t/x=-\Td$、$(1-e^x)(1-e^{-x})t/x=-x$、$(e^x-e^{-x})t/x=\frac x{\tanh(x/2)}$、$(e^{x/2}-e^{-x/2})t/x=\frac{x/2}{\sinh(x/2)}$ から、HRR、Chern--Gauss--Bonnet、符号定理、$\ind D_E^+=\int\Ahat\ch(E)$ が従う（指数定理を認めて）。整数性：スピン 4 次元で $\sgn\in16\Z$（Rokhlin）。Dirac $+$ Lichnerowicz：正スカラー曲率なら $\Ahat=0$。
+\end{keybox}
+\subsection*{この節の問題}
+\begin{prob}{基本}\label{p:deRhamAS}
+補題 \ref{lem:rootcalc}(ii) を使って、(a) $S^2$（$m=1$、$y=c_1(TS^2)$）で $\ind(d+d^*)=\int y=2$、(b) $\CP^2$（$m=2$、根 $y_1,y_2$ は $T^{1,0}$ の Chern 根）で $\int y_1y_2=\int c_2=3$ を確かめよ。第6巻の $\int e(T\CP^n)=n+1$ と比べよ。
+\end{prob}
+\begin{prob}{基本}\label{p:CP4}
+$\CP^4$ で $p(T)=(1+H^2)^5$（$p_1=5H^2$、$p_2=10H^4$）と $\Lg_2=\frac1{45}(7p_2-p_1^2)$ から $\sgn(\CP^4)=1$ を確かめよ。$\CP^2\times\CP^2$ では、$\Lg$ の乗法性から $\sgn=\sgn(\CP^2)^2=1$ となることを述べ、中間次元コホモロジー $H^4(\CP^2\times\CP^2)$（基底 $a^2,ab,b^2$）の交叉形式の符号数と比べよ。
+\end{prob}
+\begin{prob}{標準}\label{p:Rokhlin}
+次数 $d$ の曲面 $X_d\subset\CP^3$ で、$\sgn=-\frac{d(d^2-4)}3$、$\Ahat=-\frac\sgn8=\frac{d(d^2-4)}{24}$ を示せ（第6巻の $p_1=c_1^2-2c_2$ を使ってよい）。(a) $d$ が奇数なら $\Ahat\notin\Z$ なのでスピンでないことを示せ。(b) $d=2e$ のとき $\Ahat=\frac{e(e^2-1)}3$ が偶数であること、したがって $\sgn\in16\Z$ を示せ。
+\end{prob}
+\begin{prob}{標準}\label{p:twistS}
+実 4 次元多様体で $\ch(\Spn)=\prod_{j=1}^2(e^{y_j/2}+e^{-y_j/2})$ を展開し（$p_1=y_1^2+y_2^2$）、$\Ahat\ch(\Spn)$ の次数 4 の成分が $\frac{p_1}3=\Lg_1$ に等しいことを確かめよ。これから $\ind D_{\Spn}^+=\sgn(M)$ を導け。
+\end{prob}
+\begin{prob}{発展}\label{p:E8}
+閉じた滑らかなスピン 4 次元多様体 $M$ について、(a) $\sgn(M)=\pm8$ が起こらないことを説明せよ。(b) $|\sgn|=16$ が K3 曲面で実現されることを確かめよ。(c) 交叉形式が $E_8$（偶ユニモジュラー、符号数 $8$、階数 $8$）の閉位相多様体（Freedman）は滑らかな構造をもたないことを述べよ。(d) K3 $\#$ K3 の符号数と $\Ahat$ を求めよ。
+\end{prob}
+\begin{prob}{標準}\label{p:CY}
+Calabi--Yau 多様体 $X$（$K_X$ 自明）では $c_1=0$ で $\Td=\Ahat$（$\Td=e^{c_1/2}\Ahat$）、$\ind D^+=\chi(X,\Oc)$ である。(a) $\CP^5$ の六次超曲面 $X$（$\dim_{\C}X=4$、$\int_XH^4=6$）で $c(T_X)=(1+H)^6/(1+6H)$ から $c_2,c_4$ を求め、$\Td_4=\frac1{720}(3c_2^2-c_4)$（$c_1=0$ のとき）から $\Ahat(X)=\chi(\Oc_X)=2$ を確かめよ。(b) 五次 3 次元超曲面（$\dim_{\R}=6$）では $\Ahat$ に次数 6 の成分がなく $\int\Ahat=0$、これは $\chi(\Oc)=\int\Td_3=\frac{c_1c_2}{24}=0$ と整合することを述べよ。
+\end{prob}
+\begin{prob}{標準}\label{p:CP3k}
+$\CP^3$（スピン、$\Spn=\Lambda^{0,\bullet}\otimes\Oc(-2)$）で、$\Oc(k)$ で捻った Dirac 作用素の指数を $\int e^{kH}\Ahat$（$\Ahat=1-\frac{p_1}{24}$、$p_1=4H^2$）で計算し、$\chi(\CP^3,\Oc(k-2))=\binom{k+1}3$ と一致することを確かめよ。$k=0,\pm1$ で $0$ になること（Fubini--Study 計量は $\scal>0$）の意味を述べよ。
+\end{prob}
