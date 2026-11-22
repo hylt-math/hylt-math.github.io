@@ -1,0 +1,9 @@
+m=2 F=fermat: |J0|=264.545, nonzero triples 18/20
+m=2 F=cusp: |J0|=123.020, nonzero triples 16/20
+m=2 F=nodal: |J0|=162.711, nonzero triples 18/20
+m=3 F=fermat: |J0|=3123.661, nonzero triples 109/120
+m=3 F=cusp: |J0|=1326.699, nonzero triples 81/120
+m=3 F=nodal: |J0|=1719.683, nonzero triples 107/120
+m=4 F=fermat: |J0|=16217.471, nonzero triples 440/455
+m=4 F=cusp: |J0|=7443.286, nonzero triples 424/455
+m=4 F=nodal: |J0|=9705.094, nonzero triples 434/455

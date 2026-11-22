@@ -1,0 +1,7 @@
+F= fermat m= 2 nunk 90
+start 0 scale 14.86: final |r|=1.028460e-14 |e|=12.728 (0s)
+start 1 scale 33.06: final |r|=2.148217e-14 |e|=12.728 (0s)
+start 2 scale 0.10: final |r|=5.940835e-13 |e|=12.728 (0s)
+start 3 scale 0.32: final |r|=2.033502e-19 |e|=12.728 (0s)
+start 4 scale 15.25: final |r|=3.613200e-16 |e|=12.728 (0s)
+start 5 scale 3.49: final |r|=1.044418e-14 |e|=12.728 (0s)

@@ -1,0 +1,13 @@
+COMPLEX LM m=3 F=fermat ansatz=nu: 111 complex unknowns
+ start 0: min |r|=1.687055e+02  |e|=55.2159  max|Im e|=9.17e-11 (20s)
+ start 1: min |r|=1.687055e+02  |e|=55.2159  max|Im e|=4.13e-10 (18s)
+ start 2: min |r|=1.687055e+02  |e|=55.2159  max|Im e|=2.51e-10 (18s)
+ start 3: min |r|=1.687055e+02  |e|=55.2159  max|Im e|=7.35e-11 (18s)
+ start 4: min |r|=1.687055e+02  |e|=55.2159  max|Im e|=3.04e-13 (28s)
+ start 5: min |r|=1.687055e+02  |e|=55.2159  max|Im e|=3.43e-11 (27s)
+ start 6: min |r|=1.687055e+02  |e|=55.2159  max|Im e|=5.49e-10 (28s)
+ start 7: min |r|=1.687055e+02  |e|=55.2159  max|Im e|=5.06e-11 (27s)
+ start 8: min |r|=1.687055e+02  |e|=55.2159  max|Im e|=2.29e-10 (24s)
+ start 9: min |r|=1.687055e+02  |e|=55.2159  max|Im e|=2.93e-09 (25s)
+ start 10: min |r|=1.687055e+02  |e|=55.2159  max|Im e|=9.22e-13 (26s)
+ start 11: min |r|=1.687055e+02  |e|=55.2159  max|Im e|=1.41e-10 (23s)

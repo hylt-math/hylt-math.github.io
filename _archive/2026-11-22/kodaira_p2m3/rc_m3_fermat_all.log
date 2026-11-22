@@ -1,0 +1,2 @@
+COMPLEX LM m=3 F=fermat ansatz=all: 1215 complex unknowns
+ start 0: min |r|=1.656746e+02  |e|=55.2588  max|Im e|=1.91e-09 (384s)

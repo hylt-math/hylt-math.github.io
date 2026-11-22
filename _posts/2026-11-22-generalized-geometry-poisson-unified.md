@@ -46,3 +46,4 @@ pdf_version: "v1"
 ## 改訂履歴
 
 - 2026-11-22：v1 公開（日本語版・英語版）。
+- 2026-11-22：予想 91 の「$$\mathbb P^2$$、$$m\ge3$$ は未計算」は、[Part VI]({{ '/2026/11/22/generalized-geometry-poisson-part6/' | relative_url }})で $$m=3$$ を計算した結果（非トーリックで拡張は数値的に見つからない）に更新される。PDF は未改訂。

@@ -1,0 +1,4 @@
+m=3 F=fermat p=32003: L (19800, 1215), jac 23s
+nonzero rows 17394 J0 nonzero entries 406
+rank L = 1215 ; rank [L|J0] = 1216 ; nunk 1215 ; dim ker L = 0 (1s)
+FIRST-ORDER OBSTRUCTION J0 notin im L

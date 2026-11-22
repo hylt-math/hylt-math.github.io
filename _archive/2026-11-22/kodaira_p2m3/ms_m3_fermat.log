@@ -1,0 +1,6 @@
+F= fermat m= 3 nunk 1215
+start 0 scale 14.86: final |r|=1.656746e+02 |e|=55.259 (101s)
+start 1 scale 33.06: final |r|=1.656746e+02 |e|=55.259 (117s)
+start 2 scale 0.10: final |r|=1.656746e+02 |e|=55.259 (98s)
+start 3 scale 0.32: final |r|=1.656746e+02 |e|=55.259 (101s)
+start 4 scale 15.25: final |r|=1.656746e+02 |e|=55.259 (107s)

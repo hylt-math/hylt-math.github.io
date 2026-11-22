@@ -1,0 +1,2 @@
+max rounding error of float solution: 4.440892098500626e-16 ; nonzero entries: 9 values: [np.float64(-6.0), np.float64(-3.0), np.float64(3.0), np.float64(6.0)]
+exact integer Jacobiator: max |coeff| over ALL (a,b,c,monomial) = 0

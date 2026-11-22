@@ -1,0 +1,3 @@
+m=2: N=6; max class-sum of (B_tor - B0) = 0.0 (0 => B_tor-B0 in I_2, same induced bracket on R); max |Jacobiator(B_tor)| = 0.0 (all 20 triples, all cubic monomials)
+m=3: N=10; max class-sum of (B_tor - B0) = 0.0 (0 => B_tor-B0 in I_2, same induced bracket on R); max |Jacobiator(B_tor)| = 0.0 (all 120 triples, all cubic monomials)
+m=4: N=15; max class-sum of (B_tor - B0) = 0.0 (0 => B_tor-B0 in I_2, same induced bracket on R); max |Jacobiator(B_tor)| = 0.0 (all 455 triples, all cubic monomials)
