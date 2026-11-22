@@ -1,0 +1,1075 @@
+\input{pre_course.tex}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{arrows.meta,positioning}
+\fancyhead[L]{\small 第2巻　複素多様体と Dolbeault 理論}
+% --- 本巻の記号 ---
+\newcommand{\Tc}{T_{\mathbb C}}
+\newcommand{\Oc}{\mathcal O}
+\newcommand{\CP}{\mathbb{CP}}
+\newcommand{\Lam}{\Lambda}
+\newcommand{\A}{\mathcal A}
+\newcommand{\ip}[2]{\langle #1,#2\rangle}
+\newcommand{\Ric}{\mathrm{Ric}}
+\newcommand{\pr}{\mathrm{pr}}
+\newcommand{\tr}{\mathrm{tr}}
+\newcommand{\vol}{\mathrm{vol}}
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+\begin{document}
+\sloppy
+\begin{center}
+{\LARGE\bfseries\sffamily 第2巻　複素多様体と Dolbeault 理論}\\[8pt]
+{\large 学習コース「一般化幾何への道」}\\[6pt]
+{\large 執筆：Claude\ ／\ 企画：森}\\[3pt]
+2026年11月22日（v1）\\[3pt]
+{\small （外部の査読は受けていない教材。執筆者とは別の AI による独立検査と、可能な範囲の計算での検算は行った。標準的な結果には出典を付け、確認できていないものは\tQ\ で示す。）}
+\end{center}
+
+\begin{goalbox}{この巻の学習目標}
+\begin{itemize}
+\item 概複素構造 $J$ と $T^{0,1}$ のどちらからでも複素構造を定義でき、両者が同値であることを説明できる。
+\item 積分可能性（Nijenhuis テンソル $=0$ $\Leftrightarrow$ $T^{0,1}$ が括弧で閉じる $\Leftrightarrow$ $d=\partial+\bar\partial$）の同値を証明でき、Newlander--Nirenberg の定理の主張を述べられる。
+\item $\bar\partial$ と Dolbeault 複体・Dolbeault 補題・Dolbeault コホモロジーを計算に使える。
+\item 正則ベクトル束 $=$ $\bar\partial$-作用素（$\bar\partial^2=0$）であること、Hermite 計量に対する Chern 接続の存在・一意性と曲率が $(1,1)$ 型であることを証明でき、直線束の第1 Chern 類を具体的に計算できる。
+\item Kähler 計量・Kähler 形式を扱い、$\mathbb C^n$、$\mathbb{CP}^n$、複素トーラス、超曲面の例で確かめられる。
+\item $T^{0,1}$ を「複素 Lie 亜代数」とみなす見方を身につけ、第11--13巻（Lie 亜代数・一般化複素構造）への橋渡しとする。
+\end{itemize}
+\end{goalbox}
+\begin{goalbox}{前提と記法}
+前提は第1巻（多様体、接束と余接束、微分形式と de Rham 複体、ベクトル束、接続・曲率と Chern--Weil の入口）。ただし必要な記号は本巻で再掲する。
+実 $2n$ 次元多様体を $M$、接束を $T=TM$、その複素化を $\Tc=T\otimes_{\mathbb R}\mathbb C$ と書く。接ベクトルの複素化 $\Tc=T^{1,0}\oplus T^{0,1}$ と $k$ 形式の $(p,q)$ 分解までは既知として復習から始める。
+文中の記号 \tC\ は「標準的な結果（出典を併記）」、\tP\ は「本文で証明した」、\tQ\ は「記憶に基づく・未確認」を表す。ベクトル束上の Hermite 計量は第1変数について $\mathbb C$-線形、第2変数について反線形とする。
+\end{goalbox}
+\tableofcontents
+\newpage
+\section*{この巻の読み方}
+\addcontentsline{toc}{section}{この巻の読み方}
+\begin{itemize}
+\item \textbf{忘れた人向けの最短ルート}：§\ref{sec:review}（記号）$\to$ §\ref{sec:integ}（$J$ と $T^{0,1}$、定理 \ref{thm:integ}）$\to$ §\ref{sec:dolbeault}（$\bar\partial$ と Dolbeault 補題）$\to$ §\ref{sec:holbundle}（$\bar\partial_E$）$\to$ §\ref{sec:chern}（Chern 接続）。§\ref{sec:cplxmfd}、§\ref{sec:kahler}、§\ref{sec:examples} は例と Kähler 幾何で、第5、6巻の前に読めばよい。
+\item \textbf{第11--13巻を目標とする人}：キーボックス「複素構造の二つの定義」（§\ref{sec:integ}）と備考 \ref{rem:Lconn}、問 \ref{p:Lalg} を先に読むとよい。
+\item 問題は節末にある。計算問題は途中式つきの解答を巻末に置いた。まず自力で解き、解答は検算に使う。\textbf{検算の方法}は解答の節の冒頭に記した。
+\item 本文の \tC\ \tP\ \tQ\ の意味は冒頭の「前提と記法」を参照。
+\end{itemize}
+
+
+\section{復習：複素化、概複素構造、$(p,q)$ 分解}\label{sec:review}
+
+\subsection{$\mathbb C^n$ と Wirtinger 作用素}
+$\mathbb C^n$ の座標を $z_j=x_j+iy_j$ とし、
+\[
+\frac{\partial}{\partial z_j}=\frac12\Big(\frac{\partial}{\partial x_j}-i\frac{\partial}{\partial y_j}\Big),\quad
+\frac{\partial}{\partial \bar z_j}=\frac12\Big(\frac{\partial}{\partial x_j}+i\frac{\partial}{\partial y_j}\Big),\quad
+dz_j=dx_j+i\,dy_j,\ d\bar z_j=dx_j-i\,dy_j
+\]
+とおく。これらは $\Tc$ と $\Tc^*$ の双対基底をなし、$df=\sum_j\frac{\partial f}{\partial z_j}dz_j+\frac{\partial f}{\partial\bar z_j}d\bar z_j$ である。関数 $f$ が正則であるとは $\partial f/\partial\bar z_j=0\ (\forall j)$（Cauchy--Riemann 方程式）のことをいう。また
+\begin{equation}\label{eq:dzdzbar}
+dz\wedge d\bar z=-2i\,dx\wedge dy,\qquad \tfrac i2\,dz\wedge d\bar z=dx\wedge dy .
+\end{equation}
+
+\subsection{概複素構造と固有空間分解}
+\begin{defn}[概複素構造]
+実ベクトル束 $T$ 上の自己同型 $J:T\to T$ で $J^2=-\id$ をみたすものを\emph{概複素構造}という。$J$ を $\Tc$ に $\mathbb C$-線形に拡張すると固有値は $\pm i$ のみで、
+\[
+T^{1,0}=\ker(J-i)=\{v-iJv\mid v\in T\},\qquad T^{0,1}=\ker(J+i)=\{v+iJv\mid v\in T\}
+\]
+とおくと $\Tc=T^{1,0}\oplus T^{0,1}$、$\overline{T^{1,0}}=T^{0,1}$ である。射影は $\pi^{1,0}=\tfrac12(1-iJ)$、$\pi^{0,1}=\tfrac12(1+iJ)$。
+\end{defn}
+標準構造 $\mathbb C^n$（$J\partial_{x_j}=\partial_{y_j}$、$J\partial_{y_j}=-\partial_{x_j}$）では $J\partial_{z_j}=i\partial_{z_j}$、$J\partial_{\bar z_j}=-i\partial_{\bar z_j}$ なので $T^{1,0}=\mathrm{span}\{\partial_{z_j}\}$、$T^{0,1}=\mathrm{span}\{\partial_{\bar z_j}\}$ である。
+
+双対側では $\Lam^{1,0}=\{\alpha\in\Tc^*\mid\alpha|_{T^{0,1}}=0\}=\ker(J^*-i)$（$J^*\alpha=\alpha\circ J$）、$\Lam^{0,1}=\overline{\Lam^{1,0}}$、
+\[
+\Lam^{p,q}=\Lam^p\Lam^{1,0}\wedge\Lam^q\Lam^{0,1},\qquad \Lam^k\Tc^*=\bigoplus_{p+q=k}\Lam^{p,q}.
+\]
+$\mathbb C^n$ では $\Lam^{1,0}=\mathrm{span}\{dz_j\}$、$\Lam^{0,1}=\mathrm{span}\{d\bar z_j\}$、$\operatorname{rank}\Lam^{p,q}=\binom np\binom nq$。滑らかな切断の空間を $\A^{p,q}(M)$ と書く。$J^*dz_j=i\,dz_j$ であり、複素数値関数 $f$ について
+\begin{equation}\label{eq:holiffJ}
+f\ \text{が正則}\iff df\circ J=i\,df .
+\end{equation}
+$\Lam^{p,q}$ の複素共役は $\Lam^{q,p}$ である。したがって実形式は $\overline\alpha=\alpha$ をみたすもので、$(p,q)$ 成分と $(q,p)$ 成分が互いに共役になる。特に実 $(1,1)$ 形式は $i\sum a_{jk}dz_j\wedge d\bar z_k$（$(a_{jk})$ は Hermite 行列）の形をしている。
+
+
+\subsection{実の接束と $T^{1,0}$、計量との関係}
+実接ベクトル $v\in T$ に $v\mapsto\frac12(v-iJv)\in T^{1,0}$ を対応させると、$J$ を $i$ 倍と見なしたとき $T\cong T^{1,0}$ は\emph{複素ベクトル束の同型}である（$\frac12(Jv-iJ^2v)=\frac i2(v-iJv)$ なので $Jv\mapsto i\cdot$）。$\mathbb C^n$ では $\partial_{x_j}\mapsto\partial_{z_j}$、$\partial_{y_j}\mapsto i\partial_{z_j}$。以後、実接束と $T^{1,0}$ を同一視して「正則接束」と呼ぶ。
+
+$J$-不変な Riemann 計量 $g$（$g(JX,JY)=g(X,Y)$）を $\Tc$ に複素双線形に拡張して $g_{\mathbb C}$ とすると、$T^{1,0}$ 上の Hermite 内積 $h(u,v)=g_{\mathbb C}(u,\bar v)$ が定まる。逆に $T^{1,0}$ の Hermite 計量から $g=\mathrm{Re}\,h$ を作れば $J$-不変な Riemann 計量になる。さらに $\omega(X,Y)=g(JX,Y)$ とおくと実 $(1,1)$ 形式を得る（問 \ref{p:herm}、§\ref{sec:kahler}）。つまり
+\[
+\{J\text{-不変な計量 }g\}\ \longleftrightarrow\ \{T^{1,0}\text{ の Hermite 計量 }h\}\ \longleftrightarrow\ \{\text{正の実 }(1,1)\text{ 形式 }\omega\}
+\]
+で、Kähler 条件はこれら三つが「両立する」ことを $d\omega=0$ で表したものである。
+
+\begin{center}
+\begin{tikzpicture}[scale=1.0,>=Stealth]
+\draw[->] (-0.2,0)--(3.4,0) node[right]{$\mathrm{Re}$};
+\draw[->] (0,-1.6)--(0,1.9) node[above]{$\mathrm{Im}$};
+\draw[thick,blue!60!black,->] (0,0)--(2.4,0) node[below right]{$v$};
+\draw[thick,blue!60!black,->] (0,0)--(0,1.5) node[above left]{$Jv$};
+\draw[thick,orange!80!black,->] (0,0)--(2.4,-1.2);
+\node[orange!70!black,anchor=west] at (2.4,-1.2) {$v-iJv\in T^{1,0}$};
+\draw[thick,green!40!black,->] (0,0)--(2.4,1.2);
+\node[green!40!black,anchor=west] at (2.4,1.2) {$v+iJv\in T^{0,1}$};
+\node[below,font=\small] at (1.7,-1.9) {$T_{\mathbb C}=T^{1,0}\oplus T^{0,1}$（概念図）};
+\end{tikzpicture}
+\end{center}
+
+\begin{keybox}{要点（§1）}
+$J$ $\Rightarrow$ $T^{1,0}=\ker(J-i)$、$T^{0,1}=\ker(J+i)=\overline{T^{1,0}}$、$\Tc=T^{1,0}\oplus T^{0,1}$。$\Lam^{p,q}$ は $\Lam^{1,0}=\mathrm{Ann}(T^{0,1})$ から作る。記号 $(p,q)$ は「$dz$ が $p$ 個、$d\bar z$ が $q$ 個」。
+\end{keybox}
+
+\begin{prob}{基本}\label{p:wirt}
+$\mathbb C$ 上で $f=z^2\bar z$、$g=\mathrm{Re}(z^3)$、$h=e^{\bar z}z$ について $\partial f/\partial z,\ \partial f/\partial\bar z$ などを求めよ（$g$ は $\partial g/\partial z$ と $\partial g/\partial\bar z$）。また $h$ は正則か。さらに式 \eqref{eq:dzdzbar} を示せ。
+\end{prob}
+\begin{prob}{基本}\label{p:count}
+$\mathbb C^3$ の $\Lam^{p,q}$ の階数 $\binom3p\binom3q$ を表にし、総和が $2^6=64$ であることを確かめよ。また $\mathbb C^n$ の $(p,q)$ 形式の階数の総和が $2^{2n}$ になることを示せ。
+\end{prob}
+\begin{prob}{標準}\label{p:decomp}
+$\mathbb C^2$ の実 2 形式 $dx_1\wedge dx_2$ を $(2,0)$、$(1,1)$、$(0,2)$ 成分に分解せよ。また $\omega=dx_1\wedge dy_1+dx_2\wedge dy_2$ が $(1,1)$ 型であることを確かめよ。
+\end{prob}
+
+\section{複素多様体と概複素構造}\label{sec:cplxmfd}
+
+\begin{defn}[複素多様体]
+位相多様体 $X$（Hausdorff、第2可算）の座標近傍系 $\{(U_\alpha,\varphi_\alpha:U_\alpha\to\mathbb C^n)\}$ で、座標変換 $\varphi_\beta\circ\varphi_\alpha^{-1}$ がすべて正則写像となるものを\emph{正則アトラス}、同値な正則アトラスの類を $X$ の\emph{複素構造}、これを備えた $X$ を\emph{（$n$ 次元）複素多様体}という。$n=1$ のものを\emph{Riemann 面}という。写像 $F:X\to Y$ が\emph{正則}とは、正則座標で表すと正則関数になることをいう。
+\end{defn}
+正則関数の座標変換は Jacobi 行列が $\mathbb C$-線形（複素 Jacobi 行列）なので、実多様体として見た $X$ の接空間上に、各座標で $J\partial_{x_j}=\partial_{y_j}$ として定めた $J$ は座標によらない（Cauchy--Riemann 方程式 \eqref{eq:holiffJ}）。
+
+\begin{prop}\label{prop:holJ}
+$X,Y$ を複素多様体、$F:X\to Y$ を滑らかな写像とする。$F$ が正則 $\iff$ $dF\circ J_X=J_Y\circ dF$。
+\end{prop}
+\begin{proof}
+各座標で $F=(F_1,\dots,F_m)$ とすると、条件は各 $F_k$ について $dF_k\circ J_X=i\,dF_k$、すなわち式 \eqref{eq:holiffJ}（$F_k$ が正則）と同値。\qedhere
+\end{proof}
+よって複素多様体は概複素多様体 $(X,J)$ を定める。また正則座標変換の複素 Jacobi 行列 $A$ について、実 Jacobi 行列式は $|\det A|^2>0$ なので、複素多様体は常に向きづけ可能（第1巻で予告）。逆に概複素多様体がいつ複素多様体から来るかが§3 の主題である。
+
+\begin{ex}[$\mathbb C^n$、開集合、複素トーラス]\label{ex:basic}
+(1) $\mathbb C^n$ とその開集合。(2) 格子 $\Lambda\subset\mathbb C^n$（$\mathbb R$-上階数 $2n$ の離散部分群）による商 $X=\mathbb C^n/\Lambda$ は、平行移動が正則なので座標が $\mathbb C^n$ から継承され、複素多様体（\emph{複素トーラス}）。微分同相として $T^{2n}$ で、$dz_j$ は $X$ 上の正則 1 形式として well-defined。$n=1$ なら楕円曲線 $\mathbb C/(\mathbb Z+\tau\mathbb Z)$（$\mathrm{Im}\,\tau>0$）。
+\end{ex}
+
+\begin{ex}[複素射影空間]\label{ex:cpn}
+$\CP^n=(\mathbb C^{n+1}\setminus 0)/\mathbb C^*$、同次座標 $[Z_0:\cdots:Z_n]$。$U_i=\{Z_i\ne0\}$ 上の座標 $z^{(i)}_j=Z_j/Z_i\ (j\ne i)$ に対し、$U_i\cap U_k$ 上で $z^{(k)}_j=z^{(i)}_j/z^{(i)}_k$ は正則（$j\ne k$）。よって複素多様体で、$\CP^n$ はコンパクト。$n=1$：$z=Z_1/Z_0$、$w=Z_0/Z_1=1/z$、$\CP^1\cong S^2$（Riemann 球面）。
+\end{ex}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth,scale=1]
+\draw[thick] (0,0) circle (1.2);
+\draw[blue!60!black] (-1.2,0) arc (180:360:1.2 and 0.35);
+\draw[blue!60!black,dashed] (1.2,0) arc (0:180:1.2 and 0.35);
+\fill (0,1.2) circle (1.5pt) node[above]{$\infty$ ($w=0$)};
+\fill (0,-1.2) circle (1.5pt) node[below]{$0$ ($z=0$)};
+\node[anchor=west] at (1.6,0.4) {$U_0$：座標 $z=Z_1/Z_0$（$\infty$ を除く）};
+\node[anchor=west] at (1.6,-0.4) {$U_1$：座標 $w=Z_0/Z_1=1/z$（$0$ を除く）};
+\end{tikzpicture}
+\end{center}
+\begin{ex}[標準束と接束：$\CP^1$]\label{ex:KP1}\tP
+$\CP^1$ で $U_0$ の枠 $dz$、$U_1$ の枠 $dw$ をとると $dw=-z^{-2}dz$。標準束 $K=\Omega^1$ の切断 $s=f_0dz=f_1dw$ の成分は $f_1=-z^2f_0$。枠 $e_1$ の符号を替えれば $f_1=z^2f_0$ となり、例 \ref{ex:Ok} の $f_1=z^{-k}f_0$ で $k=-2$。よって $K_{\CP^1}\cong\Oc(-2)$、双対をとって $T\CP^1\cong\Oc(2)$。問 \ref{p:Ok} から $\Oc(-2)$ に大域切断はないので、$\CP^1$ に非零の正則 1 形式はない。同様に $\CP^2$ では座標変換の Jacobi 行列式が $-z_1^{-3}$（問 \ref{p:pn}）なので $K_{\CP^2}\cong\Oc(-3)$、一般に $K_{\CP^n}\cong\Oc(-n-1)$。
+\end{ex}
+
+
+\begin{prop}[コンパクト複素多様体上の正則関数]\label{prop:maxmod}
+$X$ がコンパクトかつ連結ならば、$X$ 上の正則関数は定数。
+\end{prop}
+\begin{proof}
+$|f|$ は最大値を取る。最大値の点の近傍の座標で最大値原理（多変数でも複素直線への制限を使えばよい）から $f$ は局所定数。集合 $\{|f|=\max\}$ は開かつ閉なので $X$ 全体。\qedhere
+\end{proof}
+したがって $\CP^n$ や複素トーラスの大域的な正則関数は定数しかない。大域的な情報は正則関数ではなく正則切断（ベクトル束の係数をもつ Dolbeault コホモロジー）で捉える。
+
+
+\begin{ex}[Möbius 変換]\label{ex:mobius}
+$A=\begin{pmatrix}a&b\\c&d\end{pmatrix}\in GL_2(\mathbb C)$ は $\mathbb C^2$ に線型に作用し、直線を直線に写すので $\CP^1$ の写像 $[Z_0:Z_1]\mapsto[aZ_0+bZ_1:cZ_0+dZ_1]$ を定める。座標 $z=Z_1/Z_0$ では $z\mapsto\frac{c+dz}{a+bz}$（分母が $0$ の点では $w=1/z$ 座標で見る）。有理式なので正則で、逆写像（$A^{-1}$）も正則。よって $PGL_2(\mathbb C)\subset\mathrm{Aut}(\CP^1)$（逆の包含、すなわち等号は第4巻、Forster 参照\tC）。命題 \ref{prop:maxmod} より、$\CP^1$ からの正則写像 $\CP^1\to\mathbb C$ は定数で、$\CP^1$ 上の「関数」は有理関数、すなわち正則写像 $\CP^1\to\CP^1$ として現れる。
+\end{ex}
+
+\begin{rem}[概複素構造の存在]\label{rem:ac}
+概複素構造の存在は $TM$ が複素ベクトル束の構造をもつことと同値で、位相的な障害がある。たとえば球面 $S^{2n}$ が概複素構造をもつのは $n=1,3$ のときのみ（Borel--Serre）\tQ。$S^6$ の概複素構造（$\mathrm{Im}\,\mathbb O$ のベクトル積から来る）が積分可能かどうかは、少なくとも筆者の知る限り未解決とされる\tQ。本巻では深入りしない。
+\end{rem}
+
+\begin{keybox}{要点（§2）}
+複素構造 $=$ 座標変換が正則な座標系。正則写像 $\iff$ $dF\circ J=J\circ dF$。複素多様体は自動的に概複素多様体。コンパクト連結なら正則関数は定数。
+\end{keybox}
+
+\begin{prob}{基本}\label{p:cr}
+$f=u+iv:\mathbb C\to\mathbb C$ について、$f$ が正則（$\partial f/\partial\bar z=0$）であることと Cauchy--Riemann 方程式 $u_x=v_y$、$u_y=-v_x$ が同値であることを示せ。また $f(z)=\bar z$ は \eqref{eq:holiffJ} をみたさず、実際に $df\circ J=-i\,df$ となることを確かめよ。
+\end{prob}
+\begin{prob}{基本}\label{p:pn}
+$\CP^2$ の座標 $U_0$ の座標 $(z_1,z_2)=(Z_1/Z_0,Z_2/Z_0)$ と $U_1$ の座標 $(w_0,w_2)=(Z_0/Z_1,Z_2/Z_1)$ の間の座標変換を求め、$U_0\cap U_1$ 上で正則であることと、その複素 Jacobi 行列式を計算せよ。
+\end{prob}
+\begin{prob}{基本}\label{p:compactconst}
+命題 \ref{prop:maxmod} の証明の「最大値原理」の部分を詳しく書け（1 変数の最大値原理から出発してよい）。また非コンパクトの例 $\mathbb C$ で結論が成り立たないことを確認せよ。
+\end{prob}
+\begin{prob}{標準}\label{p:herm}
+$(M,J)$ を概複素多様体、$g$ を任意の Riemann 計量とする。(a) $g_J(X,Y)=\frac12\big(g(X,Y)+g(JX,JY)\big)$ は $J$-不変な Riemann 計量であることを示せ。(b) $J$-不変計量 $g$ に対し $\omega(X,Y)=g(JX,Y)$ は交代形式であることを示し、$\mathbb C^n$ の標準計量では $\omega=\frac i2\sum dz_j\wedge d\bar z_j=\sum dx_j\wedge dy_j$ となることを確かめよ。
+\end{prob}
+\begin{prob}{基本}\label{p:torus1}
+複素トーラス $X=\mathbb C^n/\Lambda$ 上で、$dz_1,\dots,dz_n$ が正則 1 形式として well-defined であること、および $X$ の微分同相型が $T^{2n}$ であることを示せ。$n=1$、$\Lambda=\mathbb Z+i\mathbb Z$ のとき、$X$ 上の計量 $|dz|^2$ の体積を求めよ。
+\end{prob}
+
+\section{積分可能性と $T^{0,1}$：複素構造の二つの見方}\label{sec:integ}
+
+\subsection{Nijenhuis テンソル}
+概複素多様体 $(M,J)$ に対し、ベクトル場 $X,Y$ について
+\[
+N_J(X,Y)=[JX,JY]-J[JX,Y]-J[X,JY]-[X,Y]
+\]
+を \emph{Nijenhuis テンソル}という。$C^\infty(M)$-双線形で交代（問 \ref{p:Ntensor}）、したがって $N_J\in\Gamma(\Lam^2T^*\otimes T)$ である。
+
+\begin{lem}\label{lem:N}\tP
+$Z,W\in\Gamma(T^{0,1})$ に対して $N_J(Z,W)=-4\,\pi^{1,0}[Z,W]$。さらに $Z\in T^{0,1}$、$W'\in T^{1,0}$ なら $N_J(Z,W')=0$。ここで $N_J$ は $\mathbb C$-双線形に拡張してある。
+\end{lem}
+\begin{proof}
+$JZ=-iZ$、$JW=-iW$ だから
+\begin{align*}
+N(Z,W)&=[-iZ,-iW]-J[-iZ,W]-J[Z,-iW]-[Z,W]\\
+&=-2[Z,W]+2iJ[Z,W]=-2(1-iJ)[Z,W]=-4\pi^{1,0}[Z,W].
+\end{align*}
+後半は $JZ=-iZ$、$JW'=iW'$ を代入すると、$[Z,W']+iJ[Z,W']-iJ[Z,W']-[Z,W']=0$。\qedhere
+\end{proof}
+
+\begin{thm}[積分可能性の同値条件]\label{thm:integ}
+$(M,J)$ を概複素多様体とするとき、次は同値。
+\begin{enumerate}[label=(\alph*)]
+\item $N_J=0$。
+\item $T^{0,1}$ が Lie 括弧で閉じる：$[\Gamma(T^{0,1}),\Gamma(T^{0,1})]\subset\Gamma(T^{0,1})$（$\iff$ $T^{1,0}$ も閉じる）。
+\item $d(\A^{1,0})\subset\A^{2,0}\oplus\A^{1,1}$。
+\item すべての $(p,q)$ について $d(\A^{p,q})\subset\A^{p+1,q}\oplus\A^{p,q+1}$。
+\end{enumerate}
+\end{thm}
+\begin{proof}\tP
+(a)$\Leftrightarrow$(b)：補題 \ref{lem:N} より、$N=0$ なら $\pi^{1,0}[Z,W]=0$ すなわち $[Z,W]\in T^{0,1}$。逆に (b) なら $T^{0,1}$ の元の組については $N=0$ で、混合型は補題の後半、$T^{1,0}$ どうしは共役をとれば $N=0$。$\Tc$ は $T^{0,1}$ と $T^{1,0}$ で張られるので $N=0$。
+(b)$\Leftrightarrow$(c)：$\alpha\in\A^{1,0}$、$Z,W\in\Gamma(T^{0,1})$ に対し、$\alpha(Z)=\alpha(W)=0$ だから Cartan の公式 $d\alpha(Z,W)=Z\alpha(W)-W\alpha(Z)-\alpha([Z,W])$ より $d\alpha(Z,W)=-\alpha([Z,W])$。$d\alpha$ の $(0,2)$ 成分は $d\alpha|_{T^{0,1}\times T^{0,1}}$ であり、これが任意の $\alpha\in\A^{1,0}$ について $0$ $\iff$ $[Z,W]\in\bigcap\ker\alpha=T^{0,1}$。
+(c)$\Rightarrow$(d)：(c) の複素共役をとると $d(\A^{0,1})\subset\A^{1,1}\oplus\A^{0,2}$。局所的に $\A^{p,q}$ は関数、$\A^{1,0}$、$\A^{0,1}$ の元の $\wedge$ 積で生成され、関数 $f$ については $df\in\A^{1,0}\oplus\A^{0,1}$。Leibniz 則から (d) が従う。(d)$\Rightarrow$(c) は自明。\qedhere
+\end{proof}
+(d) のとき $d=\partial+\bar\partial$ と書ける（§4）。一般の概複素構造では $d=\mu+\partial+\bar\partial+\bar\mu$ で、$\mu:\A^{p,q}\to\A^{p-1,q+2}$ が $N_J$ の双対にあたる。
+
+\begin{defn}[積分可能]
+$N_J=0$（同値な条件 (b)(c)(d)）をみたす $J$ を\emph{積分可能}という。
+\end{defn}
+
+\begin{thm}[Newlander--Nirenberg]\tC\label{thm:NN}
+積分可能な概複素構造 $J$（$C^\infty$）をもつ多様体は、各点のまわりに、$J$ が標準構造になる座標 $(z_1,\dots,z_n)$（正則座標）をもつ。すなわち $J$ は複素多様体の構造から来る。
+\end{thm}
+\src{A.~Newlander, L.~Nirenberg, Complex analytic coordinates in almost complex manifolds, Ann.\ of Math.\ 65 (1957)。教科書では Huybrechts, \emph{Complex Geometry}, 第2章。Malgrange、Nijenhuis--Woolf、Webster などによる別証明もある\tQ。}
+実解析的な $J$ なら複素 Frobenius の定理で足りる。$\dim_{\mathbb R}M=2$ の場合は、等温座標の存在（Korn--Lichtenstein、Chern）に帰着する\tQ。本巻では定理 \ref{thm:NN} を既知として使い、証明はしない。
+
+\paragraph{解析的な場合の証明の方針（Newlander--Nirenberg の特別な場合）。}\tC\
+$J$ が実解析的とする。$L=T^{0,1}$ は実解析的で involutive なので、$M$ を複素化した $M_{\mathbb C}$ 上の（複素解析的な）involutive な分布に拡張でき、複素 Frobenius の定理で $L$ の第一積分 $z_1,\dots,z_n$（$Lz_j=0$）が局所的に得られる。$dz_j$ は $\Lam^{1,0}=\mathrm{Ann}(L)$ の基底をなすので、$(z_j)$ は正則座標。滑らかな場合は Frobenius の代わりに $\bar\partial$ 方程式の解析が必要で、これが定理 \ref{thm:NN} の難しい部分である。
+
+
+\subsection{$J$ と $T^{0,1}$ は同じ情報}
+\begin{prop}\label{prop:JL}\tP
+$M$ 上の概複素構造 $J$ と、部分束 $L\subset\Tc$ で $L\oplus\overline L=\Tc$ をみたすものは、$J\mapsto L=T^{0,1}_J$ により一対一に対応する。逆は、$J=-i$ on $L$、$J=+i$ on $\overline L$ と定める。
+\end{prop}
+\begin{proof}
+$J\mapsto T^{0,1}$ が上の条件をみたすことは §1。逆に $L$ から $\Tc=L\oplus\overline L$ 上の $\mathbb C$-線形写像 $J_C$ を $J_C|_L=-i$、$J_C|_{\overline L}=i$ で定めると、$v=\ell+\bar m\ (\ell,m\in L)$ に対し $\overline{J_Cv}=\overline{-i\ell+i\bar m}=i\bar\ell-i m=J_C\bar v$ なので $J_C$ は実作用素 $J$ の複素化で、$J^2=-1$。二つの構成は互いに逆。\qedhere
+\end{proof}
+定理 \ref{thm:integ} と組み合わせ、定理 \ref{thm:NN} を使うと次の見方を得る。これが第11--13巻への橋渡しの核である。
+
+\begin{keybox}{複素構造の二つの定義（本巻の中心的な見方）}
+$M$ 上の\emph{複素構造} $=$ 部分束 $L\subset\Tc$ で
+\[
+L\cap\overline L=0,\quad L+\overline L=\Tc,\quad [\Gamma(L),\Gamma(L)]\subset\Gamma(L)\ (\text{積分可能})
+\]
+をみたすもの（$L=T^{0,1}$）。$L$ は $\Tc$ の\emph{複素 Lie 亜代数}（包含を anchor とする複素 Lie 亜代数）をなし、同時に $J$ の $-i$ 固有束でもある。$T^{1,0}=\overline L$ は $J$ の $+i$ 固有束。流儀は2つ：
+\begin{itemize}
+\item $J$ で定義する（$N_J=0$ を要請）、
+\item 積分可能な $T^{0,1}$（または $+i$ 固有束 $T^{1,0}$）で定義する。
+\end{itemize}
+符号の約束に注意：$J$ の $+i$ 固有束が $T^{1,0}$。第12巻で用いる一般化複素構造 $\mathcal J$ の $+i$ 固有束 $L\subset(T\oplus T^*)_{\mathbb C}$ に対し、$\mathcal J_J=\begin{pmatrix}-J&0\\0&J^*\end{pmatrix}$ では $L=T^{0,1}\oplus\Lam^{1,0}$ となる（$T$ 成分は $-J$ の $+i$ 固有束 $=T^{0,1}$）\tQ。
+\end{keybox}
+
+\begin{center}
+\begin{tikzcd}[column sep=large,row sep=large]
+J \arrow[r,shift left=1.5,"{L=T^{0,1}}"] & L\subset\Tc \arrow[l,shift left=1.5,"{J=\mp i}"] & \\
+N_J=0 \arrow[r,Leftrightarrow,"\text{補題}"] & {[L,L]\subset L} \arrow[r,Leftrightarrow,"\text{N--N}"] & \text{正則座標が存在}
+\end{tikzcd}
+\end{center}
+
+\begin{rem}
+Lie 亜代数（Lie algebroid）とは、ベクトル束 $A\to M$ に、切断の空間上の Lie 括弧 $[\cdot,\cdot]$ と束写像 $\rho:A\to\Tc$（anchor）で $[a,fb]=f[a,b]+(\rho(a)f)\,b$ を満たすものを与えたものである。$L=T^{0,1}$ は $\rho=$ 包含で、複素 Lie 亜代数である。このとき Lie 亜代数のコホモロジー（Chevalley--Eilenberg 複体）$\Gamma(\Lam^\bullet L^*)=\A^{0,\bullet}$ の微分が $\bar\partial$ になる（問 \ref{p:Lalg}）。第11巻で Lie 亜代数を一般に導入する。
+\end{rem}
+
+\subsection{実 2 次元と実 4 次元}
+\begin{ex}[実 2 次元：$J$ はすべて積分可能]\label{ex:dim2}
+$\operatorname{rank}L=1$ なので $L=\mathrm{span}\{Z\}$ で、$[fZ,gZ]=(fZg-gZf)Z\in L$。ゆえに任意の概複素構造は積分可能（問 \ref{p:dim2} で $N_J=0$ も直接確かめる）。したがって\emph{向きづけられた曲面上の}概複素構造は、共形類と同じ情報である：$J$-不変計量はすべて互いに共形的で、逆に向き付けられた計量から $J=$ （$+90^\circ$ 回転）を定める。Newlander--Nirenberg の 2 次元版は等温座標の存在である。$L=\mathrm{span}\{\partial_{\bar z}-\mu\,\partial_z\}$（$|\mu|<1$、\emph{Beltrami 微分}）が一般の $J$ を与える（問 \ref{p:beltrami}）。
+\end{ex}
+
+\begin{ex}[実 4 次元：積分可能でない $J$]\label{ex:nonint}
+$\mathbb R^4=\mathbb C^2$ 上、滑らかな複素数値関数 $f$ をとり
+\[
+L=\mathrm{span}\{W_1,W_2\},\quad W_1=\partial_{\bar z_1},\quad W_2=\partial_{\bar z_2}+f\,\partial_{z_1}
+\]
+とおく。$W_1,W_2,\overline{W_1}=\partial_{z_1},\overline{W_2}=\partial_{z_2}+\bar f\,\partial_{\bar z_1}$ は基底 $(\partial_{z_1},\partial_{z_2},\partial_{\bar z_1},\partial_{\bar z_2})$ で一次独立なので $L\oplus\overline L=\Tc$、すなわち命題 \ref{prop:JL} により概複素構造 $J_f$ が定まる。
+$[W_1,W_2]=(\partial_{\bar z_1}f)\,\partial_{z_1}$ だから、これが $L$ に入るのは（$\partial_{z_1}\in\overline L$ で $L\cap\overline L=0$ より）$\partial f/\partial\bar z_1=0$ のとき、かつそのときに限る。よって
+\[
+J_f\ \text{は積分可能}\iff \frac{\partial f}{\partial\bar z_1}=0 .
+\]
+$f=\bar z_1$ なら $N(W_1,W_2)=-4\,\partial_{z_1}\ne0$。数値的にも実 Nijenhuis テンソルを計算して確認した（$f=0,\ z_1,\ \bar z_2$ では $N=0$、$f=\bar z_1$ では $N\ne0$）。
+\end{ex}
+
+\begin{ex}[実 4 次元：四元数的な複素構造]\label{ex:quat}
+$\mathbb R^4=\mathbb H$ に左乗法 $I_q=iq$、$J_q=jq$、$K_q=kq$ を考えると、定数係数の概複素構造で（括弧がすべて $0$ なので）積分可能。$aI+bJ+cK\ (a^2+b^2+c^2=1)$ はすべて複素構造で、これらの全体は $S^2$ をなす（問 \ref{p:quat}）。実 4 次元の向き付けられた計量に対し、計量と向きに適合する概複素構造は自己双対 2 形式の単位球面束（$S^2$ 束）の切断として得られる（Atiyah--Hitchin--Singer、Salamon の仕事に基づく記憶\tQ）。
+\end{ex}
+
+\begin{prop}[$\mathbb R^4$ の直交複素構造]\label{prop:S2}\tP
+$\mathbb R^4=\mathbb H$ の標準計量と標準の向き（座標 $(\mathrm{Re}\,z,\mathrm{Im}\,z,\mathrm{Re}\,w,\mathrm{Im}\,w)$）に対し、$J^2=-1$ をみたす直交変換 $J$ で、$J$ が誘導する複素向きが標準の向きに一致するものの全体は $\{aI+bJ+cK\mid a^2+b^2+c^2=1\}\cong S^2$ である。
+\end{prop}
+\begin{proof}
+任意の直交複素構造 $J$ について、単位ベクトル $e_1$ をとり $e_2\perp\{e_1,Je_1\}$ を単位ベクトルに選ぶと $\{e_1,Je_1,e_2,Je_2\}$ は正規直交基底（$g(e,Je)=0$、問 \ref{p:dim2}）で、$J$ はこの基底で標準形。したがってすべての直交複素構造は $O(4)$ の作用で共役で、向きを保つものは $SO(4)$ の作用で共役。標準形 $I$ の固定部分群は $I$ と可換な直交変換 $=U(2)$ なので、軌道は $SO(4)/U(2)$、次元 $6-4=2$ のコンパクト連結多様体。他方 $\{aI+bJ+cK\}$（問 \ref{p:quat}(c)）は直交複素構造の連結（球面）な 2 次元コンパクト部分多様体で、誘導する向きは連続に変わる離散量なので $I$ と同じ。よってこの軌道に含まれ、軌道の中で開かつ閉なので等しい。右乗法 $q\mapsto qi$ は $(z,w)\mapsto(iz,-iw)$ で逆の向きを与える。\qedhere
+\end{proof}
+
+
+\begin{keybox}{要点（§3）}
+$N_J=0\iff[T^{0,1},T^{0,1}]\subset T^{0,1}\iff d=\partial+\bar\partial$。Newlander--Nirenberg：これは正則座標の存在と同値。$J\leftrightarrow L=T^{0,1}$ は全単射で、複素構造 $=$ 積分可能な $L$ $=$ 複素 Lie 亜代数。実2次元では常に積分可能。実4次元以上では積分可能でない $J$ が存在する（例 \ref{ex:nonint}）。
+\end{keybox}
+
+\begin{prob}{標準}\label{p:Ntensor}
+(a) $N_J(fX,Y)=fN_J(X,Y)$ を示せ（これと交代性から $N_J$ はテンソル）。(b) $N_J(X,JY)=-JN_J(X,Y)$ を示せ。
+\end{prob}
+\begin{prob}{標準}\label{p:Nexample}
+例 \ref{ex:nonint} で $f=\bar z_1$ とする。(a) $J_f\partial_{\bar z_2}$ と $J_f\partial_{z_2}$ を $(\partial_{z_1},\partial_{z_2},\partial_{\bar z_1},\partial_{\bar z_2})$ で表せ。(b) $J_f^2\partial_{\bar z_2}=-\partial_{\bar z_2}$ を確かめよ。(c) $N(W_1,W_2)=-4\partial_{z_1}$ を補題 \ref{lem:N} から導け。
+\end{prob}
+\begin{prob}{標準}\label{p:dim2}
+実 2 次元では $N_J\equiv0$ を、基底 $\{e,Je\}$ を使って直接示せ。また、$J$-不変な二つの Riemann 計量 $g,g'$ は互いに関数倍であることを示せ。
+\end{prob}
+\begin{prob}{基本}\label{p:Ndim}
+$N_J\in\Gamma(\Lam^{0,2}\otimes T^{1,0})$ と見なせること（補題 \ref{lem:N} より、$T^{0,1}\times T^{0,1}\to T^{1,0}$ の $C^\infty$-双線形交代写像）に基づき、複素 $n$ 次元の概複素多様体で $N_J$ の自由度（階数）が $n\binom n2$ であることを示し、$n=1,2,3,4$ の値を求めよ。
+\end{prob}
+\begin{prob}{標準}\label{p:quat}
+$\mathbb H=\{q=z+wj\mid z,w\in\mathbb C\}$ とする（$j\,z=\bar z\,j$）。(a) $I_q=iq$ は $(z,w)$ で見て標準的な複素構造であることを示せ。(b) $J_q=jq$ を $(z,w)$ で書き、$J_J$-正則な座標 $\zeta_1=z+i\bar w$、$\zeta_2=\bar z+iw$ を確かめよ。(c) $I,J$ が反可換 $IJ=-JI$ であること、$aI+bJ+cK$（$a^2+b^2+c^2=1$）が $J^2=-1$ をみたすことを示せ。
+\end{prob}
+\begin{prob}{標準}\label{p:beltrami}
+$\mathbb R^2=\mathbb C$ 上 $L_\mu=\mathrm{span}\{\partial_{\bar z}-\mu\partial_z\}$、$\mu=a+ib$ は定数、$|\mu|<1$ とする。(a) $L_\mu\oplus\overline{L_\mu}=\Tc$ を示せ。(b) 対応する $J_\mu$ を $(x,y)$ 基底での行列で求め、$J_\mu^2=-1$ を確かめよ。(c) $w=z+\mu\bar z$ が $J_\mu$-正則座標であることを示せ。
+\end{prob}
+\begin{prob}{標準}\label{p:Lalg}
+$\mathbb C^2$ の標準構造で $L=T^{0,1}=\mathrm{span}\{\partial_{\bar z_1},\partial_{\bar z_2}\}$、$\alpha=\bar z_2\,d\bar z_1\in\A^{0,1}=\Gamma(L^*)$ とする。Chevalley--Eilenberg の公式 $(d_L\alpha)(Z,W)=Z\alpha(W)-W\alpha(Z)-\alpha([Z,W])$ で $d_L\alpha$ を計算し、$\bar\partial\alpha$ と一致することを確かめよ。
+\end{prob}
+\section{$\partial$、$\bar\partial$ と Dolbeault コホモロジー}\label{sec:dolbeault}
+
+以下 $X$ は複素多様体（$J$ は積分可能）。定理 \ref{thm:integ} (d) により $d=\partial+\bar\partial$ と書ける。
+
+\begin{defn}
+$\partial=\pr^{p+1,q}\circ d:\A^{p,q}\to\A^{p+1,q}$、$\bar\partial=\pr^{p,q+1}\circ d:\A^{p,q}\to\A^{p,q+1}$。
+\end{defn}
+正則座標では
+\[
+\bar\partial\Big(f\,dz_I\wedge d\bar z_K\Big)=\sum_j\frac{\partial f}{\partial\bar z_j}\,d\bar z_j\wedge dz_I\wedge d\bar z_K,\qquad
+\partial\Big(f\,dz_I\wedge d\bar z_K\Big)=\sum_j\frac{\partial f}{\partial z_j}\,dz_j\wedge dz_I\wedge d\bar z_K .
+\]
+座標変換が正則なら $dz_I$、$d\bar z_K$ の型は保たれるので、$\bar\partial$ は座標によらず定まる（問 \ref{p:coordindep}）。
+
+\begin{prop}\label{prop:dbar2}\tP
+(i) $\partial^2=0$、$\bar\partial^2=0$、$\partial\bar\partial+\bar\partial\partial=0$。(ii) $\bar\partial(\alpha\wedge\beta)=\bar\partial\alpha\wedge\beta+(-1)^{|\alpha|}\alpha\wedge\bar\partial\beta$。(iii) $\overline{\bar\partial\alpha}=\partial\bar\alpha$。(iv) $f$ が正則 $\iff$ $\bar\partial f=0$。$(p,0)$-形式 $\alpha=\sum_If_Idz_I$ が \emph{正則 $p$ 形式}（係数が正則）$\iff$ $\bar\partial\alpha=0$。
+\end{prop}
+\begin{proof}
+(i)：$0=d^2=(\partial+\bar\partial)^2=\partial^2+(\partial\bar\partial+\bar\partial\partial)+\bar\partial^2$ で、3 項はそれぞれ $\A^{p,q}\to\A^{p+2,q},\A^{p+1,q+1},\A^{p,q+2}$ に値をとるから、型ごとに $0$。(ii)(iii) は $d$ の性質と型から。(iv) は座標表示から。\qedhere
+\end{proof}
+座標を使った別の確認：$\bar\partial^2 f=\sum_{j,k}\frac{\partial^2f}{\partial\bar z_k\partial\bar z_j}d\bar z_k\wedge d\bar z_j=0$（偏微分の対称性と $d\bar z_k\wedge d\bar z_j$ の反対称性）。
+
+\paragraph{Dolbeault 複体。}各 $p$ について
+\[
+0\to\A^{p,0}(X)\xrightarrow{\bar\partial}\A^{p,1}(X)\xrightarrow{\bar\partial}\cdots\xrightarrow{\bar\partial}\A^{p,n}(X)\to0
+\]
+は複体で、そのコホモロジーを \emph{Dolbeault コホモロジー}
+\[
+H^{p,q}_{\bar\partial}(X)=\frac{\ker(\bar\partial:\A^{p,q}\to\A^{p,q+1})}{\operatorname{im}(\bar\partial:\A^{p,q-1}\to\A^{p,q})}
+\]
+という。$H^{0,0}_{\bar\partial}(X)=\Oc(X)$（正則関数）、$H^{p,0}_{\bar\partial}(X)=$ 正則 $p$ 形式の空間。ここで二重複体 $(\A^{p,q},\partial,\bar\partial)$ の見取り図を描いておく。
+\begin{center}
+\begin{tikzcd}[column sep=large,row sep=large]
+\A^{0,2}\arrow[r,"\partial"] & \A^{1,2}\arrow[r,"\partial"] & \A^{2,2}\\
+\A^{0,1}\arrow[r,"\partial"]\arrow[u,"\bar\partial"] & \A^{1,1}\arrow[r,"\partial"]\arrow[u,"\bar\partial"] & \A^{2,1}\arrow[u,"\bar\partial"]\\
+\A^{0,0}\arrow[r,"\partial"]\arrow[u,"\bar\partial"] & \A^{1,0}\arrow[r,"\partial"]\arrow[u,"\bar\partial"] & \A^{2,0}\arrow[u,"\bar\partial"]
+\end{tikzcd}
+\end{center}
+（各正方形は反可換。$d=\partial+\bar\partial$ が全複体。）
+
+\subsection{Dolbeault--Grothendieck の補題（$\bar\partial$-Poincaré 補題）}
+\begin{thm}[Dolbeault--Grothendieck]\tC\label{thm:dolblemma}
+$\Delta\subset\mathbb C^n$ を（半径 $\infty$ も許す）多重円板、$\alpha\in\A^{p,q}(\Delta)$、$q\ge1$、$\bar\partial\alpha=0$ とする。このとき任意の $\Delta'\Subset\Delta$ 上で $\alpha=\bar\partial\beta$ となる $\beta\in\A^{p,q-1}(\Delta')$ が存在する。
+\end{thm}
+\src{Griffiths--Harris, \emph{Principles of Algebraic Geometry}, 第0章（Dolbeault's lemma）。Huybrechts, \emph{Complex Geometry}, §1.3。Hörmander, \emph{An Introduction to Complex Analysis in Several Variables}, 第2--4章。}
+\paragraph{証明の方針。}(1) まず 1 変数。$f\in C_c^\infty(\mathbb C)$ に対し
+\begin{equation}\label{eq:cauchytr}
+u(z)=\frac1{2\pi i}\int_{\mathbb C}\frac{f(w)}{w-z}\,dw\wedge d\bar w
+\end{equation}
+は $\partial u/\partial\bar z=f$ をみたす。\tP\ 実際、$w=z+\zeta$ と置いて微分し、$\partial_{\bar z}f(z+\zeta)=(\partial_{\bar w}f)(w)$ より $\partial_{\bar z}u=\frac1{2\pi i}\int\frac{\partial_{\bar w}f(w)}{w-z}dw\wedge d\bar w$。$d\big(\frac{f\,dw}{w-z}\big)=-\frac{\partial_{\bar w}f}{w-z}\,dw\wedge d\bar w$（$w\ne z$）だから、$|w-z|\ge\epsilon$ で Stokes を使うと境界は円周（向きは反時計回りの逆）で、
+\[
+\int_{|w-z|\ge\epsilon}\frac{\partial_{\bar w}f}{w-z}dw\wedge d\bar w=\oint_{|w-z|=\epsilon}\frac{f(w)}{w-z}dw\xrightarrow{\epsilon\to0}2\pi i\,f(z).
+\]
+よって $\partial_{\bar z}u=f$。(2) 多変数。$(p,q)$ 形式の係数 $dz_I$ は定数として扱えるので $p=0$ としてよい。$\alpha$ が $d\bar z_1,\dots,d\bar z_k$ だけを含む $\bar\partial$-閉な $(0,q)$ 形式（$q\ge1$）であるとして、$k$ に関する帰納法で示す。$k<q$ なら $\alpha=0$ で自明。$k\ge q$ のとき
+\[
+\alpha=d\bar z_k\wedge\gamma+\delta,\qquad\gamma,\delta\ \text{は}\ d\bar z_1,\dots,d\bar z_{k-1}\ \text{だけを含む}
+\]
+と書ける。$\bar\partial\alpha=0$ の $d\bar z_j$（$j>k$）成分から、$\gamma,\delta$ の係数は $z_{k+1},\dots,z_n$ について正則。$\gamma=\sum_I\gamma_Id\bar z_I$ の各係数 $\gamma_I$ に対し、(1) を $z_k$ の変数について（切り捨て関数をかけて）適用して
+\[
+g_I(z)=\frac1{2\pi i}\int_{\mathbb C}\frac{\chi(w)\gamma_I(z_1,\dots,w,\dots,z_n)}{w-z_k}dw\wedge d\bar w
+\]
+とおく。$\chi$ は $\Delta'$ の上で $1$ となる $z_k$ 方向の切り捨て関数。$\partial g_I/\partial\bar z_k=\gamma_I$（$\Delta'$ 上）で、$j>k$ については $\gamma_I$ が $z_j$ について正則なので積分記号下で $\partial g_I/\partial\bar z_j=0$、すなわち $g_I$ も $z_{k+1},\dots,z_n$ について正則。$\beta_1=\sum_Ig_Id\bar z_I$ とおくと、$\alpha-\bar\partial\beta_1$ は $d\bar z_k$ を含まない（$d\bar z_j$（$j>k$）の成分は $g_I$ の正則性で現れない）。これは $\bar\partial$-閉で $d\bar z_1,\dots,d\bar z_{k-1}$ だけを含むので、帰納法の仮定でさらに小さい多重円板上 $\bar\partial\beta_2$ に等しい。$\beta=\beta_1+\beta_2$。各段階で領域を少しずつ縮めるので、最終的に $\Delta'\Subset\Delta$ を得る。\hfill$\square$
+
+\begin{cor}[局所的な $\bar\partial$-完全性]
+$\bar\partial\alpha=0$、$q\ge1$ ならば各点のまわりで $\alpha=\bar\partial\beta$。さらに多重円板 $\Delta$ 自身の上でも $H^{p,q}_{\bar\partial}(\Delta)=0$（$q\ge1$）が成り立つが、これには $\Delta$ の増大する縮小列上の解を修正しながら貼り合わせる近似の議論が要る（Griffiths--Harris、Huybrechts \S1.3 参照）\tC。
+\end{cor}
+
+\begin{ex}[楕円曲線の Dolbeault コホモロジー（Fourier 級数）]\label{ex:ell}\tP
+$E=\mathbb C/(\mathbb Z+i\mathbb Z)$、$z=x+iy$。指標 $\chi_{m,n}(z)=e^{2\pi i(mx+ny)}$（$(m,n)\in\mathbb Z^2$）は
+\[
+\frac{\partial\chi_{m,n}}{\partial\bar z}=\tfrac12(\partial_x+i\partial_y)\chi_{m,n}=\pi i\,(m+in)\,\chi_{m,n},
+\]
+で、$(m,n)\ne(0,0)$ なら係数 $\pi i(m+in)\ne0$。滑らかな周期関数 $f=\sum a_{m,n}\chi_{m,n}$ の Fourier 係数は急減少する。$\bar\partial$-閉な $(0,1)$ 形式 $f\,d\bar z$（1 次元なので常に閉）について
+\[
+u=\sum_{(m,n)\ne0}\frac{a_{m,n}}{\pi i(m+in)}\chi_{m,n}
+\]
+は（$|m+in|\ge1$ より係数が急減少のまま）滑らかで $\bar\partial u=(f-a_{0,0})\,d\bar z$。したがって $[f\,d\bar z]=a_{0,0}[d\bar z]$。また $d\bar z=\bar\partial u$ と仮定すると、右辺の $\chi_{0,0}$ 成分は $0$ なので矛盾。ゆえに
+\[
+H^{0,1}_{\bar\partial}(E)=\mathbb C\,[d\bar z],\qquad H^{0,0}_{\bar\partial}(E)=\mathbb C\ (\text{定数}),
+\]
+（$\bar\partial u=0$ なら非零の係数が全て $0$）。同様に $H^{1,0}=\mathbb C\,dz$、$H^{1,1}=\mathbb C\,dz\wedge d\bar z$。$H^{0,1}\ne0$ は、コンパクト複素多様体で $\bar\partial$-閉な形式が必ずしも完全でないことの最初の例である。
+\end{ex}
+\begin{prop}[複素トーラスの Dolbeault コホモロジー]\label{prop:torusdolb}\tP
+$X=\mathbb C^n/\Lambda$ のとき、定数係数の形式 $dz_I\wedge d\bar z_K$ は $\bar\partial$-閉で、$H^{p,q}_{\bar\partial}(X)$ はそれらが張る空間 $\Lam^p(\mathbb C^n)^*\otimes\Lam^q\overline{(\mathbb C^n)^*}$（次元 $\binom np\binom nq$）に等しい。
+\end{prop}
+\begin{proof}
+$X=\mathbb R^{2n}/\mathbb Z^{2n}$（問 \ref{p:torus1}）と同一視し、形式の係数を指標で Fourier 展開する。指標 $\chi_\xi$（$\xi\in\mathbb Z^{2n}$）について $\bar\partial\chi_\xi=\sum_jc_j(\xi)\,d\bar z_j\,\chi_\xi$（$c_j(\xi)=\partial_{\bar z_j}\chi_\xi/\chi_\xi$ は定数）で、$\xi\ne0$ なら $c(\xi)=\sum c_jd\bar z_j\ne0$（実際 $c_j=0\ \forall j$ なら $\chi_\xi$ は正則かつ周期的で定数）。複体は $\xi$ 成分ごとに直和分解し、$\xi$ 成分では $\bar\partial=c(\xi)\wedge$。$\xi\ne0$ では $b(c(\xi))=1$ となる反変ベクトル $b$ により内部積 $\iota_b$ が $\iota_b(c\wedge\cdot)+c\wedge\iota_b=\mathrm{id}$ をみたすので完全。$\xi=0$ 成分は微分が $0$ で、定数係数形式がそのままコホモロジー。Fourier 係数の急減少から、$\xi\ne0$ 成分の原始形式の和も滑らか。\qedhere
+\end{proof}
+
+$\mathbb C^n$ 全体や Stein 多様体でも $q\ge1$ で消える（Hörmander の $L^2$ 評価）が、一般の $X$ では $H^{p,q}\ne0$ で、これが大域幾何を表す。層論（第3巻）で $H^{p,q}_{\bar\partial}(X)\cong H^q(X,\Omega^p)$（Dolbeault の定理）となる。
+
+\begin{ex}[Dolbeault コホモロジーの例]\label{ex:hpq}\tC
+$H^{p,q}_{\bar\partial}(\CP^n)=\mathbb C$（$p=q\le n$）、$=0$（それ以外）。複素トーラス $\mathbb C^n/\Lambda$ では $H^{p,q}_{\bar\partial}\cong\Lam^p(\mathbb C^n)^*\otimes\Lam^q\overline{(\mathbb C^n)^*}$（$dz_I\wedge d\bar z_K$ が基底、次元 $\binom np\binom nq$）で、これは命題 \ref{prop:torusdolb} で証明した。$\CP^n$ の場合は第3、5巻で証明する（層コホモロジー／Hodge 理論）。参考：Griffiths--Harris 第0章（Hodge 理論）、Huybrechts の第3章（Hodge 理論）。
+\end{ex}
+
+
+\begin{rem}[$\bar\partial$ 方程式の応用：Hartogs の拡張定理と $H^{0,1}$]\label{rem:hartogs}\tC
+$n\ge2$ とする。$K\subset\mathbb C^n$ がコンパクトで $\mathbb C^n\setminus K$ が連結ならば、$\mathbb C^n\setminus K$ 上の正則関数は $\mathbb C^n$ 上の正則関数に一意に拡張される（Hartogs）。証明の筋：切り捨て関数 $\chi$（$K$ の近傍で $1$、台はコンパクト）で $g=(1-\chi)f$ とおくと、$\bar\partial g=-f\bar\partial\chi$ は台がコンパクトで $\bar\partial$-閉な $(0,1)$ 形式。$n\ge2$ では $\bar\partial u=-f\bar\partial\chi$ の台がコンパクトな解 $u$ がとれ（上の帰納法で Cauchy 変換が台の外で正則になることと、一致の定理を使う）、$F=g-u$ が求める拡張。$n=1$ ではこれが成り立たないことが、1 変数の特異点（極）の存在に対応する。同じ議論で $H^{0,1}(\mathbb C^2\setminus\{0\})$ は無限次元であることがわかる。ともに第3巻（層コホモロジー、局所コホモロジー）で扱う。出典：Hörmander, 第2章。
+\end{rem}
+
+\begin{keybox}{要点（§4）}
+積分可能 $\Rightarrow$ $d=\partial+\bar\partial$、$\bar\partial^2=0$。Dolbeault 複体 $(\A^{p,\bullet},\bar\partial)$ のコホモロジー $H^{p,q}_{\bar\partial}$ は $q=0$ で正則 $p$ 形式。局所的には $q\ge1$ で $\bar\partial$-完全（Dolbeault--Grothendieck、1 変数の核は Cauchy 変換 \eqref{eq:cauchytr}）。大域的な非自明性が複素幾何の中身。
+\end{keybox}
+
+\begin{prob}{基本}\label{p:dbarcalc}
+$\mathbb C^2$ 上で $\beta=|z_1|^2z_2\,d\bar z_1+z_1\bar z_2\,dz_2$ について $\partial\beta$ と $\bar\partial\beta$ を求めよ。また 1 変数で $\partial\bar\partial(|z|^4)$ を求めよ。
+\end{prob}
+\begin{prob}{標準}\label{p:logg}
+$\mathbb C^n$ 上 $\phi=\log(1+|z|^2)$ とする。(a) $\dfrac{\partial^2\phi}{\partial z_j\partial\bar z_k}=\dfrac{\delta_{jk}}{1+|z|^2}-\dfrac{\bar z_jz_k}{(1+|z|^2)^2}$ を示せ。(b) 任意の $v\in\mathbb C^n$ について $\sum_{j,k}\frac{\partial^2\phi}{\partial z_j\partial\bar z_k}v_j\bar v_k=\dfrac{|v|^2(1+|z|^2)-|\sum_jv_j\bar z_j|^2}{(1+|z|^2)^2}>0$（$v\ne0$）を示せ。(c) 行列 $(\partial_j\bar\partial_k\phi)$ の行列式は $(1+|z|^2)^{-(n+1)}$ であることを示せ。
+\end{prob}
+\begin{prob}{標準}\label{p:solve}
+(a) $u(z)=(1-e^{-|z|^2})/z$ は $\partial u/\partial\bar z=e^{-|z|^2}$ をみたし、$|z|\to\infty$ で $u\sim1/z$ であることを示せ。式 \eqref{eq:cauchytr} の $f=e^{-|w|^2}$ ($f$ はコンパクト台ではないが急減少) による $u$ と一致するか。(b) $u(z)=\bar z/(1+|z|^2)$ は $\partial u/\partial\bar z=(1+|z|^2)^{-2}$ をみたす。
+\end{prob}
+\begin{prob}{基本}\label{p:coordindep}
+正則座標変換 $w=\varphi(z)$ のもとで $dw_j=\sum_k\frac{\partial\varphi_j}{\partial z_k}dz_k$、$d\bar w_j=\sum_k\overline{(\partial\varphi_j/\partial z_k)}d\bar z_k$ であることを使い、$\A^{p,q}$ の定義が座標によらず、$\bar\partial=\pr^{p,q+1}\circ d$ が座標表示の式と一致することを示せ。
+\end{prob}
+
+\begin{prob}{標準}\label{p:fourier}
+$E=\mathbb C/(\mathbb Z+i\mathbb Z)$ 上で $f=\cos(2\pi x)+\cos(2\pi y)+5$ とする。$\bar\partial u=(f-5)\,d\bar z$ をみたす $u$ を Fourier 級数（例 \ref{ex:ell}）で求めよ。$d\bar z$ 自身が $\bar\partial$-完全でないことの理由も述べよ。
+\end{prob}
+\begin{prob}{発展}\label{p:torusfourier}
+命題 \ref{prop:torusdolb} の証明の詳細を補え：(a) $\xi\ne0$ のとき $c(\xi)\ne0$ を示せ。(b) 複体 $(\Lam^\bullet,c\wedge)$（$c\ne0$）が完全であることを内部積で示せ。(c) $n=2$ の $H^{0,1}$ の次元が $2$ であることを具体的に確かめよ。
+\end{prob}
+
+
+\section{正則ベクトル束と $\bar\partial$-作用素}\label{sec:holbundle}
+
+\begin{defn}[正則ベクトル束]
+複素多様体 $X$ 上の階数 $r$ の複素ベクトル束 $E\to X$ で、局所自明化 $\{\phi_\alpha:E|_{U_\alpha}\to U_\alpha\times\mathbb C^r\}$ の変換関数 $g_{\alpha\beta}:U_\alpha\cap U_\beta\to GL_r(\mathbb C)$ がすべて正則なものを\emph{正則ベクトル束}という。局所正則枠 $e_1,\dots,e_r$（$\phi_\alpha^{-1}$ による標準枠）をもつ。切断 $s$ が\emph{正則}とは、正則枠で成分が正則関数であること。
+\end{defn}
+接束 $T^{1,0}X$（変換関数は複素 Jacobi 行列）、余接束 $\Omega^1_X=\Lam^{1,0}$、標準束 $K_X=\Lam^nT^{*1,0}=\Omega^n_X$、$\Omega^p_X=\Lam^{p,0}$ は正則ベクトル束で、双対・テンソル積・直和・外積をとる操作でも正則性は保たれる。
+
+\begin{ex}[$\CP^1$ 上の直線束 $\Oc(k)$]\label{ex:Ok}
+$\CP^1=U_0\cup U_1$（$z=Z_1/Z_0$、$w=1/z$）。タウトロジー束 $\Oc(-1)=\{([Z],v)\mid v\in\mathbb C Z\}$ は、$U_0$ 上の枠 $e_0=(1,z)$、$U_1$ 上の枠 $e_1=(w,1)$ をもち、$e_0=z\,e_1$。断面 $s=f_0e_0=f_1e_1$ の成分は $f_1=zf_0$。$\Oc(k)=\Oc(-1)^{\otimes(-k)}$ の成分の変換は $f_1=z^{-k}f_0$。後述の通り $\deg\Oc(k)=k$。
+\end{ex}
+
+\subsection{$\bar\partial_E$ 作用素}
+正則ベクトル束 $E$ に対し、$\A^{p,q}(E)=\Gamma(\Lam^{p,q}\otimes E)$ とおく。局所正則枠 $\{e_i\}$ について
+\[
+\bar\partial_E\Big(\sum_i\alpha_i\otimes e_i\Big)=\sum_i\bar\partial\alpha_i\otimes e_i\qquad(\alpha_i\in\A^{p,q})
+\]
+と定める。別の正則枠 $e'_j=\sum_ig_{ij}e_i$（$g_{ij}$ 正則）に取り替えても、$\bar\partial g_{ij}=0$ なので同じ作用素を与える。したがって $\bar\partial_E:\A^{p,q}(E)\to\A^{p,q+1}(E)$ が大域的に定義され、
+\begin{equation}\label{eq:dbarE}
+\bar\partial_E(f s)=\bar\partial f\wedge s+f\,\bar\partial_Es,\qquad\bar\partial_E^2=0,\qquad \ker(\bar\partial_E|_{\A^{0,0}(E)})=\Gamma_{\mathrm{hol}}(E)
+\end{equation}
+をみたす。$\bar\partial_E$ のコホモロジーを $H^{p,q}_{\bar\partial}(X,E)$ と書く（$E$ 係数の Dolbeault コホモロジー）。$H^{0,0}(X,E)=\Gamma_{\mathrm{hol}}(X,E)$。
+
+\begin{defn}[$\bar\partial$-作用素]
+複素ベクトル束 $E\to X$ 上の \emph{$\bar\partial$-作用素}（正則構造の候補）とは、$\mathbb C$-線形写像 $D'':\A^{0,0}(E)\to\A^{0,1}(E)$ で Leibniz 則 $D''(fs)=\bar\partial f\otimes s+fD''s$ をみたすもの。$D''$ を $\A^{0,q}(E)\to\A^{0,q+1}(E)$ に $D''(\alpha\wedge s)=\bar\partial\alpha\wedge s+(-1)^{|\alpha|}\alpha\wedge D''s$ で拡張する。\emph{可積分}とは $D''^2=0$ のこと。
+\end{defn}
+
+\begin{thm}[Koszul--Malgrange]\tC\label{thm:KM}
+$E\to X$ を複素多様体上の複素ベクトル束、$D''$ を可積分な $\bar\partial$-作用素とする。このとき $E$ の正則構造で $\bar\partial_E=D''$ となるものが一意に存在する。すなわち、\emph{正則ベクトル束 $\iff$ 可積分な $\bar\partial$-作用素 $(E,D'')$}（$D''^2=0$）。
+\end{thm}
+\src{J.-L.~Koszul, B.~Malgrange, Sur certaines structures fibrées complexes, Arch.\ Math.\ 9 (1958)\tQ。教科書では Kobayashi, \emph{Differential Geometry of Complex Vector Bundles}, 第1章；Donaldson--Kronheimer, \emph{The Geometry of Four-Manifolds}, 第2章（節番号は未確認）\tQ。Riemann 面上は Atiyah--Bott, Phil.\ Trans.\ R.\ Soc.\ Lond.\ A 308 (1983), §5 \tQ。}
+一意性は明らか（正則切断は $\ker D''$）。存在は $D''^2=0$ から $D''$-平行な局所枠を見つける問題で、Newlander--Nirenberg の証明と同じ型の解析を要する。\emph{直線束の場合は Dolbeault 補題だけで足りる}ことを次の命題で示す。
+
+\begin{prop}[直線束の場合]\label{prop:linefrm}\tP
+$L=\Delta\times\mathbb C$（$\Delta\subset\mathbb C^n$ 多重円板）の自明な $C^\infty$ 直線束上の $\bar\partial$-作用素は $D''s=\bar\partial s+s\,a$（$a\in\A^{0,1}(\Delta)$）の形で、$D''^2=0\iff\bar\partial a=0$。このとき（$\Delta$ を少し小さくして）$a=\bar\partial u$ となる $u\in C^\infty$ があり、$D''(e^{-u}h)=e^{-u}\bar\partial h$。すなわち正則切断は $e^{-u}h$（$h$ 正則）で、$e^{-u}$ が正則枠。
+\end{prop}
+\begin{proof}
+標準枠 $1$ をとり $a=D''1$ とおけば Leibniz 則から $D''s=\bar\partial s+sa$ の形。$\beta\in\A^{0,1}$ について $D''(\beta\cdot1)=\bar\partial\beta-\beta\wedge a$ だから $D''^2s=\bar\partial(\bar\partial s+sa)-(\bar\partial s+sa)\wedge a=s\,\bar\partial a$（$a\wedge a=0$）。よって可積分 $\iff\bar\partial a=0$。定理 \ref{thm:dolblemma} で $a=\bar\partial u$。$D''(e^{-u}h)=-e^{-u}h\,\bar\partial u+e^{-u}\bar\partial h+e^{-u}h\,a=e^{-u}\bar\partial h$。\qedhere
+\end{proof}
+特に複素 1 次元（Riemann 面）では $\A^{0,2}=0$ なので任意の $\bar\partial$-作用素が可積分（$\bar\partial_E$ の枠の存在は階数が高くても成り立つ、Atiyah--Bott\tQ）。
+
+\begin{rem}[Lie 亜代数としての見方（第13巻への橋渡し）]\label{rem:Lconn}
+$L=T^{0,1}$ とすると $\Lam^{0,q}\otimes E=\Lam^qL^*\otimes E$ で、$D''$ は $L$ に沿った微分 $D''_Z:\Gamma(E)\to\Gamma(E)$（$Z\in\Gamma(L)$）の族、つまり「$L$-接続」である。$D''^2=0$ は、この $L$-接続が\emph{平坦}であること：$D''_ZD''_W-D''_WD''_Z=D''_{[Z,W]}$ と同値（$d_L$ の公式、問 \ref{p:Lalg}）。したがって
+\[
+\text{正則ベクトル束}=T^{0,1}\ \text{上の平坦 $L$-接続を持つ束}=\text{Lie 亜代数 $L$ の加群}
+\]
+という見方が成り立つ。第12--13巻で $L$ を一般化複素構造の $+i$ 固有束（Courant 積分可能な部分束）に置き換えると、同じ定義から「一般化正則束」「Poisson 加群」が得られる。
+\end{rem}
+
+
+
+\begin{ex}[$\CP^n$ の正則切断：斉次多項式]\label{ex:Hsec}\tC
+$\Oc(k)$（$k\ge0$）の正則切断は、$\mathbb C^{n+1}$ 上の次数 $k$ の斉次多項式 $P(Z_0,\dots,Z_n)$ と一対一に対応し、$\dim H^0(\CP^n,\Oc(k))=\binom{n+k}k$。これは次の構成による。$P$ に対し、直線 $\ell=\mathbb C v$ の上の関数 $\ell^{\otimes k}\to\mathbb C$、$v^{\otimes k}\mapsto P(v)$ を対応させる（$P$ の斉次性により well-defined）。これは $\Oc(-1)^{\otimes k}=\ell^{\otimes k}$ の双対 $\Oc(k)$ の切断。$U_0$ で $e_0^{\otimes(-k)}$（$e_0=(1,z)$）を枠にすると成分は $f_0(z)=P(1,z_1,\dots,z_n)$、多項式なので正則。逆に、正則切断 $s$ を $\mathbb C^{n+1}\setminus0$ へ引き戻すと、各 $U_i$ の成分 $f_i$ から $F(Z)=Z_i^{k}f_i(Z/Z_i)$ と定めて（重なりで一致する）、$\mathbb C^{n+1}\setminus0$ 上の正則関数 $F$ で $F(\lambda Z)=\lambda^kF(Z)$（$\lambda\in\mathbb C^*$）をみたすものを得る。$n+1\ge2$ なので Hartogs の拡張定理（注意 \ref{rem:hartogs}、$K=\{0\}$）により $F$ は $\mathbb C^{n+1}$ 全体の正則関数に拡張される。原点での Taylor 展開 $F=\sum_{m\ge0}F_m$（$F_m$ は $m$ 次の斉次多項式）を $F(\lambda Z)=\lambda^kF(Z)$ に代入して $\lambda$ のべきの係数を比べると、$m\ne k$ なら $F_m=0$。よって $F=F_k$ は $k$ 次斉次多項式（$k<0$ なら $F=0$）で、$f_0(z)=F(1,z)$ である。（$n=1$ の直接計算は問 \ref{p:Ok}。）$n=1$ では $\binom{1+k}k=k+1$ と一致。
+\end{ex}
+
+\subsection{正則ベクトル束の演算と、正則構造の非一意性}
+$E,F$ を正則ベクトル束とすると $E\oplus F$、$E\otimes F$、$E^*$、$\Hom(E,F)$、$\Lam^kE$ が正則ベクトル束になる（変換関数が正則）。$\bar\partial$-作用素は
+\[
+\bar\partial_{E\otimes F}=\bar\partial_E\otimes1+1\otimes\bar\partial_F,\qquad(\bar\partial_{E^*}\varphi)(s)=\bar\partial(\varphi(s))-\varphi(\bar\partial_Es)
+\]
+で与えられる（局所正則枠で確かめればよい）。$\Hom(E,F)$ の正則切断は、$\bar\partial_F\circ\varphi=\varphi\circ\bar\partial_E$ をみたす $\varphi$、すなわち正則な束準同型である。
+
+\begin{ex}[位相的には同じで正則には異なる束]\label{ex:nonuniq}\tP
+$\CP^1$ 上で $E=\Oc(1)\oplus\Oc(-1)$ と $E'=\Oc\oplus\Oc$ は、$c_1=0$ なので $C^\infty$ 複素ベクトル束としては同型（$S^2$ 上の階数 2 の複素束は $\pi_1(U(2))=\mathbb Z$ で分類される）。しかし正則束としては同型でない：$\Oc(-1)$ をテンソルして $E(-1)=\Oc\oplus\Oc(-2)$、$E'(-1)=\Oc(-1)^{\oplus2}$ で、問 \ref{p:Ok} により $h^0(E(-1))=1+0=1\ne0=h^0(E'(-1))$。したがって、同じ $C^\infty$ 束に異なる正則構造（$\bar\partial$-作用素）が入る。$\CP^1$ 上の正則ベクトル束はすべて $\bigoplus\Oc(a_i)$ に同型である（Grothendieck、第4巻\tC\tQ）。
+同様に、Euler 完全列 $0\to\Oc\to\Oc(1)^{\oplus2}\to\Oc(2)\to0$ は分裂しない：$-2$ ねじって $h^0$ を見ると $h^0(\Oc(-1)^{\oplus2})=0$、$h^0(\Oc(-2)\oplus\Oc)=1$。
+\end{ex}
+
+\begin{keybox}{要点（§5）}
+正則束 $\Rightarrow$ $\bar\partial_E$（$\bar\partial_E^2=0$、$\ker=$ 正則切断）。逆に可積分な $\bar\partial$-作用素は正則構造を決める（Koszul--Malgrange、直線束は Dolbeault 補題で証明）。$E$ の正則構造 $=$ $T^{0,1}$-加群構造。
+\end{keybox}
+
+\begin{prob}{標準}\label{p:Ok}
+$\CP^1$ 上の $\Oc(k)$ の大域正則切断を、例 \ref{ex:Ok} の成分 $f_0(z)$（$\mathbb C$ 上の整関数）、$f_1(w)$（整関数）、$f_1=z^{-k}f_0$ から求め、$\dim H^0(\CP^1,\Oc(k))=\max(k+1,0)$ を示せ。
+\end{prob}
+\begin{prob}{標準}\label{p:gauge}
+$\mathbb C$ 上の自明な直線束で $D''=\bar\partial+z\,d\bar z$ を考える。(a) $D''$ は可積分であることを示せ。(b) $D''$ の正則切断を求めよ。(c) 全平面で正則切断が $e^{-|z|^2}h(z)$（$h$ 整関数）の形になることを確かめよ。
+\end{prob}
+\begin{prob}{基本}\label{p:integr}
+$\mathbb C^2$ の自明直線束上 $D''=\bar\partial+a$、$a=a_1d\bar z_1+a_2d\bar z_2$ について、可積分条件は $\partial a_2/\partial\bar z_1=\partial a_1/\partial\bar z_2$ であることを示せ。$a=\bar z_2d\bar z_1$ は可積分か。$a=\bar z_2d\bar z_1+\bar z_1d\bar z_2$ に対し $u$ ($a=\bar\partial u$) を求めよ。
+\end{prob}
+\section{Hermite 計量と Chern 接続、第1 Chern 類}\label{sec:chern}
+
+$E\to X$ を正則ベクトル束とする。$E$ の\emph{Hermite 計量} $h$ とは、各ファイバーの Hermite 内積（第1変数で $\mathbb C$-線形、第2変数で反線形、正定値）で滑らかに変わるもの。1 の分割により、任意の複素ベクトル束に Hermite 計量が存在する。局所正則枠 $e_1,\dots,e_r$ に対し $H=(H_{ij})$、$H_{ij}=h(e_i,e_j)$ とおく（$H^*=H$、正定値）。
+
+接続 $\nabla$ は $h$ と\emph{両立}するとは、$dh(s,t)=h(\nabla s,t)+h(s,\nabla t)$ のこと。$\nabla=\nabla^{1,0}+\nabla^{0,1}$（$\nabla^{1,0}:\A^{0,0}(E)\to\A^{1,0}(E)$、$\nabla^{0,1}:\A^{0,0}(E)\to\A^{0,1}(E)$）と型で分解する。
+
+\begin{thm}[Chern 接続]\label{thm:Chern}\tP
+$(E,h)$ を正則 Hermite ベクトル束とする。$E$ 上の接続 $\nabla$ で
+\[
+\text{(i) }\ h\text{ と両立},\qquad\text{(ii) }\ \nabla^{0,1}=\bar\partial_E
+\]
+をみたすものがただ一つ存在する（\emph{Chern 接続}）。局所正則枠での接続行列（$\nabla e_j=\sum_k\theta_{kj}e_k$）は
+\begin{equation}\label{eq:theta}
+\theta=\bar H^{-1}\partial\bar H,\qquad \bar H=\overline{H}=H^{T},
+\end{equation}
+曲率は $\Theta=d\theta+\theta\wedge\theta=\bar\partial\theta$ で、\emph{$(1,1)$ 型}、すなわち $\Theta\in\A^{1,1}(\End E)$。
+\end{thm}
+\begin{proof}
+\emph{一意性。}(ii) より $\theta$ は $(1,0)$ 形式の行列。両立性は
+\[
+dH_{ij}=\sum_k\theta_{ki}H_{kj}+\sum_kH_{ik}\overline{\theta_{kj}},\quad\text{すなわち}\quad dH=\theta^TH+H\bar\theta .
+\]
+$(1,0)$ 成分をとると $\partial H=\theta^TH$、よって $\theta^T=\partial H\,H^{-1}$、転置して \eqref{eq:theta}（$(H^{-1})^T=\bar H^{-1}$、$(\partial H)^T=\partial\bar H$）。
+\emph{存在。}各 $U_\alpha$ で \eqref{eq:theta} により $\nabla$ を定める。(ii) は $\theta$ が $(1,0)$ 型だから成立。(i)：$(1,0)$ 成分 $\partial H=\theta^TH$ は定義、$(0,1)$ 成分は $H^*=H$ により前者の複素共役の転置で、成り立つ。局所的な $\nabla$ は重なりで一意性により一致し、貼り合う。
+\emph{曲率。}$\partial\theta=\partial(\bar H^{-1})\wedge\partial\bar H=-\bar H^{-1}\partial\bar H\,\bar H^{-1}\wedge\partial\bar H=-\theta\wedge\theta$ より $\partial\theta+\theta\wedge\theta=0$。$\theta\wedge\theta$ は $(2,0)$、$\partial\theta$ も $(2,0)$、$\bar\partial\theta$ は $(1,1)$ なので $\Theta=\bar\partial\theta\in\A^{1,1}$。\qedhere
+\end{proof}
+\src{S.-S.~Chern, Characteristic classes of Hermitian manifolds, Ann.\ of Math.\ 47 (1946)。Huybrechts, \emph{Complex Geometry}, 第4章（Hermite 計量・Chern 接続）；Griffiths--Harris, 第0章（ベクトル束と曲率）。}
+
+\paragraph{直線束。}$L$ が直線束で正則枠 $e$、$h(e,e)=h>0$（関数）なら
+\begin{equation}\label{eq:linecurv}
+\theta=\partial\log h,\qquad\Theta=\bar\partial\partial\log h=-\partial\bar\partial\log h .
+\end{equation}
+$\theta$ は座標変換でゲージ変換される。$i\Theta$ は実形式（$\overline{i\bar\partial\partial f}=-i\partial\bar\partial f=i\bar\partial\partial f$、$f$ 実）。
+
+\begin{defn}[第1 Chern 類]
+正則直線束 $L$ の Hermite 計量 $h$ の Chern 曲率 $\Theta_h$ について
+\[
+c_1(L)=\Big[\frac i{2\pi}\Theta_h\Big]\in H^2_{dR}(X;\mathbb R).
+\]
+一般のベクトル束 $E$ では $c_1(E)=\big[\frac i{2\pi}\tr\Theta\big]=c_1(\det E)$。
+\end{defn}
+$c_1$ が $h$ によらないことは、$h'=e^{-\psi}h$（$\psi$ は実関数）とすると $\frac i{2\pi}(\Theta_{h'}-\Theta_h)=\frac i{2\pi}\partial\bar\partial\psi=d\big(\tfrac i{4\pi}(\bar\partial-\partial)\psi\big)$ が完全形式であることから従う（問 \ref{p:indep}）。これは Chern--Weil 理論（第1巻）の特別な場合である。$c_1(L\otimes L')=c_1(L)+c_1(L')$（$h\otimes h'$ では $\log$ が加わる）、$c_1(L^*)=-c_1(L)$（双対計量は $h^{-1}$）。
+
+\begin{ex}[自明束と重み関数]
+自明直線束 $\mathbb C\times\Delta$ に $h=e^{-\varphi}$（$\varphi$ は実関数）を入れると $\theta=-\partial\varphi$、$\Theta=\partial\bar\partial\varphi$、$\frac i{2\pi}\Theta=\frac i{2\pi}\partial\bar\partial\varphi$。たとえば $\mathbb C$ 上で $\varphi=|z|^2$ なら $\frac i{2\pi}\Theta=\frac1\pi dx\wedge dy>0$。Gauss 重み $e^{-|z|^2}$ は「正曲率」の計量で、問 \ref{p:gauge} の正則切断 $e^{-|z|^2}h(z)$ とつながる（Kodaira 型定理は第5巻）。
+\end{ex}
+
+\begin{ex}[$\CP^1$ の直線束 $\Oc(k)$ の次数]\label{ex:degk}\tP
+例 \ref{ex:Ok} の $\Oc(-1)$ に $\mathbb C^2$ の標準計量から誘導される計量を入れると $h(e_0)=|(1,z)|^2=1+|z|^2$（$h(e_1)=1+|w|^2$ で一致する）。$\Oc(k)$ には $h_k(e_0^{\otimes(-k)})=(1+|z|^2)^{-k}$ を入れる。\eqref{eq:linecurv} より
+\[
+\frac i{2\pi}\Theta_{h_k}=k\cdot\frac i{2\pi}\partial\bar\partial\log(1+|z|^2)=\frac{k}{\pi}\frac{dx\wedge dy}{(1+|z|^2)^2},\qquad\int_{\CP^1}c_1(\Oc(k))=\frac k\pi\cdot\pi=k .
+\]
+ここで $\frac i2dz\wedge d\bar z=dx\wedge dy$、$\partial\bar\partial\log(1+|z|^2)=\frac{dz\wedge d\bar z}{(1+|z|^2)^2}$（問 \ref{p:logg}）。よって $\deg\Oc(k)=k$。
+\end{ex}
+
+
+\paragraph{演算と Chern 接続。}\tP\ $(E,h)$、$(F,k)$ の Chern 接続について、$E^*$（双対計量）の Chern 接続は $E$ の Chern 接続の双対接続で $\theta_{E^*}=-\theta^T$、曲率は $\Theta_{E^*}=-\Theta^T$。$E\otimes F$ の曲率は $\Theta_E\otimes1+1\otimes\Theta_F$。実際、これらの接続は計量と両立し $(0,1)$ 成分が $\bar\partial_{E^*}$、$\bar\partial_{E\otimes F}$ なので、一意性（定理 \ref{thm:Chern}）で Chern 接続になる。また $\det E$ の枠 $e_1\wedge\cdots\wedge e_r$ の計量は $\det H$ で、$\tr\theta=\tr(\bar H^{-1}\partial\bar H)=\partial\log\det\bar H=\partial\log\det H=\theta_{\det E}$、したがって $\tr\Theta_E=\Theta_{\det E}$。ゆえに
+\[
+c_1(E)=c_1(\det E),\qquad c_1(E^*)=-c_1(E),\qquad c_1(E\otimes F)=\rk F\,c_1(E)+\rk E\,c_1(F).
+\]
+
+\begin{keybox}{要点（§6）}
+$(E,\bar\partial_E,h)$ $\Rightarrow$ Chern 接続 $\nabla=\nabla^{1,0}+\bar\partial_E$（唯一）。正則枠で $\theta=\bar H^{-1}\partial\bar H$、曲率 $\Theta=\bar\partial\theta$ は $(1,1)$ 型。直線束では $c_1=\frac i{2\pi}\bar\partial\partial\log h$。$\deg\Oc(k)=k$。
+\end{keybox}
+
+\begin{prob}{標準}\label{p:rank2}
+$\mathbb C$ 上の自明な階数 2 束に $H=\begin{pmatrix}1&z\\ \bar z&1+|z|^2\end{pmatrix}$（$H_{ij}=h(e_i,e_j)$）を入れる。(a) $H$ は正定値で $\det H=1$ を示せ。(b) $\theta=\bar H^{-1}\partial\bar H$ と $\Theta=\bar\partial\theta$ を求めよ。(c) $\tr\Theta=0$ を確かめ、$dH=\theta^TH+H\bar\theta$ が成り立つことを数値的にも確認せよ。
+\end{prob}
+\begin{prob}{標準}\label{p:degk}
+$\Oc(k)$ の $c_1$ の積分 $\int c_1(\Oc(k),h_k)=k$ を、極座標を使った計算で確かめよ（$k=-1$ のとき、タウトロジー束の次数 $-1$）。
+\end{prob}
+\begin{prob}{標準}\label{p:TP1}
+$\CP^1$ の標準計量 $g=\lambda|dz|^2$、$\lambda=4/(1+|z|^2)^2$ を考える。(a) $T^{1,0}$ の Hermite 計量 $h(\partial_z,\partial_z)=\lambda/2$（定数倍は Chern 接続と曲率を変えないので、以下 $\lambda$ を使って計算してよい）の Chern 接続 $\theta=\partial\log\lambda$ と曲率 $\Theta=\bar\partial\partial\log\lambda$ を求め、$\frac i{2\pi}\Theta=\frac K{2\pi}dA$（$K=-\frac1{2\lambda}\Delta\log\lambda$ は Gauss 曲率）を示せ。(b) $K\equiv1$ を確かめ、$\int c_1(T\CP^1)=2$ を得よ（Gauss--Bonnet）。これは $T\CP^1\cong\Oc(2)$ と整合する。
+\end{prob}
+\begin{prob}{標準}\label{p:indep}
+$h'=e^{-\psi}h$ のとき $\frac i{2\pi}\partial\bar\partial\psi=d\big(\frac i{4\pi}(\bar\partial-\partial)\psi\big)$ を示し、$c_1(L)$ が $h$ によらないことを結論せよ。$\CP^1$ 上 $L=\Oc(k)$ の任意の Hermite 計量について $\int c_1=k$ となることを述べよ。
+\end{prob}
+\begin{prob}{基本}\label{p:weight}
+$\mathbb C^n$ 上の自明直線束に $h=e^{-|z|^2}$ を入れたとき、Chern 接続形式 $\theta$ と曲率 $\Theta$ を求め、$\frac i{2\pi}\Theta=\frac i{2\pi}\sum dz_j\wedge d\bar z_j$ であることを確かめよ。これは標準 Kähler 形式の何倍か。
+\end{prob}
+
+\section{Kähler 多様体}\label{sec:kahler}
+
+$(X,J)$ を複素多様体、$g$ を $J$-不変な Riemann 計量（\emph{Hermite 計量}）とする。$g$ の複素双線形拡張を $g_{\mathbb C}$ とし、
+\[
+g_{j\bar k}=g_{\mathbb C}(\partial_{z_j},\partial_{\bar z_k}),\qquad
+\omega=g(J\cdot,\cdot)=i\sum_{j,k}g_{j\bar k}\,dz_j\wedge d\bar z_k
+\]
+とおく（問 \ref{p:herm}）。$(g_{j\bar k})$ は正定値 Hermite 行列（$J$-不変性から $g_{\mathbb C}(\partial_{z_j},\partial_{z_k})=0$）、$\omega$ は実 $(1,1)$ 形式で $\omega^n/n!$ は体積形式。$\mathbb C^n$ の標準計量では $g_{j\bar k}=\frac12\delta_{jk}$、$\omega=\frac i2\sum dz_j\wedge d\bar z_j$。
+
+\begin{defn}[Kähler]
+$d\omega=0$ のとき $g$ を\emph{Kähler 計量}、$\omega$ を\emph{Kähler 形式}、$(X,g)$ を\emph{Kähler 多様体}という。
+\end{defn}
+
+\begin{thm}[Kähler 条件の同値]\label{thm:kahler}
+次は同値。(a) $d\omega=0$。(b) 正則座標で $\partial g_{j\bar k}/\partial z_l=\partial g_{l\bar k}/\partial z_j$。(c) 各点のまわりで実関数 $\varphi$（Kähler ポテンシャル）により $\omega=i\partial\bar\partial\varphi$。\tP\ さらに \tC\ (d) Levi-Civita 接続について $\nabla J=0$。(e) $T^{1,0}$ の Chern 接続が Levi-Civita 接続（$\Tc$ への $\mathbb C$-線形拡張の $T^{1,0}$ への制限）と一致する。
+\end{thm}
+\begin{proof}[(a)$\Leftrightarrow$(b)$\Leftrightarrow$(c) の証明]
+(a)$\Leftrightarrow$(b)：$\omega$ は実形式なので $d\omega=\partial\omega+\overline{\partial\omega}$。よって $d\omega=0\iff\partial\omega=0$。$\partial\omega=i\sum\partial_lg_{j\bar k}\,dz_l\wedge dz_j\wedge d\bar z_k$ なので、$(l,j)$ の反対称化が消える条件が (b)。
+(c)$\Rightarrow$(a)：$d(i\partial\bar\partial\varphi)=i(\partial+\bar\partial)\partial\bar\partial\varphi=0$（$\partial^2=\bar\partial^2=0$、$\partial\bar\partial=-\bar\partial\partial$）。
+(a)$\Rightarrow$(c)：Poincaré の補題で（座標球上）$\omega=d\alpha$、$\alpha$ は実 1 形式で $\alpha=\alpha^{1,0}+\alpha^{0,1}$、$\alpha^{1,0}=\overline{\alpha^{0,1}}$。$\omega$ が $(1,1)$ 型なので $\partial\alpha^{1,0}=0$、$\bar\partial\alpha^{0,1}=0$。定理 \ref{thm:dolblemma} で $\alpha^{0,1}=\bar\partial f$ とでき、$\alpha^{1,0}=\partial\bar f$。したがって $\omega=\partial\alpha^{0,1}+\bar\partial\alpha^{1,0}=\partial\bar\partial f+\bar\partial\partial\bar f=\partial\bar\partial(f-\bar f)=i\partial\bar\partial(2\,\mathrm{Im}f)$。$\varphi=2\,\mathrm{Im}f$。\qedhere
+\end{proof}
+\src{(d)(e)：Huybrechts, \emph{Complex Geometry}, 第3章（§3.1）；Kobayashi--Nomizu, \emph{Foundations of Differential Geometry II}, 第9章。}
+\begin{rem}
+複素 1 次元では $\omega$ は 2 形式で $d\omega$ は 3 形式なので常に $d\omega=0$（Riemann 面上の Hermite 計量はすべて Kähler）。Kähler 多様体の特徴付けは、$g_{j\bar k}=\tfrac12\delta_{jk}+O(|z|^2)$（本巻の規約では $\mathbb C^n$ の標準計量が $\tfrac12\delta_{jk}$）となる正則座標が各点で取れることとも同値である（ポテンシャルの Taylor 展開から、細部は文献）\tQ。
+\end{rem}
+
+\begin{prop}[Kähler 条件とトーションの消滅]\label{prop:torsion}\tP
+$(X,g)$ を Hermite 多様体、$h$ を $T^{1,0}$ の Hermite 計量（$H_{ij}=h(\partial_{z_i},\partial_{z_j})=g_{i\bar j}$）とし、その Chern 接続を $\nabla$ とする。$\nabla\partial_{z_j}=\sum_k\Gamma^k_{lj}dz_l\otimes\partial_{z_k}$ と書くと
+\[
+\Gamma^k_{lj}=\sum_m g^{\bar mk}\,\frac{\partial g_{j\bar m}}{\partial z_l}\qquad(g^{\bar mk}=(H^{-1})_{mk}),
+\]
+$\Tc=T^{1,0}\oplus T^{0,1}$ へ共役で拡張した $\nabla$ のトーションは $T(\partial_l,\partial_j)=\sum_k(\Gamma^k_{lj}-\Gamma^k_{jl})\partial_k$ とその共役のみで、混合型 $T(\partial_l,\partial_{\bar j})$ は $0$。したがって
+\[
+\nabla\ \text{がトーションを持たない}\iff\partial_lg_{j\bar m}=\partial_jg_{l\bar m}\iff g\ \text{は Kähler}.
+\]
+このとき $\nabla$ は計量と両立しトーションを持たないので Levi-Civita 接続に一致する（Levi-Civita 接続の一意性）。特に $\nabla^{LC}J=0$（定理 \ref{thm:kahler} (d)(e) の一部）。
+\end{prop}
+\begin{proof}
+定理 \ref{thm:Chern} の $\theta^T=\partial H\,H^{-1}$ から $\theta_{kj}=\sum_m(H^{-1})_{mk}\partial H_{jm}$、すなわち上の $\Gamma$ の式。$\partial_z,\partial_{\bar z}$ は交換するので $T(\partial_l,\partial_j)=\nabla_l\partial_j-\nabla_j\partial_l$。正則枠では $\nabla_{\bar l}\partial_j=0$、共役をとって $\nabla_l\partial_{\bar j}=0$ なので混合型は $0$。$(H^{-1})$ は可逆なので $\Gamma^k_{lj}=\Gamma^k_{jl}\ \forall k$ $\iff$ $\partial_lg_{j\bar m}=\partial_jg_{l\bar m}$。これは定理 \ref{thm:kahler} (b)。\qedhere
+\end{proof}
+
+
+\subsection{Fubini--Study 計量}
+\begin{ex}[$\CP^n$ の Fubini--Study 計量]\label{ex:FS}
+$\CP^n$ の $U_0$ で $\omega_{FS}=\frac i{2\pi}\partial\bar\partial\log(1+|z|^2)$ とおく。他の $U_i$ では $\log(1+|z^{(0)}|^2)=\log\big(|Z|^2/|Z_0|^2\big)$、$\log|Z_0|^2$ は $\partial\bar\partial$ で消える（$Z_0$ は正則関数）ので、$\omega_{FS}$ は $\CP^n$ 全体で $\frac i{2\pi}\partial\bar\partial\log|Z|^2$ と一致し well-defined。問 \ref{p:logg} により正定値（Hermite 計量を定める）で、ポテンシャルを持つので Kähler。$\Oc(-1)$ の計量 $h=|Z|^2$ について $c_1(\Oc(-1),h)=-\omega_{FS}$、したがって $c_1(\Oc(1))=[\omega_{FS}]$、$\int_{\CP^n}\omega_{FS}^n=1$（問 \ref{p:fsvol}）。
+\end{ex}
+\begin{ex}[その他]
+(1) $\mathbb C^n$ の標準計量、複素トーラス $\mathbb C^n/\Lambda$（平坦、$\omega=\frac i2\sum dz_j\wedge d\bar z_j$ が下りる）は Kähler。(2) Kähler 多様体の複素部分多様体は誘導計量で Kähler（$\omega|_Y$ は閉、問 \ref{p:sub}）。特に $\CP^N$ の滑らかな射影代数多様体は Kähler。(3) Kähler でない複素多様体の例：Hopf 曲面（§\ref{sec:examples}）。
+\end{ex}
+
+
+\begin{ex}[3 つの幾何：$K=1,0,-1$]\label{ex:trichotomy}\tP
+複素 1 次元の標準的な Kähler 計量 $g=\lambda|dz|^2$ について、問 \ref{p:TP1} の計算から $\frac i{2\pi}\Theta_{T^{1,0}}=\frac K{2\pi}dA$、$K=-\frac1{2\lambda}\Delta\log\lambda$。(i) $\CP^1$：$\lambda=4/(1+|z|^2)^2$、$K=1$。(ii) $\mathbb C$ やトーラス：$\lambda=1$、$K=0$。(iii) 単位円板 $D$：Poincaré 計量 $\lambda=4/(1-|z|^2)^2$。$\partial_{\bar z}\log(1-z\bar z)=-z/(1-z\bar z)$、さらに $\partial_z$ して $-1/(1-|z|^2)^2$。よって $\Delta\log(1-|z|^2)=-4/(1-|z|^2)^2$、$\Delta\log\lambda=8/(1-|z|^2)^2$、$K=-1$。標準束 $K_X$ の次数の符号は $2g-2$ に対応し、(i)(ii)(iii) が $g=0,1,\ge2$ の普遍被覆（一意化定理、第4巻）に対応する。
+\end{ex}
+
+\subsection{Kähler 恒等式（主張のみ）}
+$L=\omega\wedge$、$\Lambda=L^*$（$L^2$ 内積で随伴）、$\partial^*,\bar\partial^*$ を形式的随伴とする（この小節に限り $L$ は $T^{0,1}$ や直線束ではなく $\omega\wedge$ を表し、$\Lambda$ も格子ではなく $L$ の随伴を表す）。
+\begin{thm}[Kähler 恒等式]\tC\label{thm:kid}
+Kähler 多様体上
+\[
+[\Lambda,\bar\partial]=-i\,\partial^*,\quad[\Lambda,\partial]=i\,\bar\partial^*,\quad[L,\bar\partial^*]=-i\,\partial,\quad[L,\partial^*]=i\,\bar\partial
+\]
+（符号は $\omega$ と $L$、$d^c$ の規約による。ここでは $\omega=g(J\cdot,\cdot)$）。系として $\Delta_d=2\Delta_\partial=2\Delta_{\bar\partial}$、$[\Delta,L]=[\Delta,\Lambda]=0$。
+\end{thm}
+\src{Huybrechts, \emph{Complex Geometry}, 第3章（§3.1）；Griffiths--Harris, 第0章（Kähler 多様体）。符号の規約は文献によって異なる\tQ。証明は第5巻。}
+複素 1 次元の最初の式は、本文の規約で問 \ref{p:kid1} により確かめられる。Kähler 恒等式の帰結（Hodge 分解 $H^k(X;\mathbb C)=\bigoplus_{p+q=k}H^{p,q}$、$h^{p,q}=h^{q,p}$、奇数次 Betti 数は偶数、Lefschetz 分解）は第5巻の主題である。
+
+\begin{keybox}{要点（§7）}
+Kähler 形式 $\omega=g(J\cdot,\cdot)$ が閉 $\iff$ $g_{j\bar k}$ が局所的に $i\partial\bar\partial\varphi$ の形。$\mathbb C^n$、複素トーラス、$\CP^n$（Fubini--Study）、そのコンパクトでない部分多様体も含めて例が豊富。Kähler 恒等式は Hodge 理論の道具。
+\end{keybox}
+
+\begin{prob}{基本}\label{p:kahlercn}
+$\mathbb C^n$ の標準計量 $g$ について $g_{j\bar k}$ を求め、$\omega=\frac i2\sum dz_j\wedge d\bar z_j$ が閉であること、$\omega^n/n!$ が標準体積形式 $dx_1\wedge dy_1\wedge\cdots\wedge dx_n\wedge dy_n$ に等しいことを示せ。
+\end{prob}
+\begin{prob}{発展}\label{p:fsvol}
+$\omega_{FS}=\frac i{2\pi}\partial\bar\partial\log(1+|z|^2)$ について $\omega_{FS}^n=n!\,\pi^{-n}(1+|z|^2)^{-(n+1)}\,dV$（$dV$ は $\mathbb C^n$ の Lebesgue 測度）を示し、$\int_{\CP^n}\omega_{FS}^n=1$ を計算せよ（$\mathrm{vol}(S^{2n-1})=2\pi^n/(n-1)!$）。
+\end{prob}
+\begin{prob}{発展}\label{p:kid1}
+$\mathbb C$ 上（$\omega=dx\wedge dy$、$|dx|=|dy|=1$）の $(1,0)$ 形式 $\alpha=f\,dz$ について、$[\Lambda,\bar\partial]\alpha$ と $-i\partial^*\alpha$ を計算して一致を確かめよ（$\partial^*$ は $L^2$ 内積に関する随伴）。
+\end{prob}
+\begin{prob}{標準}\label{p:cpt2k}
+コンパクト Kähler 多様体 $X$（複素 $n$ 次元）では $0\le k\le n$ について $[\omega^k]\ne0\in H^{2k}_{dR}(X;\mathbb R)$ を示せ。これを使って、$S^{2m}$（$m\ge2$）や、Hopf 曲面の微分同相型 $S^1\times S^3$ が Kähler 構造を持たないことを結論せよ（$S^{2m}$ は閉形式の $H^2$ が $0$ であることを使う）。
+\end{prob}
+\begin{prob}{基本}\label{p:sub}
+$Y\subset X$ を複素部分多様体（$\iota:Y\to X$ 正則埋め込み）とする。$g$ が Kähler なら $\iota^*g$ も Hermite 計量で、$\omega_Y=\iota^*\omega_X$ は閉であることを示せ。
+\end{prob}
+
+\begin{prob}{標準}\label{p:disc}
+単位円板 $D$ の Poincaré 計量 $\lambda=4/(1-|z|^2)^2$ について、Chern 接続形式 $\theta=\partial\log\lambda$ と曲率 $\Theta=\bar\partial\theta$ を計算し、$\frac i{2\pi}\Theta=-\frac1{2\pi}dA$ となること（$K=-1$）を示せ。また $\mathrm{Area}(D)=\infty$ を確かめよ。
+\end{prob}
+
+
+\section{例：トーラス、超曲面、Hopf 曲面}\label{sec:examples}
+
+\subsection{複素トーラスの Hodge 数}
+\begin{ex}
+複素トーラス $X=\mathbb C^n/\Lambda$ の Dolbeault コホモロジーは例 \ref{ex:hpq} の通り $h^{p,q}=\binom np\binom nq$。Betti 数 $b_k=\binom{2n}k$（$T^{2n}$）と $\sum_{p+q=k}\binom np\binom nq=\binom{2n}k$（Vandermonde）が整合する。
+\end{ex}
+
+
+\subsection{Hodge 数の表（Hodge ダイヤモンド）}
+Hodge 分解（第5巻）により $b_k=\sum_{p+q=k}h^{p,q}$、$h^{p,q}=h^{q,p}$（複素共役）、$h^{p,q}=h^{n-p,n-q}$（Serre 双対、第3--5巻）。\tC\ 代表例：
+\begin{center}
+\begin{tabular}{c|ccc}
+$h^{p,q}$ & $\CP^2$ & 複素 2 次元トーラス & K3 曲面\\
+\midrule
+$h^{0,0},h^{2,2}$ & $1,1$ & $1,1$ & $1,1$\\
+$h^{1,0},h^{0,1}$ & $0,0$ & $2,2$ & $0,0$\\
+$h^{2,0},h^{0,2}$ & $0,0$ & $1,1$ & $1,1$\\
+$h^{1,1}$ & $1$ & $4$ & $20$\\
+$h^{2,1},h^{1,2}$ & $0,0$ & $2,2$ & $0,0$\\
+$b_2$ & $1$ & $6$ & $22$\\
+$\chi_{\mathrm{top}}$ & $3$ & $0$ & $24$\\
+\bottomrule
+\end{tabular}
+\end{center}
+トーラスは命題 \ref{prop:torusdolb}、$\CP^2$ は第3、5巻、K3 の $h^{1,1}=20$ は文献\tC\ に依る。K3 では $b_1=0$、$b_2=22$、$\chi_{\mathrm{top}}=2+22=24$。
+
+\subsection{射影空間内の超曲面}
+
+\begin{ex}[Euler 完全列と $c_1(T\CP^n)$]\label{ex:euler}\tC
+$\CP^n$ の点 $[v]$ は直線 $\ell=\mathbb Cv\subset\mathbb C^{n+1}$ で、$T_{[v]}\CP^n\cong\Hom(\ell,\mathbb C^{n+1}/\ell)$。$\ell=\Oc(-1)_{[v]}$ なので $T\CP^n=\Oc(-1)^*\otimes Q$（$Q$ は商束）、直線の列 $0\to\ell\to\mathbb C^{n+1}\to Q\to0$ に $\ell^*$ をかけて
+\[
+0\to\Oc\to\Oc(1)^{\oplus(n+1)}\to T\CP^n\to0 .
+\]
+$c_1$ は完全列で加法的（$C^\infty$ では分裂し、$c_1$ は計量によらない）なので、$c_1(T\CP^n)=(n+1)H$、$H=c_1(\Oc(1))=[\omega_{FS}]$。$n=1$ で $\int c_1=2$（問 \ref{p:TP1}）、$n=2$ で $\int_{\CP^2}c_1(T)^2=9\int\omega_{FS}^2=9$（問 \ref{p:fsvol}）。$K_{\CP^n}=\Oc(-n-1)$（例 \ref{ex:KP1}）と整合する。
+\end{ex}
+
+
+\begin{ex}[Fubini--Study 計量の Ricci 形式と $c_1(T\CP^n)$]\label{ex:ricci}\tP
+Hermite 計量 $g$ に対し、$T^{1,0}$ の計量 $(g_{j\bar k})$ の Chern 曲率の跡は、$\det T^{1,0}=K^{-1}$ の曲率なので $\tr\Theta=-\partial\bar\partial\log\det(g_{j\bar k})$、$c_1(T^{1,0})=\big[-\frac i{2\pi}\partial\bar\partial\log\det(g_{j\bar k})\big]$（Ricci 形式 $\rho=-i\partial\bar\partial\log\det g$ を $2\pi$ で割ったもの）。$\CP^n$ の $U_0$ で $g_{j\bar k}\propto\partial_j\bar\partial_k\log(1+|z|^2)$ とすると、問 \ref{p:logg}(c) より $\det g=c\,(1+|z|^2)^{-(n+1)}$（$c$ は定数）、したがって
+\[
+c_1(T\CP^n)=-\frac i{2\pi}\partial\bar\partial\Big(-(n+1)\log(1+|z|^2)\Big)=(n+1)\,\omega_{FS} .
+\]
+これは Euler 完全列から得た $(n+1)H$（例 \ref{ex:euler}）に一致し、$\omega_{FS}$ の係数を含めて形式の水準で等しい。$n=1$ では問 \ref{p:TP1} と同じ。
+\end{ex}
+
+\begin{ex}[Fermat 超曲面]\label{ex:fermat}
+$X_d=\{Z_0^d+\cdots+Z_n^d=0\}\subset\CP^n$ は、$F=\sum Z_i^d$ の勾配 $(dZ_0^{d-1},\dots,dZ_n^{d-1})$ が $\CP^n$ のどの点でも $0$ にならないので、陰関数定理により $(n-1)$ 次元の複素部分多様体（滑らかな超曲面）で、$\CP^n$ の Kähler 計量の制限により Kähler。次の2つの事実を文献から引用する：
+
+\tC\ (A) \emph{随伴公式}：滑らかな次数 $d$ の超曲面 $X\subset\CP^n$ の標準束は $K_X\cong\Oc(d-n-1)|_X$。すなわち $c_1(T^{1,0}X)=(n+1-d)\,H|_X$（$H=c_1(\Oc(1))$）。根拠は法束の完全列 $0\to T_X\to T_{\CP^n}|_X\to\Oc(d)|_X\to0$ と Euler 完全列 $0\to\Oc\to\Oc(1)^{n+1}\to T_{\CP^n}\to0$（Griffiths--Harris 第1章、Hartshorne 第II章 §8）。
+\tC\ (B) 平面曲線 $X_d\subset\CP^2$ について $\int_{X_d}H=d$（Bézout の特別な場合）。
+
+$n=2$、$X=C_d$ とする。$\int_{C_d}c_1(TC_d)=d(3-d)$、これは $\chi(C_d)=2-2g$ に等しいので $g=\frac{(d-1)(d-2)}2$（$d=1,2,3,4$ で $0,0,1,3$）。四次曲面（$n=3,d=4$）では $c_1=0$（K3 曲面）。
+\end{ex}
+
+\subsection{Hopf 曲面：Kähler でない複素曲面}
+\begin{ex}[Hopf 曲面]\label{ex:hopf}\tP
+$\mathbb Z$ を $\mathbb C^2\setminus\{0\}$ に $m\cdot z=2^mz$ で作用させる。この作用は自由で、固有不連続（$|z|$ を $2$ 倍ずつにする）かつ正則。商 $X=(\mathbb C^2\setminus 0)/\mathbb Z$ は\emph{コンパクト}な複素曲面（$\{1\le|z|\le2\}$ が基本領域）。写像 $[z]\mapsto(\log_2|z|\bmod1,\ z/|z|)\in S^1\times S^3$ は微分同相。Künneth により $H^2_{dR}(S^1\times S^3)=0$。もし Kähler 形式 $\omega$ があれば $\omega=d\alpha$ と書け、$\omega^2=d(\alpha\wedge\omega)$、$\int_X\omega^2=0$。しかし $\omega^2=2\,dV>0$ より矛盾。ゆえに $X$ は Kähler でない（問 \ref{p:cpt2k}）。また $b_1=1$ は奇数で、Kähler ならば偶数でなければならない（Hodge 分解）。
+\end{ex}
+
+\subsection{実 2 次元・実 4 次元のまとめ}
+\begin{center}
+\begin{tabular}{p{0.2\textwidth}p{0.36\textwidth}p{0.3\textwidth}}
+\toprule
+& 実 2 次元 & 実 4 次元\\
+\midrule
+概複素構造 $J$ & 向き＋共形類（常に積分可能） & 向き付き計量に適合する $J$ は $S^2$ 束の切断\\
+$T^{0,1}$ & 階数 1、必ず involutive & 階数 2、involutive は条件（例 \ref{ex:nonint}）\\
+例 & $S^2=\CP^1$、$\mathbb C/\Lambda$、一般の Riemann 面 & $\mathbb C^2$、$\CP^2$、複素トーラス、Hopf 曲面、K3\\
+Kähler & 常に Kähler & Kähler でない例：Hopf 曲面\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{keybox}{要点（§8）}
+射影代数多様体は Kähler。Fermat 超曲面は滑らかで、随伴公式から $c_1$ と種数が出る。コンパクト Kähler の $\omega^k$ はコホモロジーで非自明なので $S^1\times S^3$（Hopf 曲面）は Kähler でない。
+\end{keybox}
+
+\begin{prob}{標準}\label{p:fermat}
+(a) $X_d=\{Z_0^d+Z_1^d+Z_2^d=0\}\subset\CP^2$ が滑らかであることを示せ。(b) 随伴公式 (A) と $\int_{X_d}H=d$ (B) を使い、$X_d$ の種数が $(d-1)(d-2)/2$ であることを導け（コンパクト Riemann 面で $\int c_1(T)=\chi=2-2g$ を使う）。$d=1,\dots,6$ の値の表を作れ。(c) $n=3,d=4$ で $c_1(X)=0$ を示せ。
+\end{prob}
+\begin{prob}{発展}\label{p:hopf}
+Hopf 曲面 $X=(\mathbb C^2\setminus0)/\langle z\mapsto2z\rangle$ について、(a) 作用が自由かつ固有不連続であることと、基本領域がコンパクトであることを示せ。(b) 写像 $X\to S^1\times S^3$ が微分同相であることを説明せよ。(c) Hodge 分解を仮定して $b_1=1$ から Kähler でないことを導け。
+\end{prob}
+\begin{prob}{標準}\label{p:torus2}
+複素 2 次元トーラスの Hodge 数 $h^{p,q}$（$0\le p,q\le2$）の表を作り、(a) $b_k=\sum_{p+q=k}h^{p,q}$ が $\binom4k$ であること、(b) $\sum(-1)^{p+q}h^{p,q}=\chi(T^4)=0$、(c) 正則 Euler 標数 $\sum_q(-1)^qh^{0,q}=0$ を確かめよ。
+\end{prob}
+
+\begin{prob}{基本}\label{p:Kcp}
+(a) $\CP^1$ 上の正則 1 形式 $f(z)\,dz$ が全体で正則となる条件を $w=1/z$ 座標で調べ、$f=0$ を示せ（例 \ref{ex:KP1} の別証）。(b) $\CP^2$ の $U_0,U_1$ の標準束の枠 $dz_1\wedge dz_2$、$dw_0\wedge dw_2$ の関係を求め、$K_{\CP^2}\cong\Oc(-3)$ を確かめよ。
+\end{prob}
+\begin{prob}{標準}\label{p:euler}
+Euler 完全列から $c_1(T\CP^n)=(n+1)H$ を導き、(a) $n=1$ で $\int_{\CP^1}c_1=2$、(b) $n=2$ で $\int_{\CP^2}c_1(T)^2=9$ となることを、問 \ref{p:fsvol} を使って確かめよ。(c) 随伴公式 (A) で $n=2$、$d=1$ とすると直線 $\CP^1\subset\CP^2$ の $c_1$ はいくらか。$\chi=2$ と整合するか。
+\end{prob}
+
+\section*{解答}
+\addcontentsline{toc}{section}{解答}
+計算を含む解答は、\texttt{verify.py}（numpy/scipy と、多項式係数の微分形式を扱う自作の小さな代数系）で独立に検算した（問 \ref{p:wirt}、\ref{p:dbarcalc}、\ref{p:logg}、\ref{p:solve}、\ref{p:fourier}、\ref{p:rank2}、\ref{p:degk}、\ref{p:TP1}、\ref{p:disc}、\ref{p:fsvol}、\ref{p:quat}、\ref{p:beltrami}、\ref{p:Nexample}、\ref{p:fermat}、\ref{p:torus2}、\ref{p:euler}）。sympy は環境になく、導入できなかったため使っていない。
+
+\begin{sol}{\ref{p:wirt}}
+$f=z^2\bar z$：$\partial_zf=2z\bar z$、$\partial_{\bar z}f=z^2$。$g=\frac12(z^3+\bar z^3)$：$\partial_zg=\frac32z^2$、$\partial_{\bar z}g=\frac32\bar z^2$。$h=ze^{\bar z}$：$\partial_zh=e^{\bar z}$、$\partial_{\bar z}h=ze^{\bar z}\ne0$ なので正則でない。
+式 \eqref{eq:dzdzbar}：$dz\wedge d\bar z=(dx+i\,dy)\wedge(dx-i\,dy)=-i\,dx\wedge dy+i\,dy\wedge dx=-2i\,dx\wedge dy$。
+\end{sol}
+\begin{sol}{\ref{p:count}}
+表（行 $p$、列 $q$）：$\begin{smallmatrix}1&3&3&1\\3&9&9&3\\3&9&9&3\\1&3&3&1\end{smallmatrix}$、総和 $64$。一般に $\sum_{p,q}\binom np\binom nq=2^n\cdot2^n=4^n=2^{2n}$（$\Lam^\bullet\Tc^*$ の階数 $2^{2n}$ と一致）。
+\end{sol}
+\begin{sol}{\ref{p:decomp}}
+$dx_j=\frac12(dz_j+d\bar z_j)$ より $dx_1\wedge dx_2=\frac14(dz_1\wedge dz_2+dz_1\wedge d\bar z_2+d\bar z_1\wedge dz_2+d\bar z_1\wedge d\bar z_2)$。$(2,0)$：$\frac14dz_1\wedge dz_2$、$(1,1)$：$\frac14(dz_1\wedge d\bar z_2+d\bar z_1\wedge dz_2)$、$(0,2)$：$\frac14d\bar z_1\wedge d\bar z_2$。また式 \eqref{eq:dzdzbar} より $dx_j\wedge dy_j=\frac i2dz_j\wedge d\bar z_j$ なので $\omega=\frac i2\sum dz_j\wedge d\bar z_j$ は $(1,1)$ 型。
+\end{sol}
+\begin{sol}{\ref{p:cr}}
+$\partial_{\bar z}f=\frac12(\partial_x+i\partial_y)(u+iv)=\frac12[(u_x-v_y)+i(u_y+v_x)]$。これが $0$ $\iff$ $u_x=v_y$、$u_y=-v_x$。$f=\bar z$ では $df=d\bar z$、$J^*d\bar z=-i\,d\bar z$（$J\partial_{\bar z}=-i\partial_{\bar z}$ より）なので $df\circ J=-i\,df$。$df\ne0$ だから \eqref{eq:holiffJ} をみたさない。
+\end{sol}
+\begin{sol}{\ref{p:pn}}
+$z_1\neq0$ の重なりで $w_0=1/z_1$、$w_2=z_2/z_1$（正則）。Jacobi 行列 $\frac{\partial(w_0,w_2)}{\partial(z_1,z_2)}=\begin{pmatrix}-1/z_1^2&0\\-z_2/z_1^2&1/z_1\end{pmatrix}$、行列式 $-1/z_1^3\ne0$。
+\end{sol}
+\begin{sol}{\ref{p:compactconst}}
+$|f|$ の最大点を $p$、$p$ を中心とする座標球 $B$ をとる。$B$ 内の $p$ を通る各複素直線 $\ell$ へ $f$ を制限すると、1 変数正則関数で $|f|$ が内点 $p$ で最大なので最大値原理により $\ell\cap B$ 上定数 $=f(p)$。$B$ はこうした直線の和なので $f\equiv f(p)$ on $B$。よって $S=\{f=f(p)\}$ は開、連続性から閉、非空で $X$ は連結だから $S=X$。$\mathbb C$ では $f(z)=z$ が非定数の正則関数（$\mathbb C$ は非コンパクト）。
+\end{sol}
+\begin{sol}{\ref{p:herm}}
+(a) 対称・正値は明らか。$g_J(JX,JY)=\frac12(g(JX,JY)+g(J^2X,J^2Y))=\frac12(g(JX,JY)+g(X,Y))=g_J(X,Y)$。(b) $\omega(Y,X)=g(JY,X)=g(J^2Y,JX)=-g(Y,JX)=-\omega(X,Y)$（$J$-不変性を使った）。標準計量では $\omega(\partial_x,\partial_y)=g(\partial_y,\partial_y)=1$、$\omega(\partial_x,\partial_x)=g(\partial_y,\partial_x)=0$ なので $\omega=\sum dx_j\wedge dy_j=\frac i2\sum dz_j\wedge d\bar z_j$（式 \eqref{eq:dzdzbar}）。
+\end{sol}
+\begin{sol}{\ref{p:torus1}}
+平行移動 $z\mapsto z+\lambda$ で $dz_j$ は不変なので $X$ 上に下りる。係数は定数だから正則。$\Lambda$ の $\mathbb R$-基底 $\lambda_1,\dots,\lambda_{2n}$ を標準基底に写す実線型同型 $\mathbb C^n\cong\mathbb R^{2n}$ は $\Lambda$ を $\mathbb Z^{2n}$ に写すので $X\cong\mathbb R^{2n}/\mathbb Z^{2n}=T^{2n}$。$\Lambda=\mathbb Z+i\mathbb Z$ の基本領域は単位正方形で、$|dz|^2=dx^2+dy^2$ の体積（面積）は $1$。
+\end{sol}
+\begin{sol}{\ref{p:Ntensor}}
+公式 $[fA,B]=f[A,B]-(Bf)A$ を使う。(a) $N(fX,Y)=f[JX,JY]-(JYf)JX-J\big(f[JX,Y]-(Yf)JX\big)-J\big(f[X,JY]-(JYf)X\big)-f[X,Y]+(Yf)X$。$-J(-(Yf)JX)=(Yf)J^2X=-(Yf)X$ に注意すると、余分な項は $-(JYf)JX-(Yf)X+(JYf)JX+(Yf)X=0$。よって $N(fX,Y)=fN(X,Y)$。交代性は定義から $N(Y,X)=-N(X,Y)$（$[\,,]$ の反対称性）、したがって $Y$ についても $C^\infty$-線形。
+(b) $N(X,JY)=[JX,-Y]-J[JX,JY]-J[X,-Y]-[X,JY]=-[JX,Y]-J[JX,JY]+J[X,Y]-[X,JY]$。一方 $-JN(X,Y)=-J[JX,JY]+J^2[JX,Y]+J^2[X,JY]+J[X,Y]=-J[JX,JY]-[JX,Y]-[X,JY]+J[X,Y]$。両者は一致。
+\end{sol}
+\begin{sol}{\ref{p:Nexample}}
+(a) $J\partial_{z_1}=i\partial_{z_1}$（$\partial_{z_1}=\overline{W_1}\in\overline L$）、$J\partial_{\bar z_1}=-i\partial_{\bar z_1}$。$JW_2=-iW_2$、$W_2=\partial_{\bar z_2}+f\partial_{z_1}$ より $J\partial_{\bar z_2}=-iW_2-fJ\partial_{z_1}=-i\partial_{\bar z_2}-2if\,\partial_{z_1}$。$J\overline{W_2}=i\overline{W_2}$、$\overline{W_2}=\partial_{z_2}+\bar f\partial_{\bar z_1}$ より $J\partial_{z_2}=i\partial_{z_2}+2i\bar f\,\partial_{\bar z_1}$。$f=\bar z_1$ なら $J\partial_{\bar z_2}=-i\partial_{\bar z_2}-2i\bar z_1\partial_{z_1}$、$J\partial_{z_2}=i\partial_{z_2}+2iz_1\partial_{\bar z_1}$。
+(b) $J^2\partial_{\bar z_2}=-iJ\partial_{\bar z_2}-2if\,J\partial_{z_1}=-i(-i\partial_{\bar z_2}-2if\partial_{z_1})-2if\cdot i\partial_{z_1}=-\partial_{\bar z_2}-2f\partial_{z_1}+2f\partial_{z_1}=-\partial_{\bar z_2}$。
+(c) $[W_1,W_2]=[\partial_{\bar z_1},\partial_{\bar z_2}+f\partial_{z_1}]=(\partial_{\bar z_1}f)\partial_{z_1}=\partial_{z_1}\in T^{1,0}$。補題 \ref{lem:N} より $N(W_1,W_2)=-4\pi^{1,0}\partial_{z_1}=-4\partial_{z_1}$。（数値検算：実 $N_J$ を有限差分で計算して $N(W_1,W_2)=-4\partial_{z_1}$ を確認。）
+\end{sol}
+\begin{sol}{\ref{p:dim2}}
+局所的に $e\ne0$ をとり $\{e,Je\}$ を基底とする。$N(e,e)=0$、$N(e,Je)=[Je,-e]-J[Je,Je]-J[e,-e]-[e,Je]=[e,Je]-[e,Je]=0$。$N$ はテンソル（問 \ref{p:Ntensor}）で交代だから基底上の値で決まり、$N\equiv0$。
+$g,g'$ が $J$-不変とし、$e$ を $g$-単位ベクトルとする。$g(e,Je)=g(Je,J^2e)=-g(Je,e)$ より $g(e,Je)=0$、$g(Je,Je)=1$。同様に $g'(e,Je)=0$、$g'(Je,Je)=g'(e,e)=:\lambda$。よって $g'=\lambda g$（$\lambda$ は $e$ のとり方によらない：任意の $g$-単位ベクトル $e$ について $g'(e,e)=\lambda$）。
+\end{sol}
+\begin{sol}{\ref{p:Ndim}}
+補題 \ref{lem:N} より $N$ は $(Z,W)\mapsto N(Z,W)\in T^{1,0}$（$Z,W\in T^{0,1}$）で決まる（混合型は $0$、$(1,0)$ どうしは共役）。$C^\infty$-双線形交代なので $\Lam^2(T^{0,1})^*\otimes T^{1,0}=\Lam^{0,2}\otimes T^{1,0}$ の切断。複素階数は $\binom n2\cdot n$。$n=1,2,3,4$ で $0,2,9,24$。$n=1$ では障害がない（例 \ref{ex:dim2}）。
+\end{sol}
+\begin{sol}{\ref{p:quat}}
+(a) $q=z+wj$ のとき $iq=iz+(iw)j$ なので $(z,w)\mapsto(iz,iw)$。標準構造。
+(b) $jq=jz+jwj=\bar zj+\bar wj^2=-\bar w+\bar zj$ なので $J_J(z,w)=(-\bar w,\bar z)$。$\zeta_1\circ J=-\bar w+i\,\overline{\bar z}=-\bar w+iz=i(z+i\bar w)=i\zeta_1$。$\zeta_2\circ J=\overline{-\bar w}+i\bar z=-w+i\bar z=i(\bar z+iw)=i\zeta_2$。$\bar\zeta_2=z-i\bar w$ と $\zeta_1$ から $z,w$ が復元できるので $(\zeta_1,\zeta_2)$ は $\mathbb R$-線型座標。
+(c) $IJq=i(jq)=kq$、$JIq=j(iq)=-kq$ より $IJ=-JI$。同様に $JK=-KJ$、$KI=-IK$。$(aI+bJ+cK)^2=-(a^2+b^2+c^2)+$ 交換子の項 $=-1$。
+\end{sol}
+\begin{sol}{\ref{p:beltrami}}
+(a) $(\partial_z,\partial_{\bar z})$ 成分で $\partial_{\bar z}-\mu\partial_z=(-\mu,1)$、共役 $\partial_z-\bar\mu\partial_{\bar z}=(1,-\bar\mu)$。行列式 $|\mu|^2-1\ne0$。
+(b)(c) $w=z+\mu\bar z$ は $(\partial_{\bar z}-\mu\partial_z)w=\mu-\mu=0$ をみたす。$w=u+iv$ とすると $u=(1+a)x+by$、$v=bx+(1-a)y$、$A=\begin{pmatrix}1+a&b\\b&1-a\end{pmatrix}$（$\det A=1-|\mu|^2$）。$J_\mu$ は $dw\circ J=i\,dw$ で定まる構造 $J_\mu=A^{-1}J_0A$（$J_0=\begin{pmatrix}0&-1\\1&0\end{pmatrix}$）：
+\[
+J_\mu=\frac1{1-|\mu|^2}\begin{pmatrix}-2b&-((1-a)^2+b^2)\\(1+a)^2+b^2&2b\end{pmatrix}.
+\]
+トレース $0$、行列式 $\big[(1+|\mu|^2)^2-4|\mu|^2\big]/(1-|\mu|^2)^2=1$ なので $J_\mu^2=-1$。$dw$ は $L_\mu$ を消し、$\operatorname{rank}L_\mu=1$ なので $L_\mu=T^{0,1}_{J_\mu}$。（数値検算済み：$a=0.3,b=-0.2$。）
+\end{sol}
+\begin{sol}{\ref{p:Lalg}}
+$(d_L\alpha)(\partial_{\bar z_1},\partial_{\bar z_2})=\partial_{\bar z_1}(\alpha(\partial_{\bar z_2}))-\partial_{\bar z_2}(\alpha(\partial_{\bar z_1}))-\alpha([\partial_{\bar z_1},\partial_{\bar z_2}])=0-\partial_{\bar z_2}(\bar z_2)-0=-1$。一方 $\bar\partial\alpha=d\bar z_2\wedge d\bar z_1=-d\bar z_1\wedge d\bar z_2$ で、$(d\bar z_1\wedge d\bar z_2)(\partial_{\bar z_1},\partial_{\bar z_2})=1$ なので値は $-1$。一致。
+\end{sol}
+\begin{sol}{\ref{p:dbarcalc}}
+$\beta_1=|z_1|^2z_2\,d\bar z_1$、$\beta_2=z_1\bar z_2\,dz_2$。$\partial\beta_1=\bar z_1z_2\,dz_1\wedge d\bar z_1+|z_1|^2\,dz_2\wedge d\bar z_1$、$\bar\partial\beta_1=0$（$\partial_{\bar z_1}(\cdot)\,d\bar z_1\wedge d\bar z_1=0$、$\bar z_2$ を含まない）。$\partial\beta_2=\bar z_2\,dz_1\wedge dz_2$、$\bar\partial\beta_2=z_1\,d\bar z_2\wedge dz_2=-z_1\,dz_2\wedge d\bar z_2$。よって
+\[
+\partial\beta=\bar z_1z_2\,dz_1\wedge d\bar z_1+|z_1|^2dz_2\wedge d\bar z_1+\bar z_2\,dz_1\wedge dz_2,\qquad\bar\partial\beta=-z_1\,dz_2\wedge d\bar z_2 .
+\]
+1 変数：$\bar\partial|z|^4=2z^2\bar z\,d\bar z$、$\partial\bar\partial|z|^4=4z\bar z\,dz\wedge d\bar z=4|z|^2dz\wedge d\bar z$。（多項式係数の形式で独立に検算済み。同じプログラムで $\partial^2=\bar\partial^2=0$、$\partial\bar\partial+\bar\partial\partial=0$ もランダムな形式で確認した。）
+\end{sol}
+\begin{sol}{\ref{p:logg}}
+(a) $\partial_{\bar z_k}\phi=z_k/(1+|z|^2)$、これを $z_j$ で微分して $\delta_{jk}/(1+|z|^2)-z_k\bar z_j/(1+|z|^2)^2$。
+(b) $\sum v_j\bar v_k[\delta_{jk}(1+|z|^2)-\bar z_jz_k]/(1+|z|^2)^2=\big[|v|^2(1+|z|^2)-|\sum v_j\bar z_j|^2\big]/(1+|z|^2)^2$。Cauchy--Schwarz $|\sum v_j\bar z_j|^2\le|v|^2|z|^2<|v|^2(1+|z|^2)$ により $v\ne0$ で正。
+(c) 行列は $(1+|z|^2)^{-2}\big[(1+|z|^2)I-\bar z\,z^T\big]$（$\bar z$ は列、$z^T$ は行）。行列式補題 $\det(cI-uw^T)=c^{n-1}(c-w^Tu)$ で $c=1+|z|^2$、$w^Tu=|z|^2$ を使い、$\det=(1+|z|^2)^{-2n}(1+|z|^2)^{n-1}\cdot1=(1+|z|^2)^{-(n+1)}$。（$n=3$ でランダムな点を使い、有限差分でも確認。）
+\end{sol}
+\begin{sol}{\ref{p:solve}}
+(a) $\partial_{\bar z}(1-e^{-z\bar z})=ze^{-z\bar z}$ なので $\partial_{\bar z}u=e^{-|z|^2}$。$|z|\to\infty$ で $e^{-|z|^2}\to0$ だから $u\sim1/z$。式 \eqref{eq:cauchytr} の $u_C(z)=\frac1{2\pi i}\int\frac{f(w)}{w-z}dw\wedge d\bar w=\frac1\pi\int\frac{f(w)}{z-w}dA(w)$（$dw\wedge d\bar w=-2i\,dA$）も $\partial_{\bar z}u_C=f$ をみたし（$f$ は急減少なので同じ証明が通る）、$z\to\infty$ で $0$ に収束する。差は有界な整関数だから Liouville より $0$。よって一致する（数値積分でも確認：$z=1.3+0.5i$）。
+(b) $\partial_{\bar z}\frac{\bar z}{1+z\bar z}=\frac{(1+z\bar z)-\bar zz}{(1+z\bar z)^2}=\frac1{(1+|z|^2)^2}$。
+\end{sol}
+\begin{sol}{\ref{p:coordindep}}
+$\partial\varphi_j/\partial\bar z_k=0$ より $dw_j=\sum_k\frac{\partial\varphi_j}{\partial z_k}dz_k\in\mathrm{span}\{dz_k\}$、共役をとって $d\bar w_j\in\mathrm{span}\{d\bar z_k\}$。したがって $\mathrm{span}\{dw\}=\mathrm{span}\{dz\}=\Lam^{1,0}$ で、$\Lam^{p,q}$ は座標によらない。$\bar\partial=\pr^{p,q+1}\circ d$ は座標に依存しない定義で、各座標で $d(f\,dz_I\wedge d\bar z_K)=df\wedge dz_I\wedge d\bar z_K$ の $(p,q+1)$ 成分が $\sum_j\partial_{\bar z_j}f\,d\bar z_j\wedge\cdots$ であることから座標表示の式と一致。
+\end{sol}
+\begin{sol}{\ref{p:fourier}}
+$\cos(2\pi x)=\frac12(\chi_{1,0}+\chi_{-1,0})$、$\cos(2\pi y)=\frac12(\chi_{0,1}+\chi_{0,-1})$。$\partial_{\bar z}\chi_{m,n}=\pi i(m+in)\chi_{m,n}$ より、係数 $\pi i,\ -\pi i,\ -\pi,\ +\pi$（$(1,0),(-1,0),(0,1),(0,-1)$ の順）。よって
+\[
+u=\frac1{2\pi i}(\chi_{1,0}-\chi_{-1,0})-\frac1{2\pi}(\chi_{0,1}-\chi_{0,-1})=\frac{\sin 2\pi x}{\pi}-i\,\frac{\sin2\pi y}{\pi}.
+\]
+実際 $\partial_{\bar z}\frac{\sin2\pi x}\pi=\cos2\pi x$、$\partial_{\bar z}\big(-\tfrac i\pi\sin2\pi y\big)=\frac i2\cdot\big(-\tfrac i\pi\big)2\pi\cos2\pi y=\cos2\pi y$（数値検算済み）。$d\bar z=\bar\partial u$ なら、$\bar\partial u$ の $\chi_{0,0}$ 成分は $0$ なので定数 $1$ にはなれない。
+\end{sol}
+\begin{sol}{\ref{p:torusfourier}}
+(a) $c(\xi)=0$ なら $\partial_{\bar z_j}\chi_\xi=0$ がすべての $j$ で成り立ち、$\chi_\xi$ は $\mathbb C^n$ 上正則かつ $\Lambda$-周期的、有界なので Liouville により定数、$\xi=0$。(b) $c\ne0$ に対し $b$ を $c(b)=1$ の反変ベクトルとすると $\iota_b(c\wedge\eta)=c(b)\eta-c\wedge\iota_b\eta=\eta-c\wedge\iota_b\eta$、すなわち $\iota_b(c\wedge)+c\wedge\iota_b=\mathrm{id}$。ゆえに $c\wedge\eta=0$ なら $\eta=c\wedge(\iota_b\eta)$：完全。(c) $n=2$、$H^{0,1}=\mathrm{span}\{d\bar z_1,d\bar z_2\}$、次元 $\binom20\binom21=2$。
+\end{sol}
+\begin{sol}{\ref{p:Ok}}
+$f_0$ は $\mathbb C$ 上の整関数、$f_1(w)=\sum_{m\ge0}a_mw^m$ は $w$ の整関数で、$f_1(1/z)=z^{-k}f_0(z)$ より $f_0(z)=z^kf_1(1/z)=\sum_ma_mz^{k-m}$（$z\ne0$）。$f_0$ が $z=0$ で正則であるためには $a_m\ne0\Rightarrow m\le k$。$k\ge0$ なら $f_0=\sum_{m=0}^ka_mz^{k-m}$（$k$ 次以下の多項式）で次元 $k+1$。$k<0$ なら全 $a_m=0$、切断は $0$。
+\end{sol}
+\begin{sol}{\ref{p:gauge}}
+(a) 1 次元なので $\A^{0,2}=0$、$\bar\partial(z\,d\bar z)=d\bar z\wedge d\bar z=0$ で可積分。(b)(c) $a=z\,d\bar z=\bar\partial u$、$u=|z|^2$。命題 \ref{prop:linefrm} より $D''(e^{-|z|^2}h)=e^{-|z|^2}\bar\partial h$。直接：$D''(e^{-|z|^2}h)=(-ze^{-|z|^2}h+e^{-|z|^2}\partial_{\bar z}h+ze^{-|z|^2}h)d\bar z=e^{-|z|^2}\partial_{\bar z}h\,d\bar z$。$u$ は全平面で定義されているので、正則切断は全平面で $e^{-|z|^2}h$（$h$ 整関数）。
+\end{sol}
+\begin{sol}{\ref{p:integr}}
+$D''^2s=(\bar\partial a)s$、$\bar\partial a=(\partial_{\bar z_1}a_2-\partial_{\bar z_2}a_1)\,d\bar z_1\wedge d\bar z_2$（$d\bar z_j\wedge d\bar z_j=0$）。$a=\bar z_2d\bar z_1$：$\partial_{\bar z_2}a_1=1\ne0=\partial_{\bar z_1}a_2$ で不可積分。$a=\bar z_2d\bar z_1+\bar z_1d\bar z_2$：両辺 $1$ で可積分、$u=\bar z_1\bar z_2$。
+\end{sol}
+\begin{sol}{\ref{p:rank2}}
+(a) $H^*=H$、$H_{11}=1>0$、$\det H=1+|z|^2-|z|^2=1>0$ なので正定値。(b) $\bar H=\begin{pmatrix}1&\bar z\\z&1+|z|^2\end{pmatrix}$、$\bar H^{-1}=\begin{pmatrix}1+|z|^2&-\bar z\\-z&1\end{pmatrix}$、$\partial\bar H=\begin{pmatrix}0&0\\1&\bar z\end{pmatrix}dz$。よって
+\[
+\theta=\bar H^{-1}\partial\bar H=\begin{pmatrix}-\bar z&-\bar z^2\\1&\bar z\end{pmatrix}dz,\qquad
+\Theta=\bar\partial\theta=\begin{pmatrix}-1&-2\bar z\\0&1\end{pmatrix}d\bar z\wedge dz=\begin{pmatrix}1&2\bar z\\0&-1\end{pmatrix}dz\wedge d\bar z.
+\]
+(c) $\tr\Theta=0$（$\det H=1$ なので $\tr\Theta=\bar\partial\partial\log\det H=0$ とも整合）。$\partial H=\theta^TH$ と $\bar\partial H=H\bar\theta$ を $z=0.7-0.4i$ で有限差分により確認した。
+\end{sol}
+\begin{sol}{\ref{p:degk}}
+$\frac k\pi\int\frac{dx\,dy}{(1+r^2)^2}=\frac k\pi\cdot2\pi\int_0^\infty\frac{r\,dr}{(1+r^2)^2}=2k\cdot\frac12=k$。$k=-1$ で $-1$（タウトロジー束）。$\CP^1\setminus U_0$ は 1 点で測度 $0$。
+\end{sol}
+\begin{sol}{\ref{p:TP1}}
+(a) $\theta=\partial\log\lambda=-\frac{2\bar z\,dz}{1+|z|^2}$、$\Theta=\bar\partial\theta=-2\partial_{\bar z}\frac{\bar z}{1+|z|^2}\,d\bar z\wedge dz=\frac{2\,dz\wedge d\bar z}{(1+|z|^2)^2}$。一般の $\lambda$ では $\Theta=\partial_{\bar z}\partial_z\log\lambda\,d\bar z\wedge dz=\frac14\Delta\log\lambda\cdot2i\,dx\wedge dy$。$K=-\frac1{2\lambda}\Delta\log\lambda$ と $dA=\lambda\,dx\wedge dy$ から $\frac i{2\pi}\Theta=-\frac1{4\pi}\Delta\log\lambda\,dx\wedge dy=\frac{\lambda K}{2\pi}dx\wedge dy=\frac K{2\pi}dA$。
+(b) $\log\lambda=\log4-2\log(1+|z|^2)$、$\Delta\log(1+|z|^2)=4\partial\bar\partial$ の係数 $=4/(1+|z|^2)^2$。$\Delta\log\lambda=-8/(1+|z|^2)^2$、$K=\frac{-1}{2\lambda}\cdot\frac{-8}{(1+|z|^2)^2}=1$。面積 $=\int\lambda\,dxdy=4\pi$、$\int c_1(T\CP^1)=\frac1{2\pi}\cdot4\pi=2=\chi(S^2)$。$\Oc(2)$ の次数（例 \ref{ex:degk}）と一致。（$K=1$ は有限差分でも確認。）
+\end{sol}
+\begin{sol}{\ref{p:indep}}
+$d(\bar\partial\psi)=\partial\bar\partial\psi$、$d(\partial\psi)=\bar\partial\partial\psi=-\partial\bar\partial\psi$ より $d\big((\bar\partial-\partial)\psi\big)=2\partial\bar\partial\psi$。よって $\frac i{2\pi}\partial\bar\partial\psi=d\big(\frac i{4\pi}(\bar\partial-\partial)\psi\big)$（括弧内は実 1 形式：$\overline{\bar\partial\psi}=\partial\psi$ より $(\bar\partial-\partial)\psi$ は純虚数）。$h'=e^{-\psi}h$ なら $\log h'=\log h-\psi$ なので \eqref{eq:linecurv} より $\Theta_{h'}=\Theta_h+\partial\bar\partial\psi$。したがって $c_1$ は $h$ によらない。$\CP^1$ では Stokes により $\int c_1(\Oc(k),h)=\int c_1(\Oc(k),h_k)=k$。
+\end{sol}
+\begin{sol}{\ref{p:weight}}
+$\theta=\partial\log e^{-|z|^2}=-\sum\bar z_jdz_j$、$\Theta=\bar\partial\theta=-\sum d\bar z_j\wedge dz_j=\sum dz_j\wedge d\bar z_j$。$\frac i{2\pi}\Theta=\frac1\pi\cdot\frac i2\sum dz_j\wedge d\bar z_j=\frac1\pi\omega_{\mathrm{std}}$。標準 Kähler 形式の $1/\pi$ 倍。
+\end{sol}
+\begin{sol}{\ref{p:kahlercn}}
+$g_{j\bar k}=\frac14\big[g(\partial_{x_j},\partial_{x_k})+g(\partial_{y_j},\partial_{y_k})+i(\cdots)\big]=\frac12\delta_{jk}$（交差項は $0$）。$\omega=\frac i2\sum dz_j\wedge d\bar z_j$ は定数係数なので閉。$\omega=\sum\omega_j$、$\omega_j=dx_j\wedge dy_j$ は偶数次で $\omega_j^2=0$ なので $\omega^n=n!\,\omega_1\wedge\cdots\wedge\omega_n$、よって $\omega^n/n!=dx_1\wedge dy_1\wedge\cdots\wedge dx_n\wedge dy_n$。
+\end{sol}
+\begin{sol}{\ref{p:fsvol}}
+$\omega=\frac i{2\pi}\sum a_{jk}dz_j\wedge d\bar z_k$、$a_{jk}=\partial_j\bar\partial_k\phi$。2 形式 $dz_j\wedge d\bar z_k$ は可換で、$\prod_j(dz_j\wedge d\bar z_{\sigma(j)})=\mathrm{sgn}(\sigma)\prod_j(dz_j\wedge d\bar z_j)$ なので $\omega^n=n!\det(a)\big(\frac i{2\pi}\big)^n\prod_jdz_j\wedge d\bar z_j$。式 \eqref{eq:dzdzbar} より $i\,dz_j\wedge d\bar z_j=2dx_j\wedge dy_j$ で $\big(\frac i{2\pi}\big)^n\prod dz_j\wedge d\bar z_j=\pi^{-n}dV$。問 \ref{p:logg}(c) より $\omega^n=n!\pi^{-n}(1+|z|^2)^{-(n+1)}dV$。極座標で $\int_{\mathbb C^n}=\mathrm{vol}(S^{2n-1})\int_0^\infty r^{2n-1}(1+r^2)^{-n-1}dr$、$t=r^2$ として $\frac12\int_0^\infty t^{n-1}(1+t)^{-n-1}dt=\frac12B(n,1)=\frac1{2n}$。よって
+\[
+\int\omega^n=n!\,\pi^{-n}\cdot\frac{2\pi^n}{(n-1)!}\cdot\frac1{2n}=1 .
+\]
+$\CP^n\setminus U_0$ は測度 $0$。（$n=1,2,3,4$ で数値積分も確認。）
+\end{sol}
+\begin{sol}{\ref{p:kid1}}
+$\Lambda$ は $L$ の随伴で $\Lambda(dx\wedge dy)=1$。$\Lambda\alpha=0$（1 形式）なので $[\Lambda,\bar\partial]\alpha=\Lambda\bar\partial\alpha=\Lambda(\partial_{\bar z}f\,d\bar z\wedge dz)$。$d\bar z\wedge dz=2i\,dx\wedge dy$ より $=2i\,\partial_{\bar z}f$。一方 $|dz|^2=|dx|^2+|dy|^2=2$ なので、コンパクト台の $g$ について $\langle\partial g,f\,dz\rangle=2\int\partial_zg\,\bar f\,dA=-2\int g\,\overline{\partial_{\bar z}f}\,dA$。ゆえに $\partial^*(f\,dz)=-2\partial_{\bar z}f$、$-i\partial^*\alpha=2i\,\partial_{\bar z}f$。一致する（この規約で符号が $[\Lambda,\bar\partial]=-i\partial^*$ となることを複素 1 次元で確認した）。
+\end{sol}
+\begin{sol}{\ref{p:cpt2k}}
+$[\omega^k]=0$、$\omega^k=d\beta$ とすると、$\omega$ は閉なので $\omega^n=\omega^{n-k}\wedge d\beta=d(\omega^{n-k}\wedge\beta)$、$\int_X\omega^n=0$。一方 $\omega^n=n!\,dV>0$ で $\int_X\omega^n>0$。矛盾。よって $[\omega^k]\ne0$（$0\le k\le n$）。$S^{2m}$（$m\ge2$）は $H^2_{dR}=0$ なので $[\omega]\ne0$ に反し、Kähler 構造（正確には複素構造をもったうえでの閉 2 形式 $\omega$）は存在しない。$S^1\times S^3$ も $H^2_{dR}=0$。
+\end{sol}
+\begin{sol}{\ref{p:sub}}
+$\iota$ が正則なので $d\iota\circ J_Y=J_X\circ d\iota$。$\iota^*g$ は $Y$ の Riemann 計量で $J_Y$-不変：$\iota^*g(J_Yv,J_Yw)=g(J_Xd\iota v,J_Xd\iota w)=g(d\iota v,d\iota w)$。$\omega_Y(v,w)=\iota^*g(J_Yv,w)=g(J_Xd\iota v,d\iota w)=(\iota^*\omega_X)(v,w)$。$d\omega_Y=\iota^*d\omega_X=0$。
+\end{sol}
+\begin{sol}{\ref{p:disc}}
+$\log\lambda=\log4-2\log(1-z\bar z)$。$\theta=\partial\log\lambda=\dfrac{2\bar z\,dz}{1-|z|^2}$。$\Theta=\bar\partial\theta=2\partial_{\bar z}\Big(\dfrac{\bar z}{1-z\bar z}\Big)d\bar z\wedge dz=\dfrac{2}{(1-|z|^2)^2}d\bar z\wedge dz=-\dfrac{2\,dz\wedge d\bar z}{(1-|z|^2)^2}$。$\frac i{2\pi}\Theta=-\frac i\pi\frac{dz\wedge d\bar z}{(1-|z|^2)^2}=-\frac2\pi\frac{dx\wedge dy}{(1-|z|^2)^2}$。$dA=\lambda\,dx\wedge dy=\frac4{(1-|z|^2)^2}dx\wedge dy$ なので $\frac i{2\pi}\Theta=-\frac1{2\pi}dA$、$K=-1$（数値検算済み）。面積 $\int_D\frac{4\,dxdy}{(1-r^2)^2}=8\pi\int_0^1\frac{r\,dr}{(1-r^2)^2}=\infty$。
+\end{sol}
+\begin{sol}{\ref{p:fermat}}
+(a) $U_0$ 上 $f=1+z_1^d+z_2^d$。$\partial f/\partial z_j=dz_j^{d-1}$ が両方 $0$ なら $z_1=z_2=0$、そこで $f=1\ne0$。よって零点集合上で $df\ne0$。他の $U_i$ も同様で滑らか。(b) 平面曲線 $X_d$ は連結（二つの成分があれば Bézout により交わり、交点は特異点になる）。(A) より $c_1(TX_d)=(3-d)H$、(B) より $\int c_1(TX_d)=d(3-d)$、これは $\chi(X_d)=2-2g$。よって $g=\frac{d^2-3d+2}2=\frac{(d-1)(d-2)}2$。表：$d=1,2,3,4,5,6$ のとき $g=0,0,1,3,6,10$（$\chi=2,2,0,-4,-10,-18$）。(c) $c_1=(n+1-d)H=(4-4)H=0$。
+\end{sol}
+\begin{sol}{\ref{p:hopf}}
+(a) $2^mz=z$ なら $z\neq0$ より $m=0$：自由。$K\subset\mathbb C^2\setminus0$ コンパクトなら $|z|\in[a,b]$（$0<a$）で、$2^mK\cap K\neq\emptyset$ なら $2^{|m|}\le b/a$：有限個の $m$ のみ。固有不連続。各軌道は閉環状領域 $D=\{1\le|z|\le2\}$ と交わるので、$D$ の像が $X$ 全体でコンパクト。作用は双正則なので商は複素多様体。(b) $\Phi([z])=(\log_2|z|\bmod1,z/|z|)$ は $|2^mz|=2^m|z|$ により well-defined、逆写像は $(t,u)\mapsto[2^tu]$（$t\in\mathbb R/\mathbb Z$ で $2^{t+1}u=2\cdot2^tu\sim2^tu$）。両方滑らか。(c) $b_1(S^1\times S^3)=1$。コンパクト Kähler 多様体では Hodge 分解 $H^1(X;\mathbb C)=H^{1,0}\oplus H^{0,1}$、$h^{0,1}=h^{1,0}$ により $b_1=2h^{1,0}$ は偶数なので矛盾。
+\end{sol}
+\begin{sol}{\ref{p:torus2}}
+$h^{p,q}=\binom2p\binom2q$：$\begin{smallmatrix}1&2&1\\2&4&2\\1&2&1\end{smallmatrix}$（行 $p$、列 $q$）。(a) $b_0=1$、$b_1=h^{1,0}+h^{0,1}=4$、$b_2=h^{2,0}+h^{1,1}+h^{0,2}=1+4+1=6$、$b_3=4$、$b_4=1$。これは $\binom4k$ に等しい。(b) $1-4+6-4+1=0=\chi(T^4)$。(c) $h^{0,0}-h^{0,1}+h^{0,2}=1-2+1=0$。
+\end{sol}
+
+\begin{sol}{\ref{p:Kcp}}
+(a) $U_1$ 上 $dz=-w^{-2}dw$ なので $f(1/w)(-w^{-2})dw$。これが $w=0$ で正則であるには $f(1/w)=O(w^2)$、つまり $f(z)=O(|z|^{-2})$（$z\to\infty$）。$f$ は整関数で $\infty$ で $0$ に収束するから Liouville により $f\equiv0$。(b) $w_0=1/z_1$、$w_2=z_2/z_1$ で Jacobi 行列式は $-z_1^{-3}$（問 \ref{p:pn}）。$dw_0\wedge dw_2=-z_1^{-3}dz_1\wedge dz_2$ で、成分は $f_1=-z_1^3f_0$。$\Oc(k)$ の変換則 $f_1=z_1^{-k}f_0$ と符号を除いて一致し $k=-3$。
+\end{sol}
+\begin{sol}{\ref{p:euler}}
+$c_1(\Oc)=0$、$c_1(\Oc(1)^{\oplus(n+1)})=(n+1)H$ なので $c_1(T\CP^n)=(n+1)H$。(a) $\int_{\CP^1}H=\int\omega_{FS}=1$（問 \ref{p:fsvol}、$n=1$）で $2$。(b) $\int c_1^2=9\int\omega_{FS}^2=9$。(c) $n=2,d=1$ で $c_1(T\ell)=(3-1)H|_\ell$、$\int_\ell H=d=1$ より $\int c_1=2=\chi(\CP^1)$。整合する。
+\end{sol}
+
+\section{この巻の理解チェック}\label{sec:check}
+次の 10 問（正誤または短答）に、本文を見ずに答えよ。解答は直後にある。
+\begin{enumerate}
+\item $T^{0,1}=\ker(J+i)\subset\Tc$、$T^{1,0}=\ker(J-i)$ である。（正誤）
+\item 実 2 次元の概複素構造は常に積分可能である。（正誤）
+\item $N_J(Z,W)=-4\pi^{1,0}[Z,W]$（$Z,W\in T^{0,1}$）から、$N_J=0\iff T^{0,1}$ が括弧で閉じる。（正誤）
+\item 積分可能性を仮定しなくても $\bar\partial^2=0$ が成り立つ。（正誤）
+\item コンパクト連結複素多様体上の正則関数は定数である。（正誤）
+\item 複素ベクトル束 $E$ の正則構造は、どのようなデータと同値か。
+\item 正則 Hermite ベクトル束の Chern 接続の曲率は何型の形式か。
+\item $\CP^1$ 上の $\Oc(k)$ $(k\ge0)$ の大域正則切断の次元はいくらか。$\deg\Oc(k)$ は。
+\item 複素 2 次元トーラスと Hopf 曲面のうち Kähler なのはどちらか。理由は。
+\item 複素構造を「$L=T^{0,1}$ が $\Tc$ の積分可能な部分束（複素 Lie 亜代数）」と見るとき、$\bar\partial$ は $L$ の何に対応するか。一般化複素構造ではこの $L$ はどこに入る部分束になるか。
+\end{enumerate}
+\paragraph{解答。}
+(1) 正。(2) 正（$\operatorname{rank}L=1$ で自動的に involutive）。(3) 正。(4) 誤（$\bar\partial^2=0$ は $d=\partial+\bar\partial$、すなわち積分可能性が必要。問 \ref{p:Ndim} の $\mu$ 項が障害）。(5) 正（最大値原理）。(6) 可積分な $\bar\partial$-作用素 $D''$（$D''^2=0$）、すなわち平坦な $T^{0,1}$-接続（Koszul--Malgrange）。(7) $(1,1)$ 型。(8) $k+1$、次数 $k$。(9) トーラス（平坦計量）。Hopf 曲面は $b_1=1$ が奇数、または $H^2_{dR}=0$ で $[\omega]=0$ となり矛盾。(10) Lie 亜代数 $L$ のコホモロジー（Chevalley--Eilenberg）の微分 $d_L$ に対応する。一般化複素構造では $L\subset(T\oplus T^*)_{\mathbb C}$ を、Courant 括弧で閉じた最大等方的部分束（複素 Dirac 構造）で $L\cap\overline L=0$ をみたすものとして取る（第12巻）。
+
+\section{次巻以降への橋渡しと統合論文との対応}\label{sec:bridge}
+\paragraph{第3巻（層とコホモロジー）へ。}$\bar\partial$-補題によりコンパクトでも非コンパクトでも $(\A^{p,\bullet},\bar\partial)$ は $\Omega^p$ の細分解を与える。第3巻でこの事実から $H^{p,q}_{\bar\partial}(X)\cong H^q(X,\Omega^p)$ を示す。同様に $E$ 係数でも $H^{0,q}(X,E)\cong H^q(X,\Oc(E))$（\S\ref{sec:holbundle}）。
+\paragraph{第4--6巻へ。}曲線では $\bar\partial_E$ と Chern 接続から Riemann--Roch に入る。第5巻では Kähler 恒等式（定理 \ref{thm:kid}）から Hodge 分解・Lefschetz・Kodaira 消滅（曲率が正の直線束、\S\ref{sec:chern} の重み関数 $e^{-\varphi}$ の例）を導く。第6巻では \S\ref{sec:chern} の $c_1$ を一般の Chern 類・Chern 指標に拡張する。
+\paragraph{第7--9巻へ。}Dolbeault 複体 $(\A^{0,\bullet}(E),\bar\partial_E)$ は楕円複体で、その指数が $\chi(X,E)=\sum(-1)^q\dim H^q(X,E)$（第7--8巻）。族の場合は $\bar\partial$ の族が指数束を作る。
+\paragraph{第11--13巻へ（本巻の最重要の橋）。}\S\ref{sec:integ} の見方：複素構造 $=$ 積分可能な部分束 $L=T^{0,1}\subset\Tc$（複素 Lie 亜代数）。\S\ref{sec:holbundle} の見方：正則束 $=$ $L$ 上の平坦接続 $=$ $L$-加群（備考 \ref{rem:Lconn}）。第12巻で $T\oplus T^*$ と Courant 括弧を導入し、$L$ を $(T\oplus T^*)_{\mathbb C}$ の最大等方的で Courant 積分可能な部分束に置き換えたものが一般化複素構造。標準的な複素構造の場合 $L=T^{0,1}\oplus\Lam^{1,0}$。第13巻では、この $L$ の「加群」が一般化正則束、特に（正則 Poisson 構造を $\beta$ 変換で入れた場合は）Poisson 加群になる\tQ。そして$\bar\partial$ の代わりに $L$ の Lie 亜代数コホモロジー（超コホモロジー）が使われる。
+\paragraph{統合論文との対応。}
+統合論文の要旨（記事冒頭）のみを確認した範囲での対応で、PDF 本文は未読のため対応の細部は\tQ：
+\begin{center}
+\begin{tabular}{p{0.38\textwidth}p{0.5\textwidth}}
+\toprule
+統合論文の主題 & 本巻で効く箇所\\
+\midrule
+一般化正則直線束、Poisson 加群 & $\bar\partial_E$、Koszul--Malgrange、$T^{0,1}$-加群（\S\ref{sec:holbundle}、備考 \ref{rem:Lconn}）\\
+Serre 型消滅・双対性 & Dolbeault 複体、局所 $\bar\partial$-完全性（\S\ref{sec:dolbeault}）、Dolbeault 型の同型（第3巻）\\
+Euler 標数と Chern 類 & Chern 接続の曲率、$c_1$（\S\ref{sec:chern}）、$\chi(\CP^1)=2$（問 \ref{p:TP1}）\\
+Kodaira 型、埋め込み & Kähler 形式、Fubini--Study、曲率の正値性（\S\ref{sec:kahler}、例 \ref{ex:FS}）\\
+Riemann--Roch 型公式・指数予想 & Dolbeault 複体の指数（第6--9巻の入口）、$\deg\Oc(k)$（例 \ref{ex:degk}）\\
+正則型（通常の複素構造）との比較 & \S\ref{sec:integ}（$J$、$T^{0,1}$）、\S\ref{sec:examples}（超曲面・トーラス）\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section*{参考文献}
+\addcontentsline{toc}{section}{参考文献}
+書名と章までを記す（定理番号は、確信がないものは書かない）。
+\begin{itemize}
+\item D.~Huybrechts, \emph{Complex Geometry: An Introduction}, Springer, 2005. 第1章（局所理論、Dolbeault 補題）、第2章（複素多様体、概複素構造、Newlander--Nirenberg）、第3章（Kähler 多様体、Kähler 恒等式）、第4章（ベクトル束、Hermite 計量、Chern 接続）。
+\item P.~Griffiths, J.~Harris, \emph{Principles of Algebraic Geometry}, Wiley, 1978. 第0章（複素多様体、Dolbeault 補題、ベクトル束と曲率、Hodge 理論）、第1章（超曲面、随伴公式）。
+\item R.~O.~Wells, Jr., \emph{Differential Analysis on Complex Manifolds}, GTM 65, Springer. 第I--II章。
+\item C.~Voisin, \emph{Hodge Theory and Complex Algebraic Geometry I}, Cambridge, 2002. 第1--3章。
+\item S.~Kobayashi, \emph{Differential Geometry of Complex Vector Bundles}, Princeton Univ.\ Press, 1987. 第1章（Koszul--Malgrange）。
+\item S.~Kobayashi, K.~Nomizu, \emph{Foundations of Differential Geometry II}, Wiley. 第IX章（Kähler 多様体）。
+\item L.~Hörmander, \emph{An Introduction to Complex Analysis in Several Variables}, North-Holland. 第1--4章（$\bar\partial$ 方程式）。
+\item A.~Newlander, L.~Nirenberg, Ann.\ of Math.\ 65 (1957). \quad J.-L.~Koszul, B.~Malgrange, Arch.\ Math.\ 9 (1958)\tQ。\quad S.-S.~Chern, Ann.\ of Math.\ 47 (1946)。\quad M.~F.~Atiyah, R.~Bott, Phil.\ Trans.\ R.\ Soc.\ A 308 (1983)\tQ。
+\item S.~K.~Donaldson, P.~B.~Kronheimer, \emph{The Geometry of Four-Manifolds}, Oxford. 第2章（正則構造と $\bar\partial$-作用素）。
+\item M.~Gualtieri, Generalized complex geometry, 博士論文 (math/0401221)。第3章付近（$L=T^{0,1}\oplus T^{*1,0}$ の記述、第12巻の準備）\tQ。
+\item R.~Hartshorne, \emph{Algebraic Geometry}, GTM 52. 第II章 §8（随伴公式）。
+\end{itemize}
+
+\section*{付録：本巻の規約と公式の早見表}
+\addcontentsline{toc}{section}{付録：規約と公式の早見表}
+文献によって符号や係数の規約が異なるので、本巻で一貫して使った規約を一覧にする。
+\begin{center}
+\begin{tabular}{p{0.3\textwidth}p{0.6\textwidth}}
+\toprule
+項目 & 本巻の規約\\
+\midrule
+Wirtinger & $\partial_z=\frac12(\partial_x-i\partial_y)$、$\partial_{\bar z}=\frac12(\partial_x+i\partial_y)$\\
+$J$ と固有束 & $J\partial_x=\partial_y$。$T^{1,0}=\ker(J-i)$、$T^{0,1}=\ker(J+i)$\\
+$\Lam^{1,0}$ & $\mathrm{Ann}(T^{0,1})=\mathrm{span}\{dz_j\}$（$J^*dz=i\,dz$）\\
+面積要素 & $dz\wedge d\bar z=-2i\,dx\wedge dy$、$\frac i2dz\wedge d\bar z=dx\wedge dy$\\
+Nijenhuis & $N=[JX,JY]-J[JX,Y]-J[X,JY]-[X,Y]$、$N(Z,W)=-4\pi^{1,0}[Z,W]$ $(Z,W\in T^{0,1})$\\
+Hermite 内積 & 第1変数で線型、第2変数で反線型。$H_{ij}=h(e_i,e_j)$\\
+Chern 接続 & $\nabla e_j=\sum_k\theta_{kj}e_k$、$\theta=\bar H^{-1}\partial\bar H$、$\Theta=\bar\partial\theta$\\
+直線束 & $\theta=\partial\log h$、$\Theta=-\partial\bar\partial\log h$、$c_1=\frac i{2\pi}\Theta$\\
+$\CP^1$ & $\Oc(-1)$：$h(e_0)=1+|z|^2$。$\Oc(k)$：$f_1=z^{-k}f_0$、$\deg=k$\\
+Kähler 形式 & $\omega=g(J\cdot,\cdot)=i\sum g_{j\bar k}dz_j\wedge d\bar z_k$、$g_{j\bar k}=g_{\mathbb C}(\partial_j,\partial_{\bar k})$\\
+$\omega_{FS}$ & $\frac i{2\pi}\partial\bar\partial\log|Z|^2$、$\int_{\CP^n}\omega_{FS}^n=1$\\
+曲率と Gauss 曲率 & $g=\lambda|dz|^2$：$\frac i{2\pi}\Theta_{T^{1,0}}=\frac K{2\pi}dA$、$K=-\frac1{2\lambda}\Delta\log\lambda$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section*{記号表}
+\addcontentsline{toc}{section}{記号表}
+\begin{longtable}{p{0.2\textwidth}p{0.72\textwidth}}
+\toprule
+記号 & 意味\\
+\midrule
+$T,\ \Tc$ & 実接束、複素化 $T\otimes\mathbb C$\\
+$J$ & 概複素構造、$J^2=-1$\\
+$T^{1,0},T^{0,1}$ & $J$ の $+i$、$-i$ 固有束（$T^{0,1}=L$）\\
+$\Lam^{p,q},\ \A^{p,q}$ & $(p,q)$ 形式のバンドルと滑らかな切断の空間\\
+$\partial,\ \bar\partial$ & $d$ の $(1,0)$、$(0,1)$ 成分\\
+$N_J$ & Nijenhuis テンソル\\
+$H^{p,q}_{\bar\partial}(X)$ & Dolbeault コホモロジー\\
+$\bar\partial_E,\ D''$ & 正則束の $\bar\partial$-作用素、一般の $\bar\partial$-作用素\\
+$h,\ H,\ \theta,\ \Theta$ & Hermite 計量、その行列、Chern 接続形式、曲率\\
+$c_1(L)$ & $[\frac i{2\pi}\Theta]$\\
+$g_{j\bar k},\ \omega$ & 計量の係数 $g_{\mathbb C}(\partial_j,\partial_{\bar k})$、Kähler 形式 $=g(J\cdot,\cdot)=i\sum g_{j\bar k}dz_j\wedge d\bar z_k$\\
+$L,\ \Lambda$ & Kähler 恒等式の節に限り $\omega\wedge$ とその随伴（他の節の $L=T^{0,1}$、格子 $\Lambda$ とは別）\\
+$\Oc(k),\ K_X$ & $\CP^n$ の直線束、標準束\\
+$\pr^{p,q}$ & $(p,q)$ 成分への射影\\
+\bottomrule
+\end{longtable}
+\end{document}
