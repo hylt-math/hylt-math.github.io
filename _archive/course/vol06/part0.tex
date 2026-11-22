@@ -1,0 +1,69 @@
+\input{pre_course.tex}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{arrows.meta,positioning,calc}
+\fancyhead[L]{\small 第6巻　特性類と Hirzebruch--Riemann--Roch の定理}
+% --- 本巻の記号 ---
+\newcommand{\Oc}{\mathcal O}
+\newcommand{\CP}{\mathbb{CP}}
+\newcommand{\Ker}{\operatorname{Ker}}
+\newcommand{\Coker}{\operatorname{Coker}}
+\newcommand{\Ahat}{\widehat{A}}
+\newcommand{\Lg}{\mathsf{L}}
+\newcommand{\Sym}{\operatorname{Sym}}
+\newcommand{\PD}{\operatorname{PD}}
+\newcommand{\sgn}{\operatorname{sign}}
+\newcommand{\Fl}{\mathrm{Fl}}
+\newcommand{\tw}{\mathsf{e}}
+\renewcommand{\contentsname}{目次}\renewcommand{\figurename}{図}
+\usepackage{fontspec}\newfontfamily\lmfont{Latin Modern Roman}
+\newcommand{\Cech}{{\lmfont \v{C}ech}}
+\begin{document}
+\sloppy
+\begin{center}
+{\LARGE\bfseries\sffamily 第6巻　特性類と Hirzebruch--Riemann--Roch の定理}\\[4pt]
+{\large\sffamily （Chern 類・Chern 指標・Todd 類、曲面の Noether の公式、統合論文の Euler 標数の定理）}\\[8pt]
+{\large 学習コース「一般化幾何への道」}\\[6pt]
+{\large 執筆：Claude\ ／\ 企画：森}\\[3pt]
+2026年11月22日（v1）\\[3pt]
+{\small （外部の査読は受けていない教材。執筆者とは別の AI による独立検査と、可能な範囲の計算での検算は行った。標準的な結果には出典を付け、確認できていないものは\tQ\ で示す。）}
+\end{center}
+
+\begin{goalbox}{この巻の学習目標}
+\begin{itemize}
+\item \textbf{Chern 類}を公理（自然性・Whitney 公式・正規化）で特徴づけ、Chern--Weil の類がこの公理を満たすことを示し、\textbf{splitting principle}（Chern 根）を使って、$E^*$、$E\otimes L$、$\End E$ などの Chern 類を計算できる。$\CP^n$、超曲面、完全交叉の Chern 類を求められる。
+\item \textbf{Chern 指標}の加法性・乗法性を Chern 根から証明し、$\ch_k$ を $c_i$ で表せる。\textbf{Todd 類}が $x/(1-e^{-x})$ に対応する乗法的類であること、$\Td_1=c_1/2$、$\Td_2=(c_1^2+c_2)/12$、$\Td_3=c_1c_2/24$ を導ける。Todd 類の級数が $\CP^n$ の $\chi(\Oc)=1$ から一意に決まること（Hirzebruch の議論）を証明できる。
+\item \textbf{Hirzebruch--Riemann--Roch の定理} $\chi(X,E)=\int_X\ch(E)\Td(X)$ を述べ、証明の方針（Atiyah--Singer、Hirzebruch の原証明、Grothendieck の方法）を出典つきで説明できる。$\CP^n$ 上の $\Oc(k)$ では HRR を\emph{完全に}証明する（留数の計算）。
+\item \textbf{応用}：曲線の Riemann--Roch の再導出、曲面の Noether の公式 $\chi(\Oc_X)=(c_1^2+c_2)/12$ と曲面の Riemann--Roch、$h^0(\CP^n,\Oc(k))=\binom{n+k}{n}$、Fermat 曲線・曲面、K3 曲面（$\chi(\Oc)=2$、$e=24$）、複素トーラス、Calabi--Yau 3 次元（$\chi(\Oc)=0$、五次超曲面の $e=-200$）を計算できる。
+\item \textbf{Pontryagin 類・Euler 類・特性数}、Chern--Gauss--Bonnet、Hirzebruch の $\chi_y$ 種数と Hodge 数、符号定理、$\Ahat$ 種数と Dirac 作用素（第8巻への橋渡し）の主張と基本計算を知る。
+\item \textbf{統合論文との対応}：全 Euler 標数 $(-1)^n\rk(E)\chi(X)$ が $c_1(E)$ によらないこと（論文の定理 22）が、HRR の被積分形式で「最高次の $c_n(T_X)$ がすでに次数を使い切る」ためであることを、計算で説明できる。
+\end{itemize}
+\end{goalbox}
+\begin{goalbox}{前提と記法}
+第1巻（ベクトル束、接続・曲率、Chern--Weil の入口）、第2巻（複素多様体、正則ベクトル束、Chern 接続、第1 Chern 類）、第3巻（層コホモロジー、Euler 標数 $\chi(X,\mathcal F)$、超コホモロジー）を既知とする。第4巻の Riemann--Roch（曲線版）と第5巻の Kodaira 型の定理は、応用で使う。必要な定義と主張は本文で簡潔に再掲する。\\
+$X$ は特に断らなければ\textbf{連結なコンパクト複素多様体}、$n=\dim_{\C}X$、$T_X=T^{1,0}X$（正則接束）、$K_X=\det T_X^*$、$\chi(X,E)=\sum_q(-1)^q\dim H^q(X,E)$。Chern 形式は第1巻の規約 $c(E,\nabla)=\det(I+\tfrac{i}{2\pi}F)$（$\int_{\CP^1}c_1(\Oc(k))=k$）に従う。特性類は主に $H^*(X;\Q)$ または $H^*(X;\R)$ の元として扱い、$\int_X$ は基本類との対にとる。\tC\ は標準的な結果（出典を併記）、\tP\ は本文で証明したもの、\tQ\ は記憶に基づく・未確認の箇所を表す。
+\end{goalbox}
+\tableofcontents
+\newpage
+\section*{この巻の読み方}
+\addcontentsline{toc}{section}{この巻の読み方}
+\begin{itemize}
+\item \textbf{最短ルート}：\S\ref{sec:chern}（Chern 類と splitting principle）$\to$ \S\ref{sec:ch}（$\ch$）$\to$ \S\ref{sec:td}（$\Td$）$\to$ \S\ref{sec:hrr}（HRR）$\to$ \S\ref{sec:surf}（曲面）。Pontryagin 類・符号定理（\S\ref{sec:pont}、\S\ref{sec:chiy}）は後回しでもよい。
+\item \textbf{統合論文に進む人}：\S\ref{sec:ch}、\S\ref{sec:td}、\S\ref{sec:hrr} を読んだら \S\ref{sec:unified} へ。
+\item 問題は各節末に置き、全問の解答は巻末にある。計算の多くは Python で検算し、検算した項目は巻末の付録に一覧する。
+\item 記号：$x_i$ は Chern 根、$H$ は $\CP^n$ の超平面類（$H=c_1(\Oc(1))$）、$e(X)=\int_Xc_n(T_X)$ は位相的 Euler 数、$\tau$ は符号数。
+\end{itemize}
+\begin{center}
+\begin{tikzpicture}[node distance=8mm,font=\small,>=Stealth,every node/.style={draw,rounded corners=2pt,inner sep=3pt,fill=blue!4,align=center}]
+\node (cc) {Chern 類\\[-1pt]{\scriptsize 公理・Chern 根}};
+\node[right=of cc] (ch) {Chern 指標\\[-1pt]{\scriptsize $\sum e^{x_i}$}};
+\node[right=of ch] (td) {Todd 類\\[-1pt]{\scriptsize $\prod\frac{x_i}{1-e^{-x_i}}$}};
+\node[right=of td,fill=orange!12] (hrr) {HRR\\[-1pt]{\scriptsize $\chi=\int\ch\,\Td$}};
+\node[below=of hrr] (ap) {応用：曲線・曲面・\\[-1pt]$\CP^n$・K3・CY};
+\node[above=of hrr] (as) {Atiyah--Singer\\[-1pt]{\scriptsize（第8巻）}};
+\node[below=of cc] (pe) {Pontryagin・Euler\\[-1pt]{\scriptsize Gauss--Bonnet}};
+\draw[->] (cc)--(ch);\draw[->] (ch)--(td);\draw[->] (td)--(hrr);\draw[->] (hrr)--(ap);\draw[->,dashed] (as)--(hrr);
+\draw[->] (cc)--(pe);\draw[->] (pe)--(ap);
+\end{tikzpicture}
+\end{center}
+{\small 図：本巻の流れ。HRR の左辺は層コホモロジー（解析）、右辺は特性類（位相）である。証明は第8巻の指数定理による（実線は計算の道具立て、破線は証明の出典）。}

@@ -1,0 +1,188 @@
+\section{Pontryagin 類・Euler 類・特性数}\label{sec:pont}
+\paragraph{動機。}HRR の右辺は Chern 類の多項式の積分、すなわち\emph{Chern 数}である。ここで、実ベクトル束の Pontryagin 類と Euler 類、Chern--Gauss--Bonnet を簡潔にまとめる。細部は Milnor--Stasheff §15、§9 を参照。
+\begin{defn}[Pontryagin 類]\label{def:pont}
+実ベクトル束 $V$ に対し $p_k(V)=(-1)^kc_{2k}(V\otimes\C)\in H^{4k}(X;\Q)$。複素ベクトル束 $E$ の下にある実ベクトル束 $E_\R$ では $E_\R\otimes\C\cong E\oplus\bar E$ なので、Chern 根 $x_i$ で $c(E_\R\otimes\C)=\prod(1-x_i^2)$、すなわち
+\[
+p_k(E_\R)=e_k(x_1^2,\dots,x_r^2),\qquad p_1=c_1^2-2c_2,\quad p_2=c_2^2-2c_1c_3+2c_4.
+\]
+\end{defn}
+\begin{defn}[Euler 類]\label{def:euler}
+向きづけられた階数 $m$ の実ベクトル束 $V$ に対し、Euler 類 $e(V)\in H^m(X;\Z)$ は、横断的な切断 $s$ の零点集合の Poincaré 双対（一般には Thom 類の零切断への引き戻し）。複素ベクトル束 $E$ では $e(E_\R)=c_r(E)$\tC\ （Milnor--Stasheff §14）。$e(V\oplus W)=e(V)e(W)$、$e(V)^2=p_{m/2}(V)$（$m$ 偶数）。
+\end{defn}
+\begin{thm}[Chern--Gauss--Bonnet]\label{thm:CGB}
+$M$ を閉じた向きづけられた $2m$ 次元多様体とするとき、$\int_Me(TM)=\chi_{\rm top}(M)$。コンパクト複素多様体 $X$（$\dim_\C X=n$）では
+\[
+\int_Xc_n(T_X)=\chi_{\rm top}(X)=\sum_k(-1)^k\dim H^k(X;\Q).
+\]
+\end{thm}
+\noindent\tC\ Chern の内在的証明（1944）は、Chern--Weil 形式（第1巻）と Euler 類の Pfaffian 表示による。Milnor--Stasheff §11（Poincaré--Hopf、切断の零点の指数の和）。2 次元の Gauss--Bonnet は第1巻の例（$\int c_1(TS^2)=2$）。
+
+\begin{ex}[Euler 数の例]\label{ex:euler}\tP\
+$\CP^n$：$c_n=(n+1)H^n$ から $\chi=n+1$（例 \ref{ex:chernPn}）。種数 $g$ の曲線：$c_1(T_C)$ の次数 $=2-2g=\chi$。次数 $d$ の平面曲線：$c(T_C)=(1+H)^3/(1+dH)$ より $c_1=(3-d)H$、$\deg=d(3-d)$、$g=\frac{(d-1)(d-2)}2$。次数 $d$ の曲面：$e=d(d^2-4d+6)$（例 \ref{ex:CI}）。五次 3 次元超曲面：$e=-200$（\S\ref{sec:examples}）。
+\end{ex}
+\begin{defn}[特性数]\label{def:charnum}
+$M$ を閉じた $m$ 次元多様体とする。\emph{Pontryagin 数}は $\int_Mp_{i_1}\cdots p_{i_s}\ (4\sum i_j=m)$、コンパクト複素多様体では \emph{Chern 数} $\int_Xc_1^{a_1}\cdots c_n^{a_n}\ (\sum ia_i=n)$。曲面の Chern 数は $c_1^2,c_2$、3 次元では $c_1^3,c_1c_2,c_3$。
+\end{defn}
+\noindent 特性数は（向きづけられた）コボルディズム不変量で、Thom は Pontryagin 数が向きづけコボルディズム環 $\Omega^{SO}\otimes\Q=\Q[\CP^2,\CP^4,\dots]$ を決めることを示した\tC\ （Milnor--Stasheff §17--§19。節の対応は未確認\tQ\ ）。Hirzebruch の HRR の原証明（\S\ref{sec:hrr}）はこれを使う。
+
+\begin{ex}[符号数と Pontryagin 数]\label{ex:L1}\tP\
+乗法的類 $\Lg$ は $Q(x)=\frac x{\tanh x}=1+\frac{x^2}3-\frac{x^4}{45}+\cdots$ から、Pontryagin 根 $y_i=x_i^2$ で $\Lg_1=\frac13p_1$、$\Lg_2=\frac1{45}(7p_2-p_1^2)$。Hirzebruch の符号定理（\S\ref{sec:chiy}）：$4m$ 次元の閉じた向きづけられた多様体で $\sgn(M)=\int_M\Lg(M)$。$\CP^2$：$p_1=3H^2$、$\sgn=1$。$\CP^4$：$p(T)=(1+H^2)^5$、$p_1=5H^2$、$p_2=10H^4$、$\Lg_2=\frac{70-25}{45}=1$ ✓。
+\end{ex}
+
+\begin{rem}[Euler 形式と Pfaffian：Chern--Gauss--Bonnet の仕組み]\label{rem:Pfaffian}\tC\
+向きづけられた階数 $2m$ の実ベクトル束 $V$ に、計量と整合する接続の曲率 $\Omega$（各点で歪対称行列）をとり、\emph{Pfaffian} $\mathrm{Pf}(\Omega)$ をとる（$\mathrm{Pf}^2=\det$）。$e(V)=\bigl[\frac1{(2\pi)^m}\mathrm{Pf}(\Omega)\bigr]$。2 次元（$m=1$）：$\Omega=\begin{pmatrix}0&K\,dA\\-K\,dA&0\end{pmatrix}$、$\mathrm{Pf}=K\,dA$、$e=\frac1{2\pi}K\,dA$ で、$\int_Me=\chi$ は Gauss--Bonnet（第1巻）。複素ベクトル束 $E$（階数 $r$、Chern 接続）では $e(E_\R)=\bigl[\det\bigl(\frac i{2\pi}F\bigr)\bigr]=c_r(E)$ で、Pfaffian が複素行列式に変わる。Chern の証明は、$M$ の単位球束上の Chern--Weil 形式の超越（transgression）と Stokes を使い、Poincaré--Hopf の定理（ベクトル場の零点の指数の和 $=\chi$）に帰着させる。
+\end{rem}
+\begin{keybox}{要点（\S\ref{sec:pont}）}
+$p_k(E_\R)=e_k(x_i^2)$、$e(E_\R)=c_r(E)$、$\int_Xc_n(T_X)=\chi_{\rm top}(X)$（Chern--Gauss--Bonnet）。特性数は Chern 数・Pontryagin 数。符号数は $\Lg$ 類の積分（\S\ref{sec:chiy}）。
+\end{keybox}
+\begin{prob}{基本}\label{p:euler}
+$\chi_{\rm top}$ を $\int c_n(T)$ で計算して、$\CP^3$（$4$）、$\CP^1\times\CP^1$（$4$）、種数 $2$ の曲線（$-2$）、四次曲面（$24$）、五次 3 次元超曲面（$-200$）を確かめよ。（五次は $c(T)=(1+H)^5/(1+5H)$ で、$\int_XH^3=5$。）
+\end{prob}
+\begin{prob}{標準}\label{p:pont}
+$\CP^2$ と $\CP^4$ で Pontryagin 類 $p(T)=\prod(1+x_i^2)$ を計算し、符号数 $1$ を $\Lg$ 類から確かめよ。$\CP^2\times\CP^2$ の符号数 $=\int\Lg$ が積の符号数 $1\cdot1$ に一致することも述べよ。
+\end{prob}
+\begin{prob}{標準}\label{p:Ahat}
+$\Ahat$ 類を $Q(x)=\frac{x/2}{\sinh(x/2)}=1-\frac{x^2}{24}+\frac{7x^4}{5760}$ に対応する乗法的類とし、$\Ahat_1=-\frac1{24}p_1$、$\Ahat_2=\frac1{5760}(7p_1^2-4p_2)$ を示せ。四次曲面（K3）で $p_1=c_1^2-2c_2=-48$ から $\Ahat(K3)=2$ を得よ。
+\end{prob}
+
+\section{Hirzebruch--Riemann--Roch の定理}\label{sec:hrr}
+\begin{thm}[HRR]\label{thm:HRR}\tC\
+$X$ をコンパクト複素多様体（$\dim_\C X=n$）、$E$ を $X$ 上の正則ベクトル束とする。
+\[
+\boxed{\ \chi(X,E)=\int_X\ch(E)\,\Td(X)\ }\qquad\Bigl(\chi(X,E)=\sum_{q=0}^n(-1)^q\dim H^q(X,E)\Bigr).
+\]
+\end{thm}
+\noindent 右辺は $\ch(E)\Td(X)$ の次数 $2n$ の部分、すなわち $\sum_k\int_X\ch_{n-k}(E)\Td_k(X)$。左辺は層コホモロジー（解析）、右辺は Chern 類の積分（位相）である。$\ch(E)=\rk E+\cdots$ なので、特に $\chi(X,E)=\rk(E)\chi(\Oc_X)+(\text{$E$ の Chern 類に依る項})$ となる。
+
+\paragraph{展開。}\tP\ $L$ を直線束、$l=c_1(L)$、$c_i=c_i(T_X)$ とすると：
+\begin{align*}
+n=1:&\ \chi(L)=l+\tfrac12c_1,\\
+n=2:&\ \chi(L)=\tfrac12l^2+\tfrac12lc_1+\tfrac1{12}(c_1^2+c_2),\\
+n=3:&\ \chi(L)=\tfrac16l^3+\tfrac14l^2c_1+\tfrac1{12}l(c_1^2+c_2)+\tfrac1{24}c_1c_2.
+\end{align*}
+ベクトル束 $E$（階数 $r$）では、$n=1$：$\chi(E)=\deg E+\frac r2c_1(T)$。$n=2$：$\chi(E)=r\Td_2+\frac12c_1(E)c_1(T)+\ch_2(E)$（$\ch_2=\frac12(c_1(E)^2-2c_2(E))$）。
+
+\subsection{証明の方針}
+HRR の証明は大きく三通りある（出典）。いずれも長く、本巻では証明を再現しない。
+\begin{enumerate}
+\item \textbf{Atiyah--Singer の指数定理による証明。}Dolbeault 作用素 $\dbar+\dbar^*:\bigoplus_q\Omega^{0,{\rm even}}(E)\to\bigoplus_q\Omega^{0,{\rm odd}}(E)$ は楕円型で、その指数は $\dbar$ ラプラシアンの Hodge 理論（第5巻。Kähler 性は不要）と Dolbeault の定理（第3巻）により $\chi(X,E)$ に等しい。指数定理（第8巻）は、指数をシンボルの $K$ 理論類の $\ch$ の積分 $(-1)^n\int\ch(\sigma)\Td(TX\otimes\C)/e(TX)$ で与える。Dolbeault 作用素のシンボル類を計算すると、$\ch(E)\Td(X)$ が出る（シンボルの $\ch$ を Thom 同型で引き戻す計算で $\prod\frac{x_i}{1-e^{-x_i}}$ が現れる。この計算の細部は第8巻で扱う\tQ ）。\tC\ Atiyah--Singer, \emph{The index of elliptic operators III}, Ann.\ of Math.\ 87（1968）。コンパクト複素多様体（射影的、Kähler でなくてよい）で成り立つ。
+\item \textbf{Hirzebruch の原証明（1954--56）。}射影的な代数多様体で、コボルディズム理論（Thom）と $\CP^n$ の積の場合の計算、および乗法的な級数の一意性（命題 \ref{prop:hirz}）を使う。\tC\ F.~Hirzebruch, \emph{Topological Methods in Algebraic Geometry}（第3版の目次では第4章 The Todd genus と第5章 The Riemann--Roch theorem for algebraic manifolds。版により章番号が異なる）。
+\item \textbf{Grothendieck の方法（Grothendieck--Riemann--Roch）。}固有射 $f:X\to Y$ に対し $\ch(f_!E)\Td(Y)=f_*(\ch(E)\Td(X))$。$Y$ が点なら HRR。射影的な場合は、$X\hookrightarrow\mathbb P^N\times Y$ と射影の分解に帰着し、$\CP^N$ の場合を直接計算する。\tC\ Borel--Serre, \emph{Le théorème de Riemann--Roch}, Bull.\ SMF 86（1958）；Fulton, \emph{Intersection Theory}, 第15章（Riemann--Roch for Non-singular Varieties）；Hartshorne, 付録 A。第9巻の族の指数定理は、この $f_!$ の解析版（指数束）である。
+\end{enumerate}
+\begin{center}
+\begin{tikzpicture}[font=\small,>=Stealth,every node/.style={draw,rounded corners=2pt,inner sep=3pt,fill=blue!4,align=center}]
+\node (as) at (0,0) {Atiyah--Singer（第8巻）};
+\node (hr) at (0,-1.2) {Hirzebruch の原証明};
+\node (gr) at (0,-2.4) {Grothendieck--Riemann--Roch};
+\node[fill=orange!12] (hrr) at (6,-1.2) {HRR：$\chi(E)=\int\ch(E)\Td(X)$};
+\draw[->] (as)--(hrr);\draw[->] (hr)--(hrr);\draw[->] (gr)--(hrr);
+\node[draw=none,fill=none,anchor=west] at (6.8,0) {\scriptsize 解析（楕円型作用素）};
+\node[draw=none,fill=none,anchor=west] at (6.8,-2.4) {\scriptsize 代数（射影的）};
+\end{tikzpicture}
+\end{center}
+
+
+
+\paragraph{射影的な場合の証明の構造（Grothendieck、Borel--Serre）。}\tC\ 上の三番目の方法では、本巻で証明した定理 \ref{thm:HRRPn}（$\CP^N$ 上の $\Oc(k)$）が出発点になる。$X\subset\CP^N$ を滑らかな閉部分多様体、$i:X\to\CP^N$ を包含、$\nu$ を法束とする。
+\begin{enumerate}
+\item[(1)] $\CP^N$ 上の任意の連接層は、$\Oc(k)$ の和による有限な分解（局所自由分解）をもつ。$\chi$、$\ch$ は完全列で加法的なので、$\CP^N$ 上の連接層で HRR が成り立つことは、$\Oc(k)$ で成り立つこと（定理 \ref{thm:HRRPn}）から従う。
+\item[(2)] \emph{閉埋め込みの Riemann--Roch}：$\ch(i_*E)=i_*\bigl(\ch(E)\Td(\nu)^{-1}\bigr)$。（因子の場合は命題 \ref{prop:toddD} の計算。一般の余次元は変形（normal cone への変形）と Koszul 分解で示される\tC\ 。）
+\item[(3)] すると $\chi(X,E)=\chi(\CP^N,i_*E)=\int_{\CP^N}\ch(i_*E)\Td(\CP^N)=\int_X\ch(E)\Td(\nu)^{-1}\,\Td(T_{\CP^N}|_X)$。Whitney 公式 $T_{\CP^N}|_X=T_X\oplus\nu$ と乗法性で $\Td(T_{\CP^N}|_X)=\Td(X)\Td(\nu)$ なので $=\int_X\ch(E)\Td(X)$。
+\end{enumerate}
+\begin{center}
+\begin{tikzcd}[column sep=large]
+X\arrow[r,"i"]\arrow[dr] & \CP^N\arrow[d]\\ & \mathrm{pt}
+\end{tikzcd}
+\end{center}
+つまり、HRR は「(a) $\CP^N$ の $\Oc(k)$ の留数計算（本巻で証明）」と「(b) 閉埋め込みの公式 (2)（出典）」の二つに分解され、$\Td$ が乗法的であること（\S\ref{sec:td}）が、$\CP^N$ から $X$ への降下を可能にしている。これが Todd 級数の乗法性が本質的である理由である。
+\paragraph{Atiyah--Singer の公式からの Todd 類の導出（概算）。}\tQ\ 指数公式を第8巻で正確に述べるが、Todd 類がどこから出るかの計算だけを先に見ておく。Dolbeault 複体 $\Lambda^{0,q}\otimes E$ では、$\Lambda^{0,1}=\overline{T^{*1,0}}\cong T^{1,0}$（Hermite 計量で $\overline{T^*}\cong T$）なので、$\Lambda^{0,q}\cong\wedge^qT$ で Chern 根は $x_i$ に対応する。シンボル類の $\ch$ は（Thom 同型による引き戻しを込めて）$\ch(E)\prod_i(1-e^{x_i})$ の形、これを実接束の Euler 類 $e(TX)=\prod x_i$ で割り、さらに $\Td(TX\otimes\C)=\prod\frac{x_i}{1-e^{-x_i}}\cdot\frac{-x_i}{1-e^{x_i}}$（$TX\otimes\C=T\oplus\bar T$、根は $x_i,-x_i$）を掛ける：
+\[
+\ch(E)\prod_i\frac{(1-e^{x_i})}{x_i}\cdot\frac{x_i}{1-e^{-x_i}}\cdot\frac{-x_i}{1-e^{x_i}}=\ch(E)\prod_i\frac{-x_i}{1-e^{-x_i}}=(-1)^n\ch(E)\Td(T_X).
+\]
+指数公式の符号因子 $(-1)^n$ と合わせて $\ind=\int\ch(E)\Td(X)$。符号・向きの規約（$(-1)^n$ の位置）は第8巻で正確に扱うので、ここでは\emph{構造}、すなわち「$\prod(1-e^{x_i})$（Koszul 型の交代和）を Euler 類で割ると Todd 類が出る」だけを見てほしい。同じ Koszul 型の和 $\prod(1-e^{x_i})$ が、\S\ref{sec:unified} で $\sum_b(-1)^b\ch(\wedge^bT)$ として再び現れる。
+
+
+
+\subsection{仮定の役割}
+\begin{center}
+{\small\begin{tabular}{p{3.2cm}|p{5.2cm}|p{5.5cm}}
+\toprule
+仮定 & なぜ必要か & 外れるとどうなるか\\
+\midrule
+$X$ コンパクト & $H^q(X,E)$ が有限次元（Cartan--Serre、第3巻）。積分 $\int_X$ が定義できる。 & $\C$ 上の $\Oc$ では $H^0$ が無限次元で $\chi$ が定義できない。\\
+\hline
+$X$ が複素多様体、$E$ が正則 & $\chi$ を層コホモロジーで定義。Chern 根は $T_X$ にも使う。 & 概複素多様体では Dolbeault 複体は複体にならない（Newlander--Nirenberg、第2巻）が、指数は定義でき\tQ\ 、積分は同じ形。\\
+\hline
+Kähler・射影的は\emph{不要} & Atiyah--Singer の証明は楕円型作用素の指数のみ。 & Hopf 曲面（Kähler でない）でも成り立つ：$e=0$、$K^2=0$、$\chi(\Oc)=0$。\\
+\hline
+$h^q$ を個別に決めるには消滅定理 & HRR は $\chi$ のみ。 & $h^0$ が跳ぶ（例 \ref{ex:P1jump}、変形不変性）。\\
+\bottomrule
+\end{tabular}}
+\end{center}
+特異多様体では $\Td(X)$ の代わりに Baum--Fulton--MacPherson の Todd 類 $\mathrm{td}_*(X)\in H_*(X;\Q)$ を使う\tC\ （Fulton, \emph{Intersection Theory}, 第18章）。本巻では扱わない。
+
+\paragraph{歴史的な注記。}\tQ\ 年代は記憶に基づく。曲線の Riemann--Roch は 19 世紀（Riemann、Roch）。高次元への拡張は、曲面の Riemann--Roch（Noether、Castelnuovo、Enriques、Severi らによる）を経て、Hirzebruch が 1950 年代半ばに任意次元の射影的代数多様体で証明した（HRR、本巻の \S\ref{sec:hrr}）。Grothendieck は 1957 年頃にこれを射の相対版（GRR）に一般化し、Borel--Serre が詳細を書いた。Atiyah--Singer（1960 年代）は、さらにこれを任意の楕円型作用素の指数定理に一般化した。第8巻で見るように、HRR はその一番基本的な例になっている。
+\subsection{HRR を使う手順}
+\begin{enumerate}
+\item $X$ の次元 $n$ を決め、$c(T_X)$ を求める（$\CP^n$：$(1+H)^{n+1}$、完全交叉：例 \ref{ex:CI}、積：$c(X\times Y)=c(X)c(Y)$、爆発や射影束：命題 \ref{prop:projrel}）。
+\item $\Td_k$ を $c_i$ で書く（定理 \ref{thm:toddlow}）。$n\le3$ なら $\Td_1=\frac{c_1}2$、$\Td_2=\frac{c_1^2+c_2}{12}$、$\Td_3=\frac{c_1c_2}{24}$ で十分。
+\item $E$ の $\ch_k$ を求める（直線束なら $\frac{l^k}{k!}$、直和は和、完全列は加法的）。
+\item $\sum_k\int\ch_{n-k}(E)\Td_k(X)$ を計算する。交点数 $\int H^n$ などの値を代入する。
+\item 結果が整数か確認（命題 \ref{prop:integral}）。整数でなければ計算の誤り。
+\item $h^q$ を個別に知りたければ、消滅定理（Kodaira、Serre 双対、第5巻）で $h^q$ のほとんどを $0$ にしてから $\chi=h^0$ とする。
+\end{enumerate}
+\subsection{規約と落とし穴}
+\begin{itemize}
+\item \textbf{$\Td$ は $T_X$ の Todd 類}（$T^*_X$ でない）。$c_1(T_X)=-c_1(K_X)$ なので、$\Td_1=\frac{c_1(T)}2=-\frac K2$。曲線で $\chi(L)=\deg L+1-g$ の $1-g=-\frac12\deg K$ はここから来る。
+\item \textbf{符号規約}：$c_1(\Oc(1))=H$（正）、タウトロジー束 $\Oc(-1)$ は負。$\ch(\Oc(k))=e^{kH}$。
+\item $\ch_k$ と $c_k$ は\emph{別物}：$\ch_2=\frac12(c_1^2-2c_2)$、$c_2$ ではない。$\ch_k$ の添字は次数（複素次元）。
+\item HRR の右辺は $\ch(E)\Td(X)$ の\emph{次数 $2n$（複素次数 $n$）の部分}。低い次数の部分は積分しない。次数の不足と超過に注意。
+\item 層 $E$ の階数 $r$ は $\ch_0$ に入る。$\chi(E)=r\chi(\Oc)+(\ldots)$ と分けると見通しがよい。
+\item HRR は\emph{コンパクト}複素多様体の公式。非コンパクトなら $H^q$ は無限次元になりうる。Kähler も射影性も不要だが、$h^q$ を個別に決めるには Kodaira 消滅（第5巻）などが別に必要。
+\item $\chi(X,E)$ は $\sum(-1)^q h^q$。$h^0$ を知りたいときは、$h^q=0$ $(q>0)$ を別に示す。
+\end{itemize}
+\subsection{$\CP^n$ 上の $\Oc(k)$：HRR の完全な検証}
+\begin{thm}\label{thm:HRRPn}\tP\
+すべての $n\ge1$ と整数 $k$ について $\displaystyle\int_{\CP^n}e^{kH}\Td(\CP^n)=\binom{n+k}n:=\frac{(k+1)(k+2)\cdots(k+n)}{n!}$。これは $\chi(\CP^n,\Oc(k))$ に等しい。
+\end{thm}
+\begin{proof}
+左辺は $[H^n]\,e^{kH}\bigl(\frac H{1-e^{-H}}\bigr)^{n+1}=\mathrm{Res}_{H=0}\dfrac{e^{kH}\,dH}{(1-e^{-H})^{n+1}}$。$u=1-e^{-H}$ とおくと $dH=\frac{du}{1-u}$、$e^{kH}=(1-u)^{-k}$ なので
+\[
+\mathrm{Res}_{u=0}\frac{(1-u)^{-k-1}}{u^{n+1}}du=[u^n](1-u)^{-k-1}=\binom{k+n}{n}.
+\]
+最後の等号は $(1-u)^{-m}=\sum_j\binom{m+j-1}{j}u^j$（$m=k+1$、一般の二項係数）による。
+右辺：$\chi(\CP^n,\Oc(k))$ は、$k\ge0$ では高次コホモロジーが消えて $h^0=\binom{n+k}n$（斉次 $k$ 次多項式の次元、第5巻）、$-n\le k\le-1$ では全コホモロジーが消えて $0$（積 $(k+1)\cdots(k+n)$ が因子 $0$ を含む）、$k\le-n-1$ では Serre 双対（$\Oc(k)^*\otimes K=\Oc(-k-n-1)$）で $(-1)^nh^n=(-1)^n\binom{-k-1}n=\binom{n+k}n$（第5巻の \Cech{} 計算）。
+\end{proof}
+\noindent 第3、5巻で \Cech{} 複体で得た $h^q(\CP^n,\Oc(k))$ の全部が、この一つの留数計算と整合する。これが HRR の最初の検算である。Python で $n\le8$、$|k|\le15$ について確認した。
+
+
+\paragraph{変形不変性。}HRR の右辺は Chern 類の積分で、複素構造の連続変形（$C^\infty$ の族 $X_t$ と、それに沿った $E_t$）で不変である（$c_k(T_{X_t})$ は連続に動く整数／有理数）。したがって $\chi(X_t,E_t)$ は $t$ によらない。一方 $h^q(X_t,E_t)$ は $t$ について\emph{上半連続}で、特殊な $t$ で跳びうる。例：$\CP^1$ 上の $E_t$（$t\ne0$ で $\Oc\oplus\Oc$、$t=0$ で $\Oc(1)\oplus\Oc(-1)$）：$h^0(E_t(-1))$ は $t=0$ で $1$、$t\ne0$ で $0$（第2巻）だが $\chi(E_t(-1))=0$ は一定。四次曲面の族（K3 曲面）でも $h^{p,q}$ は不変だが、$h^0(L)$ は跳ぶ。この「次元は跳ぶが $\chi$ は跳ばない」が、統合論文の $\mathbb H^k(E)$ の跳び（\S\ref{sec:unified}）の古典的な原型である。
+\subsection{HRR からの帰結}
+\begin{prop}[Serre 双対と HRR]\label{prop:SDHRR}\tP\
+$\chi(X,E)=(-1)^n\chi(X,E^*\otimes K_X)$。HRR の右辺から直接証明できる。
+\end{prop}
+\begin{proof}
+$\ch(E^*\otimes K)=\ch(E^*)e^{-c_1(T)}$ と命題 \ref{prop:toddsd}（$\Td(T)e^{-c_1(T)}=\Td(T^*)$）から $\int\ch(E^*)\Td(T^*)$。$\ch(E^*)$ と $\Td(T^*)$ は各次数 $k$ の部分に符号 $(-1)^k$ をつけたものなので、全体の次数 $2n$ の部分に $(-1)^n$ をつけたもの $=(-1)^n\int\ch(E)\Td(T)$。
+\end{proof}
+
+\begin{prop}[積と Künneth]\label{prop:product}\tP\
+$X,Y$ をコンパクト複素多様体、$E\to X$、$F\to Y$ を正則ベクトル束とする。HRR を認めると $\chi(X\times Y,E\boxtimes F)=\chi(X,E)\chi(Y,F)$。
+\end{prop}
+\begin{proof}
+$T_{X\times Y}=\mathrm{pr}_1^*T_X\oplus\mathrm{pr}_2^*T_Y$ なので $\Td(X\times Y)=\Td(X)\boxtimes\Td(Y)$、$\ch(E\boxtimes F)=\ch(E)\boxtimes\ch(F)$。積分は $\int_{X\times Y}\alpha\boxtimes\beta=\int_X\alpha\int_Y\beta$。\qedhere
+\end{proof}
+\noindent 実際は Künneth の定理（第3巻の層コホモロジー版）から直接出るので、HRR の乗法性との整合性の検算である。特に $\chi(\Oc_{X\times Y})=\chi(\Oc_X)\chi(\Oc_Y)$（例 \ref{ex:prodcurve}）。
+\begin{prop}[Noether 型の整数性]\label{prop:integral}\tP\ HRR を認めると、$\chi(X,E)\in\Z$ から、$\int\ch(E)\Td(X)$ は整数でなければならない。例：曲面で $c_1^2+c_2\equiv0\pmod{12}$、3 次元で $c_1c_2\equiv0\pmod{24}$。
+\end{prop}
+\begin{keybox}{要点（\S\ref{sec:hrr}）}
+$\chi(X,E)=\int_X\ch(E)\Td(X)$。証明は Atiyah--Singer（Dolbeault 作用素のシンボル）、Hirzebruch（コボルディズム）、Grothendieck（射影的、$f_!$）。$\CP^n$ の $\Oc(k)$ は留数で完全に検証できる：$\int e^{kH}\Td=\binom{n+k}n$。HRR は Serre 双対 $\chi(E)=(-1)^n\chi(E^*\otimes K)$ と整合する。
+\end{keybox}
+\begin{prob}{基本}\label{p:hrrexp}
+$n=3$ の展開 $\chi(L)=\frac16l^3+\frac14l^2c_1+\frac1{12}l(c_1^2+c_2)+\frac1{24}c_1c_2$ を $\ch(L)=1+l+\frac{l^2}2+\frac{l^3}6$ と $\Td_1,\Td_2,\Td_3$ から導け。$X=\CP^3$、$L=\Oc(1)$ で $\chi=4$ を確かめよ。
+\end{prob}
+\begin{prob}{標準}\label{p:Omegak}
+Euler 完全列 $0\to\Omega^1\to\Oc(-1)^{\oplus(n+1)}\to\Oc\to0$ から $\chi(\CP^n,\Omega^1(k))=(n+1)\binom{n+k-1}n-\binom{n+k}n$ を示し、$k=0$ で $-1$（$=-h^{1,1}$）となることを確かめよ。$n=2$、$k=1,2,3$ の値も求めよ。
+\end{prob}
+\begin{prob}{発展}\label{p:SDHRR}
+命題 \ref{prop:SDHRR} の証明の詳細を、次を使って書け：$\ch_k(E^*)=(-1)^k\ch_k(E)$、$\Td_k(T^*)=(-1)^k\Td_k(T)$。さらに $\CP^2$ で $\chi(\Oc(k))=\chi(\Oc(-k-3))$（$n=2$ で符号 $+$）を確かめ、$\CP^3$ では $\chi(\Oc(k))=-\chi(\Oc(-k-4))$ を確かめよ。
+\end{prob}

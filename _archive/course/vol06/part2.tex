@@ -1,0 +1,172 @@
+\section{Chern 指標}\label{sec:ch}
+\paragraph{動機。}Chern 類は直和で $c(E\oplus F)=c(E)c(F)$（積）となる。HRR の右辺に現れる量は、直和で\emph{和}、テンソル積で\emph{積}になるほうが扱いやすい。これが Chern 指標である。第1巻の Chern--Weil では $\ch(E,\nabla)=\mathrm{tr}\exp(\frac i{2\pi}F)$ として登場した。
+\begin{defn}[Chern 指標]\label{def:ch}
+Chern 根を $x_1,\dots,x_r$ として
+\[
+\ch(E)=\sum_{i=1}^re^{x_i}=r+c_1+\tfrac12(c_1^2-2c_2)+\cdots\in H^{\rm ev}(X;\Q),\qquad \ch_k(E)=\tfrac1{k!}\sum_ix_i^k=\tfrac1{k!}p_k(x).
+\]
+\end{defn}
+\noindent $p_k=\sum x_i^k$ は冪和対称式なので、基本対称式 $c_i=e_i(x)$ の多項式（Newton の公式）で書け、$X$ のコホモロジー類として意味をもつ。Chern--Weil の $\mathrm{tr}\exp(\frac i{2\pi}F)$ の $k$ 次の部分も $\frac1{k!}\mathrm{tr}((\frac i{2\pi}F)^k)$ で、これは冪和 $\frac1{k!}\sum x_i^k$ の「曲率版」である（行列 $\frac{i}{2\pi}F$ の固有値を Chern 根とみなす）。
+
+\begin{thm}[低次の表]\label{thm:chlow}\tP\ （Newton の公式、Python で検算）
+\begin{align*}
+\ch_0&=r,\quad \ch_1=c_1,\quad \ch_2=\tfrac12(c_1^2-2c_2),\quad \ch_3=\tfrac16(c_1^3-3c_1c_2+3c_3),\\
+\ch_4&=\tfrac1{24}(c_1^4-4c_1^2c_2+4c_1c_3+2c_2^2-4c_4).
+\end{align*}
+\end{thm}
+\begin{thm}[加法性・乗法性]\label{thm:chmult}\tP\
+\[
+\ch(E\oplus F)=\ch(E)+\ch(F),\qquad \ch(E\otimes F)=\ch(E)\ch(F),\qquad \ch(E^*)=\sum_k(-1)^k\ch_k(E).
+\]
+さらに短完全列 $0\to E'\to E\to E''\to0$ に対し $\ch(E)=\ch(E')+\ch(E'')$。
+\end{thm}
+\begin{proof}
+splitting principle により、$E,F$ は直線束の和としてよい。$E\oplus F$ の根は $x_i$ と $y_j$ の合併なので、$\sum e^{x_i}+\sum e^{y_j}$。$E\otimes F$ の根は $x_i+y_j$、$\sum_{i,j}e^{x_i+y_j}=\sum e^{x_i}\sum e^{y_j}$。$E^*$ の根は $-x_i$。完全列は $C^\infty$ で $E\cong E'\oplus E''$ と割れ、$c_k$ は $C^\infty$ の同型で不変なので加法性に帰着する。
+\end{proof}
+\begin{ex}[$\CP^n$ 上の計算]\label{ex:chPn}\tP\
+Euler 完全列から $\ch(T\CP^n)=(n+1)e^H-1$。$\ch(\Oc(a))=e^{aH}$。$\ch_2(T\CP^2)=\frac32H^2$（これは $\frac12(c_1^2-2c_2)=\frac12(9-6)=\frac32$ と一致する）。$\Omega^1=T^*$ では $\ch(\Omega^1_{\CP^n})=(n+1)e^{-H}-1$。
+\end{ex}
+\begin{ex}[$\wedge^kE$ と $\Sym^kE$]\label{ex:chwedge}\tP\
+根が $x_i$ なら $\ch(\wedge^kE)=e_k(e^{x_1},\dots,e^{x_r})$（$k$ 次基本対称式）。形式的に $\sum_kt^k\ch(\wedge^kE)=\prod_i(1+te^{x_i})$。特に $\sum_k(-1)^k\ch(\wedge^kE)=\prod_i(1-e^{x_i})$（\S\ref{sec:unified} で使う）。同様に $\ch(\Sym^2E)=\frac12(\ch(E)^2+\psi^2\ch E)$、ただし $\psi^2\ch(E)=\sum e^{2x_i}$。
+\end{ex}
+\begin{ex}[因子の構造層]\label{ex:chOD}\tP\
+$D\subset X$ を滑らかな因子とする。$0\to\Oc(-D)\to\Oc\to\Oc_D\to0$ から $\ch(\Oc_D)=1-e^{-D}=D-\tfrac12D^2+\cdots$（ここで $\Oc_D=i_*\Oc_D$ はベクトル束でなく連接層だが、$\ch$ は完全列で加法的に拡張される。\tC\ 一般の連接層については HRR の枠組みで Grothendieck が定義する）。曲面では、これを使うと $\chi(\Oc_D)$ が随伴公式と一致する（問~\ref{p:chOD}）。
+\end{ex}
+\begin{rem}[$K$ 理論との関係]
+$\ch$ は直和を和に、テンソル積を積に写すので、ベクトル束の Grothendieck 群 $K(X)$ から $H^{\rm ev}(X;\Q)$ への環準同型 $\ch:K(X)\to H^{\rm ev}(X;\Q)$ を与える。位相的 $K$ 理論では $\ch\otimes\Q$ は同型（Atiyah--Hirzebruch）\tC\ 。第8巻の指数定理は、指数を $K$ 理論の元の $\ch$ の積分として書く。
+\end{rem}
+
+\subsection{Chern--Weil による $\ch$ の乗法性、Newton の公式、$K(\CP^n)$}
+\paragraph{splitting を使わない証明。}第1巻の $\ch(E,\nabla)=\mathrm{tr}\exp(\frac i{2\pi}F)$ から、乗法性は次のように直接示せる。$E\otimes F$ に積接続をとると曲率は $F_{E\otimes F}=F_E\otimes1+1\otimes F_F$（二つの項は可換）。行列の指数関数は、可換な和を積に写すので $\exp(F_E\otimes1+1\otimes F_F)=\exp(F_E)\otimes\exp(F_F)$、$\mathrm{tr}(A\otimes B)=\mathrm{tr}A\,\mathrm{tr}B$ より $\ch(E\otimes F,\nabla)=\ch(E,\nabla)\ch(F,\nabla)$（形式のレベル）。直和接続では $\mathrm{tr}$ が加法的。こうして、定理 \ref{thm:chmult} の加法性と乗法性は Chern--Weil の形式だけからも出る。\tP\ （Chern 根による証明は、この計算の \lq 固有値版\rq である。）
+
+\begin{prop}[Newton の公式]\label{prop:Newton}\tP\
+$c_t(E)=\prod(1+x_it)=\sum c_kt^k$ とすると、$\displaystyle t\,\frac{c_t'(E)}{c_t(E)}=\sum_{k\ge1}(-1)^{k-1}p_kt^k$（$p_k=\sum x_i^k$）、したがって $k!\,\ch_k(E)=p_k$ は
+\[
+p_k-c_1p_{k-1}+c_2p_{k-2}-\cdots+(-1)^{k-1}c_{k-1}p_1+(-1)^kkc_k=0
+\]
+で再帰的に $c_i$ の多項式として決まる。
+\end{prop}
+\begin{proof}
+$tc_t'/c_t=\sum_i\frac{x_it}{1+x_it}=\sum_i\sum_{k\ge1}(-1)^{k-1}x_i^kt^k$。両辺に $c_t$ を掛けて $t^k$ の係数を比べる（$c_t\cdot tc_t'/c_t=tc_t'$ の $t^k$ の係数は $kc_k$）：$\sum_{j=0}^{k-1}c_j(-1)^{k-j-1}p_{k-j}=kc_k$。\qedhere
+\end{proof}
+\noindent 例：$k=2$：$p_2-c_1p_1+2c_2=0$、$p_2=c_1^2-2c_2$、$\ch_2=\frac12(c_1^2-2c_2)$ ✓。$k=3$：$p_3=c_1p_2-c_2p_1+3c_3=c_1^3-3c_1c_2+3c_3$ ✓。
+
+\begin{ex}[$K(\CP^n)$ と $\ch$]\label{ex:KPn}\tP\
+Euler 完全列 $0\to\Oc\to\Oc(1)^{n+1}\to T\to0$ を Koszul 複体に延ばした完全列 $0\to\Oc(-n-1)\to\Oc(-n)^{\oplus(n+1)}\to\cdots\to\Oc(-1)^{\oplus(n+1)}\to\Oc\to0$（$\Oc(-1)^{n+1}\to\Oc$ は座標関数の積）は、$K$ 群の関係式 $(1-L^{-1})^{n+1}=0$（$L=[\Oc(1)]$）を与える。$\ch$ をとると $(1-e^{-H})^{n+1}=0$ だが、$1-e^{-H}=H-\cdots$ は $H$ の倍数で $H^{n+1}=0$ なので、この式は $H^{n+1}=0$ と同値である（Python で $n\le6$ を検算）。実際 $K(\CP^n)=\Z[L]/(1-L^{-1})^{n+1}$ であり\tC\ 、$\ch:K(\CP^n)\otimes\Q\to H^{\rm ev}(\CP^n;\Q)=\Q[H]/H^{n+1}$ は同型である。
+\end{ex}
+\begin{keybox}{要点（\S\ref{sec:ch}）}
+$\ch(E)=\sum e^{x_i}$。直和で加法的、テンソル積で乗法的。$\ch_0=r,\ \ch_1=c_1,\ \ch_2=\frac12(c_1^2-2c_2)$。完全列で加法的。$\ch(\Oc_D)=1-e^{-D}$。
+\end{keybox}
+\begin{prob}{基本}\label{p:chlow}
+$\ch_3=\frac16(c_1^3-3c_1c_2+3c_3)$ を、冪和 $p_3=e_1^3-3e_1e_2+3e_3$ から導け。$T\CP^3$ で $\ch_3(T\CP^3)$ を (a) 公式から、(b) $\ch=4e^H-1$ から、それぞれ求めて一致を確かめよ。
+\end{prob}
+\begin{prob}{標準}\label{p:chEnd}
+階数 2 の $E$ について、$\ch(\End E)$ を $c_1,c_2$ で書き、$\ch_2(\End E)=c_1^2-4c_2$ を示せ。$\ch_2(\Sym^2E)$ と $\ch_2(\wedge^2E)$ も求めよ。
+\end{prob}
+\begin{prob}{標準}\label{p:chOD}
+曲面 $X$ 上の滑らかな曲線 $D$ について、$\ch(\Oc_D)$ と $\Td(X)=1-\frac12K_X+\Td_2$（$\Td_1=c_1/2=-K/2$）から、$\chi(\Oc_D)=-\frac12D(D+K_X)$ を導き、随伴公式（問~\ref{p:adjunction}）と合わせて $\chi(\Oc_D)=1-g$ を確かめよ。ただし $\chi$ は HRR（\S\ref{sec:hrr}）を連接層に使う。
+\end{prob}
+\begin{prob}{標準}\label{p:chEuler}
+$\CP^2$ の Euler 完全列から、$\ch(\Omega^1)$ の $H^2$ の項を求めよ。また $\ch(T)\ch(\Omega^1)$（$=\ch(\End T)$）の次数 $2$ の部分が $c_1^2-4c_2$ の $\CP^2$ での値 $-3H^2$ に等しいことを確かめよ。
+\end{prob}
+
+
+\begin{prob}{標準}\label{p:Newton}
+命題 \ref{prop:Newton} の再帰式から $p_4=c_1^4-4c_1^2c_2+2c_2^2+4c_1c_3-4c_4$ を導き、$\ch_4=\frac{p_4}{24}$ が定理 \ref{thm:chlow} の式に一致することを確かめよ。$T\CP^4$ で $\ch_4=\frac5{24}H^4$（$\ch=5e^H-1$ から）を、$c=(1+H)^5$ を代入した公式から確かめよ。
+\end{prob}
+\section{Todd 類}\label{sec:td}
+\subsection{乗法的な特性類}
+\begin{defn}[乗法的列]\label{def:mult}
+べき級数 $Q(x)=1+q_1x+q_2x^2+\cdots\in\Q[[x]]$ に対し、$\mathbf Q(E)=\prod_{i=1}^rQ(x_i)$ を、$Q$ に対応する\emph{乗法的な特性類}という。対称式なので $c_i$ の多項式として意味をもち、$\mathbf Q(E\oplus F)=\mathbf Q(E)\mathbf Q(F)$。
+\end{defn}
+\noindent $Q$ を取り替えると別の特性類ができる。Todd 類 ($Q(x)=\frac x{1-e^{-x}}$)、$\Lg$ 類 ($\frac x{\tanh x}$)、$\Ahat$ 類 ($\frac{x/2}{\sinh(x/2)}$)、Chern 類そのもの ($1+x$) が代表的である。
+
+\begin{defn}[Todd 類]\label{def:todd}
+\[
+\Td(E)=\prod_{i=1}^r\frac{x_i}{1-e^{-x_i}},\qquad \Td(X):=\Td(T_X).
+\]
+$\dfrac x{1-e^{-x}}=1+\dfrac x2+\dfrac{x^2}{12}-\dfrac{x^4}{720}+\dfrac{x^6}{30240}-\cdots$。
+\end{defn}
+\noindent 係数は Bernoulli 数 $B_k$（$\frac y{e^y-1}=\sum B_ky^k/k!$、$B_1=-\frac12$、$B_2=\frac16$、$B_4=-\frac1{30}$）で $\frac x{1-e^{-x}}=\sum_k B_k(-x)^k/k!$、すなわち $1+\frac x2+\frac{B_2}{2}x^2+\frac{B_4}{24}x^4+\cdots$（$\frac{1}{12}=\frac{1/6}{2}$、$-\frac1{720}=\frac{-1/30}{24}$）と書ける。奇数次の係数は、$x/2$ を除いて $0$。
+
+\begin{thm}[低次の Todd 類]\label{thm:toddlow}\tP\ （Chern 根の展開、Python で検算）
+\begin{align*}
+\Td_1&=\tfrac12c_1,\quad \Td_2=\tfrac1{12}(c_1^2+c_2),\quad \Td_3=\tfrac1{24}c_1c_2,\\
+\Td_4&=\tfrac1{720}(-c_1^4+4c_1^2c_2+3c_2^2+c_1c_3-c_4).
+\end{align*}
+\end{thm}
+\begin{proof}
+$Q(x)=1+\frac x2+\frac{x^2}{12}-\frac{x^4}{720}+\cdots$ の積 $\prod Q(x_i)$ の次数 1：$\frac12\sum x_i=\frac12c_1$。次数 2：$\frac1{12}\sum x_i^2+\frac14\sum_{i<j}x_ix_j=\frac1{12}(c_1^2-2c_2)+\frac14c_2=\frac1{12}(c_1^2+c_2)$。次数 3：$\frac12\cdot\frac1{12}\sum_{i\ne j}x_i^2x_j+\frac18\sum_{i<j<k}x_ix_jx_k$（$x^3$ の係数は $0$）。$\sum_{i\ne j}x_i^2x_j=c_1c_2-3c_3$、したがって $\frac1{24}(c_1c_2-3c_3)+\frac18c_3=\frac1{24}c_1c_2$。次数 4 は同様だが長いので機械的に展開した（付録）。
+\end{proof}
+\begin{ex}[$\CP^n$ の Todd 類]\label{ex:toddPn}\tP\
+$\Td(\CP^n)=\bigl(\frac H{1-e^{-H}}\bigr)^{n+1}$（Euler 完全列と乗法性）。$n=2$：$1+\frac32H+H^2$、$n=3$：$1+2H+\frac{11}6H^2+H^3$、$n=4$：$1+\frac52H+\frac{35}{12}H^2+\frac{25}{12}H^3+H^4$。最高次の係数がすべて $1$ なのは偶然でない（次の命題）。
+\end{ex}
+
+
+\begin{ex}[$\Td_4$ の検算]\label{ex:Td4}\tP\
+定理 \ref{thm:toddlow} の $\Td_4=\frac1{720}(-c_1^4+4c_1^2c_2+3c_2^2+c_1c_3-c_4)$ を、$\chi(\Oc)$ が既知の 4 次元多様体で確かめる。
+\begin{center}
+\begin{tabular}{l|rrrrr|r}
+\toprule
+$X$ & $c_1^4$ & $c_1^2c_2$ & $c_2^2$ & $c_1c_3$ & $c_4$ & $\int\Td_4$\\
+\midrule
+$\CP^4$ & 625 & 250 & 100 & 50 & 5 & 1\\
+二次超曲面 $Q^4\subset\CP^5$ & 512 & 224 & 98 & 48 & 6 & 1\\
+三次超曲面 $\subset\CP^5$ & 243 & 162 & 108 & 18 & 27 & 1\\
+六次超曲面 $\subset\CP^5$（CY 4 次元） & 0 & 0 & 1350 & 0 & 2610 & 2\\
+\bottomrule
+\end{tabular}
+\end{center}
+$\CP^4$：$\frac{-625+1000+300+50-5}{720}=\frac{720}{720}=1$。六次：$\frac{3\cdot1350-2610}{720}=2$（Fano なら $1$、CY 4 次元は $1-(-1)^5=2$、命題 \ref{prop:hypchi}）。（一部の Chern 数は Python による。）特に $\Td_4$ の係数 $-\frac1{720}$ から来る $c_4$ の項が必要であることが、この検算で確かめられる。
+\end{ex}
+\subsection{なぜこの級数か：Hirzebruch の議論}
+
+\begin{lem}[形式的留数の変数変換]\label{lem:residue}\tP\
+$u=\varphi(x)=a_1x+a_2x^2+\cdots$（$a_1\ne0$）とし、逆級数を $x=\psi(u)$ とする。形式的ローラン級数 $g(x)$ に対し $\mathrm{Res}_{x=0}g(x)\,dx=\mathrm{Res}_{u=0}g(\psi(u))\psi'(u)\,du$。ここで $\mathrm{Res}$ は $x^{-1}$（$u^{-1}$）の係数。
+\end{lem}
+\begin{proof}
+$g$ の線形性から $g=x^k$ としてよい。$k\ne-1$ なら $\psi^k\psi'=\frac{d}{du}\frac{\psi^{k+1}}{k+1}$ は導関数で、$u^{-1}$ の係数は $0$（導関数に $u^{-1}$ は現れない）。$k=-1$：$\psi(u)=b_1u(1+\cdots)$ より $\frac{\psi'}\psi=\frac1u+(\text{$u$ の正べき級数})$、留数 $1=\mathrm{Res}_xx^{-1}dx$。
+\end{proof}
+\begin{prop}[Todd 級数の一意性]\label{prop:hirz}\tP\
+$Q(x)=1+q_1x+\cdots$ に対応する乗法的類が、すべての $n\ge0$ で $\int_{\CP^n}\mathbf Q(T\CP^n)=1$（$=\chi(\CP^n,\Oc)$）を満たすならば、$Q(x)=\dfrac x{1-e^{-x}}$。
+\end{prop}
+\begin{proof}
+$\mathbf Q(T\CP^n)=Q(H)^{n+1}$ なので条件は $[x^n]\,Q(x)^{n+1}=1$、すなわち留数で $\mathrm{Res}_{x=0}\dfrac{dx}{(x/Q(x))^{n+1}}=1$ $(n\ge0)$。$f(x)=x/Q(x)=x+\cdots$ とおき、$u=f(x)$ で変数変換し（補題 \ref{lem:residue}）逆関数を $x=\psi(u)=u+\cdots$ とする。$\mathrm{Res}_{x=0}f(x)^{-n-1}dx=\mathrm{Res}_{u=0}u^{-n-1}\psi'(u)\,du=[u^n]\psi'(u)$。これがすべての $n$ で $1$ なので $\psi'(u)=\sum_nu^n=\frac1{1-u}$、$\psi(u)=-\log(1-u)$。逆に $u=1-e^{-x}$、$f(x)=1-e^{-x}$ で $Q=x/(1-e^{-x})$。
+\end{proof}
+\noindent つまり、HRR が $\CP^n$ 上の構造層 $\Oc$（$\chi=1$）で成り立つことと、$\Td$ が乗法的であることだけから、Todd 級数は決まる。実際には、この論法で \emph{HRR の左辺が} $\int\ch(E)\Td(X)$ の形をとると仮定したときの必然性が分かる。Python で $n\le12$ について $[x^n]Q^{n+1}=1$ を確認した。\tP
+
+\begin{prop}[Todd 類の双対性]\label{prop:toddsd}\tP\
+$\Td(T^*_X)=\Td(T_X)e^{-c_1(T_X)}$。
+\end{prop}
+\begin{proof}
+$\frac{x}{1-e^{-x}}e^{-x}=\frac{xe^{-x}}{1-e^{-x}}=\frac{-x}{1-e^{x}}$ は $Q(-x)$ に等しい。積をとる。
+\end{proof}
+
+\subsection{Todd 類の整合性：随伴公式との関係}
+\begin{prop}[因子上の整合性]\label{prop:toddD}\tP\
+$D\subset X$ を滑らかな因子、$N=\Oc(D)|_D$ を法束とする。HRR が成り立つなら、$\Td(T_X)|_D=\Td(T_D)\,\Td(N)$（Whitney 公式 $T_X|_D=T_D\oplus N$ と乗法性の帰結）であり、
+\[
+\chi(D,F|_D)=\int_D\ch(F)\Td(T_D)=\int_X\ch(F)\,\bigl(1-e^{-D}\bigr)\Td(T_X)
+\]
+が任意の $F$ で成り立つ。
+\end{prop}
+\begin{proof}
+$\Td(T_X)|_D=\Td(T_D)\Td(N)$ は乗法性。$\Td(N)=\frac{D}{1-e^{-D}}$（$N$ の Chern 根は $D|_D$）。$\int_D\alpha|_D=\int_X\alpha\cdot D$（Poincaré--Lelong）なので
+$\int_D\ch(F)\Td(T_D)=\int_D\ch(F)\Td(T_X)\frac{1-e^{-D}}D=\int_X\ch(F)\Td(T_X)(1-e^{-D})$。右辺は $\ch(F\otimes\Oc_D)=\ch(F)(1-e^{-D})$ と HRR（連接層版）で $\chi(X,F\otimes\Oc_D)=\chi(D,F|_D)$ である。
+\end{proof}
+\noindent つまり、「$X$ の（連接層 $F\otimes\Oc_D$ に対する）HRR」から「$D$ の HRR」が、完全列 $0\to\Oc(-D)\to\Oc\to\Oc_D\to0$ と加法性・乗法性だけで従う。この整合性が、Todd 級数 $\frac x{1-e^{-x}}$ の分母 $1-e^{-x}$ の起源である：$D$ の Todd 類と $X$ の Todd 類の比が、$\ch(\Oc_D)=1-e^{-D}$ を $D$ で割ったものになる。例として、曲面と曲線 $D$：$\chi(\Oc_D)=-\frac12D(D+K)$（問 \ref{p:chOD}）が、随伴公式 $2g-2=D(D+K)$ と一致する。
+\begin{keybox}{要点（\S\ref{sec:td}）}
+$\Td=\prod\frac{x_i}{1-e^{-x_i}}$、乗法的。$\Td_1=\frac{c_1}2$、$\Td_2=\frac{c_1^2+c_2}{12}$、$\Td_3=\frac{c_1c_2}{24}$。級数 $\frac x{1-e^{-x}}$ は $\int_{\CP^n}\Td=1$（$n\ge0$）から Hirzebruch の議論で一意に決まる。
+\end{keybox}
+\begin{prob}{基本}\label{p:todd3}
+$\frac x{1-e^{-x}}$ のべき級数展開を $x^4$ まで求め（$(1-e^{-x})/x=1-\frac x2+\frac{x^2}6-\frac{x^3}{24}+\cdots$ の逆数）、$\Td_3=\frac1{24}c_1c_2$ を導け。
+\end{prob}
+\begin{prob}{標準}\label{p:ToddPn}
+$\CP^2$、$\CP^3$ の Todd 類を計算し、$\int\Td_2(\CP^2)=1$、$\int\Td_3(\CP^3)=1$ を、$\Td_2=\frac{c_1^2+c_2}{12}$、$\Td_3=\frac{c_1c_2}{24}$ から直接確かめよ。
+\end{prob}
+\begin{prob}{標準}\label{p:hirzbasic}
+命題 \ref{prop:hirz} の条件 $[x^n]Q^{n+1}=1$ を $n=1,2,3$ で書き下し、$Q=1+q_1x+q_2x^2+q_3x^3$ の係数を順に決めて $q_1=\frac12$、$q_2=\frac1{12}$、$q_3=0$ を得よ。
+\end{prob}
+\begin{prob}{発展}\label{p:integral}
+(a) 3 次元のコンパクト複素多様体で $\chi(\Oc_X)=\frac1{24}c_1c_2$ が整数であること（HRR を認める）から、$c_1c_2\equiv0\pmod{24}$ を導け。(b) $\CP^4$ の次数 $d$ の超曲面（3 次元）について $c_1c_2$ を $d$ の多項式で書き、$d=1,\dots,7$ で $24$ の倍数になることを確かめよ。
+\end{prob}

@@ -1,0 +1,144 @@
+\section{Chern 類：公理、Chern--Weil との一致、splitting principle}\label{sec:chern}
+\paragraph{動機。}第1巻で、ベクトル束 $E$ の接続 $\nabla$ の曲率 $F$ から閉形式 $c(E,\nabla)=\det(I+\frac i{2\pi}F)$ をつくり、その de Rham 類が $\nabla$ によらないことを示した（Chern--Weil）。本節ではこの類を\emph{公理}で特徴づける。公理だけから、$E\oplus F$、$E^*$、$E\otimes F$、$\CP^n$ の接束などの Chern 類が計算できるようになる。鍵は、「ベクトル束を直線束の和に（コホモロジーを増やさずに）分解してよい」という splitting principle である。
+
+\subsection{公理による特徴づけ}
+\begin{defn}[Chern 類の公理]\label{def:axioms}
+滑らかな多様体 $X$ 上の複素ベクトル束 $E$ ごとに、全 Chern 類 $c(E)=1+c_1(E)+c_2(E)+\cdots$、$c_k(E)\in H^{2k}(X;\R)$（$\Q$ 係数でも同様）が定まっていて、次を満たすとき、これを\emph{Chern 類}という。
+\begin{enumerate}[label=(C\arabic*),leftmargin=3em]
+\item（自然性）滑らかな写像 $f:Y\to X$ に対し $c(f^*E)=f^*c(E)$。
+\item（Whitney 公式）$c(E\oplus F)=c(E)\,c(F)$。
+\item（正規化）$\CP^1$ 上の超平面束 $\Oc(1)$ について $\int_{\CP^1}c_1(\Oc(1))=1$。
+\item（次数）$\rk E=r$ なら $c_k(E)=0$ $(k>r)$。
+\end{enumerate}
+\end{defn}
+\noindent 自然性から、自明束の Chern 類は $1$（一点からの引き戻し）である。係数は $\Z$ にとれる（\S\ref{sec:chern} の最後）が、本巻の計算には実（または有理）係数で十分である。
+
+\begin{thm}[存在と一意性]\label{thm:chernexist}
+(a)\ \tP\ Chern--Weil の類 $c_k(E)=[c_k(E,\nabla)]\in H^{2k}_{dR}(X;\R)$ は (C1)--(C4) を満たす。\\
+(b)\ \tP\ （splitting principle \ref{prop:split} を既知として）(C1)--(C4) を満たす類は一意である。
+\end{thm}
+\begin{proof}
+(a) (C1)：$f^*\nabla$ の曲率は $f^*F$ なので $c(f^*E,f^*\nabla)=f^*c(E,\nabla)$。(C2)：直和接続 $\nabla_E\oplus\nabla_F$ の曲率は $F_E\oplus F_F$（ブロック対角）で、$\det(I+\frac i{2\pi}(F_E\oplus F_F))=\det(I+\frac i{2\pi}F_E)\det(I+\frac i{2\pi}F_F)$。類は接続によらない（第1巻）ので Whitney 公式が成り立つ。(C3)：第2巻の計算（例：$\int_{\CP^1}c_1(\Oc(k),h_k)=k$）。(C4)：$\det(I+\frac i{2\pi}F)$ は $F$ について $r$ 次以下の多項式（$r\times r$ 行列の行列式）。\\
+(b) $c'$ を別の組とする。まず直線束 $L\to X$（$X$ は有限次元の多様体）について $c_1'(L)=c_1(L)$ を示す。複素直線束は適当な $f:X\to\CP^N$ により $L\cong f^*\Oc(1)$ と書ける\tC\ （Milnor--Stasheff §14、またはその前の分類空間の議論）。したがって (C1) から $\CP^N$ 上の $\Oc(1)$ について示せばよい。$H^2(\CP^N;\R)\to H^2(\CP^1;\R)$ は同型（$\CP^1\subset\CP^N$ の制限）で、(C3) が両方の $c_1,c_1'$ を $\CP^1$ 上で一致させるから、$c_1'(\Oc(1))=c_1(\Oc(1))$。直線束では (C4) から $c=1+c_1$。一般の $E$ には、splitting principle の $f:\Fl(E)\to X$ をとる。$f^*E=L_1\oplus\cdots\oplus L_r$ なので (C1)(C2) から $f^*c'(E)=\prod(1+c_1'(L_i))=\prod(1+c_1(L_i))=f^*c(E)$。$f^*$ は単射だから $c'(E)=c(E)$。
+\end{proof}
+\noindent つまり、Chern--Weil の定義（第1巻）と公理的な定義は（実係数の類として）一致する。以後 $c_k(E)$ はどちらでもよい。Milnor--Stasheff §14 が Euler 類と Gysin 完全列から作る整数係数の類も、符号規約を揃えれば同じものである\tC\ 。ただし符号規約は文献ごとに異なり、Milnor--Stasheff の公理が (C3) と同じ符号をとるかは未確認\tQ\ 。本巻は $c_1(\Oc(1))$ が正、すなわちタウトロジー束 $\Oc(-1)$ の $c_1$ が負、という規約に固定する。
+
+\paragraph{複素多様体の場合。}$E$ が正則ベクトル束で $\nabla$ が Chern 接続（第2巻）なら、曲率は $(1,1)$ 型なので $c_k(E,\nabla)$ は $(k,k)$ 型の閉形式で表される。直線束では、第3巻の連結準同型 $c_1:\Pic(X)=H^1(X,\Oc^*)\to H^2(X,\Z)$ が（符号を含めて）Chern--Weil 類 $[\frac i{2\pi}\Theta]$ と一致する（第3巻）。第1 Chern 類は整数係数、実は一般に $c_k(E)\in H^{2k}(X;\Z)$ である\tC\ 。
+
+
+\subsection{位相的な定義の概観（Milnor--Stasheff）}
+公理 (C1)--(C4) の存在は Chern--Weil で示したが、整数係数の Chern 類は次の位相的な構成で得られる\tC\ （Milnor--Stasheff §14）。
+\begin{enumerate}
+\item 向きづけられた階数 $m$ の実ベクトル束 $V\to X$ には \emph{Euler 類} $e(V)\in H^m(X;\Z)$ がある（Thom 類を零切断で引き戻したもの、定義 \ref{def:euler}）。複素ベクトル束 $E$（階数 $r$）は複素構造から向きをもち、$c_r(E):=e(E_\R)\in H^{2r}(X;\Z)$。
+\item $0$ 切断を除いた全空間 $\pi:E_0\to X$ を考える。$\pi^*E$ は至るところ非零の切断（点自身）をもつので $\pi^*E\cong\varepsilon\oplus E'$（$\varepsilon$ は自明な直線束、$E'$ は階数 $r-1$）。Gysin 完全列
+\[
+\cdots\to H^{i-2r}(X)\xrightarrow{\ \cup c_r(E)\ }H^i(X)\xrightarrow{\ \pi^*\ }H^i(E_0)\to H^{i-2r+1}(X)\to\cdots
+\]
+により、$i<2r-1$ では $\pi^*:H^i(X)\to H^i(E_0)$ は同型。そこで $c_k(E)$ $(k<r)$ を $c_k(E')\in H^{2k}(E_0)$ に対応する $X$ の類として帰納的に定義する。
+\item この定義が (C1)--(C4) を満たすこと（特に Whitney 公式）は、splitting principle と合わせて示される。
+\end{enumerate}
+本巻ではこの構成を使わないが、「$c_r(E)$ が Euler 類で、$E$ の至るところ非零の切断があれば $c_r(E)=0$」（Gysin 列で $\cup c_r(E)$ の像が $0$）という性質（命題 \ref{prop:projrel} の証明で使った）の出所がここである。\tQ\ （細部の記号は文献ごとに異なる。）
+\subsection{splitting principle}
+\begin{prop}[splitting principle]\label{prop:split}\tP\ （Leray--Hirsch を既知として）$E\to X$ を階数 $r$ の複素ベクトル束とする。このとき滑らかな写像 $f:\Fl(E)\to X$ で次をみたすものがある：(i) $f^*:H^*(X;\Q)\to H^*(\Fl(E);\Q)$ は単射、(ii) $f^*E$ は（$C^\infty$ の複素ベクトル束として）直線束の直和 $L_1\oplus\cdots\oplus L_r$ に同型。
+\end{prop}
+\begin{proof}
+射影束 $\pi:\mathbb P(E)\to X$（ファイバーは $\CP^{r-1}$、点は $E_x$ の直線）をとる。$\pi^*E$ にはタウトロジー部分束 $S\subset\pi^*E$（各点で、その点が表す直線）がある。$\xi=c_1(S^*)\in H^2(\mathbb P(E))$ とおくと、各ファイバーへの制限は $\CP^{r-1}$ の超平面類で、$1,\xi,\dots,\xi^{r-1}$ はファイバーのコホモロジーの基底に制限される。Leray--Hirsch の定理\tC\ （Bott--Tu, \emph{Differential Forms in Algebraic Topology}, §5）により、$H^*(\mathbb P(E))$ は $H^*(X)$ 上の自由加群で $1,\xi,\dots,\xi^{r-1}$ が基底。特に $\pi^*$ は単射。Hermite 計量で $\pi^*E=S\oplus Q$（$Q=S^\perp$、階数 $r-1$）と分解する。$Q\to\mathbb P(E)$ に帰納法を適用すれば、$r-1$ 回の射影化で $\Fl(E)$（$E$ の旗の空間）と (i), (ii) が得られる。
+\end{proof}
+\begin{center}
+\begin{tikzcd}[column sep=large]
+\Fl(E)\arrow[r]&\cdots\arrow[r]&\mathbb P(E)\arrow[r,"\pi"]&X
+\end{tikzcd}
+\end{center}
+{\small 図：splitting principle。$f^*$ はコホモロジーで単射で、$f^*E$ は直線束の和に割れる。}
+
+\paragraph{Chern 根。}形式的に $c(E)=\prod_{i=1}^r(1+x_i)$ と書き、$x_i=c_1(L_i)$ を\emph{Chern 根}という。このとき $c_k(E)=e_k(x_1,\dots,x_r)$（$k$ 次の基本対称式）。$\Fl(E)$ 上で $x_i$ は実在のコホモロジー類で、対称式はすべて $X$ のコホモロジーに降りる（$f^*$ は単射で、$c_k$ は $X$ の類を引き戻したもの）。\emph{対称多項式に関する等式は、直線束の和の場合に確かめれば十分}、というのが使い方である。
+
+\begin{thm}[Chern 類の演算]\label{thm:chernops}\tP\ 階数 $r,s$ のベクトル束 $E,F$、直線束 $L$（$l=c_1(L)$）について：
+\begin{enumerate}[label=(\alph*)]
+\item $c_k(E^*)=(-1)^kc_k(E)$、$c_1(E)=c_1(\det E)$。
+\item $c_k(E\otimes L)=\sum_{i=0}^k\binom{r-i}{k-i}c_i(E)\,l^{k-i}$。特に $c_1(E\otimes L)=c_1(E)+r\,l$、$c_2(E\otimes L)=c_2(E)+(r-1)c_1(E)\,l+\binom r2l^2$。
+\item $c_1(E\otimes F)=s\,c_1(E)+r\,c_1(F)$。
+\item $\rk E=2$ のとき $c_2(\End E)=4c_2(E)-c_1(E)^2$。
+\item $\rk E=2$ のとき $c_1(\Sym^2E)=3c_1(E)$、$c_2(\Sym^2E)=2c_1(E)^2+4c_2(E)$、$c_3(\Sym^2E)=4c_1(E)c_2(E)$。
+\end{enumerate}
+\end{thm}
+\begin{proof}
+Chern 根 $x_i$ で $E$、$E\otimes L$ の根は $x_i+l$、$E^*$ の根は $-x_i$、$\det E$ の根は $\sum x_i$、$E\otimes F$ の根は $x_i+y_j$、$\End E=E\otimes E^*$ の根は $x_i-x_j$、$\Sym^2E$ の根は $x_i+x_j$（$i\le j$）。(a) $\prod(1-x_i)$ の $k$ 次は $(-1)^ke_k$。(b) $\prod_i(1+l+x_i)=\sum_ic_i(1+l)^{r-i}$ の次数 $k$ の部分を取る。(c) $\sum_{i,j}(x_i+y_j)=s\sum x_i+r\sum y_j$。(d) 根は $0,0,x_1-x_2,x_2-x_1$ で $c=1-(x_1-x_2)^2$、$c_2=-(c_1^2-4c_2)$。(e) 根は $2x_1,x_1+x_2,2x_2$ で、基本対称式を展開する。これらの多項式の等式は Python で検算した（付録）。
+\end{proof}
+\begin{rem}[Bogomolov の判別式]
+(d) の $4c_2(E)-c_1(E)^2$ は階数 2 の束の「判別式」で、$E\otimes L$ をとっても不変（問~\ref{p:chernbasic} 参照）。(b) の $c_1(E\otimes L)=c_1(E)+2l$ により、$L$ を取り替えて $c_1(E)$ を $2$ を法とする類だけに（曲線上なら次数を $0$ か $1$ に）正規化できる。
+\end{rem}
+
+\subsection{例：$\CP^n$、超曲面、完全交叉}
+\begin{ex}[$\CP^n$]\label{ex:chernPn}\tP\
+$H=c_1(\Oc(1))$ とおく。第2巻の Euler 完全列 $0\to\Oc\to\Oc(1)^{\oplus(n+1)}\to T\CP^n\to0$（複体として分解して Whitney 公式を使う）から
+\[
+c(T\CP^n)=(1+H)^{n+1},\qquad c_k(T\CP^n)=\binom{n+1}{k}H^k.
+\]
+$\int_{\CP^n}H^n=1$（第2巻）なので、$c_1=(n+1)H$、$c_n=(n+1)H^n$、$\int c_n=n+1=\chi_{\rm top}(\CP^n)$ ($=n+1$、$H^{2k}$ が各次数に 1 つ)。$n=3$：$c(T\CP^3)=1+4H+6H^2+4H^3$。以後、$c_1c_2=24$ や $c_1^3=64$ がこの空間の Chern 数である。
+\end{ex}
+\begin{ex}[超曲面と完全交叉]\label{ex:CI}\tP\
+$X\subset\CP^N$ を、次数 $d_1,\dots,d_m$ の斉次多項式の共通零点で、滑らかな（余次元 $m$ の）完全交叉とする。$n=N-m$。第2巻の法束の完全列 $0\to T_X\to T\CP^N|_X\to N_{X}\to0$ と $N_X\cong\bigoplus_j\Oc_X(d_j)$ （各多項式の切断が横断的）から
+\[
+c(T_X)=\frac{(1+H)^{N+1}}{\prod_{j=1}^m(1+d_jH)},\qquad \int_XH^n=d_1\cdots d_m.
+\]
+$K_X=\det T_X^*$ なので $c_1(K_X)=(\sum_jd_j-N-1)H$（余次元 $1$：$K_X=\Oc_X(d-N-1)$）。例：$X$ が $\CP^3$ の次数 $d$ 曲面なら、
+\begin{align*}
+c_1&=(4-d)H,\quad c_2=(6-4d+d^2)H^2,\\
+c_1^2&=d(d-4)^2,\quad c_2=d(d^2-4d+6)\quad(\text{積分値}).
+\end{align*}
+$d=4$：$c_1=0$、$e=24$（K3 曲面）。$d=5$：$c_1^2=5$、$e=55$。これらの値は \S\ref{sec:examples} で再び使う。（上の割り算は、$H^{n+1}=0$ で打ち切った形式的べき級数の割り算として行う。）
+\end{ex}
+\begin{rem}[Chern 類と因子：Poincaré--Lelong]
+$s$ を直線束 $L$ の正則切断で、零点集合が滑らかな超曲面 $Y$ なら、$c_1(L)$ は $Y$ の Poincaré 双対類 $\PD[Y]$ に等しい\tC\ （Griffiths--Harris の Poincaré--Lelong 公式の節。章・節番号は\tQ\ ）。したがって $\int_Y\alpha=\int_Xc_1(\Oc(Y))\wedge\alpha$、特に $Y\cdot Y=\int_Yc_1(N_Y)$（法束 $N_Y=\Oc(Y)|_Y$）。一般に階数 $r$ の $E$ の横断的な切断 $s$ の零点集合 $Z$（余次元 $r$）について $c_r(E)=\PD[Z]$\tC\ 。切断が至るところ非零なら $c_r(E)=0$。$c_r(E)$ は $E$ の Euler 類である（\S\ref{sec:pont}）。
+\end{rem}
+\begin{prop}[射影束の関係式]\label{prop:projrel}\tP\
+命題 \ref{prop:split} の記号で、$\xi=c_1(S^*)=c_1(\Oc_{\mathbb P(E)}(1))$ とすると、$H^*(\mathbb P(E))$ で
+\[
+\xi^r+c_1(E)\,\xi^{r-1}+\cdots+c_{r-1}(E)\,\xi+c_r(E)=0.
+\]
+\end{prop}
+\begin{proof}
+$\Hom(S,\pi^*E)=\pi^*E\otimes S^*$ は、包含 $S\hookrightarrow\pi^*E$ という\emph{至るところ非零の切断}をもつ。よって $c_r(\pi^*E\otimes S^*)=0$。定理 \ref{thm:chernops}(b) の根の計算（根が $x_i+\xi$）で $c_r(\pi^*E\otimes S^*)=\prod(x_i+\xi)=\sum_ic_i(E)\xi^{r-i}$。
+\end{proof}
+\noindent これは Grothendieck による Chern 類の定義（この関係式を満たす $c_i$ として）の出発点である。整係数の Chern 類もこの関係式で定義できる\tC\ （Hartshorne, 付録 A；Fulton, \emph{Intersection Theory}, 第3章）。
+
+
+\subsection{Chern--Weil での直接計算と、Chern 類の限界}
+\begin{ex}[$\CP^1$ での整合]\label{ex:P1check}\tP\
+$\CP^1$ の Euler 完全列 $0\to\Oc\to\Oc(1)^{\oplus2}\to T\CP^1\to0$ に Whitney 公式を使うと $c(\Oc(1))^2=c(\Oc)c(T)$、すなわち $(1+H)^2=1\cdot(1+c_1(T))$、$c_1(T\CP^1)=2H$、$\int c_1(T\CP^1)=2$。これは第1巻で Gauss--Bonnet（$\int\frac K{2\pi}dA=2$）から得た値と同じである：Chern--Weil（曲率の積分）、貼り合わせ関数の巻き数、公理 + Euler 完全列、トポロジー（$\chi(S^2)=2$）の四通りで同じ数 $2$ が出る。一般の $E=\Oc(a)\oplus\Oc(b)$ では $c_1(E)=(a+b)H$、$c_2(E)=0$（$H^2=0$）。曲線上の階数 $r$ のベクトル束では、$c_1(E)=c_1(\det E)$ の次数が $\deg E$ で、これ以外の Chern 類は消える。
+\end{ex}
+\begin{ex}[Chern 類は正則同型類を決めない]\label{ex:notdetermine}\tP\
+$\CP^1$ 上で $E=\Oc(1)\oplus\Oc(-1)$ と $E'=\Oc\oplus\Oc$ は $c(E)=c(E')=1$ で、$C^\infty$ の複素ベクトル束としては同型（第2巻）だが、正則ベクトル束としては同型でない（$h^0(E(-1))=1\neq0=h^0(E'(-1))$、第2巻）。Chern 類は連続的な（位相的な）不変量であり、正則構造は見ない。それでも HRR により、$\chi(X,E)$ という\emph{解析的な量}は位相的な量だけで決まる（$\chi(E)=\chi(\Oc(1))+\chi(\Oc(-1))=2+0=2=2\chi(\Oc)=\chi(E')$）。$h^0$ と $h^1$ の個別の値は位相では決まらず、跳ぶ。（これは統合論文の「次元は跳ぶが Euler 標数は跳ばない」の最も簡単な型である。）
+\end{ex}
+\begin{rem}[整数性と $K$ 理論的な見方]
+$c_k(E)$ は実は整数係数コホモロジーの類で、Chern--Weil の実形式で表したときの周期は整数になる（$k=1$ は第1巻・第3巻で確かめた）。ただし $c(E)$ の \emph{積分} $\int c_1^{a_1}\cdots c_n^{a_n}$（Chern 数）の整数性は、公理だけから自動的には出ないが、整数係数のコホモロジー類の積分なので整数になる。一方 $\ch_k$ や $\Td_k$ は有理数係数で、個別には整数にならない：$\int\Td_2=\frac{c_1^2+c_2}{12}$ が整数であることは、HRR を経由して初めて分かる整数性の条件である（命題 \ref{prop:integral}）。
+\end{rem}
+
+\subsection{Chern 類の型：Lefschetz の $(1,1)$ 定理}
+$X$ をコンパクト Kähler 多様体とする。正則ベクトル束の Chern 類は、Chern 接続の曲率が $(1,1)$ 型なので $(k,k)$ 型の形式で表され、$c_k(E)\in H^{2k}(X;\Z)\cap H^{k,k}(X)$ である（Hodge 分解、第5巻）。直線束については逆も成り立つ：
+\begin{thm}[Lefschetz の $(1,1)$ 定理]\label{thm:Lef11}\tP\ （指数完全列と Hodge 分解を既知として）$\alpha\in H^2(X;\Z)$ がある正則直線束の $c_1$ である $\iff$ $\alpha$ の $H^2(X;\C)$ での像が $H^{1,1}(X)$ に入る。
+\end{thm}
+\begin{proof}
+指数完全列の長完全列（第3巻）$H^1(\Oc^*)\xrightarrow{c_1}H^2(X;\Z)\xrightarrow{\ j\ }H^2(X,\Oc)$ は完全。$\alpha\in\mathrm{Im}\,c_1\iff j(\alpha)=0$。$H^2(X,\Oc)=H^{0,2}(X)$（Dolbeault）で、$j$ は $H^2(X;\C)=H^{2,0}\oplus H^{1,1}\oplus H^{0,2}$ の $(0,2)$ 成分への射影に（定数倍を除き）一致する。よって $j(\alpha)=0\iff\alpha$ の $(0,2)$ 成分が $0$。$\alpha$ は実なので $(2,0)$ 成分は $(0,2)$ 成分の複素共役で同時に $0$、すなわち $\alpha\in H^{1,1}$。
+\end{proof}
+\noindent 因子類群の階数（Picard 数 $\rho$）は $\rho=\mathrm{rank}\,(H^2(X;\Z)\cap H^{1,1})\le h^{1,1}$。例：K3 曲面で $\rho\le20$。非常に一般の四次曲面（$\CP^3$）では $\rho=1$（Picard 群は $\Oc(1)$ で生成される、Noether--Lefschetz\tC\ ）、複素トーラスでは $\rho\le h^{1,1}=n^2$。高次の Chern 類 $c_k$ や、一般の $(k,k)$ 類が代数的サイクルの類の $\Q$ 係数の和であるか、という問題が \emph{Hodge 予想}で、$k=1$ は上の定理で解決している。\tC\ （Hodge 予想の一般の主張は未解決。）
+\begin{keybox}{要点（\S\ref{sec:chern}）}
+Chern 類は (C1) 自然性、(C2) Whitney、(C3) 正規化 $\int_{\CP^1}c_1(\Oc(1))=1$、(C4) 次数 の4つで一意に決まり、Chern--Weil の類はこれを満たす。splitting principle により、対称多項式の等式は直線束の和（Chern 根 $x_i$）で確かめれば十分。$c(T\CP^n)=(1+H)^{n+1}$、完全交叉では $c(T_X)=(1+H)^{N+1}/\prod(1+d_jH)$。
+\end{keybox}
+
+\begin{prob}{基本}\label{p:chernbasic}
+(a) $c(T\CP^3)$ を求め、$\int c_3$、$\int c_1c_2$、$\int c_1^3$ を計算せよ（$\int H^3=1$）。(b) 階数 2 のベクトル束 $E$ と直線束 $L$ について、$4c_2(E\otimes L)-c_1(E\otimes L)^2=4c_2(E)-c_1(E)^2$ を示せ。(c) $E$ が階数 3 で $c_1(E)=0$ のとき、$c_2(E^*)$、$c_3(E^*)$ を $c_2(E)$、$c_3(E)$ で書け。
+\end{prob}
+\begin{prob}{標準}\label{p:chernsym}
+階数 2 の $E$ について $c(\Sym^2E)$ を求める（定理 \ref{thm:chernops}(e)）ことを、根 $x_1,x_2$ から実際に導け。$E=\Oc(a)\oplus\Oc(b)$（$\CP^1$ 上）では $\Sym^2E=\Oc(2a)\oplus\Oc(a+b)\oplus\Oc(2b)$ なので $c_1=3(a+b)H$ となることを確かめよ。さらに $E=T\CP^1\oplus\Oc$ では $c_2(\Sym^2E)=c_2$ の式を $\CP^1$ 上で（$H^2=0$ だから）自明に満たすことを確かめ、$\CP^2$ 上の $E=T\CP^2$ で $c_2(\Sym^2T\CP^2)=2\cdot9H^2+4\cdot3H^2=30H^2$ を求めよ。
+\end{prob}
+\begin{prob}{標準}\label{p:adjunction}
+$C\subset X$ を滑らかな複素曲線（余次元 $1$、$X$ は曲面）とする。$0\to T_C\to T_X|_C\to N_C\to0$ と $N_C=\Oc(C)|_C$ から、$K_C=(K_X+C)|_C$（随伴公式）を導き、$2g-2=C\cdot(C+K_X)$ を示せ。$X=\CP^2$、$C$ が次数 $d$ の曲線なら $g=(d-1)(d-2)/2$ となることを示せ。
+\end{prob}
+\begin{prob}{標準}\label{p:Fa}
+Hirzebruch 曲面 $F_a=\mathbb P(\Oc\oplus\Oc(a))\to\CP^1$（$a\ge0$）を考える。$f=\pi^*[\mathrm{pt}]$（ファイバー類、$f^2=0$）、$\xi=c_1(\Oc_{\mathbb P(E)}(1))$ とする。命題 \ref{prop:projrel} から $\xi^2=-a\,\xi f$ を示し、$\int\xi f=1$ を使って $\xi^2=-a$ を求めよ。さらに $\xi'=\xi+af$ について $\xi'^2=a$、$\xi\xi'=0$ を確かめよ。（これは $F_a$ の二つの切断の自己交点数 $\mp a$ である。）
+\end{prob}
+\begin{prob}{発展}\label{p:hyperCI}
+$X\subset\CP^5$ を次数 $(2,3)$ の完全交叉（3 次元）とする。$c(T_X)=(1+H)^6/((1+2H)(1+3H))$ を $H^4=0$ で打ち切って求め（$\int_XH^3=6$）、$c_1^3$、$c_1c_2$、$e(X)=\int c_3$ を計算せよ。$\chi(\Oc_X)=\frac1{24}c_1c_2$ が整数であることを確かめよ。次に $X\subset\CP^4$ が次数 $(2,3)$ の完全交叉（曲面）の場合に $c_1=0$、$e=24$ を確かめよ。（この曲面は K3 曲面である。）
+\end{prob}

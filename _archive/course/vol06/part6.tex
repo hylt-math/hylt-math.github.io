@@ -1,0 +1,239 @@
+\section{この巻の理解チェック}\label{sec:check}
+正誤または短答。解答は直後に示す。
+\begin{enumerate}
+\item Chern 類の公理 (C1)--(C4) をすべて書け。\ \emph{（答）自然性、Whitney 公式、$\int_{\CP^1}c_1(\Oc(1))=1$、$k>\rk E$ で $c_k=0$。}
+\item 正誤：$c_k(E^*)=c_k(E)$。\ \emph{（偽。$(-1)^kc_k(E)$。根が $-x_i$。）}
+\item 正誤：$\ch(E\otimes F)=\ch(E)\ch(F)$、$\ch(E\oplus F)=\ch(E)+\ch(F)$。\ \emph{（真。根 $x_i+y_j$ と合併。）}
+\item $\Td_2(T_X)$ を $c_1,c_2$ で書け。\ \emph{（答）$\frac1{12}(c_1^2+c_2)$。}
+\item $\chi(\CP^3,\Oc(2))$ は。\ \emph{（答）$\binom{5}3=10$。}
+\item K3 曲面の $\chi(\Oc)$ と $e$ は。\ \emph{（答）$2$、$24$（Noether）。}
+\item 五次 3 次元超曲面の Euler 数は。\ \emph{（答）$-200$。}
+\item 正誤：HRR は $X$ が Kähler であることを必要とする。\ \emph{（偽。コンパクト複素多様体で成立（Atiyah--Singer）。Kähler は Hodge 分解のためで HRR には不要。）}
+\item $\CP^2$ 上で $\sum_b(-1)^b\chi(\wedge^bT\otimes\Oc(m))$ は $m$ にどう依るか。\ \emph{（答）依らず $3$。}
+\item $\CP^2$ はスピン多様体か。\ \emph{（答）否。$c_1=3H$ が奇数、$\Ahat=-\frac18\notin\Z$。}
+\end{enumerate}
+
+\section{次巻以降への橋渡しと統合論文との対応}\label{sec:bridge}
+\paragraph{第7・8巻へ。}HRR の左辺は $\dbar$ 作用素の指数 $\dim\Ker-\dim\Coker$（Hodge/Dolbeault 理論、第5巻）である。第7巻で楕円型作用素の Fredholm 指数を学び、第8巻で Atiyah--Singer の指数定理 $\ind D=\pm\int\ch(\sigma(D))\Td(TM\otimes\C)/e(TM)$（符号・向きの規約は第8巻で正確に述べる。複素多様体では \S\ref{sec:hrr} のとおり $(-1)^n$ がつく）を学ぶと、HRR（\S\ref{sec:hrr}）、符号定理（\S\ref{sec:chiy}）、Dirac 作用素と $\Ahat$ 種数（\S\ref{sec:chiy}）、Gauss--Bonnet--Chern（de Rham 複体の指数 $=\chi_{\rm top}$）が、同じ定理の特別な場合として並ぶ：
+\begin{center}
+\begin{tabular}{l|l|l}
+\toprule
+楕円複体 & 指数 & 特性類の積分\\
+\midrule
+Dolbeault $\dbar$ ($E$ で捻る) & $\chi(X,E)$ & $\int\ch(E)\Td(X)$\\
+de Rham & $\chi_{\rm top}(M)$ & $\int e(TM)$\\
+符号複体 & $\sgn(M)$ & $\int\Lg(M)$\\
+Dirac（スピン） & $\ind D^+$ & $\int\Ahat(M)$\\
+\bottomrule
+\end{tabular}
+\end{center}
+\paragraph{第9巻へ。}Grothendieck--Riemann--Roch（$f_!$ と $f_*$ の可換性、\S\ref{sec:hrr}）は、族の指数定理（指数束の $\ch$）の代数版である。
+\paragraph{統合論文との対応。}
+\begin{itemize}
+\item \textbf{定理 22（全 Euler 標数）}：\S\ref{sec:unified} で、HRR、Chern 根、$\frac{1-e^x}{1-e^{-x}}=-e^x$、Chern--Gauss--Bonnet だけで再構成した。論文自身もこの定理を「HRR のみ」と位置づけている。
+\item \textbf{注意 23}：古典の $\chi(X,E)$ は $c_1(E)$ に依存するが、全複体の Euler 標数は依らない。一般化 Dolbeault の「全」Euler 標数の公式は位相的で、古典 HRR の一般化ではない。本巻の Remark \ref{rem:unifiedcaveat}。
+\item \textbf{定理 25（対数版）と注意 27}：同じ機構（$\ch(L)$ の高次の項が最高次の $c_n$ に掛かって落ちる）で $\int c_n(T_X(-\log D))=\chi(U)$ を得る。本巻は扱っていない（Deligne の対数 Poincaré 補題などが必要）。\tQ\ （論文の記述を参照したのみで、証明の再導出は未実施。）
+\item 論文の「Riemann--Roch 型公式」「指数予想」：論文の一覧表では、Poincaré 多項式の公式（曲面：定理 34、一般次元：定理 92）が「Riemann--Roch 型」、指数定理による統一が予想 94（指数予想、未証明）、一般の一般化複素構造での全 Euler 標数は注意 24（予想）である。本巻はこれらを扱わず、HRR と Atiyah--Singer（第8巻）の枠組みとの関係は第13--14巻で扱う。\tQ\ （論文の一覧表を見ただけで、各主張の内容の再導出は未実施。）
+\end{itemize}
+\paragraph{この巻で使った事実のうち、証明を再現していないもの。}HRR 本体（Atiyah--Singer、Hirzebruch、Grothendieck）、Leray--Hirsch、Hodge--Riemann 関係（符号数の Hodge 側の式）、符号定理、Lefschetz の超平面定理、Bogomolov--Tian--Todorov、Rokhlin の定理。いずれも【文献】として使った。
+
+
+\section*{公式集（復習用）}
+\addcontentsline{toc}{section}{公式集（復習用）}
+\begin{center}
+\begin{tabular}{l|l}
+\toprule
+Chern 根 & $c(E)=\prod(1+x_i)$、$c_k=e_k(x)$、$c(E^*)$：$x_i\to-x_i$、$E\otimes L$：$x_i\to x_i+l$\\
+$\ch$ & $\sum e^{x_i}$：$r,\ c_1,\ \frac12(c_1^2-2c_2),\ \frac16(c_1^3-3c_1c_2+3c_3)$\\
+$\Td$ & $\prod\frac{x_i}{1-e^{-x_i}}$：$1,\ \frac{c_1}2,\ \frac{c_1^2+c_2}{12},\ \frac{c_1c_2}{24},\ \frac{-c_1^4+4c_1^2c_2+3c_2^2+c_1c_3-c_4}{720}$\\
+$\CP^n$ & $c=(1+H)^{n+1}$、$\ch(T)=(n+1)e^H-1$、$\chi(\Oc(k))=\binom{n+k}n$\\
+完全交叉 & $c(T_X)=\frac{(1+H)^{N+1}}{\prod(1+d_jH)}$、$K_X=\Oc(\sum d_j-N-1)$\\
+HRR & $\chi(X,E)=\int\ch(E)\Td(X)$\\
+曲線 & $\chi(E)=\deg E+r(1-g)$\\
+曲面 & $\chi(\Oc)=\frac{K^2+e}{12}$、$\chi(L)=\chi(\Oc)+\frac12L(L-K)$、$\tau=\frac{K^2-2e}3$、$\chi^1=\frac{K^2-5e}6$\\
+3 次元 & $\chi(\Oc)=\frac{c_1c_2}{24}$、$\chi^1=\frac{c_1c_2}{24}-\frac{c_3}2$、CY3：$\chi(L)=\frac{L^3}6+\frac{c_2L}{12}$\\
+$\chi_y$ & $\int\prod\frac{x_i(1+ye^{-x_i})}{1-e^{-x_i}}$：$y=0,-1,1$ で $\chi(\Oc)$、$e$、$\tau$\\
+Euler 標数の定理 & $\sum_b(-1)^b\chi(\wedge^bT\otimes E)=(-1)^n\rk(E)\,e(X)$\\
+超曲面 & $e=\frac{(1-d)^{n+2}-1}d+n+2$、$\chi(\Oc_X(k))=\binom{N+k}N-\binom{N+k-d}N$\\
+\bottomrule
+\end{tabular}
+\end{center}
+\paragraph{主な値。}$\CP^2$：$(K^2,e,\chi)=(9,3,1)$。K3：$(0,24,2)$、$\tau=-16$、$h^{1,1}=20$。五次曲面：$(5,55,5)$。五次 3 次元超曲面：$e=-200$、$h^{1,1}=1$、$h^{2,1}=101$。
+\section*{解答}
+\addcontentsline{toc}{section}{解答}
+計算を含む解答は Python（\texttt{fractions} と自作の多項式・形式的べき級数コード。sympy は環境にないので使っていない）で独立に検算した。検算した項目は付録に一覧する。
+\begin{sol}{\ref{p:chernbasic}}
+(a) $(1+H)^4=1+4H+6H^2+4H^3$。$\int c_3=4$、$\int c_1c_2=4\cdot6=24$、$\int c_1^3=64$。(b) 定理 \ref{thm:chernops}(b)：$c_1'=c_1+2l$、$c_2'=c_2+c_1l+l^2$。$4c_2'-c_1'^2=4c_2+4c_1l+4l^2-c_1^2-4c_1l-4l^2=4c_2-c_1^2$。(c) 根 $x_i\to-x_i$：$c_2(E^*)=c_2(E)$、$c_3(E^*)=-c_3(E)$（$c_1=0$ なので $c_1$ の項は出ない）。
+\end{sol}
+\begin{sol}{\ref{p:chernsym}}
+根 $2x_1,x_1+x_2,2x_2$。$c_1=3(x_1+x_2)=3c_1$。$c_2=2x_1(x_1+x_2)+4x_1x_2+2x_2(x_1+x_2)=2(x_1^2+x_2^2)+8x_1x_2=2c_1^2+4c_2$（$x_1^2+x_2^2=c_1^2-2c_2$）。$c_3=4x_1x_2(x_1+x_2)=4c_1c_2$。$\Oc(a)\oplus\Oc(b)$：$c_1=(a+b)H$ より $c_1(\Sym^2)=3(a+b)H$。実際 $2a+(a+b)+2b=3(a+b)$ ✓。$T\CP^2$：$c_1=3H$、$c_2=3H^2$ から $c_2(\Sym^2T)=2\cdot9+4\cdot3=30$（$H^2$ の係数）。
+\end{sol}
+\begin{sol}{\ref{p:adjunction}}
+$c_1$ をとり $c_1(T_X|_C)=c_1(T_C)+c_1(N_C)$、$-K_X|_C=-K_C+C|_C$ ゆえ $K_C=(K_X+C)|_C$。次数をとって $2g-2=(K_X+C)\cdot C$。$\CP^2$：$K=-3H$、$C=dH$、$H^2=1$：$2g-2=d(d-3)$、$g=\frac{d^2-3d+2}2=\frac{(d-1)(d-2)}2$。
+\end{sol}
+\begin{sol}{\ref{p:Fa}}
+$E=\Oc\oplus\Oc(a)$、$c_1(E)=af$、$c_2(E)=0$。命題 \ref{prop:projrel}：$\xi^2+af\xi=0$、$\xi^2=-a\xi f$。$\xi$ はファイバー（$\CP^1$）上で次数 $1$ なので $\int\xi f=1$。よって $\xi^2=-a$。$\xi'^2=\xi^2+2a\xi f+a^2f^2=-a+2a=a$、$\xi\xi'=\xi^2+a\xi f=0$。
+\end{sol}
+\begin{sol}{\ref{p:hyperCI}}
+$(1+H)^6=1+6H+15H^2+20H^3$、$((1+2H)(1+3H))^{-1}=1-5H+19H^2-65H^3$（$(1+5H+6H^2)^{-1}$）。積：$c_1=6-5=1$、$c_2=15-30+19=4$、$c_3=20-75+114-65=-6$。$\int H^3=6$：$c_1^3=6$、$c_1c_2=24$、$e=-36$。$\chi(\Oc_X)=24/24=1$（整数）。曲面 $(2,3)\subset\CP^4$：$(1+H)^5/((1+2H)(1+3H))$：$c_1=5-5=0$、$c_2=10-25+19=4$、$\int H^2=6$、$e=24$。
+\end{sol}
+\begin{sol}{\ref{p:chlow}}
+$p_3=e_1^3-3e_1e_2+3e_3$（Newton）。$\ch_3=\frac{p_3}6$。$T\CP^3$：$c_1=4H$、$c_2=6H^2$、$c_3=4H^3$：$(64-72+12)/6=\frac46=\frac23$。(b) $\ch=4e^H-1$ の $H^3$ の係数 $\frac46=\frac23$ ✓。
+\end{sol}
+\begin{sol}{\ref{p:chEnd}}
+$\ch(\End E)=\ch(E)\ch(E^*)=(2+c_1+\ch_2)(2-c_1+\ch_2)$。次数 2：$4\ch_2-c_1^2=2(c_1^2-2c_2)-c_1^2=c_1^2-4c_2$。$\ch_2(\Sym^2E)=\frac12(4x_1^2+(x_1+x_2)^2+4x_2^2)=\frac12(5c_1^2-8c_2)$、$\ch_2(\wedge^2E)=\frac12c_1^2$。和は $3c_1^2-4c_2=\ch_2(E\otimes E)$ ✓。
+\end{sol}
+\begin{sol}{\ref{p:chOD}}
+$\ch(\Oc_D)=1-e^{-D}=D-\frac12D^2$、$\Td=1+\frac12c_1+\cdots=1-\frac12K+\cdots$。次数 2：$-\frac12D^2-\frac12DK$。$\chi(\Oc_D)=-\frac12D(D+K)=-\frac12(2g-2)=1-g$。
+\end{sol}
+\begin{sol}{\ref{p:chEuler}}
+$\ch(\Omega^1)=3e^{-H}-1=2-3H+\frac32H^2$。$\ch(T)\ch(\Omega^1)=(3e^H-1)(3e^{-H}-1)=10-3(e^H+e^{-H})=4-3H^2+\cdots$、次数 2 は $-3H^2$。$c_1^2-4c_2=9-12=-3$ ✓。
+\end{sol}
+\begin{sol}{\ref{p:Newton}}
+再帰式（$k=4$）：$p_4=c_1p_3-c_2p_2+c_3p_1-4c_4$。$p_3=c_1^3-3c_1c_2+3c_3$、$p_2=c_1^2-2c_2$、$p_1=c_1$：$p_4=c_1^4-3c_1^2c_2+3c_1c_3-c_1^2c_2+2c_2^2+c_1c_3-4c_4=c_1^4-4c_1^2c_2+4c_1c_3+2c_2^2-4c_4$。$\ch_4=p_4/24$ で定理の式。$T\CP^4$：$\ch=5e^H-1$、$H^4$ の係数 $\frac5{24}$。公式に $c=(1+H)^5=1+5H+10H^2+10H^3+5H^4$ を入れる：$c_1^4=625$、$c_1^2c_2=250$、$c_1c_3=50$、$c_2^2=100$、$c_4=5$：$625-1000+200+200-20=5$、$\frac5{24}$ ✓。
+\end{sol}
+\begin{sol}{\ref{p:todd3}}
+$\frac{1-e^{-x}}x=1-\frac x2+\frac{x^2}6-\frac{x^3}{24}+\frac{x^4}{120}$。逆数を $1+a_1x+\cdots$ とおくと $a_1=\frac12$、$a_2=\frac12a_1-\frac16=\frac1{12}$、$a_3=\frac12a_2-\frac16a_1+\frac1{24}=\frac1{24}-\frac1{12}+\frac1{24}=0$、$a_4=\frac12a_3-\frac16a_2+\frac1{24}a_1-\frac1{120}=-\frac1{72}+\frac1{48}-\frac1{120}=-\frac1{720}$（通分：$-\frac{10}{720}+\frac{15}{720}-\frac6{720}=-\frac1{720}$）。$\Td_3$ は定理 \ref{thm:toddlow} の証明どおり $\frac1{24}c_1c_2$。
+\end{sol}
+\begin{sol}{\ref{p:ToddPn}}
+$\Td(\CP^2)=(1+\frac H2+\frac{H^2}{12})^3=1+\frac32H+(\frac3{12}+\frac34)H^2=1+\frac32H+H^2$。$\Td_2=\frac{9+3}{12}=1$ ✓。$\CP^3$：$\Td_3=\frac{c_1c_2}{24}=\frac{24}{24}=1$（$c_1c_2=24$ は問 \ref{p:chernbasic}）。
+\end{sol}
+\begin{sol}{\ref{p:hirzbasic}}
+$[x]Q^2=2q_1=1\Rightarrow q_1=\frac12$。$[x^2]Q^3=3q_2+3q_1^2=1\Rightarrow q_2=\frac13(1-\frac34)=\frac1{12}$。$[x^3]Q^4=4q_3+12q_1q_2+4q_1^3=4q_3+\frac12+\frac12=1\Rightarrow q_3=0$。
+\end{sol}
+\begin{sol}{\ref{p:integral}}
+(a) HRR で $\chi(\Oc_X)=\int\Td_3=\frac{c_1c_2}{24}\in\Z$。(b) $c(T)=(1+H)^5/(1+dH)$：$c_1=(5-d)H$、$c_2=(d^2-5d+10)H^2$、$\int H^3=d$。$c_1c_2=d(5-d)(d^2-5d+10)$：$d=1,\dots,7$ で $24,24,24,24,0,-96,-336$、すべて $24$ の倍数（$1,1,1,1,0,-4,-14$ 倍）。
+\end{sol}
+\begin{sol}{\ref{p:euler}}
+$\CP^3$：$c_3=4H^3$、$4$。$\CP^1\times\CP^1$：$c_2=c_1^{(1)}c_1^{(2)}=2\cdot2=4$。種数 2：$2-2g=-2$。四次曲面：$d(d^2-4d+6)=4\cdot6=24$。五次 3 次元超曲面：$c_3=-40H^3$、$\int H^3=5$、$-200$。
+\end{sol}
+\begin{sol}{\ref{p:pont}}
+$\CP^2$：$p=(1+H^2)^3$、$p_1=3H^2$、$\sgn=\int\Lg_1=\frac13\cdot3=1$。$\CP^4$：$p=(1+H^2)^5$、$p_1=5H^2$、$p_2=10H^4$。$\Lg_2=\frac{7\cdot10-25}{45}=1$ ✓。$\Lg$ は乗法的なので積多様体で $\int\Lg(M\times N)=\int\Lg(M)\int\Lg(N)=1$。
+\end{sol}
+\begin{sol}{\ref{p:Ahat}}
+$Q(x)=1-\frac{y}{24}+\frac{7y^2}{5760}$（$y=x^2$）。$\prod Q(x_i)$ の次数 1（$y$ について）：$-\frac1{24}e_1(y)=-\frac1{24}p_1$。次数 2：$\frac7{5760}\sum y_i^2+\frac1{576}e_2(y)=\frac7{5760}(p_1^2-2p_2)+\frac{10}{5760}p_2=\frac{7p_1^2-4p_2}{5760}$。K3：$p_1=c_1^2-2c_2=-48$、$\Ahat=\frac{48}{24}=2$。
+\end{sol}
+\begin{sol}{\ref{p:hrrexp}}
+$\ch(L)\Td$ の次数 3：$\frac{l^3}6\cdot1+\frac{l^2}2\cdot\frac{c_1}2+l\cdot\frac{c_1^2+c_2}{12}+1\cdot\frac{c_1c_2}{24}$。$\CP^3$、$l=H$、$c_1=4H$、$c_2=6H^2$：$\frac16+1+\frac{22}{12}+1=4=\binom43$ ✓。
+\end{sol}
+\begin{sol}{\ref{p:Omegak}}
+$\chi(\Oc(-1)^{n+1}\otimes\Oc(k))=(n+1)\chi(\Oc(k-1))=(n+1)\binom{n+k-1}n$、$\chi(\Oc(k))=\binom{n+k}n$。差。$k=0$：$\binom{n-1}n=0$（$n\ge1$）なので $-1$。$n=2$：$k=1:3\cdot1-3=0$、$k=2:3\cdot3-6=3$、$k=3:3\cdot6-10=8$。
+\end{sol}
+\begin{sol}{\ref{p:SDHRR}}
+$\ch_k(E^*)=(-1)^k\ch_k(E)$、$\Td_k(T^*)=(-1)^k\Td_k(T)$、$\ch(E^*\otimes K)=\ch(E^*)e^{-c_1(T)}$。$\int\ch(E^*)e^{-c_1}\Td(T)=\int\ch(E^*)\Td(T^*)=\sum_{j+k=n}(-1)^{j+k}\int\ch_j(E)\Td_k(T)=(-1)^n\chi(E)$。$\CP^2$：$\chi(\Oc(k))=\frac{(k+1)(k+2)}2$、$\chi(\Oc(-k-3))=\frac{(-k-2)(-k-1)}2$ 同じ。$\CP^3$：$\frac{(k+1)(k+2)(k+3)}6$ と $\frac{(-k-3)(-k-2)(-k-1)}6$ は符号反転。
+\end{sol}
+\begin{sol}{\ref{p:curveHRR}}
+$\chi(T_C)=(2-2g)+(1-g)=3-3g$。$\chi(K^m)=m(2g-2)+1-g=(2m-1)(g-1)$。$\chi(\Omega^1\otimes L)=(2g-2+d)+1-g=g-1+d$。$g=2$、$m=2$：$\chi(K^2)=3$、$H^1(K^2)\cong H^0(K^{-1})^*=0$（$\deg K^{-1}<0$）なので $h^0(K^2)=3$。
+\end{sol}
+\begin{sol}{\ref{p:P1P1}}
+$K=\Oc(-2,-2)$、$K^2=8$、$e=2\cdot2=4$、$\chi(\Oc)=\frac{12}{12}=1$。$\chi(\Oc(a,b))=1+\frac12(2ab+2a+2b)=(a+1)(b+1)$。
+\end{sol}
+\begin{sol}{\ref{p:blowup}}
+$K_{\tilde X}^2=(\pi^*K_X)^2+2\pi^*K_X\cdot E+E^2=K_X^2+0-1$。$e$：$\tilde X$ は $X$ の一点を $\CP^1$（$\chi=2$）に置き換えるので $e+1$。$K^2+e$ は不変で $\chi(\Oc)$ も不変。
+\end{sol}
+\begin{sol}{\ref{p:prodcurve}}
+$e=(2-4)(2-6)=8$、$K^2=2e=16$、$\chi(\Oc)=\frac{24}{12}=2=(1-2)(1-3)$。$q=h^{0,1}=g_1+g_2=5$、$p_g=g_1g_2=6$（Künneth）、$1-5+6=2$ ✓。
+\end{sol}
+\begin{sol}{\ref{p:RRsurf}}
+$K=0$：$\chi(\Oc(D))=2+\frac12D^2=1$。$h^2(D)=h^0(K-D)=h^0(-D)$（Serre 双対）、$h^0(D)-h^1(D)+h^0(-D)=1$ より $h^0(D)+h^0(-D)\ge1$。$L^2=2g-2$：$\chi(L)=2+g-1=g+1$、$h^0(L)\ge\chi(L)-h^2(L)=g+1$（$h^2=0$ のとき）。
+\end{sol}
+\begin{sol}{\ref{p:planepts}}
+$d=4$：$\binom62=15$、$\chi(L)=15-m$：$14,13,12,11,10,9$。$d=2$、$m=5$：$6-5=1$、5 点を通る二次曲線は一般に 1 本。$d=3$、$m=9$：$10-9=1$、$L^2=9-9=0$。$h^2(L)=h^0(K-L)=0$（$K-L=-6H+\sum2E_i$ は有効でない）なので $h^0(L)\ge1$：9 点を通る三次曲線は常に存在する。一般の位置の 9 点では $h^0=1$（一意）、$h^1=0$。9 点が 2 本の三次曲線の交点（束の基点）のときは $h^0=2$、$h^1=1$ となり、$\chi=1$ は変わらず次元だけが跳ぶ。
+\end{sol}
+\begin{sol}{\ref{p:torus}}
+$\Td=1$、$\chi(L)=\int\frac{l^2}2$。$L^2=2$：$\chi=1$。$L$ 豊富、$K=\Oc$、Kodaira 消滅で $h^q=0$、$h^0=1$。$n=1$：$\chi(L)=\int l=\deg L$ で第4巻の楕円曲線の結果（$g=1$）と一致。
+\end{sol}
+\begin{sol}{\ref{p:quintic}}
+$(1+H)^5=1+5H+10H^2+10H^3$、$(1+5H)^{-1}=1-5H+25H^2-125H^3$。$c_1=0$、$c_2=10-25+25=10H^2$、$c_3=10-50+125-125=-40H^3$（$-40\cdot5=-200$）。$c_2H=10\cdot5=50$。$\chi(\Oc(k))=\frac{5k^3}6+\frac{50k}{12}=\frac{5k^3+25k}6$。$k=1,2,3,5$：$5,15,35,125$。$\binom{4+k}4$：$5,15,35,126$。$k=5$ は方程式分 $1$ 少ない。
+\end{sol}
+\begin{sol}{\ref{p:CICY}}
+$c_1=(3+3-6)H=0$。$\int H^3=9$。$c(T)=(1+H)^6(1+3H)^{-2}$ の $(1+3H)^{-2}=1-6H+27H^2-108H^3$：$c_2=15-36+27=6H^2$、$c_2H=54$、$c_3=20-90+162-108=-16H^3$、$e=-144$。$h^{2,1}=1-e/2=73$。
+\end{sol}
+\begin{sol}{\ref{p:hypCY}}
+命題 \ref{prop:hypchi} の $k=0$、$d=N+1$：$\binom{N}N-\binom{-1}N=1-(-1)^N$。$N=2,3,4,5$：$0,2,0,2$。$N=5$：$c_1=0$ なので $\Td=\Ahat$（命題 \ref{prop:AhatTd}）、$\Ahat(X)=\chi(\Oc)=2$。
+\end{sol}
+\begin{sol}{\ref{p:Fermat}}
+(a) $c_1(T)=(3-d)H$、$\deg=d(3-d)=2-2g$。(b) $K_C=(K_{\CP^2}+C)|_C=(d-3)H|_C$、$\deg=d(d-3)=2g-2$。同じ。$d=5$ 曲面：$K^2=5$、$e=55$、$\chi=5$、$p_g=4$、$b_2=53$、$h^{1,1}=53-8=45$。
+\end{sol}
+\begin{sol}{\ref{p:chiT}}
+(a) $\ch(T)=(n+1)e^H-1$：$\chi(T)=(n+1)\chi(\Oc(1))-\chi(\Oc)=(n+1)^2-1=n^2+2n=\dim\mathrm{PGL}_{n+1}$（$H^{>0}(T)=0$）。(b) K3：$\ch_2=-24$、$\int\ch(T)\Td=-24+2\cdot2=-20$、$h^1(T)=20$。(c) CY3：$\ch_3=\frac{c_3}2=-100$、他項は $c_1=0$ と $\Td_1=\Td_3=0$ から $\ch_1\Td_2=0$ なので $\chi(T)=-100$、$h^1(T)-h^2(T)=101-1$。
+\end{sol}
+\begin{sol}{\ref{p:eulerhyp}}
+$n=3$：$e=\frac{(1-d)^5-1}d+5$。$d=1:\frac{-1}1+5=4$、$d=2:\frac{-1-1}2+5=4$、$d=3:\frac{-32-1}3+5=-6$、$d=4:\frac{-243-1}4+5=-56$、$d=5:\frac{-1024-1}5+5=-200$、$d=6:\frac{-3125-1}6+5=-516$。$d=2$ の $Q^3$：Betti 数 $1,0,1,0,1,0,1$、交代和 $4$ ✓。（$d=1$ も $\CP^3$ で $4$。）
+\end{sol}
+\begin{sol}{\ref{p:Fano3}}
+$-K$ は豊富で、$-K=K+(-2K)$ と書くと Kodaira 消滅（第5巻）で $h^q(-K)=0$ $(q>0)$。$h^0(-K)=\chi(-K)=\frac12c_1^3+\frac18c_1c_2$、Fano なので $\chi(\Oc)=1$ から $c_1c_2=24$、よって $\frac12c_1^3+3$。三次 3 次元超曲面：$c_1=(5-3)H=2H$、$c_1^3=8\cdot3=24$、$12+3=15$。$-K=\Oc_X(2)$ で $h^0(\Oc_X(2))=h^0(\CP^4,\Oc(2))=15$（二次式は三次式の方程式で割られない）✓。
+\end{sol}
+\begin{sol}{\ref{p:chi1}}
+$\ch(\Omega^1)=2-c_1+\frac12(c_1^2-2c_2)$、$\Td=1+\frac{c_1}2+\frac{c_1^2+c_2}{12}$。次数 2：$\frac{2(c_1^2+c_2)}{12}-\frac{c_1^2}2+\frac12(c_1^2-2c_2)=\frac{c_1^2+c_2}6-c_2=\frac{c_1^2-5c_2}6$。$\CP^2$：$\frac{9-15}6=-1$。K3：$-20$。$\chi^0=\chi^2=2$：$\chi_y=2-20y+2y^2$。
+\end{sol}
+\begin{sol}{\ref{p:sigmaFermat}}
+$c_1^2=d(d-4)^2$、$c_2=d(d^2-4d+6)$：$\frac13d(d^2-8d+16-2d^2+8d-12)=\frac{d(4-d^2)}3$。$d=1,\dots,5$：$1,0,-5,-16,-35$。$d=3$：$-5=1-6$。
+\end{sol}
+\begin{sol}{\ref{p:Hodgesign}}
+K3：$p=0$ 行 $1+0+1=2$、$p=1$ 行 $-(0+20+0)=-20$、$p=2$ 行 $2$、計 $-16$。$\chi_1=2\cdot2-20=-16$ ✓。五次曲面：$p=0$：$1+0+4=5$、$p=1$：$-45$、$p=2$：$5$、計 $-35$。$\chi^0=5$、$\chi^1=\frac{5-275}6=-45$、$2\cdot5-45=-35$ ✓。
+\end{sol}
+\begin{sol}{\ref{p:3foldchi}}
+$\ch(\Omega^1)=3-c_1+\ch_2(\Omega^1)-\ch_3(T)$。ここで $\ch_k(T^*)=(-1)^k\ch_k(T)$。次数 3：$\ch_3(\Omega^1)\cdot1+\ch_2\Td_1+\ch_1(\Omega^1)\Td_2+3\Td_3=-\frac{c_1^3-3c_1c_2+3c_3}6+\frac{c_1^2-2c_2}2\cdot\frac{c_1}2-c_1\frac{c_1^2+c_2}{12}+\frac{c_1c_2}8$。$c_1^3$：$-\frac16+\frac14-\frac1{12}=0$。$c_1c_2$：$\frac12-\frac12-\frac1{12}+\frac18=\frac1{24}$。$c_3$：$-\frac12$。よって $\frac{c_1c_2}{24}-\frac{c_3}2$。CY3：$\chi^1=-\frac{c_3}2=-\frac e2=h^{2,1}-h^{1,1}$（$\chi^1=-h^{1,1}+h^{1,2}$）。五次：$100$ ✓。
+\end{sol}
+\begin{sol}{\ref{p:EulerP12}}
+$\CP^1$：$(m+1)-(m+3)=-2$。$\CP^2$：$\chi(\Oc(m))=\binom{m+2}2$、$\chi(T(m))=3\binom{m+3}2-\binom{m+2}2$、$\chi(\wedge^2T(m))=\chi(\Oc(m+3))=\binom{m+5}2$。$m=0$：$1-8+10=3$。一般の $m$：$2\binom{m+2}2-3\binom{m+3}2+\binom{m+5}2=3$（$m$ の多項式として定数、Python で $-5\le m\le5$ を確認）。$(-1)^2\cdot1\cdot3=3$ ✓。
+\end{sol}
+\begin{sol}{\ref{p:OmegaTot}}
+$\sum_b(-1)^b\ch(\Omega^b)=\prod(1-e^{-x_i})$、$\Td$ を掛けて $\prod x_i=c_n$、$\ch(E)$ の次数 $0$ の部分 $r$ だけ残るので $r\int c_n$。$\wedge^bT\otimes E\cong\Omega^{n-b}\otimes(E\otimes K^{-1})$ で $p=n-b$、$(-1)^b=(-1)^n(-1)^p$。よって定理の左辺 $=(-1)^n\sum_p(-1)^p\chi(\Omega^p\otimes E')=(-1)^nr\chi_{\rm top}$（$E'=E\otimes K^{-1}$、階数 $r$）。
+\end{sol}
+
+
+
+\section*{付録：検算した項目}
+\addcontentsline{toc}{section}{付録：検算した項目}
+Python（\texttt{fractions}、自作の多変数多項式と一変数形式的べき級数。Chern 根の対称式から基本対称式への変換コードも自作）で次を検算した。
+\begin{itemize}
+\item $\ch_k$（$k\le4$）と $\Td_k$（$k\le4$）の $c_i$ による表示（定理 \ref{thm:chlow}、\ref{thm:toddlow}）、$\Td=e^{c_1/2}\Ahat$ の級数一致、$\Lg_1,\Lg_2,\Ahat_1,\Ahat_2$ の係数。
+\item $[x^n]Q^{n+1}=1$（$Q=\frac x{1-e^{-x}}$、$n\le12$）。$\int_{\CP^n}e^{kH}\Td(\CP^n)=\binom{n+k}n$（$n\le8$、$|k|\le15$）。$\Td(\CP^2),\Td(\CP^3),\Td(\CP^4)$。
+\item $c(E\otimes L)$、$\Sym^2E$、$\End E$ の Chern 類の公式（定理 \ref{thm:chernops}）。
+\item $\CP^3$ の次数 $d\le7$ の曲面：$K^2$、$e$、$\chi(\Oc)$、$\tau$、$h^{1,1}$、および $k=-8,\dots,8$ での HRR $=\binom{3+k}3-\binom{3+k-d}3$。
+\item Calabi--Yau 3 次元 5 例（$c_1=0$、$H^3$、$c_2H$、$e$、$h^{2,1}$）、五次で $k=-6,\dots,9$ の HRR $=\binom{4+k}4-\binom{k-1}4$。K3 3 例（$e=24$）。$(2,3)\subset\CP^5$（$c_1^3=6$、$c_1c_2=24$、$e=-36$）。
+\item $\chi^p$ の $c_i$ による表示（$n=2,3$）、五次で $\chi^1=100$。$\CP^3$、$\CP^4$ 他の超曲面 $(5-d)\cdot$ の $c_1c_2$（$d\le7$）。
+\item 全 Euler 標数 $\sum_b(-1)^b\chi(\wedge^bT\otimes\Oc(m))=(-1)^ne$：$\CP^2$、$\CP^3$、$\CP^3\supset$ 四次・三次曲面、$\CP^4\supset$ 五次・三次超曲面、$(2,4)\subset\CP^5$、$-6\le m\le6$。
+\item 超曲面の Euler 数 $e=\frac{(1-d)^{n+2}-1}d+n+2$（$n\le5$、$d\le7$）、$P_m(\text{五次曲面})$、Fano 3 次元 6 例の $\chi(-K)=\frac12c_1^3+3$、$\mathrm{Bl}_m\CP^2$ の $\chi(L)$、$K(\CP^n)$ の関係式、曲面の全 Euler 標数の手計算（例 \ref{ex:hand2}）。\item $\Td_4$ の表（$\CP^4$、$Q^4$、三次・六次 4 次元超曲面、例 \ref{ex:Td4}）、$\chi(T_{\CP^2}(k))=(k+2)(k+4)$ と $\chi(\Sym^2T_{\CP^2})=27$、曲面の $p_g,h^{1,1}$ を $(K^2,e)$ から（命題 \ref{prop:hodgesurf}）、Hirzebruch 曲面の Chern 数、$\CP^1$（$\sigma=0$）の Poincaré 多項式の表（例 \ref{ex:P1jump}）。検算コードは \texttt{lib.py}、\texttt{v1.py}--\texttt{v4.py}、\texttt{verify\_all.py}。
+\item 問の数値：各問の主な数値（上記と重複）。
+\end{itemize}
+\textbf{検算していないもの}：splitting principle、Leray--Hirsch、HRR 本体、符号定理、Hodge--Riemann、Lefschetz、Rokhlin（いずれも文献の定理として使用）。$h^{1,1}=1$（五次の Lefschetz）と $b_1=0$ は文献による。証明は手計算で書いた。外部の査読は受けていないが、執筆者とは別の AI による独立検査を受け、別実装の Python（\texttt{fractions}、一変数形式的べき級数と乱数の Chern 根）で上記の数値・公式を再計算した。
+
+\section*{記号表}
+\addcontentsline{toc}{section}{記号表}
+\begin{tabular}{lp{9.5cm}}
+$c(E),c_k(E)$ & Chern 類\\
+$x_i$ & Chern 根\\
+$\ch(E)=\sum e^{x_i}$ & Chern 指標\\
+$\Td(X)=\Td(T_X)$ & Todd 類\\
+$p_k,\ e(V)$ & Pontryagin 類、Euler 類\\
+$\Lg,\ \Ahat$ & $\Lg$ 類、$\Ahat$ 類（乗法的類）\\
+$\chi(X,E)$ & 層コホモロジーの Euler 標数\\
+$\chi_{\rm top}(X)=e(X)$ & 位相的 Euler 数（$=\int c_n(T_X)$）\\
+$\chi^p,\ \chi_y$ & $\chi(\Omega^p)$、$\chi_y$ 種数\\
+$\sgn,\ \tau$ & 符号数\\
+$H$ & $\CP^n$ の超平面類\\
+$\mathbb H^k(E)$ & Poisson 加群の複体の超コホモロジー（一般化 Dolbeault コホモロジー）\\
+\end{tabular}
+
+\section*{参考文献}
+\addcontentsline{toc}{section}{参考文献}
+書名と章（節）まで。定理番号は確信がないため書かない。\tQ\ は章の番号が記憶に基づくもの。
+\begin{enumerate}
+\item J.~Milnor, J.~Stasheff, \emph{Characteristic Classes}, Princeton. Chern 類（§14）、Pontryagin 類（§15）、Euler 類（§9、§11）、Chern 数・Pontryagin 数（§16）、コボルディズム（§17--§18）、符号定理（§19）。節番号は出版社の目次で確認した（細部の対応は未確認）。
+\item F.~Hirzebruch, \emph{Topological Methods in Algebraic Geometry}, Springer. HRR、Todd 類、$\chi_y$ 種数。第3版の目次では第4章（Todd genus）、第5章（HRR）。$\chi_y$ 種数の章は\tQ\ 。
+\item P.~Griffiths, J.~Harris, \emph{Principles of Algebraic Geometry}, Wiley. Chern 類、Poincaré--Lelong 公式、Riemann--Roch を含む。\tQ\ （章・節番号）
+\item D.~Huybrechts, \emph{Complex Geometry: An Introduction}, Springer. 第5章（Applications of Cohomology）の HRR の節。Chern 類の章は\tQ\ 。
+\item M.~F.~Atiyah, I.~M.~Singer, \emph{The index of elliptic operators III}, Ann.\ of Math.\ 87 (1968). HRR を含む。
+\item A.~Borel, J.-P.~Serre, \emph{Le théorème de Riemann--Roch}, Bull.\ Soc.\ Math.\ France 86 (1958). Grothendieck--Riemann--Roch。
+\item W.~Fulton, \emph{Intersection Theory}, Springer. 第3章（Chern 類）、第15章（非特異多様体の Riemann--Roch）、第18章（特異多様体）。出版社の目次で確認した。
+\item R.~Hartshorne, \emph{Algebraic Geometry}, Springer. 第II章（射影空間、直線束）、第III章、第V章（曲面）、付録 A（交点理論）。\tQ\ （付録の節番号）
+\item R.~Bott, L.~Tu, \emph{Differential Forms in Algebraic Topology}, Springer. §5（Leray--Hirsch）、第IV章（Chern 類、splitting principle）。\tQ\ （節・章番号は記憶による）
+\item S.~Kobayashi, K.~Nomizu, \emph{Foundations of Differential Geometry II}, Wiley. Chern--Weil 理論。\tQ\ （章）
+\item W.~Barth, K.~Hulek, C.~Peters, A.~Van de Ven, \emph{Compact Complex Surfaces}, Springer. Noether の公式、K3 曲面、爆発。\tQ\ （章）
+\item H.~B.~Lawson, M.-L.~Michelsohn, \emph{Spin Geometry}, Princeton. Dirac 作用素と $\Ahat$ 種数（第8巻に向けて）。
+\item 統合論文：\texttt{generalized-geometry-poisson-unified}（2026-11-22）、v1 PDF の §4（定理 22、注意 23、定理 25）。
+\end{enumerate}
+\end{document}

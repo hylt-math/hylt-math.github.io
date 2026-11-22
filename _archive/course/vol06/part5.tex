@@ -1,0 +1,169 @@
+
+\begin{prob}{標準}\label{p:eulerhyp}
+命題 \ref{prop:eulerhyp} を用いて、$\CP^4$ の次数 $d$ の超曲面（3 次元）で $e(X)=\frac{(1-d)^5-1}d+5$ を求め、$d=1,\dots,6$ の値を計算せよ（$d=5$ で $-200$）。$d=2$（3 次元の二次超曲面 $Q^3$）の値が、Betti 数 $b_0=b_2=b_4=b_6=1$（他は $0$）の交代和 $4$ と一致することを確かめよ。
+\end{prob}
+
+\begin{prob}{標準}\label{p:Fano3}
+3 次元 Fano 多様体で $h^0(-K_X)=\frac12c_1^3+3$ を導け（例 \ref{ex:Fano3}）。$X\subset\CP^4$ が次数 3 の超曲面（三次 3 次元超曲面）のとき $c_1=2H$、$H^3=3$ から $c_1^3$ と $h^0(-K)$ を求め、$h^0(\Oc_X(2))=h^0(\CP^4,\Oc(2))=15$ と照合せよ。
+\end{prob}
+\section{Hodge 数と $\chi_y$ 種数、符号定理、$\Ahat$ 種数}\label{sec:chiy}
+\paragraph{動機。}HRR を $E=\Omega^p_X$ に適用すると、Hodge 数の交代和 $\chi^p=\sum_q(-1)^qh^{p,q}$ が Chern 数で書ける。$p$ をまとめて $y^p$ で重みづけすると、Todd 種数（$y=0$）、Euler 数（$y=-1$）、符号数（$y=1$）が一つの式の特殊値になる。
+\begin{defn}[$\chi_y$ 種数]
+$\chi^p(X)=\chi(X,\Omega^p_X)=\sum_{q}(-1)^qh^{p,q}$、$\chi_y(X)=\sum_{p=0}^n\chi^p(X)\,y^p$。
+\end{defn}
+\begin{thm}[Hirzebruch]\label{thm:chiy}\tP\ （HRR を認める）Chern 根を $x_i$ として
+\[
+\chi_y(X)=\int_X\prod_{i=1}^n\frac{x_i(1+ye^{-x_i})}{1-e^{-x_i}}.
+\]
+特殊値：$y=0$：$\chi_0=\chi(\Oc_X)=\int\Td$。$y=-1$：$\chi_{-1}=\int c_n=\chi_{\rm top}(X)$。$y=1$：$\chi_1=\int\Lg(X)$（$X$ がコンパクト Kähler のとき、符号数 $\sgn(X)$）。
+\end{thm}
+\begin{proof}
+$\ch(\Omega^p)=e_p(e^{-x_1},\dots,e^{-x_n})$（$\Omega^1=T^*$ の根は $-x_i$、$\Omega^p=\wedge^p\Omega^1$）なので $\sum_py^p\ch(\Omega^p)=\prod(1+ye^{-x_i})$。HRR に代入。$y=-1$：$\prod x_i$。$y=1$：$\frac{x(1+e^{-x})}{1-e^{-x}}=\frac x{\tanh(x/2)}$。次数 $n$ の部分では $\prod\frac{x_i}{\tanh(x_i/2)}$ は $\prod\frac{x_i}{\tanh x_i}$ と等しい（次数 $n$ の斉次成分で $x\mapsto x/2$ は $2^{-n}$ 倍、$2^n$ 倍と相殺）。\qedhere
+\end{proof}
+\noindent \tC\ $\chi_{-1}=\chi_{\rm top}$ の「Hodge 側」の意味は $\sum_p(-1)^p\chi^p=\sum_{p,q}(-1)^{p+q}h^{p,q}=\sum_k(-1)^kb_k$（Hodge 分解、第5巻）。$y=1$ の値が符号数であるのは Hodge の指数定理（Hodge--Riemann 関係、第5巻）による：$\sgn(X)=\sum_{p,q}(-1)^ph^{p,q}$。\tC\ （Hirzebruch, 前掲書。）
+
+\begin{thm}[低次元の公式]\label{thm:chiylow}\tP\ （Python で $c_i$ の多項式として検算）
+\begin{align*}
+n=2:&\ \chi^0=\chi^2=\tfrac1{12}(c_1^2+c_2),\ \chi^1=\tfrac16(c_1^2-5c_2),\\
+n=3:&\ \chi^0=-\chi^3=\tfrac1{24}c_1c_2,\ \chi^1=-\chi^2=\tfrac1{24}c_1c_2-\tfrac12c_3.
+\end{align*}
+\end{thm}
+\noindent Serre 双対 $\chi^{n-p}=(-1)^n\chi^p$（$\Omega^{n-p}\cong(\Omega^p)^*\otimes K$、命題 \ref{prop:SDHRR}）が見える。曲面の符号数：$\sgn=\chi_1=2\chi^0+\chi^1=\frac13(c_1^2-2c_2)=\frac13p_1$、Euler 数：$\chi_{-1}=2\chi^0-\chi^1=c_2$ ✓。例：K3 では $\chi^1=-\frac56\cdot24=-20$、$\chi_y=2-20y+2y^2$、$\chi_1=-16$、$\chi_{-1}=24$。$\CP^2$：$\chi^1=\frac{9-15}6=-1$、$\chi_y=1-y+y^2$。五次 3 次元超曲面：$c_1=0$、$\chi^1=-\frac{c_3}2=100$、$\chi_y=100y-100y^2$、$\chi_{-1}=-200$ ✓。Fermat 曲面（四次曲面 $d=4$）：K3 と同じ。一般の $d$ の曲面：$\tau=-\frac{d(d^2-4)}3$。
+
+
+\begin{prop}[曲面の Hodge 数と Chern 数]\label{prop:hodgesurf}\tP\
+コンパクト Kähler 曲面で $q=h^{0,1}$、$p_g=h^{0,2}$ とする（$h^{1,0}=q$）。(a) $\chi(\Oc)=1-q+p_g$、$b_1=2q$、$b_2=e-2+4q$、$h^{1,1}=b_2-2p_g$。(b) 符号数 $\tau=2+2p_g-h^{1,1}$（$q$ に依らない）。(c) $q=0$ なら、Hodge 数は Chern 数だけで決まる：
+\[
+p_g=\tfrac{K^2+e}{12}-1,\qquad h^{1,1}=e-2-2p_g=\tfrac{5e-K^2}{6}.
+\]
+\end{prop}
+\begin{proof}
+(a) Hodge 分解と Euler 数 $e=2-2b_1+b_2$。(b) $\tau=\sum(-1)^ph^{p,q}$ の $p=0,1,2$ の項は $1+q+p_g$、$-(q+h^{1,1}+q)$、$p_g+q+1$。(c) (a) に $q=0$ を代入、$p_g=\chi(\Oc)-1$ と Noether。
+\end{proof}
+\noindent 例：K3：$(K^2,e)=(0,24)$：$p_g=1$、$h^{1,1}=\frac{120}6=20$ ✓。五次曲面：$(5,55)$：$p_g=4$、$h^{1,1}=\frac{275-5}6=45$ ✓。$\CP^2$：$\frac{15-9}6=1$ ✓。$\tau=2+2p_g-h^{1,1}$：K3 で $2+2-20=-16$、五次で $2+8-45=-35$、三次曲面で $2-7=-5$ ✓。つまり $q=0$ の曲面では、二つの Chern 数 $(K^2,e)$ が Hodge ダイヤモンド全体を決める。
+
+\begin{thm}[符号定理]\label{thm:sign}\tC\ （Hirzebruch, 1953）閉じた向きづけられた $4k$ 次元多様体 $M$ で $\sgn(M)=\int_M\Lg(TM)$。$\Lg_1=\frac13p_1$、$\Lg_2=\frac1{45}(7p_2-p_1^2)$。
+\end{thm}
+\noindent 証明は Thom のコボルディズム環と、$\Lg$ が乗法的で $\CP^{2j}$ で符号数 $1$ を与えることによる（Hirzebruch、Milnor--Stasheff §19）。HRR の原証明と同じ構造である。符号定理も指数定理の特別な場合（符号作用素、第8巻）。
+
+\subsection{$\Ahat$ 種数と Dirac 作用素（第8巻への橋渡し）}
+\begin{prop}\label{prop:AhatTd}\tP\ $\Td(E)=e^{c_1(E)/2}\Ahat(E_\R)$。ここで $\Ahat$ は $Q(x)=\frac{x/2}{\sinh(x/2)}$ の乗法的類（Pontryagin 根 $y_i=x_i^2$ の関数）。
+\end{prop}
+\begin{proof}
+$1-e^{-x}=e^{-x/2}\cdot2\sinh(x/2)$ より $\frac x{1-e^{-x}}=e^{x/2}\frac{x/2}{\sinh(x/2)}$。積をとる。（級数の一致は Python でも検算した。）
+\end{proof}
+\noindent $X$ がコンパクト複素多様体で $c_1(X)$ が偶数（$K_X$ が平方根 $K_X^{1/2}$ をもつ）なら、$X$ はスピン多様体で、スピノル束は $S=\Lambda^{0,\bullet}\otimes K_X^{1/2}$、Dirac 作用素は、Kähler なら（定数倍を除き）$\dbar+\dbar^*$ を $K^{1/2}$ で捻ったものに一致する（一般の Hermite 多様体では主シンボルが一致し、指数は等しい）\tC\ 。HRR と命題 \ref{prop:AhatTd} から
+\[
+\chi(X,K_X^{1/2})=\int e^{-c_1/2}\Td(X)=\int\Ahat(X).
+\]
+一般のスピン多様体（複素構造のないもの）でも、Atiyah--Singer の指数定理により Dirac 作用素の指数は $\int\Ahat(M)$ で、整数である（第8巻）。\tC\ 例：K3：$c_1=0$、$\Ahat=\Td$、$\Ahat(K3)=\chi(\Oc)=2$。$\Ahat_1=-\frac1{24}p_1$、$\Ahat=-\frac{\sgn}8$（4 次元）、K3：$-\frac{-16}8=2$ ✓。$\CP^2$：$c_1=3H$ は奇数で、$p_1=3H^2$、$\Ahat=-\frac3{24}=-\frac18$ は整数でないので、$\CP^2$ にスピン構造はない。Rokhlin の定理：閉じたスピン 4 次元多様体の符号数は $16$ の倍数（$\Ahat$ が偶数）\tC\ 。
+
+\begin{keybox}{要点（\S\ref{sec:chiy}）}
+$\chi_y=\int\prod\frac{x_i(1+ye^{-x_i})}{1-e^{-x_i}}$：$y=0$ Todd 種数、$y=-1$ Euler 数、$y=1$ 符号数。曲面で $\chi^1=\frac{c_1^2-5c_2}6$、K3 で $-20$。$\Td=e^{c_1/2}\Ahat$：Dolbeault 作用素の指数 $=$ $K^{1/2}$ で捻った Dirac 作用素の指数。
+\end{keybox}
+\begin{prob}{基本}\label{p:chi1}
+曲面で $\chi^1=\frac{c_1^2-5c_2}6$ を $\ch(\Omega^1)=2-c_1+\frac12(c_1^2-2c_2)$ と $\Td$ から導け。$\CP^2$ で $-1$、K3 で $-20$、四次曲面（K3）で $\chi_y=2-20y+2y^2$ となることを確かめよ。
+\end{prob}
+\begin{prob}{標準}\label{p:sigmaFermat}
+$\CP^3$ の次数 $d$ 曲面で $\tau=\frac{c_1^2-2c_2}3=-\frac{d(d^2-4)}3$ を示し、$d=1,2,3,4,5$ の値を求めよ。$d=3$ の値が $\CP^2$ の $6$ 点爆発の符号数 $1-6=-5$ と一致することを述べよ。
+\end{prob}
+\begin{prob}{標準}\label{p:Hodgesign}
+符号数の Hodge 側の公式 $\sgn=\sum_{p,q}(-1)^ph^{p,q}$ を K3 曲面の Hodge ダイヤモンドに適用して $-16$ を確かめ、$\chi_1=2\chi^0+\chi^1$ と照合せよ。五次曲面（$h^{1,1}=45$、$p_g=4$、$q=0$）でも $-35$ を確かめよ。
+\end{prob}
+\begin{prob}{発展}\label{p:3foldchi}
+3 次元で $\chi^1=\frac1{24}c_1c_2-\frac12c_3$ を示し、Calabi--Yau 3 次元で $\chi^1=-\frac{c_3}2=h^{2,1}-h^{1,1}$（$h^{1,0}=h^{2,0}=0$）であること、すなわち $e=2(h^{1,1}-h^{2,1})$ と同値であることを述べよ。五次超曲面で $\chi^1=100$。
+\end{prob}
+
+\section{統合論文との対応：Euler 標数の定理}\label{sec:unified}
+統合論文（\texttt{generalized-geometry-poisson-unified}、v1 の §4、定理 22）の主張を確認し、その証明の核心が HRR で説明できることを、過大に書かないよう注意して述べる。
+
+\paragraph{論文の設定（定義 5・命題 6 による）。}$X$ をコンパクト複素多様体（$\dim_\C X=n$）、$\sigma$ を正則 Poisson 構造、$E$ を階数 $r=\rk E$ の正則ベクトル束で、Poisson 加群（Lie 亜代数 $A=(T^*)_\sigma$ の平坦な $A$-接続をもつ）とする。Chevalley--Eilenberg 複体 $C(A;E)=(\wedge^\bullet T_X\otimes E,\ d_E)$、局所正則枠で $d_E=[\sigma,\cdot]+V\wedge$（$V$ は $\nabla_\beta e=\beta(V)e$ で定まる）、の\emph{超コホモロジー} $\mathbb H^k(E)=\mathbb H^k(X;C(A;E))$ が一般化 Dolbeault コホモロジーである。$d_E$ は $\mathbb C$-線形で $\Oc$-線形ではない。$\bar\partial$ は複体の微分ではなく、各項を Dolbeault 分解して超コホモロジーを計算するときの方向の微分である（Dolbeault モデル $D=\bar\partial+d_K$、論文の命題 6(b)、第3巻）。$\mathbb H^k(E)$ を一般化 Dolbeault コホモロジーと同一視する命題 6(b) は、論文自身が Mokri の定理などに依存する部分として\tQ\ としているが、本節の Euler 標数の計算は超コホモロジー $H^k(X;C(A;E))$ だけを使う。
+
+\begin{thm}[論文の定理 22：全 Euler 標数]\label{thm:EulerTot}
+上の設定で、$\mathbb H^k(E)$ は有限次元で
+\[
+\sum_k(-1)^k\dim\mathbb H^k(E)=\sum_{b=0}^n(-1)^b\chi(X,\wedge^bT_X\otimes E)=(-1)^n\,\rk(E)\,\chi_{\rm top}(X).
+\]
+特に $c_1(E)$ に依らない。
+\end{thm}
+\noindent 以下の二段階の証明のうち、\textbf{(i) は第3巻の超コホモロジーの Euler 標数の議論}（論文が行う切り捨て部分複体の帰納法でも同じ）、\textbf{(ii) が HRR の仕事}である。
+
+\paragraph{(i) 超コホモロジーの Euler 標数は項ごとの $\chi$ の和。}複体の次数 $b$ の項 $K^b=\wedge^bT_X\otimes E$ は連接層（ベクトル束）で $X$ はコンパクトなので、$H^a(X,K^b)$ は有限次元（Cartan--Serre、第3巻）。濾過 $b$ によるスペクトル系列 $E_1^{b,a}=H^a(X,K^b)\Rightarrow\mathbb H^{a+b}$ は、微分 $d_E$ が $\Oc$-線形でなくても存在し、各ページで Euler 標数は不変なので（第3巻の命題）、$\sum_k(-1)^k\dim\mathbb H^k=\sum_b(-1)^b\chi(X,K^b)$。（この段の証明は第3巻と論文に従い、ここでは再掲に留める。）
+
+\paragraph{(ii) HRR による計算。}$T_X$ の Chern 根を $x_1,\dots,x_n$ とする。$\ch(\wedge^bT_X)=e_b(e^{x_1},\dots,e^{x_n})$（例 \ref{ex:chwedge}）より
+\[
+\sum_b(-1)^b\ch(\wedge^bT_X)=\prod_{i=1}^n(1-e^{x_i}).
+\]
+HRR を各 $b$ に使い、和をとる：
+\[
+\sum_b(-1)^b\chi(X,\wedge^bT_X\otimes E)=\int_X\ch(E)\prod_{i=1}^n\frac{(1-e^{x_i})\,x_i}{1-e^{-x_i}}.
+\]
+ここで $1-e^{x}=-e^{x}(1-e^{-x})$ だから $\frac{1-e^x}{1-e^{-x}}=-e^x$。よって被積分形式は
+\[
+\ch(E)\prod_i(-x_ie^{x_i})=(-1)^n\ch(E)\,e^{c_1(T_X)}\,c_n(T_X).
+\]
+$c_n(T_X)$ は\emph{すでに最高次}（次数 $2n$）なので、$\ch(E)e^{c_1(T_X)}$ の次数 $0$ の部分、$\rk E=r$ だけが残る。$\ch(E)$ の高次の部分（$c_1(E)$ を含む）は最高次を超えて消える。したがって
+\[
+\sum_b(-1)^b\chi(X,\wedge^bT_X\otimes E)=(-1)^nr\int_Xc_n(T_X)=(-1)^nr\,\chi_{\rm top}(X).
+\]
+最後の等号は Chern--Gauss--Bonnet（定理 \ref{thm:CGB}）。\hfill$\blacksquare$
+\begin{ex}[確認]\label{ex:EulerCheck}\tP\
+(a) $n=1$：$\CP^1$、$E=\Oc(m)$：$\chi(\Oc(m))-\chi(\Oc(m)\otimes T)=(m+1)-(m+3)=-2=(-1)^1\cdot1\cdot2$。$g$ 曲線：$\chi(E)-\chi(E\otimes T)=-r(2-2g)$（第4巻の \S10 と同じ）。(b) $\CP^2$、$E=\Oc(m)$：$\chi(\Oc(m))-\chi(T(m))+\chi(\Oc(m+3))=3$（$\chi(T(m))=3\chi(\Oc(m+1))-\chi(\Oc(m))$、$\wedge^2T=\Oc(3)$）。(c) K3 曲面、$E=\Oc(m)$：$24$ ($m=-6,\dots,6$)。(d) 五次 3 次元超曲面：$(-1)^3(-200)=200$。(b)(c)(d) は Python で $\ch(\wedge^bT)$ を Chern 根から展開して、$m$ を $-6\le m\le6$ に動かして確認した（付録）。
+\end{ex}
+
+\begin{ex}[$n=2$ の手計算：$c_1(E)$ が消える様子]\label{ex:hand2}\tP\
+曲面 $X$ 上の直線束 $L$（$l=c_1(L)$）で、$c_1=c_1(T_X)=-K$、$e=c_2(T_X)$、$\chi_0=\chi(\Oc_X)=\frac{c_1^2+c_2}{12}$ とおく。定理 \ref{thm:Noether} から
+\begin{align*}
+\chi(L)&=\chi_0+\tfrac12(l^2+lc_1),\\
+\chi(T_X\otimes L)&=2\chi_0+c_1^2+2lc_1+l^2-e,\\
+\chi(\wedge^2T_X\otimes L)&=\chi(L\otimes K^{-1})=\chi_0+\tfrac12(l^2+3lc_1+2c_1^2).
+\end{align*}
+二行目は $c_1(T\otimes L)=c_1+2l$、$c_2(T\otimes L)=e+c_1l+l^2$ を (c) に代入したもの。
+交代和 $\chi(L)-\chi(T\otimes L)+\chi(\wedge^2T\otimes L)$ をとると、$\chi_0$：$1-2+1=0$、$l^2$：$\frac12-1+\frac12=0$、$lc_1$：$\frac12-2+\frac32=0$、$c_1^2$：$-1+1=0$、残るのは $+e$。すなわち $(-1)^2\cdot1\cdot e(X)$ で、$l$ に依らない。各次数で係数が打ち消しあう仕組みが、一般の証明（$c_n(T)$ が最高次を使い切る）の具体形である。（Python で $l^2,lc_1,c_1^2,e$ をランダムな有理数として確認した。）
+\end{ex}
+\begin{rem}[何が言えて、何が言えないか]\label{rem:unifiedcaveat}
+\begin{enumerate}
+\item 証明で使った仮定は、$X$ がコンパクト（有限次元性と HRR）と、各項が連接であることだけ。$\sigma$ の非退化性も $E$ の正値性も、平坦 $A$-接続の具体形も\emph{使わない}。平坦接続は $d_E^2=0$（複体になること）のために必要。論文の「仮定と役割」の表と同じ主張である。
+\item 古典の HRR $\chi(X,E)=\int\ch(E)\Td(X)$ は $b=0$ の列 $H^\bullet(X,E)$ の Euler 標数にあたり、$c_1(E)$ に依存する（$\CP^1$：$m+1$）。全複体の Euler 標数は、各 $b$ の列の交代和なので $c_1(E)$ が打ち消される：$\ch(E)$ の高次の項は $c_n(T_X)$ に掛かって落ちる。したがって論文の注意 23 のとおり、全 Euler 標数の公式は位相的で、古典の HRR の一般化にはなっていない。
+\item $\dim\mathbb H^k(E)$ 自体は $E$ や $\sigma$ に依って\emph{跳ぶ}。Euler 標数は跳びを見ない。跳びの機構（対数シンプレクティック曲面、留数 $r_i$）は論文の他の節で、本巻の範囲外。
+\item 本節の (ii) は、論文の証明を再構成したもので、論文の記述（\emph{HRR、Chern 根、$(1-e^x)/(1-e^{-x})=-e^x$、Gauss--Bonnet}）と一致する。論文の数値確認（$\CP^n$、$n\le6$ で Bott の公式）に対し、本巻は上のとおり $\CP^1,\CP^2$、K3、五次 3 次元超曲面で別に確認した。
+\end{enumerate}
+\end{rem}
+
+\begin{ex}[$\CP^1$、$\sigma=0$、$E=\Oc(m)$：次元は跳び、Euler 標数は跳ばない]\label{ex:P1jump}\tP\
+$\sigma=0$ で $E$ に自明な（$V=0$ の）Poisson 加群構造をとると、$d_E=0$ で $C(A;E)=\Oc(m)\oplus T\otimes\Oc(m)[-1]$（$T=\Oc(2)$）、$\mathbb H^k=H^k(\Oc(m))\oplus H^{k-1}(\Oc(m+2))$。Poincaré 多項式 $P_E(t)=\sum\dim\mathbb H^kt^k$：
+\begin{center}
+\begin{tabular}{c|l|c}
+\toprule
+$m$ & $P_E(t)$ & $P_E(-1)$\\
+\midrule
+$m\ge0$ & $(m+1)+(m+3)t$ & $-2$\\
+$m=-1$ & $2t$ & $-2$\\
+$m=-2$ & $t+t=2t$ & $-2$\\
+$m\le-3$ & $(-m-1)t+(-m-3)t^2$ & $-2$\\
+\bottomrule
+\end{tabular}
+\end{center}
+各次数の次元は $m$ とともに変わるが、$P_E(-1)=-2=(-1)^1\cdot1\cdot\chi(\CP^1)$ は一定である（定理 \ref{thm:EulerTot}）。（これは論文の注意 23 の例。表は Python で $-8\le m\le8$ について確認した。）
+\end{ex}
+
+\begin{rem}[部分和は $c_1(E)$ を見る]\label{rem:partial}\tP\
+切り捨て $K^{\ge b}=(\wedge^{\ge b}T\otimes E,d_E)$（部分複体）の Euler 標数 $\sum_{j\ge b}(-1)^j\chi(\wedge^jT\otimes E)$ は一般に $c_1(E)$ に依る。実際、全体が $c_1(E)$ に依らないのに、$b=0$ の項 $\chi(E)=\int\ch(E)\Td$ は依る（例：$\CP^1$：$\chi(\Oc(m))=m+1$）ので、残りの $b\ge1$ の部分和は $-m-3$（$\CP^1$、$E=\Oc(m)$）と $m$ に依って打ち消す。同様に例 \ref{ex:hand2} の曲面では、$b\ge1$ の部分和は $-\chi(L)+e$ で $l$ に依る。つまり、定理 \ref{thm:EulerTot} は「全複体」だから $c_1(E)$ に依らないのであって、各 $b$ の項や部分複体ではそうでない。切り捨て三角形 $K^{\ge b+1}\to K^{\ge b}\to K^b[-b]$ で帰納的に全体の Euler 標数を組み立てる論文の証明（(i)）はこの構造を使う。
+\end{rem}
+\begin{prop}[双対版：$\Omega^b$ の交代和]\label{prop:OmegaTot}\tP\
+$\sum_{b=0}^n(-1)^b\chi(X,\Omega^b_X\otimes E)=\rk(E)\,\chi_{\rm top}(X)$。
+\end{prop}
+\begin{proof}
+$\sum_b(-1)^b\ch(\Omega^b)=\prod(1-e^{-x_i})$。$\Td$ を掛けて $\prod x_i=c_n$。$\ch(E)$ は $r$ だけ残る。（$E=\Oc$ では定理 \ref{thm:chiy} の $y=-1$ と同じ。）
+\end{proof}
+\noindent $\wedge^bT\cong\Omega^{n-b}\otimes K^{-1}$ により、二つの公式は $E$ を $E\otimes K^{-1}$ に取りかえるだけで移りあい、符号 $(-1)^n$ はここから来る（問~\ref{p:OmegaTot}）。
+
+\begin{keybox}{要点（\S\ref{sec:unified}）}
+$\sum_b(-1)^b\chi(\wedge^bT\otimes E)=(-1)^n\rk(E)\chi(X)$。HRR で $\int\ch(E)\prod(-x_ie^{x_i})=(-1)^n\int\ch(E)e^{c_1(T)}c_n(T)$、$c_n$ が最高次を使い切るので $\ch(E)e^{c_1}$ の次数 $0$ の部分 $\rk E$ だけが残る。$c_1(E)$ に依らない理由はこれだけ。超コホモロジーの Euler 標数が項ごとの $\chi$ の和になること（(i)）は第3巻。
+\end{keybox}
+\begin{prob}{基本}\label{p:EulerP12}
+$\CP^1$（$E=\Oc(m)$）と $\CP^2$（$E=\Oc$、$E=\Oc(m)$）で $\sum_b(-1)^b\chi(\wedge^bT\otimes E)$ を HRR（または Euler 完全列と $\binom{n+k}n$）で計算し、$(-1)^n\rk(E)\chi_{\rm top}$ と一致することを確かめよ。
+\end{prob}
+\begin{prob}{標準}\label{p:OmegaTot}
+命題 \ref{prop:OmegaTot} を示せ。次に $\wedge^bT\cong\Omega^{n-b}\otimes K^{-1}$ を使い、$p=n-b$ とおいて、定理 \ref{thm:EulerTot} の左辺が $(-1)^n\sum_p(-1)^p\chi(\Omega^p\otimes E\otimes K^{-1})$ に等しいことを示し、命題から定理が従うことを説明せよ。
+\end{prob}

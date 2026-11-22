@@ -1,0 +1,299 @@
+\section{曲線と曲面：Riemann--Roch の再導出と Noether の公式}\label{sec:surf}
+\subsection{曲線（$n=1$）}
+\begin{thm}[曲線の Riemann--Roch の再導出]\label{thm:curveRR}\tP\ （HRR を認める）種数 $g$ のコンパクト Riemann 面 $C$ 上の階数 $r$、次数 $d$ の正則ベクトル束 $E$ について
+\[
+\chi(C,E)=\int_C\bigl(r+c_1(E)\bigr)\bigl(1+\tfrac12c_1(T_C)\bigr)=d+\tfrac r2\deg T_C=d+r(1-g).
+\]
+\end{thm}
+\begin{proof}
+$\ch(E)=r+c_1(E)$、$\Td(C)=1+\frac12c_1(T_C)$、$\int c_1(T_C)=\chi_{\rm top}(C)=2-2g$（Gauss--Bonnet）。次数 $2$ の部分は $c_1(E)+\frac r2c_1(T_C)$。
+\end{proof}
+\noindent 直線束 $L=\Oc(D)$ では $h^0(D)-h^1(D)=\deg D+1-g$。第4巻の Riemann--Roch は $h^1(D)=h^0(K-D)$（Serre 双対）と合わせた同じ式である。逆向きに、第4巻は $n=1$ の HRR を層の完全列だけで証明していた。$\deg\Oc(D)$ が $\int c_1$ に一致すること（第2巻）が両者をつなぐ。例：$\chi(T_C)=\deg T_C+(1-g)=3-3g$（$-\chi(T_C)=3g-3$ が $g\ge2$ のモジュライの次元、第4巻）、$\chi(K^m)=(2m-1)(g-1)$。
+
+
+\begin{ex}[曲線上のベクトル束のモジュライの次元]\label{ex:modbundle}\tP\
+$C$ を種数 $g\ge2$ の曲線、$E$ を階数 $r$ の正則ベクトル束とする。$\End E$ の次数は $0$、階数は $r^2$ なので、Riemann--Roch（定理 \ref{thm:curveRR}）から $\chi(\End E)=r^2(1-g)$。$H^1(C,\End E)$ は $E$ の変形の接空間、$H^2=0$ なので障害はなく\tC\ 、$E$ が安定なら自己準同型は定数だけ（$h^0(\End E)=1$、安定束の性質\tC\ ）。したがって安定束のモジュライ空間の次元は
+\[
+h^1(\End E)=h^0(\End E)-\chi(\End E)=1+r^2(g-1).
+\]
+$r=1$：$g$（Jacobi 多様体の次元、第4巻）、$r=2$：$4g-3$。$\det E$ を固定すれば $r^2(g-1)+1-g=(r^2-1)(g-1)$。曲線自身のモジュライの次元 $\dim H^1(T_C)=3g-3$（第4巻）も同じ形：$-\chi(T_C)=3g-3$。（HRR は次元の「期待値」$-\chi$ を、位相的な量で与える。）
+\end{ex}
+\subsection{曲面（$n=2$）}
+\begin{thm}[Noether の公式と曲面の Riemann--Roch]\label{thm:Noether}\tP\ （HRR を認める）$X$ をコンパクト複素曲面、$K=K_X$（$c_1(K)=-c_1(T_X)$）、$e=e(X)=\int c_2(T_X)$ とする。
+\begin{enumerate}[label=(\alph*)]
+\item $\chi(\Oc_X)=\dfrac{c_1^2+c_2}{12}=\dfrac{K^2+e}{12}$（Noether の公式）。
+\item 直線束 $L$ に対し $\chi(L)=\chi(\Oc_X)+\dfrac12L\cdot(L-K)$。
+\item 階数 $r$ のベクトル束 $E$ に対し $\chi(E)=r\chi(\Oc_X)-\frac12c_1(E)\cdot K+\frac12(c_1(E)^2-2c_2(E))$。
+\end{enumerate}
+\end{thm}
+\begin{proof}
+(a) $E=\Oc$、$\ch=1$。$\int\Td_2=\frac1{12}(c_1^2+c_2)$、$c_1^2=K^2$。(b) $\ch(L)=1+l+\frac12l^2$、$\Td=1+\frac12c_1+\Td_2$、$c_1=-K$。次数 $2$：$\frac12l^2-\frac12lK+\Td_2$。(c) 同様に $\ch(E)=r+c_1(E)+\ch_2(E)$。
+\end{proof}
+\noindent Hodge 数で $\chi(\Oc_X)=1-q+p_g$（$q=h^{0,1}$、$p_g=h^{0,2}$、第5巻）なので、(a) は $12(1-q+p_g)=K^2+e$ と読める。\emph{位相的な量 $K^2+e$ が $12$ の倍数}で、「$\bar\partial$ のコホモロジーの次元」を決める。(b) は $h^0(L)+h^0(K-L)\ge\chi(L)$（$h^1\ge0$、Serre 双対 $h^2(L)=h^0(K-L)$）を与える：$L(L-K)>-2\chi(\Oc)$ で曲線が存在し得る。
+
+\begin{ex}[$\CP^2$ と $\CP^1\times\CP^1$]\label{ex:basicsurf}\tP\
+$\CP^2$：$K=-3H$、$K^2=9$、$e=3$、$\chi(\Oc)=\frac{12}{12}=1$ ✓。$\chi(\Oc(k))=1+\frac12k(k+3)=\frac{(k+1)(k+2)}2$（(b)）、これは $\binom{k+2}2$ で定理 \ref{thm:HRRPn} と一致。$\CP^1\times\CP^1$：$K=(-2,-2)$、$K^2=8$、$e=4$、$\chi(\Oc)=1$。$L=\Oc(a,b)$：$L^2=2ab$、$LK=-2a-2b$、$\chi(L)=1+ab+a+b=(a+1)(b+1)$（Künneth と $\CP^1$ の $\chi(\Oc(a))=a+1$ に一致）。
+\end{ex}
+\begin{ex}[曲線の積]\label{ex:prodcurve}\tP\
+種数 $g_1,g_2$ の曲線の積 $X=C_1\times C_2$：$c(T_X)=(1+c_1(T_1))(1+c_1(T_2))$、$c_1=c_1^{(1)}+c_1^{(2)}$、$c_2=c_1^{(1)}c_1^{(2)}$、$\int c_1^{(1)}c_1^{(2)}=(2-2g_1)(2-2g_2)=e$、$c_1^2=2e$（$(c_1^{(i)})^2=0$）。Noether：$\chi(\Oc)=\frac{3e}{12}=\frac{(2-2g_1)(2-2g_2)}4=(1-g_1)(1-g_2)$。これは Künneth の $\chi(\Oc_{C_1})\chi(\Oc_{C_2})$ と一致する。
+\end{ex}
+\begin{ex}[爆発]\label{ex:blowup}\tC\
+$\tilde X\to X$ を一点での爆発とすると $K_{\tilde X}^2=K_X^2-1$、$e(\tilde X)=e(X)+1$（例外曲線 $E$：$E^2=-1$、$K_{\tilde X}=\pi^*K_X+E$）。$K^2+e$ は不変、したがって Noether の公式から $\chi(\Oc)$ は爆発で不変（双有理不変）。$\CP^2$ を $6$ 点で爆発（一般の位置）した曲面：$K^2=3$、$e=9$、$\chi(\Oc)=1$、すなわち次の表の三次曲面（$d=3$）。
+\end{ex}
+
+\begin{ex}[Hirzebruch 曲面の Chern 数]\label{ex:Fa}\tP\
+$F_a=\mathbb P(\Oc\oplus\Oc(a))\xrightarrow{\pi}\CP^1$（問 \ref{p:Fa}）。相対 Euler 完全列 $0\to\Oc\to\pi^*E\otimes\Oc(1)\to T_{F_a/\CP^1}\to0$ から $c(T_{F_a/\CP^1})=c(\pi^*E\otimes\Oc(1))=1+(2\xi+af)+(\xi^2+af\xi)=1+2\xi+af$（命題 \ref{prop:projrel}）。$c(T_{F_a})=(1+2f)(1+2\xi+af)$ より
+\[
+c_1=2\xi+(a+2)f,\qquad c_2=2f\cdot(2\xi+af)=4\xi f.
+\]
+$\int\xi f=1$、$\xi^2=-a$ なので $e=4$、$c_1^2=4\xi^2+4(a+2)\xi f=-4a+4a+8=8$。よって $K^2=8$、$e=4$、$\chi(\Oc)=\frac{8+4}{12}=1$（$a$ によらない）。$F_0=\CP^1\times\CP^1$ の値と一致し、$F_a$ は $F_{a-2}$ に変形する（同じ偶奇の $F_a$ は複素構造の変形でつながる）が、$F_0$ と $F_1$ は交叉形式の偶奇が違い変形でつながらない（$a$ の偶奇のみが微分同相型を決める）\tC\ という事実とも整合する。
+\end{ex}
+\begin{ex}[$\CP^3$ の次数 $d$ の曲面]\label{ex:surfd}\tP\
+例 \ref{ex:CI} の $c_1^2=d(d-4)^2$、$e=d(d^2-4d+6)$ から Noether の公式で $\chi(\Oc)=\frac{d^3-6d^2+11d}6=1+\binom{d-1}3$（$p_g=\binom{d-1}3$、$q=0$）。符号数 $\tau=\frac{c_1^2-2c_2}3=-\frac{d(d^2-4)}3$（\S\ref{sec:chiy}）、$b_2=e-2$（Lefschetz の超平面定理\tC\ で $b_1=0$）、$h^{1,1}=b_2-2p_g$。（$d=1,\dots,6$：Python で検算）
+\begin{center}
+\begin{tabular}{r|rrrrrrr}
+\toprule
+$d$ & $K^2$ & $e$ & $\chi(\Oc)$ & $p_g$ & $\tau$ & $b_2$ & $h^{1,1}$\\
+\midrule
+1 & 9 & 3 & 1 & 0 & 1 & 1 & 1\\
+2 & 8 & 4 & 1 & 0 & 0 & 2 & 2\\
+3 & 3 & 9 & 1 & 0 & $-5$ & 7 & 7\\
+4 & 0 & 24 & 2 & 1 & $-16$ & 22 & 20\\
+5 & 5 & 55 & 5 & 4 & $-35$ & 53 & 45\\
+6 & 24 & 108 & 11 & 10 & $-64$ & 106 & 86\\
+\bottomrule
+\end{tabular}
+\end{center}
+$d=1,2,3$ は $\CP^2$、$\CP^1\times\CP^1$、三次曲面。$d=4$ は K3 曲面。五次曲面は $h^{1,1}=45$ が知られている値と一致する\tC\ 。
+\end{ex}
+
+
+\subsection{$\CP^2$ 上のベクトル束の例}
+\begin{ex}[$T_{\CP^2}(k)$ と $\Sym^2T_{\CP^2}$]\label{ex:TP2}\tP\
+$\ch(T)=3e^H-1$ より $\ch(T(k))=3e^{(k+1)H}-e^{kH}$、したがって $\chi(T(k))=3\chi(\Oc(k+1))-\chi(\Oc(k))=(k+2)(k+4)$。$k=0$：$8=\dim\mathrm{PGL}_3$（$h^0(T)=8$、$h^{>0}=0$）。$k=-1$：$3$（$T(-1)$ は $\Oc^3$ の商で $h^0=3$）。$k=-3$：$-1$（$T(-3)=T\otimes K$、Serre 双対で $h^1(T(-3))=h^1(\Omega^1)=1$）。$k=-2,-4$：$0$。
+$\Sym^2T$：$K$ 群で $T=3L-1$（$L=[\Oc(1)]$）、$\Sym^2(A-B)=\Sym^2A-A\otimes B+\wedge^2B$ より $[\Sym^2T]=6L^2-3L$、$\ch(\Sym^2T)=6e^{2H}-3e^{H}$、階数 $3$。$\chi(\Sym^2T)=6\chi(\Oc(2))-3\chi(\Oc(1))=36-9=27$。$c_1=3\cdot3H=9H$（例：定理 \ref{thm:chernops}(e) で $c_1(\Sym^2E)=3c_1(E)$）は、$\ch_1=12H-3H=9H$ と一致する。
+\end{ex}
+\subsection{曲面の Chern 数の表と不等式}
+\begin{center}
+{\footnotesize\setlength{\tabcolsep}{3pt}\begin{tabular}{l|rrrrp{2.6cm}}
+\toprule
+曲面 & $K^2$ & $e$ & $\chi(\Oc)$ & $\tau$ & 備考\\
+\midrule
+$\CP^2$ & 9 & 3 & 1 & 1 & Fano\\
+$\CP^1\times\CP^1$、$F_a$ & 8 & 4 & 1 & 0 & 例 \ref{ex:Fa}、問 \ref{p:Fa}\\
+三次曲面 & 3 & 9 & 1 & $-5$ & 爆発で $K^2\downarrow$、$e\uparrow$\\
+K3 曲面（四次曲面など） & 0 & 24 & 2 & $-16$ & $c_1=0$\\
+Enriques 曲面 & 0 & 12 & 1 & $-8$ & K3 の $\Z/2$ 商\tC\\
+複素トーラス（2 次元） & 0 & 0 & 0 & 0 & $T$ 自明\\
+$C_1\times C_2$（$g_i\ge2$） & $8(g_1-1)(g_2-1)$ & $4(g_1-1)(g_2-1)$ & $(g_1-1)(g_2-1)$ & 0 & 例 \ref{ex:prodcurve}\\
+五次曲面（$\CP^3$） & 5 & 55 & 5 & $-35$ & 一般型\\
+\bottomrule
+\end{tabular}}
+\end{center}
+各行で Noether の公式 $12\chi(\Oc)=K^2+e$ が成り立つ（Python と手計算で確認；Enriques 曲面の行は文献の値 $K^2=0$、$e=12$、$\chi(\Oc)=1$ による\tC\ 、$\tau=\frac{K^2-2e}3=-8$）。$\tau=\frac{K^2-2e}3$ は \S\ref{sec:chiy} の式。
+\paragraph{一般型曲面の不等式（主張のみ）。}\tC\ 極小な一般型曲面（$K$ がネフで $K^2>0$）では \emph{Bogomolov--Miyaoka--Yau 不等式} $c_1^2\le3c_2$（すなわち $K^2\le3e$）が成り立ち、等号は \emph{ball 商}（複素 2 次元の単位球の商）に限る。また \emph{Noether の不等式} $K^2\ge2p_g-4$ がある（Barth--Hulek--Peters--Van de Ven, 第VII章\tQ\ ）。Noether の公式 $K^2+e=12\chi(\Oc)$ と合わせると、$(K^2,e)$ は平面上の三角形の領域に入る（Noether の直線、BMY の直線）。五次曲面では $5\le165$ ✓。
+
+\begin{ex}[楕円曲面]\label{ex:elliptic}\tC\
+$\pi:X\to B$ を、相対的に極小な楕円ファイブレーション（一般のファイバーが楕円曲線）をもつコンパクト曲面とする。正準束公式 $K_X=\pi^*(K_B\otimes M)$（$M$ は直線束、$\deg M=\chi(\Oc_X)$）\tC\ （Barth--Hulek--Peters--Van de Ven, 第V章\tQ\ ）から、$K_X$ は底の曲線の因子の引き戻し（重複ファイバーがあるときはさらにその成分の有理数倍）なので $K_X^2=0$。滑らかなファイバーの Euler 数は $0$ なので $e(X)=\sum_{\text{特異ファイバー}}e(F_s)$。Noether の公式から $12\chi(\Oc_X)=e(X)$。\emph{K3 曲面}で一般の楕円ファイブレーション（底は $\CP^1$）では、特異ファイバーが 24 個の既約な結節型（$e=1$）のとき $e=24=12\cdot2$。有理楕円曲面（底 $\CP^1$、$\chi(\Oc)=1$）では $e=12$（12 個の結節ファイバー）。Euler 数 $e(F_s)$ の足し算が、$\bar\partial$ の指数 $\chi(\Oc)$ を決める。
+\end{ex}
+\begin{ex}[多重種数：一般型曲面]\label{ex:plurigenera}\tC\
+極小な一般型曲面で、$m\ge2$ のとき $H^q(X,K^m)=0$ $(q>0)$（Kodaira--Ramanujam、Mumford の消滅定理）。したがって曲面の RR（$L=mK$、$L-K=(m-1)K$）から
+\[
+P_m=h^0(mK)=\chi(\Oc_X)+\tfrac{m(m-1)}2K^2.
+\]
+曲線の場合は $P_m=(2m-1)(g-1)$。五次曲面（$\chi(\Oc)=5$、$K^2=5$）：$K=\Oc_X(1)$ なので $P_m=h^0(\Oc_X(m))=5+\frac{5m(m-1)}2$：$m=2,3,4,5$ で $10,20,35,55$。これは $\binom{m+3}3-\binom{m-2}3$（$m=5$ のみ方程式分の $1$ が引かれて $56-1=55$）と一致する（Python で検算）。
+\end{ex}
+\begin{ex}[爆発と平面曲線の次元：点を通る平面曲線]\label{ex:planeBl}\tP\
+$X=\mathrm{Bl}_m\CP^2$（一般の位置の $m$ 点の爆発、例外因子 $E_1,\dots,E_m$、$E_i^2=-1$、$K_X=-3H+\sum E_i$）、$L=dH-\sum E_i$ は、$\CP^2$ の次数 $d$ の曲線で $m$ 点を通るもの全体に対応する（$H^0(X,L)=$ 次数 $d$ 斉次多項式で $m$ 点で消えるもの）。$L^2=d^2-m$、$L\cdot K=-3d+m$、
+\[
+\chi(L)=1+\tfrac12(L^2-LK)=1+\tfrac12(d^2-m+3d-m)=\tfrac{(d+1)(d+2)}2-m.
+\]
+これは \emph{$m$ 個の点が $m$ 個の独立な 1 次条件を与える}という期待どおりの値である。$h^2(L)=h^0(K_X-L)=0$ なので $h^0(L)=\chi(L)+h^1(L)\ge\chi(L)$ で、等号は $h^1(L)=0$、すなわち点が独立な条件を与えることと同値である。（実際の $h^0$ は $h^1(L)$ に依る。点が一般の位置にあり $m\le\frac{(d+1)(d+2)}2$ のときに $h^1=0$ となることは、より細かい議論\tC\ が必要。）
+\end{ex}
+\subsection{曲面の分類と数値的不変量（主張のみ）}
+\tC\ Enriques--Kodaira の分類（Barth--Hulek--Peters--Van de Ven, 第VI章\tQ\ ）では、極小な曲面は Kodaira 次元 $\kappa\in\{-\infty,0,1,2\}$ で大別される。数値的不変量 $(K^2,e,\chi(\Oc))$ は Noether の公式で結ばれており、大まかには次のようになる。
+\begin{center}
+{\small\begin{tabular}{l|p{5.6cm}|p{5.6cm}}
+\toprule
+$\kappa$ & 例 & $(K^2,\chi(\Oc))$\\
+\midrule
+$-\infty$ & $\CP^2$、線織曲面（$\CP^1$ 束、$F_a$） & 底が種数 $g$ の線織曲面の $m$ 点爆発：$K^2=8(1-g)-m$、$\chi=1-g$（有理曲面は $g=0$。$\CP^2$ の $m$ 点爆発は $K^2=9-m$）\\
+$0$ & K3、Enriques、アーベル曲面、bielliptic & $K^2=0$、$\chi=2,1,0,0$\\
+$1$ & 楕円曲面（底が曲線、$\chi\ge0$） & $K^2=0$（例 \ref{ex:elliptic}）\\
+$2$（一般型） & 五次曲面、曲線の積（$g_i\ge2$） & $K^2>0$、$\chi>0$、$K^2\le9\chi$、$K^2\ge2\chi-6$ ほか\\
+\bottomrule
+\end{tabular}}
+\end{center}
+
+\begin{center}
+\begin{tikzpicture}[x=0.36cm,y=0.1cm,font=\scriptsize]
+\draw[->] (0,0)--(23,0) node[right]{$\chi(\Oc)$};
+\draw[->] (0,0)--(0,70) node[above]{$K^2$};
+\draw[blue!60!black,thick] (0,0)--(7.5,67.5) node[right]{BMY：$K^2=9\chi$};
+\draw[orange!80!black,thick] (3,0)--(23,40) node[right]{Noether：$K^2=2\chi-6$};
+\foreach \x/\y/\n in {5/5/{五次},11/24/{六次},21/63/{七次},2/16/{$C_1{\times}C_2$ $(2,3)$},1/8/{$(2,2)$}}
+  {\fill (\x,\y) circle (2pt) node[right]{\n};}
+\foreach \x/\y/\n in {1/9/{$\CP^2$},2/0/{K3},1/0/{Enriques}}
+  {\draw (\x,\y) circle (2pt) node[above right]{\n};}
+\foreach \x in {5,10,15,20}{\draw (\x,0.8)--(\x,-0.8) node[below]{\x};}
+\foreach \y in {20,40,60}{\draw (0.3,\y)--(-0.3,\y) node[left]{\y};}
+\end{tikzpicture}
+\end{center}
+{\small 図：$(\chi(\Oc),K^2)$ 平面。黒丸は一般型の例（五次、六次、七次曲面、曲線の積）で、BMY と Noether の二直線の間に入る（Noether の直線は $q=0$ のときの形）。白丸は一般型でない曲面。直線の係数は主張（\tC）。}
+
+極小な一般型曲面の不等式（BMY：$K^2\le9\chi(\Oc)$、Noether：$K^2\ge2p_g-4$ ほか）は、上の表の $(K^2,\chi)$ の許される領域（平面の三角形）を与える。$K^2\le9\chi(\Oc)$ は $c_1^2\le3c_2$ と Noether の公式 $c_1^2+c_2=12\chi$ から出る（$c_2=12\chi-c_1^2$ を代入して $4c_1^2\le36\chi$）。\tP\ 五次曲面で $5\le45$ ✓、$K^2=9\chi$ となる ball 商では等号。
+\begin{keybox}{要点（\S\ref{sec:surf}）}
+曲線：$\chi(E)=\deg E+r(1-g)$（Riemann--Roch）。曲面：$\chi(\Oc_X)=\frac{K^2+e}{12}$（Noether）、$\chi(L)=\chi(\Oc_X)+\frac12L(L-K)$。爆発で $K^2+e$ は不変。
+\end{keybox}
+\begin{prob}{基本}\label{p:curveHRR}
+種数 $g$ の曲線で、$\chi(T_C)$、$\chi(K^m)$、$\chi(\Omega^1\otimes L)$（$\deg L=d$）を HRR から求めよ。$g=2$ で $h^0(K^2)=3$（$H^1(K^2)=0$）を確かめよ。
+\end{prob}
+\begin{prob}{基本}\label{p:P1P1}
+$\CP^1\times\CP^1$ で、Noether の公式 $\chi(\Oc)=\frac{K^2+e}{12}$ と、曲面の Riemann--Roch $\chi(\Oc(a,b))=(a+1)(b+1)$ を確かめよ（例 \ref{ex:basicsurf}）。
+\end{prob}
+\begin{prob}{標準}\label{p:blowup}
+$K_{\tilde X}=\pi^*K_X+E$、$E^2=-1$、$\pi^*D\cdot E=0$ を用いて $K_{\tilde X}^2=K_X^2-1$ を示せ。$e(\tilde X)=e(X)+1$（$E\cong\CP^1$ が一点を置き換える）と合わせ、Noether の公式から $\chi(\Oc_{\tilde X})=\chi(\Oc_X)$ を確かめよ。
+\end{prob}
+\begin{prob}{標準}\label{p:prodcurve}
+$X=C_1\times C_2$（$g_1=2$、$g_2=3$）で $K^2$、$e$、$\chi(\Oc)$ を求め、Noether の公式を確かめよ。$h^{0,1}=g_1+g_2$、$h^{0,2}=g_1g_2$ を使って $\chi(\Oc)=1-q+p_g$ とも照合せよ。
+\end{prob}
+\begin{prob}{発展}\label{p:RRsurf}
+$S$ を K3 曲面（$K_S=\Oc$、$h^{0,1}=0$）、$D$ を因子で $D^2=-2$ とする。曲面の Riemann--Roch から $\chi(\Oc(D))=1$ を示し、$h^0(D)+h^0(-D)\ge1$、すなわち $D$ か $-D$ が有効であることを導け。次に $L$ が $L^2=2g-2>0$ の有効な因子（$h^2(L)=h^0(-L)=0$）なら $h^0(L)\ge g+1$ を示せ。
+\end{prob}
+
+
+\begin{prob}{標準}\label{p:planepts}
+例 \ref{ex:planeBl} で $d=4$、$m=1,\dots,6$ のとき $\chi(L)$ を求め、$\chi(L)=\binom{d+2}2-m$ を確かめよ。$d=2$、$m=5$：$\chi(L)=1$ で、一般の位置の 5 点を通る二次曲線がただ一つであることと整合することを述べよ。$d=3$、$m=9$：$\chi(L)=1$ と $L^2=0$ を確認し、9 点を通る三次曲線が少なくとも 1 本存在すること（$h^0(L)\ge\chi(L)-h^2(L)=1$、$h^2(L)=h^0(K-L)=0$）を示せ。
+\end{prob}
+\section{具体例：$\CP^n$、超曲面、K3、トーラス、Calabi--Yau}\label{sec:examples}
+
+\subsection{超曲面と完全交叉の $\chi(\Oc_X(k))$}
+\begin{prop}\label{prop:hypchi}\tP\
+$X\subset\CP^N$ を次数 $d$ の滑らかな超曲面とする。$\chi(X,\Oc_X(k))=\binom{N+k}N-\binom{N+k-d}N$。特に $d=N+1$（$K_X=\Oc_X$）のとき $\chi(\Oc_X)=1-(-1)^N$。
+\end{prop}
+\begin{proof}
+完全列 $0\to\Oc(k-d)\to\Oc(k)\to\Oc_X(k)\to0$ と定理 \ref{thm:HRRPn}。$k=0$、$d=N+1$ では $\binom{-1}{N}=(-1)^N$ より $\chi(\Oc_X)=1-(-1)^N$。
+\end{proof}
+\noindent 一方、右辺を $X$ 上の HRR（$c(T_X)=(1+H)^{N+1}/(1+dH)$、$\int_XH^{N-1}=d$）で計算した値が、$d\le7$ の曲面と五次 3 次元超曲面で $k=-8,\dots,8$ のすべてで上と一致することを Python で確認した。\tP\ （これは HRR の整合性の検算であり、HRR の証明ではない。）
+
+\subsection{K3 曲面}
+\begin{ex}[K3 曲面]\label{ex:K3}\tP\
+K3 曲面 $S$：コンパクト複素曲面で $K_S\cong\Oc_S$、$H^1(S,\Oc_S)=0$。$c_1(T_S)=0$。Noether：$\chi(\Oc_S)=h^{0,0}-h^{0,1}+h^{0,2}=1-0+1=2$（$H^2(\Oc)\cong H^0(K)^*=\C$、Serre 双対）。よって $e(S)=c_2=12\chi(\Oc)=24$、$b_2=22$、$\sgn=\frac{c_1^2-2c_2}3=-16$、$h^{1,1}=20$。四次曲面（$\CP^3$）、$(2,3)$ 完全交叉（$\CP^4$）、$(2,2,2)$ 完全交叉（$\CP^5$）はすべて K3 で、超平面類の自己交点 $H^2$ はそれぞれ $4,6,8$（Python：$e=24$、$c_1=0$）。曲面 RR：$\chi(L)=2+\frac12L^2$。四次曲面で $L=\Oc(k)$：$L^2=4k^2$、$\chi=2+2k^2$、$k=1,2,3$ で $4,10,20=\binom{3+k}3$ ✓。
+\begin{center}
+\begin{tikzpicture}[font=\small,x=1.1cm,y=0.8cm]
+\node at (0,2) {$1$};\node at (-1,1) {$0$};\node at (1,1) {$0$};
+\node at (-2,0) {$1$};\node at (0,0) {$20$};\node at (2,0) {$1$};
+\node at (-1,-1) {$0$};\node at (1,-1) {$0$};\node at (0,-2) {$1$};
+\node[anchor=west] at (3,0) {\scriptsize $h^{p,q}$（K3）};
+\end{tikzpicture}
+\end{center}
+\end{ex}
+\noindent 注：$\chi(T_S)=-20$。HRR で $\ch(T)=2+\ch_2$、$\ch_2=\frac12(c_1^2-2c_2)=-24$、$\int(\ch_2+2\Td_2)=-24+2\cdot2=-20$。$h^0(T)=h^2(T)=0$ なので $h^1(T)=20$、K3 曲面の複素構造の変形空間の次元と一致する（Kodaira--Spencer、第5巻）。
+
+\subsection{複素トーラス}
+\begin{ex}[複素トーラス]\label{ex:torus}\tP\
+$X=\C^n/\Gamma$ では $T_X$ は自明束で、$c(T_X)=1$、$\Td(X)=1$、$e(X)=0$。したがって $\chi(X,E)=\int_X\ch_n(E)$。特に $\chi(\Oc_X)=0$（第3巻の $h^{0,q}=\binom nq$ の交代和）、直線束 $L$ で $\chi(L)=\frac{c_1(L)^n}{n!}$。$n=1$（楕円曲線）：$\chi(L)=\deg L$（第4巻）。$n=2$：$\chi(L)=\frac12L^2$。$L$ が豊富なら、$K_X=\Oc$ なので Kodaira 消滅（第5巻）から $h^q(L)=0$ $(q>0)$、$h^0(L)=\frac{L^2}2$。偏極 $(d_1,d_2)$ の型では $L^2=2d_1d_2$、$h^0=d_1d_2$（主偏極は $h^0=1$、$\Theta$ 因子）。
+\end{ex}
+
+
+\begin{ex}[トーラスの $\chi_y$]\label{ex:torusHodge}\tP\
+$\C^n/\Gamma$ では $\Omega^p$ は階数 $\binom np$ の自明束で $h^{p,q}=\binom np\binom nq$（第2・3巻）、$\chi^p=\binom np\sum_q(-1)^q\binom nq=0$（$n\ge1$）。すべての Chern 数が $0$ なので $\chi_y=0$、HRR（$\Td=1$、$\ch(\Omega^p)=\binom np$）と整合する。$e=0=\sum_k(-1)^kb_k$、$b_k=\binom{2n}k$、符号数 $\tau=0$。
+\end{ex}
+\subsection{Calabi--Yau 3 次元}
+\begin{ex}[Calabi--Yau 3 次元]\label{ex:CY3}\tP\
+$X$ を $K_X$ が自明な 3 次元コンパクト Kähler 多様体で $h^{1,0}=h^{2,0}=0$ とする。$c_1=0$ なので $\Td=1+\frac1{12}c_2$、$\Td_3=0$。したがって $\chi(\Oc_X)=0$、直線束で
+\[
+\chi(L)=\tfrac16L^3+\tfrac1{12}c_2(X)\cdot L.
+\]
+$L$ が豊富なら Kodaira 消滅で $h^0(L)=\chi(L)$。五次超曲面 $X\subset\CP^4$：$c(T_X)=(1+H)^5/(1+5H)=1+10H^2-40H^3$、$H^3=5$、$c_2\cdot H=50$、$e=-200$。$\chi(\Oc(k))=\frac{5k^3+25k}6$：$k=1,2,3,4,5$ で $5,15,35,70,125$（$h^0(\CP^4,\Oc(k))$：$5,15,35,70,126$、$k=5$ のみ超曲面の方程式の分だけ $1$ 少ない）。Euler 数は $e=2(h^{1,1}-h^{2,1})$（$h^{1,0}=h^{2,0}=0$、$h^{3,0}=1$ から $b_1=b_5=0$、$b_2=b_4=h^{1,1}$、$b_3=2+2h^{2,1}$）。Lefschetz から $h^{1,1}=1$ なので $h^{2,1}=101$。
+\begin{center}
+\begin{tabular}{l|rrrr}
+\toprule
+$X$ & $H^3$ & $c_2\cdot H$ & $e$ & $h^{2,1}$（$h^{1,1}=1$）\\
+\midrule
+$(5)\subset\CP^4$ & 5 & 50 & $-200$ & 101\\
+$(2,4)\subset\CP^5$ & 8 & 56 & $-176$ & 89\\
+$(3,3)\subset\CP^5$ & 9 & 54 & $-144$ & 73\\
+$(2,2,3)\subset\CP^6$ & 12 & 60 & $-144$ & 73\\
+$(2,2,2,2)\subset\CP^7$ & 16 & 64 & $-128$ & 65\\
+\bottomrule
+\end{tabular}
+\end{center}
+（Python で検算：$c(T_X)$ の計算と $\chi(\Oc(k))=\frac{H^3k^3}6+\frac{c_2H}{12}k$ の一致。$h^{1,1}=1$ は Lefschetz の定理\tC\ による。）
+\end{ex}
+\noindent 注：$\chi(T_X)=\frac{c_3}2=-100$（$\ch_3=\frac{c_3}2$、$c_1=0$）。$T_X\cong\Omega^2_X$ から $h^q(T_X)=h^{2,q}$ で、$-h^{2,1}+h^{2,2}=-101+1=-100$ ✓。$h^1(T_X)=h^{2,1}=101$ は複素構造の変形の次元（Bogomolov--Tian--Todorov、主張のみ\tC\ ）。
+
+
+\subsection{超曲面の Euler 数と Fano、Hodge ダイヤモンド}
+\begin{prop}[超曲面の Euler 数]\label{prop:eulerhyp}\tP\
+$X\subset\CP^{n+1}$ を次数 $d$ の滑らかな超曲面（$\dim X=n$）とすると
+\[
+e(X)=\frac{(1-d)^{n+2}-1}d+n+2.
+\]
+\end{prop}
+\begin{proof}
+$e=\int_Xc_n=d\,[H^n]\frac{(1+H)^{n+2}}{1+dH}=d\sum_{k=0}^n\binom{n+2}{n-k}(-d)^k$。$\binom{n+2}{n-k}=\binom{n+2}{k+2}$ より、$j=k+2$ として $d\cdot\frac1{d^2}\sum_{j=2}^{n+2}\binom{n+2}j(-d)^j=\frac1d\bigl[(1-d)^{n+2}-1+(n+2)d\bigr]$。
+\end{proof}
+\noindent 検算：$n=2$、$d=4$：$\frac{81-1}4+4=24$。$n=3$、$d=5$：$\frac{-1025}5+5=-200$。$n=1$、$d=3$（楕円曲線）：$\frac{-8-1}3+3=0$。$d=1$（超平面 $\CP^n$）：$\frac{0-1}1+n+2=n+1$ ✓。（Python で $n\le5$、$d\le7$ を確認。）
+\begin{ex}[Fano 超曲面：$\chi(\Oc_X)=1$]\label{ex:Fano}\tP\
+$d\le n+1$（$X\subset\CP^{n+1}$）とする。命題 \ref{prop:hypchi}（$N=n+1$）より $\chi(\Oc_X)=1-\binom{N-d}N$。$0\le N-d<N$ なら $\binom{N-d}N=0$、よって $\chi(\Oc_X)=1$（$1\le d\le N$）。$d=N+1$ のとき $1-(-1)^N$（Calabi--Yau）。$d\ge N+2$（一般型）では $\binom{N-d}N=(-1)^N\binom{d-1}N$ で $\chi(\Oc_X)=1-(-1)^N\binom{d-1}N$。$N=3$：$1+\binom{d-1}3$ で $p_g=\binom{d-1}3$ と一致する（例 \ref{ex:surfd}）。Fano（$d\le N$）では $K_X^{-1}$ が豊富なので Kodaira 消滅で $h^q(\Oc_X)=0$ $(q>0)$ となり $h^0=1$ とも整合する。
+\end{ex}
+
+\begin{ex}[Fano 3 次元：$h^0(-K)=\frac12c_1^3+3$]\label{ex:Fano3}\tP\
+$X$ を 3 次元の Fano 多様体（$-K_X$ が豊富）とする。Kodaira 消滅で $h^q(\Oc_X)=0$ $(q>0)$ なので $\chi(\Oc_X)=1$、したがって $\frac{c_1c_2}{24}=1$、$c_1c_2=24$。$L=-K$（$l=c_1$）として 3 次元の展開式に代入すると
+\[
+\chi(-K)=\tfrac16c_1^3+\tfrac14c_1^3+\tfrac1{12}c_1(c_1^2+c_2)+\tfrac1{24}c_1c_2=\tfrac12c_1^3+\tfrac18c_1c_2=\tfrac12c_1^3+3.
+\]
+$-K$ は $K_X\otimes(-2K_X)$ の形で消滅定理が使えて $h^0(-K)=\frac12c_1^3+3$。$\CP^3$：$c_1^3=64$、$35=h^0(\Oc(4))$ ✓。二次超曲面 $Q^3\subset\CP^4$：$c_1=3H$、$c_1^3=54$、$30$ ✓（$h^0(\CP^4,\Oc(3))-h^0(\CP^4,\Oc(1))=35-5$）。$(2,3)\subset\CP^5$：$c_1=H$、$c_1^3=6$、$6=h^0(\Oc(1))$ ✓。四次超曲面 $X_4\subset\CP^4$：$c_1=H$、$c_1^3=4$、$5$ ✓。
+\end{ex}
+\begin{ex}[$\mathrm{Gr}(2,4)$]\label{ex:Gr24}\tC\
+Plücker 埋め込みで $\mathrm{Gr}(2,\C^4)$ は $\CP^5$ の二次超曲面 $Q^4$。命題 \ref{prop:eulerhyp}（$n=4$、$d=2$）：$e=\frac{1-1}2+6=6$、これは Schubert 細胞の数 $\binom42=6$ に一致する。$\chi(\Oc(k))=\binom{k+5}5-\binom{k+3}5$、$k=1$：$6$。$K=\Oc(-4)$（$d-N-1=2-6=-4$）。
+\end{ex}
+
+\begin{rem}[ミラー対称性の観察]\tC\
+$h^{1,1}=1$、$h^{2,1}=101$ の五次超曲面に対し、ミラー多様体は $(h^{1,1},h^{2,1})=(101,1)$ をもつ（$e\mapsto-e$、すなわち $+200$）とされる（Greene--Plesser、Candelas ら）。Euler 数が符号を変えるのは、$e=2(h^{1,1}-h^{2,1})$ から $h^{1,1}\leftrightarrow h^{2,1}$ の入れ替えとして自然に見える。五つの完全交叉の表（例 \ref{ex:CY3}）の $e$ も、それぞれのミラーで符号が反転する。ここでは主張として述べるのみ。
+\end{rem}
+\begin{ex}[五次 3 次元超曲面の Hodge ダイヤモンド]\label{ex:quinticdiamond}\tC\
+$h^{p,q}$：$h^{0,0}=h^{3,3}=1$、$h^{3,0}=h^{0,3}=1$、$h^{1,1}=h^{2,2}=1$、$h^{2,1}=h^{1,2}=101$、他は $0$。$b_3=204$、$e=2(1-101)=-200$ ✓、$\chi_y=100y-100y^2$（定理 \ref{thm:chiylow}、$\chi^1=100$）。
+\begin{center}
+\begin{tikzpicture}[font=\small,x=0.85cm,y=0.62cm]
+\node at (0,3) {$1$};
+\node at (-1,2) {$0$};\node at (1,2) {$0$};
+\node at (-2,1) {$0$};\node at (0,1) {$1$};\node at (2,1) {$0$};
+\node at (-3,0) {$1$};\node at (-1,0) {$101$};\node at (1,0) {$101$};\node at (3,0) {$1$};
+\node at (-2,-1) {$0$};\node at (0,-1) {$1$};\node at (2,-1) {$0$};
+\node at (-1,-2) {$0$};\node at (1,-2) {$0$};
+\node at (0,-3) {$1$};
+\end{tikzpicture}
+\end{center}
+\end{ex}
+
+\subsection{漸近 Riemann--Roch と Hilbert 多項式}
+\begin{prop}[漸近 Riemann--Roch]\label{prop:asympRR}\tP\
+$X$ をコンパクト複素多様体（$\dim n$）、$L$ を直線束とする。$\chi(X,L^m)=\dfrac{L^n}{n!}m^n+\dfrac{-K_X\cdot L^{n-1}}{2(n-1)!}m^{n-1}+\cdots$ は $m$ の $n$ 次の多項式で、$m^n$ の係数は $\frac1{n!}\int c_1(L)^n$。
+\end{prop}
+\begin{proof}
+$\ch(L^m)=e^{mc_1(L)}=\sum\frac{m^kl^k}{k!}$ と $\Td=1+\frac12c_1+\cdots$ から、$m^n$ の項は $\frac{l^n}{n!}$（$\Td_0=1$ と掛かる）、$m^{n-1}$ の項は $\frac{l^{n-1}}{(n-1)!}\Td_1=\frac{l^{n-1}c_1(T)}{2(n-1)!}$。
+\end{proof}
+\noindent $L$ が豊富なら Serre 消滅（第5巻）で $m\gg0$ で $\chi(L^m)=h^0(L^m)$（Hilbert 多項式）、その主係数は $\frac{\deg}{n!}$（$\deg=\int c_1(L)^n$ が $X$ の埋め込みの次数）。例：$\CP^n$、$L=\Oc(1)$：$\binom{n+m}n=\frac{m^n}{n!}+\cdots$、$\deg=1$。五次 3 次元超曲面：$\frac{5m^3}6+\frac{25m}6$、$\deg=5$、第2項は $0$（$K=0$）。曲面で第2項 $-\frac{K\cdot L}2m$ は種数公式の一般化である。曲線では $\chi(L^m)=m\deg L+1-g$（Riemann--Roch そのもの）。
+\begin{keybox}{要点（\S\ref{sec:examples}）}
+$\chi(\Oc_X(k))$ は超曲面で $\binom{N+k}N-\binom{N+k-d}N$。K3：$\chi(\Oc)=2$、$e=24$、$\chi(L)=2+L^2/2$。トーラス：$\Td=1$、$\chi(L)=L^n/n!$。CY3：$\chi(L)=\frac{L^3}6+\frac{c_2L}{12}$、五次で $e=-200$。
+\end{keybox}
+\begin{prob}{基本}\label{p:torus}
+複素トーラス $X$（$\dim=2$）で $\chi(L)=\frac12L^2$ を示し、$L^2=2$ の豊富な $L$ で $h^0(L)=1$ を導け。$n=1$ で $\chi(L)=\deg L$ との整合を確かめよ。
+\end{prob}
+\begin{prob}{標準}\label{p:quintic}
+五次 3 次元超曲面で $c(T_X)$ を求め、$c_2\cdot H=50$、$e=-200$、$\chi(\Oc(k))=\frac{5k^3+25k}6$ を導け。$k=1,2,3,5$ で値を求め、$h^0(\CP^4,\Oc(k))$（斉次多項式の次元）と比較せよ。
+\end{prob}
+\begin{prob}{標準}\label{p:CICY}
+次数 $(3,3)$ の $\CP^5$ の完全交叉が Calabi--Yau 3 次元であること（$c_1=0$）を示し、$H^3=9$、$e=-144$、$c_2\cdot H=54$、$h^{2,1}=73$（$h^{1,1}=1$ とする）を求めよ。
+\end{prob}
+\begin{prob}{標準}\label{p:hypCY}
+次数 $N+1$ の超曲面 $X\subset\CP^N$ で $\chi(\Oc_X)=1-(-1)^N$ を示し、$N=2,3,4,5$ の値（楕円曲線 $0$、K3 $2$、CY3 $0$、CY4 $2$）を確かめよ。$N=5$（六次 4 次元）の $\Ahat(X)=\chi(\Oc_X)=2$ を、$\Td=e^{c_1/2}\Ahat$ の $c_1=0$ の場合として説明せよ。
+\end{prob}
+\begin{prob}{標準}\label{p:Fermat}
+Fermat 曲線 $x^d+y^d+z^d=0$ の種数が $\frac{(d-1)(d-2)}2$ であることを、(a) $c_1(T)$ の次数、(b) 随伴公式（問~\ref{p:adjunction}）の二通りで示せ。Fermat 曲面 $x^d+y^d+z^d+w^d=0$ ($d=5$) の $K^2$、$e$、$\chi(\Oc)$、$p_g$、$h^{1,1}$ を求めよ。
+\end{prob}
+\begin{prob}{発展}\label{p:chiT}
+$\chi(T_X)$ を (a) $\CP^n$、(b) K3 曲面、(c) 五次 3 次元超曲面について HRR から求め、それぞれ $n^2+2n$、$-20$、$-100$ となることを確かめよ。(a) は $h^0(T\CP^n)=\dim\mathrm{PGL}_{n+1}$、(b)(c) は複素構造の変形の次元と整合することを述べよ。
+\end{prob}
