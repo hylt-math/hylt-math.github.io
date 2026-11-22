@@ -1,0 +1,169 @@
+
+%==================================================
+\section{この巻の理解チェック（自己診断10問）}
+%==================================================
+各問に正誤または短答で答え、直後の答えと照合せよ。2問以上間違えた節は、該当節の要点と例に戻る。
+
+\begin{enumerate}[label=\textbf{Q\arabic*.},leftmargin=2.4em]
+\item（正誤）$\R$ 上で $[\partial_x,x\partial_x]=\partial_x$ である。
+\item（短答）$\R^3$ 上の $X=\partial_x$, $\omega=y\,\dd x+z\,\dd y$ に対し、$\Lie_X\omega$ と $\iota_X\dd\omega$ を求めよ。
+\item（正誤）任意の閉形式は完全形式である。
+\item（短答）$H^1_{\mathrm{dR}}(S^2)$, $H^1_{\mathrm{dR}}(T^2)$, $H^1_{\mathrm{dR}}(\R^2\setminus0)$ の次元を答えよ。
+\item（正誤）$S^2$ 上のタンジェント束は自明である。
+\item（短答）階数 $r$ の複素束 $E$ と階数 $s$ の $F$ について、$\mathrm{Hom}(E,F)$ と $\Lambda^2E$ の階数を答えよ。
+\item（正誤）曲率 $F=\dd A+A\wedge A$ は、ゲージ変換 $A\mapsto g^{-1}Ag+g^{-1}\dd g$ のもとで $F\mapsto g^{-1}Fg$ と変わる。
+\item（短答）Bianchi 恒等式を（枠の中で）書き、これを使って $\tr F^k$ が閉であることを一言で説明せよ。
+\item（短答）$c_1(E,\nabla)$ の定義式を書き、$\int_{\CP^1}c_1(\mathcal O(-1))$ の値を答えよ。
+\item（正誤）接続を取り替えると $c_1(E,\nabla)$ の de Rham 類も変わる。
+\end{enumerate}
+
+\subsection*{答え}
+\begin{enumerate}[label=\textbf{A\arabic*.},leftmargin=2.4em]
+\item 正。$[\partial_x,x\partial_x]=\partial_x(x)\partial_x=\partial_x$。
+\item $\Lie_X\omega$：係数 $y,z$ は $x$ に依らないので $0$。$\dd\omega=\dd y\wedge\dd x+\dd z\wedge\dd y$、$\iota_{\partial_x}\dd\omega=-\dd y$。（Cartan：$\iota_X\omega=y$, $\dd y+\iota_X\dd\omega=\dd y-\dd y=0$ ✓）
+\item 誤。$S^1$ 上の $\dd\theta$ や $\R^2\setminus0$ の $\frac{x\dd y-y\dd x}{x^2+y^2}$ が反例。
+\item $0$, $2$, $1$。
+\item 誤（毛玉定理。$TS^2\oplus\varepsilon^1$ は自明だが $TS^2$ は自明でない）。
+\item $rs$ と $\binom r2$。
+\item 正（問~\ref{p:gauge}）。
+\item $\dd F+A\wedge F-F\wedge A=0$（$\dd_\nabla F=0$）。$\dd\tr F^k=\tr\dd_\nabla F^k=\tr\sum F^j(\dd_\nabla F)F^{k-1-j}=0$。
+\item $c_1(E,\nabla)=\frac i{2\pi}\tr F$。$\int_{\CP^1}c_1(\mathcal O(-1))=-1$。
+\item 誤。差は完全形式（定理~\ref{thm:CW}）なので類は変わらない。
+\end{enumerate}
+
+%==================================================
+\section{次巻への橋渡しと統合論文との対応}
+%==================================================
+\subsection{第2巻（複素多様体と Dolbeault 理論）へ}
+\begin{itemize}
+\item 接束 $TM$ を複素化して $T_{\C}M=T^{1,0}\oplus T^{0,1}$ と分解する（概複素構造 $J$）。Lie 括弧が $T^{0,1}$ を保つこと（積分可能性）が Newlander--Nirenberg の条件。そこで §2 の Frobenius と包合性が効く。
+\item $\dd=\partial+\dbar$ と、$\dbar^2=0$ の複体。§3 の Cartan の公式と同じ型の計算。
+\item 正則ベクトル束には、Hermite 計量と整合し $\dbar$ とも整合する唯一の接続（Chern 接続）がある。§7 の例の $\theta=\partial\log h$ はその直線束版。曲率は $(1,1)$ 形式。
+\end{itemize}
+\subsection{第3〜5巻}
+§4 の Mayer--Vietoris は \Cech{} コホモロジーの一番簡単な場合で、第3巻で層コホモロジーに一般化する（de Rham の定理）。Poincar\'e 双対は第4巻の Serre 双対（Riemann 面）と第5巻の Hodge 理論に現れる。
+\subsection{第6巻（Chern 類と HRR）}
+§7 の Chern 形式・Chern 指標形式・Todd 形式が、Hirzebruch--Riemann--Roch の積分公式 $\chi(E)=\int\ch(E)\Td(X)$ の被積分関数。splitting principle により直線束の場合へ帰着する。§7 の「$c_1(L\otimes L')=c_1(L)+c_1(L')$」が出発点。
+\subsection{第7〜9巻}
+$\dd_\nabla$ は楕円複体の例（第7巻）。接続・曲率・transgression の議論は、第8巻の熱核による指数定理の証明、第9巻の Bismut 超接続と族の指数定理で何度も使われる。
+\subsection{第11〜12巻（Lie 亜代数・一般化複素幾何）}
+\begin{itemize}
+\item \textbf{Lie 括弧}：$(\X(M),[\,,])$ と Leibniz 則の構造を抜き出したものが Lie 亜代数（第11巻）。Poisson 多様体では $T^*M$ が Lie 亜代数になる。
+\item \textbf{Cartan の公式}：Courant 括弧の Jacobi 恒等式の不整合（Nijenhuis 型の項）の計算、Dirac 構造の包合性、$B$ 変換の閉性の条件。
+\item \textbf{$T\oplus T^*$}：自然な内積（符号 $(n,n)$）と $O(n,n)$ 構造群。第12巻で Courant 括弧を与え、Dirac 構造・一般化複素構造を定義する。
+\end{itemize}
+\subsection{統合論文との対応}
+統合論文（\texttt{generalized-geometry-poisson-unified}）の主な主張のうち、この巻が土台になるもの。（論文の定理番号は書かない。）
+\begin{center}
+\begin{tabular}{p{0.42\textwidth}p{0.48\textwidth}}
+\toprule
+統合論文の主張 & この巻の対応 \\
+\midrule
+一般化正則直線束が Poisson 加群、留数が定数の平坦な対数接続 & §6 接続・曲率・平坦接続とホロノミー（問~\ref{p:holonomy}：平坦でもホロノミーは自明と限らない）。留数の整数性とホロノミーの関係は第11〜13巻 \\
+全 Euler 標数が $c_1$ に依らない（$(-1)^n\mathrm{rk}(E)\chi(X)$） & §4 Betti 数、$\chi$、Poincar\'e 双対。§7 $c_1$ は接続によらない類 \\
+双対性 $\mathbb H^k(L)^*\cong\mathbb H^{2n-k}(L^\vee\otimes K^2)$ & §4 Poincar\'e 双対のモデル（実際の証明は第3〜5・13巻） \\
+Riemann--Roch 型公式・指数予想 & §7 Chern 形式・Chern 指標形式（第6・8・9巻） \\
+\bottomrule
+\end{tabular}
+\end{center}
+（上の対応は、論文の「主な結果」の記述に基づく概観で、各主張の証明の詳細との対応は第14巻で取り上げる。）
+
+
+%==================================================
+\section*{公式集（復習用）}
+\addcontentsline{toc}{section}{公式集}
+%==================================================
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabular}{p{0.28\textwidth}p{0.62\textwidth}}
+\toprule
+対象 & 公式\\
+\midrule
+座標変換（接・余接） & $v'=Jv$,\quad $\xi'=(J^{-1})^T\xi$,\quad $J=\bigl(\partial x'^i/\partial x^j\bigr)$\\
+Lie 括弧 & $[X,Y]^k=X^i\partial_iY^k-Y^i\partial_iX^k$,\quad $[X,fY]=(Xf)Y+f[X,Y]$\\
+外微分 & $\dd(\alpha\wedge\beta)=\dd\alpha\wedge\beta+(-1)^k\alpha\wedge\dd\beta$,\quad $\dd^2=0$\\
+不変公式 & $\dd\alpha(X,Y)=X\alpha(Y)-Y\alpha(X)-\alpha([X,Y])$\\
+Cartan & $\Lie_X=\dd\iota_X+\iota_X\dd$,\quad $[\Lie_X,\iota_Y]=\iota_{[X,Y]}$,\quad $[\Lie_X,\Lie_Y]=\Lie_{[X,Y]}$\\
+体積と発散 & $\Lie_X\mathrm{vol}=(\mathrm{div}X)\,\mathrm{vol}$\\
+Stokes & $\int_M\dd\omega=\int_{\partial M}\omega$\\
+Mayer--Vietoris & $\cdots\to H^k(M)\to H^k(U)\oplus H^k(V)\to H^k(U\cap V)\xrightarrow{\delta}H^{k+1}(M)\to\cdots$\\
+Poincar\'e 双対 & $H^k(M)\cong H^{n-k}(M)^*$（閉・向きづけ可能）\\
+貼り合わせ関数 & $g_{\alpha\beta}g_{\beta\gamma}=g_{\alpha\gamma}$;\quad $E^*:(g^{-1})^T$,\ $E\otimes F:g\otimes h$,\ $\det E:\det g$\\
+接続（局所） & $\nabla(e\sigma)=e(\dd\sigma+A\sigma)$,\quad $A'=g^{-1}Ag+g^{-1}\dd g$\\
+曲率 & $F=\dd A+A\wedge A$,\quad $F'=g^{-1}Fg$,\quad $\dd F+A\wedge F-F\wedge A=0$\\
+曲率と括弧 & $F(X,Y)=[\nabla_X,\nabla_Y]-\nabla_{[X,Y]}$\\
+Chern 形式 & $c=\det(I+\frac i{2\pi}F)$,\quad $\ch=\tr\,e^{\frac i{2\pi}F}$,\quad $c_1=\frac i{2\pi}\tr F$\\
+Chern--Weil & $\dd\tr F^k=0$,\quad $\tr F_1^k-\tr F_0^k=\dd\bigl(k\!\int_0^1\!\tr(aF_t^{k-1})\dd t\bigr)$\\
+$S^2$ 上の直線束 & $e_0=g\,e_1\Rightarrow\int c_1=-\mathrm{wind}(g)$;\ $\int c_1(\mathcal O(-1))=-1$,\ $\int c_1(T\CP^1)=2$\\
+$T\oplus T^*$ & $\langle X+\xi,Y+\eta\rangle=\frac12(\xi(Y)+\eta(X))$,\ 符号 $(n,n)$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection*{規約の対応（他の文献を読むとき）}
+\begin{itemize}
+\item $\dd\alpha(X,Y)$ に $\frac12$ を付ける流儀（形式を交代テンソルとして規格化する文献）がある。本巻は「$\dd x\wedge\dd y(\partial_x,\partial_y)=1$」で統一。
+\item Chern 形式の因子は文献により $\frac i{2\pi}$（本巻、$c_1(\mathcal O(-1))$ の積分が $-1$）または $-\frac1{2\pi i}$（同じ値）。$\frac{1}{2\pi i}$ を使うと符号が変わるので注意。\tQ\ （各文献の記号の確認は未実施）
+\item 接続形式の添字は $\nabla e_j=A^i{}_je_i$（本巻）。転置の流儀では $A\mapsto A^T$、ゲージ変換も転置になる。
+\item Lie 括弧と流れ：$[X,Y]=\Lie_XY=\frac{\dd}{\dd t}|_0(\varphi_{-t})_*Y$。流れの交換子の符号は流儀により逆になる。
+\end{itemize}
+
+\subsection*{つまずきやすい点（各節）}
+\begin{enumerate}
+\item 接ベクトルの成分は $J$、余接ベクトルの成分は $(J^{-1})^T$。$\dd f$ は余接ベクトル（勾配 $\nabla f$ は計量があって初めて接ベクトル）。
+\item $[X,Y]$ は座標ベクトル場同士では $0$。座標でない枠では $0$ でないことがある（例：極座標の正規直交枠 $\partial_r,\ \frac1r\partial_\theta$ では $[\partial_r,\tfrac1r\partial_\theta]=-\tfrac1{r^2}\partial_\theta\ne0$）。
+\item $\dd$ は反微分。符号 $(-1)^k$ を落とさない。引き戻しと $\dd$ は可換、$\iota_X$ とは可換でない。
+\item 閉と完全は別。$H^1(\R^2\setminus0)\ne0$ は「穴」のせい。
+\item 貼り合わせ関数の向き（$g_{\alpha\beta}$ か $g_{\beta\alpha}$ か）を取り違えると $c_1$ の符号が変わる。本巻は成分が $\sigma_\alpha=g_{\alpha\beta}\sigma_\beta$、枠が $e_\beta=g_{\alpha\beta}e_\alpha$（例：$g_{10}=z$, $e_0=z\,e_1$。問~\ref{p:winding}）。
+\item 曲率はテンソル（$C^\infty$ 線形）。接続形式 $A$ はテンソルでない（ゲージで $g^{-1}\dd g$ が出る）。
+\item $\frac i{2\pi}$ を忘れると積分が整数にならない。
+\end{enumerate}
+
+%==================================================
+\section*{記号表}
+\addcontentsline{toc}{section}{記号表}
+%==================================================
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+記号 & 意味\\
+\midrule
+$T_pM,\ TM,\ T^*M$ & 接空間・接束・余接束\\
+$\dd F$ & 微分（押し出し）\\
+$\X(M),\ \Gamma(E)$ & ベクトル場の空間、$E$ の切断の空間\\
+$[X,Y]$ & Lie 括弧\\
+$\Omega^k(M),\ \Omega^k(M;E)$ & $k$ 形式、$E$ 値 $k$ 形式\\
+$\dd,\ \iota_X,\ \Lie_X$ & 外微分、内部積、Lie 微分\\
+$H^k_{\mathrm{dR}}(M),\ b_k,\ \chi$ & de Rham コホモロジー、Betti 数、Euler 標数\\
+$g_{\alpha\beta}$ & 貼り合わせ関数\\
+$\nabla,\ \dd_\nabla,\ A,\ F$ & 接続、共変外微分、接続形式、曲率\\
+$h$ & Hermite 計量\\
+$c(E,\nabla),\ c_k,\ \ch$ & Chern 形式、Chern 指標形式\\
+$\mathcal O(-1)$ & $\CP^1$ のタウトロジー束\\
+$\varepsilon^k$ & 自明な階数 $k$ の束\\
+$T\oplus T^*$ & $TM\oplus T^*M$ と内積 $\langle X+\xi,Y+\eta\rangle=\frac12(\xi(Y)+\eta(X))$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%==================================================
+\section*{参考文献}
+\addcontentsline{toc}{section}{参考文献}
+%==================================================
+章番号は書名と章までとし、定理番号は書かない。章の対応は記憶に基づくものを含み、版により異なりうる\tQ。
+\begin{enumerate}[label={[\arabic*]},leftmargin=2.4em]
+\item J.~M.~Lee, \emph{Introduction to Smooth Manifolds}, 2nd ed., Springer GTM 218. 多様体（第1章）、1の分割（第2章）、接ベクトル（第3章）、部分多様体・正則値（第5章）、ベクトル場・Lie 括弧・流れ（第8・9章）、ベクトル束（第10章）、余接束（第11章）、微分形式・Cartan の公式（第14章）、積分と Stokes（第16章）、de Rham コホモロジー（第17章）、de Rham の定理（第18章）、Frobenius（第19章）。章題は第2版の目次で確認した\tC。章内の個々の主張の位置は未確認。
+\item R.~Bott, L.~W.~Tu, \emph{Differential Forms in Algebraic Topology}, Springer GTM 82. 第I章（de Rham 理論：複体、Mayer--Vietoris、Poincar\'e の補題、Poincar\'e 双対）。特性類の章は第6巻で使う。
+\item J.~W.~Milnor, J.~D.~Stasheff, \emph{Characteristic Classes}, Princeton. ベクトル束の基礎（§2--§3）、Chern 類（§14）。本書は章でなく §番号で区切られる（§1 Smooth manifolds, §2 Vector bundles, §14 Chern classes は目次で確認、§3 は記憶）。\tQ\ （§3）
+\item S.~Kobayashi, K.~Nomizu, \emph{Foundations of Differential Geometry}, vol.~I, II. 接続・曲率・Bianchi（第I巻 第II章）、Chern--Weil（第II巻 第XII章）。\tQ\ （章番号）
+\item F.~W.~Warner, \emph{Foundations of Differentiable Manifolds and Lie Groups}, Springer GTM 94. 多様体・Frobenius（第1章）、テンソルと微分形式（第2章）、積分・Stokes（第4章）、層・de Rham の定理（第5章）、Hodge の定理（第6章）。章題は出版社の目次で確認した\tC。
+\item L.~W.~Tu, \emph{An Introduction to Manifolds}, 2nd ed., Springer Universitext. 入門レベルの復習用。
+\item D.~Huybrechts, \emph{Complex Geometry: An Introduction}, Springer. 第4章（複素ベクトル束、Chern 接続）。次巻以降で使う。\tQ\ （章番号）
+\item M.~Gualtieri, \emph{Generalized complex geometry}, Ann.~of Math.~174 (2011); arXiv:math/0703298. $T\oplus T^*$ と Courant 括弧（第12巻の主な出典）。この巻では内積と括弧の式を引用したのみ。
+\end{enumerate}
+
+%==================================================
+\section*{検算について（正直な報告）}
+\addcontentsline{toc}{section}{検算について}
+%==================================================
+この環境には sympy が無かったため、有理数係数の多項式とその外積代数・外微分・内部積・Lie 微分・括弧・行列値形式を扱う小さなプログラムを自作し、次を\emph{独立に}確認した：$\dd\alpha,\dd\beta,\dd^2\alpha=0$（問~\ref{p:dcalc}）、引き戻し（問~\ref{p:pullback}）、Cartan の公式（座標公式の Lie 微分との一致。1形式・2形式、問~\ref{p:cartanex}）、不変公式 \eqref{eq:dalpha}（問~\ref{p:invariant}）、括弧（問~\ref{p:bracketcalc}, \ref{p:so3}, \ref{p:contact}）、$\dd\omega=3\,\mathrm{vol}$（問~\ref{p:area}）、原始関数（問~\ref{p:homotopyop}）、行列値形式の曲率・Bianchi・ゲージ変換（問~\ref{p:curvcalc}, \ref{p:gauge}）。numpy/scipy による数値確認：立体射影の Jacobi 行列式、$\dd\omega=0$（問~\ref{p:punct}）、$\dd\theta$ の係数、$\theta_0-\theta_1=\dd z/z$、$\int c_1=-k$（$k=1,2,-3$）。Mayer--Vietoris、Poincar\'e 双対、Stokes、Frobenius、流れの理論などの標準定理は検算ではなく\tC\ として引用した。

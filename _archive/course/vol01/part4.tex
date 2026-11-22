@@ -1,0 +1,112 @@
+
+%==================================================
+\section{ベクトル束}
+%==================================================
+\subsection{定義：局所自明化と貼り合わせ関数}
+\begin{defn}[ベクトル束]
+滑らかな写像 $\pi:E\to M$ が階数 $r$ の（実または複素）\emph{ベクトル束}とは、各ファイバー $E_p=\pi^{-1}(p)$ が $\mathbb K^r$（$\mathbb K=\R$ または $\C$）と同型なベクトル空間の構造をもち、$M$ の開被覆 $\{U_\alpha\}$ と微分同相 $\Phi_\alpha:\pi^{-1}(U_\alpha)\to U_\alpha\times\mathbb K^r$（\emph{局所自明化}）で、各ファイバー上で線形同型になるものが存在すること。
+\end{defn}
+
+重なり $U_\alpha\cap U_\beta$ 上で $\Phi_\alpha\circ\Phi_\beta^{-1}(p,v)=(p,g_{\alpha\beta}(p)v)$ と書け、$g_{\alpha\beta}:U_\alpha\cap U_\beta\to\GL(r,\mathbb K)$ は滑らか。これを\emph{貼り合わせ関数}（遷移関数）という。次の \emph{コサイクル条件}を満たす：
+\begin{equation}\label{eq:cocycle}
+g_{\alpha\beta}g_{\beta\gamma}=g_{\alpha\gamma}\ \text{ on }U_\alpha\cap U_\beta\cap U_\gamma,\qquad g_{\alpha\alpha}=I.
+\end{equation}
+逆に、コサイクル条件を満たす $\{g_{\alpha\beta}\}$ から、$\bigsqcup U_\alpha\times\mathbb K^r$ を $(p,v)_\beta\sim(p,g_{\alpha\beta}(p)v)_\alpha$ で貼り合わせてベクトル束が復元される。
+
+\begin{figure}[h]
+\centering
+\begin{tikzcd}[column sep=huge]
+\pi^{-1}(U_\alpha\cap U_\beta)\arrow[r,"\Phi_\beta"]\arrow[d,"\Phi_\alpha"'] & (U_\alpha\cap U_\beta)\times\mathbb K^r\arrow[dl,"{(p,v)\mapsto(p,g_{\alpha\beta}(p)v)}"]\\
+(U_\alpha\cap U_\beta)\times\mathbb K^r &
+\end{tikzcd}
+\caption{局所自明化と貼り合わせ関数。}
+\end{figure}
+
+\begin{ex}\label{ex:bundles}
+(1) 自明束 $\varepsilon^r=M\times\mathbb K^r$。(2) $TM$: 貼り合わせ関数 $=$ Jacobi 行列、$T^*M$: $(J^{-1})^T$。(3) \emph{Möbius 束}：$S^1$ 上の実直線束で、2つの弧で覆い貼り合わせ関数が一方の交わりで $+1$、他方で $-1$（問~\ref{p:mobius}）。(4) \emph{自明でない複素直線束}：$\CP^1$ 上の\emph{タウトロジー束} $\mathcal O(-1)=\{([\ell],v):v\in\ell\}\subset\CP^1\times\C^2$（各点 $\ell\subset\C^2$ とその上のベクトル）。$U_0$ で $v=a\,(1,z)$、$U_1$ で $v=b\,(w,1)$ とすると、重なりで $(1,z)=z(w,1)$ なので $b=za$、つまり $g_{10}=z$（問~\ref{p:taut}）。
+\end{ex}
+
+構造群：貼り合わせ関数がすべて部分群 $G\subset\GL(r,\mathbb K)$ に値をもつようにとれるとき、$E$ の\emph{構造群は $G$ に簡約される}という。例：向きづけ可能な実束 $\leftrightarrow$ $\GL^+(r,\R)$。計量つき実束 $\leftrightarrow$ $O(r)$。Hermite 計量つき複素束 $\leftrightarrow$ $\U(r)$。$T\oplus T^*$ のように内積が与えられると $O(n,n)$（第12巻）。
+
+\subsection{切断・枠・準同型}
+\emph{切断} $s\in\Gamma(E)$ は $\pi\circ s=\id$ となる滑らかな写像。局所自明化で $s_\alpha:U_\alpha\to\mathbb K^r$ となり $s_\alpha=g_{\alpha\beta}s_\beta$。局所的な切断の $r$ 個の組 $e=(e_1,\dots,e_r)$ で各点で基底になるものを\emph{局所枠}という。枠の取り替え $e'=eg$（$g:U\to\GL(r)$）で、切断の成分は $s=e\,\sigma=e'\sigma'$ なら $\sigma=g\sigma'$。
+
+\begin{prop}\label{prop:trivial}\tC\
+階数 $r$ の束 $E$ が自明 $\Leftrightarrow$ 至る所一次独立な大域切断が $r$ 個ある。特に直線束が自明 $\Leftrightarrow$ 至る所 $0$ でない大域切断がある。
+\end{prop}
+（これが Möbius 束 $\not\simeq\varepsilon^1$ の証明の方法：$S^1$ 上ゼロ点のない切断は存在しない。問~\ref{p:mobius}。）
+
+\subsection{構成：直和・テンソル積・双対・外積・引き戻し}
+ベクトル空間に対する線形代数の構成を、ファイバーごとに行い貼り合わせ関数も同じ構成で作ることで、束の構成が得られる。$E$, $F$ の貼り合わせ関数を $g,h$ とすると：
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+束 & 階数 & 貼り合わせ関数\\
+\midrule
+$E\oplus F$ & $r+s$ & $g\oplus h$（ブロック対角）\\
+$E\otimes F$ & $rs$ & $g\otimes h$\\
+$E^*$ & $r$ & $(g^{-1})^T$\\
+$\mathrm{Hom}(E,F)=E^*\otimes F$ & $rs$ & $X\mapsto hXg^{-1}$\\
+$\Lambda^kE$ & $\binom rk$ & $\Lambda^kg$\\
+$\det E=\Lambda^rE$ & $1$ & $\det g$\\
+$f^*E$（$f:N\to M$） & $r$ & $g\circ f$\\
+\bottomrule
+\end{tabular}
+\end{center}
+例：$\Lambda^kT^*M$ が $k$ 形式の束で $\Omega^k(M)=\Gamma(\Lambda^kT^*M)$。複素束では $\bar E$（共役束）と、$E^*\cong\bar E$ （Hermite 計量があるとき）がある。
+
+\paragraph{T $\oplus$ T$^*$（再掲）。}$T\oplus T^*:=TM\oplus T^*M$ の切断は $X+\xi$（$X$ ベクトル場、$\xi$ 1形式）。ファイバー上の対称双線形形式 $\langle X+\xi,Y+\eta\rangle=\frac12(\xi(Y)+\eta(X))$ は非退化で符号 $(n,n)$（問~\ref{p:pairing}）。したがって構造群は $O(n,n)$ に簡約される。
+$\Lambda^k(T^*M)$ の和 $\Lambda^*T^*M$ は、$T\oplus T^*$ の\emph{スピノル束}の役割を第12巻で果たす（$X+\xi$ が $\iota_X+\xi\wedge$ として作用する。Clifford 作用）。\tQ\ （この記述は第12巻で確認する。）
+
+
+\subsection{部分束・商束・完全列・引き戻し}
+\begin{itemize}
+\item \emph{部分束}：各ファイバーの部分空間で、局所的にそれを張る滑らかな枠をもつもの。例：$\mathcal O(-1)\subset\CP^1\times\C^2$、接束の中の分布 $D\subset TM$（§2）。商束 $E/S$。短完全列 $0\to S\to E\to Q\to0$（束の準同型の列）。
+\item Hermite 計量（または Riemann 計量）があれば $E\cong S\oplus S^\perp\cong S\oplus Q$（分解は非標準）。つまり滑らかな範疇では完全列は常に分解する。（正則な範疇では分解しない。第2・3巻でこれが Ext/コホモロジーの源になる。）
+\item 例：$S^n\subset\R^{n+1}$ で $0\to TS^n\to\varepsilon^{n+1}\to N\to0$、$N$ は自明（問~\ref{p:TSn}）。
+\item \emph{引き戻し}：$f:N\to M$ に対し $f^*E=\{(q,e):f(q)=\pi(e)\}$。貼り合わせ関数は $g\circ f$。ホモトピックな写像による引き戻しは、底がパラコンパクト（滑らかな多様体なら常に）なら同型。したがって可縮な多様体上のベクトル束は自明である。\tC\ （Milnor--Stasheff のベクトル束の章、Husemoller \emph{Fibre Bundles} など。定理番号は書かない。）
+\end{itemize}
+
+\subsection{主束の見方（概観）}
+貼り合わせ関数 $\{g_{\alpha\beta}\}$（構造群 $G$ 値のコサイクル）から、$G$ を構造群とする\emph{主 $G$ 束} $P$ が貼り合わせで得られ、ベクトル束 $E=P\times_G\mathbb K^r$ は主束の\emph{同伴束}。$G=\GL(r,\mathbb K)$ なら $P$ は枠束 $\mathrm{Fr}(E)$。構造群の簡約は $P$ の部分主束の存在と同値。この言い方（Kobayashi--Nomizu の流儀）では接続は主束上の $\mathfrak g$ 値1形式になる。この巻では枠による局所表示で足りるので深入りしない。\tC\ （Kobayashi--Nomizu 第I巻 第I・II章）。
+
+\begin{ex}[$T\CP^1$ の貼り合わせ関数]\label{ex:TCP1}
+$\CP^1$ を実2次元多様体と見たときの $T\CP^1$ は、複素座標 $z$（$U_0$）, $w=1/z$（$U_1$）に対して $\partial_z$ と $\partial_w$ を複素枠とする複素直線束と見なせる（第2巻で正式に）。$\dd w=-z^{-2}\dd z$ より $\partial_z=\frac{\partial w}{\partial z}\partial_w=-z^{-2}\partial_w$。つまり複素枠 $e_0=\partial_z$, $e_1=\partial_w$ は $e_0=-z^{-2}e_1$ で結ばれる。タウトロジー束 $\mathcal O(-1)$ では $e_0=z\,e_1$（問~\ref{p:taut}）で、ここでは $z^{-2}$ の巻き数が $-2$。§7 でこれが $\int c_1(T\CP^1)=+2=\chi(S^2)$ を意味することを見る（問~\ref{p:TCP1}）。
+\end{ex}
+
+\subsection{Hermite 計量}
+\begin{defn}
+複素ベクトル束 $E$ 上の \emph{Hermite 計量}は、各ファイバー上の正定値 Hermite 内積 $h_p(\cdot,\cdot)$（第1成分で線形、第2成分で反線形）で $p$ に滑らかに依存するもの。
+\end{defn}
+\begin{prop}\label{prop:herm}\tP\
+任意の複素ベクトル束に Hermite 計量が存在し、構造群は $\U(r)$ に簡約できる。
+\end{prop}
+\begin{proof}
+各 $U_\alpha$ で自明化から標準 Hermite 計量 $h_\alpha$ を取り、$\{\rho_\alpha\}$ を被覆に従属する1の分割として $h=\sum_\alpha\rho_\alpha h_\alpha$。各 $h_\alpha$ が正定値で $\rho_\alpha\ge0$, $\sum\rho_\alpha=1$ なので $h$ は正定値（凸結合）。局所枠に Gram--Schmidt を行うと $h$ に関する正規直交枠が得られ、その間の貼り合わせ関数は $\U(r)$ に値をもつ。
+\end{proof}
+同様に実束に計量が、$TM$ に Riemann 計量が存在する。
+
+\begin{keybox}{§5 の要点}
+\begin{itemize}
+\item ベクトル束 = 局所自明な族 = 貼り合わせ関数（$\GL(r)$ 値コサイクル）。構造群はコサイクルの値域。
+\item 直和・テンソル積・双対・外積・引き戻しは、ファイバーの構成を貼り合わせ関数に移すだけ。
+\item 複素束には Hermite 計量があり、構造群は $\U(r)$ に簡約できる。\ \textbf{【あとで使う】}第2巻（正則束と Chern 接続）、第6巻（Chern 類）、第12巻（$T\oplus T^*$ と $O(n,n)$）。
+\end{itemize}
+\end{keybox}
+
+\subsection*{問題（§5）}
+\begin{prob}{基本}\label{p:mobius}
+$S^1=U\cup V$（2つの開弧、$U\cap V$ は2つの弧 $W_1,W_2$）で、$W_1$ で貼り合わせ関数 $+1$、$W_2$ で $-1$ とした実直線束（Möbius 束）$L$ は自明でないことを示せ。
+\end{prob}
+\begin{prob}{基本}\label{p:taut}
+$\CP^1$ のタウトロジー束 $\mathcal O(-1)$ の局所自明化を $U_0$, $U_1$ で具体的に書き、貼り合わせ関数が $g_{10}(z)=z$（$g_{01}=1/z$）であることを確かめよ。双対束 $\mathcal O(1)=\mathcal O(-1)^*$ の貼り合わせ関数は何か。
+\end{prob}
+\begin{prob}{標準}\label{p:constr}
+$E$ を階数 3、$F$ を階数 2 の複素束とする。$\mathrm{Hom}(E,F)$, $\Lambda^2E$, $E\otimes F$, $\Lambda^2(E\oplus F)$ の階数を求めよ。$\Lambda^2(E\oplus F)\cong\Lambda^2E\oplus(E\otimes F)\oplus\Lambda^2F$ を示せ。また $\Lambda^{r-1}E\cong E^*\otimes\det E$（$r=\rk E$）を、貼り合わせ関数 $g\in\GL(r)$ で（行列式と余因子行列 $\Lambda^{r-1}g=\det g\,(g^{-1})^T$ の関係から）示せ。
+\end{prob}
+\begin{prob}{標準}\label{p:hermexist}
+(a) 命題~\ref{prop:herm} は1の分割で Hermite 計量を作るが、部分束の場合は1の分割が要らない。$M=\CP^1$ のタウトロジー束 $\mathcal O(-1)\subset\CP^1\times\C^2$ に、$\C^2$ の標準内積の制限 $h(v,v')=\langle v,v'\rangle_{\C^2}$ を考え、これが滑らかな Hermite 計量であることを示せ。(b) $U_0$ の枠 $e_0=(1,z)$ に関して $h(e_0,e_0)=1+|z|^2$ を示せ。
+\end{prob}
+\begin{prob}{標準}\label{p:pairing}
+$V$ を $n$ 次元実ベクトル空間とし、$V\oplus V^*$ 上に $\langle X+\xi,Y+\eta\rangle=\frac12(\xi(Y)+\eta(X))$ を定める。(a) この形式は非退化で符号 $(n,n)$。(b) $V$ と $V^*$ は極大等方的部分空間（$n$ 次元で内積が $0$）。(c) 反対称 $\beta\in\Lambda^2V^*$ に対し $e^\beta(X+\xi)=X+\xi+\iota_X\beta$ は内積を保つ。
+\end{prob}

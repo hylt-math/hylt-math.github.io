@@ -1,0 +1,143 @@
+
+%==================================================
+\section{de Rham コホモロジー}
+%==================================================
+\subsection{定義と最初の例}
+$\dd^2=0$ なので $(\Omega^*(M),\dd)$ は複体（\emph{de Rham 複体}）。閉形式 $Z^k=\ker\dd$、完全形式 $B^k=\mathrm{im}\,\dd$ として
+\[
+H^k_{\mathrm{dR}}(M)=Z^k(M)/B^k(M).
+\]
+$F:M\to N$ は $F^*:H^k(N)\to H^k(M)$ を誘導し、$\wedge$ は $H^*(M)$ に次数つき可換環の構造を与える。
+
+\paragraph{動機。}「閉 $\Rightarrow$ 完全か？」という問い（ベクトル解析では「$\mathrm{curl}\,F=0$ ならポテンシャルがあるか」）の答えが空間の位相的な形で決まる、というのが de Rham 理論である。
+
+\begin{ex}\label{ex:circle}
+$H^0(M)=\R^{\#\text{連結成分}}$（$\dd f=0$ なら $f$ は局所定数）。$S^1$ 上で $\dd\theta$ は閉だが完全でない（$\int_{S^1}\dd\theta=2\pi\ne0$、Stokes から完全形式の積分は $0$）。$H^1(S^1)=\R$。同様に $\R^2\setminus0$ 上の $\omega=\frac{x\dd y-y\dd x}{x^2+y^2}$ は閉で、円周上の積分が $2\pi$ なので完全でない（問~\ref{p:punct}）。
+\end{ex}
+
+\subsection{Poincar\'e の補題とホモトピー不変性}
+\begin{thm}[ホモトピー不変性]\label{thm:homotopy}
+$\pi:M\times\R\to M$、$s_t:M\to M\times\R$, $s_t(p)=(p,t)$ とすると $\pi^*:H^*(M)\to H^*(M\times\R)$ は同型で、逆は $s_t^*$（任意の $t$）。したがって滑らかにホモトピックな写像は $H^*$ で同じ写像を与える。
+\end{thm}
+\begin{proof}
+\tP\ $M\times\R$ 上の形式は、局所的に $\omega=f(x,t)\,\dd x^I$ 型と $\omega=g(x,t)\,\dd t\wedge\dd x^J$ 型の和である。$K\omega=0$（前者）、$K\omega=\bigl(\int_0^tg(x,u)\dd u\bigr)\dd x^J$（後者）で $K:\Omega^k(M\times\R)\to\Omega^{k-1}(M\times\R)$ を定める（大域的に矛盾なく定まることは座標変換で確かめられる）。計算：
+前者では $K\omega=0$、$\dd\omega=\partial_tf\,\dd t\wedge\dd x^I+(\dd x\text{ の項})$ なので $K\dd\omega=(f(x,t)-f(x,0))\dd x^I$。
+後者では $\dd K\omega=g\,\dd t\wedge\dd x^J+\bigl(\int_0^t\partial_kg\,\dd u\bigr)\dd x^k\wedge\dd x^J$、$K\dd\omega=-\bigl(\int_0^t\partial_kg\,\dd u\bigr)\dd x^k\wedge\dd x^J$。
+どちらの場合も $\dd K+K\dd=\id-\pi^*s_0^*$。よって $\pi^*s_0^*$ はコホモロジー上で恒等写像、$s_0^*\pi^*=\id$ なので $\pi^*$ は同型で逆は $s_0^*$。同様に $s_t^*$ も逆（$s_t^*\pi^*=\id$）だから $s_0^*=s_1^*$。ホモトピー $h:M\times\R\to N$（$h_0=f,h_1=g$）なら $f^*=s_0^*h^*=s_1^*h^*=g^*$。
+\end{proof}
+\src{Bott--Tu 第I章 §4（Poincar\'e の補題）、Lee 第17章。}
+
+\begin{cor}[Poincar\'e の補題]\label{cor:poincare}
+$\R^n$（または星状領域）では $k\ge1$ で $H^k=0$。すなわち閉形式は完全。（$\R^n\simeq$ 点なので定理から直ちに。）星状領域では、原点を中心に $\omega\mapsto\int_0^1\iota_{x}\omega(tx)\,t^{k-1}\dd t$（$x$ は Euler ベクトル場）が逆を与える。
+\end{cor}
+
+\begin{ex}\label{ex:primitive}
+$\R^3$ の閉1形式 $\alpha=\sum\alpha_i\dd x^i$ の原始関数は $f(x)=\int_0^1\sum_ix^i\alpha_i(tx)\,\dd t$。$\alpha=y\,\dd x+x\,\dd y+2z\,\dd z$ なら $f=xy+z^2$（問~\ref{p:homotopyop}）。
+\end{ex}
+
+\subsection{Mayer--Vietoris}
+\begin{thm}[Mayer--Vietoris]\label{thm:MV}
+$M=U\cup V$（開集合）に対し、完全列 $0\to\Omega^*(M)\to\Omega^*(U)\oplus\Omega^*(V)\to\Omega^*(U\cap V)\to0$（$\omega\mapsto(\omega|_U,\omega|_V)$, $(\mu,\nu)\mapsto\nu|_{U\cap V}-\mu|_{U\cap V}$）があり、蛇の補題により長完全列
+\[
+\cdots\to H^k(M)\to H^k(U)\oplus H^k(V)\to H^k(U\cap V)\xrightarrow{\ \delta\ }H^{k+1}(M)\to\cdots
+\]
+を得る。
+\end{thm}
+\begin{proof}
+\tP\ 完全性のうち非自明なのは最後の全射性だけ。$\{\rho_U,\rho_V\}$ を $\{U,V\}$ に従属する1の分割とし、$\tau\in\Omega^*(U\cap V)$ に対し $\mu=-\rho_V\tau$（$U$ 上に零拡張。$\supp\rho_V\cap U\cap V$ は $U$ で閉）、$\nu=\rho_U\tau$ とおくと、$U\cap V$ 上 $\nu-\mu=(\rho_U+\rho_V)\tau=\tau$。短完全列からの長完全列は代数の一般論（蛇の補題）。
+\end{proof}
+\src{Bott--Tu 第I章 §2。}
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[scale=1.0]
+\draw[thick] (0,0) circle (1.3);
+\draw[line width=3pt,blue!50,opacity=0.5] (-1.3*0.2,1.3*0.98) arc (100:290:1.3);
+\draw[line width=3pt,red!50,opacity=0.5] (1.3*0.2+0.15,1.3*0.98-0.05) arc (80:-110:1.3);
+\node[blue!60!black] at (-2.0,0) {$U$};
+\node[red!60!black] at (2.0,0) {$V$};
+\node at (0,0) {$S^1$};
+\node at (0,-2.0) {$U\cap V$ = 2つの弧};
+\end{tikzpicture}
+\caption{$S^1$ を2つの弧 $U,V$ で覆う。$U,V\simeq$ 点、$U\cap V\simeq$ 2点 なので、MV から $H^1(S^1)=\R$。}
+\end{figure}
+
+
+\paragraph{連結準同型の具体例：$S^1$。}$S^1=U\cup V$ を2つの開弧とし、$\{\rho_U,\rho_V\}$ を従属する1の分割とする。$H^0(U\cap V)\to H^1(S^1)$（連結準同型 $\delta$）は次で与えられる：$\tau\in H^0(U\cap V)$（局所定数関数）に対し、$(\mu,\nu)=(-\rho_V\tau,\ \rho_U\tau)$ は $U,V$ 上の関数で $\nu-\mu=\tau$。$\dd\mu$, $\dd\nu$ は $U\cap V$ 上で一致する（$\dd\tau=0$ なので）ので $S^1$ 上の1形式 $\eta$ を定め、$\delta[\tau]=[\eta]$。2つの弧の交わり $W_1\sqcup W_2$ 上で $\tau=(1,0)$ とすれば、$\eta$ は $\dd\rho_U$ に沿って（$W_1$ を境界として含む弧の内側で）変化する $\rho_U$ の微分で、$\int_{S^1}\eta=\pm1$（$\rho_U$ が $W_1$ で $0$ から $1$ へ変わることによる）。つまり $\delta[\tau]$ は $\frac1{2\pi}[\dd\theta]$ の符号つき倍数。これが $H^1(S^1)\cong\R$ を生成する。\tQ\ （符号は向きづけの選び方による）
+
+\begin{ex}[$S^n$]
+$U=S^n\setminus\{N\}$, $V=S^n\setminus\{S\}$ は $\R^n$ と微分同相で、$U\cap V\simeq S^{n-1}$。MV の $\delta:H^{k}(S^{n-1})\to H^{k+1}(S^n)$ は $k\ge1$ で同型。帰納的に $H^k(S^n)=\R\ (k=0,n)$、$0$ （それ以外）（問~\ref{p:MV}）。
+\end{ex}
+
+
+\begin{ex}[2形式の原始形式]
+$\R^3$ の閉2形式 $\beta=\dd y\wedge\dd z+\dd z\wedge\dd x+\dd x\wedge\dd y$ は $\dd\beta=0$。Poincar\'e の補題により $\beta=\dd\alpha$ となる $\alpha$ が存在する。ホモトピー作用素（$x$ は Euler ベクトル場）で $\alpha=\int_0^1\iota_{x}\beta(tx)\,t\,\dd t=\frac12\iota_x\beta=\frac12\bigl((z-y)\dd x+(x-z)\dd y+(y-x)\dd z\bigr)$（$\beta$ の係数は定数）。実際 $\dd\alpha=\beta$（コードで確認）。一方 $\R^3\setminus0$ 上の閉2形式 $\omega=\frac{x\dd y\wedge\dd z+y\dd z\wedge\dd x+z\dd x\wedge\dd y}{(x^2+y^2+z^2)^{3/2}}$ は完全でない（$S^2$ 上の積分が $4\pi\ne0$：問~\ref{p:area}）。$H^2(\R^3\setminus0)\cong H^2(S^2)=\R$。
+\end{ex}
+
+\subsection{Poincar\'e 双対（主張）と応用}
+\begin{thm}[Poincar\'e 双対]\label{thm:PD}\tC
+$M$ が向きづけられた\emph{連結な}コンパクト $n$ 次元多様体（境界なし）なら、積分は $\int_M:H^n(M)\xrightarrow{\ \cong\ }\R$ を与え、
+\[
+H^k(M)\times H^{n-k}(M)\to\R,\quad([\alpha],[\beta])\mapsto\int_M\alpha\wedge\beta
+\]
+は完全対（非退化）。特に $H^k(M)\cong H^{n-k}(M)^*$、$b_k=b_{n-k}$（完全対の主張は連結でなくても成り立つ）。
+\end{thm}
+\src{Bott--Tu 第I章 §5（有限被覆をもつ多様体に対し MV の議論で証明）。ここでは証明を省く。}
+
+\begin{cor}\label{cor:odd}\tP\
+閉じた向きづけられた奇数次元多様体の Euler 標数 $\chi(M)=\sum(-1)^kb_k$ は $0$。
+\end{cor}
+\begin{proof}
+$n$ 奇数なら $b_k=b_{n-k}$ で、$k$ と $n-k$ は偶奇が異なる。$\chi=\sum_{k=0}^n(-1)^kb_k$ の項 $k$ と $n-k$ が打ち消し合う。
+\end{proof}
+
+次数 $\deg$：$f:M\to N$ が向きづけられた閉 $n$ 次元多様体の間（$N$ 連結）の写像なら、$\int_Mf^*\omega=\deg f\int_N\omega$ で整数 $\deg f$ が定まる（$f^*$ が $H^n(N)\cong\R\to H^n(M)\cong\R$ で与える数）。$\deg$ が整数であることは正則値の逆像の個数の符号つき和による\tC。$z\mapsto z^m$ : $S^1\to S^1$ は $\deg=m$（問~\ref{p:brouwer}）。
+
+\paragraph{統合論文との関係。}統合論文の「全 Euler 標数 $(-1)^n\mathrm{rk}(E)\chi(X)$」は、Betti 数の交代和という $\chi$ の定義と、双対性（Poincar\'e 双対の一般化 Serre 型の双対）が背景にある。$H^k$ の次元を Poincar\'e 双対で対にして交代和を取る議論は、第4・5巻で Serre 双対に置き換わる。
+
+
+\subsection{Euler 標数と Mayer--Vietoris}
+各 $H^k$ が有限次元（コンパクト多様体、あるいは有限な良い被覆をもつ場合 \tC）なら $\chi(M)=\sum_k(-1)^kb_k(M)$ と定める。
+\begin{prop}\label{prop:chiMV}\tP\
+$M=U\cup V$ で $U,V,U\cap V$ の Betti 数がすべて有限なら $\chi(M)=\chi(U)+\chi(V)-\chi(U\cap V)$。
+\end{prop}
+\begin{proof}
+有限次元ベクトル空間の長完全列の次元の交代和は $0$：$\cdots\to H^k(M)\to H^k(U)\oplus H^k(V)\to H^k(U\cap V)\to H^{k+1}(M)\to\cdots$ より $\sum(-1)^k\bigl(b_k(M)-b_k(U)-b_k(V)+b_k(U\cap V)\bigr)=0$。
+\end{proof}
+例：$\chi(S^1)=1+1-2=0$、$\chi(S^n)=1+1-\chi(S^{n-1})$ から $\chi(S^n)=1+(-1)^n$。種数 $g$ の向きづけ可能閉曲面 $\Sigma_g$ は $b=(1,2g,1)$、$\chi=2-2g$ \tC。統合論文の Euler 標数の公式は、この $\chi$ の構造（加法性と積）を使う。
+
+\subsection{その他の標準的な結果（引用のみ）}
+\begin{itemize}
+\item \textbf{Künneth}：$H^*(M\times N)\cong H^*(M)\otimes H^*(N)$（有限な良い被覆をもつとき）。$T^n=(S^1)^n$ で $b_k=\binom nk$。\tC\ （Bott--Tu 第I章 §5）
+\item $H^*(\CP^n;\R)=\R[h]/(h^{n+1})$（$\deg h=2$）、すなわち $b_{2k}=1$ $(0\le k\le n)$、奇数次は $0$。\tC\ ここで $h$ は $c_1(\mathcal O(1))$ の類にとれる（第6巻）。
+\item \textbf{de Rham の定理}：$H^k_{\mathrm{dR}}(M)\cong H^k_{\mathrm{sing}}(M;\R)$。したがって de Rham コホモロジーは位相不変量で、これが整数 $c_k\in H^{2k}(M;\Z)$ の実像を考える基盤になる。\tC\ （Lee 第18章、Bott--Tu 第II章。第3巻で層の言葉により再証明する。）
+\item \textbf{Poincar\'e 双対の証明の骨組み}：MV の列に $H^k$ と $(H_c^{n-k})^*$（コンパクト台）を並べ、五項補題で、有限な良い被覆の帰納法で示す。\tC
+\item \textbf{調和形式}：\emph{コンパクト}多様体 $M$ に Riemann 計量を入れると、各コホモロジー類に調和形式（$\Delta\omega=0$）がただ1つある（Hodge の定理、第5巻）。
+\end{itemize}
+
+\paragraph{交叉形式の例。}$T^2$ の $H^1$ は $[\dd\theta_1],[\dd\theta_2]$ で張られ、$H^2$ は $[\dd\theta_1\wedge\dd\theta_2]$。対 $H^1\times H^1\to H^2\cong\R$：$(a[\dd\theta_1]+b[\dd\theta_2],\ c[\dd\theta_1]+d[\dd\theta_2])\mapsto(ad-bc)\int\dd\theta_1\wedge\dd\theta_2=(2\pi)^2(ad-bc)$。これは非退化な反対称形式（Poincar\'e 双対が $H^1\cong(H^1)^*$ を与えることの具体例）。
+
+\begin{keybox}{§4 の要点}
+\begin{itemize}
+\item $H^k_{\mathrm{dR}}=\ker\dd/\mathrm{im}\,\dd$。ホモトピー不変。$\R^n$ は $H^0$ のみ。
+\item 計算の道具は Mayer--Vietoris（分割して貼り合わせる）。$H^*(S^n)$, $H^*(T^2)$ が計算できる。
+\item Poincar\'e 双対：閉・向きづけられた $n$ 次元で $H^k\cong(H^{n-k})^*$。\ \textbf{【あとで使う】}第3巻（層と \Cech{} コホモロジーとの同型 = de Rham の定理）、第4・5巻（Serre 双対・Hodge 理論）。
+\end{itemize}
+\end{keybox}
+
+\subsection*{問題（§4）}
+\begin{prob}{基本}\label{p:homotopyop}
+$\R^3$ の1形式 $\alpha=y\,\dd x+x\,\dd y+2z\,\dd z$ が閉であることを確かめ、公式 $f(x)=\int_0^1\sum_ix^i\alpha_i(tx)\dd t$ で原始関数を求めよ。
+\end{prob}
+\begin{prob}{基本}\label{p:punct}
+$\omega=\frac{x\,\dd y-y\,\dd x}{x^2+y^2}$ が $\R^2\setminus0$ で閉であることを示し、単位円周上の積分を求めて、$\omega$ が完全でないことを説明せよ。$\omega=\dd\theta$ の意味も述べよ。
+\end{prob}
+\begin{prob}{標準}\label{p:MV}
+Mayer--Vietoris を用いて (a) $H^k(S^n)$（$n\ge1$）、(b) $T^2=S^1\times S^1$ の Betti 数 $(b_0,b_1,b_2)=(1,2,1)$ を求めよ。ヒント：(b) は $S^1$ を2つの弧 $U,V$ で覆い、$T^2$ を $S^1\times U$, $S^1\times V$ で覆う。
+\end{prob}
+\begin{prob}{発展}\label{p:brouwer}
+(a) $f_m(z)=z^m:S^1\to S^1$ について $\int_{S^1}f_m^*\dd\theta=2\pi m$ を示し、$\deg f_m=m$ とせよ。(b) 滑らかな写像 $r:D^2\to S^1$ で $r|_{S^1}=\id$ となるもの（レトラクション）は存在しないことを、Stokes を使って示せ。
+\end{prob}
+\begin{prob}{発展}\label{p:Rk}
+$M_k=\R^2\setminus\{k\text{ 点}\}$ について、$\dim H^1(M_k)=k$, $H^2(M_k)=0$ を、$k$ についての帰納法と Mayer--Vietoris で示せ。
+\end{prob}

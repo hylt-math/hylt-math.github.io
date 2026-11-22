@@ -1,0 +1,149 @@
+
+%==================================================
+\section{問題の解答}
+%==================================================
+\noindent 各解答の末尾の「検算」は、有理係数多項式による自作コード（外微分・括弧・Lie 微分・行列値形式）または数値積分で独立に確かめたことを示す。\textbf{検算なし}は手計算のみ。
+
+\subsection*{§1 の解答}
+\begin{sol}{\ref{p:stereo}}
+$u^2+v^2=\frac{x^2+y^2}{(1-z)^2}=\frac{1-z^2}{(1-z)^2}=\frac{1+z}{1-z}$（$x^2+y^2=1-z^2$）。したがって $\frac{(u,v)}{u^2+v^2}=\frac{(x,y)}{1-z}\cdot\frac{1-z}{1+z}=\frac{(x,y)}{1+z}=(u',v')$。$\iota(u,v)=(u,v)/\rho^2$（$\rho^2=u^2+v^2$）の Jacobi 行列は
+$\frac1{\rho^4}\begin{pmatrix}v^2-u^2&-2uv\\-2uv&u^2-v^2\end{pmatrix}$、行列式は $\frac{-(u^2-v^2)^2-4u^2v^2}{\rho^8}=-\frac1{\rho^4}<0$。$(u',v')\mapsto(u',-v')$ を合成すると行列式が $+1/\rho^4>0$ となり、重なり $\R^2\setminus0$（連結）で向きを保つので、向きの揃ったアトラスになる。（検算：数値微分で $\det=-1/\rho^4$、点 $(0.3,0.4,\sqrt{0.75})$ で $u'$ の式を確認。）
+\end{sol}
+\begin{sol}{\ref{p:Fmap}}
+$\dd F=\begin{pmatrix}2x&-2y\\2y&2x\end{pmatrix}$。$(1,1)$ で $\begin{pmatrix}2&-2\\2&2\end{pmatrix}$ で、$\dd F(\partial_x)$ は第1列：$2\partial_u+2\partial_v$（$F(1,1)=(0,2)$）。$\det=4(x^2+y^2)$ なので、原点でのみ局所微分同相でない（$F$ は $z\mapsto z^2$）。（検算なし）
+\end{sol}
+\begin{sol}{\ref{p:TSn}}
+各 $x\in S^n$ で $T_x\R^{n+1}=\R^{n+1}=x^\perp\oplus\R x$、$T_xS^n=x^\perp$。$\R x$ は至る所 $0$ でない切断 $x\mapsto x$ をもつ直線束 $N$ で、自明（命題~\ref{prop:trivial}）。よって $TS^n\oplus N=T\R^{n+1}|_{S^n}=S^n\times\R^{n+1}$。$n=1$：$TS^1\oplus\varepsilon^1\cong\varepsilon^2$ の両辺の $\Lambda^2$ をとると、直線束 $L$ では $\Lambda^2(L\oplus\varepsilon^1)\cong L$ なので $TS^1\cong\Lambda^2\varepsilon^2=\varepsilon^1$。別の見方として、切断 $(x,y)\mapsto(-y,x)$ が至る所 $0$ でないので自明（命題~\ref{prop:trivial}）。（検算なし）
+\end{sol}
+\begin{sol}{\ref{p:hadamard}}
+$g_i(x)=\int_0^1\partial_if(tx)\dd t$ とおくと $f(x)=f(0)+\sum x^ig_i(x)$、$g_i(0)=\partial_if(0)$。$D(1)=D(1\cdot1)=2D(1)$ より $D(1)=0$（定数に対して $0$）。Leibniz 則から $D(x^ig_i)=x^i(0)D(g_i)+g_i(0)D(x^i)=\partial_if(0)D(x^i)$。よって $Df=\sum D(x^i)\partial_if(0)$。
+\end{sol}
+\begin{sol}{\ref{p:torus}}
+$\rho=\sqrt{x^2+y^2}$ として $f_x=2(\rho-2)x/\rho$, $f_y=2(\rho-2)y/\rho$, $f_z=2z$。$(x,y)\ne0$ で $f_x=f_y=0\Leftrightarrow\rho=2$、$f_z=0\Leftrightarrow z=0$。両方成り立つ点では $f=0\ne1$。よって $1$ は正則値。また $f=1$ なら $(\rho-2)^2\le1$ より $\rho\ge1$ で、トーラスは $\{\rho>0\}$ の中にある。$(3,0,0)$：$\rho=3$, $f=1$、$\dd f=2\dd x$、$T=\ker=\mathrm{span}(\partial_y,\partial_z)$。$(2,0,1)$：$f=0+1=1$、$\dd f=2\dd z$、$T=\mathrm{span}(\partial_x,\partial_y)$。（検算なし）
+\end{sol}
+
+\subsection*{§2 の解答}
+\begin{sol}{\ref{p:bracketcalc}}
+(a) $[\partial_x,x^2\partial_y]^k=\partial_x(x^2\delta^k_2)-0=2x\,\delta^k_2$、よって $2x\partial_y$。(b) $E=(x,y)$, $R=(-y,x)$：$[E,R]^k=E(R^k)-R(E^k)$。$k=1$：$E(-y)-R(x)=-y-(-y)=0$。$k=2$：$E(x)-R(y)=x-x=0$。よって $[E,R]=0$（回転と拡大は可換）。（検算：コードで確認）
+\end{sol}
+\begin{sol}{\ref{p:so3}}
+$L_1=(0,-z,y)$, $L_2=(z,0,-x)$（成分は $(\partial_x,\partial_y,\partial_z)$ の係数）。$[L_1,L_2]^k=L_1(L_2^k)-L_2(L_1^k)$。$k=1$：$L_1(z)-L_2(0)=y$。$k=2$：$L_1(0)-L_2(-z)=-x$（$L_2(-z)=x$）。$k=3$：$L_1(-x)-L_2(y)=0$。よって $[L_1,L_2]=y\partial_x-x\partial_y=-L_3$。（検算：コードで3つとも確認）
+\end{sol}
+\begin{sol}{\ref{p:jacobi}}
+$[X,[Y,Z]]f=XYZf-XZYf-YZXf+ZYXf$。巡回置換 $(X,Y,Z)\to(Y,Z,X)\to(Z,X,Y)$ を足すと
+$XYZ-XZY-YZX+ZYX+YZX-YXZ-ZXY+XZY+ZXY-ZYX-XYZ+YXZ=0$（各項が $\pm$ で2回ずつ現れる）。
+\end{sol}
+\begin{sol}{\ref{p:natural}}
+$(F_*X)_{F(p)}g=\dd F(X_p)g=X_p(g\circ F)$ だから $(F_*X)g\circ F=X(g\circ F)$。よって $(F_*X)(F_*Y\,g)\circ F=X\bigl((F_*Y\,g)\circ F\bigr)=X(Y(g\circ F))$、同様に交換して引くと $[F_*X,F_*Y]g\circ F=[X,Y](g\circ F)=(F_*[X,Y]g)\circ F$。極座標：$(r,\theta)$ 座標ベクトル場は $[\partial_r,\partial_\theta]=0$（偏微分の可換性）。写像 $\Phi(r,\theta)=(r\cos\theta,r\sin\theta)$ は局所微分同相で、連鎖律から $\Phi_*\partial_r=\cos\theta\partial_x+\sin\theta\partial_y=\frac{x\partial_x+y\partial_y}r$, $\Phi_*\partial_\theta=-r\sin\theta\partial_x+r\cos\theta\partial_y=x\partial_y-y\partial_x$。自然性から $[\Phi_*\partial_r,\Phi_*\partial_\theta]=\Phi_*[\partial_r,\partial_\theta]=0$。（検算なし。ただし (b) の $[E,R]=0$ とも整合する。）
+\end{sol}
+\begin{sol}{\ref{p:contact}}
+(a) $\alpha(X)=\dd z(X)-y\,\dd x(X)=y-y=0$、$\alpha(Y)=0$。(b) $X=(1,0,y)$, $Y=(0,1,0)$：$[X,Y]^k=X(Y^k)-Y(X^k)$ は $k=3$ のみ $0-Y(y)=-1$。$[X,Y]=-\partial_z$。$\alpha(-\partial_z)=-1\neq0$ なので $\ker\alpha=\mathrm{span}(X,Y)$ に入らず、包合的でない。(c) $\dd\alpha=-\dd y\wedge\dd x=\dd x\wedge\dd y$、$\dd\alpha(X,Y)=\dd x(X)\dd y(Y)-\dd x(Y)\dd y(X)=1$。$-\alpha([X,Y])=-(-1)=1$ ✓。$\alpha\wedge\dd\alpha=(\dd z-y\dd x)\wedge\dd x\wedge\dd y=\dd z\wedge\dd x\wedge\dd y=\dd x\wedge\dd y\wedge\dd z\ne0$。（検算：コードで $[X,Y]$ と不変公式を確認）
+\end{sol}
+\begin{sol}{\ref{p:witt}}
+$[f\partial,g\partial]h=f(gh')'-g(fh')'=fg'h'-f'gh'$。$f=e^{im\theta},g=e^{in\theta}$：$fg'-f'g=i(n-m)e^{i(m+n)\theta}$。$E,C,S$：$[E,C]$：$f=1,g=\cos$ で $-\sin$ なので $-S$。$[E,S]=C$。$[C,S]$：$\cos\cdot\cos-(-\sin)\sin=1$ なので $E$。よって $[E,C]=-S$, $[E,S]=C$, $[C,S]=E$（$\mathfrak{sl}(2,\R)$ と同型）。（検算なし）
+\end{sol}
+
+\subsection*{§3 の解答}
+\begin{sol}{\ref{p:dcalc}}
+$\dd\alpha=\dd(x^2y)\wedge\dd x+\dd z\wedge\dd y+\dd(xy)\wedge\dd z=x^2\dd y\wedge\dd x-\dd y\wedge\dd z+y\dd x\wedge\dd z+x\dd y\wedge\dd z=-x^2\dd x\wedge\dd y+(x-1)\dd y\wedge\dd z-y\dd z\wedge\dd x$。$\dd\beta$：$\dd(xz\,\dd y\wedge\dd z)=z\,\dd x\wedge\dd y\wedge\dd z$、$\dd(y^2\dd z\wedge\dd x)=2y\,\dd y\wedge\dd z\wedge\dd x=2y\,\dd x\wedge\dd y\wedge\dd z$、$\dd(x\dd x\wedge\dd y)=0$。よって $\dd\beta=(z+2y)\dd x\wedge\dd y\wedge\dd z$（$\mathrm{div}(xz,y^2,x)$）。$\dd\dd\alpha$：$\dd(-x^2\dd x\wedge\dd y)=0$、$\dd((x-1)\dd y\wedge\dd z)=\dd x\wedge\dd y\wedge\dd z$、$\dd(-y\dd z\wedge\dd x)=-\dd y\wedge\dd z\wedge\dd x=-\dd x\wedge\dd y\wedge\dd z$。合計 $0$。（検算：コードで $\dd\alpha,\dd\beta,\dd^2\alpha=0$）
+\end{sol}
+\begin{sol}{\ref{p:pullback}}
+(a) $\dd x=\cos\theta\dd r-r\sin\theta\dd\theta$, $\dd y=\sin\theta\dd r+r\cos\theta\dd\theta$。$\dd x\wedge\dd y=r\cos^2\theta\,\dd r\wedge\dd\theta-r\sin^2\theta\,\dd\theta\wedge\dd r=r\,\dd r\wedge\dd\theta$。(b) $F^*(\dd x\wedge\dd y)=(2x\dd x-2y\dd y)\wedge(2y\dd x+2x\dd y)=4x^2\dd x\wedge\dd y-4y^2\dd y\wedge\dd x=4(x^2+y^2)\dd x\wedge\dd y$。$F^*(x\dd y-y\dd x)=(x^2-y^2)(2y\dd x+2x\dd y)-2xy(2x\dd x-2y\dd y)=-2y(x^2+y^2)\dd x+2x(x^2+y^2)\dd y=2(x^2+y^2)(x\dd y-y\dd x)$。（意味：$z\mapsto z^2$ で $r\mapsto r^2$, $\theta\mapsto2\theta$。）（検算：コードで両方）
+\end{sol}
+\begin{sol}{\ref{p:cartanex}}
+(a) $\varphi_t^*x=x\cos t-y\sin t$, $\varphi_t^*y=x\sin t+y\cos t$。$\varphi_t^*(x\dd y)=(x\cos t-y\sin t)(\sin t\,\dd x+\cos t\,\dd y)$。$t=0$ で微分：$(-y)\dd y+x\,\dd x$。(b) $\iota_X\omega=x\cdot\dd y(X)=x^2$、$\dd(x^2)=2x\dd x$。$\dd\omega=\dd x\wedge\dd y$、$\iota_X(\dd x\wedge\dd y)=\dd x(X)\dd y-\dd y(X)\dd x=-y\dd y-x\dd x$。和は $x\dd x-y\dd y$ で一致。（検算：コードで座標公式と Cartan の一致、および一般の1・2形式でも確認）
+\end{sol}
+\begin{sol}{\ref{p:invariant}}
+関数 $\alpha(Y)$ について $\Lie_X(\alpha(Y))=X(\alpha(Y))$。一方 $\Lie_X$ は縮約に関する Leibniz 則（流れによる引き戻しが縮約と可換）から $\Lie_X(\alpha(Y))=(\Lie_X\alpha)(Y)+\alpha(\Lie_XY)=(\Lie_X\alpha)(Y)+\alpha([X,Y])$。Cartan：$(\Lie_X\alpha)(Y)=(\dd\iota_X\alpha)(Y)+(\iota_X\dd\alpha)(Y)=Y(\alpha(X))+\dd\alpha(X,Y)$。これらを合わせて $X\alpha(Y)=Y\alpha(X)+\dd\alpha(X,Y)+\alpha([X,Y])$、すなわち $\dd\alpha(X,Y)=X\alpha(Y)-Y\alpha(X)-\alpha([X,Y])$。（検算：多項式の1形式・ベクトル場でコードにより両辺の一致を確認）
+\end{sol}
+\begin{sol}{\ref{p:area}}
+(a) $\dd\omega=(1+1+1)\dd x\wedge\dd y\wedge\dd z=3\dd x\wedge\dd y\wedge\dd z$。(b) $\omega_p(u,v)=x(u_yv_z-u_zv_y)+y(u_zv_x-u_xv_z)+z(u_xv_y-u_yv_x)=p\cdot(u\times v)=\det(p,u,v)$。$u,v\in T_pS^2=p^\perp$ では $u\times v\parallel p$ で $p\cdot(u\times v)$ は $\pm|u\times v|$、外向き法線で向きを決めれば正。よって $\omega|_{S^2}$ は面積形式。(c) Stokes：$\int_{S^2}\omega=\int_{B^3}\dd\omega=3\cdot\frac{4\pi}3=4\pi$。（検算：$\dd\omega$ をコードで）
+\end{sol}
+\begin{sol}{\ref{p:canon}}
+(a) 座標変換で $\dd x'^j=\frac{\partial x'^j}{\partial x^i}\dd x^i$、成分は $\xi_i=\frac{\partial x'^j}{\partial x^i}\xi'_j$（$\xi=J^T\xi'$）。よって $\xi'_j\dd x'^j=\xi'_j\frac{\partial x'^j}{\partial x^i}\dd x^i=\xi_i\dd x^i$。なお $\lambda_\xi(w)=\xi(\dd\pi\,w)$ は座標を使わない定義。(b) $\sigma(x)=(x,\sigma_i(x))$ なので $\sigma^*(\xi_i\dd x^i)=\sigma_i(x)\dd x^i=\sigma$。座標なしには $(\sigma^*\lambda)_p(v)=\lambda_{\sigma(p)}(\dd\sigma\,v)=\sigma(p)(\dd\pi\,\dd\sigma\,v)=\sigma(p)(v)$（$\pi\circ\sigma=\id$）。(c) $\omega=\sum_i\dd\xi_i\wedge\dd x^i$。基底 $(\partial_{\xi_1},\dots,\partial_{\xi_n},\partial_{x^1},\dots,\partial_{x^n})$ での行列 $\bigl(\omega(\cdot,\cdot)\bigr)$ は $\omega(\partial_{\xi_i},\partial_{x^j})=\delta_{ij}$ より $\begin{pmatrix}0&I\\-I&0\end{pmatrix}$（$\dd\lambda$ の符号を逆にとる文献では符号が逆）で非退化。$\omega^n=n!\,\prod_i(\dd\xi_i\wedge\dd x^i)$ は $2n$ 次元の体積形式で至る所 $0$ でない。$\omega$ は大域的に定義されているので、向きが大域的に定まる。（検算なし）
+\end{sol}
+
+\begin{sol}{\ref{p:liebracket}}
+(a) $\dd\Lie_X=\dd(\dd\iota_X+\iota_X\dd)=\dd\iota_X\dd=(\dd\iota_X+\iota_X\dd)\dd=\Lie_X\dd$（$\dd^2=0$）。(b) $[\Lie_X,\iota_Y]=\iota_{[X,Y]}$ より $\Lie_{[X,Y]}=\dd\,[\Lie_X,\iota_Y]+[\Lie_X,\iota_Y]\,\dd$。(a) を使うと $\dd\Lie_X\iota_Y-\dd\iota_Y\Lie_X+\Lie_X\iota_Y\dd-\iota_Y\Lie_X\dd=\Lie_X(\dd\iota_Y+\iota_Y\dd)-(\dd\iota_Y+\iota_Y\dd)\Lie_X=[\Lie_X,\Lie_Y]$。(c) $\iota_X(\dd x\wedge\dd y)=x\,\dd y+y\,\dd x$（$X=(x,-y)$）、$\dd(x\,\dd y+y\,\dd x)=\dd x\wedge\dd y+\dd y\wedge\dd x=0$。よって $\Lie_X(\dd x\wedge\dd y)=0$（$\mathrm{div}X=1-1=0$）。流れ $\varphi_t(x,y)=(e^tx,e^{-t}y)$ の Jacobi 行列式は $1$ ✓。（検算なし）
+\end{sol}
+
+\subsection*{§4 の解答}
+\begin{sol}{\ref{p:homotopyop}}
+$\dd\alpha=\dd y\wedge\dd x+\dd x\wedge\dd y+0=0$。$f(x,y,z)=\int_0^1\bigl(x\cdot ty+y\cdot tx+z\cdot2tz\bigr)\dd t=\int_0^12t\,(xy+z^2)\dd t=xy+z^2$。$\dd f=y\dd x+x\dd y+2z\dd z=\alpha$ ✓。（検算：コードで $\dd\alpha=0$ と $\dd(xy+z^2)=\alpha$）
+\end{sol}
+\begin{sol}{\ref{p:punct}}
+$P=-y/r^2,\ Q=x/r^2$。$Q_x=\frac{r^2-2x^2}{r^4}$, $P_y=-\frac{r^2-2y^2}{r^4}$。$Q_x-P_y=\frac{2r^2-2x^2-2y^2}{r^4}=0$、よって $\dd\omega=0$。単位円周 $(\cos t,\sin t)$ 上 $x\dd y-y\dd x=\dd t$ で $\oint\omega=2\pi$。完全なら $\omega=\dd f$ で閉曲線上の積分は $0$（Stokes）なので矛盾。$\omega$ は局所的には角度関数 $\theta$ の微分 $\dd\theta$（$\theta$ は大域的には多価）で、$[\omega]$ が $H^1(\R^2\setminus0)\cong\R$ を生成する。（検算：$\dd\omega=0$ を数値微分で）
+\end{sol}
+\begin{sol}{\ref{p:MV}}
+(a) $U=S^n\setminus N$, $V=S^n\setminus S$（$\simeq$ 点）、$U\cap V\simeq S^{n-1}$。$n=1$：$U\cap V$ は2点。$0\to H^0(S^1)\to\R^2\to\R^2\to H^1(S^1)\to0$、$\R^2\to\R^2$ は $(a,b)\mapsto(b-a,b-a)$ で階数1。$H^0(S^1)=\R$, $\dim H^1(S^1)=2-1=1$。$n\ge2$：$k\ge1$ で $H^k(U)\oplus H^k(V)=0$、$U\cap V$ は連結。MV で $H^{k+1}(S^n)\cong H^k(S^{n-1})$（$k\ge1$）。$H^1(S^n)$：$0\to H^0(S^n)=\R\to\R^2\to H^0(U\cap V)=\R\to H^1(S^n)\to0$ で $\R^2\to\R$ は全射（完全性）なので $H^1(S^n)=0$。帰納して $H^k(S^n)=\R\ (k=0,n)$、他は $0$。
+(b) $T^2$ を $A=S^1\times U$, $B=S^1\times V$（それぞれ $\simeq S^1$）、$A\cap B\simeq S^1\sqcup S^1$ で覆う。完全列 $0\to H^0(T^2)\to\R^2\xrightarrow{r_0}\R^2\to H^1(T^2)\to\R^2\xrightarrow{r_1}\R^2\to H^2(T^2)\to0$（$H^2(A)=H^2(B)=0$）。$r_0(a,b)=(b-a,b-a)$、階数1。$r_1$：$H^1(A)\oplus H^1(B)$ の元は $(a[\dd\theta],b[\dd\theta])$ で、$A\cap B$ の2成分それぞれに $(b-a)[\dd\theta]$ を与える。階数1。よって $b_0=\dim\ker r_0=1$、$b_1=\dim\mathrm{coker}\,r_0+\dim\ker r_1=1+1=2$、$b_2=\dim\mathrm{coker}\,r_1=1$。$(1,2,1)$。（検算なし。$\chi(T^2)=0$ とも整合）
+\end{sol}
+\begin{sol}{\ref{p:brouwer}}
+(a) $z=e^{it}$ で $f_m=e^{imt}$、$f_m^*\dd\theta=m\,\dd t$。$\int_{S^1}f_m^*\dd\theta=2\pi m$、$\int_{S^1}\dd\theta=2\pi$ なので $\deg f_m=m$。(b) $r:D^2\to S^1$ が $r\circ\iota=\id$（$\iota:S^1\hookrightarrow D^2$）を満たすとする。$\dd\theta$ は $S^1$ 上の閉形式なので $r^*\dd\theta$ は $D^2$ 上の閉形式。Stokes：$2\pi=\int_{S^1}\iota^*r^*\dd\theta=\int_{\partial D^2}r^*\dd\theta=\int_{D^2}\dd r^*\dd\theta=\int_{D^2}r^*\dd(\dd\theta)=0$。矛盾。（連続なレトラクションの場合は滑らかな写像で近似する\tC。）
+\end{sol}
+\begin{sol}{\ref{p:Rk}}
+$H^2(M_0)=H^2(\R^2)=0$、$H^1(M_0)=0$。$M_{k+1}=X$ とし、$M_k=X\cup D$（$D$ は新しく加えた点 $p$ のまわりの小円板、他の点を含まない）。$X\cap D=D\setminus p\simeq S^1$。MV：
+$0\to H^0(M_k)\to H^0(X)\oplus H^0(D)\to H^0(X\cap D)\to H^1(M_k)\to H^1(X)\oplus H^1(D)\to H^1(X\cap D)\to H^2(M_k)\to H^2(X)\oplus0\to H^2(X\cap D)=0$。
+各項：$\R\to\R^2\to\R$（連結）で $\R^2\to\R$ は全射なので $H^0(X\cap D)\to H^1(M_k)$ は零。$H^1(X\cap D)=\R$、$H^2(M_k)=0$（帰納法の仮定）。よって $0\to H^1(M_k)\to H^1(X)\to\R\to0$ は完全で $\dim H^1(X)=k+1$、$H^2(X)\cong H^2(M_k)=0$。
+\end{sol}
+
+\subsection*{§5 の解答}
+\begin{sol}{\ref{p:mobius}}
+切断は $(s_U,s_V)$、$s_U:U\to\R$, $s_V:V\to\R$ で $W_1$ 上 $s_U=s_V$、$W_2$ 上 $s_U=-s_V$。至る所 $0$ でないなら、$U,V$ が連結なので $s_U,s_V$ は一定の符号 $\varepsilon_U,\varepsilon_V$ をもつ。$W_1$：$\varepsilon_U=\varepsilon_V$、$W_2$：$\varepsilon_U=-\varepsilon_V$、矛盾。命題~\ref{prop:trivial} より自明でない。
+\end{sol}
+\begin{sol}{\ref{p:taut}}
+$U_0$：$\Phi_0(\ell,v)=([1:z],a)$, $v=a(1,z)$。$U_1$：$\Phi_1(\ell,v)=([w:1],b)$, $v=b(w,1)$。重なりで $w=1/z$、$a(1,z)=b(1/z,1)=\frac bz(1,z)$ より $a=b/z$、すなわち $b=za$。$\Phi_1\circ\Phi_0^{-1}(p,a)=(p,za)$ で $g_{10}=z$、$g_{01}=z^{-1}$。双対：$(g^{-1})^T$ なので $\mathcal O(1)$ の貼り合わせ関数は $g_{10}=z^{-1}$。
+\end{sol}
+\begin{sol}{\ref{p:constr}}
+階数：$\mathrm{Hom}(E,F)$：$6$、$\Lambda^2E$：$3$、$E\otimes F$：$6$、$\Lambda^2(E\oplus F)$：$\binom52=10=3+6+1$。同型：線形空間の標準同型 $\Lambda^2(V\oplus W)\cong\Lambda^2V\oplus(V\otimes W)\oplus\Lambda^2W$（$(v+w)\wedge(v'+w')=v\wedge v'+v\otimes w'-v'\otimes w+w\wedge w'$ に対応）は $\GL(V)\times\GL(W)$ と整合するので、貼り合わせ関数（ブロック対角）に対して束の同型になる。$\Lambda^{r-1}$：対 $\Lambda^{r-1}V\times V\to\Lambda^rV$, $(\eta,v)\mapsto\eta\wedge v$ は非退化で、$(\Lambda^{r-1}g\,\eta)\wedge(gv)=\det g\,\eta\wedge v$。よって $\Lambda^{r-1}V\cong V^*\otimes\Lambda^rV$ で $\Lambda^{r-1}g\leftrightarrow\det g\cdot(g^{-1})^T$。これは $E^*\otimes\det E$ の貼り合わせ関数。
+\end{sol}
+\begin{sol}{\ref{p:hermexist}}
+(a) $\mathcal O(-1)\subset\CP^1\times\C^2$ の各ファイバー（$\C^2$ の直線）に標準内積を制限する。滑らかで正定値。(b) $h(e_0,e_0)=\langle(1,z),(1,z)\rangle=1+|z|^2$。$U_1$ では $h(e_1,e_1)=1+|w|^2$。整合性：$e_0=ze_1$（$z=1/w$）から $h(e_0,e_0)=|z|^2(1+|w|^2)=|z|^2+1$ ✓。
+\end{sol}
+\begin{sol}{\ref{p:pairing}}
+基底 $e_i$ と双対基底 $e^i$ で $\langle e_i,e^j\rangle=\frac12\delta_i^j$、$\langle e_i,e_j\rangle=\langle e^i,e^j\rangle=0$。Gram 行列 $\frac12\begin{pmatrix}0&I\\I&0\end{pmatrix}$ は非退化。$\langle e_i\pm e^i,e_i\pm e^i\rangle=\pm1$ で、$\{e_i+e^i\}$ 上正、$\{e_i-e^i\}$ 上負なので符号 $(n,n)$。(b) $V$ 上 $\langle X,Y\rangle=0$、$V^*$ 上 $\langle\xi,\eta\rangle=0$、ともに $n=\frac12\dim$ 次元で極大等方的。(c) $q(X+\xi)=\langle X+\xi,X+\xi\rangle=\xi(X)$。$q(e^\beta(X+\xi))=(\xi+\iota_X\beta)(X)=\xi(X)+\beta(X,X)=\xi(X)$。2次形式を保つので（偏極により）内積を保つ。
+\end{sol}
+
+\subsection*{§6 の解答}
+\begin{sol}{\ref{p:curvcalc}}
+$\dd A=\begin{pmatrix}0&\dd z\wedge\dd x\\\dd x\wedge\dd y&0\end{pmatrix}$。$A\wedge A$ の $(1,1)$ 成分は $A_{12}\wedge A_{21}=z\dd x\wedge x\dd y=xz\,\dd x\wedge\dd y$、$(2,2)$ は $A_{21}\wedge A_{12}=x\dd y\wedge z\dd x=-xz\,\dd x\wedge\dd y$、非対角は $0$。よって $F$ は例の通り。Bianchi：$\dd F=\mathrm{diag}(x,-x)\,\dd x\wedge\dd y\wedge\dd z$（$\dd(xz\,\dd x\wedge\dd y)=x\,\dd z\wedge\dd x\wedge\dd y$）。$(AF)_{22}=A_{21}F_{12}=x\dd y\wedge\dd z\wedge\dd x=x\,\mathrm{vol}$、$(AF)_{11}=A_{12}F_{21}=z\dd x\wedge\dd x\wedge\dd y=0$、$(FA)_{11}=F_{12}A_{21}=\dd z\wedge\dd x\wedge x\dd y=x\,\mathrm{vol}$、$(FA)_{22}=F_{21}A_{12}=0$、非対角はすべて $0$。よって $AF-FA=\mathrm{diag}(-x,x)\mathrm{vol}$、$\dd F+AF-FA=0$ ✓。（検算：コード（行列値形式）で $F$ と Bianchi の両方）
+\end{sol}
+\begin{sol}{\ref{p:holonomy}}
+(a) $A=i\lambda\dd\theta$、$F=\dd A+A\wedge A=0$。(b) $\dot s+i\lambda s=0$、$s(\theta)=e^{-i\lambda\theta}s(0)$、$s(2\pi)=e^{-2\pi i\lambda}s(0)$。(c) $A'=g^{-1}Ag+g^{-1}\dd g=i\lambda\dd\theta+ik\dd\theta=i(\lambda+k)\dd\theta$。ホロノミー $e^{-2\pi i(\lambda+k)}=e^{-2\pi i\lambda}$ で、$\lambda\bmod\Z$ のみで決まる（直線束では可換なのでゲージ不変）。$\lambda\notin\Z$ なら平坦だがホロノミーが自明でない。（検算なし）
+\end{sol}
+\begin{sol}{\ref{p:gauge}}
+$s=e\sigma=e'\sigma'$、$e'=eg$ から $\sigma=g\sigma'$。$\nabla s=e(\dd\sigma+A\sigma)=e(g\dd\sigma'+\dd g\,\sigma'+Ag\sigma')=e'(\dd\sigma'+g^{-1}\dd g\,\sigma'+g^{-1}Ag\sigma')$。よって $A'=g^{-1}Ag+g^{-1}\dd g$。曲率：$\dd(g^{-1})=-g^{-1}\dd g\,g^{-1}$ を使って
+$\dd A'=-g^{-1}\dd g\,g^{-1}\wedge Ag+g^{-1}\dd A\,g-g^{-1}A\wedge\dd g-g^{-1}\dd g\wedge g^{-1}\dd g$、
+$A'\wedge A'=g^{-1}A\wedge A\,g+g^{-1}A\wedge\dd g+g^{-1}\dd g\,g^{-1}\wedge Ag+g^{-1}\dd g\wedge g^{-1}\dd g$。
+和を取ると第1,3項、第2,4項が打ち消し合い $F'=g^{-1}(\dd A+A\wedge A)g$。直線束では $g$ がスカラーなので $F'=F$（$A'=A+\dd\log g$）。（検算：コードで $g=\begin{pmatrix}1&x\\0&1\end{pmatrix}$ について $F'=g^{-1}Fg$ を確認）
+\end{sol}
+\begin{sol}{\ref{p:unitary}}
+$h(e_i,e_j)=\delta_{ij}$ を微分：$0=h(\nabla e_j,e_i)+h(e_j,\nabla e_i)=A^i{}_j+\overline{A^j{}_i}$、すなわち $A^*=-A$（$*$ は共役転置）。$(\dd A)^*=\dd A^*=-\dd A$。$(A\wedge A)^*_{ij}=\overline{\sum_kA_{jk}\wedge A_{ki}}=\sum_k\bar A_{jk}\wedge\bar A_{ki}=\sum_kA_{kj}\wedge A_{ik}=-(A\wedge A)_{ij}$（1形式の反可換性）。よって $F^*=-F$。対角成分 $F_{ii}$ は $\overline{F_{ii}}=-F_{ii}$ で純虚、$\tr F\in i\Omega^2(M;\R)$、$\frac i{2\pi}\tr F$ は実2形式。
+\end{sol}
+\begin{sol}{\ref{p:bianchi}}
+$\dd_\nabla^2=F\wedge$ は $E$ 値形式全体で成り立つ（$\dd_\nabla^2(\omega\otimes s)=\omega\wedge\dd_\nabla^2s$ と $F$ が $C^\infty$ 線形なことから）。$\dd_\nabla^3s=\dd_\nabla(Fs)=(\dd_\nabla F)s+F\wedge\dd_\nabla s$（$F$ は偶数次）。他方 $\dd_\nabla^3s=\dd_\nabla^2(\dd_\nabla s)=F\wedge\dd_\nabla s$。差を取って $(\dd_\nabla F)s=0$。$s$ は任意なので $\dd_\nabla F=0$。
+\end{sol}
+
+\begin{sol}{\ref{p:S2LC}}
+$\theta^1=\dd\vartheta$, $\theta^2=\sin\vartheta\,\dd\varphi$。$\dd\theta^1=0$、$\dd\theta^2=\cos\vartheta\,\dd\vartheta\wedge\dd\varphi$。$\omega^1{}_2=-\cos\vartheta\,\dd\varphi$, $\omega^2{}_1=\cos\vartheta\,\dd\varphi$ のとき、$-\omega^1{}_2\wedge\theta^2=\cos\vartheta\sin\vartheta\,\dd\varphi\wedge\dd\varphi=0=\dd\theta^1$、$-\omega^2{}_1\wedge\theta^1=-\cos\vartheta\,\dd\varphi\wedge\dd\vartheta=\cos\vartheta\,\dd\vartheta\wedge\dd\varphi=\dd\theta^2$ ✓。$A=\begin{pmatrix}0&-\cos\vartheta\,\dd\varphi\\\cos\vartheta\,\dd\varphi&0\end{pmatrix}$（歪対称）。$A\wedge A$ の対角成分は $A_{12}\wedge A_{21}=-\cos^2\vartheta\,\dd\varphi\wedge\dd\varphi=0$ で、$A\wedge A=0$。$F=\dd A=\begin{pmatrix}0&\sin\vartheta\,\dd\vartheta\wedge\dd\varphi\\-\sin\vartheta\,\dd\vartheta\wedge\dd\varphi&0\end{pmatrix}$（歪対称）。$\theta^1\wedge\theta^2=\sin\vartheta\,\dd\vartheta\wedge\dd\varphi$ なので $F^1{}_2=1\cdot\theta^1\wedge\theta^2$（$K=1$）。$A$ は極で特異（枠が極で定義されない）だが $F$ は大域的に定まる。$\frac1{2\pi}\int_{S^2}F^1{}_2=\frac1{2\pi}\int_0^\pi\sin\vartheta\,\dd\vartheta\int_0^{2\pi}\dd\varphi=\frac{2\cdot2\pi}{2\pi}=2=\chi(S^2)$。（検算なし。手計算のみ）
+\end{sol}
+
+\subsection*{§7 の解答}
+\begin{sol}{\ref{p:Ok}}
+$U_1$ で $h(e_1,e_1)=|z|^{-2k}h(e_0,e_0)=|z|^{-2k}(1+|z|^2)^k=(|z|^{-2}+1)^k=(1+|w|^2)^k$ で $w=0$ まで滑らか。$\theta_k=k\,\partial\log(1+|z|^2)=k\frac{\bar z\dd z}{1+|z|^2}$。$F_k=\dd\theta_k=k\frac{\dd\bar z\wedge\dd z}{(1+|z|^2)^2}=\frac{2ik\,\dd x\wedge\dd y}{(1+r^2)^2}$、$c_1=\frac i{2\pi}F_k=-\frac k\pi\frac{\dd x\wedge\dd y}{(1+r^2)^2}$。$\int_{\C}\frac{\dd x\dd y}{(1+r^2)^2}=\pi$ なので $\int_{\CP^1}c_1=-k$。（検算：$\dd\theta$ の係数を有限差分、積分を数値積分で $k=1,2,-3$ について確認：$-1,-2,+3$）
+\end{sol}
+\begin{sol}{\ref{p:chernops}}
+フレーム $e\otimes e'$：$\nabla(e\otimes e')=(\theta+\theta')e\otimes e'$、$F_{L\otimes L'}=\dd(\theta+\theta')=F+F'$。よって $c_1(L\otimes L')=c_1(L)+c_1(L')$。双対：$e^*$ を双対枠として $\dd\langle e^*,e\rangle=0=\langle\nabla e^*,e\rangle+\langle e^*,\nabla e\rangle$ より $\nabla e^*=-\theta e^*$、$F_{L^*}=-F$、$c_1(L^*)=-c_1(L)$。行列式束：$\nabla(e_1\wedge\dots\wedge e_r)=\sum_je_1\wedge\dots\wedge\nabla e_j\wedge\dots=(\tr A)\,e_1\wedge\dots\wedge e_r$。$\theta=\tr A$、$F_{\det}=\dd\tr A=\tr\dd A$。一方 $\tr(A\wedge A)=\sum A_{ij}\wedge A_{ji}=-\sum A_{ji}\wedge A_{ij}=-\tr(A\wedge A)$ より $0$。よって $\tr F=\tr\dd A=F_{\det}$、$c_1(E,\nabla)=c_1(\det E)$。
+\end{sol}
+\begin{sol}{\ref{p:winding}}
+(a) $\nabla e_0=\nabla(ge_1)=\dd g\,e_1+g\theta_1e_1=(\dd g/g+\theta_1)e_0$。よって $\theta_0=\theta_1+\dd\log g$。(b) $D_0=\{|z|\le1\}$（枠 $e_0$）、$D_1=\{|z|\ge1\}\cup\{\infty\}$（枠 $e_1$）で、$c_1=\frac i{2\pi}\dd\theta_a$（$D_a$ 上）。$\CP^1$ の複素向きで $\partial D_0=C$（$z$ で反時計回り）。$D_1$ の座標 $w=1/z$ の複素向きでの境界は $w$ で反時計回り、$z$ では時計回りなので $\partial D_1=-C$。Stokes：$\int c_1=\frac i{2\pi}\bigl(\oint_C\theta_0-\oint_C\theta_1\bigr)=\frac i{2\pi}\oint_C\dd\log g=\frac i{2\pi}\cdot2\pi i\,\mathrm{wind}(g)=-\mathrm{wind}(g)$。(c) $\theta_0=\frac{\bar z\dd z}{1+|z|^2}$、$\theta_1=\frac{\bar w\dd w}{1+|w|^2}=-\frac{\dd z}{z(1+|z|^2)}$（$w=1/z$, $\dd w=-\dd z/z^2$ を代入し $|z|^2=z\bar z$ を使う）。$\theta_0-\theta_1=\frac{\bar z z+1}{z(1+|z|^2)}\dd z=\frac{\dd z}z$。$\mathrm{wind}(z)=1$ なので $\int c_1=-1$ で例~\ref{ex:taut} を再現。（検算：数値で $\theta_0-\theta_1=1/z$ を一点で確認）
+\end{sol}
+\begin{sol}{\ref{p:c2}}
+$F=\begin{pmatrix}a&b\\c&-a\end{pmatrix}$（成分は2形式、可換）。$\det F=-a^2-bc$、$\tr F^2=2a^2+2bc$ なので $\det F=-\frac12\tr F^2$。$\det(I+\frac i{2\pi}F)=1+\frac i{2\pi}\tr F+(\frac i{2\pi})^2\det F$ から $c_1=0$、$c_2=-\frac1{4\pi^2}\cdot(-\frac12\tr F^2)=\frac1{8\pi^2}\tr(F\wedge F)$。$\ch_2=\frac12\tr\bigl(\frac i{2\pi}F\bigr)^2=-\frac1{8\pi^2}\tr F^2=-c_2$（$\ch_2=\frac12(c_1^2-2c_2)$ で $c_1=0$ と整合）。
+\end{sol}
+\begin{sol}{\ref{p:trivialc1}}
+(a) $F=\dd A+A\wedge A=\dd A$（$1\times1$）、$c_1=\frac i{2\pi}\dd A$ は完全。(b) 定理~\ref{thm:CW}(ii) により $c_1(L,\nabla)$ の類は $\nabla$ によらず、Stokes で完全形式の閉曲面上の積分は $0$ なので、$\int_\Sigma c_1(L,\nabla)$ は $\nabla$ によらない。$L$ が自明なら $\nabla=\dd$ で $F=0$ なので $0$。したがって $\int_\Sigma c_1\ne0$ の直線束は自明でない（例：$\mathcal O(-1)$）。(c) 自明束 $E=M\times\C^r$ で $\nabla=\dd$ をとれば $F=0$、$\ch(E,\dd)=\tr\exp0=r$。$\ch$ の類は接続によらないので $\ch(E)=r$。
+\end{sol}
+\begin{sol}{\ref{p:TCP1}}
+$g=-z^{-2}$ で、$|z|=1$ 上で $\arg g$ は $\pi-2t$（$z=e^{it}$）となり $\mathrm{wind}(g)=-2$。問~\ref{p:winding}(b) より $\int c_1(T\CP^1)=-\mathrm{wind}(g)=+2=\chi(S^2)$ で、Gauss--Bonnet（§7）の結果と一致する。同型：$g_s=e^{i\pi s}z^{-2}$（$0\le s\le1$）は $-z^{-2}$ から $z^{-2}$ への連続な道で、各 $s$ で $C\to\C^\times$ の巻き数は $-2$。巻き数が同じ貼り合わせ関数は束として同型（滑らかな直線束は巻き数で分類される\tC）なので、$T\CP^1\cong L_{-2}$（$e_0=z^{-2}e_1$）。問~\ref{p:Ok} より $L_k=\mathcal O(-k)$ なので $L_{-2}=\mathcal O(2)=\mathcal O(-1)^{\otimes(-2)}$。（滑らかな範疇での同型。正則同型は第2巻で扱う。）（検算なし）
+\end{sol}

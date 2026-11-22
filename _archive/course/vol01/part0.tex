@@ -1,0 +1,173 @@
+\input{pre_course.tex}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{arrows.meta,calc,decorations.markings}
+\fancyhead[L]{\small 第1巻　多様体・ベクトル束・接続・微分形式}
+% local macros
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\Lie}{\mathcal L}
+\newcommand{\tr}{\mathrm{tr}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\U}{\mathrm{U}}
+\newcommand{\SO}{\mathrm{SO}}
+\newcommand{\Om}{\Omega}
+\newcommand{\X}{\mathfrak X}
+\newcommand{\Gam}{\Gamma}
+\newcommand{\pa}{\partial}
+\newcommand{\Ad}{\mathrm{Ad}}
+\newcommand{\RP}{\mathbb{RP}}
+\newcommand{\CP}{\mathbb{CP}}
+\newcommand{\bs}{\boldsymbol}
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+\DeclareMathOperator{\rank}{rank}
+\newfontfamily\Lat{DejaVu Serif}
+\newcommand{\Cech}{{\Lat \v{C}ech}}
+\renewcommand{\contentsname}{目次}\renewcommand{\figurename}{図}
+\begin{document}
+\sloppy
+\begin{center}
+{\LARGE\bfseries\sffamily 第1巻　多様体・ベクトル束・接続・微分形式}\\[8pt]
+{\large 学習コース「一般化幾何への道」}\\[6pt]
+{\large 執筆：Claude\ ／\ 企画：森}\\[3pt]
+2026年11月22日（v1）\\[3pt]
+{\small （外部の査読は受けていない教材。執筆者とは別の AI による独立検査と、可能な範囲の計算での検算は行った。標準的な結果には出典を付け、確認できていないものは\tQ\ で示す。）}
+\end{center}
+\medskip
+\begin{goalbox}{この巻の学習目標}
+\begin{itemize}
+\item 多様体・接束・余接束を座標と不変な言葉の両方で扱い、座標変換則を自分で導ける。
+\item ベクトル場の Lie 括弧と、微分形式の外微分・内部積・Lie 微分を結ぶ Cartan の公式を使いこなせる。
+\item de Rham コホモロジーを（Poincar\'e の補題、Mayer--Vietoris、Poincar\'e 双対を使って）具体例で計算できる。
+\item ベクトル束を「貼り合わせ関数と構造群」の言葉で理解し、直和・テンソル積・双対・外積を作れる。
+\item 接続・曲率・共変外微分・Bianchi 恒等式を局所表示で計算できる。
+\item Chern--Weil の入口として、Chern 形式が閉であり、その de Rham 類が接続によらないことを証明でき、$\mathcal O(-1)\to\CP^1$ で $\int c_1=-1$ を計算できる。
+\end{itemize}
+\end{goalbox}
+\begin{keybox}{前提と読み方}
+前提は微積分（逆写像定理、多変数の積分）と線形代数（双対空間、外積代数の初歩）。「一度学んで忘れた」読者向けに、各節は 定義 $\to$ 動機 $\to$ 例 $\to$ 定理 $\to$ 証明（または方針と出典）の順に書く。
+本文の標準的な結果は\tC、本文で証明したものは\tP、記憶に基づく出典・細部は\tQ\ で示す。問題は \textbf{全40問}（[基本][標準][発展]）で、全問に解答がある。計算を伴う解答は、有理係数の多項式で外微分・括弧・曲率を実行する自作の確認用コードで独立に検算した（「報告」ではなく、巻末の「検算について」を参照）。
+\end{keybox}
+\tableofcontents
+\clearpage
+
+\section*{0\quad 記法と規約}
+\addcontentsline{toc}{section}{0\quad 記法と規約}
+\begin{itemize}
+\item 多様体は滑らか（$C^\infty$）、Hausdorff、第2可算とする。$M$ は $n$ 次元、座標は $(x^1,\dots,x^n)$、和の規約（上下の同じ添字は和）を使う。
+\item ベクトル場 $X,Y$ の括弧は $[X,Y]f=X(Yf)-Y(Xf)$。形式の外微分は $\dd(\alpha\wedge\beta)=\dd\alpha\wedge\beta+(-1)^{k}\alpha\wedge\dd\beta$（$\alpha$ は $k$ 次）。
+\item 1形式の外微分は $\dd\alpha(X,Y)=X\alpha(Y)-Y\alpha(X)-\alpha([X,Y])$（係数 $1/2$ を付けない規約。$\dd x\wedge\dd y(\partial_x,\partial_y)=1$）。
+\item $\Omega^k(M)$ は $k$ 形式の空間、$\Gamma(E)$ は束 $E$ の滑らかな切断の空間、$\mathfrak X(M)=\Gamma(TM)$。
+\item 接続は $\nabla(fs)=\dd f\otimes s+f\nabla s$、枠 $e=(e_1,\dots,e_r)$ に関して $\nabla e_j=\sum_i A^i{}_j\,e_i$、曲率は $F=\dd A+A\wedge A$。Chern 形式は $c(E,\nabla)=\det\bigl(I+\tfrac{i}{2\pi}F\bigr)$。
+\end{itemize}
+
+%==================================================
+\section{多様体と接束}
+%==================================================
+\subsection{多様体}
+\begin{defn}[滑らかな多様体]
+位相空間 $M$（Hausdorff、第2可算）が \emph{$n$ 次元の滑らかな多様体}とは、開被覆 $\{U_\alpha\}$ と同相写像 $\varphi_\alpha:U_\alpha\to\varphi_\alpha(U_\alpha)\subset\R^n$（開集合）の族（\emph{座標系}、\emph{アトラス}）で、座標変換
+\[
+\varphi_\beta\circ\varphi_\alpha^{-1}:\varphi_\alpha(U_\alpha\cap U_\beta)\to\varphi_\beta(U_\alpha\cap U_\beta)
+\]
+がすべて $C^\infty$ 級（したがって微分同相）となるものを備えたもの。極大アトラスを選んで滑らかな構造と呼ぶ。
+\end{defn}
+
+\begin{figure}[h]
+\centering
+\begin{tikzcd}[column sep=large,row sep=small]
+ & U_\alpha\cap U_\beta \arrow[dl,"\varphi_\alpha"'] \arrow[dr,"\varphi_\beta"] & \\
+\varphi_\alpha(U_\alpha\cap U_\beta)\arrow[rr,"\varphi_\beta\circ\varphi_\alpha^{-1}"'] & & \varphi_\beta(U_\alpha\cap U_\beta)
+\end{tikzcd}
+\caption{座標変換。多様体の情報はすべて、この「貼り合わせの関数」に入っている。}
+\end{figure}
+
+\paragraph{動機。}多様体は「局所的には $\R^n$、大域的には貼り合わせ方で決まる空間」である。以下で作る接束・微分形式・ベクトル束は、いずれも座標変換則 $\leadsto$ 貼り合わせ関数 という同じ型の構成になる。
+
+\begin{ex}\label{ex:sphere}
+(1) $S^n=\{x\in\R^{n+1}:|x|=1\}$ は、北極 $N$ からの立体射影 $\sigma_N(x)=\frac{(x^1,\dots,x^n)}{1-x^{n+1}}$ と南極からの立体射影 $\sigma_S(x)=\frac{(x^1,\dots,x^n)}{1+x^{n+1}}$ の2つの座標系をもつ。$\sigma_S\circ\sigma_N^{-1}(u)=u/|u|^2$ （問~\ref{p:stereo}）。
+(2) 実射影空間 $\RP^n=(\R^{n+1}\setminus 0)/\R^\times$、複素射影空間 $\CP^n=(\C^{n+1}\setminus0)/\C^\times$。斉次座標 $[z_0:\dots:z_n]$ に対し $U_i=\{z_i\ne0\}$ 上の座標 $(z_j/z_i)_{j\ne i}$ が座標系を与える。$\CP^1$ では $U_0$ の座標 $z=z_1/z_0$、$U_1$ の座標 $w=z_0/z_1$ で $w=1/z$。
+(3) 正則値の逆像：$f:\R^{n+1}\to\R$ が滑らかで $c$ が正則値（$f^{-1}(c)$ 上で $\dd f\neq0$）なら $f^{-1}(c)$ は $n$ 次元の滑らかな部分多様体（陰関数定理）。トーラス $T^2$ はこの形で書ける（問~\ref{p:torus}）。
+\end{ex}
+\src{Lee, \emph{Introduction to Smooth Manifolds} (2nd ed.), 第1章（多様体）、第5章（部分多様体）。}
+\tC
+
+滑らかな写像 $F:M\to N$ は、座標表示 $\psi\circ F\circ\varphi^{-1}$ が滑らかな写像。微分同相は滑らかな逆をもつ写像。
+
+
+\subsection{1の分割・部分多様体・向き}
+\paragraph{1の分割。}多様体上の局所的な構成（局所座標での定義）を大域的に貼り合わせる標準的な道具である。開被覆 $\{U_\alpha\}$ に従属する\emph{1の分割}とは、滑らかな関数 $\rho_\alpha\ge0$ で $\supp\rho_\alpha\subset U_\alpha$、$\{\supp\rho_\alpha\}$ が局所有限、$\sum_\alpha\rho_\alpha=1$ となるもの。
+\begin{thm}[1の分割の存在]\tC\
+任意の（Hausdorff・第2可算な）多様体の任意の開被覆に対し、従属する1の分割が存在する。
+\end{thm}
+\src{Lee 第2章。台がコンパクトな滑らかな山形関数（bump function）と第2可算性（可算個の相対コンパクトな座標近傍による被覆）から作る。}
+この本では、Riemann 計量・Hermite 計量・接続の存在（§5, §6）、Mayer--Vietoris の全射性（§4）、積分の定義（§3）で使う。
+
+\paragraph{部分多様体。}滑らかな写像 $F:M\to N$ が点 $p$ で\emph{はめ込み}（immersion）とは $\dd F_p$ が単射、\emph{沈め込み}（submersion）とは $\dd F_p$ が全射。\emph{正則値定理}：$F:M\to N$ が滑らかで $c\in N$ が正則値（$F^{-1}(c)$ のすべての点で $\dd F$ が全射）なら、$F^{-1}(c)$ は $\dim M-\dim N$ 次元の部分多様体で $T_p F^{-1}(c)=\ker\dd F_p$ \tC\ （Lee 第5章）。例：$S^n=f^{-1}(1)$（$f=|x|^2$）で $T_xS^n=\ker\dd f_x=x^\perp$。
+
+\paragraph{向き。}$n$ 次元多様体が\emph{向きづけ可能}とは、座標変換の Jacobi 行列式がすべて正になるアトラスが存在すること。同値な条件は、至る所 $0$ でない $n$ 形式（体積形式）が存在すること \tC。$S^n$, $T^n$ は向きづけ可能、Möbius 帯や $\RP^2$ は不可能。複素多様体は常に向きづけ可能（第2巻）。
+
+\paragraph{Lie 群の接束は自明。}Lie 群 $G$ では、単位元での接ベクトル $v\in T_eG$ に対し左不変ベクトル場 $X_v(g)=\dd L_g(v)$ を定める。基底 $v_1,\dots,v_n$ から至る所一次独立な $n$ 個のベクトル場が得られるので $TG\cong G\times T_eG$（命題~\ref{prop:trivial}）。例：$TS^1$, $TS^3$（$=SU(2)$）は自明。$TS^2$ は自明でない（毛玉定理）。
+
+\subsection{接空間・接束}
+\begin{defn}[接ベクトル]
+点 $p\in M$ における\emph{接ベクトル}とは、$C^\infty(M)$ 上の線形写像 $v:C^\infty(M)\to\R$ で Leibniz 則 $v(fg)=f(p)v(g)+g(p)v(f)$ を満たすもの（$p$ での\emph{微分}）。その全体 $T_pM$ は $n$ 次元ベクトル空間で、座標 $(x^i)$ に対し $\partial_i|_p:f\mapsto \partial(f\circ\varphi^{-1})/\partial x^i(\varphi(p))$ が基底になる（問~\ref{p:hadamard}）。
+\end{defn}
+
+\paragraph{動機。}曲面上の曲線 $\gamma$ の速度ベクトル $\dot\gamma(0)$ は、関数 $f$ の方向微分 $f\mapsto (f\circ\gamma)'(0)$ として働く。この「方向微分する」という性質だけを抜き出したのが微分の定義である。
+
+\begin{defn}[微分、接束]
+滑らかな写像 $F:M\to N$ の $p$ での\emph{微分}（押し出し）は $\dd F_p:T_pM\to T_{F(p)}N$、$(\dd F_p v)(g)=v(g\circ F)$。座標では Jacobi 行列：$\dd F(\partial_{x^j})=\sum_i \frac{\partial F^i}{\partial x^j}\partial_{y^i}$。\emph{接束}は集合として $TM=\bigsqcup_p T_pM$、射影 $\pi:TM\to M$。座標 $(x^i)$ から $TM|_U$ に座標 $(x^i,v^i)$（$v=v^i\partial_i$）を入れ、これらの座標変換 $(x,v)\mapsto(x'(x),\,\frac{\partial x'}{\partial x}v)$ が滑らかなので、$TM$ は $2n$ 次元の多様体になる。
+\end{defn}
+
+\paragraph{$TM$ が多様体であること。}座標 $(x^i)$ と $(x'^j)$ が重なる領域で $v=v^i\partial_{x^i}=v'^j\partial_{x'^j}$ とすると、連鎖律 $\partial_{x^i}=\frac{\partial x'^j}{\partial x^i}\partial_{x'^j}$ により $v'^j=\frac{\partial x'^j}{\partial x^i}v^i$。座標変換 $(x,v)\mapsto(x'(x),J(x)v)$ は滑らか（$J$ の成分が $x'$ の1階微分）で逆も滑らかなので、$TM$ は $2n$ 次元の滑らかな多様体になり、$\pi:TM\to M$ は滑らか。同様に $T^*M$ も（$\xi'=(J^{-1})^T\xi$ で）多様体になる。
+
+座標変換のとき接ベクトルの成分は Jacobi 行列 $J=(\partial x'^i/\partial x^j)$ で $v'=Jv$ と変わる。これが「$TM$ の貼り合わせ関数は Jacobi 行列」ということの意味で、§5 でベクトル束の一般論に引き継ぐ。
+
+\subsection{余接束}
+\begin{defn}[余接空間・余接束]
+$T^*_pM=(T_pM)^*$ を \emph{余接空間}、$T^*M=\bigsqcup_pT^*_pM$ を\emph{余接束}という。関数 $f$ の微分 $\dd f_p\in T_p^*M$ は $\dd f_p(v)=v(f)$。座標 $(x^i)$ に対し $\{\dd x^i|_p\}$ は $\{\partial_i|_p\}$ の双対基底。余接ベクトル $\xi=\xi_i\dd x^i$ の成分は座標変換で $\xi'=(J^{-1})^{T}\xi$ と変わる（接ベクトルと双対的）。
+\end{defn}
+
+\paragraph{計量による同一視。}Riemann 計量 $g$（各 $T_pM$ 上の正定値内積で滑らかに依存するもの。1の分割で存在）があると $\flat:TM\to T^*M$, $X\mapsto g(X,\cdot)$ は束の同型になる。したがって $T\oplus T^*$ は計量があれば $T\oplus T\cong T\otimes\R^2$ とも見えるが、一般化幾何では計量を使わず、$TM$ と $T^*M$ の\emph{自然な}（計量なしの）和を考える。
+
+\begin{keybox}{§1 の要点}
+\begin{itemize}
+\item 多様体 = 座標系の貼り合わせ。接ベクトル = 微分 = 「方向微分」。$\dd F$ は Jacobi 行列。
+\item $TM$ の成分は Jacobi 行列 $J$ で、$T^*M$ の成分は $(J^{-1})^T$ で変換する。
+\item \textbf{【あとで使う：第12巻】}$TM$ と $T^*M$ の\emph{直和} $T\oplus T^*=TM\oplus T^*M$ は、一般化幾何の舞台である。これには自然な対称内積 $\langle X+\xi,Y+\eta\rangle=\tfrac12(\xi(Y)+\eta(X))$ があり、符号は $(n,n)$（問~\ref{p:pairing}）。第12巻ではこれに Courant 括弧を入れる。
+\end{itemize}
+\end{keybox}
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[scale=1.0]
+\draw[thick] (0,0) .. controls (1,1.2) and (3,1.2) .. (4,0) .. controls (3.2,-0.9) and (0.8,-0.9) .. (0,0);
+\fill (2,0.2) circle (1.5pt) node[above right] {$p$};
+\draw[->,thick,blue!60!black] (2,0.2) -- (3.1,0.6) node[right] {$v\in T_pM$};
+\draw[blue!60!black,dashed] (1,0.0) -- (3.2,0.0) -- (3.2,0.55) -- (1,0.55) -- cycle;
+\node at (0.3,-1.3) {$M$};
+\draw[->] (4.6,0.1) -- (5.6,0.1) node[midway,above] {$\pi$};
+\draw[thick] (5.8,0) -- (8.3,0) node[right] {$M$};
+\fill (7,0) circle (1.5pt) node[below] {$p$};
+\draw[thick,red!60!black] (7,-0.1) -- (7,1.6) node[above] {$T_pM$, $\;T^*_pM$};
+\end{tikzpicture}
+\caption{$p$ における接空間と、束 $TM\to M$ の模式図。各ファイバーが $T_pM$。}
+\end{figure}
+
+\subsection*{問題（§1）}
+\begin{prob}{基本}\label{p:stereo}
+$S^2$ の立体射影 $\sigma_N(x,y,z)=(u,v)=\frac{(x,y)}{1-z}$、$\sigma_S(x,y,z)=(u',v')=\frac{(x,y)}{1+z}$ について、座標変換が $(u',v')=(u,v)/(u^2+v^2)$ であることを示せ。この写像の Jacobi 行列式の符号を求め、$\sigma_S$ の第2成分の符号を変えると向きの揃ったアトラスになることを説明せよ。
+\end{prob}
+\begin{prob}{基本}\label{p:Fmap}
+$F:\R^2\to\R^2$, $F(x,y)=(x^2-y^2,\,2xy)$ について、$\dd F$ の Jacobi 行列を求め、$\dd F_{(1,1)}(\partial_x)$ を計算せよ。$F$ が局所微分同相でなくなる点はどこか。
+\end{prob}
+\begin{prob}{標準}\label{p:TSn}
+$S^n\subset\R^{n+1}$ について、$TS^n\oplus\varepsilon^1\cong\varepsilon^{n+1}$（$\varepsilon^k$ は自明な階数 $k$ の束）を示せ。ここから $TS^1$ が自明であることを導け。（$TS^2$ が自明でないことは「毛玉定理」\tC。）
+\end{prob}
+\begin{prob}{標準}\label{p:hadamard}
+$\R^n$ の原点 $0$ における微分 $D:C^\infty(\R^n)\to\R$ は $D=\sum_iD(x^i)\,\partial_i|_0$ と書けることを示せ。（ヒント：Hadamard の補題 $f(x)=f(0)+\sum x^ig_i(x)$、$g_i(0)=\partial_if(0)$。）
+\end{prob}
+\begin{prob}{発展}\label{p:torus}
+$f(x,y,z)=\bigl(\sqrt{x^2+y^2}-2\bigr)^2+z^2$ とする。$1$ が $f|_{\R^3\setminus\{x=y=0\}}$ の正則値であることを示し、$T^2=f^{-1}(1)$ の点 $(3,0,0)$ と $(2,0,1)$ における接空間 $T_pT^2=\ker \dd f_p$ を求めよ。
+\end{prob}

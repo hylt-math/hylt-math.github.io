@@ -1,0 +1,136 @@
+
+%==================================================
+\section{接続と曲率}
+%==================================================
+\subsection{共変微分としての接続}
+\paragraph{動機。}ベクトル束 $E$ の切断 $s$ を「微分」したい。自明束なら $\dd s$ でよいが、一般の $E$ では異なる点のファイバーを比べる手段がなく、$\dd s$ は座標（自明化）ごとに値が変わる。接続は、ファイバーを比べる方法（平行移動）を与える追加の構造である。
+
+\begin{defn}[接続]
+ベクトル束 $E\to M$ 上の\emph{接続}（共変微分）は、$\mathbb K$ 線形写像 $\nabla:\Gamma(E)\to\Omega^1(M;E)=\Gamma(T^*M\otimes E)$ で、Leibniz 則 $\nabla(fs)=\dd f\otimes s+f\nabla s$ を満たすもの。ベクトル場 $X$ に対し $\nabla_Xs=\iota_X\nabla s$。
+\end{defn}
+
+接続は存在する：自明化の上では $\dd$ があり、1の分割で貼り合わせる（Leibniz 則の条件はアフィンなので $\sum\rho_\alpha\nabla^\alpha$ も接続）。2つの接続の差 $\nabla-\nabla'$ は $C^\infty$ 線形なので $\Omega^1(M;\End E)$ の元（テンソル）。つまり接続全体はアフィン空間 $\nabla_0+\Omega^1(\End E)$。
+
+\paragraph{局所表示。}局所枠 $e=(e_1,\dots,e_r)$ を取り $\nabla e_j=\sum_iA^i{}_j\,e_i$ とおくと、$A=(A^i{}_j)$ は $\mathfrak{gl}(r)$ 値の1形式（\emph{接続形式}）。切断 $s=e\,\sigma$（$\sigma$ は成分の列ベクトル）に対し
+\[
+\nabla s=e\,(\dd\sigma+A\sigma).
+\]
+枠を $e'=eg$ に変えると、$\sigma=g\sigma'$ なので
+\begin{equation}\label{eq:gauge}
+A'=g^{-1}Ag+g^{-1}\dd g.
+\end{equation}
+（\emph{ゲージ変換}。問~\ref{p:gauge}）。逆に、各枠で $A_\alpha$ が与えられ \eqref{eq:gauge} で結ばれていれば大域的な接続が定まる。
+
+\begin{ex}
+(1) 自明束の標準接続 $\nabla=\dd$（$A=0$）。(2) 自明な直線束上の $\nabla=\dd+i\lambda\,\dd\theta$（$S^1$ 上）。(3) 部分束 $E\subset\varepsilon^N$ の \emph{射影接続} $\nabla s=P(\dd s)$（$P$ は直交射影）。$\mathcal O(-1)\subset\CP^1\times\C^2$ では $e_0=(1,z)$ に対し $\dd e_0=(0,\dd z)$ で、$P(0,\dd z)=\frac{\bar z\,\dd z}{1+|z|^2}e_0$。つまり $\nabla e_0=\theta\,e_0$, $\theta=\frac{\bar z\,\dd z}{1+|z|^2}=\partial\log(1+|z|^2)$（§7 で使う）。
+\end{ex}
+
+\subsection{平行移動とホロノミー}
+曲線 $\gamma:[0,1]\to M$ に沿った切断 $s(t)$ が \emph{平行}とは $\nabla_{\dot\gamma}s=0$、局所表示で $\dot\sigma+A(\dot\gamma)\sigma=0$（線形常微分方程式）。解の存在と一意性から、平行移動 $P_\gamma:E_{\gamma(0)}\to E_{\gamma(1)}$ が定まる。閉曲線に対する $P_\gamma\in\GL(E_p)$ を\emph{ホロノミー}という。例：自明な直線束上で $\nabla=\dd+i\lambda\dd\theta$ の $S^1$ に沿った平行移動は $s(2\pi)=e^{-2\pi i\lambda}s(0)$（問~\ref{p:holonomy}）。この接続は平坦（$F=0$、下記）だが、ホロノミーは自明でない。第13巻の「平坦な対数接続」と「留数」は、まさにこのホロノミーである（統合論文の「留数が定数の平坦な対数接続」）。
+
+\subsection{共変外微分と曲率}
+$\nabla$ を $E$ 値形式に拡張する：$\dd_\nabla:\Omega^k(M;E)\to\Omega^{k+1}(M;E)$, $\dd_\nabla(\omega\otimes s)=\dd\omega\otimes s+(-1)^k\omega\wedge\nabla s$。
+
+\begin{defn}[曲率]
+$F_\nabla=\dd_\nabla\circ\dd_\nabla:\Gamma(E)\to\Omega^2(M;E)$。
+\end{defn}
+\begin{prop}\label{prop:curv}\tP\
+$F_\nabla$ は $C^\infty$ 線形で、$F_\nabla\in\Omega^2(M;\End E)$。枠の中で
+\[
+F=\dd A+A\wedge A.
+\]
+\end{prop}
+\begin{proof}
+$\dd_\nabla\dd_\nabla(fs)=\dd_\nabla(\dd f\otimes s+f\nabla s)=-\dd f\wedge\nabla s+\dd f\wedge\nabla s+f\dd_\nabla\nabla s=f\dd_\nabla\nabla s$。局所表示：$\dd_\nabla(e\sigma)=e(\dd\sigma+A\sigma)$ を再度適用して $e\bigl(\dd(\dd\sigma+A\sigma)+A\wedge(\dd\sigma+A\sigma)\bigr)=e\,(\dd A\,\sigma-A\wedge\dd\sigma+A\wedge\dd\sigma+A\wedge A\sigma)=e\,(\dd A+A\wedge A)\sigma$。
+\end{proof}
+
+ゲージ変換では $F'=g^{-1}Fg$（問~\ref{p:gauge}）。$F=0$ を\emph{平坦}という。$X,Y$ に対し $F(X,Y)=[\nabla_X,\nabla_Y]-\nabla_{[X,Y]}$\tC\ （Kobayashi--Nomizu, 第I巻 第II章）。
+
+\begin{ex}\label{ex:curvcalc}
+$\R^3$ の自明な階数2の束で $A=\begin{pmatrix}0&z\,\dd x\\x\,\dd y&0\end{pmatrix}$ のとき
+$F=\begin{pmatrix}xz\,\dd x\wedge\dd y&\dd z\wedge\dd x\\\dd x\wedge\dd y&-xz\,\dd x\wedge\dd y\end{pmatrix}$（問~\ref{p:curvcalc}）。
+\end{ex}
+
+\subsection{Bianchi 恒等式}
+$\End E$ 値形式には $\nabla$ から誘導される共変外微分 $\dd_\nabla\varphi=\dd\varphi+A\wedge\varphi-(-1)^{|\varphi|}\varphi\wedge A$（枠の中）がある。
+\begin{thm}[Bianchi]\label{thm:bianchi}\tP\
+$\dd_\nabla F=0$、すなわち $\dd F+A\wedge F-F\wedge A=0$。
+\end{thm}
+\begin{proof}
+$\dd F=\dd A\wedge A-A\wedge\dd A$（$\dd(A\wedge A)=\dd A\wedge A-A\wedge\dd A$）。$A\wedge F-F\wedge A=A\wedge\dd A+A\wedge A\wedge A-\dd A\wedge A-A\wedge A\wedge A=A\wedge\dd A-\dd A\wedge A$。両者の和は $0$。
+\end{proof}
+（別証：$\dd_\nabla^3 s$ を2通りに計算：問~\ref{p:bianchi}。）
+
+\subsection{計量接続・Hermite 接続}
+$E$ に Hermite 計量 $h$ があるとき、接続が \emph{$h$ と整合}（ユニタリ）とは $\dd\,h(s,t)=h(\nabla s,t)+h(s,\nabla t)$。ユニタリ枠（$h(e_i,e_j)=\delta_{ij}$）では $A+A^*=0$、すなわち $A$ は $\mathfrak u(r)$ 値（歪 Hermite）。このとき $F=\dd A+A\wedge A$ も歪 Hermite。ユニタリ接続は、$h$ に整合な局所接続 $\dd$ を1の分割で貼り合わせて存在する（整合条件はアフィンなので）。特に直線束では、$h(e,e)=H>0$ とすれば、$\nabla e=\theta e$ が $h$ と整合 $\Leftrightarrow$ $\dd H=(\theta+\bar\theta)H$。$\theta=\partial\log H$（複素座標のとき）は一つの解で \emph{Chern 接続}と呼ばれる（第2巻）。
+
+
+
+\subsection{曲率の幾何的な意味：共変微分の非可換性}
+\begin{prop}\label{prop:FXY}\tP\
+任意のベクトル場 $X,Y$ と切断 $s$ に対し $F(X,Y)s=\nabla_X\nabla_Ys-\nabla_Y\nabla_Xs-\nabla_{[X,Y]}s$。
+\end{prop}
+\begin{proof}
+$\dd_\nabla s=\nabla s$ に対し $(\dd_\nabla\nabla s)(X,Y)=\nabla_X(\nabla s(Y))-\nabla_Y(\nabla s(X))-\nabla s([X,Y])$（不変公式 \eqref{eq:dalpha} の $E$ 値版。$E$ 値1形式 $\phi$ に対する $\dd_\nabla\phi(X,Y)=\nabla_X(\phi(Y))-\nabla_Y(\phi(X))-\phi([X,Y])$ を座標で確認すれば得られる）。$\nabla s(Y)=\nabla_Ys$ を代入。
+\end{proof}
+この式から、$F=0$ は「共変微分が可換（$[X,Y]=0$ のとき $\nabla_X\nabla_Y=\nabla_Y\nabla_X$）」と同値で、平面 $\R^n$ の自明束で偏微分が可換であることの一般化。Lie 括弧が曲率の定義に入っている点に注意（第11巻で Lie 亜代数上の接続を考えるときの出発点）。
+
+\subsection{平行移動の存在と一意性}
+曲線 $\gamma:[0,1]\to M$ とその上の $E$ の局所枠 $e$ について、平行な切断 $s=e\sigma$ は線形常微分方程式 $\dot\sigma(t)=-A(\dot\gamma(t))\sigma(t)$ の解。線形 ODE の解は大域的に存在し、初期値で一意に決まる（係数が連続なので）。区間を分割して枠を取り替えながらつなぐので、$P_\gamma:E_{\gamma(0)}\to E_{\gamma(1)}$ は線形同型になる。ユニタリ接続なら $P_\gamma$ は $h$ を保つ（$\dd h(s,s')=0$ から）ので $\U(r)$ に値をもつ。逆に、平行移動の族が与えられれば $\nabla_{v}s=\frac{\dd}{\dd t}\big|_0P_{\gamma|[0,t]}^{-1}s(\gamma(t))$ で接続が復元される \tC。
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[scale=1.2]
+\draw[thick] (0,0) circle (1.6);
+\draw[blue!60!black,thick] (0,1.6) -- (0,0) node[midway,right] {\small 経線};
+\draw[blue!60!black,thick] (0,0) -- (1.6,0);
+\draw[blue!60!black,thick] (0,1.6) .. controls (1.1,1.2) .. (1.6,0);
+\fill (0,1.6) circle (1.5pt) node[above] {$N$};
+\draw[->,red!60!black,thick] (0,1.6) -- (0.0,1.1);
+\draw[->,red!60!black,thick] (0.05,0.12) -- (0.05,0.65);
+\node at (0.8,0.55) {\small $D$};
+\end{tikzpicture}
+\caption{球面上の三角形 $D$（北極と赤道上の2点）に沿った平行移動。1周するとベクトルは $\int_DK\,\dd A$ だけ回る（模式図）。}
+\end{figure}
+
+\subsection{誘導される接続と Riemann 接続}
+$E,E'$ の接続 $\nabla,\nabla'$ は、$E\oplus E'$, $E\otimes E'$, $E^*$, $\Lambda^kE$, $\End E$ に接続を誘導する：$\nabla(s\otimes s')=\nabla s\otimes s'+s\otimes\nabla's'$、$E^*$ では $\dd\langle\sigma,s\rangle=\langle\nabla\sigma,s\rangle+\langle\sigma,\nabla s\rangle$ で定める。引き戻し $f^*E$ にも $f^*\nabla$ が定まる。
+
+特に $E=TM$ のとき、Riemann 計量 $g$ に対し \emph{Levi-Civita 接続}がただ1つ存在し、$g$ と整合し捩れなし（$\nabla_XY-\nabla_YX=[X,Y]$）\tC\ （Lee, \emph{Introduction to Riemannian Manifolds}, Levi-Civita 接続の章；Kobayashi--Nomizu 第I巻 第IV章。章番号は\tQ）。ここでも Lie 括弧が現れる。捩れ $T(X,Y)=\nabla_XY-\nabla_YX-[X,Y]$ は $TM$ だけに意味がある（一般のベクトル束には曲率だけがある）。
+
+\begin{ex}[$S^2$ の Levi-Civita 接続]\label{ex:S2LC}
+球座標 $(\vartheta,\varphi)$ の $S^2$ に計量 $g=\dd\vartheta^2+\sin^2\vartheta\,\dd\varphi^2$ を入れる。正規直交余枠 $\theta^1=\dd\vartheta$, $\theta^2=\sin\vartheta\,\dd\varphi$。捩れなしの構造方程式 $\dd\theta^i=-\omega^i{}_j\wedge\theta^j$ を満たす歪対称な $\omega$ は $\omega^1{}_2=-\cos\vartheta\,\dd\varphi=-\omega^2{}_1$（確認：$\dd\theta^1=0=-\omega^1{}_2\wedge\theta^2=\cos\vartheta\sin\vartheta\,\dd\varphi\wedge\dd\varphi$、$\dd\theta^2=\cos\vartheta\,\dd\vartheta\wedge\dd\varphi=-\omega^2{}_1\wedge\theta^1=-\cos\vartheta\,\dd\varphi\wedge\dd\vartheta$）。枠の中での接続形式 $A=\begin{pmatrix}0&\omega^1{}_2\\\omega^2{}_1&0\end{pmatrix}$ の曲率は
+$F=\dd A+A\wedge A=\begin{pmatrix}0&\sin\vartheta\,\dd\vartheta\wedge\dd\varphi\\-\sin\vartheta\,\dd\vartheta\wedge\dd\varphi&0\end{pmatrix}$、つまり $F^1{}_2=K\,\theta^1\wedge\theta^2$ で Gauss 曲率 $K=1$（問~\ref{p:S2LC}）。
+\end{ex}
+\paragraph{ホロノミーと曲率。}平坦でない接続では、小さな閉曲線に沿った平行移動のずれが曲率で測られる：$P_\gamma-\id$ は $\int_{D}F$（$\gamma=\partial D$）の程度（符号と厳密な式は規約による。Ambrose--Singer の定理の局所版）\tC。$S^2$ で、北極から出て経線を赤道まで下り、赤道を角度 $\alpha$ だけ進み、経線で北極に戻る測地三角形に沿った平行移動は、ベクトルを角度 $\alpha=\int_DK\dd A$（三角形の面積。角の和 $\frac\pi2+\frac\pi2+\alpha-\pi$ の超過分に等しい）だけ回転させる（向きは向きづけによる）\tC。
+
+\subsection{平坦接続}
+$F=0$ の接続を\emph{平坦}という。このとき、各点の近傍で平行な枠 $e$（$\nabla e_j=0$、すなわち $A=0$）が存在する（Frobenius の定理を $E$ の枠束上の分布に適用する、あるいは $\dd\sigma+A\sigma=0$ が可積分条件 $F=0$ で解ける）\tC。平行な枠同士の貼り合わせ関数は局所定数。したがって平坦接続をもつ束の貼り合わせ関数は定数にとれ、ホロノミーは基本群の表現 $\pi_1(M,p)\to\GL(E_p)$ を与える。問~\ref{p:holonomy} はその最も簡単な例（$\pi_1(S^1)=\Z$）。第13巻で平坦な対数接続（特異点のまわりの $\pi_1$ 表現）が登場する。
+
+\begin{keybox}{§6 の要点}
+\begin{itemize}
+\item 接続 $\nabla$ = 共変微分。枠の中で $\nabla=\dd+A$、ゲージ変換 $A'=g^{-1}Ag+g^{-1}\dd g$。
+\item 曲率 $F=\dd A+A\wedge A$ は束準同型値の2形式（テンソル）、$F'=g^{-1}Fg$。Bianchi：$\dd_\nabla F=0$。
+\item 平坦でもホロノミーは自明と限らない。ユニタリ接続は $A,F$ が歪 Hermite。\ \textbf{【あとで使う】}第2巻（Chern 接続）、第6巻（Chern 類）、第9巻（Bismut 超接続は接続の一般化）。
+\end{itemize}
+\end{keybox}
+
+\subsection*{問題（§6）}
+\begin{prob}{基本}\label{p:curvcalc}
+例~\ref{ex:curvcalc} の $A$ の曲率 $F=\dd A+A\wedge A$ を計算し、$\dd F+A\wedge F-F\wedge A=0$ を確かめよ。
+\end{prob}
+\begin{prob}{基本}\label{p:holonomy}
+$S^1$ 上の自明な直線束で $\nabla=\dd+i\lambda\,\dd\theta$（$\lambda\in\R$）について、(a) 曲率、(b) $\theta=0$ から $2\pi$ までの平行移動、(c) ゲージ変換 $g=e^{ik\theta}$（$k\in\Z$）を施した接続形式 $A'$ とそのホロノミー、を求め、ホロノミーが $\lambda\bmod\Z$ のみで決まることを確かめよ。
+\end{prob}
+\begin{prob}{標準}\label{p:gauge}
+式~\eqref{eq:gauge} を導き、$F'=g^{-1}Fg$ を示せ。直線束の場合 $F$ はゲージ不変であることを確かめよ。
+\end{prob}
+\begin{prob}{標準}\label{p:unitary}
+ユニタリ枠で $A$ が歪 Hermite（$A^*=-A$）であることを導き、$F$ も歪 Hermite、$\tr F\in i\,\Omega^2(M;\R)$、したがって $\frac i{2\pi}\tr F$ は実2形式であることを示せ。
+\end{prob}
+\begin{prob}{発展}\label{p:bianchi}
+$\dd_\nabla^2=F\wedge$ を用いて $\dd_\nabla^3s$ を2通りに計算し、$(\dd_\nabla F)\,s=0$（任意の $s$）を示して Bianchi 恒等式を導け。
+\end{prob}
+\begin{prob}{標準}\label{p:S2LC}
+例~\ref{ex:S2LC} について、構造方程式 $\dd\theta^i=-\omega^i{}_j\wedge\theta^j$ を確かめ、$F=\dd A+A\wedge A$ を計算せよ。直交群の接続なので $A$, $F$ が歪対称であることも確認し、$\frac1{2\pi}\int_{S^2}F^1{}_2$ を求めよ。（結果は $\chi(S^2)=2$ になる：Gauss--Bonnet）
+\end{prob}

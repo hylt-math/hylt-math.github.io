@@ -1,0 +1,151 @@
+
+%==================================================
+\section{Chern--Weil の入口}
+%==================================================
+\paragraph{動機。}曲率 $F$ は接続に依存する局所的な量だが、その多項式の積分が（接続によらない）位相不変量になる、というのが Chern--Weil 理論である。Gauss--Bonnet の「曲率の積分 $=2\pi\chi$」の一般化で、第6巻の Chern 類、第8〜9巻の指数定理の局所公式（$\ch$, $\Td$）の出発点。
+
+\subsection{Chern 形式}
+$E\to M$ を階数 $r$ の複素ベクトル束、$\nabla$ を接続、$F$ を曲率とする。$F$ は $\End E$ 値の2形式（偶数次）なので、その多項式が意味をもつ：枠の中で $F$ は $r\times r$ 行列、2形式は可換なので $\tr(F^k)$, $\det(I+tF)$ が定義でき、枠の取り替え $F\mapsto g^{-1}Fg$ で不変。
+\begin{defn}[Chern 形式・Chern 指標形式]
+\[
+c(E,\nabla)=\det\Bigl(I+\frac{i}{2\pi}F\Bigr)=1+c_1(E,\nabla)+c_2(E,\nabla)+\cdots,\qquad
+\ch(E,\nabla)=\tr\exp\Bigl(\frac i{2\pi}F\Bigr).
+\]
+特に $c_1(E,\nabla)=\frac i{2\pi}\tr F$、$\ch=r+c_1+\tfrac12(c_1^2-2c_2)+\cdots$。$c_k\in\Omega^{2k}(M;\C)$。ユニタリ接続なら実形式（問~\ref{p:unitary}）。
+\end{defn}
+因子 $\frac i{2\pi}$ は、$c_1$ の周期が整数になるための正規化（以下の例）。
+
+\subsection{閉性と接続によらないこと}
+$\End E$ 値形式 $\varphi$ に対し、枠の中で $\tr\,\dd_\nabla\varphi=\dd\,\tr\varphi$（$\tr[A,\varphi]=0$ による）。
+
+\begin{thm}[Chern--Weil]\label{thm:CW}\tP\
+$P(F)=\tr(F^k)$（あるいはその多項式、特に $c_k$, $\ch$ の各次数）について：
+(i) $\dd\,\tr(F^k)=0$。
+(ii) $\nabla_0,\nabla_1$ が $E$ の2つの接続なら、$\tr(F_1^k)-\tr(F_0^k)=\dd\,T$（ある $(2k-1)$ 形式 $T$）。したがって de Rham 類 $[\tr F^k]\in H^{2k}(M;\C)$ は接続によらない。
+\end{thm}
+\begin{proof}
+(i) $\dd\tr(F^k)=\tr\,\dd_\nabla(F^k)=\tr\sum_jF^{j}(\dd_\nabla F)F^{k-1-j}=0$（Leibniz 則と Bianchi）。ここで $F$ が偶数次なので符号は出ない。
+
+(ii) $a=\nabla_1-\nabla_0\in\Omega^1(\End E)$、$\nabla_t=\nabla_0+ta$（接続）、$F_t=F_0+t\,\dd_{\nabla_0}a+t^2a\wedge a$。$\dfrac{\dd F_t}{\dd t}=\dd_{\nabla_0}a+2t\,a\wedge a=\dd_{\nabla_t}a$（$\dd_{\nabla_t}a=\dd_{\nabla_0}a+t(a\wedge a+a\wedge a)$ による）。よって
+\[
+\frac{\dd}{\dd t}\tr F_t^k=k\,\tr\bigl(\dot F_tF_t^{k-1}\bigr)=k\,\tr\bigl(\dd_{\nabla_t}a\cdot F_t^{k-1}\bigr)=\dd\bigl(k\,\tr(aF_t^{k-1})\bigr),
+\]
+最後の等号は $\dd\,\tr(aF_t^{k-1})=\tr(\dd_{\nabla_t}a\,F_t^{k-1})-\tr(a\,\dd_{\nabla_t}F_t^{k-1})$ と Bianchi $\dd_{\nabla_t}F_t=0$ による。$t$ で $0$ から $1$ まで積分して $T=k\int_0^1\tr(aF_t^{k-1})\dd t$。
+\end{proof}
+$\det(I+tX)$ の係数と $\exp$ の係数はいずれも $\tr(X^j)$ の多項式（Newton の公式）なので、$c_k$, $\ch$ の各次数についても閉性と接続によらない類（\emph{Chern 類}）が従う：$c_k(E)=[c_k(E,\nabla)]$。（$\tr F^k$ の積に対しても、$\dd(ab)=\dd a\,b+a\,\dd b$ と、閉形式の差が完全形式であることから、積の類は接続によらない。）\tC\ 一般の不変多項式に対する定式化は Kobayashi--Nomizu 第II巻 第XII章。
+
+\subsection{直線束の Chern 形式：例}
+$L$ が直線束なら $\End L=\varepsilon^1$、$F$ は2形式、$c_1(L,\nabla)=\frac i{2\pi}F$。枠 $e$ で $\nabla e=\theta e$ なら $F=\dd\theta$ で、枠を取り替えるとき $\theta'=\theta+\dd\log g$ なので $F$ は大域的に定まる（問~\ref{p:gauge}）。
+
+\begin{ex}[$\mathcal O(-1)\to\CP^1$：$\int c_1=-1$]\label{ex:taut}
+$h(e_0,e_0)=1+|z|^2=:H$（問~\ref{p:hermexist}）、$\theta=\partial\log H=\frac{\bar z\,\dd z}{1+|z|^2}$。$h$ との整合：$\dd H=\bar z\,\dd z+z\,\dd\bar z=(\theta+\bar\theta)H$ ✓。
+\[
+F=\dd\theta=\dd\Bigl(\frac{\bar z}{1+|z|^2}\Bigr)\wedge\dd z=\frac{\dd\bar z\wedge\dd z}{(1+|z|^2)^2},
+\]
+（$\partial_{\bar z}\frac{\bar z}{1+z\bar z}=\frac{1}{(1+z\bar z)^2}$）。$\dd\bar z\wedge\dd z=2i\,\dd x\wedge\dd y$ なので
+\[
+c_1(\mathcal O(-1),\nabla)=\frac i{2\pi}F=-\frac1\pi\frac{\dd x\wedge\dd y}{(1+x^2+y^2)^2}.
+\]
+$U_0=\C$ は $\CP^1$ から1点 $[0:1]$ を除いたものなので、$\CP^1$ 上の積分は $U_0$ 上の積分に等しい（測度 $0$ の差）。極座標で $\int_{\C}\frac{\dd x\dd y}{(1+r^2)^2}=2\pi\int_0^\infty\frac{r\dd r}{(1+r^2)^2}=\pi$。よって
+\[
+\int_{\CP^1}c_1(\mathcal O(-1),\nabla)=-1.
+\]
+\end{ex}
+この整数 $-1$ は接続によらない（定理~\ref{thm:CW}(ii) と Stokes）。\emph{特に} $\mathcal O(-1)$ は自明でない（自明束は $\nabla=\dd$ をもち $F=0$ なので $\int c_1=0$）。
+
+\paragraph{貼り合わせ関数との関係。}$S^2$ 上の直線束の $c_1$ の積分は貼り合わせ関数の巻き数で書ける（問~\ref{p:winding}）：$e_0=g\,e_1$（$g$ は赤道上の関数）なら $\int c_1=-\mathrm{wind}(g)$（上の例は $g=z$）。
+
+\subsection{Chern 類の演算（形式レベル）}
+接続の直和、テンソル積、双対は接続を誘導し、曲率は $F_{E\oplus E'}=F\oplus F'$, $F_{E\otimes E'}=F\otimes1+1\otimes F'$, $F_{E^*}=-F^T$ となる。よって
+\[
+\ch(E\oplus E')=\ch E+\ch E',\quad\ch(E\otimes E')=\ch E\wedge\ch E',\quad c_1(E\otimes E')=\rk E'\,c_1(E)+\rk E\,c_1(E'),
+\]
+直線束では $c_1(L\otimes L')=c_1(L)+c_1(L')$、$c_1(L^*)=-c_1(L)$（問~\ref{p:chernops}）。さらに $c_1(E)=c_1(\det E)$。これらは第6巻で splitting principle とともに Chern 類の公理へ発展する。
+
+
+\subsection{Chern 形式の積と和（形式レベル）}
+$E\oplus E'$ の曲率はブロック対角 $F\oplus F'$ なので $\det\bigl(I+\frac i{2\pi}(F\oplus F')\bigr)=\det(I+\frac i{2\pi}F)\det(I+\frac i{2\pi}F')$、すなわち形式のレベルで
+\[
+c(E\oplus E',\nabla\oplus\nabla')=c(E,\nabla)\wedge c(E',\nabla').
+\]
+（Whitney の積公式の形式版。）直線束の直和 $L_1\oplus\cdots\oplus L_r$ では $c=\prod(1+c_1(L_j))$。第6巻の splitting principle は、一般の $E$ がこの形の束に（コホモロジーを損なわずに）引き戻せることを述べる。
+
+\subsection{Gauss--Bonnet：$T S^2$ の Chern 数}
+向きづけられた閉曲面 $\Sigma$ の接束 $T\Sigma$ は、向きと計量から複素直線束（$J$ = 90 度回転）。ユニタリ枠 $e_1$（$\Sigma$ の局所）に対し $e_2=Je_1$ なので、$\nabla e_1=\omega^2{}_1e_2=\omega^2{}_1Je_1$ すなわち複素直線束としては $\theta=i\,\omega^2{}_1$。よって $F=\dd\theta=i\,\dd\omega^2{}_1$ で、$\dd\omega^2{}_1=-K\,\dd A$（例~\ref{ex:S2LC} の符号：$\dd\omega^1{}_2=K\,\dd A$）：
+\[
+c_1(T\Sigma,\nabla)=\frac i{2\pi}F=\frac i{2\pi}\cdot i\,(-K\,\dd A)=\frac1{2\pi}K\,\dd A,\qquad\int_\Sigma c_1(T\Sigma)=\frac1{2\pi}\int_\Sigma K\,\dd A=\chi(\Sigma).
+\]
+最後の等号は Gauss--Bonnet の定理 \tC\ （Chern の内在的証明は、この Chern--Weil 形式を使う）。$S^2$ では $K=1$、$\frac1{2\pi}\cdot4\pi=2$（問~\ref{p:S2LC}）。例~\ref{ex:TCP1} の貼り合わせ関数 $-z^{-2}$ の巻き数 $-2$ と、巻き数の公式 $\int c_1=-\mathrm{wind}$（問~\ref{p:winding}）から $+2$ で一致する（問~\ref{p:TCP1}）。つまり、同じ数 $2$ を (i) 曲率の積分、(ii) 貼り合わせ関数の巻き数、(iii) Euler 標数 $\chi(S^2)$ という3通りに得た。これが Chern--Weil、clutching、トポロジーの三者の整合を示す最初の例になる。
+
+
+\subsection{Newton の公式と低次の Chern 形式}
+$x_i$ を $\frac i{2\pi}F$ の（形式的な）固有値とすると $c_k=e_k(x)$（基本対称式）、$\ch=\sum e^{x_i}=\sum_k\frac1{k!}p_k(x)$（$p_k=\sum x_i^k=\tr(\frac i{2\pi}F)^k$）。Newton の公式 $p_1=e_1$, $p_2=e_1^2-2e_2$, $p_3=e_1^3-3e_1e_2+3e_3$ から
+\[
+\ch=r+c_1+\tfrac12(c_1^2-2c_2)+\tfrac16(c_1^3-3c_1c_2+3c_3)+\cdots.
+\]
+これは各 $\tr F^k$ の閉性と接続によらないことから、$c_k$ すべてについて同じ結論が出る理由（$c_k$ は $\tr F^j$ の多項式）。階数2では $c_1=\frac i{2\pi}\tr F$, $c_2=\bigl(\frac i{2\pi}\bigr)^2\det F=\frac1{8\pi^2}\bigl(\tr(F\wedge F)-\tr F\wedge\tr F\bigr)$（問~\ref{p:c2}）。
+
+\subsection{整数性：$S^2$ 上の直線束}
+\begin{thm}\label{thm:integral}\tP\
+$S^2=\CP^1$ 上の複素直線束 $L$ の2つの枠 $e_0$（$|z|\le1$）, $e_1$（$|z|\ge1$）が赤道 $C$ で $e_0=g\,e_1$ と結ばれるとき、任意の接続について $\int_{S^2}c_1(L,\nabla)=-\mathrm{wind}(g)\in\Z$。
+\end{thm}
+証明は問~\ref{p:winding} の Stokes の議論そのもの。これは (i) $c_1$ の周期が整数であること、(ii) 接続によらないこと（巻き数は位相的）の最も簡単な例。一般の閉多様体上では、$c_1(L)$ が整数係数コホモロジーの像であることは第6巻（Chern 類の位相的定義 $=$ Euler 類）で示される。因子 $\frac i{2\pi}$ はこの整数性のための正規化である。
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[scale=1.1]
+\draw[thick] (0,0) ellipse (1.5 and 1.5);
+\draw[thick,dashed] (-1.5,0) arc (180:360:1.5 and 0.45);
+\draw[thick] (-1.5,0) arc (180:0:1.5 and 0.45);
+\node at (0,1.0) {$D_0$: 枠 $e_0$};
+\node at (0,-1.0) {$D_1$: 枠 $e_1$};
+\node[right] at (1.5,0) {$C$: $e_0=g\,e_1$};
+\end{tikzpicture}
+\caption{$S^2$ を赤道 $C$ で2つの円板に分け、各円板上の枠を $C$ 上の関数 $g:C\to\C^\times$ で貼り合わせる（clutching）。巻き数 $\mathrm{wind}(g)$ が束を決め、$-\mathrm{wind}(g)=\int c_1$。}
+\end{figure}
+
+\subsection{まとめ：何が接続によらず、何が依存するか}
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+量 & 接続に依存？ & 備考\\
+\midrule
+曲率 $F$ & 依存（ゲージで $g^{-1}Fg$） & 局所的な量。$F=0$ は平坦\\
+ホロノミー & 依存 & 平坦なら $\pi_1$ の表現\\
+Chern 形式 $c_k(E,\nabla)$ & 依存 & 閉形式\\
+Chern 類 $[c_k(E,\nabla)]\in H^{2k}$ & \textbf{依存しない} & 束の不変量（定理~\ref{thm:CW}）\\
+$\int_{\Sigma}c_1$ & 依存しない & 整数（$S^2$ で定理~\ref{thm:integral}）\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{複素ベクトル束の Hermite 計量と Chern 形式}
+Hermite 計量とそれに整合する接続（ユニタリ接続）を選ぶと $c_k(E,\nabla)$ は実形式になる。すべてのユニタリ接続の類が同じなので $c_k(E)\in H^{2k}(M;\R)$ は $E$ の不変量。実は $c_k(E)\in H^{2k}(M;\Z)$ の像であることが第6巻で分かる。\tC\ （Milnor--Stasheff §14 の定義と Chern--Weil の一致は第6巻で扱う。）
+
+\begin{keybox}{§7 の要点}
+\begin{itemize}
+\item $c(E,\nabla)=\det(I+\frac i{2\pi}F)$。$\tr F^k$ は閉（Bianchi）。2つの接続の差は完全形式（transgression $T=k\int_0^1\tr(aF_t^{k-1})\dd t$）。
+\item $c_1(\mathcal O(-1)\to\CP^1)$ の積分は $-1$。自明でない束の存在の判定ができる。
+\item \textbf{【あとで使う】}第6巻（Chern 類、HRR）、第8〜9巻（$\ch$, $\Td$ と指数定理）。Bianchi と transgression の考え方は、族の指数定理（Bismut 超接続）の鍵。
+\end{itemize}
+\end{keybox}
+
+\subsection*{問題（§7）}
+\begin{prob}{標準}\label{p:Ok}
+$k\in\Z$ とし、$\CP^1$ 上の直線束 $L_k$ を、$U_0$ の枠 $e_0$ と $U_1$ の枠 $e_1$ が $e_0=z^ke_1$ で結ばれるものとする（$L_1=\mathcal O(-1)$、問~\ref{p:taut}）。$h(e_0,e_0)=(1+|z|^2)^k$ が $U_1$ でも滑らかな計量 $h(e_1,e_1)=(1+|w|^2)^k$ を与えることを確かめ、$\theta_k=\partial\log h(e_0,e_0)$ に対し $c_1=\frac i{2\pi}\dd\theta_k$ を求めて $\int_{\CP^1}c_1=-k$ を示せ。
+\end{prob}
+\begin{prob}{標準}\label{p:chernops}
+接続つき直線束 $(L,\nabla)$, $(L',\nabla')$ について、テンソル積接続 $\nabla\otimes1+1\otimes\nabla'$ の曲率が $F+F'$ であり、したがって $c_1(L\otimes L')=c_1(L)+c_1(L')$、双対で $c_1(L^*)=-c_1(L)$ であることを示せ。また階数 $r$ の $(E,\nabla)$ の行列式束 $\det E$ に誘導接続（枠の中で $\theta=\tr A$）を与えると、$c_1(E,\nabla)=c_1(\det E)$ であることを示せ。
+\end{prob}
+\begin{prob}{発展}\label{p:winding}
+$S^2=\CP^1$、赤道 $C=\{|z|=1\}$ とする。直線束 $L$ の $U_0$ 上の枠 $e_0$、$U_1$ 上の枠 $e_1$ が $e_0=g\,e_1$（$g:C\to\C^\times$）で結ばれ、$\nabla e_0=\theta_0e_0$, $\nabla e_1=\theta_1e_1$ とする。(a) $\theta_0=\theta_1+\dd\log g$ を示せ。(b) Stokes の定理で $\int_{\CP^1}c_1=\frac i{2\pi}\oint_C\dd\log g=-\mathrm{wind}(g)$ を示せ（$C$ は $z$ 座標で反時計回り）。(c) $\mathcal O(-1)$（$g=z$）について $\theta_0-\theta_1=\dd z/z$ を直接計算で確かめ、$-1$ を再現せよ。
+\end{prob}
+\begin{prob}{標準}\label{p:c2}
+$\mathfrak{sl}(2)$ 値の曲率 $F$（$\tr F=0$）をもつ階数2の束で、$c_1=0$, $c_2=\frac1{8\pi^2}\tr(F\wedge F)$ であり、$\ch_2=-c_2$ であることを示せ。
+\end{prob}
+\begin{prob}{発展}\label{p:trivialc1}
+(a) 自明な直線束 $M\times\C$ の任意の接続 $\nabla=\dd+A$ に対し $c_1(L,\nabla)=\frac i{2\pi}\dd A$ は完全。(b) 閉じた向きづけられた曲面 $\Sigma$ 上の直線束 $L$ と任意のユニタリ接続について $\int_\Sigma c_1(L,\nabla)$ は $\nabla$ によらず、$L$ が自明なら $0$。(c) 一般に $E$ が自明束なら $\ch(E)=\rk E$ を示せ。
+\end{prob}
+\begin{prob}{標準}\label{p:TCP1}
+例~\ref{ex:TCP1} より $T\CP^1$ の複素枠は $e_0=-z^{-2}e_1$ で結ばれる。問~\ref{p:winding} の公式を使って $\int_{\CP^1}c_1(T\CP^1)$ を求め、$\chi(S^2)=2$ と比較せよ。さらに $\mathcal O(-1)$ の貼り合わせ関数との関係から $T\CP^1\cong\mathcal O(2)$（$=\mathcal O(-1)^{\otimes(-2)}$）となる理由を、連続な変形（$-z^{-2}$ と $z^{-2}$ は巻き数が同じ）で説明せよ。（滑らかな複素直線束の同型類は巻き数 $=\int c_1$ で決まる \tC。）
+\end{prob}

@@ -1,0 +1,105 @@
+
+%==================================================
+\section{微分形式と外微分・Cartan の公式}
+%==================================================
+\subsection{外積代数と微分形式}
+$V$ を $n$ 次元ベクトル空間とする。$\Lambda^kV^*$ は $V$ 上の $k$ 重の交代多重線形形式の空間（$\dim=\binom nk$）。$\alpha\in\Lambda^kV^*$, $\beta\in\Lambda^lV^*$ の外積 $\alpha\wedge\beta\in\Lambda^{k+l}V^*$ は結合的で、$\beta\wedge\alpha=(-1)^{kl}\alpha\wedge\beta$。
+
+\begin{defn}
+\emph{$k$ 形式}は $\Lambda^kT^*M$ の切断。座標で $\omega=\sum_{I}\omega_I\,\dd x^{i_1}\wedge\dots\wedge\dd x^{i_k}$（$i_1<\dots<i_k$）。$\Omega^k(M)$ をその空間とし、$\Omega^*(M)=\bigoplus_k\Omega^k(M)$ は次数つき可換代数。
+\end{defn}
+
+写像 $F:M\to N$ による\emph{引き戻し} $F^*:\Omega^k(N)\to\Omega^k(M)$ は $(F^*\omega)_p(v_1,\dots,v_k)=\omega_{F(p)}(\dd F\,v_1,\dots,\dd F\,v_k)$。座標では $F^*(g\,\dd y^{j_1}\wedge\cdots)=(g\circ F)\,\dd F^{j_1}\wedge\cdots$。$F^*$ は $\wedge$ と整合し、微分同相でなくても定義される（形式の便利なところ）。
+
+
+\paragraph{座標での外積の計算規則。}$\R^3$ で $\dd x,\dd y,\dd z$ は反可換 $\dd x\wedge\dd y=-\dd y\wedge\dd x$、$\dd x\wedge\dd x=0$。$1$ 形式 $\alpha=a_i\dd x^i$, $\beta=b_i\dd x^i$ の外積は $\alpha\wedge\beta=\sum_{i<j}(a_ib_j-a_jb_i)\dd x^i\wedge\dd x^j$。$\R^3$ では $(a_i)\times(b_i)$（ベクトル積）に対応し、3つの $1$ 形式の外積は行列式：$\alpha\wedge\beta\wedge\gamma=\det(a,b,c)\,\dd x\wedge\dd y\wedge\dd z$。一般に $\dd x^{i_1}\wedge\cdots\wedge\dd x^{i_n}=\varepsilon^{i_1\cdots i_n}\dd x^1\wedge\cdots\wedge\dd x^n$ なので、$n$ 形式への引き戻しは Jacobi 行列式を掛ける：$F^*(g\,\dd y^1\wedge\cdots\wedge\dd y^n)=(g\circ F)\det(\dd F)\,\dd x^1\wedge\cdots\wedge\dd x^n$。これが重積分の変数変換公式の源である。$k$ 形式は多重線形・交代なので、ベクトル $v_1,\dots,v_k$ に対する値は $\dd x^{i_1}\wedge\cdots\wedge\dd x^{i_k}(v_1,\dots,v_k)=\det\bigl(v_j^{i_l}\bigr)$。
+
+\paragraph{内部積。}ベクトル場 $X$ に対し $\iota_X:\Omega^k\to\Omega^{k-1}$, $(\iota_X\omega)(Y_1,\dots,Y_{k-1})=\omega(X,Y_1,\dots,Y_{k-1})$。反微分：$\iota_X(\alpha\wedge\beta)=\iota_X\alpha\wedge\beta+(-1)^k\alpha\wedge\iota_X\beta$。
+
+\subsection{外微分}
+\begin{thm}[外微分]\tC
+唯一の $\R$ 線形写像 $\dd:\Omega^k(M)\to\Omega^{k+1}(M)$ で次を満たすものがある：(i) $\dd f$ は関数 $f$ の微分、(ii) $\dd(\alpha\wedge\beta)=\dd\alpha\wedge\beta+(-1)^k\alpha\wedge\dd\beta$、(iii) $\dd\circ\dd=0$。座標では $\dd(\omega_I\,\dd x^I)=\dd\omega_I\wedge\dd x^I=\partial_j\omega_I\,\dd x^j\wedge\dd x^I$。さらに $F^*\dd=\dd F^*$。
+\end{thm}
+\src{Lee 第14章、Warner 第2章、Bott--Tu 第I章 §1。}
+
+$\dd^2=0$ の理由：$\dd\dd\omega=\partial_k\partial_j\omega_I\,\dd x^k\wedge\dd x^j\wedge\dd x^I$ で、$\partial_k\partial_j$ は対称、$\dd x^k\wedge\dd x^j$ は反対称。
+
+
+$\dd$ の一意性と座標独立性：(i)–(iii) を満たす演算は、座標近傍で $\dd(\omega_I\dd x^I)=\dd\omega_I\wedge\dd x^I$（$\dd\dd x^i=0$ を使う）と書かれるので、局所的に唯一。唯一性により、座標のとり方によらず、また $\dd$ は局所演算（$\omega$ が開集合 $U$ で $0$ なら $U$ で $\dd\omega=0$）なので、開集合ごとの定義が貼り合わさる。引き戻しとの可換性 $F^*\dd=\dd F^*$ は、関数と $\dd f$ で確認すれば十分（連鎖律 $\dd(f\circ F)=F^*\dd f$）。
+
+\begin{ex}[$\R^3$ の古典ベクトル解析]
+$\dd:\Omega^0\to\Omega^1\to\Omega^2\to\Omega^3$ は $\mathrm{grad},\mathrm{curl},\mathrm{div}$ に対応する：$\dd f=f_x\dd x+f_y\dd y+f_z\dd z$。$\dd(P\,\dd x+Q\,\dd y+R\,\dd z)=(R_y-Q_z)\dd y\wedge\dd z+(P_z-R_x)\dd z\wedge\dd x+(Q_x-P_y)\dd x\wedge\dd y$。$\dd(a\,\dd y\wedge\dd z+b\,\dd z\wedge\dd x+c\,\dd x\wedge\dd y)=(a_x+b_y+c_z)\,\dd x\wedge\dd y\wedge\dd z$。$\dd^2=0$ は $\mathrm{curl}\,\mathrm{grad}=0$, $\mathrm{div}\,\mathrm{curl}=0$。
+\end{ex}
+
+\paragraph{不変公式。}1形式 $\alpha$ とベクトル場 $X,Y$ に対し
+\begin{equation}\label{eq:dalpha}
+\dd\alpha(X,Y)=X(\alpha(Y))-Y(\alpha(X))-\alpha([X,Y]).
+\end{equation}
+ここで Lie 括弧が外微分の中に現れる。一般の $k$ 形式でも同様の交代和公式があり、$\dd^2=0$ は Jacobi 恒等式と同じ根をもつ（これが Lie 代数のコホモロジー Chevalley--Eilenberg 複体の見方）\tC。式~\eqref{eq:dalpha} は Cartan の公式から導ける（問~\ref{p:invariant}）。
+
+\subsection{Lie 微分と Cartan の公式}
+\begin{defn}
+ベクトル場 $X$ の流れを $\varphi_t$ とする。$\Lie_X\omega=\frac{\dd}{\dd t}\big|_{t=0}\varphi_t^*\omega$（形式 $\omega$ の \emph{Lie 微分}）。
+\end{defn}
+
+\begin{thm}[Cartan の公式]\label{thm:cartan}
+$\Lie_X=\dd\,\iota_X+\iota_X\,\dd$。さらに $\Lie_X$ は $\dd$ と可換で、$[\Lie_X,\iota_Y]=\iota_{[X,Y]}$。
+\end{thm}
+\begin{proof}[証明の方針と出典]\tC\ $\Lie_X$ と $\dd\iota_X+\iota_X\dd$ はともに次数 $0$ の（偶）反微分（$\wedge$ に対し Leibniz 則を満たす）で、$\dd$ と可換である。したがって関数と、関数の外微分 $\dd f$ への作用が一致すれば全体で一致する。関数 $f$ では $\Lie_Xf=Xf=\iota_X\dd f$、$\dd f$ では $\Lie_X\dd f=\dd\Lie_Xf=\dd\iota_X\dd f$。局所座標系では形式は $f\,\dd x^{i_1}\wedge\dots\wedge\dd x^{i_k}$ の和なので、これで十分。確認の例：$\omega=f\,\dd x^1$ なら $\Lie_X\omega=(Xf)\dd x^1+f\,\dd(X^1)$。一方 $\dd\iota_X\omega=\dd(fX^1)=X^1\dd f+f\dd X^1$、$\iota_X\dd\omega=\iota_X(\dd f\wedge\dd x^1)=(Xf)\dd x^1-X^1\dd f$。和は $(Xf)\dd x^1+f\dd X^1$ で一致する。（Lee 第14章に載る。定理番号は書かない。）
+\end{proof}
+
+\begin{ex}
+$X=x\partial_y-y\partial_x$、$\omega=x\,\dd y$ のとき $\Lie_X\omega=x\,\dd x-y\,\dd y$（問~\ref{p:cartanex}：回転の流れでの直接計算と公式の両方で確認）。
+\end{ex}
+
+\begin{keybox}{§3 の要点}
+\begin{itemize}
+\item $\dd$ は反微分で $\dd^2=0$、引き戻しと可換。$\dd\alpha(X,Y)=X\alpha(Y)-Y\alpha(X)-\alpha([X,Y])$。
+\item Cartan：$\Lie_X=\dd\iota_X+\iota_X\dd$。計算の標準的な道具で、Lie 微分、不変公式、ホモトピー不変性（§4）の全部がここから出る。
+\item \textbf{【あとで使う：第12巻】}Cartan の公式は Courant 括弧（Dorfman 括弧 $\Lie_X\eta-\iota_Y\dd\xi$）の定義と、$e^{B}$ 変換が Courant 構造を保つ条件（$\dd B=0$）の証明の中心になる。\ \tQ\ （式の細部は第12巻で確認）
+\end{itemize}
+\end{keybox}
+
+
+\paragraph{$\Lie$ の基本性質（Cartan の公式の帰結）。}Cartan の公式から次が従う（問~\ref{p:liebracket}）：
+\[
+\Lie_X\dd=\dd\Lie_X,\qquad[\Lie_X,\iota_Y]=\iota_{[X,Y]},\qquad[\Lie_X,\Lie_Y]=\Lie_{[X,Y]}.
+\]
+3つ目は $X\mapsto\Lie_X$ が Lie 代数 $\X(M)$ の $\Omega^*(M)$ への表現であることを意味する。
+
+\begin{ex}[体積形式と発散]\label{ex:div}
+$\R^n$ の体積形式 $\mathrm{vol}=\dd x^1\wedge\cdots\wedge\dd x^n$ に対し、$\dd\mathrm{vol}=0$ なので Cartan から $\Lie_X\mathrm{vol}=\dd\iota_X\mathrm{vol}=(\mathrm{div}X)\,\mathrm{vol}$。$\mathrm{div}X=\sum\partial_iX^i$。したがって $X$ の流れが体積を保つ $\Leftrightarrow\mathrm{div}X=0$。例：Euler ベクトル場 $E=x\partial_x+y\partial_y$ で $\Lie_E(\dd x\wedge\dd y)=2\,\dd x\wedge\dd y$（流れ $\varphi_t(x,y)=e^t(x,y)$ は面積を $e^{2t}$ 倍する）。
+\end{ex}
+
+\subsection{積分と Stokes の定理}
+向きづけられた $n$ 次元多様体上のコンパクト台 $n$ 形式は積分でき（1の分割で局所に分けて座標で積分）、境界つきコンパクト向きづけられた多様体 $M$ に対し（$\partial M$ には外向き法線を先頭にする誘導向きを入れる）
+\[
+\int_M\dd\omega=\int_{\partial M}\omega\qquad(\omega\in\Omega^{n-1}(M)).
+\]
+\tC\ （Lee 第16章、Bott--Tu 第I章 §3）。例：単位球 $B^3\subset\R^3$ と $\omega=x\,\dd y\wedge\dd z+y\,\dd z\wedge\dd x+z\,\dd x\wedge\dd y$ では $\dd\omega=3\,\dd x\wedge\dd y\wedge\dd z$ で $\int_{S^2}\omega=3\cdot\tfrac{4\pi}3=4\pi$（問~\ref{p:area}）。
+
+\subsection{余接束の標準 1 形式}
+$\pi:T^*M\to M$ とする。\emph{標準1形式} $\lambda\in\Omega^1(T^*M)$ を $\lambda_\xi(w)=\xi(\dd\pi(w))$（$\xi\in T^*M$, $w\in T_\xi(T^*M)$）で定義する。座標 $(x^i,\xi_i)$（$\xi=\xi_i\dd x^i$）で $\lambda=\xi_i\,\dd x^i$。$\omega=\dd\lambda=\dd\xi_i\wedge\dd x^i$ は閉かつ非退化（\emph{シンプレクティック形式}）。次の性質は座標によらない形で述べられる：1形式 $\sigma:M\to T^*M$ を写像と見ると $\sigma^*\lambda=\sigma$（問~\ref{p:canon}）。第11〜12巻の Poisson・シンプレクティック幾何の出発点になる。
+
+\subsection*{問題（§3）}
+\begin{prob}{基本}\label{p:dcalc}
+$\R^3$ で $\alpha=x^2y\,\dd x+z\,\dd y+xy\,\dd z$ の $\dd\alpha$、および $\beta=xz\,\dd y\wedge\dd z+y^2\,\dd z\wedge\dd x+x\,\dd x\wedge\dd y$ の $\dd\beta$ を求めよ。$\dd\dd\alpha=0$ も確かめよ。
+\end{prob}
+\begin{prob}{基本}\label{p:pullback}
+(a) 極座標 $x=r\cos\theta$, $y=r\sin\theta$ で $\dd x\wedge\dd y=r\,\dd r\wedge\dd\theta$ を示せ。(b) $F(x,y)=(x^2-y^2,2xy)$ について $F^*(\dd x\wedge\dd y)$ と $F^*(x\,\dd y-y\,\dd x)$ を求めよ。
+\end{prob}
+\begin{prob}{標準}\label{p:cartanex}
+$X=x\partial_y-y\partial_x$ と $\omega=x\,\dd y$ について、(a) 流れ（回転）による引き戻しの $t$ 微分として $\Lie_X\omega$ を求め、(b) Cartan の公式 $\dd\iota_X\omega+\iota_X\dd\omega$ で計算して一致を確かめよ。
+\end{prob}
+\begin{prob}{標準}\label{p:invariant}
+Cartan の公式から、$[\Lie_X,\iota_Y]=\iota_{[X,Y]}$（これは $\Lie_X(\alpha(Y))=(\Lie_X\alpha)(Y)+\alpha(\Lie_XY)$ と同値）を用いて、不変公式~\eqref{eq:dalpha} を導け。
+\end{prob}
+\begin{prob}{標準}\label{p:area}
+$\omega=x\,\dd y\wedge\dd z+y\,\dd z\wedge\dd x+z\,\dd x\wedge\dd y$ について (a) $\dd\omega$ を求め、(b) $\omega|_{S^2}$ の点 $p$ での値が $\omega_p(u,v)=\det(p,u,v)$ であり、$S^2$ の面積形式であることを説明し、(c) Stokes から $\int_{S^2}\omega=4\pi$ を導け。
+\end{prob}
+\begin{prob}{発展}\label{p:canon}
+(a) $\lambda=\xi_i\dd x^i$ が座標変換 $x'=x'(x)$ のもとで形を保つ（$\xi'_j\dd x'^j=\xi_i\dd x^i$）ことを、$\xi=(J^{T})\xi'$ の変換則から示せ。(b) 1形式 $\sigma=\sigma_i(x)\dd x^i$ について $\sigma^*\lambda=\sigma$ を示せ。(c) $\omega=\dd\lambda$ は非退化で、$\omega^{n}=\omega\wedge\dots\wedge\omega$ は至る所 $0$ でない。したがって $T^*M$ は向きづけ可能。
+\end{prob}
+\begin{prob}{標準}\label{p:liebracket}
+Cartan の公式から次を導け。(a) $\Lie_X\dd=\dd\Lie_X$。(b) $\Lie_{[X,Y]}=[\Lie_X,\Lie_Y]$（ヒント：$[\Lie_X,\iota_Y]=\iota_{[X,Y]}$ を認めて、$\Lie_{[X,Y]}=\dd\iota_{[X,Y]}+\iota_{[X,Y]}\dd$ に代入）。(c) 例~\ref{ex:div} で、$X=x\partial_x-y\partial_y$ の流れは $\R^2$ の面積を保つ。$\Lie_X(\dd x\wedge\dd y)$ を直接求めて確かめよ。
+\end{prob}
