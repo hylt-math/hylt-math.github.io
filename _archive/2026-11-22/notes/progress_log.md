@@ -80,3 +80,9 @@ Statements: Thm K1 (chi = chi(U)), Thm K (refined RR formula), wall-crossing Eul
 
 ## 2026-11-22 Round H
 Proved the local stalk rule R(s) for quasi-homogeneous isolated plane-curve germs (s!=1) via weight-k0 complex; verified by cp2/roundH_proof_check.py (14 types, 0 mismatches). Notes: roundH_notes.md. Not yet folded into published posts (next: v3/new post, sync _archive, STATE.md).
+
+## 2026-11-22 Round J2 (fork)
+- Proved Theorem V: SNC D, U affine, all residues ∉Z ⇒ Rj_*L_U=j_!L_U ⇒ H^k(U;L_U)=H^k_c=0 (k<n) via Artin + duality; no Σr_i condition, any n≥1. Closes the "H^k(U;L_U)=0 (k<n)" gap of Theorem R/K for non-integer residues.
+- Exact toric checks (n=4, incl. Σr_i∈Z): HH=χ(X)t^4 in all 6 cases (cp2/roundJ2_vanish_check.py).
+- PK: P^1×P^1 Segre via Sklyanin q_{4,1} (cp2/roundJ2_sklyanin_segre.py: Jacobi exact, 2 Casimirs, rank 2, smooth base locus) ✓ for these σ; P^2 m=3 NOT computed (1215 unknowns).
+- Notes: roundJ2_notes.md. Not pushed.

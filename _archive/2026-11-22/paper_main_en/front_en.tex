@@ -1,0 +1,49 @@
+\newcommand{\secstar}[1]{\section*{#1}\addcontentsline{toc}{section}{#1}}
+\secstar{Introduction and reading guide}
+\paragraph{Motivation.}
+The ``three treasures'' of complex geometry are the Hirzebruch--Riemann--Roch theorem, Serre's vanishing theorem and Kodaira's embedding theorem. The ultimate goal is to ask whether they extend to generalized complex geometry (Hitchin, Gualtieri). As far as we could check the sources, there are Hu's Kodaira--Nakano vanishing and Riemann--Roch--Hirzebruch theorems on Lie groupoids \cite{Hu1,Hu2} and Pal--Poddar's vanishing theorems for strong generalized holomorphic bundles (regular type) \cite{PP}, but we found no Kodaira embedding or Riemann--Roch theorem for general generalized complex structures \tC.
+Following the advice to start from ``the simplest nontrivial example'', we study the generalized complex structure $\Jc_\sigma$ obtained by the $\beta$-transform of a holomorphic Poisson structure $\sigma$ on a complex manifold $X$. The type jumps along the divisor $D$ where $\sigma$ degenerates, and generalized holomorphic line bundles are described concretely as Poisson modules (holomorphic bundles with a flat $A$-connection).
+
+\paragraph{Structure of this paper.}
+Parts I--V are included with a new numbering (sections I.1, Theorem I.6.4, etc.). Each part can be read alone; the dependencies are as follows.
+\begin{center}\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{1.2cm}>{\raggedright\arraybackslash}p{4.4cm}>{\raggedright\arraybackslash}p{7.6cm}>{\raggedright\arraybackslash}p{1.6cm}}
+\toprule Part & Theme & Main results & Status\\\midrule
+I & Serre-type vanishing, duality, surface formula & Poisson module $=$ log connection, Serre-type vanishing in transversal degree, duality in all dimensions, Poincar\'e polynomial $P_r(t)$ of surfaces, full computation for $\mathbb{CP}^2$ + cubic & \tP\ \tV\\
+II & Euler characteristic, toric, local formula & $(-1)^n\rk E\,\chi(X)$ (any dimension), closed toric formulas, resonance, local terms (observations) & \tP\ \tV\ \tK\\
+III & Kodaira type & no embedding by generalized holomorphic sections, leaf-space version, Poisson--Kodaira (proved in the toric case) & \tP\ \tK\\
+IV & Regular type; reduction theorem & $\HH^*$ in the regular type and degreewise polynomials, contrast with periodic jumps, reduction theorem in general dimension & \tP\ \tQ\\
+V & RR-type formulas, index conjecture & $\chi(\mathrm{DR}_{\log})=\chi(U)$, RR-type formula for Poincar\'e polynomials, proof of the quasi-homogeneous local formula, index conjecture & \tP\ \tV\ \tK\\\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Correspondence with the three treasures (summary).}
+A detailed status table is at the end of Part V.
+\begin{itemize}
+\item \emph{Riemann--Roch}: the total Euler characteristic does not see $c_1(E)$ (Theorem II.E), so a naive HRR fails. What holds: Poincar\'e polynomials (Part I for surfaces, Theorem K of Part V in general), degreewise polynomials in the regular type (Part IV), and the log Euler characteristic $\chi(U)$ (Part V). Unification by an index theorem is a conjecture (Part V).
+\item \emph{Serre vanishing}: vanishing in transversal degree $a>0$ holds for every $\sigma$ (Part I); vanishing in total degree fails even for $\sigma=0$.
+\item \emph{Kodaira embedding}: since $\HH^0\le1$, an embedding by generalized holomorphic sections is impossible. Substitutes: the leaf-space version (regular type) and Poisson--Kodaira (proved in the toric case, conjectural in general) (Part III).
+\end{itemize}
+
+\paragraph{Three ideas running through the paper.}
+(i) \emph{Translation to flat connections.} On the $\beta$-transform structure the generalized Dolbeault complex is identified with $(\wedge^\bullet T\otimes E,\ \dbar+[\sigma,\cdot])$ \tC\ (Laurent-Gengoux--Sti\'enon--Xu \cite{LGSX1}), and generalized holomorphic bundles are Poisson modules. If $\sigma$ is log symplectic along $D$, these are flat logarithmic connections along $D$ with constant residues $r_i$ (Part I).
+(ii) \emph{Separation of local and global.} Comparing the log de Rham complex with $Rj_*L_U$ (Deligne \cite{Del}) brings in the cohomology of the local system on $U=X\setminus D$; when residues are integers (resonance) the quotient complex contributes. The global part is written with $H^*(U;L_U)$ and $\chi(X)$, the local part by stalk formulas at singularities of $D$.
+(iii) \emph{Three behaviours.} Polynomial in $m$ in the regular type, periodic in the log symplectic type, and $m$-independent for the total Euler characteristic (Parts IV, V).
+
+\paragraph{Meaning of the tags.}\tC\ quoted from the literature, \tP\ proved by the author (dependence on quoted results is listed in each part's status table), \tV\ computer verification by exact linear algebra etc.\ (not a proof), \tK\ conjecture or outlook, \tQ\ unverified point.
+
+\paragraph{Notation (main items).}Each part has its own notation table.
+\begin{center}\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{3.2cm}>{\raggedright\arraybackslash}p{11.6cm}}
+\toprule Symbol & Meaning\\\midrule
+$X,\ n$ & compact complex manifold, $\dim_\C X=n$\\
+$\sigma$ & holomorphic Poisson structure; $\Jc_\sigma$ its $\beta$-transform generalized complex structure\\
+$D=\sum D_i,\ U$ & degeneracy divisor of $\sigma$ (reduced, SNC; ordinary double points for surfaces), $U=X\setminus D$\\
+$A=(T^*)_\sigma$ & holomorphic Lie algebroid (anchor $\sigma^\sh$); Poisson module $=$ holomorphic bundle $E$ with flat $A$-connection\\
+$r_i$ & residue along $D_i$; $c_1(E)=-\sum r_i[D_i]$\\
+$\HH^k(E)$ & generalized Dolbeault cohomology $=H^k(X;C(A;E))$\\
+$E_1^{a,b}$ & $H^a(X,\wedge^bT\otimes E)$ ($a$ = transversal degree)\\
+$\mathrm{DR}_{\log}(E)$ & logarithmic de Rham complex\\
+$\chi(X),\ b_1$ & Euler characteristic, first Betti number of $U$, etc.\\\bottomrule
+\end{tabular}
+\end{center}

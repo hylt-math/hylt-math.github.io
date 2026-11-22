@@ -13,6 +13,8 @@
 ## 停止条件（ユーザー指示 2026-11-22 09:57）
 - 総合論文（Part I–V を統合した日本語版・英語版）を公開し、STATE.md に記録したら、自動再開をやめる。具体的には、予約中の再開（trigger trig_015zFgr7B9fRffzGqeu2J4mS、12:31 JST）が動いたときに総合論文が公開済みなら、新しい予約を入れず、delete_trigger でこの予約も削除し、全成果の要約を SendUserMessage で送って終了する。総合論文が未完なら、完了まで継続。
 
+## 状態: 自動再開は停止済み（総合版公開済み、予約削除済み、2026-11-22 10:30 JST ごろ）。再開するにはユーザーの指示が必要。
+
 ## 公開済み
 - 2026-11-22 generalized-geometry-poisson v1（ja/en）、v2（ja/en、書誌・定理番号の訂正、commit e299fc2）。status: partial。v2 のソースは _archive/2026-11-22/paper_v2_ja, paper_v2_en。
 - Part II: generalized-geometry-poisson-part2 v1, v2（局所公式の訂正）。Part III: generalized-geometry-poisson-part3 v1（Kodaira 型）。Part V: generalized-geometry-poisson-part5 v1（Riemann–Roch 型公式 K1/K、局所公式の証明、指数予想）。Part IV: generalized-geometry-poisson-part4 v1（正則型 Gauss–Manin と対数シンプレクティック型の比較、簡約定理 R）。いずれも ja/en、status partial。
@@ -35,3 +37,4 @@ M. 全体を一つの総合論文（Part I–III の統合・整理）にまと�
 - ラウンド0 続き (〜06:30): Task I, L 完了。Part IV v1 を公開（commit 59661d6）。次回ラウンド(07:31〜): G（サイト確認）, H, J, K, M を優先。
 - ラウンド1 (07:31〜08:50): Task H, K 完了。Part V v1 公開（commit 74f6203）。次: M（総合論文）、J（Poisson–Kodaira）、G（サイト確認）、K の残り。
 - 09:57: 総合論文（M）の作成を開始。Poisson–Kodaira と H^k(U;L_U)=0 の穴の補強を並行。
+- 10:30: 総合版（Part I–V、ja/en、80ページ、commit 000c94b）を公開。新規執筆は約7–8ページ（序論・番号統一・整合性・補遺 定理V）で、短く書き直した論文ではない。自動再開は停止し予約を削除。残課題: 総合論文の凝縮版の書き直し、Poisson–Kodaira（P² m=3）、指数定理、Part V の v2（定理 V 反映）、公開サイトの反映確認（ブラウザ未接続のため未確認）。

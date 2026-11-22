@@ -1,0 +1,57 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=24mm]{geometry}
+\usepackage{xspace}
+\usepackage{xcolor,booktabs,longtable,array,enumitem,fancyhdr,titlesec}
+\usepackage{tocloft}\setlength{\cftsecnumwidth}{3.2em}\setlength{\cftpartnumwidth}{3.2em}
+\usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black]{hyperref}
+\setlength{\parindent}{1em}
+\setlength{\parskip}{2pt}
+\linespread{1.08}
+\emergencystretch=4em
+\setlist{itemsep=1pt,topsep=3pt}
+\setlength{\tabcolsep}{4pt}
+
+%%% --- status tags ---
+\newcommand{\tP}{\textcolor{green!45!black}{\textbf{[Proved]}}\xspace}
+\newcommand{\tC}{\textcolor{blue!55!black}{\textbf{[Lit.]}}\xspace}
+\newcommand{\tV}{\textcolor{violet!80!black}{\textbf{[Verified numerically]}}\xspace}
+\newcommand{\tK}{\textcolor{red!70!black}{\textbf{[Conjecture]}}\xspace}
+\newcommand{\tQ}{\textcolor{orange!85!black}{\textbf{[To be verified]}}\xspace}
+
+%%% --- theorem-like environments ---
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[section]
+\newtheorem{thm}[defn]{Theorem}
+\newtheorem{prop}[defn]{Proposition}
+\newtheorem{lem}[defn]{Lemma}
+\newtheorem{cor}[defn]{Corollary}
+\newtheorem{ex}[defn]{Example}
+\newtheorem{rem}[defn]{Remark}
+\newtheorem{obs}[defn]{Observation}
+\newtheorem{conj}[defn]{Conjecture}
+\newcommand{\src}[1]{\par\noindent{\small\textcolor{blue!55!black}{\textbf{[Source]}~#1}}\par}
+
+\newenvironment{hyptab}{\par\medskip\noindent{\small\textbf{Hypotheses and their roles}}\par\nopagebreak\small\noindent\begin{tabular}{>{\raggedright\arraybackslash}p{3.3cm}>{\raggedright\arraybackslash}p{5.5cm}>{\raggedright\arraybackslash}p{5.9cm}}\toprule Hypothesis & Why it is needed & Where it enters the proof\\\midrule}{\\\bottomrule\end{tabular}\par\medskip}
+
+%%% --- notation ---
+\newcommand{\R}{\mathbb R}\newcommand{\C}{\mathbb C}\newcommand{\Z}{\mathbb Z}
+\newcommand{\bT}{\mathbb T}
+\newcommand{\Lb}{\overline L}
+\newcommand{\Jc}{\mathcal J}
+\newcommand{\dbar}{\bar\partial}
+\newcommand{\ch}{\mathrm{ch}}\newcommand{\Td}{\mathrm{Td}}
+\newcommand{\rk}{\mathrm{rk}}
+\newcommand{\HH}{\mathrm{HH}}
+\newcommand{\Res}{\mathrm{Res}}
+\newcommand{\dlog}{\mathrm{dlog}\,}
+\newcommand{\sh}{\sharp}
+
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small Generalized geometry: the three treasures (comprehensive paper)}
+\fancyhead[R]{\small Research note 2026-11-22}
+\fancyfoot[C]{\small\thepage}
+\titleformat{\section}{\large\bfseries\sffamily}{\thesection}{0.8em}{}
+\titleformat{\subsection}{\normalsize\bfseries\sffamily}{\thesubsection}{0.8em}{}
+

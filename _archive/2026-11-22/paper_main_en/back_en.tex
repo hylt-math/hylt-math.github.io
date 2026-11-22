@@ -1,0 +1,47 @@
+\part*{Summary}
+\addcontentsline{toc}{part}{Summary}
+\renewcommand{\thesection}{S.\arabic{section}}\setcounter{section}{0}
+\section{Consistency checks between the parts, and updates}
+We record the relations and updates found while integrating Parts I--V. None is a retraction of a theorem.
+\begin{itemize}
+\item \textbf{Status of the local formula.} In Part II's status table the local formula (observation) is \tP\ \tV\ \tK, and its rule $R(s)$ was corrected in Part II v2. Part V proved it for quasi-homogeneous germs for $s\ne1$ (\tP\ \tQ). In that range Part V supersedes the ``observation/conjecture'' wording of Parts II and III. The case $s=1$ and non-quasi-homogeneous germs remain unproved.
+\item \textbf{Revision of Part I.} Bibliographic and numbering errors of Part I v1 (e.g.\ the author of arXiv:0905.3227 is Hitchin) were corrected in v2; Part I here is v2. Theorem numbers of Part I cited in Parts II--V are those of v2 and are written with the prefix I.\ in this paper.
+\item \textbf{Unified references.} The title of Hu's second paper was ``Kodaira--Nakano vanishing and Riemann--Roch on Lie groupoids'' in the standalone Part V and ``Lie groupoid Riemann--Roch--Hirzebruch theorem and applications'' in Parts I and III. We use the latter (arXiv:2403.13424); the final check of the title is \tQ.
+\item \textbf{Homonymous labels.} ``Theorem~\ref{p3:thm:K1}'' of Part III (leaf-space version) and ``Theorem K1'' of Part V (log Euler characteristic) are different theorems; the former is cited by its section number.
+\item \textbf{Inherited status.} The reduction theorem (derivation of the filtration for $n>2$) of Parts IV, V, the local formula of Part V and Theorem K depend on the \tQ\ items of Part I (Gualtieri 2011 \S4 unread, LGSX Lemma 4.22 and Mokri's theorem not rederived, etc.) (the part coming from the vanishing of $H^k(U;L_U)$ is resolved by Theorem V of the addendum).
+\end{itemize}
+
+\section{Open problems}
+\begin{enumerate}
+\item The general Poisson--Kodaira conjecture ($m\ge3$ for $\mathbb{CP}^2$, etc.; see the addendum: $\mathbb P^1\times\mathbb P^1$ with $m=1$ is confirmed through the Sklyanin structure, $\mathbb P^2$ with $m=3$ is not computed).
+\item General sufficient conditions for (GEN$'$), a holomorphic log Darboux theorem, local formulas for non-reduced, non-quasi-homogeneous and $s=1$ cases.
+\item $H^k(U;L_U)=0\ (k<n)$: solved for all $r_i\notin\Z$ by Theorem V of the addendum; the mixed case with some integer residues is open.
+\item The index conjecture: Fredholmness of the weighted b-calculus, index $=\chi(U)$, relation to $H^*(\partial U;L)$.
+\item Extension to non-flat bundles and to fibers not satisfying hard Lefschetz (Part IV).
+\item Riemann--Roch and Kodaira-type theorems for general generalized complex structures (not touched in this work).
+\end{enumerate}
+
+\section{Addendum: Theorem V (vanishing of $H^k(U;L_U)$) and further Poisson--Kodaira tests}\label{sec:addendum}
+\paragraph{Revision note.}Part V (standalone v1) and Part IV treated the vanishing $H^k(U;L_U)=0\ (k<n)$ for $r\notin\Z$, $n>2$ as unproved. Theorem V below closes this gap when all residues are non-integers. The standalone Part V is not yet revised; in this paper, this section takes precedence. The \tQ\ items in Part V's Theorem K and in the reduction theorem that came from this vanishing are resolved.
+
+\begin{thm}[Theorem V\ \tP]\label{thm:V}
+Let $X$ be a compact complex manifold of dimension $n\ge1$, $D=\sum_{i=1}^sD_i$ a reduced simple normal crossing divisor, and assume $U=X\setminus D$ is \emph{affine}. Let $L_U$ be a rank-one local system on $U$ with monodromy $e^{-2\pi\sqrt{-1}\,r_i}$ around $D_i$, with \emph{every $r_i\notin\Z$}. Then $H^k(U;L_U)=0$ for $k\ne n$; hence $\dim H^n(U;L_U)=(-1)^n\chi(U)$.
+\end{thm}
+\begin{proof}
+(a) The stalk of $Rj_*L_U$ at $p\in D_I$ ($|I|=k\ge1$) is $H^*(U\cap B;L_U)$ for a small polydisc $B$. Since $U\cap B\simeq(\Delta^*)^k\times\Delta^{n-k}\simeq(S^1)^k$ and $L_U$ is the exterior tensor product of local systems with monodromy $\mu_i=e^{-2\pi\sqrt{-1}r_i}\ne1$, K\"unneth gives $H^*((S^1)^k;L)=\bigotimes H^*(S^1;L_{\mu_i})$, and $H^0=\ker(\mu-1)=0$, $H^1=\mathrm{coker}(\mu-1)=0$ for $\mu\ne1$. So the stalks vanish on $D$ and $Rj_*L_U=j_!L_U$.
+(b) As $X$ is compact, $H^k(U;L_U)=H^k(X;Rj_*L_U)=H^k(X;j_!L_U)=H^k_c(U;L_U)$.
+(c) As $U$ is affine, Artin's vanishing theorem (Andreotti--Frankel) \tC\ \cite{SGA4} gives $H^q(U;F)=0$ for $q>n$ for every local system $F$; so $H^k(U;L_U)=0$ for $k>n$. Poincar\'e duality on the oriented $2n$-manifold $U$, $H^k_c(U;L_U)\cong H^{2n-k}(U;L_U^\vee)^*$, with (b), gives vanishing for $2n-k>n$, i.e.\ $k<n$.
+\end{proof}
+\begin{hyptab}
+$r_i\notin\Z$ (all $i$) & Stalks vanish on every stratum & Only in (a). If all $r_i\in\Z$ on a stratum the stalk is $H^*(T^k)\ne0$, the source of the jumps in Parts II, V \\
+$U$ affine & Artin vanishing & (c). Fails e.g.\ for $D=\emptyset$ \\
+SNC & Local fundamental group $\Z^k$ & (a). At non-SNC points (triple points) the local fundamental group is not $\Z^k$ and $\sum r_i$ enters the stalk rule
+\end{hyptab}
+\paragraph{Consequence.}If the hypotheses of the reduction theorem (Theorem R, Part IV) hold and all $r_i\notin\Z$, then $\HH^k=0$ for $k\ne n$ and $\dim\HH^n=\chi(X)$, i.e.\ $P(t)=\chi(X)t^n$ \tP\ (depending on Theorem R). This is consistent with Theorem K of Part V. In the ``mixed'' case where only some $r_i$ are integers, stalks along $D_I$ survive only if all $r_i$ ($i\in I$) are integers, but vanishing below degree $n$ is unproved \tK.
+
+\paragraph{Computational checks\tV.}Toric, $n=4$, exact arithmetic mod $2^{61}-1$: $\mathbb P^4$ ($\mathcal O(1)$, $r=(1/2,1/3,1/5,1/7,-457/210)$) gives $(0,0,0,0,5)$; $\mathbb P^4$ ($\mathcal O(2)$, $r=(1/3,1/3,1/3,1/3,-10/3)$) gives $(0,0,0,0,5)$; $\mathbb P^2\times\mathbb P^2$ gives $(0,0,0,0,9)$; $(\mathbb P^1)^4$ gives $(0,0,0,0,16)$. All equal $\chi(X)t^4$, matching Theorems V and R. A mixed example ($\mathbb P^1\times\mathbb P^3$ with one integer residue $-2$) also gives $(0,0,0,0,8)$, but this is an observation, not a theorem. Scope: toric, $\sigma$ constant in the log frame, $L$ sufficiently ample; this does not test Theorem V for non-toric $U$.
+
+\paragraph{Further Poisson--Kodaira tests (Part III).}(1) Segre embedding of $\mathbb P^1\times\mathbb P^1$ ($m=1$, in $\mathbb P^3$): for the classical Sklyanin--Feigin--Odesskii quadratic Poisson structure $\{x_0,x_i\}=(J_j-J_k)x_jx_k$, $\{x_j,x_k\}=x_0x_i$ ($(i,j,k)$ cyclic in $1,2,3$, $J=(2,3,7)$), we verified exactly over $\mathbb Q$ the Jacobi identity (4/4 triples) and that there are exactly two independent quadratic Casimirs and generic rank 2 \tV. Hence each quadric in the Casimir pencil is a Poisson subvariety; the smooth ones are $\mathbb P^1\times\mathbb P^1$, and $\sigma$ vanishes along the smooth elliptic quartic $E=Q_1\cap Q_2$ (``simple zero exactly along $E$'' is identified by a rank/leaf argument, not computed). This is classical and not new (Feigin--Odesskii, Odesskii, Hua--Polishchuk \tQ). Whether every smooth $(2,2)$ curve arises, and singular $E$, are untested \tK. (2) $\mathbb P^2$, $m=3$ ($\mathbb P^9$) was \emph{not} computed: 1215 unknowns and 120 Jacobiator triples; the earlier numerical minimization was judged too heavy. So there is no evidence for or against PK at $m=3$ for the Fermat cubic. The case $xyz$ is proved by the toric theorem (Part III) and is not an independent test.
+
+\section{Scope of verification}
+All computations are exact linear algebra over $\mathbb Q$ or finite fields ($32003$, $2^{61}-1$), or fits to known formulas; they are not proofs. Dependence on the choice of curve and the representativeness of reduction mod $p$ for characteristic $0$ are not verified. Many quoted theorems have not been checked against the original for their range of applicability (see the \tQ\ items in each part). Scripts and research notes are in \texttt{\_archive/} in the repository.

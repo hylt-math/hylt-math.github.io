@@ -1,0 +1,49 @@
+\newcommand{\secstar}[1]{\section*{#1}\addcontentsline{toc}{section}{#1}}
+\secstar{序論と読み方}
+\paragraph{動機。}
+複素幾何の「三種の神器」とは、Hirzebruch--Riemann--Roch の定理、Serre の消滅定理、Kodaira の埋め込み定理である。これらを一般化複素幾何（Hitchin, Gualtieri）に拡張できるかを問うのが本研究の最終目標である。出典を確認した範囲では、Hu \cite{Hu1,Hu2} による Lie 亜群上の Kodaira--Nakano 消滅と Riemann--Roch--Hirzebruch、Pal--Poddar \cite{PP} による強一般化正則束の消滅定理（正則型）はあるが、一般の一般化複素構造に対する Kodaira 埋め込み・Riemann--Roch は見つからなかった\tC。
+指導の方針に従い、「最も簡単な非自明な例」から攻める。選んだ例は、複素多様体 $X$ 上の正則 Poisson 構造 $\sigma$ の $\beta$-変換で得る一般化複素構造 $\Jc_\sigma$ である。$\sigma$ が消える因子 $D$ の上で型が跳ぶこと、一般化正則直線束が Poisson 加群（平坦 $A$-接続をもつ正則束）として具体的に記述できることが、この例の利点である。
+
+\paragraph{本論文の構成。}
+Part I--V を番号の付け方（節 I.1, 定理 I.6.4 など）を変えて収録した。各部は単独でも読めるが、内容の依存は次の通りである。
+\begin{center}\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{1.3cm}>{\raggedright\arraybackslash}p{4.4cm}>{\raggedright\arraybackslash}p{7.6cm}>{\raggedright\arraybackslash}p{1.6cm}}
+\toprule 部 & 主題 & 主な結果 & 状態\\\midrule
+I & Serre 型消滅・双対性・曲面の公式 & Poisson 加群 $=$ 対数接続、横断次数での Serre 型消滅、一般次元の双対性、曲面の Poincar\'e 多項式 $P_r(t)$、$\mathbb{CP}^2$ + 3 次曲線の完全な計算 & \tP\ \tV\\
+II & Euler 標数・トーリック・局所公式 & $(-1)^n\rk E\,\chi(X)$（任意次元）、トーリックの閉公式、共鳴、局所項の観察 & \tP\ \tV\ \tK\\
+III & Kodaira 型 & 一般化正則切断では埋め込めない、葉空間版、Poisson--Kodaira（トーリックで証明） & \tP\ \tK\\
+IV & 正則型との比較・簡約定理 & 正則型の $\HH^*$ と次数別多項式、周期的な跳びとの対比、一般次元の簡約定理 & \tP\ \tQ\\
+V & RR 型公式・指数予想 & $\chi(\mathrm{DR}_{\log})=\chi(U)$、Poincar\'e 多項式の RR 型公式、準斉次な局所公式の証明、指数予想 & \tP\ \tV\ \tK\\\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{三種の神器との対応（概要）。}
+詳しい状態表は第 V 部の末尾にある。ここでは要点だけを述べる。
+\begin{itemize}
+\item \emph{Riemann--Roch}：全 Euler 標数は $c_1(E)$ を見ない（定理 II.E）ので、素朴な HRR は成り立たない。成り立つのは、Poincar\'e 多項式（曲面は第 I 部、一般次元は第 V 部の定理 K）、正則型の次数別多項式（第 IV 部）、対数版の Euler 標数 $\chi(U)$（第 V 部）である。指数定理による統一は予想（第 V 部）。
+\item \emph{Serre 消滅}：横断次数 $a>0$ での消滅は任意の $\sigma$ で成り立つ（第 I 部）が、全次数での消滅は $\sigma=0$ でも不成立。
+\item \emph{Kodaira 埋め込み}：$\HH^0\le1$ のため一般化正則切断による埋め込みは不可能。葉空間版（正則型）と Poisson--Kodaira（トーリックで証明、一般には予想）が代替（第 III 部）。
+\end{itemize}
+
+\paragraph{全体を貫く 3 つの考え。}
+(i) \emph{平坦接続への翻訳。}$\beta$-変換構造上の一般化 Dolbeault 複体は $(\wedge^\bullet T\otimes E,\ \dbar+[\sigma,\cdot])$ と同一視でき\tC（Laurent-Gengoux--Sti\'enon--Xu \cite{LGSX1}）、一般化正則束は Poisson 加群である。$\sigma$ が $D$ に沿って対数シンプレクティックなら、これは $D$ に沿った平坦な対数接続になり、留数 $r_i$ が定数になる（第 I 部）。
+(ii) \emph{局所と大域の分離。}対数 de Rham 複体と $Rj_*L_U$ の比較（Deligne \cite{Del}）で $U=X\setminus D$ の局所系のコホモロジーが現れ、留数が整数のとき（共鳴）に商複体の寄与が出る。大域は $H^*(U;L_U)$ と $\chi(X)$、局所は $D$ の特異点の茎の公式で書ける。
+(iii) \emph{3 つの振る舞い。}正則型では $m$ について多項式、対数シンプレクティック型では周期的、全 Euler 標数は $m$ によらない（第 IV, V 部）。
+
+\paragraph{タグの意味。}\tC\ 文献からの引用、\tP\ 筆者が証明したもの（引用した結果への依存は各部の状態表に記載）、\tV\ 厳密な線形代数などによる計算機確認（証明ではない）、\tK\ 予想・見通し、\tQ\ 未確認の点。
+
+\paragraph{記号表（主要なもの）。}各部の記号表に詳細がある。
+\begin{center}\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{3.2cm}>{\raggedright\arraybackslash}p{11.6cm}}
+\toprule 記号 & 意味\\\midrule
+$X,\ n$ & コンパクト複素多様体、$\dim_\C X=n$\\
+$\sigma$ & 正則 Poisson 構造。$\Jc_\sigma$ はその $\beta$-変換による一般化複素構造\\
+$D=\sum D_i,\ U$ & $\sigma$ の退化因子（簡約、単純正規交差、曲面では通常二重点）、$U=X\setminus D$\\
+$A=(T^*)_\sigma$ & 正則 Lie 亜群（アンカー $\sigma^\sh$）。Poisson 加群 $=$ 平坦 $A$-接続をもつ正則束 $E$\\
+$r_i$ & $D_i$ に沿った留数。$c_1(E)=-\sum r_i[D_i]$\\
+$\HH^k(E)$ & 一般化 Dolbeault コホモロジー $=H^k(X;C(A;E))$\\
+$E_1^{a,b}$ & $H^a(X,\wedge^bT\otimes E)$（$a$ は横断次数）\\
+$\mathrm{DR}_{\log}(E)$ & 対数 de Rham 複体\\
+$\chi(X),\ b_1$ & Euler 標数、$U$ の第 1 Betti 数など\\\bottomrule
+\end{tabular}
+\end{center}

@@ -1,0 +1,48 @@
+\part*{総括}
+\addcontentsline{toc}{part}{総括}
+\renewcommand{\thesection}{S.\arabic{section}}\setcounter{section}{0}
+\section{各部の整合性の確認と更新}
+Part I--V を統合する際に確認した、部の間の関係と更新を記す。いずれも定理の主張の撤回ではない。
+\begin{itemize}
+\item \textbf{局所公式の状態。}第 II 部の状態表では局所公式（観察）は\tP\ \tV\ \tK\ であり、第 II 部 v2 で規則 $R(s)$ が訂正された。第 V 部で準斉次な germ について $s\ne1$ のとき証明された（\tP\ \tQ）。したがって、第 II, III 部の「観察・予想」としての記述は、この範囲では第 V 部が優先する。$s=1$ と準斉次でない germ は未証明のままである。
+\item \textbf{Part I の改訂。}Part I v1 の書誌・番号の誤り（arXiv:0905.3227 の著者は Hitchin など）は v2 で訂正されており、本論文の第 I 部は v2 である。第 II--V 部が引用する Part I の定理番号は v2 のもので、本論文では I.\ を付けた番号に直した。
+\item \textbf{参考文献の統一。}Hu の 2 本目の論文の題名は、第 V 部の単独版では「Kodaira--Nakano vanishing and Riemann--Roch on Lie groupoids」、第 I, III 部では「Lie groupoid Riemann--Roch--Hirzebruch theorem and applications」と書かれていた。本論文では後者（arXiv:2403.13424）に統一したが、題名の最終確認は\tQ\ である。
+\item \textbf{同名の記号。}第 III 部の「定理 \ref{p3:thm:K1}（葉空間版）」と第 V 部の「定理 K1（対数版 Euler 標数）」は別の定理である。本論文では前者を節番号つきで引用する。
+\item \textbf{状態の引き継ぎ。}第 IV, V 部の簡約定理（$n>2$ の濾過の導出）、第 V 部の局所公式、定理 K は（$H^k(U;L_U)$ の消滅に由来する部分は補遺の定理 V で解消したが）、第 I 部の\tQ\ 項目（Gualtieri 2011 の \S4 の未精読、LGSX Lemma 4.22 と Mokri の定理の未再導出など）に依存する。
+\end{itemize}
+
+\section{未解決問題}
+\begin{enumerate}
+\item 一般の Poisson--Kodaira 予想（補遺：$\mathbb P^1\times\mathbb P^1$ の $m=1$ は Sklyanin 構造で確認、$\mathbb P^2$ の $m=3$ は未計算；$\mathbb{CP}^2$ の $m\ge3$、$\mathbb P^1\times\mathbb P^1$ の Segre 埋め込みなど）。
+\item 条件 (GEN$'$) の一般の十分条件、ホロモルフィックな対数 Darboux 定理、非被約・非準斉次・$s=1$ の局所公式。
+\item $H^k(U;L_U)=0\ (k<n)$：全 $r_i\notin\Z$ の場合は補遺の定理 V で解決。一部の $r_i$ が整数の混合の場合は未解決。
+\item 指数予想：重み付き b-計算の Fredholm 性、指数 $=\chi(U)$、境界のコホモロジー $H^*(\partial U;L)$ との関係の証明。
+\item 非平坦なバンドル、hard Lefschetz を満たさないファイバー（第 IV 部）への拡張。
+\item 一般の一般化複素構造に対する Riemann--Roch と Kodaira 型の定理（本研究では未着手）。
+\end{enumerate}
+
+
+\section{補遺：定理 V（$H^k(U;L_U)$ の消滅）と Poisson--Kodaira の追加検証}\label{sec:addendum}
+\paragraph{改訂注記。}第 V 部（単独版 v1）と第 IV 部は、「$r\notin\Z$、$n>2$ のとき $H^k(U;L_U)=0\ (k<n)$ が未証明」として扱っていた。以下の定理 V はこの穴を、留数がすべて非整数の場合について埋める。単独版の第 V 部は未改訂であり、本論文では本節が優先する。第 V 部の定理 K と簡約定理に残る\tQ\ のうち、この消滅に由来する部分が解消される。
+
+\begin{thm}[定理 V\ \tP]\label{thm:V}
+$X$ をコンパクト複素多様体（$\dim_\C X=n\ge1$）、$D=\sum_{i=1}^sD_i$ を被約な単純正規交差因子、$U=X\setminus D$ は\emph{アフィン}とする。$L_U$ を $U$ 上の階数 1 の局所系で、$D_i$ のまわりの単純モノドロミーが $e^{-2\pi\sqrt{-1}\,r_i}$、かつ\emph{すべての $r_i\notin\Z$} とする。このとき $H^k(U;L_U)=0\ (k\ne n)$、したがって $\dim H^n(U;L_U)=(-1)^n\chi(U)$。
+\end{thm}
+\begin{proof}
+(a) $p\in D_I$（$|I|=k\ge1$）での $Rj_*L_U$ の茎は、小多重円板 $B$ に対し $H^*(U\cap B;L_U)$。$U\cap B\simeq(\Delta^*)^k\times\Delta^{n-k}\simeq(S^1)^k$ で、$L_U$ は各円周上のモノドロミー $\mu_i=e^{-2\pi\sqrt{-1}r_i}\ne1$ の局所系の外部テンソル積。Künneth により $H^*((S^1)^k;L)=\bigotimes H^*(S^1;L_{\mu_i})$ で、$\mu\ne1$ なら $H^0=\ker(\mu-1)=0$, $H^1=\mathrm{coker}(\mu-1)=0$。ゆえに $D$ 上で茎が消え、$Rj_*L_U=j_!L_U$。
+(b) $X$ がコンパクトなので $H^k(U;L_U)=H^k(X;Rj_*L_U)=H^k(X;j_!L_U)=H^k_c(U;L_U)$。
+(c) $U$ がアフィンなので、Artin の消滅定理（Andreotti--Frankel）\tC\ \cite{SGA4} により、任意の局所系 $F$ で $H^q(U;F)=0\ (q>n)$。よって $k>n$ では $H^k(U;L_U)=0$。向き付けられた $2n$ 次元多様体 $U$ での Poincar\'e 双対 $H^k_c(U;L_U)\cong H^{2n-k}(U;L_U^\vee)^*$ と (b) より、$2n-k>n$、すなわち $k<n$ で $H^k(U;L_U)=0$。
+\end{proof}
+\begin{hyptab}
+$r_i\notin\Z$（すべての $i$）& 各ストラタムでの茎の消滅 & (a) のみ。ある層ですべての $r_i\in\Z$ なら茎は $H^*(T^k)\ne0$ で、第 II, V 部の跳びの源 \\
+$U$ アフィン & Artin 消滅 & (c)。$D=\emptyset$ など非アフィンでは不成立 \\
+SNC & 局所基本群が $\Z^k$ & (a)。非 SNC（三重点など）では局所基本群が $\Z^k$ でなく、茎の規則に $\sum r_i$ が現れる
+\end{hyptab}
+\paragraph{帰結。}第 IV 部の簡約定理（定理 R）の仮定を満たし全 $r_i\notin\Z$ なら、$\HH^k=0\ (k\ne n)$ かつ $\dim\HH^n=\chi(X)$、すなわち $P(t)=\chi(X)t^n$ \tP（定理 R に依存）。これは第 V 部の定理 K と整合する。一部の $r_i$ だけが整数の「混合」の場合は、$D_I$ 上の茎は全 $r_i\ (i\in I)$ が整数のときのみ残るが、$k<n$ での消滅は未証明\tK。
+
+\paragraph{計算による確認\tV。}トーリックで $n=4$ の厳密計算（$2^{61}-1$ を法とする）：$\mathbb P^4$（$\mathcal O(1)$, $r=(1/2,1/3,1/5,1/7,-457/210)$）が $(0,0,0,0,5)$、$\mathbb P^4$（$\mathcal O(2)$, $r=(1/3,1/3,1/3,1/3,-10/3)$）が $(0,0,0,0,5)$、$\mathbb P^2\times\mathbb P^2$ が $(0,0,0,0,9)$、$(\mathbb P^1)^4$ が $(0,0,0,0,16)$。いずれも $\chi(X)t^4$ で定理 V と定理 R の予測に一致する。混合の例（$\mathbb P^1\times\mathbb P^3$ で整数留数 $-2$ を 1 つ含む）も $(0,0,0,0,8)$ となったが、これは観察で定理ではない。検証の範囲は、トーリック・対数枠で定数の $\sigma$・$L$ が十分 ample の場合であり、非トーリックな $U$ での定理 V の検査ではない。
+
+\paragraph{Poisson--Kodaira の追加検証（第 III 部）。}(1) $\mathbb P^1\times\mathbb P^1$ の Segre 埋め込み（$m=1$, $\mathbb P^3$）：古典的な Sklyanin--Feigin--Odesskii 型の 2 次 Poisson 構造 $\{x_0,x_i\}=(J_j-J_k)x_jx_k$, $\{x_j,x_k\}=x_0x_i$（$(i,j,k)$ は $1,2,3$ の巡回、$J=(2,3,7)$）について、Jacobi 恒等式（4/4 の三つ組）と、2 次の Casimir がちょうど 2 つ、一般のランク 2 であることを有理数で厳密に確認した\tV。したがって Casimir の束の各 2 次曲面は Poisson 部分多様体で、滑らかなものは $\mathbb P^1\times\mathbb P^1$、$\sigma$ の零点は滑らかな楕円 4 次曲線 $E=Q_1\cap Q_2$ となる（「単純零点がちょうど $E$」はランクと葉の議論による同定で、計算してはいない）。これは古典的で新しくない（Feigin--Odesskii, Odesskii, Hua--Polishchuk の仕事\tQ）。すべての滑らかな $(2,2)$ 曲線がこの形で現れるか、特異な $E$ の場合は未検査\tK。(2) $\mathbb P^2$、$m=3$（$\mathbb P^9$）は計算していない：未知数 1215 個、Jacobiator 120 個の三つ組で、前回の数値最小化は重すぎると判断した。したがって $m=3$ の Fermat 型については、PK に有利でも不利でも証拠がない。$xyz$ の場合はトーリックの定理（第 III 部）で証明済みで、独立な検査ではない。
+
+\section{検証の範囲}
+計算はすべて、有理数または有限体（$32003$, $2^{61}-1$）上の厳密な線形代数、あるいは既知の公式の当てはめであり、証明ではない。曲線の選び方への依存、および法 $p$ での還元が標数 0 の結果を代表することは検証していない。文献については、引用した定理の適用範囲を原典で確認していないものが多数残っている（各部の\tQ\ 項目）。再計算用のスクリプトと研究メモは、リポジトリの \texttt{\_archive/} に置いてある。
