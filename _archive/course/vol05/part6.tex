@@ -1,0 +1,161 @@
+
+\section{Bochner--Kodaira--Nakano 恒等式と Kodaira・Nakano の消滅定理}\label{sec:bkn}
+
+\subsection{設定と BKN 恒等式}
+$(X,\omega)$ をコンパクト Kähler 多様体、$(E,h)$ を Hermite 正則ベクトル束、$D=D'+\bar\partial_E$ を Chern 接続とする。Chern 接続の曲率 $\Theta=D^2$ は $(1,1)$ 型（第2巻）で、$D'^2=0=\bar\partial_E^2$ だから
+\[
+\Theta=D'\bar\partial_E+\bar\partial_ED'\in A^{1,1}(\End E).
+\]
+$\Theta$ を $E$ 係数形式への外積作用素と見たものも $\Theta$ と書く。$\Delta_{D'}=D'D'^*+D'^*D'$、$\Delta_{\bar\partial}=\bar\partial_E\bar\partial_E^*+\bar\partial_E^*\bar\partial_E$。
+\begin{thm}[Bochner--Kodaira--Nakano 恒等式]\label{thm:BKN}\tP\ (Kähler 恒等式から)
+$A^{p,q}(E)$ 上で
+\[
+\Delta_{\bar\partial}=\Delta_{D'}+[\,i\Theta,\Lambda\,] .
+\]
+\end{thm}
+\begin{proof}
+定理 \ref{thm:kid} のベクトル束版 $\bar\partial_E^*=-i[\Lambda,D']$、$D'^*=i[\Lambda,\bar\partial_E]$ を使う（$\bar\partial_E$ を単に $\bar\partial$ と書く）。
+\begin{align*}
+\Delta_{\bar\partial}&=-i\big(\bar\partial[\Lambda,D']+[\Lambda,D']\bar\partial\big)=-i\big(\bar\partial\Lambda D'-\bar\partial D'\Lambda+\Lambda D'\bar\partial-D'\Lambda\bar\partial\big),\\
+\Delta_{D'}&=\ \ i\big(D'[\Lambda,\bar\partial]+[\Lambda,\bar\partial]D'\big)=\ \ i\big(D'\Lambda\bar\partial-D'\bar\partial\Lambda+\Lambda\bar\partial D'-\bar\partial\Lambda D'\big).
+\end{align*}
+差をとると $\bar\partial\Lambda D'$ と $D'\Lambda\bar\partial$ の項が消えて
+\[
+\Delta_{\bar\partial}-\Delta_{D'}=-i\big(-(\bar\partial D'+D'\bar\partial)\Lambda+\Lambda(D'\bar\partial+\bar\partial D')\big)=-i[\Lambda,\Theta]=[i\Theta,\Lambda].\qedhere
+\]
+\end{proof}
+符号の検算：$E$ が自明（$\Theta=0$）なら $\Delta_{\bar\partial}=\Delta_{D'}=\Delta_\partial$（Cor.\ \ref{cor:laplace}）。関数値の切断では $[i\Theta,\Lambda]f=-\Lambda(i\Theta)\,f$ なので $\|D'f\|^2=\|\bar\partial f\|^2+\int\Lambda(i\Theta)|f|^2$ 。正則切断 $\bar\partial f=0$ について $\|D'f\|^2=\int\mathrm{tr}_\omega(i\Theta)|f|^2$ となり、曲率が負なら大域正則切断が存在しない（Bochner の消滅）。符号は正しい。
+
+\subsection{曲率項の代数}
+\begin{lem}[曲率項 {$[i\Theta,\Lambda]$} の符号]\label{lem:curv}\tP
+(a) $E=L$ が直線束で、$X$ の Kähler 形式を $\omega=i\Theta_h$ に選ぶと、$[i\Theta,\Lambda]=[\mathsf L,\Lambda]=(p+q-n)$ が $(p,q)$ 形式上で成り立つ。\\
+(b) 一般の $E$ について、$u\in A^{n,q}(E)$（$q\ge1$）の点での値は、正規座標（$g_{j\bar k}=\delta_{jk}$）で $u=dz_1\wedge\cdots\wedge dz_n\wedge\sum_J d\bar z_J\otimes u_J$ とすると
+\[
+\langle[i\Theta,\Lambda]u,u\rangle=\sum_{|I|=q-1}\ \sum_{j,k\notin I}\langle\Theta_{j\bar k}\xi^I_j,\xi^I_k\rangle,\qquad \xi^I_j=\pm u_{I\cup\{j\}}\in E_x,
+\]
+ここで $i\Theta=i\sum\Theta_{j\bar k}\,dz_j\wedge d\bar z_k$（$\Theta_{j\bar k}\in\End E$）。右辺の各項は、$\xi^I=\sum_je_j\otimes\xi^I_j\in T^{1,0}\otimes E$ での曲率の Hermite 形式（Nakano の形式）の値である。
+\end{lem}
+\begin{proof}
+(a) $i\Theta_h=\omega$ なので $i\Theta\wedge=\mathsf L$。(b) $u$ は $(n,q)$ 型なので $i\Theta\wedge u=0$（型が $(n+1,q+1)$）、したがって $[i\Theta,\Lambda]u=i\Theta\wedge\Lambda u$。$\Lambda=-i\sum_k\iota(f_k)\iota(e_k)$ を代入して内積をとる。$\Theta_{j\bar k}$ の項 $\varepsilon(e_j)\varepsilon(f_l)$ と $\iota(f_k)\iota(e_k)$ の合成で $dz_1\wedge\cdots\wedge dz_n$ に戻るには $j=k$ でなければならず、残る $d\bar z$ の添字集合は $J'=J\setminus\{k\}\cup\{l\}$ と読むことになる。$I:=J\setminus\{k\}=J'\setminus\{l\}$ ごとにまとめれば上の式を得る。（符号と係数を乱数で選んだ $\Theta_{j\bar k}$ と $u$ に対し $n=3$、$q=1,2,3$ で数値検算した。付録。）
+\end{proof}
+
+\subsection{Kodaira の消滅定理}
+\begin{thm}[Kodaira の消滅定理]\label{thm:kodaira}\tP\ (BKN 恒等式から)
+$X$ をコンパクト複素多様体、$L$ を正の正則直線束とする。このとき
+\[
+H^q(X,K_X\otimes L)=0\qquad(q>0).
+\]
+より一般に（Akizuki--Nakano）$H^q(X,\Omega^p_X\otimes L)=0$（$p+q>n$）。
+\end{thm}
+\begin{proof}
+\textbf{(1) 計量の選び方}（$L$ の正値性）：$L$ の計量 $h$ で $i\Theta_h>0$ なるものをとる。命題 \ref{prop:posKahler} により $\omega:=i\Theta_h$ は $X$ の Kähler 形式。$X$ にこの Kähler 計量を入れる。Dolbeault コホモロジーは計量に依らないので、この選択で一般性を失わない。\\
+\textbf{(2) 調和代表元}（コンパクト性）：定理 \ref{thm:hodgeD} により、$H^q(X,\Omega^p\otimes L)$ の各類は $\Delta_{\bar\partial}$-調和な $\alpha\in A^{p,q}(L)$ で代表される。$\alpha=0$ を示せばよい。\\
+\textbf{(3) BKN}（Kähler 性）：定理 \ref{thm:BKN} から
+\[
+0=(\Delta_{\bar\partial}\alpha,\alpha)=(\Delta_{D'}\alpha,\alpha)+([i\Theta,\Lambda]\alpha,\alpha)=\|D'\alpha\|^2+\|D'^*\alpha\|^2+([i\Theta,\Lambda]\alpha,\alpha).
+\]
+最初の等号は調和性、2 番目は BKN、最後は部分積分（\emph{コンパクトで境界がない}ことを使う）。\\
+\textbf{(4) 曲率項}（正値性と次数）：補題 \ref{lem:curv}(a)、$\omega=i\Theta$ より $([i\Theta,\Lambda]\alpha,\alpha)=(p+q-n)\|\alpha\|^2$。\\
+\textbf{(5) 結論}：$0\ge(p+q-n)\|\alpha\|^2$。$p+q>n$ なら $\alpha=0$。$p=n$ のとき $p+q-n=q>0$ なので $q>0$ で $\alpha=0$。
+\end{proof}
+どの仮定がどこで使われたかを明示する：
+\begin{center}
+\small
+\begin{tabular}{p{0.24\textwidth}p{0.3\textwidth}p{0.36\textwidth}}
+\toprule
+仮定 & 効く場所 & 外すと\\\midrule
+$X$ コンパクト & (2) 調和代表元の存在、(3) 部分積分 & $\C^2\setminus0$：$L=\Oc$、$h=e^{-|z|^2}$ は正だが $H^1(\Oc)\neq0$（\S\ref{sec:assume}）\\
+計量が Kähler & (3) Kähler 恒等式 $\Rightarrow$ BKN & 一般の Hermite 計量では BKN に捻れの項。ただし $L$ が正なら (1) で Kähler 計量が\emph{自動的に}得られる\\
+$L$ が正 & (1) Kähler 形式 $=i\Theta$、(4) 曲率項が定符号 & $L$ が半正：$\Oc(2,0)$ on $\CP^1\times\CP^1$、$H^1(K\otimes L)\ne0$\\
+正則（$\bar\partial_E^2=0$、Chern 接続） & BKN の導出（$\Theta$ が $(1,1)$ 型） & $\bar\partial_E$ が積分可能でないと複体にならない\\
+$p+q>n$（特に $p=n,q>0$） & (4) $p+q-n>0$ & $p+q\le n$ では消えない：$H^0(L)\neq0$（$p=q=0$）\\\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Nakano の消滅定理と Serre 消滅の別証明}
+\begin{defn}[Nakano 正]
+Hermite 正則ベクトル束 $(E,h)$ が\emph{Nakano 正}とは、各点で $T^{1,0}\otimes E$ 上の Hermite 形式 $\xi=\sum_je_j\otimes\xi_j\mapsto\sum_{j,k}\langle\Theta_{j\bar k}\xi_j,\xi_k\rangle$ が正定値となること。直線束では「正」と同じ。Griffiths 正（$\xi$ が分解可能なテンソルに制限して正）より強い。
+\end{defn}
+\begin{thm}[Nakano の消滅定理]\label{thm:nakano}\tP
+$(X,\omega)$ をコンパクト Kähler、$E$ を Nakano 正の Hermite 正則ベクトル束とする。$H^q(X,K_X\otimes E)=0$（$q>0$）。
+\end{thm}
+\begin{proof}
+定理 \ref{thm:kodaira} の (2)(3) と同じ。調和な $\alpha\in A^{n,q}(E)$ に対し $0\ge([i\Theta,\Lambda]\alpha,\alpha)=\int_X\sum_I\mathrm{Nak}(\xi^I)$（補題 \ref{lem:curv}(b)）。Nakano 正なら被積分関数は $\alpha\neq0$ の点で正（$q\ge1$ なので $u_J\ne0$ となる $J$ に対し $I=J\setminus\{j\}$ で $\xi^I\ne0$）。よって $\alpha=0$。
+\end{proof}
+\begin{thm}[Serre の消滅定理（Nakano を使う別証明）]\label{thm:serreNakano}\tP
+$X$ をコンパクト複素多様体、$L$ を正の直線束、$F$ を任意の正則ベクトル束とする。$m\gg0$ で $H^q(X,F\otimes L^m)=0$（$q>0$）。
+\end{thm}
+\begin{proof}
+命題 \ref{prop:posKahler} より $X$ は Kähler。$F\otimes L^m=K_X\otimes E_m$、$E_m=K_X^{-1}\otimes F\otimes L^m$。$K_X^{-1}$、$F$ に任意の Hermite 計量を入れ、$L$ には $i\Theta_h>0$ の計量を入れる。$E_m$ の曲率は $\Theta_{E_m}=\Theta_{K^{-1}}\otimes1+1\otimes\Theta_F+m\,\Theta_L\otimes1$（第2巻、テンソル積の曲率）。Nakano の形式は、固定された有界な形式 $B$（$K^{-1},F$ から）と $m\cdot\sum R_{j\bar k}\xi_{j}\bar\xi_k$（$R_{j\bar k}>0$）の和で、コンパクト性により $B\ge-C|\xi|^2$、$\sum R_{j\bar k}\xi_j\bar\xi_k\ge\lambda|\xi|^2$（$\lambda>0$）。したがって $m>C/\lambda$ で $E_m$ は Nakano 正。定理 \ref{thm:nakano} を適用する。
+\end{proof}
+この証明では、「$\CP^N$ への埋め込み」も「連接層の分解」も使わない。一方 Serre の元の定理は連接層に対して成り立ち、$X$ の複素構造と \emph{代数的}な構造（豊富性）だけを使う。両者は、Kodaira の埋め込み（\S\ref{sec:emb}）により「$L$ が正 $\iff$ 豊富」で結ばれる。
+
+\subsection{帰結と例}
+\begin{cor}[Kodaira--Serre 双対形]\label{cor:negvanish}\tP
+$L$ が正なら $H^q(X,L^{-1})=0$（$q<n$）。特に $H^0(X,L^{-1})=0$、$n\ge2$ なら $H^1(X,L^{-1})=0$。一般に $H^q(\Omega^p\otimes L^{-1})=0$（$p+q<n$）。
+\end{cor}
+\begin{proof}
+Serre 双対（定理 \ref{thm:serre}）：$H^q(X,L^{-1})^*\cong H^{n-q}(X,K\otimes L)$。$n-q>0$ で Kodaira 消滅。
+\end{proof}
+\begin{ex}[$\CP^n$]
+$K_{\CP^n}=\Oc(-n-1)$ なので $H^q(K\otimes\Oc(m))=H^q(\Oc(m-n-1))$。定理 \ref{thm:Pn} から、$q>0$ で非零になりうるのは $q=n$ のときだけで、それは $m-n-1\le-n-1$、すなわち $m\le0$ のとき。したがって $m\ge1$ で $0$（Kodaira 消滅と整合）、$m=0$（$L=\Oc$ は正でない）と $m<0$（負）では $H^n(K\otimes L)\neq0$。
+\end{ex}
+\begin{ex}[K3 曲面で $h^0(L)=2+\tfrac12L^2$]\label{ex:K3h0}
+$X$ を K3 曲面、$L$ を正の直線束とする。$K_X$ が自明なので、Kodaira 消滅から $H^1(L)=H^2(L)=0$（$H^q(L)=H^q(K\otimes L)$）。第6巻の Riemann--Roch for surfaces $\chi(L)=\chi(\Oc)+\frac12L\cdot(L-K)=2+\frac12L^2$ より $h^0(L)=2+\frac12L^2$。
+\begin{center}\small
+\begin{tabular}{lcccc}
+\toprule
+K3 の例 & $L^2$ & $2+L^2/2$ & $h^0(\Oc_X(1))$（直接）& 像\\\midrule
+4 次曲面 $\subset\CP^3$ & 4 & 4 & 4 & $\CP^3$\\
+$(2,3)$ 完全交叉 $\subset\CP^4$ & 6 & 5 & 5 & $\CP^4$\\
+$(2,2,2)$ 完全交叉 $\subset\CP^5$ & 8 & 6 & 6 & $\CP^5$\\
+$\CP^2$ の 2 重被覆（6 次曲線で分岐） & 2 & 3 & 3 & $\CP^2$ への 2:1 \\\bottomrule
+\end{tabular}
+\end{center}
+（直接数えた値は、超平面束の切断が座標の線形式で尽きること。Python で表の数値を検算した。）
+\end{ex}
+\begin{ex}[Bochner の消滅：正則切断の曲率による制約]\label{ex:bochner}
+BKN で $p=q=0$ をとると、$f\in H^0(X,E)$（$\bar\partial_Ef=0$）に対し $\Delta_{\bar\partial}f=0$ なので $\|D'f\|^2=-([i\Theta,\Lambda]f,f)=\int_X\langle\mathrm{tr}_\omega(i\Theta)f,f\rangle\,dV$（$\Lambda(i\Theta)=\mathrm{tr}_\omega(i\Theta)$）。直線束 $L$ なら $\|D'f\|^2=\int\mathrm{tr}_\omega(i\Theta)|f|^2$。したがって (i) $\mathrm{tr}_\omega(i\Theta)<0$ なら $H^0(X,L)=0$、(ii) $\mathrm{tr}_\omega(i\Theta)\equiv0$（Ricci 平坦型）なら正則切断は平行（$D'f=0$）。これは $p+q=0<n$ なので Kodaira 消滅の対象外で、むしろ「$H^0\ne0$ となるには、$\mathrm{tr}_\omega(i\Theta)$ がどこかで正であるか、恒等的に $0$（このとき切断は平行）でなければならない」という逆向きの制約である。$\CP^1$：$\Oc(1)$ は曲率が正で $h^0=2$、$\Oc(-1)$ は曲率が負で $h^0=0$（Chern 数 $\int\mathrm{tr}\,i\Theta=2\pi\deg L$）。
+\end{ex}
+\begin{ex}[$\CP^1\times\CP^1$：消滅の表と豊富錐]\label{ex:P1P1}
+$\Oc(a,b)=\mathrm{pr}_1^*\Oc(a)\otimes\mathrm{pr}_2^*\Oc(b)$ の曲率は $a\,\mathrm{pr}_1^*\omega_{FS}+b\,\mathrm{pr}_2^*\omega_{FS}$ なので、\emph{正 $\iff a,b>0$}（$\iff$ 豊富）。$K=\Oc(-2,-2)$、$K\otimes\Oc(a,b)=\Oc(a-2,b-2)$。Künneth より $h^q(\Oc(a-2,b-2))$（$(h^0,h^1,h^2)$）：
+\begin{center}\small
+\begin{tabular}{c|ccccc}
+$a\backslash b$ & $-1$ & $0$ & $1$ & $2$ & $3$\\\hline
+$-1$ & $(0,0,4)$ & $(0,0,2)$ & $(0,0,0)$ & $(0,2,0)$ & $(0,4,0)$\\
+$0$ & $(0,0,2)$ & $(0,0,1)$ & $(0,0,0)$ & $(0,1,0)$ & $(0,2,0)$\\
+$1$ & $(0,0,0)$ & $(0,0,0)$ & $(0,0,0)$ & $(0,0,0)$ & $(0,0,0)$\\
+$2$ & $(0,2,0)$ & $(0,1,0)$ & $(0,0,0)$ & $(1,0,0)$ & $(2,0,0)$\\
+$3$ & $(0,4,0)$ & $(0,2,0)$ & $(0,0,0)$ & $(2,0,0)$ & $(4,0,0)$
+\end{tabular}
+\end{center}
+$a,b\ge1$（正）の $3\times3$ の部分ではすべての $q>0$ で消える（Kodaira 消滅）。境界 $a=0$ または $b=0$（半正：$\Oc(2,0)$ は $(a,b)=(2,0)$、値 $(0,1,0)$）や負の領域では消えない。ただし $a=1$ の行（$K\otimes\Oc(1,b)=\Oc(-1,b-2)$ で、第 1 因子 $\Oc(-1)$ のコホモロジーが全部 $0$）や $b=1$ の列のように、\emph{仮定が満たされなくても消えることがある}。Kodaira 消滅は十分条件である（Python で表を検算）。
+\end{ex}
+
+\begin{ex}[Fano 多様体]
+$-K_X$ が正の $X$（Fano）では、$H^q(X,\Oc_X)=H^q(X,K_X\otimes(-K_X))=0$（$q>0$）。したがって $h^{0,q}=0$、Hodge 対称性で $h^{q,0}=0$、$\chi(\Oc_X)=1$。$\CP^n$、$\CP^n$ の次数 $d\le n$ の超曲面（$-K=\Oc(n+1-d)$）など（問 \ref{p:fano}）。
+\end{ex}
+\begin{rem}[一般化]
+Kodaira 消滅は、$L$ が nef かつ big（Kawamata--Viehweg）に拡張される\tC\ （代数幾何、標数 0）。標数 $p>0$ では成り立たない（Raynaud）\tC。解析的にも、Demailly の $L^2$ 評価は Hermite 計量の特異性を許す形で BKN を使う。いずれも本巻の範囲外。
+\end{rem}
+
+\begin{keybox}{要点（\S\ref{sec:bkn}）}
+BKN：$\Delta_{\bar\partial}=\Delta_{D'}+[i\Theta,\Lambda]$（Kähler 恒等式から数行で出る）。$L$ が正なら $\omega=i\Theta_h$ を Kähler 計量に選べて $[i\Theta,\Lambda]=p+q-n$。調和 $\alpha$ なら $0\ge(p+q-n)\|\alpha\|^2$、よって Kodaira（$p=n$）と Akizuki--Nakano（$p+q>n$）。Nakano 正のベクトル束でも同様。応用：$m\gg0$ の Serre 消滅の別証明、K3 の $h^0=2+L^2/2$、Fano の $h^{0,q}=0$。使う仮定：コンパクト、正値性（計量が Kähler になる）、次数 $p+q>n$。
+\end{keybox}
+
+\begin{prob}{基本}\label{p:KodairaPn}
+$\CP^n$ で $H^q(K\otimes\Oc(m))$ を全 $q$、$m\in\Z$ について決め、Kodaira 消滅が $m\ge1$ で成り立ち、$m\le0$ で破れること（$q=n$）を確かめよ。
+\end{prob}
+\begin{prob}{標準}\label{p:K3h0}
+(a) K3 曲面 $X$ の正の直線束 $L$ について $h^0(L)=2+L^2/2$ を示せ。(b) $L^2=2g-2$（$g\ge2$）のとき $h^0(L)=g+1$、すなわち $|L|$ は $\CP^g$ への写像を与える。$g=3,4,5$ の場合の古典的な例（4 次曲面、$(2,3)$、$(2,2,2)$）を挙げよ。(c) $L$ が正のとき $L^2$ は偶数であることを、$L^2=2h^0(L)-4$ から確かめよ。
+\end{prob}
+\begin{prob}{標準}\label{p:semipos}
+$X=\CP^1\times\CP^1$、$L=\Oc(2,0)$ とする。(a) $L$ は $i\Theta\ge0$（半正）だが正でない（$L|_{\{pt\}\times\CP^1}$ が自明）ことを説明せよ。(b) $H^1(X,K_X\otimes L)\cong\C$ を Künneth の公式で示し、Kodaira 消滅が破れることを確認せよ。(c) 定理 \ref{thm:kodaira} の証明のどの段が破れるか述べよ。
+\end{prob}
+\begin{prob}{標準}\label{p:fano}
+(a) $-K_X$ が正の $X$ で $h^{0,q}=0$（$q>0$）、$h^{q,0}=0$（$q>0$）、$\chi(\Oc_X)=1$ を示せ。(b) $X_d\subset\CP^{n}$（$n\ge3$）の滑らかな $d$ 次超曲面で、$-K$ が正であるための条件を求め、$d=n+1$（Calabi--Yau）で何が起きるか述べよ。(c) 滑らかな 3 次曲面 $X_3\subset\CP^3$ について $h^{1,0}=h^{2,0}=0$ を確認せよ。
+\end{prob}
+\begin{prob}{発展}\label{p:amplediv}
+$X$ を $n\ge2$ 次元のコンパクト複素多様体、$D\subset X$ を $\Oc(D)$ が正である滑らかな因子とする。(a) $H^q(X,\Oc(-D))=0$（$q<n$）を示せ。(b) $0\to\Oc(-D)\to\Oc_X\to\Oc_D\to0$ から、$H^q(X,\Oc_X)\to H^q(D,\Oc_D)$ が $q<n-1$ で同型、$q=n-1$ で単射であることを示せ。(c) $D\subset\CP^3$ が滑らかな曲面のとき $q(D)=h^{0,1}(D)=0$ を導け。
+\end{prob}
+

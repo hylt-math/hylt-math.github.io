@@ -1,0 +1,61 @@
+
+\section{古典の「三種の神器」と統合論文}\label{sec:unified}
+
+統合論文（\texttt{generalized-geometry-poisson-unified}、査読を受けていない研究ノート）は、Hirzebruch--Riemann--Roch、Serre の消滅、Kodaira の埋め込みを、正則 Poisson 構造から作る一般化複素構造に拡張する問題を扱っている。本節は、本巻の古典の定理と論文の主張を対比する。\emph{論文の内容を本巻では独立に検証していない}（論文の主張は論文自身のタグ【証明済】【予想】【要確認】に従って引用し、本巻の\tQ\ はその引用の確認度を示す）。
+
+\subsection{論文の設定（HH の正確な定義）}
+$X$ をコンパクト複素多様体（$\dim_\C X=n$）、$\sigma\in H^0(X,\wedge^2T_X)$ を正則 Poisson 構造（$[\sigma,\sigma]=0$）、$E$ を\emph{Poisson 加群}（正則ベクトル束 $E$ と、$\sigma$ が定める正則余接 Lie 亜代数 $(T_X^*)_\sigma$ 上の平坦接続 $\nabla$。局所正則枠 $e$ で $\nabla_\beta e=\beta(V)e$ により $V$ が定まる）とする。論文の一般化 Dolbeault コホモロジー $\mathrm{HH}^k(E)$ は、層の複体
+\[
+K^\bullet=\big(\wedge^\bullet T_X\otimes E,\ d_E\big),\qquad d_E=[\sigma,\cdot\,]+V\wedge\cdot
+\]
+の\emph{超コホモロジー} $\mathrm{HH}^k(E)=\mathbb H^k(X;K^\bullet)$ である（$d_E$ は $\C$ 線形な 1 階の微分作用素で $\Oc$ 線形ではない。複体の項 $K^b=\wedge^bT_X\otimes E$ は連接層）。超コホモロジーのスペクトル系列
+\[
+E_1^{a,b}=H^a(X,\wedge^bT_X\otimes E)\ \Longrightarrow\ \mathrm{HH}^{a+b}(E)
+\]
+の $a$ を\emph{横断次数}という（論文の表記）。「$\bar\partial$ の複体」や「$d_\sigma$ の複体」ではなく、\emph{連接層の複体の超コホモロジー}である点に注意する（第3巻 \S8）。$\sigma=0$（通常の複素構造）では $d_E=0$ で $\mathrm{HH}^k(E)=\bigoplus_{a+b=k}H^a(X,\wedge^bT_X\otimes E)$（論文の注意 15）。
+
+\subsection{古典の結果との対比}
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{p{0.15\textwidth}p{0.2\textwidth}p{0.27\textwidth}p{0.28\textwidth}}
+\toprule
+古典（本巻） & 古典で効く仮定 & 論文での姿 & 本巻の対応\\\midrule
+Serre 消滅 & 射影的、$L$ 豊富、$F$ 連接 & 横断次数 $a>0$ の $E_1^{a,b}=H^a(\wedge^bT\otimes E\otimes L_0^m)$ が $m\gg0$ で消える（論文の定理 14）。全次数では不成立（注意 15） & 連接層 $\wedge^bT\otimes E$ $(0\le b\le n)$ に定理 \ref{thm:serreV} を $n+1$ 回適用\\
+Serre 双対 & コンパクト、$E$ 正則 & 任意次元・任意の $\sigma$ で $\mathrm{HH}^k(L)^*\cong\mathrm{HH}^{2n-k}(L^\vee\otimes K_X^2)$（論文の定理 18。Koszul 符号の整合は手計算のみで論文自身が\tQ） & $E_1$ 項の次元の整合は定理 \ref{thm:serre} を項ごとに使って得られる。$d_E$ まで込めた論文の証明は、Dolbeault モデル（楕円型複体）の形式的転置による\\
+Kodaira 消滅（Nakano） & コンパクト Kähler、曲率が正 & 一般化 Kähler では直線束係数の版は論文で未記述。正則型（平坦なシンプレクティックファイバー束）には Pal--Poddar の消滅定理 & 定理 \ref{thm:kodaira}、\ref{thm:nakano}\\
+Kodaira 埋め込み & コンパクト、$L$ 正、切断が点・接ベクトルを分離 & 一般化正則切断による埋め込みは、$\sigma$ が稠密開集合で非退化（命題 79）、または正則型で葉の次元が正（命題 81）のとき\emph{不可能}。葉空間版（定理 83）とトーリックでの Poisson--Kodaira（定理 88）は証明、一般の Poisson--Kodaira は\emph{予想}（予想 91） & 定理 \ref{thm:kodairaemb}、\S\ref{sec:emb}\\\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Serre 型消滅：なぜ「横断次数でのみ」か}
+論文の定理 14 の主張は：$X$ 射影的、$\sigma$ は任意、$E$ と豊富な $L_0$ が Poisson 加群のとき、$m\gg0$ で \emph{すべての} $a>0$、$b$ で $H^a(X,\wedge^bT\otimes E\otimes L_0^m)=0$。証明は、古典の Serre 消滅を有限個（$b=0,\dots,n$）の連接層 $\wedge^bT\otimes E$ に適用するだけである。したがってスペクトル系列は $a=0$ の列に潰れ、
+\[
+\mathrm{HH}^k(E\otimes L_0^m)\cong H^k\big(\Gamma(X,\wedge^\bullet T\otimes E\otimes L_0^m),\,d_E\big),\quad\text{特に }k>n\text{ なら }0 .
+\]
+これは古典の Serre 消滅の直接の帰結で、本巻の定理 \ref{thm:serreV} がそのまま使われる（Poisson 加群構造は複体になるためだけに要り、正値性には関与しない）。\emph{全次数での消滅}が成り立たないのは、複体 $\Gamma(\wedge^bT\otimes E\otimes L_0^m)$ の各項が $m\to\infty$ で巨大（漸近 Riemann--Roch、$\sim m^n$）なので、$d_E$ に関するコホモロジーが $0\le k\le n$ で一般に残るためである（$\sigma=0$ なら $d_E=0$ で $\Gamma(\wedge^kT\otimes L_0^m)\ne0$）。古典の「$q>0$ の消滅」は、「横断次数 $a>0$ の消滅」に化ける。
+
+\begin{ex}[$\sigma=0$、$X=\CP^1$、$E=\Oc(m)$]\label{ex:P1HH}
+$K^0=\Oc(m)$、$K^1=T\otimes\Oc(m)=\Oc(m+2)$。$m\ge-1$：$\mathrm{HH}^0=H^0(\Oc(m))=\C^{m+1}$、$\mathrm{HH}^1=H^0(\Oc(m+2))\oplus H^1(\Oc(m))=\C^{m+3}$、$\mathrm{HH}^2=H^1(\Oc(m+2))=0$。$m\to\infty$ でも $\mathrm{HH}^1\neq0$：全次数の消滅は偽。他方、Euler 標数 $(m+1)-(m+3)=-2=(-1)^1\cdot\mathrm{rk}(E)\cdot\chi(\CP^1)$ は $m$ に\emph{依らない}（論文の定理 22 の例）。古典では $\chi(\Oc(m))=m+1$ が $m$ とともに増える。問 \ref{p:unifiedP1} で $\CP^2$ も確かめる。
+\end{ex}
+
+\subsection{Kodaira 埋め込み：何が壊れるか}
+古典の証明の 3 つの入力（本巻 \S\ref{sec:emb}）は (i) コンパクト性（$H^0$ の有限次元性）、(ii) $L$ の正値性（爆発上の Kodaira 消滅）、(iii) 結論としての「十分多くの切断」であった。論文の命題 79 は、$X$ が連結で $\sigma$ が稠密開集合で非退化なら $\dim\mathrm{HH}^0(L)\le1$（一般化正則切断は平坦で、1 点の値で決まる）と述べる。したがって一般化正則切断で定義される写像は定値で、(iii) の「点と接ベクトルを分離する切断」が足りない。正値性は切断の\emph{存在}を保証するだけで、切断が一般化正則（平坦）であることは保証しない（論文の注意 82）。古典では $h^0(L^m)\sim m^n$ と大きいが（漸近 Riemann--Roch）、一般化正則切断では $\le1$ という対比が要点である。
+
+\paragraph{では何が救えるか。}論文は 2 つを証明したと述べている：(a) 葉空間版：正則型でホロノミーが自明、葉空間 $X$ 上の $L_X$ が豊富なら、一般化正則切断による写像は $\iota_m\circ\pi$（$\iota_m$ は\emph{古典の} Kodaira 埋め込み）。つまり古典の定理 \ref{thm:kodairaemb} の直接の帰着。(b) トーリックでの Poisson--Kodaira（$\sigma$ がトーラス不変のとき）：\emph{通常の}正則切断による古典の Kodaira 埋め込み $\nu:X\hookrightarrow\CP^N$ が、$\CP^N$ 上のある 2 次 Poisson 構造に関する Poisson 埋め込みになる。\emph{Poisson--Kodaira 予想}（予想 91）は、これを射影的な正則 Poisson 多様体と豊富な Poisson 加群に一般化する。未解決で、論文は $\CP^2$ の 3 次式 Poisson 構造 $\Pi_F$、Veronese $m=2$ での数値的確認（数値的存在であって厳密な証明ではない）を根拠とする。予想の主張自体が、古典の Kodaira 定理が与える $m_0$ と埋め込み $\nu$ を前提とする。なお、公開済みの Part VI（研究メモ）では $m=3$ も計算され、非トーリックな 3 次曲線（Fermat 型、尖点、結節）では拡張が数値的に見つからなかったとされる（$m=2$ では厳密な解が存在）。予想は「ある $m_0$ があって $m\ge m_0$ なら」の形なので、これは反証ではなく、厳密な非存在の証明もない（Part VI の記述による。\tQ）。
+
+\subsection{読み方の指針}
+\begin{itemize}
+\item 古典の三つの定理が使う道具は、(1) Hodge 理論（楕円型）、(2) Kähler 恒等式 $\Rightarrow$ BKN、(3) 曲率の正値性、(4) 爆発と消滅定理。論文はこれを一般化する際に、「連接な濾過 $K^b$ の $E_1$ 項を定義する方法が一般の一般化複素多様体にはない」ことが主な障害だと述べる（論文の注意 17。論文自身は「主な障害」を【予想】と記している）。(1) を一般化複素構造の $\bar\partial$ 型複体に使うのは第7巻（楕円型複体）、(2)(3) の一般化は未解決（論文の範囲外）。
+\item 「Serre 型消滅が横断次数のみ」は、古典の Serre を連接層 $\wedge^bT\otimes E$ に使った結果にすぎない。全体の $\mathrm{HH}$ を $E_1$ 項からどう復元するかは第13巻の主題。
+\item 古典の消滅や $h^0(L^m)$ の増大は漸近 Riemann--Roch（第6巻）と結ぶ。論文の「全 Euler 標数は $c_1$ に依らない」は、古典の $\chi(L^m)\sim m^n$ との顕著な対比であり、Poincaré 多項式の周期性（論文の \S5）と対応する。
+\end{itemize}
+
+\begin{keybox}{要点（\S\ref{sec:unified}）}
+論文の $\mathrm{HH}^k(E)$ は連接層の複体 $(\wedge^\bullet T\otimes E,\ d_E=[\sigma,\cdot]+V\wedge)$ の超コホモロジー。Serre 型消滅は古典の Serre を $\wedge^bT\otimes E$ に適用して得る \emph{横断次数 $a>0$} の消滅で、全次数では成り立たない。Kodaira 埋め込みは、$\sigma$ が稠密開集合で非退化なら $\dim\mathrm{HH}^0\le1$ により一般化正則切断では不可能（正則型で葉が正次元の場合は命題 81）。残る道は葉空間版と、通常の切断による Poisson--Kodaira（予想）。内容は論文の記述に基づく（本巻では独立検証していない\tQ）。
+\end{keybox}
+
+\begin{prob}{標準}\label{p:unifiedP1}
+$\sigma=0$ として $\mathrm{HH}$ の Euler 標数 $\sum_k(-1)^k\dim\mathrm{HH}^k(\Oc(m))=\sum_b(-1)^b\chi(\wedge^bT\otimes\Oc(m))$ を計算せよ。(a) $\CP^1$ で $m$ によらず $-2$。(b) $\CP^2$ で Euler 完全列から $\chi(T(m))=3\chi(\Oc(m+1))-\chi(\Oc(m))$ を使い、$\wedge^2T=\Oc(3)$ とあわせて $m$ によらず $3=\chi(\CP^2)$ を示せ。(c) (a)(b) は論文の「$(-1)^n\mathrm{rk}(E)\chi(X)$」と整合するか。
+\end{prob}
+

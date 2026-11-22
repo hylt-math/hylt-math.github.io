@@ -1,0 +1,104 @@
+
+\section{射影空間の $\Oc(m)$ の計算と Serre の消滅定理}\label{sec:serre}
+
+\subsection{$\CP^n$ 上の $\Oc(m)$ の全コホモロジー}
+$\CP^n$ の斉次座標を $x_0,\dots,x_n$、$U_i=\{x_i\ne0\}$、$U_I=\bigcap_{i\in I}U_i$（$I\subset\{0,\dots,n\}$）とおく。$\Oc(m)$ の $U_I$ 上の切断は、$\{x_i\ne0\ (i\in I)\}\subset\C^{n+1}$ 上の正則関数で次数 $m$ の斉次なものと同一視できる。各 $U_I\cong(\C^*)^{|I|-1}\times\C^{n+1-|I|}$ は Stein で（Leray の被覆、第3巻）、したがって \Cech{} コホモロジー $\check H^q(\{U_i\},\Oc(m))=H^q(\CP^n,\Oc(m))$ である。
+
+\begin{thm}[$\CP^n$ の $\Oc(m)$ のコホモロジー]\label{thm:Pn}\tP\ (\Cech{} 計算)
+$m\in\Z$ について
+\begin{enumerate}
+\item[(a)] $H^0(\CP^n,\Oc(m))=$ 次数 $m$ の斉次多項式の空間。$\dim=\binom{m+n}n$（$m\ge0$）、$m<0$ なら $0$。
+\item[(b)] $0<q<n$ なら $H^q(\CP^n,\Oc(m))=0$。
+\item[(c)] $H^n(\CP^n,\Oc(m))$ は、Laurent 単項式 $x_0^{a_0}\cdots x_n^{a_n}$（すべての $a_i\le-1$、$\sum a_i=m$）が基底。$\dim=\binom{-m-1}n$（$m\le-n-1$）、それ以外では $0$。
+\end{enumerate}
+\end{thm}
+\begin{proof}
+$U_I$ 上の切断は Laurent 級数 $\sum_ac_ax^a$（$a\in\Z^{n+1}$、$i\notin I$ では $a_i\ge0$）で、斉次性から $|a|=\sum a_i=m$ の項のみが現れる。\Cech{} 複体の微分は単項式を単項式に写す（符号 $\pm1$ だけ）ので、複体は多重次数 $a$ ごとの 1 次元ずつの複体に分解する（収束性については下の注意）。$a\in\Z^{n+1}$、$|a|=m$ に対し $N(a)=\{i:a_i<0\}$ とおくと、単項式 $x^a$ が $U_I$ 上正則であるための条件は $I\supseteq N(a)$。よって $a$ 成分の複体は
+\[
+C^p_a=\bigoplus_{|I|=p+1,\ I\supseteq N(a)}\C .
+\]
+$I=N(a)\sqcup J$（$J\subset M(a):=\{0,\dots,n\}\setminus N(a)$）と書くと、これは頂点集合 $M(a)$ の単体の（空の面を含む）コチェイン複体を $|N(a)|-1$ だけずらしたものである。
+\begin{itemize}
+\item $N(a)=\emptyset$：$J\ne\emptyset$ のみ、単体の通常のコチェイン複体で $H^0=\C$、他は $0$。
+\item $N(a)\ne\emptyset$ かつ $M(a)\ne\emptyset$：空の面を含む（augmented）単体のコチェイン複体で、非輪状（完全）。
+\item $M(a)=\emptyset$（全 $a_i\le-1$）：$I=\{0,\dots,n\}$ のみで、次数 $n$ の $\C$。
+\end{itemize}
+したがって $H^0$ は $a_i\ge0$、$|a|=m$ の単項式、$H^n$ は $a_i\le-1$、$|a|=m$ の単項式が基底で、$0<q<n$ では $0$。個数は、$a_i\ge0$ で $\sum a_i=m$ なら $\binom{m+n}n$、$b_i=-a_i-1\ge0$ とすると $\sum b_i=-m-n-1$ で $\binom{-m-n-1+n}n=\binom{-m-1}n$。
+\end{proof}
+\paragraph{注意（解析的な場合の収束性）。}解析的な \Cech{} 複体の各項は収束 Laurent 級数の空間で、上の分解は直和ではなく直積になる。しかし、各 $a$ 成分の複体の縮約ホモトピー（頂点を 1 つ固定して $c\mapsto c(v\cup\cdot)$ を取る）の係数は $0,\pm1$ なので、ホモトピーを施した級数も同じ領域で収束する。したがって上の議論は解析的な場合にも成り立つ。代数的に（Zariski 位相で）計算しても同じ結果で、GAGA（Serre）によりコホモロジーは一致する\tC\ （Hartshorne, III.5.1）。
+
+\begin{center}
+\small
+\begin{tabular}{r|ccccccccc}
+$m$ & $\le-4$ & $-3$ & $-2$ & $-1$ & $0$ & $1$ & $2$ & $3$ & $4$\\\hline
+$h^0$ & 0 & 0 & 0 & 0 & 1 & 3 & 6 & 10 & 15\\
+$h^1$ & 0&0&0&0&0&0&0&0&0\\
+$h^2$ & $\binom{-m-1}2$ & 1 & 0 & 0 & 0&0&0&0&0
+\end{tabular}\\[2pt]
+\small 表：$h^q(\CP^2,\Oc(m))$（$m\le-4$ の $h^2$ は $m=-4,-5,-6$ で $3,6,10$）。$m=-3$ が $K_{\CP^2}$ で $h^2(K)=1$。
+\end{center}
+
+\begin{cor}\label{cor:PnConsequences}\tP
+(a) $h^q(\Oc(m))=h^{n-q}(\Oc(-m-n-1))$（Serre 双対、$K_{\CP^n}=\Oc(-n-1)$ と整合）。\\
+(b) $\chi(\CP^n,\Oc(m))=\binom{m+n}n=\frac{(m+1)(m+2)\cdots(m+n)}{n!}$ は\emph{すべての} $m\in\Z$ で $m$ の多項式（次数 $n$）。\\
+(c) $H^n(K_{\CP^n})=H^n(\Oc(-n-1))\cong\C$ で、生成元は $x_0^{-1}\cdots x_n^{-1}$ の類。Serre 双対の対 $H^0(\Oc(m))\times H^n(\Oc(-m-n-1))\to H^n(\Oc(-n-1))=\C$ は、単項式 $x^a$ と $x^{-a-\mathbf 1}$ の積が $x_0^{-1}\cdots x_n^{-1}$ になることで完全対。
+\end{cor}
+\begin{proof}
+(a) 定理 \ref{thm:Pn}(a)(c) の個数から $h^0(\Oc(m'))=\binom{m'+n}n$、$h^n(\Oc(m))=\binom{-m-1}n$ で、$m'=-m-n-1$ のとき $\binom{-m-1}n$ と一致。(b) $0<q<n$ で消えるので $\chi=h^0+(-1)^nh^n$。$m\ge0$ なら $h^0$、$m\le-n-1$ なら $(-1)^n\binom{-m-1}n=\binom{m+n}n$（多項式としての値）、$-n\le m\le-1$ なら $0=\binom{m+n}n$（多項式の根）。(c) 定理の基底の対応から。
+\end{proof}
+
+\begin{ex}[$\CP^1$ の $H^1(\Oc(-2))$ と明示的な \Cech{} コサイクル]\label{ex:P1cech}
+$\CP^1$、被覆 $U_0,U_1$、$U_{01}=\C^*$。$\Oc(-2)$ の $U_{01}$ 上の切断は Laurent 級数 $\sum_{a_0+a_1=-2}c_a\,x_0^{a_0}x_1^{a_1}$。$H^1=C^1/\delta C^0$、$C^0=\Oc(U_0)\oplus\Oc(U_1)$（$U_0$ 上では $a_1\ge0$、$U_1$ 上では $a_0\ge0$）。$\delta(s_0,s_1)=s_1-s_0$ で像は $\{a_0\ge0\}\cup\{a_1\ge0\}$ の項（$a_0+a_1=-2$ では $(a_0,a_1)$ の片方が $\ge0$）を含み、像に入らない項は $a_0\le-1$ かつ $a_1\le-1$ すなわち $(a_0,a_1)=(-1,-1)$ のみ。したがって $H^1(\Oc(-2))=\C\cdot[x_0^{-1}x_1^{-1}]$（定理 \ref{thm:Pn}(c) の基底そのもの）。$z=x_1/x_0$ とすると $x_0^{-1}x_1^{-1}=x_0^{-2}z^{-1}$ なので、この類は $U_{01}$ 上の $\frac{dz}{z}$ に対応する（$K=\Oc(-2)$ との同一視）。Serre 双対 $H^0(\Oc)\times H^1(K)\to\C$ は留数 $\mathrm{Res}_{z=0}\frac{dz}z=1$ に当たる（第4巻の留数による双対性と一致）。
+\end{ex}
+\begin{ex}[曲面 $X_d\subset\CP^3$ の $\Oc_X(k)$]\label{ex:hypersurfaceCoh}\tP
+$0\to\Oc(k-d)\to\Oc(k)\to\Oc_X(k)\to0$ に定理 \ref{thm:Pn} を適用する（$H^1(\Oc(\ast))=H^2(\Oc(\ast))=0$）。$H^1(\Oc_X(k))=0$（任意の $k$）。$h^0(\Oc_X(k))=\binom{k+3}3-\binom{k-d+3}3$（$\binom{a}{3}=0$ for $a<3$）、$h^2(\Oc_X(k))=h^3(\Oc(k-d))-h^3(\Oc(k))=\binom{d-k-1}3-\binom{-k-1}3$（二項係数 $\binom a3$ は $a<3$ で $0$ とする。$H^2(\Oc_X(k))\to H^3(\Oc(k-d))\to H^3(\Oc(k))\to0$ が完全）。随伴公式 $K_X=\Oc_X(d-4)$ を使うと $h^2(\Oc_X(k))=h^0(\Oc_X(d-4-k))$ で Serre 双対と一致する（問 \ref{p:hypsurf}）。特に $q(X)=h^1(\Oc_X)=0$、$p_g=h^2(\Oc_X)=\binom{d-1}3$（$d=4$ で $1$：K3）。
+\end{ex}
+
+\subsection{豊富な直線束と Serre の消滅定理}
+\begin{defn}[非常に豊富・豊富]
+$L$ をコンパクト複素多様体 $X$ 上の正則直線束とする。$H^0(X,L)$ の基底 $s_0,\dots,s_N$ に対し、基点集合 $B=\bigcap\{s_i=0\}$ の外で $\varphi_L=[s_0:\cdots:s_N]:X\setminus B\to\CP^N$ が定まる（\emph{完備線形系}の写像）。$B=\emptyset$ で $\varphi_L$ が埋め込み（単射かつ各点で微分が単射）のとき $L$ は\emph{非常に豊富}（very ample）。ある $m\ge1$ で $L^m$ が非常に豊富なとき $L$ は\emph{豊富}（ample）という。
+\end{defn}
+$L$ が非常に豊富なら $L=\varphi_L^*\Oc(1)$ で $X\hookrightarrow\CP^N$。逆に、部分多様体 $X\subset\CP^N$ では、座標 $x_0|_X,\dots,x_N|_X\in H^0(X,\Oc_X(1))$ が包含写像を与えるので、完備線形系の写像（これに射影を合成すると包含写像に戻る）も埋め込みで、$\Oc_X(1)$ は非常に豊富。Kodaira の定理（\S\ref{sec:emb}）は「正 $\iff$ 豊富」を主張する。この節では豊富を\emph{定義}として使う。
+
+\begin{thm}[Serre の消滅定理]\label{thm:serreV}\tC\ （Serre）
+$X$ をコンパクト複素多様体、$L$ を豊富な正則直線束、$F$ を\emph{連接層}（たとえば正則ベクトル束）とする。このとき $m_0$ が存在し、$m\ge m_0$ ならば
+\[
+H^q(X,F\otimes L^m)=0\qquad(q>0).
+\]
+さらに $m\gg0$ で $F\otimes L^m$ は大域切断で生成される。
+\end{thm}
+\src{J.-P.~Serre, \emph{Faisceaux algébriques cohérents}, Ann.\ of Math.\ 61 (1955)；Hartshorne, \emph{Algebraic Geometry}, III.5（Thm.~5.2）。解析版は GAGA（Serre, Ann.\ Inst.\ Fourier 6 (1956)）。}
+\paragraph{証明の骨子。}\tP\ ただし下の (3) の $\mathrm{(A)}$ と GAGA は\tC。
+\begin{itemize}
+\item[(0)] \emph{$L$ が非常に豊富（$X\subset\CP^N$、$L=\Oc_X(1)$）の場合に帰着}：$L^{m_1}$ が非常に豊富なら、有限個の $F\otimes L^j$（$0\le j<m_1$）に $L^{m_1}$ について適用すれば、$m=km_1+j$ のすべてをカバーできる。
+\item[(1)] \emph{$\CP^N$ に押し出す}：閉埋め込み $i:X\to\CP^N$ に対し $i_*F$ は連接で $H^q(X,F(m))=H^q(\CP^N,i_*F(m))$（$i_*$ は完全）。
+\item[(2)] \emph{$F=\Oc(k)$ の有限直和}：定理 \ref{thm:Pn}(b)(c) により、$0<q<N$ では常に、$q=N$ では $m+k>-N-1$ なら $H^q(\Oc(m+k))=0$。
+\item[(3)] \emph{一般の連接層：$q$ に関する下降帰納法}。$\mathrm{(A)}$ 連接層 $F$ に対し $F(m)$ は $m\gg0$ で大域切断で生成される（Cartan--Serre の定理 A\tC）ので、全射 $\bigoplus_i\Oc(-n_i)\twoheadrightarrow F$ があり、核 $K$ も連接。$q>N$ では $H^q=0$（$N+1$ 個の Stein 開集合による被覆の \Cech{} 複体の長さ）。$q\ge1$ で完全列
+\[
+H^q\Big(\bigoplus\Oc(m-n_i)\Big)\to H^q(F(m))\to H^{q+1}(K(m))
+\]
+において、$m>\max n_i-N-1$ なら左辺は (2) により $0$。右辺は帰納法の仮定（$K$ に対する $q+1$ の主張）で $m\gg0$ で $0$。よって $H^q(F(m))=0$（$m\gg0$）。\qed
+\end{itemize}
+$F$ が正則ベクトル束のとき、\S\ref{sec:bkn} で Nakano 消滅からの\emph{まったく別の証明}を与える（定理 \ref{thm:serreNakano}）。そこでは Hodge 理論と曲率だけを使い、$\CP^N$ への埋め込みは使わない。
+
+\begin{rem}[漸近 Riemann--Roch]
+$m\gg0$ で $h^0(F\otimes L^m)=\chi(F\otimes L^m)$ で、これは $m$ の多項式（次数 $\le n$、最高次の係数は $\mathrm{rk}(F)\cdot(L^n)/n!$。第6巻の Hirzebruch--Riemann--Roch）。$\CP^n$、$F=\Oc$、$L=\Oc(1)$ では $\binom{m+n}n\sim m^n/n!$ と上の定理 \ref{thm:Pn} が確かめる。つまり、豊富な直線束の $H^0$ は $m^n$ のオーダーで大きくなる。これが Kodaira の埋め込みの「十分多くの切断」の源である（\S\ref{sec:emb}）。統合論文では、この $H^0$ の大きさが破れる（\S\ref{sec:unified}）。
+\end{rem}
+
+\begin{keybox}{要点（\S\ref{sec:serre}）}
+$\CP^n$：$H^0(\Oc(m))=$ 次数 $m$ の斉次多項式、$H^n(\Oc(m))=$ 全指数が負の Laurent 単項式、中間は常に $0$。$\chi(\Oc(m))=\binom{m+n}n$ は全 $m$ で多項式。Serre 消滅：豊富な $L$ で $H^q(F\otimes L^m)=0$（$q>0$、$m\gg0$）。証明は「$\CP^N$ の計算 $+$ 全射 $\bigoplus\Oc(-n_i)\to F$ と $q$ の下降帰納法」。仮定：$X$ コンパクトで\emph{射影的}（豊富な $L$ の存在）、$F$ 連接、$q>0$。
+\end{keybox}
+
+\begin{prob}{基本}\label{p:tableP2}
+$\CP^2$ で $-6\le m\le4$ の $h^q(\Oc(m))$（$q=0,1,2$）の表を作り、$\chi=\binom{m+2}2$ を確かめよ。$h^2(\Oc(m))\ne0$ となる最大の $m$ はいくつか。
+\end{prob}
+\begin{prob}{標準}\label{p:hypsurf}
+滑らかな曲面 $X_d\subset\CP^3$ について、例 \ref{ex:hypersurfaceCoh} の公式を導き、(a) $h^1(\Oc_X(k))=0$（$\forall k$）、(b) $h^2(\Oc_X(k))=h^0(\Oc_X(d-4-k))$ を確かめよ（$d=1,\dots,7$、$-10\le k\le12$ で数値確認せよ）。(c) $p_g=\binom{d-1}3$ を $d=1,\dots,6$ で表にせよ。
+\end{prob}
+\begin{prob}{標準}\label{p:SerreFail}
+Serre の消滅の「豊富」の仮定が必要であることを、次の 2 例で示せ。(a) 種数 $g\ge1$ の曲線 $X$、$L=\Oc_X$、$F=\Oc_X$：$H^1(F\otimes L^m)\ne0$（$\forall m$）。(b) $X=\CP^1\times\CP^1$、$L=\Oc(1,0)=p_1^*\Oc_{\CP^1}(1)$（正でも負でもない、「nef」だが豊富でない）、$F=\Oc(0,-2)$：$H^1(F\otimes L^m)\ne0$（$\forall m\ge0$）。\emph{Künneth の公式}（$H^1(\Oc(a,b))=H^0(\Oc(a))\otimes H^1(\Oc(b))\oplus H^1(\Oc(a))\otimes H^0(\Oc(b))$）を使ってよい。
+\end{prob}
+\begin{prob}{発展}\label{p:TP2}
+$\CP^2$ の接束 $T=T_{\CP^2}$ について、Euler 完全列 $0\to\Oc\to\Oc(1)^{\oplus3}\to T\to0$ と定理 \ref{thm:Pn} から、$H^q(T(m))$（$q>0$）が $0$ でない $m$ をすべて決め、Serre の消滅の閾値 $m_0$ を求めよ。
+\end{prob}
+

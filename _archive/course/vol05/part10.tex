@@ -1,0 +1,143 @@
+
+\section*{解答}\label{sec:sol}
+\addcontentsline{toc}{section}{解答}
+数値・符号を含む解答は Python（fractions、numpy、自作コード）で検算した（付録に一覧）。
+
+\subsection*{\S\ref{sec:herm} の解答}
+\begin{sol}{\ref{p:fsposit}}
+(a) $\log(1+|z|^2)=|z|^2-\frac12|z|^4+\cdots$ より $\partial\bar\partial\log(1+|z|^2)|_0=\sum dz_j\wedge d\bar z_j$。$\omega_{FS}(0)=\frac i{2\pi}\sum dz_j\wedge d\bar z_j$、係数行列 $\frac1{2\pi}\delta_{jk}>0$。(b) $U(n+1)$ は $\CP^n$ に推移的に作用し、$\log|Z|^2$ は不変なので $\omega_{FS}$ は不変。どの点でも原点と同じ値（等長変換で移せる）。(c) $Y\subset\CP^N$ では $\iota^*\omega_{FS}$ は、正定値形式の部分空間への制限（$\iota$ が immersion）で正定値。曲率が $\iota^*$ で自然に引き戻されるので $\Oc(1)|_Y$ の計量の曲率は正。
+\end{sol}
+\begin{sol}{\ref{p:posdeg}}
+$\frac i{2\pi}\Theta_{h_0}=c_0\,dA$（$dA$ は面積形式）、$\int c_0dA=\deg L$、$\bar c=\deg L/\mathrm{Area}>0$。$h=e^{-\psi}h_0$ なら $\frac i{2\pi}\Theta_h=\frac i{2\pi}\Theta_{h_0}+\frac i{2\pi}\partial\bar\partial\psi$、$i\partial\bar\partial\psi=\frac12(\Delta\psi)\,dA$（$\Delta$ は Laplace--Beltrami、定数は規約による）。$\int(\bar c-c_0)dA=0$ なので Poisson 方程式 $\frac1{4\pi}\Delta\psi=\bar c-c_0$ は解ける（Hodge の定理：$f\perp$ 調和関数（定数）なら $\Delta\psi=f$）。このとき曲率の密度は $\bar c>0$ で一定、$L$ は正。逆は本文。
+\end{sol}
+\begin{sol}{\ref{p:hopfnopos}}
+$L$ が正なら $i\Theta_h$ は Kähler 形式（命題 \ref{prop:posKahler}）。Hopf 曲面は Kähler でない（$H^2_{dR}=0$ なので閉形式は完全、$\int\omega^2=\int d(\alpha\wedge\omega)=0$ で矛盾。第2巻）。よって正の $L$ はなく、$\CP^N$ の複素部分多様体は Kähler なので埋め込めない。
+\end{sol}
+
+\subsection*{\S\ref{sec:hodge} の解答}
+\begin{sol}{\ref{p:starflat}}
+(a) $\ast1=dx\wedge dy\wedge dz$、$\ast dx=dy\wedge dz$、$\ast dy=dz\wedge dx$、$\ast dz=dx\wedge dy$。$m=3$ で $d^*=(-1)^{3(k+1)+1}\ast d\ast=(-1)^k\ast d\ast$。1 形式 $\alpha=f\,dx+g\,dy+h\,dz$ に対し $d^*\alpha=-(f_x+g_y+h_z)$。Laplacian は各成分に $-(\partial_x^2+\partial_y^2+\partial_z^2)$。(b) 平坦トーラスでも同様に $\Delta$ は係数関数への $-\sum\partial_i^2$。$(\Delta\alpha,\alpha)=\sum_{I,i}\|\partial_i\alpha_I\|^2=0$ から係数は定数。次元は $\dim\Lambda^k=\binom mk$。(c) 定数係数 $dx_I\mapsto\pm dx_{I^c}$ は $\Hdg^k\to\Hdg^{m-k}$ の同型。
+\end{sol}
+\begin{sol}{\ref{p:minnorm}}
+$[\alpha']=[\alpha]$ なら $\alpha'=h+d\beta'$。$d^*h=0$ より $(h,d\beta')=(d^*h,\beta')=0$。よって $\|\alpha'\|^2=\|h\|^2+\|d\beta'\|^2\ge\|h\|^2$、等号は $d\beta'=0$、すなわち $\alpha'=h$。
+\end{sol}
+\begin{sol}{\ref{p:hodgedecomp}}
+$d\alpha=-2\pi\sin(2\pi x)\,dx\wedge dy\ne0$。$\ast dy=-dx$（$\mathbb R^2$）なので $\ast\alpha=-\cos(2\pi x)dx$、$d\ast\alpha=0$、よって $d^*\alpha=-\ast d\ast\alpha=0$。調和成分は定数係数部分で、$\cos(2\pi x)$ の平均が $0$ なので $h=0$。$d\beta$ 成分は $0$（$\alpha$ は閉でない、$d^*$-閉なので $\alpha\in d^*A^2$）。$\gamma=g\,dx\wedge dy$ とすると $d^*\gamma=-\ast d\ast\gamma=-\ast dg=-g_x\,dy+g_y\,dx$。$g=-\frac1{2\pi}\sin(2\pi x)$ で $d^*\gamma=\cos(2\pi x)dy=\alpha$。検算：$\Delta\alpha=d^*d\alpha=4\pi^2\alpha$。したがって $\alpha=0+0+d^*\gamma$。
+\end{sol}
+
+\subsection*{\S\ref{sec:kid} の解答}
+\begin{sol}{\ref{p:LLam}}
+(a) 各 $\omega_j=i\,e_jf_j$ は単位ベクトル（$\langle\omega_j,\omega_j\rangle=|e_jf_j|^2=1$）で互いに直交。$\Lambda\omega=\sum_j\Lambda\omega_j=\sum\langle\omega_j,\omega_j\rangle=n$（$\Lambda\omega_j=\langle\omega_j,\omega\rangle$ は $0$ 次形式の係数）。$[\mathsf L,\Lambda]1=\mathsf L\Lambda1-\Lambda\mathsf L1=0-\Lambda\omega=-n\cdot1=(0-n)1$。(b) $\omega^2=2\sum_{j<k}\omega_j\omega_k$、$\Lambda(\omega_j\omega_k)=\omega_j+\omega_k$（随伴をとり $\omega_l$ と内積：$\langle\omega_j\omega_k,\omega_l\omega\rangle=\langle\omega_j\omega_k,\sum_m\omega_l\omega_m\rangle=1$（$l\in\{j,k\}$））。よって $\Lambda\omega^2=2\sum_{j<k}(\omega_j+\omega_k)=2(n-1)\omega$。$[\mathsf L,\Lambda]\omega=\mathsf L(n)-\Lambda\omega^2=n\omega-(2n-2)\omega=(2-n)\omega$。いずれも $(k-n)$（$k=0,2$）に一致。（$n=1,2,3$ で行列で全次数を検算。）
+\end{sol}
+\begin{sol}{\ref{p:torusH}}
+平坦計量 $\Delta_{\bar\partial}=-\sum\partial_{z_j}\partial_{\bar z_j}$（係数への作用）で、調和 $(p,q)$ 形式は定数係数 $dz_I\wedge d\bar z_J$（$|I|=p$、$|J|=q$）。個数 $\binom np\binom nq$。$n=2$：$h^{0,0}=1$、$h^{1,0}=h^{0,1}=2$、$h^{2,0}=h^{0,2}=1$、$h^{1,1}=4$、$h^{2,1}=h^{1,2}=2$、$h^{2,2}=1$。$b_k$：$1,4,6,4,1=\binom4k$ で一致。一般に $\sum_{p+q=k}\binom np\binom nq=\binom{2n}k$（Vandermonde、検算済）。
+\end{sol}
+\begin{sol}{\ref{p:K3}}
+(a) 例 \ref{ex:K3}：$1;\ 0,0;\ 1,20,1;\ 0,0;\ 1$。(b) $\sum(-1)^{p+q}h^{p,q}=1+(1+20+1)+1=24=e$。(c) $\chi(\Oc)=h^{0,0}-h^{0,1}+h^{0,2}=1-0+1=2$、$\chi(\Omega^1)=h^{1,0}-h^{1,1}+h^{1,2}=-20$、$\chi(\Omega^2)=2$。$\sum(-1)^p\chi(\Omega^p)=2+20+2=24=e$（Hirzebruch の $\chi_y$ の $y=-1$）。
+\end{sol}
+\begin{sol}{\ref{p:quintic}}
+(a) $(1+H)^5=1+5H+10H^2+10H^3$、$(1+5H)^{-1}=1-5H+25H^2-125H^3$。$H^3$ の係数：$10-50+125-125=-40$、$e=-40\cdot5=-200$。(b) $b_0=b_2=b_4=b_6=1$、$b_{\mathrm{odd}\ne3}=0$、$e=4-b_3=-200$、$b_3=204$。$b_2=h^{1,1}+2h^{2,0}=1$、$h^{1,1}\ge1$ より $h^{1,1}=1$、$h^{2,0}=0$。$b_3=2h^{3,0}+2h^{2,1}$、$h^{3,0}=1$ から $h^{2,1}=101$。(c) $e(X_d)=d(10-10d+5d^2-d^3)$：$d=5$ で $5(-40)=-200$（$d=1..6$：$4,4,-6,-56,-200,-516$）。
+\end{sol}
+\begin{sol}{\ref{p:holclosed}}
+$\alpha$ は $(p,0)$ 型で $\bar\partial\alpha=0$、また $\bar\partial^*\alpha=0$（型 $(p,-1)$ は存在しない）。よって $\Delta_{\bar\partial}\alpha=0$、$\Delta_d\alpha=2\Delta_{\bar\partial}\alpha=0$、コンパクトなので $d\alpha=0$。$\alpha\mapsto[\alpha]\in H^p(X,\C)$ は単射（調和形式が類で決まる）。像は $H^{p,0}\subset H^p(X,\C)$ で $h^{p,0}\le b_p$（部分空間 $H^{p,0}$ 自体は複素構造に依る）。非 Kähler の例：Iwasawa 多様体（複素 Heisenberg 群 $G=\{(z_1,z_2,z_3)\}$、積 $(z)(w)=(z_1+w_1,z_2+w_2,z_3+w_3+z_1w_2)$ の格子による左商）の正則 1 形式 $dz_3-z_1dz_2$ は左移動で不変だから商に下り、$d(dz_3-z_1dz_2)=-dz_1\wedge dz_2\ne0$ なので閉でない（直接計算。この多様体が Kähler でないことの一例）。
+\end{sol}
+\begin{sol}{\ref{p:hopfH}}
+(a) Kähler ならコンパクトで $b_1$ は偶数（Hodge 分解、系 (i)）。$b_1=1$ は奇数なので矛盾。(b) 例 \ref{ex:hopfH} の通り。$g$ も同様に $g\equiv0$。$\C^2\setminus0$ の正則関数が $\C^2$ に拡張するのは Hartogs の拡張定理。(c) $b_1=h^{1,0}+h^{0,1}=0+1$（Frölicher）は成り立つが、(d) の複素共役による対称性 $h^{1,0}=h^{0,1}$ が破れる。したがって (b) の直和分解のうち $\overline{H^{1,0}}=H^{0,1}$ が破れる（$\Delta_d=2\Delta_{\bar\partial}$ が使えない）。
+\end{sol}
+\begin{sol}{\ref{p:ddbar}}
+$\omega'-\omega$ は実閉 $(1,1)$ 形式で、類が $0$ なので $d$-完全。$\partial\bar\partial$-補題で $\omega'-\omega=\partial\bar\partial\gamma$。実形式なので $\partial\bar\partial\gamma=\overline{\partial\bar\partial\gamma}=-\partial\bar\partial\bar\gamma$。$\varphi:=\mathrm{Re}(-i\gamma)$ とおくと、$i\partial\bar\partial\varphi=\frac12\big(i\partial\bar\partial(-i\gamma)+i\partial\bar\partial(i\bar\gamma)\big)=\frac12(\partial\bar\partial\gamma-\partial\bar\partial\bar\gamma)=\partial\bar\partial\gamma$。
+\end{sol}
+
+\subsection*{\S\ref{sec:lef} の解答}
+\begin{sol}{\ref{p:primP3}}
+$\CP^3$：$b=(1,0,1,0,1,0,1)$、$\dim P^k=b_k-b_{k-2}=1,0,0,0$（$k=0,1,2,3$）。$\mathsf L^{3-k}:H^k\to H^{6-k}$ は $k=0,2$ で $1\to1$、$k=1,3$ で $0\to0$（$k=3$：$H^3=0$）。$T^4$（$n=2$）：$b=(1,4,6,4,1)$、$\dim P^k=1,4,5$。$\mathsf L^2:H^0\to H^4$ ($1\to1$)、$\mathsf L:H^1\to H^3$（$4\to4$）、$H^2\to H^2$（$k=n$、恒等）。
+\end{sol}
+\begin{sol}{\ref{p:hodgeindex}}
+(a) $H^2=\C\omega\oplus P^2$、$h^{2,0}=1$ なので $b^+=2h^{2,0}+1=3$、$b^-=h^{1,1}-1=19$、$3+19=22=b_2$。(b) $H^{1,1}_{\mathbb R}$ は $\omega$（$Q>0$）と $P^{1,1}_{\mathbb R}$（$Q<0$、次元 19）の直交和で符号 $(1,19)$。$\NS_{\mathbb R}\subset H^{1,1}_{\mathbb R}$ なので $\rho\le\dim H^{1,1}_{\mathbb R}=20$。符号 $(1,19)$ の空間の部分空間の符号は $(1,\rho-1)$ または $(0,\rho)$ で、射影的なら豊富類（$Q>0$）が入るので前者。(c) 射影的なら豊富な $L$ があり $L^2>0$、$c_1(L)\ne0$ で $\rho\ge1$。
+\end{sol}
+\begin{sol}{\ref{p:unimodal}}
+(a) $\dim P^k=b_k-b_{k-2}\ge0$（$k\le n$）。偶数・奇数とも中央まで。(b) 5 次 3 次元多様体 $(1,0,1,204,\ldots)$：$b_2\ge b_0$、$b_3\ge b_1$ で $1\ge1$、$204\ge0$。$T^4$：$6\ge1$。ともに成立。(c) $S^1\times S^3$（$n=2$ とすると）$b=(1,1,0,1,1)$ で $b_2=0<b_0=1$：不等式 $b_0\le b_2$ が破れる。Kähler でない（Hopf 曲面）ことと整合。
+\end{sol}
+
+\subsection*{\S\ref{sec:serredual} の解答}
+\begin{sol}{\ref{p:serrePn}}
+定理 \ref{thm:Pn} から $h^0(\Oc(m'))=\binom{m'+n}n$、$h^n(\Oc(m))=\binom{-m-1}n$、他は $0$。$m'=-m-n-1$ なら $\binom{-m-1}n$ で $h^0(\Oc(-m-n-1))=h^n(\Oc(m))$。$0<q<n$ は両辺 $0$。$n=2$ の表は \S\ref{sec:serre} の通り（$h^2(\Oc(m))=h^0(\Oc(-m-3))$：$m=-3$ で $1$、$m=-4$ で $3$、$m=-5$ で $6$）。数値的に $n=1,\ldots,4$、$-12\le m\le11$ で検算済。
+\end{sol}
+\begin{sol}{\ref{p:chiSerre}}
+(a) $n=1$：$\chi(\Oc(D))=h^0(D)-h^1(D)$、$\chi(K(-D))=h^0(K-D)-h^1(K-D)=h^1(D)-h^0(D)$（Serre 双対）なので $\chi(\Oc(D))=-\chi(K(-D))$。Riemann--Roch：$\chi(D)=\deg D+1-g$、$\chi(K-D)=(2g-2-\deg D)+1-g=g-1-\deg D=-\chi(D)$。整合。(b) $h^{0,0}=h^{3,3}=1$、$h^{3,0}=h^{0,3}=1$、$h^{1,0}=h^{2,0}=0$ とその対称（$h^{3,1}=h^{2,0}=0$ など）、$h^{1,1}=h^{2,2}$、$h^{2,1}=h^{1,2}$。$b_0=b_6=1$、$b_2=b_4=h^{1,1}$、$b_3=2+2h^{2,1}$、他 $0$。$e=2+2h^{1,1}-2-2h^{2,1}=2(h^{1,1}-h^{2,1})$。
+\end{sol}
+\begin{sol}{\ref{p:hodgesym}}
+$h^{p,q}=h^{q,p}=h^{3-p,3-q}=h^{3-q,3-p}$。軌道は $\{(0,0),(3,3)\}$、 $\{(1,0),(0,1),(2,3),(3,2)\}$、 $\{(2,0),(0,2),(1,3),(3,1)\}$、 $\{(3,0),(0,3)\}$、 $\{(1,1),(2,2)\}$、 $\{(2,1),(1,2)\}$。1 つ目は $h^{0,0}=1$（連結）で、残り 5 つが $h^{1,0},h^{2,0},h^{3,0},h^{1,1},h^{2,1}$。個数 $2+4+4+2+2+2=16$。$b_1=2h^{1,0}$、$b_2=2h^{2,0}+h^{1,1}$、$b_3=2h^{3,0}+2h^{2,1}$。$b_1,b_3$ は偶数。
+\end{sol}
+
+\subsection*{\S\ref{sec:serre} の解答}
+\begin{sol}{\ref{p:tableP2}}
+$h^0$：$m=0,\dots,4$ で $1,3,6,10,15$（$m<0$ は $0$）。$h^1=0$。$h^2=\binom{-m-1}2$：$m=-3,-4,-5,-6$ で $1,3,6,10$（$m\ge-2$ は $0$）。$\chi$：$m=-6$ で $10$、$m=-2,-1$ で $0$、$m=0$ で $1$ など。$\binom{m+2}2$ と全 $m$ で一致（検算済）。$h^2\ne0$ となる最大の $m$ は $-3$。
+\end{sol}
+\begin{sol}{\ref{p:hypsurf}}
+例 \ref{ex:hypersurfaceCoh} の列で $H^1,H^2$ of $\Oc(\ast)$ on $\CP^3$ は $0$。$H^0$：$0\to H^0(\Oc(k-d))\to H^0(\Oc(k))\to H^0(\Oc_X(k))\to H^1(\Oc(k-d))=0$。$H^1(\Oc_X(k))$：$H^1(\Oc(k))=0\to H^1(\Oc_X(k))\to H^2(\Oc(k-d))=0$。$H^2$：$H^2(\Oc(k))=0\to H^2(\Oc_X(k))\to H^3(\Oc(k-d))\to H^3(\Oc(k))\to H^3(\Oc_X(k))=0$。ゆえに $h^2=\binom{d-k-1}3-\binom{-k-1}3$。一方 $h^0(\Oc_X(d-4-k))=\binom{d-k-1}3-\binom{-k-1}3$（$h^0(\Oc(d-4-k))=\binom{d-k-1}3$、$h^0(\Oc(-4-k))=\binom{-k-1}3$）で一致。$d=1,\dots,7$、$k\in[-10,12]$ で数値検算済。(c) $p_g=\binom{d-1}3=0,0,0,1,4,10$（$d=1,\ldots,6$）。
+\end{sol}
+\begin{sol}{\ref{p:SerreFail}}
+(a) $H^1(X,\Oc)=H^{0,1}$ は $g\ge1$ 次元で、$F\otimes L^m=\Oc$ は $m$ によらない。(b) $F\otimes L^m=\Oc(m,-2)$、Künneth：$H^1=H^0(\CP^1,\Oc(m))\otimes H^1(\CP^1,\Oc(-2))\oplus H^1(\Oc(m))\otimes H^0(\Oc(-2))=\C^{m+1}\otimes\C\oplus0$、$m\ge0$ で次元 $m+1\ne0$。$L=\Oc(1,0)$ は半正で、第 2 因子の方向で自明なので豊富でない。
+\end{sol}
+\begin{sol}{\ref{p:TP2}}
+Euler 完全列の長い完全列：$H^1(\Oc(m+1))=0\to H^1(T(m))\to H^2(\Oc(m))\xrightarrow{(x_0,x_1,x_2)}H^2(\Oc(m+1))^3\to H^2(T(m))\to0$。$H^2$ の基底は全指数 $\le-1$ の単項式で、写像は $x^a\mapsto(x_ix^a)_i$（指数が $0$ になれば $0$）。これは $a=(-1,-1,-1)$（$m=-3$）でのみ核をもち、他では単項式を異なる単項式に写して単射。ゆえに $h^1(T(m))=1$（$m=-3$）、他は $0$。$h^2(T(m))=3h^2(\Oc(m+1))-h^2(\Oc(m))+h^1(T(m))$：$m\ge-2$ で $0$、$m=-3$ で $0-1+1=0$、$m=-4$ で $3-3=0$、$m=-5,-6,\dots$ で $3,8,15,\dots$（$\ne0$）。よって $H^q(T(m))\ne0$（$q>0$）は $m=-3$（$q=1$）と $m\le-5$（$q=2$）。\emph{Serre の閾値は $m_0=-2$}。（$\chi(T(m))=h^0-h^1+h^2$ との整合を $-9\le m\le5$ で検算。）
+\end{sol}
+
+\subsection*{\S\ref{sec:bkn} の解答}
+\begin{sol}{\ref{p:KodairaPn}}
+$K\otimes\Oc(m)=\Oc(m-n-1)$。定理 \ref{thm:Pn}：$H^0$ は $m\ge n+1$ で非零、$H^n$ は $m-n-1\le-n-1$、すなわち $m\le0$ で非零（次元 $\binom{n-m}n$）、他は $0$。$m\ge1$ では $q>0$ の全てが $0$（Kodaira 整合）。$m=0$：$H^n(K)=\C$（$L=\Oc$ は正でない）。$m<0$：負。
+\end{sol}
+\begin{sol}{\ref{p:K3h0}}
+(a) 例 \ref{ex:K3h0}。(b) $L^2=2g-2$ なら $h^0=2+(g-1)=g+1$、$\CP^g$ への写像。$g=3$：4 次曲面、$g=4$：$(2,3)\subset\CP^4$、$g=5$：$(2,2,2)\subset\CP^5$（$L^2=4,6,8$、$h^0=4,5,6$、検算済）。(c) $h^0(L)=2+L^2/2$ なので $L^2=2h^0-4$ は偶数。（実際、K3 の交叉形式は偶格子。）
+\end{sol}
+\begin{sol}{\ref{p:semipos}}
+(a) $\Oc(2,0)=\mathrm{pr}_1^*\Oc(2)$ の曲率は $2\,\mathrm{pr}_1^*\omega_{FS}\ge0$ で第 2 因子の方向に退化。$\{pt\}\times\CP^1$ への制限は自明で正でない。(b) $K=\Oc(-2,-2)$、$K\otimes L=\Oc(0,-2)$。Künneth：$H^1=H^0(\Oc)\otimes H^1(\Oc(-2))\oplus H^1(\Oc)\otimes H^0(\Oc(-2))=\C\otimes\C\oplus0=\C$。(c) 段 (1)：$\omega=i\Theta$ が Kähler 形式でない（退化）。段 (4)：どの Kähler 形式を選んでも $[i\Theta,\Lambda]$ が $(n,q)$ 形式上で正定値にならない。
+\end{sol}
+\begin{sol}{\ref{p:fano}}
+(a) $H^q(\Oc)=H^q(K\otimes(-K))=0$（$q>0$）。$h^{0,q}=0$、Hodge 対称 $h^{q,0}=h^{0,q}=0$（Kähler）、$\chi(\Oc)=h^{0,0}=1$（$X$ 連結）。(b) $K_{X_d}=\Oc(d-n-1)|_X$（随伴公式）。$-K$ が正 $\iff d<n+1$、すなわち $d\le n$。$d=n+1$ は Calabi--Yau（$K$ 自明）で、たとえば $n=3,d=4$ の K3 は $h^{0,2}=1$、$n=4,d=5$ では $h^{0,3}=1$、消滅は起きない。(c) $d=3\le3$ で Fano、(a) から $h^{1,0}=h^{2,0}=0$。$p_g=\binom23=0$ とも整合。
+\end{sol}
+\begin{sol}{\ref{p:amplediv}}
+(a) 系 \ref{cor:negvanish}（$L=\Oc(D)$ が正）で $H^q(\Oc(-D))=0$（$q<n$）。(b) 長い完全列 $H^q(\Oc(-D))\to H^q(\Oc_X)\to H^q(\Oc_D)\to H^{q+1}(\Oc(-D))$ で、$q<n$ なら左端が $0$（単射）、$q+1<n$ なら右端が $0$（全射）。ゆえに $q<n-1$ で同型、$q=n-1$ で単射。(c) $X=\CP^3$（$n=3$）、$D$ 滑らかな曲面（$\Oc(D)=\Oc(d)$ は正）：$q=1<2$ で $H^1(\Oc_D)\cong H^1(\CP^3,\Oc)=0$。$q(D)=0$（問 \ref{p:hypsurf} と一致）。
+\end{sol}
+
+\subsection*{\S\ref{sec:emb} の解答}
+\begin{sol}{\ref{p:veronese}}
+(a) $y_{ij}=x_ix_j$ なら $(y_{ij})=xx^T$ は階数 $1$、$2\times2$ 小行列式 $y_{ik}y_{jl}-y_{il}y_{jk}=0$（乱数点で検算済）。(b) $[y]$ が与えられると $xx^T$ が（スカラー倍を除いて）決まり、$x$ は符号とスカラーを除いて決まる、$[x]$ は一意：単射。$x_0=1$ の座標 $(u,v)$ で $\nu_2=(1,u,v,u^2,uv,v^2)$、ヤコビアンの列は $(0,1,0,2u,v,0)$、$(0,0,1,0,u,2v)$ で階数 $2$：immersion。(c) 単項式 $x^a$（$|a|=2$）は $6$ 個で $h^0(\Oc(2))=\binom42=6$ と一致。
+\end{sol}
+\begin{sol}{\ref{p:curvejets}}
+$M:=K^{-1}\otimes L(-2p)$ とおくと $\deg M=\deg L-2-(2g-2)=\deg L-2g>0$。$L(-2p)=K\otimes M$ で、1 次元の Kodaira 消滅（$\deg M>0$ なら $H^1(K\otimes M)=0$）から $H^1(L(-2p))=0$。$0\to L(-2p)\to L\to L\otimes\Oc/\mathfrak m_p^2\to0$ より $H^0(L)\to L\otimes\Oc/\mathfrak m_p^2$ は全射（値と微分が任意）。したがって $p$ は基点でなく $\varphi_L$ は $p$ で immersion。条件は $\deg L>2g$、すなわち $\deg L\ge2g+1$ で、第4巻の結果と一致。
+\end{sol}
+\begin{sol}{\ref{p:torusPolar}}
+(a) $H((a,b),(a',b'))=a\bar a'+b\bar b'$。基底 $e_1=(1,0)$、$e_2=(i,0)$、$e_3=(0,1)$、$e_4=(0,i)$：$H(e_1,e_2)=\overline{i}=-i$、$E(e_1,e_2)=-1$、$E(e_3,e_4)=-1$、他は $0$（$H(e_1,e_3)=0$ 等）。整数。$\mathrm{Pf}=E_{12}E_{34}-E_{13}E_{24}+E_{14}E_{23}=1$。（符号は $E(u,Ju)$ の向きの規約で、$E=-\mathrm{Im}\,H$ にすれば $E(u,iu)>0$、$|\mathrm{Pf}|=1$ は不変。）(b) $E$ は各因子 $E_i$ の主偏極の積で、$L=\mathrm{pr}_1^*\Oc(p_1)\otimes\mathrm{pr}_2^*\Oc(p_2)$。$h^0(L)=h^0(E_i,\Oc(p_1))\,h^0(E_i,\Oc(p_2))=1\cdot1=1=|\mathrm{Pf}|$（楕円曲線上の次数 1 の直線束は $h^0=1$）。
+\end{sol}
+\begin{sol}{\ref{p:integralKahler}}
+(a) 定理 \ref{thm:hodgemfd} の証明の通り。(b) $h=e^{-\psi}h_0$ のとき $\Theta_h=\Theta_{h_0}+\partial\bar\partial\psi$。$\omega-\frac i{2\pi}\Theta_{h_0}=\frac i{2\pi}\partial\bar\partial\psi$ を満たす実 $\psi$ は（$\partial\bar\partial$-補題と問 \ref{p:ddbar} の実化）存在し、$\frac i{2\pi}\Theta_h=\omega$。任意の Kähler 形式 $\omega\in c_1(L)$ について成立。(c) $\frac12[\omega_{FS}]$ は整類でない（$c_1(\Oc(1))=[\omega_{FS}]$ が生成元）。ただし $2\cdot\frac12[\omega_{FS}]$ は整で、$[\omega]$ の整数倍が整なので定理が適用でき（$[\omega]\in H^2(X,\Q)$ の場合も有理類を整数倍すれば整）、射影的。
+\end{sol}
+\begin{sol}{\ref{p:torusNS}}
+(a) $J_0$ で $E_i\times E_i$、$\NS=\C$ 係数で $h^{1,1}=4$ に対応し有理解の次元は $4$（検算：Python で $\Q$ 上のヌル空間の次元 $4$）。(b) $E$ の 6 成分を未知数として $J^TEJ-E=0$ の 16 成分を $\Q(\sqrt2,\sqrt3)$ の基底 $1,\sqrt2,\sqrt3,\sqrt6$ で分解すると、$\Q$ 上の連立方程式（64 本）になる。分数の厳密な Gauss 消去で階数は $6$、有理解は $E=0$ のみ（ヌル空間の次元 $0$）。$J^2=-1$ も厳密に確認した。(c) $L$ が正の直線束なら $c_1(L)\in\NS$ で、正なら $c_1(L)\ne0$（$\int c_1(L)\wedge\omega^{n-1}>0$ など）。$\NS=0$ なので正の直線束はなく、Kodaira の定理（正 $\iff$ 豊富）により射影的でない。ただし Kähler ではある（トーラス）。
+\end{sol}
+
+\subsection*{\S\ref{sec:ks}--\ref{sec:unified} の解答}
+\begin{sol}{\ref{p:Pnrigid}}
+$H^q(\Oc)=0$（$q\ge1$）、$H^q(\Oc(1))=0$（$q\ge1$）なので、$q\ge1$ で $H^q(T)=0$。$H^0$：$0\to H^0(\Oc)\to H^0(\Oc(1))^{n+1}\to H^0(T)\to0$ から $h^0(T)=(n+1)^2-1=\dim PGL_{n+1}$。$h^1(T)=0$：剛的。
+\end{sol}
+\begin{sol}{\ref{p:K3moduli}}
+(a) $\chi(T)=\frac16(7\cdot0-5\cdot24)=-20$。$T\cong\Omega^1$（$K$ 自明）、$h^0(T)=h^{1,0}=0$、$h^2(T)=h^{1,2}=0$。ゆえに $h^1(T)=20$。(b) 4 次曲面 $=\mathbb P(S^4\C^4{}^*)$（$\dim\binom73-1=34$）を $PGL_4$（$15$）で割って $19$。K3 の 20 次元変形のうち、射影的 K3（偏極つき）は 19 次元の部分族。残る 1 次元は $H^2(\Oc)=\C$ に対応する障害の方向（偏極 $L$ の $c_1$ が $(1,1)$ に留まるためには 1 つの条件が必要）。
+\end{sol}
+\begin{sol}{\ref{p:toriDef}}
+(a) $T_X\cong\Oc^n$（平行な $\partial/\partial z_j$）、$H^1(T_X)=H^1(\Oc)^n$、$h^{0,1}=n$ で $n^2$。(b) $\dim_{\mathbb R}GL_{2n}(\mathbb R)=4n^2$、$GL_n(\C)$ は $2n^2$、差 $2n^2$（実）$=n^2$（複素）。(c) $n=1$：$\tau\in\mathbb H$（複素 1 次元）、$h^1(T)=1$。
+\end{sol}
+\begin{sol}{\ref{p:hodgeconst}}
+$u_{p,q}(t):=h^{p,q}(X_t)$ は上半連続：特殊な $t_0$ で $u_{p,q}(t_0)\ge u_{p,q}(t)$（一般の $t$）。$\sum_{p+q=k}u_{p,q}(t)=b_k$ は $t$ によらない。よって各 $k$ で、ある $(p,q)$ で $u(t_0)>u(t)$ なら和が増えるので矛盾。ゆえに一定。非 Kähler では $b_k=\sum h^{p,q}$ が成り立たないので議論が使えない。Hopf 曲面の族では $h^{1,0}=0$、$h^{0,1}=1$ が一定（$b_1=1$ と $h^{1,0}=0$ から）で、跳びはないが $h^{1,0}\ne h^{0,1}$ のまま。
+\end{sol}
+\begin{sol}{\ref{p:hirz}}
+(a) $\chi(T)=\frac16(7\cdot8-5\cdot4)=6$（検算済）。(b) $h^0-h^1+h^2=6$、$h^2=0$、$h^0=a+5$ なので $h^1=a-1$（$a\ge1$）。$F_1$ で $h^1=0$、$F_0=\CP^1\times\CP^1$ は $h^0(T)=2h^0(T_{\CP^1})=6$、$\chi(T)=6$、$h^2=0$ から $h^1=0$（ともに剛的）、$F_2$ で $h^1=1$：1 パラメータ変形があり、一般のファイバーは $F_0$。$h^0$ は $F_2$ で $7$、$F_0$ で $6$：特殊点で跳ぶ（上半連続）。
+\end{sol}
+\begin{sol}{\ref{p:assume}}
+(a) コンパクト性が破れる：$H^1(\Oc)\supset\mathrm{span}\{z_1^{-a}z_2^{-b}\}_{a,b\ge1}$ は無限次元。(b) $L=\Oc$ は正でない（曲率 $0$）：$H^1(K\otimes L)=H^1(\Oc)=\C$。(c) 半正：問 \ref{p:semipos}。(d) $\CP^2$、$L=\Oc(-1)$ は負：$H^2(K\otimes L)=H^2(\Oc(-4))=\C^3\ne0$。
+\end{sol}
+\begin{sol}{\ref{p:unifiedP1}}
+(a) $\chi(\Oc(m))-\chi(\Oc(m+2))=(m+1)-(m+3)=-2$。(b) $\chi(\Oc(k))=\frac{(k+1)(k+2)}2$。$\chi(\Oc(m))-\chi(T(m))+\chi(\Oc(m+3))=\chi(\Oc(m))-[3\chi(\Oc(m+1))-\chi(\Oc(m))]+\chi(\Oc(m+3))$。$m=0$：$1-8+10=3$。一般の $m$ で $3$（$-9\le m\le5$ で検算済）。(c) $(-1)^n\mathrm{rk}(E)\chi(X)$：$n=1$ で $-2$、$n=2$ で $+3$ とそれぞれ整合（$\chi(\CP^1)=2$、$\chi(\CP^2)=3$）。
+
+\end{sol}

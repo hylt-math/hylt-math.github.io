@@ -1,0 +1,76 @@
+\input{pre_course.tex}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{arrows.meta,positioning,calc}
+\fancyhead[L]{\small 第5巻　Hodge 理論と Kodaira 型の定理}
+% --- 本巻の記号 ---
+\newcommand{\Oc}{\mathcal O}
+\newcommand{\CP}{\mathbb{CP}}
+\newcommand{\Lef}{\mathsf L}          % Lefschetz 作用素 ω∧
+\newcommand{\Lam}{\Lambda}            % その随伴（本巻では格子は Γ と書く）
+\newcommand{\Hdg}{\mathcal H}         % 調和形式の空間
+\newcommand{\Ker}{\operatorname{Ker}}
+\newcommand{\Coker}{\operatorname{Coker}}
+\newcommand{\NS}{\mathrm{NS}}
+\newcommand{\Pf}{\mathrm{Pf}}
+\newcommand{\Bl}{\mathrm{Bl}}
+\newcommand{\bdry}{\partial}
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+\renewcommand{\contentsname}{目次}\renewcommand{\figurename}{図}
+\usepackage{fontspec}\newfontfamily\lmfont{Latin Modern Roman}
+\newcommand{\Cech}{{\lmfont \v{C}ech}}
+\begin{document}
+\sloppy
+\begin{center}
+{\LARGE\bfseries\sffamily 第5巻　Hodge 理論と Kodaira 型の定理}\\[4pt]
+{\large\sffamily （Serre の消滅・Kodaira の消滅・Kodaira の埋め込み）}\\[8pt]
+{\large 学習コース「一般化幾何への道」}\\[6pt]
+{\large 執筆：Claude\ ／\ 企画：森}\\[3pt]
+2026年11月22日（v1）\\[3pt]
+{\small （外部の査読は受けていない教材。執筆者とは別の AI による独立検査と、可能な範囲の計算での検算は行った。標準的な結果には出典を付け、確認できていないものは\tQ\ で示す。）}
+\end{center}
+
+\begin{goalbox}{この巻の学習目標}
+\begin{itemize}
+\item Kähler 多様体上で Hodge の星作用素、Laplacian $\Delta_d,\Delta_\partial,\Delta_{\bar\partial}$、Kähler 恒等式を扱い、$\Delta_d=2\Delta_{\bar\partial}$ を恒等式から導ける。
+\item \textbf{Hodge 分解} $H^k(X,\C)=\bigoplus_{p+q=k}H^{p,q}$、Hodge 数の対称性 $h^{p,q}=h^{q,p}=h^{n-p,n-q}$、$\partial\bar\partial$-補題、\textbf{Lefschetz 分解}と Hodge--Riemann 関係（主張）を使って、$\mathbb P^n$、トーラス、K3、5 次 3 次元多様体の Hodge ダイヤモンドを計算できる。
+\item \textbf{Serre 双対}（高次元）を、Hodge の星作用素による調和形式の対応として証明できる。
+\item $\mathbb P^n$ 上の $\Oc(m)$ の全コホモロジーを \Cech{} 複体で完全に計算し、そこから \textbf{Serre の消滅定理}（豊富な $L$ に対し $m\gg0$ で $H^q(X,F\otimes L^m)=0$）の証明の構造を説明できる。
+\item \textbf{Bochner--Kodaira--Nakano 恒等式}を Kähler 恒等式から導き、\textbf{Kodaira の消滅定理}を、「どの仮定がどこで効くか」を示しながら証明できる。Nakano 消滅、Serre 消滅の別証明も得る。
+\item \textbf{Kodaira の埋め込み定理}（正の直線束は豊富）の証明の骨子（爆発と消滅定理）を述べ、Kähler 類が整なら射影的であること、複素トーラスが射影的であるための条件（Riemann）を説明できる。Kodaira--Spencer 理論、Chow の定理の主張と使い方を知る。
+\item 各定理の\textbf{仮定と、その役割}（Kähler、コンパクト、正値性、豊富性）を、反例（Hopf 曲面、$\C^2\setminus0$、$\Oc(2,0)$ など）とともに説明できる。
+\item \textbf{橋渡し}：古典の Serre 消滅・Kodaira 埋め込みを統合論文の「横断次数での Serre 型消滅」「一般化正則切断による埋め込みの不可能性（$\sigma$ が稠密開集合で非退化な場合など）」「Poisson--Kodaira 予想」と対比し、第6巻（HRR）、第7--8巻（楕円型作用素・指数定理）への接続を説明できる。
+\end{itemize}
+\end{goalbox}
+\begin{goalbox}{前提と記法}
+第2巻（複素多様体、$\bar\partial$、Hermite 計量・Chern 接続、Kähler 形式）、第3巻（層、\Cech{}・層コホモロジー、Dolbeault の定理、Leray の定理）、第4巻（Riemann 面、Riemann--Roch、1 次元の Serre 双対）を既知とする。必要な定義と主張は本文で簡潔に再掲する。\\
+本巻で $X$ は、特に断らなければ\textbf{連結なコンパクト複素多様体}、$n=\dim_{\C}X$、$K_X=\Omega^n_X$（標準束）、$h^{p,q}=\dim H^q(X,\Omega^p_X)$。Kähler 形式は第2巻の規約
+$\omega=g(J\cdot,\cdot)=i\sum g_{j\bar k}\,dz_j\wedge d\bar z_k$ に従う。\textbf{格子は $\Gamma$ と書き}（第4巻の $\Lambda$ に当たる）、$\Lambda$ は Kähler 恒等式の随伴作用素 $\Lambda=L^*$ に使う。Lefschetz 作用素は $L$（直線束の $L$ と区別するため $\mathsf L$ と書く）。\tC\ は標準的な結果（出典を併記）、\tP\ は本文で証明したもの、\tQ\ は記憶に基づく・未確認の箇所を表す。
+\end{goalbox}
+\tableofcontents
+\newpage
+\section*{この巻の読み方}
+\addcontentsline{toc}{section}{この巻の読み方}
+\begin{itemize}
+\item \textbf{最短ルート（Kodaira 消滅まで）}：\S\ref{sec:herm}（Kähler と正の直線束）$\to$ \S\ref{sec:kid}（Kähler 恒等式）$\to$ \S\ref{sec:bkn}（BKN 恒等式と Kodaira 消滅）。Hodge 理論の存在定理（\S\ref{sec:hodge}）は主張だけ認めてよい。
+\item \textbf{Hodge 数・トポロジーに進む人}：\S\ref{sec:kid}（Hodge 分解）$\to$ \S\ref{sec:lef}（Lefschetz）。
+\item \textbf{代数幾何寄りの人}：\S\ref{sec:serredual}（Serre 双対）$\to$ \S\ref{sec:serre}（$\mathbb P^n$ の計算と Serre 消滅）$\to$ \S\ref{sec:emb}（Kodaira 埋め込み）$\to$ \S\ref{sec:ks}（変形、Chow）。
+\item \textbf{統合論文に進む人}：\S\ref{sec:assume}（仮定と、その役割）と\S\ref{sec:unified}（古典との対比）を先に読み、必要に応じて戻るとよい。
+\item 問題は各節末にあり、全問の解答は巻末にある。計算を含む解答は Python（fractions と numpy と自作コード）で検算した。検算した項目は付録に一覧する。
+\end{itemize}
+\begin{center}
+\begin{tikzpicture}[node distance=7mm,font=\small,>=Stealth,every node/.style={draw,rounded corners=2pt,inner sep=3pt,fill=blue!4}]
+\node (ell) {楕円型作用素（第7巻）};
+\node[right=of ell] (hodge) {Hodge の定理};
+\node[right=of hodge] (kid) {Kähler 恒等式};
+\node[below=of kid] (bkn) {BKN 恒等式};
+\node[left=of bkn] (kv) {Kodaira 消滅};
+\node[left=of kv] (ke) {Kodaira 埋め込み};
+\node[below=of ke] (chow) {Chow、射影的};
+\node[below=of bkn,fill=orange!10] (serre) {Serre 消滅（$\mathbb P^n$ の計算 $+$ 別証明）};
+\draw[->] (ell)--(hodge);\draw[->] (hodge)--(kid);\draw[->] (kid)--(bkn);\draw[->] (bkn)--(kv);\draw[->] (kv)--(ke);\draw[->] (ke)--(chow);
+\draw[->,dashed] (bkn)--(serre);
+\end{tikzpicture}
+\end{center}
+{\small 図：本巻の論理の流れ。Kodaira 消滅は、Hodge 理論と Kähler 恒等式（Kähler 多様体）と正の曲率だけから出る。Kodaira 埋め込みはその応用で、爆発上の消滅定理を使う。}

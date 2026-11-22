@@ -1,0 +1,143 @@
+
+\section{Kähler 恒等式と Hodge 分解}\label{sec:kid}
+
+\subsection{作用素 $\mathsf L,\Lambda$ と代数的な恒等式}
+$(X,\omega)$ を Hermite 多様体とする。$\mathsf L=\omega\wedge\cdot$（Lefschetz 作用素）、$\Lambda=\mathsf L^*$（各点での内積に関する随伴、したがって $L^2$ 内積に関しても随伴）。$\mathsf L$ は次数を $2$ 上げ、型 $(p,q)$ を $(p+1,q+1)$ に写す。
+
+\begin{prop}\label{prop:sl2}\tP
+$k$ 形式上で $[\mathsf L,\Lambda]=(k-n)$。すなわち $H:=[\mathsf L,\Lambda]$ は「次数$-n$」を掛ける作用素で、$[H,\mathsf L]=2\mathsf L$、$[H,\Lambda]=-2\Lambda$。$\{\mathsf L,\Lambda,H\}$ は $\mathfrak{sl}_2$ をなす。
+\end{prop}
+\begin{proof}
+各点で、$T^*_pX\otimes\C$ の正規直交基底 $e_j=dz_j$、$f_j=d\bar z_j$（$g_{j\bar k}=\delta_{jk}$ となる正規化。計量の定数倍は結果を変えない）をとり、$\omega=i\sum_je_jf_j$（$e_jf_j=e_j\wedge f_j$）、$\mathsf L=\sum_j\mathsf L_j$、$\mathsf L_j=i\,\varepsilon(e_j)\varepsilon(f_j)$（$\varepsilon$ は外積）。外積代数は $n$ 個の 4 次元代数 $\Lambda^*\langle e_j,f_j\rangle=\langle1,e_j,f_j,e_jf_j\rangle$ のテンソル積で、$\mathsf L_j$ は $j$ 番目の因子にだけ働く偶数次の作用素だから、$j\ne k$ なら $\mathsf L_j,\Lambda_k$ は可換。$j$ 番目の因子上では $\mathsf L_j1=ie_jf_j$、他の基底は $0$ に写る。随伴は $\Lambda_j(e_jf_j)=-i$、他の基底は $0$ に写る（$\langle1,\Lambda_ju\rangle=\langle\mathsf L_j1,u\rangle=i$ より）。したがって
+\[
+[\mathsf L_j,\Lambda_j]=\begin{cases}-1&(1)\\0&(e_j,f_j)\\+1&(e_jf_j)\end{cases}=(\text{その因子での次数})-1 .
+\]
+$\sum_j$ をとれば $[\mathsf L,\Lambda]=k-n$。残りは $[H,\mathsf L]=((k+2-n)-(k-n))\mathsf L$ から従う。
+\end{proof}
+この計算（$[\mathsf L,\Lambda]=k-n$）は Python で $n=1,2,3$ の外積代数全体に対して数値確認した（付録）。問 \ref{p:LLam} も見よ。
+
+\subsection{Kähler 恒等式}
+$\partial^*,\bar\partial^*$ を $\partial,\bar\partial$ の形式的随伴とする。ベクトル束 $E$ 係数では、$D=D'+\bar\partial_E$ を Chern 接続とし、$D'^*$ をその随伴とする。
+\begin{thm}[Kähler 恒等式]\label{thm:kid}\tC
+$(X,\omega)$ を Kähler 多様体とする。
+\[
+[\Lambda,\bar\partial]=-i\,\partial^*,\qquad[\Lambda,\partial]=i\,\bar\partial^*,\qquad[\mathsf L,\bar\partial^*]=-i\,\partial,\qquad[\mathsf L,\partial^*]=i\,\bar\partial .
+\]
+$(E,h)$ を Hermite 正則ベクトル束とし、$X$ の計量が Kähler なら、$E$ 係数形式上でも同じ式が成り立つ：$[\Lambda,\bar\partial_E]=-iD'^*$、$[\Lambda,D']=i\bar\partial_E^*$。
+\end{thm}
+\src{Huybrechts, \emph{Complex Geometry}, 第3章 \S3.1（Prop.~3.1.12）；Griffiths--Harris, 第0章（Kähler 多様体）；Demailly, \emph{Complex Analytic and Differential Geometry}, 第VI章。符号は規約による。本巻は $\omega=g(J\cdot,\cdot)$、$\mathsf L=\omega\wedge$ で、下の平坦な場合の直接計算と一致する符号を採る。}
+\paragraph{証明の骨子。}\tP\ \emph{（平坦な場合）}$\C^n$ の標準的な平坦計量（上と同じ正規化 $|dz_j|=1$、$\omega=i\sum dz_j\wedge d\bar z_j$）では $\bar\partial=\sum_j\varepsilon(f_j)\partial_{\bar z_j}$、$(\partial_{z_j})^*=-\partial_{\bar z_j}$（部分積分）なので $\partial^*=-\sum_j\iota(e_j)\partial_{\bar z_j}$（$\iota$ は内部積、$\varepsilon(e_j)$ の随伴）。他方 $\Lambda=-i\sum_k\iota(f_k)\iota(e_k)$ で、反交換関係から
+\[
+[\Lambda,\varepsilon(f_j)]=-i\sum_k\big(\iota(f_k)\iota(e_k)\varepsilon(f_j)-\varepsilon(f_j)\iota(f_k)\iota(e_k)\big)=-i\cdot(-\iota(e_j))=i\,\iota(e_j).
+\]
+よって $[\Lambda,\bar\partial]=i\sum\iota(e_j)\partial_{\bar z_j}=-i\partial^*$。（この符号は Python でも確認した。）\emph{（一般の場合）}$P=[\Lambda,\bar\partial]+i\partial^*$ は 1 階の微分作用素で、点 $p$ での値は計量の $p$ での $1$-jet にしか依らない。Kähler 正規座標をとれば（計量の定数倍で正規化して）$g_{j\bar k}=\delta_{jk}+O(|z|^2)$ なので $1$-jet は平坦計量と同じ、ゆえに $P(p)=0$。\emph{ここが Kähler 条件（$d\omega=0$）の効く唯一の場所}である。第 2 式は第 1 式の複素共役、第 3・4 式は随伴をとって得る（例えば $[\Lambda,\bar\partial]=-i\partial^*$ の随伴は $-[\mathsf L,\bar\partial^*]=i\partial$）。ベクトル束係数は、$p$ のまわりで $H=1+O(|z|^2)$ となる正則枠をとれば、$D'=\partial+O(|z|)$ となり同様。\hfill$\square$
+
+\subsection{Laplacian の関係}
+\begin{cor}\label{cor:laplace}\tP
+Kähler 多様体上で次が成り立つ。
+\begin{enumerate}
+\item[(a)] $\partial\bar\partial^*+\bar\partial^*\partial=0$、$\bar\partial\partial^*+\partial^*\bar\partial=0$。
+\item[(b)] $\Delta_d=\Delta_\partial+\Delta_{\bar\partial}$ かつ $\Delta_\partial=\Delta_{\bar\partial}$。したがって $\Delta_d=2\Delta_\partial=2\Delta_{\bar\partial}$。
+\item[(c)] $\Delta_d$ は $\mathsf L,\Lambda,\ast$、複素共役と可換で、型 $(p,q)$ を保つ。
+\end{enumerate}
+\end{cor}
+\begin{proof}
+(a) $i\bar\partial^*=[\Lambda,\partial]$ なので $i(\partial\bar\partial^*+\bar\partial^*\partial)=\partial(\Lambda\partial-\partial\Lambda)+(\Lambda\partial-\partial\Lambda)\partial=\partial\Lambda\partial-\partial\Lambda\partial=0$（$\partial^2=0$）。もう一方は $\partial^*=i[\Lambda,\bar\partial]$ と $\bar\partial^2=0$ から同様。\\
+(b) $\Delta_d=(\partial+\bar\partial)(\partial^*+\bar\partial^*)+(\partial^*+\bar\partial^*)(\partial+\bar\partial)=\Delta_\partial+\Delta_{\bar\partial}+(\partial\bar\partial^*+\bar\partial^*\partial)+(\bar\partial\partial^*+\partial^*\bar\partial)$、(a) より最後の 2 項は $0$。次に $\partial^*=i[\Lambda,\bar\partial]$ を使い、$\partial\bar\partial=-\bar\partial\partial$ に注意して
+\[
+\Delta_\partial=i\big(\partial[\Lambda,\bar\partial]+[\Lambda,\bar\partial]\partial\big)=i\big(\partial\Lambda\bar\partial+\bar\partial\partial\Lambda+\Lambda\bar\partial\partial-\bar\partial\Lambda\partial\big).
+\]
+一方 $\bar\partial^*=-i[\Lambda,\partial]$ から、同様に $\Delta_{\bar\partial}=-i\big(\bar\partial[\Lambda,\partial]+[\Lambda,\partial]\bar\partial\big)=i\big(\partial\Lambda\bar\partial+\bar\partial\partial\Lambda+\Lambda\bar\partial\partial-\bar\partial\Lambda\partial\big)$。両者は等しい。\\
+(c) $[\mathsf L,\partial]=0$（$\partial\omega=0$）で、$[\mathsf L,\partial^*]=i\bar\partial$ より $[\mathsf L,\Delta_\partial]=\partial[\mathsf L,\partial^*]+[\mathsf L,\partial^*]\partial=i(\partial\bar\partial+\bar\partial\partial)=0$。随伴をとって $[\Lambda,\Delta]=0$。$\Delta_d$ は実作用素なので複素共役と可換、$\ast$ とも可換（Hodge の定理 (c) の証明）。型の保存は $\Delta_{\bar\partial}$ が型を保つことによる。
+\end{proof}
+\begin{center}
+\begin{tikzcd}[column sep=large,row sep=small]
+\Delta_d\arrow[r,equal,"\text{Kähler}"]&2\Delta_\partial=2\Delta_{\bar\partial}\arrow[r,"\text{型を保つ}"]&A^{p,q}\to A^{p,q}
+\end{tikzcd}
+\end{center}
+
+\subsection{Hodge 分解}
+\begin{thm}[Hodge 分解]\label{thm:hodgedec}\tP\ (Kähler 恒等式と Hodge の定理から)
+$X$ をコンパクト Kähler 多様体とする。
+\begin{enumerate}
+\item[(a)] $\Hdg^k=\bigoplus_{p+q=k}\Hdg^{p,q}$、ここで $\Hdg^{p,q}$ は $\Delta_d$（$=2\Delta_{\bar\partial}$）調和な $(p,q)$ 形式。
+\item[(b)] $H^k(X,\C)=\bigoplus_{p+q=k}H^{p,q}(X)$。ここで $H^{p,q}(X)\subset H^k(X,\C)$ は\emph{閉な $(p,q)$ 形式で代表される類}の空間で、\emph{計量に依らない}。
+\item[(c)] $H^{p,q}(X)\cong\Hdg^{p,q}\cong H^q(X,\Omega^p_X)$。したがって $b_k=\sum_{p+q=k}h^{p,q}$。
+\item[(d)] $\overline{H^{p,q}}=H^{q,p}$。ゆえに $h^{p,q}=h^{q,p}$。
+\item[(e)] $h^{p,q}=h^{n-p,n-q}$。
+\end{enumerate}
+\end{thm}
+\begin{proof}
+(a) Corollary \ref{cor:laplace}(c) より、調和形式 $\alpha$ の $(p,q)$ 成分も調和（$\Delta_d$ が型を保つので $\Delta_d\alpha=\sum\Delta_d\alpha^{p,q}=0$ から各成分が $0$）。(b) 閉な $(p,q)$ 形式 $\alpha$ の調和代表元は $H\alpha$。$\Delta_d$ が型を保つので Green 作用素 $G$ と射影 $H$ も型を保ち、$H\alpha$ は $(p,q)$ 型。したがって $[\alpha]\in\Hdg^{p,q}$ の像。逆に調和な $(p,q)$ 形式は閉。$H^k(X,\C)\cong\Hdg^k$（Hodge の定理）と (a) から直和分解が出る。$H^{p,q}(X)$ の定義は計量を使わない。(c) $\Delta_d$ 調和 $=\Delta_{\bar\partial}$ 調和（Cor.\ \ref{cor:laplace}(b)）、定理 \ref{thm:hodgeD} と Dolbeault の定理。(d) $\Delta_d$ は実作用素なので、共役は調和 $(p,q)$ 形式を調和 $(q,p)$ 形式に写す。(e) $\ast$ は $\Hdg^{p,q}$ を $\Hdg^{n-q,n-p}$ に写す（$\ast$ の複素線形拡張）。(d) と合わせて $h^{p,q}=h^{n-q,n-p}=h^{n-p,n-q}$。
+\end{proof}
+\paragraph{系（位相的な帰結）。}\tP\ (i) $k$ が奇数なら $b_k$ は偶数（$(p,q)\leftrightarrow(q,p)$ は $p+q$ 奇数のとき固定点をもたない）。(ii) $0\le k\le n$ で $[\omega]^k\neq0$（第2巻）なので $h^{k,k}\ge1$。(iii) 正則 $p$ 形式は閉（問 \ref{p:holclosed}）。(iv) コンパクト Kähler 多様体の Hodge 数は、複素構造の連続変形で不変（\S\ref{sec:ks}）。(v) Hodge--de Rham スペクトル系列（第3巻）は $E_1$ で退化する\tC。
+
+\subsection{$\partial\bar\partial$-補題}
+\begin{thm}[$\partial\bar\partial$-補題]\label{thm:ddbar}\tP
+$X$ をコンパクト Kähler 多様体、$\alpha$ を $d$-閉な $(p,q)$ 形式とする。次は同値：(a) $\alpha$ は $d$-完全、(b) $\alpha$ は $\partial$-完全、(c) $\alpha$ は $\bar\partial$-完全、(d) $\alpha=\partial\bar\partial\gamma$（$\gamma$ は $(p-1,q-1)$ 形式）。
+\end{thm}
+\begin{proof}
+(d)$\Rightarrow$(a),(b),(c) は明らか。(a)$\Rightarrow$(d) を示す。$\alpha=d\beta$ なら調和形式 $h$ に対し $(\alpha,h)=(\beta,d^*h)=0$ なので $H\alpha=0$。$\Delta_\partial=\Delta_{\bar\partial}$ なので Green 作用素 $G$ は共通で $\partial,\bar\partial,\partial^*,\bar\partial^*$ と可換。$\partial$ に対する Hodge 分解から
+$\alpha=\partial\partial^*G\alpha+\partial^*\partial G\alpha=\partial\partial^*G\alpha$（$\partial G\alpha=G\partial\alpha=0$）。次に $\gamma':=\partial^*G\alpha$ に $\bar\partial$ の Hodge 分解を使う：$\gamma'=H\gamma'+\bar\partial\bar\partial^*G\gamma'+\bar\partial^*\bar\partial G\gamma'$。$H\gamma'=0$（$(\gamma',h)=(G\alpha,\partial h)=0$）、$\bar\partial G\gamma'=G\bar\partial\partial^*G\alpha=-G\partial^*\bar\partial G\alpha=-G\partial^*G\bar\partial\alpha=0$（Cor.\ \ref{cor:laplace}(a) と $\bar\partial\alpha=0$）。よって $\gamma'=\bar\partial\bar\partial^*G\gamma'$ で $\alpha=\partial\bar\partial(\bar\partial^*G\gamma')$。(b)$\Rightarrow$(d) は $\partial$-完全なら $\alpha\perp\Hdg$ で同様、(c)$\Rightarrow$(d) も同様。
+\end{proof}
+\paragraph{使い道。}(1) 同じ de Rham 類に属する 2 つの Kähler 形式は $\omega'=\omega+i\partial\bar\partial\varphi$ の関係（問 \ref{p:ddbar}）。(2) Chern 曲率のポテンシャル：直線束の 2 つの Hermite 計量の曲率は $\partial\bar\partial$ だけ違う（\S\ref{sec:emb}）。(3) Lefschetz の $(1,1)$ 定理の証明（\S\ref{sec:emb}）。
+
+\subsection{Hodge ダイヤモンドと例}
+Hodge 数 $h^{p,q}$ を菱形に並べたものを\emph{Hodge ダイヤモンド}という。(d),(e) により左右反転と 180 度回転で不変。
+\begin{ex}[$\CP^n$]
+$h^{p,q}=\delta_{pq}$（$0\le p\le n$）。$b_{2k}=1$、$b_{2k+1}=0$。$[\omega_{FS}]^k$ が $H^{k,k}$ の基底。
+\end{ex}
+\begin{ex}[複素トーラス $T=\C^n/\Gamma$]\label{ex:torusH}
+平坦計量で調和形式は定数係数形式 $dz_I\wedge d\bar z_J$。よって $h^{p,q}=\binom np\binom nq$、$b_k=\sum_{p+q=k}\binom np\binom nq=\binom{2n}k$（Vandermonde）。
+\end{ex}
+\begin{ex}[K3 曲面]\label{ex:K3}
+K3 曲面とは、コンパクトな複素曲面で $K_X$ が自明、$H^1(X,\Oc)=0$ のもの（Kähler であることは Siu による\tC）。$h^{1,0}=h^{0,1}=0$、$h^{2,0}=h^0(K_X)=1=h^{0,2}$。第 6 巻の Noether の公式 $\chi(\Oc_X)=\frac1{12}(c_1^2+c_2)$ に $\chi(\Oc_X)=1-0+1=2$、$c_1=0$ を入れて $c_2=24=e(X)$。$e=2+b_2$（$b_1=b_3=0$）より $b_2=22$、$h^{1,1}=22-2=20$。
+\begin{center}
+\begin{tikzpicture}[scale=0.62,font=\small]
+\foreach \x/\y/\t in {0/4/1, -1/3/0, 1/3/0, -2/2/1, 0/2/20, 2/2/1, -1/1/0, 1/1/0, 0/0/1}{\node at (\x*1.2,\y*0.9) {$\t$};}
+\node[font=\scriptsize] at (0,-1) {K3 曲面};
+\begin{scope}[xshift=9cm]
+\foreach \x/\y/\t in {0/6/1, -1/5/0, 1/5/0, -2/4/0, 0/4/1, 2/4/0, -3/3/1, -1/3/101, 1/3/101, 3/3/1, -2/2/0, 0/2/1, 2/2/0, -1/1/0, 1/1/0, 0/0/1}{\node at (\x*1.2,\y*0.9-0.0) {$\t$};}
+\node[font=\scriptsize] at (0,-1) {5 次超曲面 $\subset\CP^4$（3 次元）};
+\end{scope}
+\end{tikzpicture}
+\end{center}
+（第 $k$ 行が $p+q=k$ の $h^{p,q}$。上下・左右に対称。K3 では中央の行が $h^{2,0},h^{1,1},h^{0,2}=1,20,1$、5 次超曲面では $h^{3,0},h^{2,1},h^{1,2},h^{0,3}=1,101,101,1$。）
+\end{ex}
+\begin{ex}[$\CP^4$ の 5 次超曲面 $X$（Calabi--Yau 3 次元多様体）]\label{ex:quintic}
+Lefschetz の超平面切断定理\tC\ により $b_1(X)=0$、$b_2(X)=1$（$H^2(X)$ は $H$ の類で生成される）、したがって Poincaré 双対で $b_4=1$、$b_5=0$。残るのは $b_3$ のみ。$c(T_X)=(1+H)^5/(1+5H)$ から $c_3=-40H^3$、$\int_XH^3=5$ なので $e(X)=-200$（Python で検算）。$e=1+0+1-b_3+1+0+1=4-b_3$ より $b_3=204$。Hodge 分解で $b_2=h^{1,1}+2h^{2,0}=1$ かつ $h^{1,1}\ge1$ だから $h^{1,1}=1$、$h^{2,0}=0$。$K_X\cong\Oc_X$（随伴公式）なので $h^{3,0}=h^0(K_X)=1$。$b_3=2h^{3,0}+2h^{2,1}=204$ より $h^{2,1}=101$。
+\end{ex}
+\begin{ex}[Kähler でないと破れる：Hopf 曲面]\label{ex:hopfH}
+Hopf 曲面 $X$（$b_1=1$）では $h^{1,0}=0$（$\C^2\setminus0$ 上の正則 1 形式 $f\,dz_1+g\,dz_2$ は Hartogs で $\C^2$ に拡張する。$z\mapsto2z$ での不変性から $f(2z)=\frac12f(z)$。$f$ を同次多項式の和 $\sum_df_d$ に Taylor 展開すると $2^df_d=\frac12f_d$ なので $f_d=0$（$d\ge0$）、$f\equiv0$。$g$ も同様）。一方 $h^{0,1}=1$\tC\ （コンパクト複素曲面では $b_1=h^{1,0}+h^{0,1}$。Barth--Hulek--Peters--Van de Ven, \emph{Compact Complex Surfaces}, 第IV章；節番号は\tQ）。$h^{1,0}\ne h^{0,1}$ で、Hodge 対称性 (d) が破れる。$b_1=1$ が奇数なのも (i) に反する。
+\end{ex}
+
+\begin{ex}[積と爆発：Hodge 数の計算規則]\label{ex:prodbl}
+(1) \emph{積}（Künneth）：コンパクト Kähler 多様体 $X,Y$ の積は Kähler（$\mathrm{pr}_1^*\omega_X+\mathrm{pr}_2^*\omega_Y$）で、$h^{p,q}(X\times Y)=\sum_{a,b}h^{a,b}(X)h^{p-a,q-b}(Y)$（調和形式が積の形のものになる）。$\CP^1\times\CP^1$：$h^{0,0}=1$、$h^{1,1}=2$、$h^{2,2}=1$、他 $0$（$b_2=2$）。(2) \emph{点での爆発}：$n$ 次元の $X$ の点での爆発 $\tilde X$ は Kähler で、$h^{p,p}(\tilde X)=h^{p,p}(X)+1$（$1\le p\le n-1$）、他は不変\tC\ （例外因子 $E\cong\CP^{n-1}$ の $H^*$ が加わる。Voisin I, 第7章；Huybrechts, 第3章）。曲面では $b_2$ が $1$ 増え、$e$ も $1$ 増える。(3) \emph{3 次曲面}：$\CP^2$ を一般の 6 点で爆発したものが 3 次曲面 $X_3\subset\CP^3$（\tC）。$b_2=1+6=7$、$h^{1,1}=7$、$h^{2,0}=0$、$e=3+6=9$。これは Chern 類の計算 $c(T_X)=(1+H)^4/(1+3H)$、$c_2=3H^2$、$e=3\cdot3=9$（問 \ref{p:quintic} と同じ計算、検算済）と一致し、Hodge 数と位相（\S\ref{sec:lef} の符号 $(1,6)$）の整合を与える。$F_1=\mathrm{Bl}_{pt}\CP^2$：$b_2=2$、$e=4=c_2$。
+\end{ex}
+
+\begin{keybox}{要点（\S\ref{sec:kid}）}
+Kähler 恒等式 $[\Lambda,\bar\partial]=-i\partial^*$ から $\Delta_d=2\Delta_\partial=2\Delta_{\bar\partial}$（本文で完全に導出）。$\Delta$ が型を保つので、コンパクト Kähler では $H^k(X,\C)=\bigoplus H^{p,q}$、$H^{p,q}\cong H^q(\Omega^p)$、$h^{p,q}=h^{q,p}=h^{n-p,n-q}$、奇数次 Betti 数は偶数、$\partial\bar\partial$-補題。Kähler 性は Kähler 恒等式（$1$-jet が平坦）で使われる。Hopf 曲面では分解が破れる。
+\end{keybox}
+
+\begin{prob}{基本}\label{p:LLam}
+$\C^n$ の $\omega=i\sum dz_j\wedge d\bar z_j$（$|dz_j|=1$）について (a) $\Lambda\omega=n$ を示し、$[\mathsf L,\Lambda]1=-n$ を確かめよ。(b) $\Lambda(\omega^2)=(2n-2)\omega$ を示し、$[\mathsf L,\Lambda]\omega=(2-n)\omega$ を確かめよ。
+\end{prob}
+\begin{prob}{標準}\label{p:torusH}
+複素トーラス $\C^n/\Gamma$ の Hodge 数 $h^{p,q}=\binom np\binom nq$ を示し、$n=2$ の Hodge ダイヤモンドを書け。$b_k=\binom{2n}k$ との整合を確かめよ。
+\end{prob}
+\begin{prob}{標準}\label{p:K3}
+K3 曲面について、(a) Hodge ダイヤモンドを完成させよ（$e(X)=24$ を使ってよい）。(b) $\chi_{\mathrm{top}}=\sum(-1)^kb_k$ と $\sum_{p,q}(-1)^{p+q}h^{p,q}$ が一致することを確かめよ。(c) $\sum_q(-1)^qh^{p,q}=\chi(\Omega^p)$ を計算し、$\chi(\Oc)=2$ を確認せよ。
+\end{prob}
+\begin{prob}{標準}\label{p:quintic}
+$X\subset\CP^4$ を滑らかな 5 次超曲面とする。(a) $c(T_X)=(1+H)^5/(1+5H)$ と $\int_XH^3=5$ から $e(X)=-200$ を示せ。(b) Lefschetz の定理（$b_1=0$、$b_2=1$）と Hodge 分解から $h^{2,1}=101$、$h^{1,1}=1$ を導け。(c) 一般の $d$ 次超曲面 $X_d\subset\CP^4$ について $e(X_d)$ を $d$ の式で表し、$d=5$ で $-200$ になることを確認せよ。
+\end{prob}
+\begin{prob}{標準}\label{p:holclosed}
+コンパクト Kähler 多様体上の正則 $p$ 形式 $\alpha$（$\bar\partial\alpha=0$）は閉であることを示せ。これを使って、$H^0(X,\Omega^p)\to H^p(X,\C)$ が単射であること（したがって $h^{p,0}\le b_p$）を説明せよ。コンパクト複素多様体で Kähler でないと、正則 1 形式でも閉でないものがありうる。
+\end{prob}
+\begin{prob}{標準}\label{p:hopfH}
+Hopf 曲面（微分同相型 $S^1\times S^3$）について、(a) $b_1=1$ から、Kähler 計量をもたないことを導け。(b) 例 \ref{ex:hopfH} の $h^{1,0}=0$ の議論の細部を補え。(c) Hodge 分解の (b)(d) のどの部分が破れているかを述べよ。
+\end{prob}
+\begin{prob}{発展}\label{p:ddbar}
+$\omega,\omega'$ をコンパクト Kähler 多様体上の 2 つの Kähler 形式で、$[\omega]=[\omega']\in H^2(X,\mathbb R)$ とする。$\omega'=\omega+i\partial\bar\partial\varphi$ をみたす実関数 $\varphi$ が存在することを示せ。
+\end{prob}
+

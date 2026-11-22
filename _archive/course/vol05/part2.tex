@@ -1,0 +1,56 @@
+
+\section{Hodge 理論：調和形式の存在}\label{sec:hodge}
+
+この節では「各コホモロジー類に調和な代表元がただ一つある」という Hodge の定理を使えるようにする。証明の核心は楕円型作用素の理論（第7巻）で、ここでは主張とその帰結を整理する。
+
+\subsection{Riemann 多様体の Hodge 理論}
+$(M,g)$ を向きのついた $m$ 次元のコンパクト Riemann 多様体とする。\emph{Hodge の星作用素}
+$\ast:\Lambda^kT^*M\to\Lambda^{m-k}T^*M$ は $\alpha\wedge\ast\beta=\langle\alpha,\beta\rangle\,\mathrm{vol}$ で定まる。$\ast\ast=(-1)^{k(m-k)}$ である。$L^2$ 内積 $(\alpha,\beta)=\int_M\alpha\wedge\ast\beta$ に関する $d$ の形式的随伴は
+\[
+d^*=(-1)^{m(k+1)+1}\ast d\ast\quad(k\ \text{形式上}),\qquad m\ \text{偶数なら}\ d^*=-\ast d\ast .
+\]
+\emph{Laplacian} $\Delta_d=dd^*+d^*d$、調和形式の空間 $\Hdg^k=\Ker\Delta_d$。部分積分により $(\Delta_d\alpha,\alpha)=\|d\alpha\|^2+\|d^*\alpha\|^2$ なので、コンパクトなら
+\[
+\Delta_d\alpha=0\iff d\alpha=0\ \text{かつ}\ d^*\alpha=0 .
+\]
+\begin{thm}[Hodge の定理]\label{thm:hodgeR}\tC
+コンパクトな向きつき Riemann 多様体 $(M,g)$ で次が成り立つ。
+\begin{enumerate}
+\item[(a)] $\Hdg^k$ は有限次元で、$L^2$ 直交分解 $A^k(M)=\Hdg^k\oplus d A^{k-1}\oplus d^*A^{k+1}$ がある。
+\item[(b)] 各 de Rham コホモロジー類には調和な代表元がただ一つあり、$\Hdg^k\cong H^k_{dR}(M)$。
+\item[(c)] $\ast$ は $\Hdg^k$ から $\Hdg^{m-k}$ への同型を与える。したがって $b_k=b_{m-k}$（Poincaré 双対）。
+\end{enumerate}
+\end{thm}
+\src{Warner, \emph{Foundations of Differentiable Manifolds and Lie Groups}, 第6章；Griffiths--Harris, 第0章（Hodge 理論）；Wells, \emph{Differential Analysis on Complex Manifolds}, 第IV章。証明の核心は $\Delta_d$ が楕円型・自己随伴であること（第7巻）。}
+\paragraph{証明の骨子。}\tP\ $\Delta_d$ は楕円型の自己随伴作用素なので、固有値問題が解け、$A^k=\Hdg^k\oplus\Delta_dA^k$（直交）、$\Hdg^k$ は有限次元で、\emph{Green 作用素} $G$（$\Hdg^k$ 上 $0$、その直交補空間上 $\Delta_d^{-1}$）が存在し $\mathrm{id}=H+\Delta_dG$（$H$ は $\Hdg$ への射影）。$G$ は $d,d^*$ と可換。したがって $\alpha=H\alpha+dd^*G\alpha+d^*dG\alpha$、これが (a)。(b)：$\alpha$ が閉なら $d^*dG\alpha=Gd^*d\alpha=0$ なので $\alpha=H\alpha+d(d^*G\alpha)$。一意性は、調和な完全形式 $d\beta$ が $\|d\beta\|^2=(\beta,d^*d\beta)=0$ から $0$ になることによる。(c)：$\ast\Delta_d=\Delta_d\ast$ なので、$\ast$ は調和形式を調和形式に写す。\hfill$\square$
+
+\begin{rem}[最小性]
+閉形式 $\alpha$ とその調和代表元 $h$ について $\alpha=h+d\beta$ で、$h\perp d\beta$ より $\|\alpha\|^2=\|h\|^2+\|d\beta\|^2\ge\|h\|^2$。調和代表元は、その類の中で $L^2$ ノルム最小の形式である（問 \ref{p:minnorm}）。
+\end{rem}
+
+\subsection{Dolbeault 版（ベクトル束係数）}
+$X$ をコンパクト \emph{Hermite} 多様体（Kähler でなくてよい）、$(E,h)$ を Hermite 正則ベクトル束とする。$A^{p,q}(E)$ に $L^2$ 内積が入り、$\bar\partial_E:A^{p,q}(E)\to A^{p,q+1}(E)$ の形式的随伴 $\bar\partial_E^*$ が定まる。$\Delta_{\bar\partial}=\bar\partial\bar\partial^*+\bar\partial^*\bar\partial$ とおく。
+\begin{thm}[Dolbeault 複体の Hodge 理論]\label{thm:hodgeD}\tC
+上の設定で $\Delta_{\bar\partial}$ は楕円型自己随伴作用素で、$\Hdg^{p,q}(E)=\Ker\Delta_{\bar\partial}$ は有限次元、
+\[
+A^{p,q}(E)=\Hdg^{p,q}(E)\oplus\bar\partial A^{p,q-1}(E)\oplus\bar\partial^*A^{p,q+1}(E)\quad(L^2\text{ 直交}),
+\]
+$\Hdg^{p,q}(E)\cong H^{p,q}_{\bar\partial}(X;E)\cong H^q(X,\Omega^p_X\otimes E)$（最後は第3巻の Dolbeault の定理）。特に $H^q(X,\mathcal F)$ は有限次元（$\mathcal F$ が正則ベクトル束のとき）。
+\end{thm}
+\src{Wells, 第IV章；Huybrechts, 第4章 \S4.1。楕円性は $\Delta_{\bar\partial}$ のシンボルが $\frac12|\xi|^2\cdot\mathrm{id}$ になることによる（第7巻）。}
+この定理で \emph{Kähler 性は不要}であることに注意する。第3巻・第4巻では有限性の証明方針として関数解析（Schwartz の有限性定理）と楕円型作用素論の 2 通りを挙げたが、ここでは後者、すなわち楕円型方程式の理論から出る。逆に、Kähler 性が必要になるのは「$\Delta_d$ の調和形式と $\Delta_{\bar\partial}$ の調和形式が一致する」という次節の部分である。
+
+\begin{keybox}{要点（\S\ref{sec:hodge}）}
+コンパクトなら、$\Delta=dd^*+d^*d$ の調和形式がコホモロジー類の代表元をただ一つ与える。同じことが $\Delta_{\bar\partial}$ と正則ベクトル束係数でも成り立ち、$H^q(X,\Omega^p\otimes E)\cong\Hdg^{p,q}(E)$、有限次元。この段階では Kähler 性は不要。\emph{コンパクト性}は、部分積分と有限次元性の両方で使われる。
+\end{keybox}
+
+\begin{prob}{基本}\label{p:starflat}
+(a) $\mathbb R^3$ の標準計量で $\ast dx=dy\wedge dz$ などを書き、$d^*$ と Laplacian を成分で表せ。(b) 平坦トーラス $T^m=\mathbb R^m/\mathbb Z^m$ で調和形式は定数係数の形式で、$b_k=\binom mk$ であることを示せ。(c) (b) で $\ast$ が $\Hdg^k$ と $\Hdg^{m-k}$ の同型を与えることを確かめよ。
+\end{prob}
+\begin{prob}{標準}\label{p:minnorm}
+$M$ をコンパクト Riemann 多様体、$\alpha$ を閉 $k$ 形式、$h$ をその調和代表元とする。$\|h\|\le\|\alpha'\|$ が、$[\alpha']=[\alpha]$ をみたす任意の形式 $\alpha'$ で成り立ち、等号は $\alpha'=h$ のときに限ることを示せ。
+\end{prob}
+\begin{prob}{標準}\label{p:hodgedecomp}
+平坦トーラス $T^2=\mathbb R^2/\mathbb Z^2$ 上の 1 形式 $\alpha=\cos(2\pi x)\,dy$ について、$d\alpha$、$d^*\alpha$ を計算し、Hodge 分解 $\alpha=h+d\beta+d^*\gamma$ の各成分を求めよ。
+\end{prob}
+

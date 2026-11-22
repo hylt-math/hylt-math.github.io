@@ -1,0 +1,88 @@
+
+\section{この巻の理解チェック（自己診断 10 問）}\label{sec:check}
+次の各主張の正誤を答え（誤なら理由を一言）、答えは下にある。
+\begin{enumerate}
+\item コンパクト Kähler 多様体で $\Delta_d=2\Delta_{\bar\partial}$ となる。これは Kähler 恒等式 $[\Lambda,\bar\partial]=-i\partial^*$ から導かれる。
+\item Hopf 曲面では $h^{1,0}=h^{0,1}$ が成り立つ。
+\item Serre 双対 $H^q(X,E)^*\cong H^{n-q}(X,K\otimes E^*)$ の証明には $X$ が Kähler であることが必要である。
+\item K3 曲面の Hodge 数は $h^{1,1}=20$、$h^{2,0}=h^{0,2}=1$ である。
+\item $k$ 形式上で $[\mathsf L,\Lambda]=k-n$ である。
+\item $X=\CP^1\times\CP^1$、$L=\Oc(2,0)$ について $H^1(X,K_X\otimes L)=0$ である。
+\item コンパクト複素多様体に正の直線束があれば、$X$ は Kähler である。
+\item すべての複素トーラス $\C^n/\Gamma$ は射影的である。
+\item 楕円曲線 $X$ 上で $L=\Oc_X$、$F=\Oc_X$ に Serre の消滅定理が適用でき、$m\gg0$ で $H^1(F\otimes L^m)=0$ である。
+\item 統合論文の一般化 Dolbeault コホモロジー $\mathrm{HH}^k(E)$ は複体 $(\wedge^\bullet T\otimes E,\ d_E=[\sigma,\cdot]+V\wedge)$ の超コホモロジーで、Serre 型消滅は横断次数 $a>0$ でのみ成り立つ。
+\end{enumerate}
+\paragraph{解答。}(1) 正（Cor.\ \ref{cor:laplace}）。(2) 誤：$h^{1,0}=0$、$h^{0,1}=1$。(3) 誤：コンパクト性と正則性のみ（Stokes と $\bar\ast$）。(4) 正。(5) 正（Prop.\ \ref{prop:sl2}）。(6) 誤：$H^1=\C$（半正で正でない）。(7) 正（$\omega=i\Theta_h$ が Kähler 形式）。(8) 誤：楕円曲線は射影的だが、$n\ge2$ の一般のトーラスは偏極を持たない（問 \ref{p:torusNS}）。(9) 誤：$L=\Oc$ は豊富でなく、$H^1(\Oc)=\C$ が全 $m$ で残る。(10) 正（論文の記述。\S\ref{sec:unified}、本巻では独立検証していない\tQ）。
+
+\section{次巻以降への橋渡しと統合論文との対応}\label{sec:bridge}
+\paragraph{第6巻（特性類と HRR）へ。}$m\gg0$ の $h^0(L^m)=\chi(L^m)$ は、Serre 消滅（定理 \ref{thm:serreV}）と、Kodaira 消滅による $H^{q>0}(L)=0$（K3 の $h^0=2+L^2/2$、例 \ref{ex:K3h0}）から出る。第6巻の HRR $\chi(X,E)=\int\ch(E)\Td(X)$ と組み合わせて、漸近 Riemann--Roch、曲面の Noether の公式、$\chi(T)=\frac16(7c_1^2-5c_2)$（本巻の変形次元の計算に使った）を導く。HRR の証明（Hirzebruch の原証明、Atiyah--Singer による一般のコンパクト複素多様体への拡張）は第6巻・第8巻で扱う。
+\paragraph{第7--8巻（楕円型作用素・Atiyah--Singer）へ。}Hodge の定理（定理 \ref{thm:hodgeR}、\ref{thm:hodgeD}）の核心は $\Delta_d,\Delta_{\bar\partial}$ の楕円性と Fredholm 性で、第7巻で証明する。Dolbeault 複体 $(A^{0,\bullet}(E),\bar\partial)$ の Euler 標数が $\chi(X,E)$ で、第8巻の指数定理の特別な場合が HRR。Hodge 理論から符号定理（$\tau=2p_g+2-h^{1,1}$ 型の公式、Cor.\ \ref{cor:hodgeindex}）への道も同じ楕円型複体の枠組み。
+\paragraph{第9巻（族の指数定理）へ。}Kodaira--Spencer（\S\ref{sec:ks}）の変形族 $\pi:\mathcal X\to B$ に対し、$h^q(X_t,\mathcal F_t)$ の半連続性と、$R\pi_*\mathcal F$ の指数束（Hodge 数が一定なら局所自由、Gauss--Manin との関係）。
+\paragraph{第11--13巻、統合論文へ。}統合論文の $\mathrm{HH}^k(E)=\mathbb H^k(X;(\wedge^\bullet T\otimes E,d_E))$ に対し、(i) 古典の Serre 消滅は項 $\wedge^bT\otimes E$ に適用され、横断次数 $a>0$ の $E_1^{a,b}$ を消す。(ii) $E_1$ 項の次元の整合は古典の Serre 双対を項ごとに使って得られ、$d_E$ まで込めた $\mathrm{HH}^k(L)^*\cong\mathrm{HH}^{2n-k}(L^\vee\otimes K^2)$ は、Dolbeault モデルの楕円型複体の形式的転置で示される（Koszul 符号の整合は論文で手計算のみ）。(iii) Kodaira 埋め込みは、$\sigma$ が稠密開集合で非退化なら一般化正則切断では $\dim\mathrm{HH}^0\le1$ で破れ、通常の切断による Poisson--Kodaira（トーリックで証明、一般は予想）が残る。(iv) Kodaira 消滅の一般化（一般化 Kähler）は論文では未記述。第12巻（一般化複素幾何）、第13巻（一般化正則束と Poisson 加群）で $\mathrm{HH}$ の定義を詳しく扱い、第14巻で論文の各定理を読む。
+\begin{center}
+\small
+\begin{tabular}{p{0.34\textwidth}p{0.55\textwidth}}
+\toprule
+統合論文の主題 & 本巻で効く箇所\\\midrule
+Serre 型消滅（横断次数） & 定理 \ref{thm:serreV}、定理 \ref{thm:Pn}、\S\ref{sec:unified}\\
+双対性 $\mathrm{HH}^k(L)^*\cong\mathrm{HH}^{2n-k}(L^\vee\otimes K^2)$ & 定理 \ref{thm:serre}（$E_1$ 項ごと。$d_E$ を込めた証明は Dolbeault モデルの転置）\\
+全 Euler 標数が $c_1$ に依らない & 例 \ref{ex:P1HH}、問 \ref{p:unifiedP1}（古典の $\chi(L^m)\sim m^n$ との対比）\\
+Kodaira 型、一般化正則切断では埋め込めない & 定理 \ref{thm:kodairaemb}、\S\ref{sec:emb} の証明構造、命題 79 の対比\\
+Poisson--Kodaira 予想 & 古典の Kodaira 埋め込みを前提とする（\S\ref{sec:unified}）\\
+各定理の「仮定と、その役割」 & \S\ref{sec:assume}\\\bottomrule
+\end{tabular}
+\end{center}
+
+\section*{参考文献}
+\addcontentsline{toc}{section}{参考文献}
+章・節の対応は記憶による部分が多く\tQ、定理番号は確信がないものは書かない。
+\begin{itemize}
+\item D.~Huybrechts, \emph{Complex Geometry: An Introduction}, Springer, 2005. 第3章（Kähler 多様体、Kähler 恒等式、Hodge 分解、Lefschetz 分解、Hodge--Riemann）、第5章（消滅定理、Kodaira 埋め込み、\S5.2--5.3）、第6章（変形理論）。本巻の主な出典。
+\item P.~Griffiths, J.~Harris, \emph{Principles of Algebraic Geometry}, Wiley, 1978. 第0章（Hodge 理論、Kähler 恒等式）、第1章（Kodaira 消滅、Kodaira 埋め込み、Chow の定理）、第2章（トーラスと Riemann の関係）。
+\item C.~Voisin, \emph{Hodge Theory and Complex Algebraic Geometry I}, Cambridge, 2002. 第5--7章（Hodge、Lefschetz、Kodaira）、第9章（変形）。
+\item J.-P.~Demailly, \emph{Complex Analytic and Differential Geometry}（オンライン）. 第VI--VII章（Bochner--Kodaira--Nakano 恒等式、消滅定理）。
+\item R.~O.~Wells, \emph{Differential Analysis on Complex Manifolds}, GTM 65. 第IV--V章（Hodge 理論、Kähler 多様体。章の対応は\tQ）。
+\item F.~W.~Warner, \emph{Foundations of Differentiable Manifolds and Lie Groups}, GTM 94. 第6章（Hodge の定理）。
+\item R.~Hartshorne, \emph{Algebraic Geometry}, GTM 52. 第III章 \S5（$\CP^n$ の計算、Serre の消滅）。
+\item K.~Kodaira, \emph{Complex Manifolds and Deformation of Complex Structures}, Springer（消滅定理、埋め込み、変形を扱う。章の対応は\tQ）。論文：Ann.\ of Math.\ 60 (1954)（埋め込み）；Kodaira--Spencer, Ann.\ of Math.\ 67 (1958), 71 (1960)；Kodaira--Nirenberg--Spencer, Ann.\ of Math.\ 68 (1958)。
+\item C.~Birkenhake, H.~Lange, \emph{Complex Abelian Varieties}, Springer. 第1--4章（複素トーラスと偏極）。
+\item J.-P.~Serre, \emph{Faisceaux algébriques cohérents}, Ann.\ of Math.\ 61 (1955)；\emph{Géométrie algébrique et géométrie analytique}, Ann.\ Inst.\ Fourier 6 (1956).
+\item 統合論文：「一般化複素幾何の三種の神器へのアプローチ：正則 Poisson 構造の例から（統合論文）」（2026-11-22、査読なし）。本巻での引用（命題 79, 81、定理 14, 18, 22, 83, 88、予想 91 の番号）は PDF 日本語版 v1 による。
+\end{itemize}
+
+\section*{付録}\addcontentsline{toc}{section}{付録：記号表と検算}
+\subsection*{記号表}
+\begin{center}\small
+\begin{tabular}{p{0.2\textwidth}p{0.7\textwidth}}
+\toprule
+記号 & 意味\\\midrule
+$\omega,\ \mathsf L,\ \Lambda$ & Kähler 形式（$=g(J\cdot,\cdot)=i\sum g_{j\bar k}dz_j\wedge d\bar z_k$）、Lefschetz 作用素 $\omega\wedge$、その随伴\\
+$\Delta_d,\Delta_\partial,\Delta_{\bar\partial}$ & Hodge Laplacian、$\Delta_d=2\Delta_\partial=2\Delta_{\bar\partial}$（Kähler）\\
+$\Hdg^k,\Hdg^{p,q}(E)$ & 調和形式の空間\\
+$h^{p,q}$ & $\dim H^q(X,\Omega^p_X)$\\
+$P^k$ & 原始コホモロジー $\Ker\Lambda$\\
+$\bar\ast_E$ & 共役線形な星作用素 $A^{p,q}(E)\to A^{n-p,n-q}(E^*)$\\
+$D=D'+\bar\partial_E,\ \Theta$ & Chern 接続、曲率（$(1,1)$ 型）\\
+$\sigma$（爆発）、$E$（例外因子） & \S\ref{sec:emb} のみ。統合論文では $\sigma$ は Poisson 構造、$E$ は Poisson 加群\\
+$\Gamma$ & 複素トーラスの格子（本巻のみ。第4巻の $\Lambda$）\\
+$\mathrm{HH}^k(E)$ & $\mathbb H^k(X;(\wedge^\bullet T\otimes E,d_E))$、$d_E=[\sigma,\cdot]+V\wedge$\\\bottomrule
+\end{tabular}
+\end{center}
+\subsection*{検算した項目（Python：fractions、numpy、自作コード）}
+\begin{itemize}
+\item $\CP^n$（$n=1,2,3$）、$-(n+4)\le m\le3$ で、多重次数ごとの \Cech{} 複体の階数を数値的に計算し、定理 \ref{thm:Pn} の $h^q(\Oc(m))$ の公式と一致することを確認。
+\item $n=1,2,3$ の外積代数全体（$2^{2n}$ 次元）で $[\mathsf L,\Lambda]=k-n$、$\Lambda\omega=n$、$\Lambda\omega^2=(2n-2)\omega$、平坦 Kähler 恒等式 $[\Lambda,\varepsilon(f_j)]=i\iota(e_j)$、$[\Lambda,\varepsilon(e_j)]=-i\iota(f_j)$ を確認。
+\item 補題 \ref{lem:curv}(b)：ランダムな Hermite 曲率テンソルと $u\in\Lambda^{n,q}\otimes E$（$n=3$、$r=2$、$q=1,2,3$）で $\langle[i\Theta,\Lambda]u,u\rangle=\sum_I\mathrm{Nak}(\xi^I)$ を確認（最初の版で符号の取り違えが見つかり、Nakano 形式 $\sum\langle\Theta_{j\bar k}\xi_j,\xi_k\rangle$ の向きを修正した）。
+\item Hodge 数：トーラス（$\sum_{p+q=k}=\binom{2n}k$）、K3（$b_2=22$、$h^{1,1}=20$）、5 次超曲面（$c_3=-40H^3$、$e=-200$、$b_3=204$、$h^{2,1}=101$）、$e(X_d)=d(10-10d+5d^2-d^3)$（$d=1..6$）、Lefschetz の原始次元、Betti 数の単峰性、K3 の符号 $(3,19)$。
+\item Serre 双対：$n=1..4$、$-12\le m\le11$ で $h^q(\Oc(m))=h^{n-q}(\Oc(-m-n-1))$。曲面 $X_d\subset\CP^3$（$d=1..7$、$-10\le k\le12$）で $h^2(\Oc_X(k))=h^0(\Oc_X(d-4-k))$、$p_g=\binom{d-1}3$。$\chi(\CP^2,\Oc(m))=\binom{m+2}2$。
+\item $T_{\CP^2}(m)$ のコホモロジー（$-9\le m\le5$、$\chi$ との整合）、閾値 $m_0=-2$。
+\item K3：$2+L^2/2$ と $h^0(\Oc_X(1))$（4 次、$(2,3)$、$(2,2,2)$）。$\chi(T)$：$\CP^2$ で $8$、$F_a$ で $6$、K3 で $-20$。4 次曲面の変形次元 $\binom73-1-15=19$。
+\item $\Oc(m)$ on $\CP^2$ の HH の Euler 標数 $\chi(\Oc(m))-\chi(T(m))+\chi(\Oc(m+3))=3$（$-8\le m\le7$）、$\CP^1$ で $-2$。
+\item Veronese $\nu_2$ の像の $2\times2$ 小行列式が $0$。$E_i^2$ の偏極行列の Pfaffian $=1$。
+\item （独立検査で追加）Weil の公式 $\ast\alpha=(-1)^{k(k+1)/2}i^{p-q}\mathsf L^{n-k}\alpha/(n-k)!$ を、平坦 $\C^n$（$n=2,3$）、$k\le n$、すべての $(p,q)$ の原始形式で、$\ast$（実直交余枠での Hodge 星作用素の複素線形拡張、向きは $\omega^n/n!$）と $\mathsf L$ を成分計算して確認。Hodge--Riemann の符号 $i^{p-q}(-1)^{k(k-1)/2}\int\omega^{n-k}\wedge\alpha\wedge\bar\alpha>0$ も同じ形式で確認（\texttt{weil\_check.py}）。\item （独立検査で追加）問 \ref{p:torusNS} の行列 $S$ について、$J=SJ_0S^{-1}$ が $J^2=-1$ をみたし、$\NS$ の階数が $0$（$J_0$ では $4$）であることを、$\Q(\sqrt2,\sqrt3)$ の元を $\Q^4$ のベクトルとして別実装した厳密計算で再確認（\texttt{torus\_check.py}）。\item （独立検査で追加）Iwasawa 多様体の $dz_3-z_1dz_2$ の左移動での不変性、Hirzebruch 曲面 $F_a$ の $h^0(T)$、$h^1(T)$（例 \ref{ex:def}(5)）、Hodge--Riemann からの $\tau=2p_g+2-h^{1,1}$（$\tau=\sum_{p\equiv q\,(2)}(-1)^ph^{p,q}$ との一致）を手計算で確認。
+\item 複素トーラス $T_J$（$J=SJ_0S^{-1}$、$S$ は問 \ref{p:torusNS} の行列）で、$\Q(\sqrt2,\sqrt3)$ 上の厳密計算により $J^2=-1$、$\NS$ の階数 $0$（$J_0$ では $4$）。\\ スクリプト：\texttt{verify.py}、\texttt{verify2.py}、\texttt{torus\_ns.py}、\texttt{torus\_ns2.py}（作業ディレクトリ）。
+\item （独立検査で追加）計算を含む解答（問 \ref{p:serrePn}、\ref{p:tableP2}、\ref{p:hypsurf}、\ref{p:SerreFail}、\ref{p:TP2}、\ref{p:quintic}、\ref{p:K3moduli}、\ref{p:unifiedP1}、例 \ref{ex:P1P1} の表など）を、別に書いたコード（\texttt{indep\_check.py}。二項係数公式、Euler 完全列の写像の階数、Chern 類の冪級数、Künneth の表）で再検算し、すべて一致した。
+\end{itemize}
+\paragraph{\tQ\ の箇所の一覧。}(1) 参考文献の章・節番号の多く（記憶による。Huybrechts の章立て（第3章 \S3.1--3.3、第4章 \S4.1、第5章 \S5.1--5.3、第6章）と Kähler 恒等式が命題 3.1.12 にあることは外部で確認したが、Hodge--Riemann の命題番号などは未確認で、番号を書かなかった）。(2) 統合論文の命題番号・主張の引用（PDF 日本語版 v1 の本文と照合した。本巻では論文の証明を再検証していない）。(3) 爆発上の正値性補題と $m_0$ の一様性の詳細（骨子のみ）。(4) Part VI（研究メモ）の内容への言及。(5) 曲面の $b_1=h^{1,0}+h^{0,1}$ の出典の節番号。\\ 独立検査で解決したもの：Hodge--Riemann の符号と Weil の公式の係数（数値確認と導出、付録）、Kähler 恒等式の符号（Huybrechts 命題 3.1.12 と一致）、$h^0(T_{F_a})=a+5$（例 \ref{ex:def}(5) で導出）、Iwasawa 多様体の正則 1 形式（直接計算）。
+\end{document}

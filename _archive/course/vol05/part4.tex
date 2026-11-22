@@ -1,0 +1,125 @@
+
+\section{Lefschetz 分解}\label{sec:lef}
+
+$X$ をコンパクト Kähler、$\omega$ を Kähler 形式とする。\S\ref{sec:kid} の Corollary \ref{cor:laplace}(c) により $\mathsf L,\Lambda$ は調和形式の空間 $\Hdg^k=\bigoplus_{p+q=k}\Hdg^{p,q}$ に作用する。$\mathsf L$ は $H^{p,q}\to H^{p+1,q+1}$、そして Prop.\ \ref{prop:sl2} により $\Hdg^*$ は $\mathfrak{sl}_2=\langle\mathsf L,\Lambda,H\rangle$ の（有限次元）表現であり、$H$ は $\Hdg^k$ 上で $k-n$ を掛ける。
+
+\subsection{Hard Lefschetz}
+\begin{thm}[Hard Lefschetz]\label{thm:HL}\tP\ (表現論から)
+$0\le k\le n$ について $\mathsf L^{n-k}:H^k(X,\C)\to H^{2n-k}(X,\C)$ は同型。さらに型を保って $H^{p,q}\to H^{n-q,n-p}$ の同型を与える。
+\end{thm}
+\begin{proof}
+$\mathfrak{sl}_2$ の有限次元表現 $V$ で、$H$ の固有空間 $V_\lambda$ について、$\mathsf L^{j}:V_{-j}\to V_{j}$ が同型である（$\mathfrak{sl}_2$ の表現論：$V$ は既約表現の直和で、最高ウェイト $m$ の既約表現では $\mathsf L^j:V_{-j}\to V_j$ が基底を基底に写す）。$\Hdg^k$ は $H=k-n$ の固有空間なので、$j=n-k$ とおく。
+\end{proof}
+\begin{ex}[$\CP^n$、$T^4$]
+$\CP^n$：$H^{2k}=\C[\omega]^k$、$\mathsf L$ は $\C\to\C\to\cdots\to\C$ の同型の列。$H^k\ne0$ なのは偶数次だけ。複素トーラス $T=\C^2/\Gamma$（$n=2$）：$b=(1,4,6,4,1)$。$\mathsf L:H^1\to H^3$（$4\to4$）は同型、$\mathsf L^2:H^0\to H^4$ も同型。
+\end{ex}
+
+\subsection{原始分解}
+$P^k:=\Ker(\Lambda:H^k\to H^{k-2})=\Ker(\mathsf L^{n-k+1}:H^k\to H^{2n-k+2})$（$k\le n$）を\emph{原始コホモロジー}という。
+\begin{thm}[Lefschetz 分解]\label{thm:Lef}\tC\ (標準的な表現論)
+$H^k(X,\C)=\bigoplus_{r\ge0}\mathsf L^rP^{k-2r}$（$k\le n$）、$\dim P^k=b_k-b_{k-2}$。型についても $P^k=\bigoplus_{p+q=k}P^{p,q}$、$H^{p,q}=\bigoplus_r\mathsf L^rP^{p-r,q-r}$、$h^{p,q}-h^{p-1,q-1}=\dim P^{p,q}$（$p+q\le n$）。
+\end{thm}
+\src{Huybrechts, 第3章 \S3.3；Griffiths--Harris, 第0章（Kähler 多様体）；Voisin, \emph{Hodge Theory and Complex Algebraic Geometry I}, 第6章。}
+系：(i) \emph{Betti 数の単峰性}：$b_{k-2}\le b_k$（$k\le n$）。(ii) Hodge 数について $h^{p-1,q-1}\le h^{p,q}$（$p+q\le n$）。
+
+\begin{ex}[$T^4$、K3、5 次超曲面の原始分解]
+$T^4$：$\dim P^0=1$、$\dim P^1=4$、$\dim P^2=6-1=5$。K3：$\dim P^2=22-1=21$、型は $P^{2,0}=1$、$P^{1,1}=19$、$P^{0,2}=1$。5 次 3 次元多様体：$b=(1,0,1,204,1,0,1)$、$\dim P^3=204-b_1=204$、$P^2=1-1=0$、$H^2=\C\omega$。
+\end{ex}
+
+\subsection{Hodge--Riemann の双線形関係と符号}
+$k\le n$、$H^k$ 上の双線形形式 $Q(\alpha,\beta)=\int_X\omega^{n-k}\wedge\alpha\wedge\beta$ を考える。
+\begin{thm}[Hodge--Riemann]\label{thm:HR}\tC\ (証明の骨子は下)
+原始類 $\alpha\in P^{p,q}$（$p+q=k\le n$）、$\alpha\ne0$ について
+\[
+i^{p-q}(-1)^{k(k-1)/2}\int_X\omega^{n-k}\wedge\alpha\wedge\bar\alpha>0 .
+\]
+\end{thm}
+\src{Huybrechts, 第3章 \S3.3（命題番号は\tQ）；Voisin I, 第6章。符号の規約は文献により異なる。本巻の規約（$\omega=g(J\cdot,\cdot)$、向きは $\omega^n/n!$）のもとでの式は、下のように検算した。}
+\paragraph{証明の骨子。}\tP\ ただし Weil の公式は\tC。原始類 $\alpha\in P^{p,q}$（調和代表元をとる）について Weil の公式 $\ast\alpha=(-1)^{k(k+1)/2}i^{p-q}\mathsf L^{n-k}\alpha/(n-k)!$ が成り立つ（各点での線形代数。Huybrechts 第1章 \S1.2、Voisin I 第6章）。複素共役をとると $\mathsf L^{n-k}\bar\alpha=(n-k)!\,(-1)^{k(k+1)/2}i^{p-q}\ast\bar\alpha$ なので、$\int_X\omega^{n-k}\wedge\alpha\wedge\bar\alpha=(n-k)!\,(-1)^{k(k+1)/2}i^{p-q}\|\alpha\|^2$。これに $i^{p-q}(-1)^{k(k-1)/2}$ を掛けると $(n-k)!\,(-1)^{k^2+p-q}\|\alpha\|^2=(n-k)!\,\|\alpha\|^2>0$（$k=p+q$ より $k^2+p-q$ は偶数）。Weil の公式の係数と符号は、平坦な $\C^n$（$n=2,3$）の $k\le n$ のすべての $(p,q)$ の原始形式で、$\ast$ と $\mathsf L^{n-k}$ を成分で計算して数値的に確認した（付録）。\hfill$\square$
+\begin{cor}[Hodge の指数定理（曲面）]\label{cor:hodgeindex}\tC
+コンパクト Kähler 曲面 $X$ の交叉形式 $Q(\alpha,\beta)=\int\alpha\wedge\beta$ は $H^2(X,\mathbb R)$ 上で符号 $(2p_g+1,\ h^{1,1}-1)$ をもつ（$p_g=h^{2,0}$）。したがって符号数は $\tau=b^+-b^-=(2p_g+1)-(h^{1,1}-1)=2p_g+2-h^{1,1}$。
+\end{cor}
+\begin{proof}[骨子]
+$H^2=\C\omega\oplus P^2$、$P^2=P^{2,0}\oplus P^{1,1}\oplus P^{0,2}$。実部分空間 $(P^{2,0}\oplus P^{0,2})_{\mathbb R}$ では (Hodge--Riemann で) $Q>0$、$\omega$ では $Q(\omega,\omega)=\int\omega^2>0$、$P^{1,1}_{\mathbb R}$ では $Q<0$。次元は $2p_g$、$1$、$h^{1,1}-1$。
+\end{proof}
+\begin{ex}[K3]
+$b^+=2\cdot1+1=3$、$b^-=20-1=19$、符号数 $-16$。交叉形式は偶ユニモジュラー格子 $U^3\oplus E_8(-1)^2$（符号 $(3,19)$、階数 22）で、$-16$ は 16 の倍数（Rokhlin の定理\tC）。$\NS(X)\otimes\mathbb R\subset H^{1,1}_{\mathbb R}$ なので $\rho\le20$。射影的な K3 では $\NS_{\mathbb R}$ に豊富類（$Q>0$）が入るので符号は $(1,\rho-1)$（問 \ref{p:hodgeindex}）。
+\end{ex}
+
+\begin{ex}[符号の検算：$\CP^1\times\CP^1$ と 3 次曲面]\label{ex:sigcheck}
+$\CP^1\times\CP^1$：$H^2$ の基底 $f_1=[\mathrm{pr}_1^*pt]$、$f_2=[\mathrm{pr}_2^*pt]$（$f_i^2=0$、$f_1f_2=1$）、交叉行列 $\begin{pmatrix}0&1\\1&0\end{pmatrix}$ の符号は $(1,1)$。公式 $(2p_g+1,h^{1,1}-1)=(1,2-1)=(1,1)$ に一致（$p_g=0$）。$\omega=f_1+f_2$、$\omega^2=2>0$、原始部分は $f_1-f_2$（$(f_1-f_2)^2=-2<0$）。3 次曲面（$=\mathrm{Bl}_6\CP^2$、$h^{1,1}=7$、$p_g=0$）：交叉形式は $\langle1\rangle\oplus6\langle-1\rangle$、符号 $(1,6)$、$\tau=2p_g+2-h^{1,1}=-5$。$\mathrm{Bl}$ のたびに負の方向が 1 つ増える。K3 の $\tau=-16$（例 \ref{ex:K3}）、トーラス（$h^{2,0}=1$、$h^{1,1}=4$）では $(3,3)$、$\tau=0$。
+\end{ex}
+\begin{keybox}{要点（\S\ref{sec:lef}）}
+$\{\mathsf L,\Lambda,H=k-n\}$ は $\mathfrak{sl}_2$ をなし、調和形式に作用する。ゆえに $\mathsf L^{n-k}:H^k\cong H^{2n-k}$（Hard Lefschetz）、$H^k=\bigoplus\mathsf L^rP^{k-2r}$、$b_{k-2}\le b_k$。Hodge--Riemann 関係から曲面の交叉形式の符号は $(2p_g+1,h^{1,1}-1)$。主な応用先：射影的 Kähler 多様体のトポロジー。第 8 巻の符号定理の Hodge 理論的な背景でもある。
+\end{keybox}
+
+\begin{prob}{基本}\label{p:primP3}
+$\CP^3$ と $T^4$ について原始コホモロジー $P^k$ の次元 $(k=0,\dots,n)$ を求め、Hard Lefschetz の各写像 $\mathsf L^{n-k}$ が同型であることを次元の面から確認せよ。
+\end{prob}
+\begin{prob}{標準}\label{p:hodgeindex}
+K3 曲面 $X$ について (a) $H^2(X,\mathbb R)$ の符号が $(3,19)$ であることを示せ。(b) 閉 $(1,1)$ 形式の類全体 $H^{1,1}_{\mathbb R}$ の符号は $(1,19)$ である。$\NS(X)=H^{1,1}_{\mathbb R}\cap H^2(X,\Z)$（の $\mathbb R$ 倍）がその部分空間であることから Picard 数 $\rho\le20$ を示せ。(c) 射影的 K3 曲面で $\rho\ge1$ であることを説明せよ。
+\end{prob}
+\begin{prob}{発展}\label{p:unimodal}
+(a) コンパクト Kähler 多様体の Betti 数は $b_0\le b_2\le\cdots$、$b_1\le b_3\le\cdots$（中央まで）をみたすことを示せ。(b) 5 次 3 次元多様体と $T^4$ でこの不等式を確認せよ。(c) 非 Kähler な例 $S^1\times S^3$ の Betti 数で Hard Lefschetz に相当する不等式が破れるか調べよ。
+\end{prob}
+
+\section{Serre 双対（高次元）}\label{sec:serredual}
+
+第4巻では $H^1(X,\Oc(D))^*\cong H^0(X,K\otimes\Oc(-D))$ を Riemann 面で示した。これを高次元の正則ベクトル束に拡張する。
+
+\begin{thm}[Serre 双対]\label{thm:serre}\tC
+$X$ をコンパクト複素多様体（連結、$n=\dim_\C X$。\emph{Kähler でなくてよい}）、$E$ を正則ベクトル束とする。積 $\Omega^{p}(E)\times\Omega^{n-p}(E^*)\to\Omega^{n}$ からの対 $H^q(X,\Omega^p\otimes E)\times H^{n-q}(X,\Omega^{n-p}\otimes E^*)\to H^n(X,\Omega^n)\xrightarrow{\ \int\ }\C$ は非退化。特に $p=0$ で
+\[
+H^q(X,E)^*\ \cong\ H^{n-q}(X,K_X\otimes E^*),\qquad h^q(E)=h^{n-q}(K_X\otimes E^*) .
+\]
+\end{thm}
+\src{Huybrechts, 第4章 \S4.1（Hermite ベクトル束と Serre 双対）；Hartshorne, III \S7（代数的な証明）。}
+\paragraph{証明（Hodge の星作用素による）。}\tP\ $X$ に Hermite 計量、$E$ に Hermite 計量 $h$ を任意にとる。\emph{共役線形な星作用素}
+\[
+\bar\ast_E:A^{p,q}(E)\to A^{n-p,n-q}(E^*),\qquad \int_X\alpha\wedge\bar\ast_E\beta=(\alpha,\beta)_{L^2}\quad(\alpha,\beta\in A^{p,q}(E))
+\]
+を、$\C$ 共役線形な $\ast$ と $h$ による同一視 $\bar E\cong E^*$ の合成で定める（左辺の $\wedge$ は $E\otimes E^*\to\C$ を使う）。次の 3 段で証明する。
+
+(1) \emph{$\bar\partial^*$ の表示}。$\alpha\in A^{p,q-1}(E)$、$\beta\in A^{p,q}(E)$ に対し、$\alpha\wedge\bar\ast\beta\in A^{n,n-1}$ で $d=\bar\partial$ なので Stokes より $\int\bar\partial(\alpha\wedge\bar\ast\beta)=0$。Leibniz 則（$\alpha$ の次数は $p+q-1$）より
+$(\bar\partial\alpha,\beta)=\int\bar\partial\alpha\wedge\bar\ast\beta=(-1)^{p+q}\int\alpha\wedge\bar\partial_{E^*}\bar\ast_E\beta=(-1)^{p+q}\big(\alpha,\ \bar\ast_E^{-1}\bar\partial_{E^*}\bar\ast_E\beta\big)$。したがって
+\[
+\bar\partial_E^*=(-1)^{p+q}\,\bar\ast_E^{-1}\,\bar\partial_{E^*}\,\bar\ast_E
+\]
+（ここで $\bar\partial_{E^*}$ は $E^*$ の双対正則構造、$\bar\ast_E^{-1}:A^{n-p,n-q+1}(E^*)\to A^{p,q-1}(E)$）。
+
+(2) \emph{Laplacian の対応}。(1) を $E^*$ に適用し、$\bar\ast_{E^*}\bar\ast_E=\pm1$ を使うと、$\bar\partial_E=\pm\bar\ast_E^{-1}\bar\partial_{E^*}^{\,*}\bar\ast_E$ も得る。したがって $\bar\ast_E$ は $(\bar\partial_E,\bar\partial_E^*)$ を $(\pm\bar\partial_{E^*}^*,\pm\bar\partial_{E^*})$ に写し（符号は 2 乗で消える）、$\bar\ast_E\Delta_{\bar\partial,E}=\Delta_{\bar\partial,E^*}\bar\ast_E$。よって $\bar\ast_E$ は調和形式の空間の（共役線形）同型 $\Hdg^{p,q}(E)\to\Hdg^{n-p,n-q}(E^*)$ を与える。
+
+(3) \emph{非退化性}。$\alpha\in\Hdg^{p,q}(E)$、$\alpha\neq0$ に対し $\beta:=\bar\ast_E\alpha\in\Hdg^{n-p,n-q}(E^*)$ をとると $\int\alpha\wedge\beta=\|\alpha\|^2\ne0$。同様に反対側。したがって $\Hdg^{p,q}(E)\times\Hdg^{n-p,n-q}(E^*)\to\C$ は完全対。Dolbeault の定理と定理 \ref{thm:hodgeD} により各 $\Hdg$ はコホモロジーと同一視できる（コホモロジーでの積は代表元の積の積分）。\hfill$\square$
+
+\begin{rem}
+(i) 証明で Kähler 性は不要。必要なのは「楕円型作用素の Hodge 理論」（コンパクト性）、Stokes（コンパクト性、境界なし）、$E$ が\emph{正則}（$\bar\partial_E^2=0$）であること。(ii) Kähler の場合、位相の Poincaré 双対 $H^k\times H^{2n-k}\to\C$ を Hodge 分解の成分ごとに見ると $H^{p,q}\times H^{n-p,n-q}\to\C$ で、これは自明束 $E=\C$ の Serre 双対（定理）と一致する。(iii) 第4巻の曲線の Serre 双対（$n=1$、$E=\Oc(D)$）は特別な場合。第4巻では主張と、$\bar\partial_L$ の楕円性と留数による骨子を述べた。本節はその骨子を一般次元で実行したものである。
+\end{rem}
+
+\subsection{帰結}
+\begin{cor}[Euler 標数の双対性]\label{cor:chidual}\tP
+$\chi(X,E):=\sum_q(-1)^qh^q(E)$ について $\chi(X,E)=(-1)^n\chi(X,K_X\otimes E^*)$。特に $n$ が奇数で $K_X$ が自明（Calabi--Yau）なら $\chi(X,\Oc)=0$。
+\end{cor}
+\begin{proof}
+$h^q(E)=h^{n-q}(K\otimes E^*)$ の交代和。$K\cong\Oc$、$E=\Oc$ なら $\chi(\Oc)=(-1)^n\chi(\Oc)$ で $n$ 奇数のとき $0$。
+\end{proof}
+\begin{ex}[射影空間：$K_{\CP^n}=\Oc(-n-1)$]\label{ex:KPn}
+Euler 完全列 $0\to\Oc\to\Oc(1)^{\oplus n+1}\to T_{\CP^n}\to0$（第3巻）の行列式をとって $\det T_{\CP^n}=\Oc(n+1)$、すなわち $K_{\CP^n}=\Oc(-n-1)$。Serre 双対は $h^q(\Oc(m))=h^{n-q}(\Oc(-m-n-1))$ となる。次節で、完全な計算でこれを検証する。$n=1$ では $K_{\CP^1}=\Oc(-2)$（第4巻）、$h^1(\Oc(-2))=h^0(\Oc)=1$。
+\end{ex}
+\begin{ex}[Hodge 数の 4 重対称性]
+コンパクト Kähler 多様体では $(p,q),(q,p),(n-p,n-q),(n-q,n-p)$ の 4 つで $h$ が同じ。$n=3$ では、独立なのは $h^{1,0},h^{2,0},h^{3,0},h^{1,1},h^{2,1}$ の 5 つ（問 \ref{p:hodgesym}）。
+\end{ex}
+
+\begin{keybox}{要点（\S\ref{sec:serredual}）}
+$H^q(X,E)^*\cong H^{n-q}(X,K_X\otimes E^*)$。証明は、$\bar\ast_E$ が調和形式を調和形式に写すことと、$\int\alpha\wedge\bar\ast\alpha=\|\alpha\|^2>0$。Kähler 性は不要で、\emph{コンパクト性と正則性}が効く。帰結：$\chi(E)=(-1)^n\chi(K\otimes E^*)$。$K_{\CP^n}=\Oc(-n-1)$。
+\end{keybox}
+
+\begin{prob}{基本}\label{p:serrePn}
+$h^q(\CP^n,\Oc(m))$ の公式（次節の定理 \ref{thm:Pn}）を使って、$n=1,2,3$、$-8\le m\le 6$ で Serre 双対 $h^q(\Oc(m))=h^{n-q}(\Oc(-m-n-1))$ が成り立つことを確かめよ（$n=2$ は表に書け）。
+\end{prob}
+\begin{prob}{標準}\label{p:chiSerre}
+(a) 系 \ref{cor:chidual} を使って、コンパクト Riemann 面 $X$（種数 $g$）で $\chi(\Oc(D))=-\chi(K\otimes\Oc(-D))$ を示し、第4巻の Riemann--Roch の形と矛盾しないことを確認せよ。(b) 複素 3 次元 Calabi--Yau 多様体（$K$ 自明、$h^{1,0}=h^{2,0}=0$）の Hodge 数 $h^{p,q}$ をすべて $h^{1,1},h^{2,1}$ で表し、$e(X)=2(h^{1,1}-h^{2,1})$ を示せ。
+\end{prob}
+\begin{prob}{標準}\label{p:hodgesym}
+コンパクト Kähler 3 次元多様体の Hodge 数のうち、独立なものは $h^{1,0},h^{2,0},h^{3,0},h^{1,1},h^{2,1}$ の 5 つであることを示せ。また $b_1,b_2,b_3$ を $h^{p,q}$ で表し、$b_3$ が偶数であること、$b_1$ が偶数であることを確認せよ。
+\end{prob}
+

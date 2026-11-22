@@ -1,0 +1,95 @@
+
+\section{Kodaira--Spencer 理論と Chow の定理}\label{sec:ks}
+
+\subsection{変形と Kodaira--Spencer 写像}
+\begin{defn}[変形]
+複素多様体 $X$ の（1 パラメータまたは $B$ 上の）\emph{変形}とは、固有な正則沈め込み $\pi:\mathcal X\to B$（$B$ は複素多様体、基点 $0\in B$）と同型 $\pi^{-1}(0)\cong X$ の組。局所的に $\mathcal X\cong U_i\times B$ と自明化でき（Ehresmann）、ファイバー $X_t=\pi^{-1}(t)$ は $C^\infty$ 多様体としては同じで複素構造だけが動く。
+\end{defn}
+座標変換を $z_i=f_{ij}(z_j,t)$ とすると、$\theta_{ij}=\frac{\partial f_{ij}}{\partial t}\big|_{t=0}\cdot\frac{\partial}{\partial z_i}\in\Gamma(U_{ij},T_X)$ は \Cech{} 1 コサイクルで、$H^1(X,T_X)$ の類を定める。これが\emph{Kodaira--Spencer 写像}
+\[
+\rho:T_0B\to H^1(X,T_X),\qquad \text{（正確には}\ 0\to T_X\to T_{\mathcal X}|_X\to\pi^*T_0B\otimes\Oc_X\to0\ \text{の連結準同型）}.
+\]
+\begin{thm}[Kodaira--Spencer, Kuranishi]\label{thm:KS}\tC
+(a) $X$ をコンパクト複素多様体とする。$X$ の変形の\emph{完備}な族（Kuranishi 族）が存在し、その底空間は $H^1(X,T_X)$ の原点の近傍の中で、障害写像 $H^1(T_X)\to H^2(T_X)$ の零点集合（解析的集合）。(b) 特に $H^2(X,T_X)=0$ なら底空間は $H^1(X,T_X)$ の近傍（なめらか、$\dim=h^1(T_X)$）。(c)（\emph{安定性}）$X_0$ がコンパクト Kähler なら、小さい $t$ で $X_t$ も Kähler。
+\end{thm}
+\src{Kodaira--Spencer, Ann.\ of Math.\ 67 (1958), 71 (1960)；Kodaira--Nirenberg--Spencer, Ann.\ of Math.\ 68 (1958)；Kuranishi, Ann.\ of Math.\ 75 (1962)；Huybrechts, 第6章；Voisin I, 第9章。 (c) の証明は、$X_t$ 上の Hodge 理論が $t$ について滑らか（Hodge 数が一定）であることを使う。}
+\begin{prop}[Hodge 数の不変性]\label{prop:hodgeconst}\tP\ (上の (c) と半連続性から)
+コンパクト Kähler 多様体の変形族 $\pi:\mathcal X\to B$（$B$ 連結）で、すべてのファイバーが Kähler なら、$h^{p,q}(X_t)$ は $t$ によらず一定。
+\end{prop}
+\begin{proof}
+各 $(p,q)$ で $t\mapsto h^q(X_t,\Omega^p_{X_t})$ は\emph{上半連続}（楕円型作用素の核の次元、第7巻）。他方 $\sum_{p+q=k}h^{p,q}(X_t)=b_k$ は $t$ によらない（$C^\infty$ 多様体として同じ）。ある $(p_0,q_0)$ で一般点より特殊な点 $t_0$ で値が跳ぶ（上がる）なら、同じ $k$ の和が一定なので別の $(p,q)$ で一般点より下がる必要があるが、これは上半連続性（特殊点で値が下がらない）に反する。ゆえに一定。
+\end{proof}
+\begin{ex}[変形の次元]\label{ex:def}
+(1) \textbf{射影空間}：$h^1(T_{\CP^n})=0$（Euler 完全列と定理 \ref{thm:Pn}）、$\CP^n$ は\emph{剛的}。$h^0(T)=(n+1)^2-1=\dim PGL_{n+1}$。(2) \textbf{曲線}：$h^1(T_X)=3g-3$（$g\ge2$、第4巻）。(3) \textbf{複素トーラス}：$T_X=\Oc^n$、$h^1(T)=n\cdot h^{0,1}=n^2$。$\Z^{2n}$ 上の複素構造全体は $GL_{2n}(\mathbb R)/GL_n(\C)$（実次元 $2n^2$）で整合。(4) \textbf{K3 曲面}：$T_X\cong\Omega^1_X$（$K_X$ 自明）なので $h^1(T)=h^{1,1}=20$、$h^0(T)=h^2(T)=0$。4 次曲面の変形族 $\dim=\binom73-1-\dim PGL_4=35-1-15=19$。よって、20 次元の変形のうち 19 次元だけが 4 次曲面（射影的）で、残り 1 次元は射影性が壊れる方向。(5) \textbf{Hirzebruch 曲面} $F_a=\mathbb P(V)\xrightarrow{\pi}\CP^1$、$V=\Oc\oplus\Oc(a)$：$h^0(T)=a+5$（$a\ge1$）、$h^2(T)=0$、$\chi(T)=\frac16(7c_1^2-5c_2)=6$（HRR、第6巻）。よって $h^1(T)=a-1$（確認：$0\to T_{F_a/\CP^1}\to T_{F_a}\to\pi^*T_{\CP^1}\to0$ と $\pi_*T_{F_a/\CP^1}\cong\mathrm{End}_0(V)=\Oc\oplus\Oc(a)\oplus\Oc(-a)$ から $h^0(T_{F_a/\CP^1})=a+2$、$h^1(T_{F_a/\CP^1})=h^1(\Oc(-a))=a-1$。$H^0(\pi^*T_{\CP^1})=H^0(\Oc(2))$ は 3 次元で、$PGL_2$ の作用が $F_a$ に持ち上がるので $H^0(T_{F_a})\to H^0(\pi^*T_{\CP^1})$ は全射、$h^0(T_{F_a})=(a+2)+3=a+5$、$h^1(T_{F_a})=a-1$）。$a\ge2$ の $F_a$ は $F_{a-2}$ に変形し、$h^0$ は半連続性により特殊点で跳ぶ（$a+5>(a-2)+5$）\tC。
+\end{ex}
+\paragraph{射影性は開条件か。}\tC\ $X_0$ が射影的で $H^2(X_0,\Oc)=0$ なら、小さい変形はすべて射影的（直線束 $L$ は $H^2(\Oc)=0$ により変形に延び、豊富性は開条件）。$H^2(\Oc)\ne0$ のとき（K3 は $H^2(\Oc)=\C$）は、射影的なものは可算個の余次元 1 の部分族に限られる。Kähler 性は開条件（安定性）だが、射影性は開でも閉でもない。
+
+\subsection{Chow の定理と GAGA}
+\begin{thm}[Chow]\label{thm:chow}\tC
+$\CP^N$ の閉な複素解析的部分集合は、代数的（斉次多項式の共通零点集合）。
+\end{thm}
+\begin{thm}[Serre, GAGA]\tC
+$X$ が射影的代数多様体のとき、連接代数層と連接解析層は 1 対 1 に対応し、$H^q(X,\mathcal F^{\mathrm{alg}})=H^q(X^{\mathrm{an}},\mathcal F^{\mathrm{an}})$。
+\end{thm}
+\src{Chow (1949)；Griffiths--Harris, 第1章 \S3；Hartshorne, 付録 B；Serre, GAGA, Ann.\ Inst.\ Fourier 6 (1956)。}
+\paragraph{Kodaira と Chow の合成。}コンパクト複素多様体 $X$ に正の直線束があれば、Kodaira により $X\subset\CP^N$（解析的部分多様体）、Chow により \emph{代数多様体}。さらに GAGA により、$X$ 上の解析的連接層のコホモロジー（$h^{p,q}$、$h^0(L^m)$ など）は代数的に計算できる。本巻の $\CP^n$ の \Cech{} 計算（\S\ref{sec:serre}）が解析と代数の両方で通用したのはこのため。例：楕円曲線 $\C/\Gamma$ は、$\wp$ 関数による埋め込み $[\wp:\wp':1]$ で代数曲線 $y^2=4x^3-g_2x-g_3$ になる（第4巻）。
+
+\begin{keybox}{要点（\S\ref{sec:ks}）}
+$\rho:T_0B\to H^1(X,T_X)$（Kodaira--Spencer）、障害は $H^2(T_X)$。Kähler は安定で、Hodge 数は変形で一定（半連続性 $+$ $b_k$ 一定）。例：$\CP^n$ 剛的、曲線 $3g-3$、トーラス $n^2$、K3 は 20（射影的なのは 19 次元）。射影性は開でない（$H^2(\Oc)\ne0$）。Chow $+$ Kodaira：正の直線束をもてば代数多様体。
+\end{keybox}
+
+\begin{prob}{基本}\label{p:Pnrigid}
+Euler 完全列 $0\to\Oc\to\Oc(1)^{\oplus n+1}\to T_{\CP^n}\to0$ と定理 \ref{thm:Pn} から、$H^q(\CP^n,T)$ の次元を全 $q$ について求め、$\CP^n$ が剛的であること、$h^0(T)=\dim PGL_{n+1}$ を示せ。
+\end{prob}
+\begin{prob}{標準}\label{p:K3moduli}
+K3 曲面で (a) $\chi(T_X)=-20$ を $\chi(T)=\frac16(7c_1^2-5c_2)$ と $c_2=24$ から示し、$h^1(T)=20$ を再確認せよ。(b) 4 次曲面の変形の次元が $\binom73-1-15=19$ であることを示し、K3 の 20 次元変形との差 $1$ の意味を（$H^2(\Oc)=\C$ の言葉で）説明せよ。
+\end{prob}
+\begin{prob}{基本}\label{p:toriDef}
+(a) $n$ 次元複素トーラスで $h^1(T)=n^2$ を示せ。(b) $\Z^{2n}$ 上の複素構造の空間 $GL_{2n}(\mathbb R)/GL_n(\C)$ の次元を数え、(a) の $2n^2$（実）と一致することを確かめよ。(c) $n=1$ で $\tau\in\mathbb H$ の 1 パラメータ（複素 1 次元）と一致することを確かめよ。
+\end{prob}
+\begin{prob}{発展}\label{p:hodgeconst}
+命題 \ref{prop:hodgeconst} の証明を、「$h^{p,q}(X_t)$ の和は $b_k$ で一定、各項は上半連続」から詳しく書き直せ。非 Kähler ではどこが破れるか。Hopf 曲面の族（$z\mapsto(\alpha z_1,\beta z_2)$ 型）の $h^{0,1}$ は一定だが、$h^{1,0}$ は？
+\end{prob}
+\begin{prob}{標準}\label{p:hirz}
+Hirzebruch 曲面 $F_a=\mathbb P(\Oc\oplus\Oc(a))\to\CP^1$ は $c_1^2=8$、$c_2=4$。(a) $\chi(T)=6$ を確かめよ。(b) $h^0(T_{F_a})=a+5$（$a\ge1$）、$h^2(T)=0$ を既知として $h^1(T)=a-1$（$a\ge1$）を導け。$F_0=\CP^1\times\CP^1$ は $h^0(T)=3+3=6$ から $h^1(T)=0$ となる。$F_0,F_1$ が剛的であること、$F_2$ から $F_0$ への変形があることと整合することを説明せよ。
+\end{prob}
+
+\section{仮定と、その役割}\label{sec:assume}
+
+本巻の主要定理の仮定を、「なぜ必要か」「証明のどこで効くか」「外すと何が起きるか（反例）」の形で整理する。
+
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{p{0.15\textwidth}p{0.17\textwidth}p{0.22\textwidth}p{0.23\textwidth}p{0.15\textwidth}}
+\toprule
+定理 & 仮定 & 証明のどこで効くか & 外した反例 & 節\\\midrule
+Hodge の定理（調和代表元） & コンパクト、計量 & $\Delta$ が楕円型・自己随伴、Green 作用素 & 非コンパクトでは調和形式が無限次元・$L^2$ でない & \S\ref{sec:hodge}\\
+Hodge 分解 $H^k=\bigoplus H^{p,q}$ & コンパクト \emph{Kähler} & Kähler 恒等式 $\Rightarrow\Delta_d=2\Delta_{\bar\partial}$ が型を保つ & Hopf 曲面：$b_1=1$、$h^{1,0}=0\ne1=h^{0,1}$ & \S\ref{sec:kid}\\
+Hard Lefschetz & コンパクト Kähler & $\mathfrak{sl}_2$ が調和形式に作用（$[\Delta,\mathsf L]=0$） & Hopf 曲面：$H^2_{dR}=0$ で閉 $(1,1)$ 形式 $\omega>0$ が存在せず $\mathsf L$ 自体が使えない & \S\ref{sec:lef}\\
+Serre 双対 & コンパクト、$E$ 正則 & Stokes、$\bar\ast$ が調和形式を保つ & 非コンパクト（$\C$：$H^1(\Oc)=0$ だが $H^0(K)$ は無限次元） & \S\ref{sec:serredual}\\
+Serre 消滅 & 射影的（豊富 $L$）、$F$ 連接 & $\CP^N$ の計算と全射 $\bigoplus\Oc(-n_i)\to F$ & $L$ 自明（曲線 $g\ge1$）、$L$ nef だが豊富でない（$\Oc(1,0)$） & \S\ref{sec:serre}\\
+Kodaira 消滅 & コンパクト、$L$ 正、型 $(n,q)$ & BKN と $[i\Theta,\Lambda]=p+q-n>0$ & $\C^2\setminus0$（非コンパクト）、$\Oc(2,0)$ on $\CP^1\times\CP^1$（半正）、$\Oc(-1)$ on $\CP^1$（負）& \S\ref{sec:bkn}\\
+Kodaira 埋め込み & コンパクト、$L$ 正 & 爆発上の Kodaira 消滅 $\Rightarrow$ 切断が点・接ベクトルを分離 & Hopf 曲面（正の $L$ がない）、一般の 2 次元トーラス & \S\ref{sec:emb}\\
+Kodaira--Spencer 安定性 & コンパクト Kähler & Hodge 理論の $t$ に関する連続性 & 射影性は不安定（K3 の $H^2(\Oc)\ne0$） & \S\ref{sec:ks}\\\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{ex}[反例ギャラリー]\label{ex:gallery}
+\begin{itemize}
+\item \textbf{コンパクト性の失敗}：$X=\C^2\setminus\{0\}$、$L=\Oc$、$h=e^{-|z|^2}$ は正の直線束（曲率 $\frac i{2\pi}\partial\bar\partial|z|^2>0$）で $K_X\cong\Oc$。しかし $H^1(X,\Oc)$ は \Cech{} 被覆 $\{z_1\neq0\},\{z_2\ne0\}$（Stein）で $\Oc(U_{12})/(\Oc(U_1)+\Oc(U_2))$、すなわち $z_1^{-a}z_2^{-b}$（$a,b\ge1$）が張る\emph{無限次元}空間。Kodaira 消滅が破れる。証明の (2)(3) で調和代表元・部分積分が使えない。
+\item \textbf{Kähler でない}：Hopf 曲面。Hodge 分解、Hard Lefschetz、Kodaira 埋め込みのすべてが破れる（正の直線束がない）。\emph{複素 1 次元ではすべて Kähler} なので、反例は 2 次元以上。
+\item \textbf{$L$ が正でない}：(i) $L=\Oc$（楕円曲線上）：$H^1(K\otimes L)=H^1(\Oc)=\C\ne0$。(ii) $L=\Oc(-1)$：$H^1(\CP^1,K\otimes L)=H^1(\Oc(-3))=\C^2$。(iii) 半正：$\Oc(2,0)$ on $\CP^1\times\CP^1$。
+\item \textbf{$m\gg0$ が本質}：$\CP^2$ 上 $H^1(T(-3))=\C\neq0$ ($m=-3$)。Serre 消滅は閾値 $m_0=-2$（問 \ref{p:TP2}）以降のみ。
+\item \textbf{Hodge の定理は Kähler なしで部分的に成立}：Dolbeault 版（定理 \ref{thm:hodgeD}）と Serre 双対は Kähler 不要。Kähler が必要なのは $\Delta_d=2\Delta_{\bar\partial}$（Hodge 分解）と BKN。
+\end{itemize}
+\end{ex}
+
+\begin{keybox}{要点（\S\ref{sec:assume}）}
+\emph{コンパクト性}は有限次元性と部分積分のため、\emph{Kähler 性}は $\Delta_d=2\Delta_{\bar\partial}$ と BKN のため、\emph{正値性}は曲率項の符号のため、\emph{豊富性}は $H^0$ が十分大きいため。どの 1 つを外しても反例がある。Kodaira の方法の核心は、「正の $L$ があれば Kähler 計量が自動的に得られる」こと。
+\end{keybox}
+
+\begin{prob}{標準}\label{p:assume}
+次の各状況で、Kodaira 消滅 $H^q(X,K\otimes L)=0$ $(q>0)$ の証明のどの仮定が破れているかを答え、実際に消滅が破れることを確かめよ。(a) $X=\C^2\setminus0$、$L=\Oc$。(b) 楕円曲線、$L=\Oc$。(c) $X=\CP^1\times\CP^1$、$L=\Oc(2,0)$。(d) $X=\CP^2$、$L=\Oc(-1)$。
+\end{prob}
+
