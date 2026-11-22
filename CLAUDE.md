@@ -12,7 +12,7 @@
 ---
 layout: post
 title: "記事のタイトル"
-status: conjecture        # wip / conjecture / proved / partial / open / retracted
+status: conjecture        # wip / conjecture / proved / partial / open / textbook / retracted
 tags: [整数論, 数値実験]
 abstract: "1〜3文の概要。数式は $$x^2$$ のように書ける。"
 # updated: 2026-12-10     # 内容を改訂したときに追加
@@ -65,6 +65,8 @@ series_label: "Part II"    # 一覧のバッジ
 - シリーズの紹介文は `_config.yml` の `series_info` に同じシリーズ名で書く。
 - 一覧ページ（`index.html`）は、シリーズ別／日付順／タイトル順／状態順の切り替えと、状態・タグ・キーワードでの絞り込みができる（JavaScript 使用）。
 - 新しいシリーズ記事を追加するときは `short_title` を付けること。
+
+- 教材（学習コースの各巻）は `status: textbook`、シリーズ名「学習コース：一般化幾何への道」、`series_order` に巻番号（学習地図は 0）を付ける。原稿は `_archive/course/`。
 
 ## 方針
 

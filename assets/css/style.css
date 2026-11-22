@@ -164,3 +164,6 @@ img { max-width: 100%; }
 .series-box li { padding: 2px 0; line-height: 1.6; }
 .series-box li.current { font-weight: 700; }
 .series-box li.current::after { content: "（この記事）"; font-weight: 400; color: var(--muted); }
+
+.status-textbook { color: #1a7f37; }
+.status-textbook { border-style: dashed; }

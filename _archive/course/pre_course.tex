@@ -1,0 +1,86 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\setmainfont[BoldFont={Noto Sans CJK JP Bold}]{Noto Serif CJK JP}
+\setsansfont[BoldFont={Noto Sans CJK JP Bold}]{Noto Sans CJK JP}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=24mm]{geometry}
+\usepackage{xcolor,booktabs,longtable,array,enumitem,fancyhdr,titlesec}
+\usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black]{hyperref}
+\setlength{\parindent}{1em}
+\setlength{\parskip}{2pt}
+\linespread{1.17}
+\emergencystretch=4em
+\setlist{itemsep=1pt,topsep=3pt}
+\setlength{\tabcolsep}{4pt}
+
+%%% --- Japanese line breaking for XeTeX (no xeCJK available) ---
+\makeatletter
+\XeTeXinterchartokenstate=1
+\newXeTeXintercharclass\cjkc
+\newXeTeXintercharclass\cjkclose
+\newXeTeXintercharclass\cjkopen
+\def\setcjkrange#1#2{\@tempcnta=#1 \@whilenum\@tempcnta<#2 \do{\XeTeXcharclass\@tempcnta=\cjkc \advance\@tempcnta by 1 }}
+\setcjkrange{"3000}{"30FF}
+\setcjkrange{"4E00}{"9FFF}
+\setcjkrange{"FF00}{"FFEF}
+\setcjkrange{"2010}{"2027}
+\setcjkrange{"25A0}{"25FF}
+\setcjkrange{"2190}{"21FF}
+\@tempcnta=0
+\def\setclose#1{\XeTeXcharclass#1=\cjkclose}
+\def\setopen#1{\XeTeXcharclass#1=\cjkopen}
+\setclose{"3001}\setclose{"3002}\setclose{"FF0C}\setclose{"FF0E}\setclose{"FF09}\setclose{"300D}\setclose{"300F}\setclose{"3011}\setclose{"FF1A}\setclose{"FF1B}\setclose{"FF01}\setclose{"FF1F}\setclose{"30FC}
+\setopen{"FF08}\setopen{"300C}\setopen{"300E}\setopen{"3010}
+\def\cjkglue{\hskip0pt plus 0.25pt minus 0.1pt\relax}
+\XeTeXinterchartoks\cjkc\cjkc={\cjkglue}
+\XeTeXinterchartoks\cjkclose\cjkc={\cjkglue}
+\XeTeXinterchartoks\cjkclose\cjkopen={\cjkglue}
+\XeTeXinterchartoks\cjkc\cjkopen={\cjkglue}
+\XeTeXinterchartoks\cjkclose\cjkclose={}
+\XeTeXinterchartoks\cjkc\cjkclose={}
+\XeTeXinterchartoks 0 \cjkc={\cjkglue}
+\XeTeXinterchartoks \cjkc 0={\cjkglue}
+\XeTeXinterchartoks 0 \cjkopen={\cjkglue}
+\XeTeXinterchartoks \cjkclose 0={\cjkglue}
+\makeatother
+
+
+%%% --- tags (textbook) ---
+\newcommand{\tC}{\textcolor{blue!55!black}{\textbf{【文献】}}}   % 標準的な結果。出典を併記
+\newcommand{\tP}{\textcolor{green!45!black}{\textbf{【証明あり】}}} % 本文で証明
+\newcommand{\tQ}{\textcolor{orange!85!black}{\textbf{【要確認】}}}  % 記憶に基づく、未確認
+
+%%% --- theorem-like environments (section ごとの通し番号) ---
+\usepackage{tcolorbox}
+\theoremstyle{definition}
+\newtheorem{defn}{定義}[section]
+\newtheorem{thm}[defn]{定理}
+\newtheorem{prop}[defn]{命題}
+\newtheorem{lem}[defn]{補題}
+\newtheorem{cor}[defn]{系}
+\newtheorem{ex}[defn]{例}
+\newtheorem{rem}[defn]{注意}
+\renewcommand{\proofname}{証明}
+\newcommand{\src}[1]{\par\noindent{\small\textcolor{blue!55!black}{\textbf{[出典]}~#1}}\par}
+
+% 問題と解答: \begin{prob}{基本}...\end{prob}。解答は \begin{sol}...\end{sol}（解答の節に置く）
+\newcounter{probno}
+\newenvironment{prob}[1]{\refstepcounter{probno}\par\medskip\noindent\textbf{問~\theprobno}\;\textcolor{red!60!black}{\small[#1]}\;}{\par}
+\newenvironment{sol}[1]{\par\medskip\noindent\textbf{解答~#1}\;}{\par}
+
+% 学習目標・前提・要点の枠
+\newtcolorbox{goalbox}[1]{colback=blue!4!white,colframe=blue!50!black,title={#1},fonttitle=\sffamily\bfseries,boxrule=0.5pt,left=4pt,right=4pt,top=2pt,bottom=2pt}
+\newtcolorbox{keybox}[1]{colback=yellow!8!white,colframe=orange!60!black,title={#1},fonttitle=\sffamily\bfseries,boxrule=0.5pt,left=4pt,right=4pt,top=2pt,bottom=2pt}
+
+%%% --- notation ---
+\newcommand{\R}{\mathbb R}\newcommand{\C}{\mathbb C}\newcommand{\Z}{\mathbb Z}\newcommand{\Q}{\mathbb Q}\newcommand{\N}{\mathbb N}
+\newcommand{\dbar}{\bar\partial}
+\newcommand{\ch}{\mathrm{ch}}\newcommand{\Td}{\mathrm{Td}}\newcommand{\rk}{\mathrm{rk}}
+\newcommand{\Hom}{\mathrm{Hom}}\newcommand{\End}{\mathrm{End}}\newcommand{\ind}{\mathrm{ind}}
+\newcommand{\id}{\mathrm{id}}\newcommand{\Pic}{\mathrm{Pic}}\newcommand{\supp}{\mathrm{supp}}
+
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[R]{\small 学習コース：一般化幾何への道}
+\fancyfoot[C]{\small\thepage}
+\titleformat{\section}{\large\bfseries\sffamily}{\thesection}{0.8em}{}
+\titleformat{\subsection}{\normalsize\bfseries\sffamily}{\thesubsection}{0.8em}{}
