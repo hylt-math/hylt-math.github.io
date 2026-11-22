@@ -1,0 +1,241 @@
+\section{微分作用素と主シンボル}\label{sec:symbol}
+\subsection{ベクトル束の間の微分作用素}
+$U\subset\R^n$ 開集合上で、$r$ 次の列ベクトル値関数を $r'$ 次の列ベクトル値関数に写す $m$ 階の線形微分作用素とは
+\begin{equation}\label{eq:localform}
+P=\sum_{|\alpha|\le m}a_\alpha(x)\,\partial^\alpha,\qquad a_\alpha\in C^\infty(U;\mathrm{Mat}_{r'\times r}(\C))
+\end{equation}
+のことである。多様体上では、これを局所座標と局所自明化で貼り合わせる。
+
+\begin{defn}[微分作用素]\label{def:diffop}
+$E,F\to M$ を複素ベクトル束とする。$\C$ 線形写像 $P:\Gamma(E)\to\Gamma(F)$ が\emph{$m$ 階の微分作用素}（$P\in\Diff^m(E,F)$）であるとは、$M$ の任意の座標近傍 $U$ と $E,F$ の $U$ 上の自明化に対し、$P$ が $U$ 上で（\ref{eq:localform}）の形に書けることをいう。（$P$ は局所的、すなわち $\supp Pu\subset\supp u$ でなければならない。）
+\end{defn}
+座標変換と自明化の取り替えで $\partial^\alpha$ は $|\beta|\le|\alpha|$ の $\partial^\beta$ の（滑らかな係数の）1 次結合に変わるから、「$m$ 階以下」は座標・自明化によらない。ただし係数 $a_\alpha$ 自体は座標によるし、$|\alpha|=m$ の部分の変換則は特に簡単で、これが主シンボルである。
+\begin{ex}\label{ex:diffops}
+(a) 接続 $\nabla:\Gamma(E)\to\Gamma(T^*M\otimes E)$ は 1 階。局所的には $\nabla=d+A$。(b) 外微分 $d:\Omega^k\to\Omega^{k+1}$ は 1 階。(c) 正則ベクトル束 $E$ の $\bar\partial_E:\mathcal A^{0,q}(E)\to\mathcal A^{0,q+1}(E)$ は 1 階。正則枠では $\bar\partial_E=\bar\partial$（第2巻）。(d) Lie 微分 $\mathcal L_X$ は 1 階。(e) Riemann 多様体上の Laplacian $\Delta_d=dd^*+d^*d$ は 2 階。(f) 滑らかな関数 $f$ の掛け算は $0$ 階。
+\end{ex}
+\begin{rem}
+$P$ が $m$ 階以下であることは、座標を使わず「任意の滑らかな関数 $f_0,\dots,f_m$ に対し $[\cdots[[P,f_0],f_1],\dots,f_m]=0$」と言い換えられる（Grothendieck による代数的な定義）\tC\ （Lawson--Michelsohn, 第 III 章；Roe, 第 III 章の記憶\tQ）。本巻では使わない。
+\end{rem}
+
+\subsection{主シンボル：座標によらない定義}
+$\xi\in T^*_xM$ に対し、$f$ を $f(x)=0$、$df_x=\xi$ となる滑らかな実関数とする。
+\begin{thm}[主シンボル]\label{thm:symbol}\tP
+$P\in\Diff^m(E,F)$ とする。各 $x\in M$、$\xi\in T^*_xM$、$s\in\Gamma(E)$ に対し、
+\begin{equation}\label{eq:symbolinv}
+\sigma_m(P)(x,\xi)\,s(x)\;:=\;\frac{i^m}{m!}\,P\bigl(f^m s\bigr)(x)
+\end{equation}
+は $f$ の選び方（$f(x)=0,\ df_x=\xi$ を満たす限り）にも、$s(x)$ 以外の $s$ の値にもよらず、$E_x$ から $F_x$ への線形写像 $\sigma_m(P)(x,\xi)\in\Hom(E_x,F_x)$ を定める。局所表示（\ref{eq:localform}）では $\sigma_m(P)(x,\xi)=\sum_{|\alpha|=m}a_\alpha(x)(i\xi)^\alpha$ であり、$\xi$ について $m$ 次の斉次多項式である。
+\end{thm}
+\begin{proof}
+局所座標と自明化をとり、$P=\sum_{|\alpha|\le m}a_\alpha\partial^\alpha$ とする。$f(x)=0$ だから、$f^m$ の $x$ での $m-1$ 階以下の導関数はすべて $0$ である。したがって $|\alpha|<m$ の項は $P(f^ms)(x)$ に寄与しない。$|\alpha|=m$ のとき、$\partial^\alpha(f^ms)(x)=s(x)\,\partial^\alpha(f^m)(x)$ で（Leibniz 則で $s$ に微分が当たる項は $f$ の $m-1$ 階以下の導関数の積を含み $0$）、$\partial_{j_1}\cdots\partial_{j_m}(f^m)(x)=m!\prod_{l}\partial_{j_l}f(x)$（$m$ 個の因子 $f$ にそれぞれ 1 個ずつ微分が当たる項だけが残り、その配分は $m!$ 通り）。よって
+\[
+P(f^ms)(x)=m!\sum_{|\alpha|=m}a_\alpha(x)(\partial f(x))^\alpha s(x)=m!\sum_{|\alpha|=m}a_\alpha(x)\xi^\alpha s(x).
+\]
+$i^m$ を掛けて $m!$ で割れば $\sum a_\alpha(x)(i\xi)^\alpha s(x)$。右辺は座標を使って書いたが、左辺（\ref{eq:symbolinv}）は座標に無関係に定義されているので、局所表示のこの式は座標・自明化の取り替えで不変である。
+\end{proof}
+\begin{rem}[振動する関数による見方]
+$f$ を実関数、$t\to\infty$ とすると $P(e^{itf}s)=e^{itf}\bigl(t^m\sigma_m(P)(x,df)s+O(t^{m-1})\bigr)$ である（$\partial^\alpha e^{itf}=(it\,\partial f)^\alpha e^{itf}+\cdots$）。つまり主シンボルは、\emph{高周波の波}に対する $P$ の応答の最高次の係数である。$\sigma_m(P)(x,\xi)$ が可逆なら、周波数 $\xi$ の波は $P$ で消されない：これが楕円性の意味である（\S\ref{sec:ell}）。
+\end{rem}
+\begin{prop}[シンボルの計算規則]\label{prop:symrules}\tP
+(a) $P\in\Diff^{m-1}(E,F)$ であることと $\sigma_m(P)=0$ は同値。$\sigma_m(P+Q)=\sigma_m(P)+\sigma_m(Q)$。\\
+(b) $P\in\Diff^m(E,F)$、$Q\in\Diff^{m'}(F,G)$ なら $QP\in\Diff^{m+m'}(E,G)$、$\sigma_{m+m'}(QP)=\sigma_{m'}(Q)\sigma_m(P)$。\\
+(c) $E,F$ に Hermite 計量、$M$ に体積形式（Riemann 計量から）を与える。$P\in\Diff^m(E,F)$ の\emph{形式的随伴}$P^*\in\Diff^m(F,E)$（$\ip{Pu}{v}_{L^2}=\ip u{P^*v}_{L^2}$ がコンパクト台の滑らかな $u,v$ について成り立つもの）が一意に存在し、$\sigma_m(P^*)(x,\xi)=\sigma_m(P)(x,\xi)^*$（$E_x,F_x$ の Hermite 計量に関する随伴）。
+\end{prop}
+\begin{proof}
+(a) 局所表示から明らか。(b) $Q=\sum b_\beta\partial^\beta$、$P=\sum a_\alpha\partial^\alpha$ とすると $QP=\sum b_\beta\partial^\beta(a_\alpha\partial^\alpha\,\cdot)$ で、$|\beta|+|\alpha|=m+m'$ の項は $b_\beta a_\alpha\partial^{\alpha+\beta}$ だけ（Leibniz で $a_\alpha$ に微分が当たると階数が下がる）。$(i\xi)^{\alpha+\beta}=(i\xi)^\alpha(i\xi)^\beta$。(c) 局所的に、自明化を正規直交枠、体積形式を $\rho\,dx$ とすると、部分積分で $\ip{a_\alpha\partial^\alpha u}{v}=\int\langle a_\alpha\partial^\alpha u,v\rangle\rho\,dx=\int\langle u,(-1)^{|\alpha|}\rho^{-1}\partial^\alpha(\rho\,a_\alpha^\dagger v)\rangle\rho\,dx$ だから、$P^*=\sum(-1)^{|\alpha|}\rho^{-1}\partial^\alpha\circ\rho\,a_\alpha^\dagger$ が局所表示になる（$a^\dagger$ は共役転置）。最高次は $(-1)^m a_\alpha^\dagger\partial^\alpha$ で、そのシンボルは $(-1)^m a_\alpha^\dagger(i\xi)^\alpha=a_\alpha^\dagger\overline{(i\xi)^\alpha}=\bigl(a_\alpha(i\xi)^\alpha\bigr)^\dagger$（$\xi$ は実）。大域的な存在は 1 の分割で貼り合わせ、一意性は defining identity による。
+\end{proof}
+\begin{rem}
+座標によらない言い方では、$\sigma_m(P)$ は $\mathrm{Sym}^m(TM)\otimes\Hom(E,F)$ の滑らかな切断、すなわち $\pi^*E\to\pi^*F$（$\pi:T^*M\to M$）の斉次 $m$ 次の束写像であり、完全列 $0\to\Diff^{m-1}(E,F)\to\Diff^m(E,F)\xrightarrow{\sigma_m}\Gamma(\mathrm{Sym}^mTM\otimes\Hom(E,F))\to0$ がある\tC\ （Lawson--Michelsohn, 第 III 章 \S1 付近）。
+\end{rem}
+
+\subsection{基本的な例}
+\begin{ex}[Laplacian]\label{ex:lap}
+$\R^n$ の $\Delta=-\sum\partial_j^2$ のシンボルは $-\sum(i\xi_j)^2=|\xi|^2$。Riemann 多様体上の $\Delta_g=d^*d$（関数上）でも、公式（\ref{eq:symbolinv}）で座標なしに確かめられる：$f(x)=0$、$df_x=\xi$ とすると $\Delta_g(f^2)=-\operatorname{div}\nabla(f^2)=-2|\nabla f|^2-2f\Delta'f$（$\Delta'=\operatorname{div}\nabla$）なので、$x$ で $\Delta_g(f^2)(x)=-2|\xi|_g^2$。ゆえに $\sigma_2(\Delta_g)(x,\xi)=\frac{i^2}{2!}(-2|\xi|_g^2)=|\xi|_g^2$。
+\end{ex}
+\begin{ex}[$d$、$d^*$、$\Delta_d$]\label{ex:dsym}
+$d(f\omega)=df\wedge\omega+f\,d\omega$ なので、$m=1$ の公式で $\sigma_1(d)(x,\xi)\omega=i\,\xi\wedge\omega$。$d^*$ はその随伴：$\sigma_1(d^*)(x,\xi)=(i\xi\wedge)^*=-i\,\iota_\xi$（$\iota_\xi$ は計量で $\xi$ を $\xi^\sharp$ に直した内部積）。したがって
+\[
+\sigma_2(\Delta_d)(x,\xi)=(i\xi\wedge)(-i\iota_\xi)+(-i\iota_\xi)(i\xi\wedge)=\xi\wedge\iota_\xi+\iota_\xi\,\xi\wedge=|\xi|^2\,\mathrm{id}.
+\]
+最後の等号は $\xi\wedge\iota_\xi+\iota_\xi\xi\wedge=|\xi|^2$（Clifford 関係式、問 \ref{p:sigmaDirac}）。
+\end{ex}
+\begin{ex}[$\bar\partial$ と $\partial$]\label{ex:dbarsym}
+$X$ を複素多様体とする。$\bar\partial(f\omega)=\bar\partial f\wedge\omega+f\bar\partial\omega$ で、$\bar\partial f=(df)^{0,1}$ だから、$\xi\in T^*_xX$（実の余接ベクトル）の複素化の $(0,1)$ 成分を $\xi^{0,1}$ と書くと
+\[
+\sigma_1(\bar\partial)(x,\xi)=i\,\xi^{0,1}\wedge\cdot,\qquad\sigma_1(\partial)(x,\xi)=i\,\xi^{1,0}\wedge\cdot,\qquad\xi^{1,0}=\overline{\xi^{0,1}}.
+\]
+座標では $\xi=\sum(a_jdx_j+b_jdy_j)$ なら $\xi^{0,1}=\sum\frac{a_j+ib_j}2d\bar z_j$。\emph{$\xi$ が実で $\neq0$ なら $\xi^{0,1}\ne0$}（$\xi^{1,0}$ はその複素共役なので、$\xi^{0,1}=0$ なら $\xi=0$）。これが $\bar\partial$ の楕円性の源である。正則ベクトル束 $E$ 係数でも $\bar\partial_E$ は局所的に $\bar\partial+$（$0$ 階）なので同じシンボルをもつ。
+\end{ex}
+\begin{ex}[接続]\label{ex:nabla}
+$\sigma_1(\nabla)(x,\xi)s=i\,\xi\otimes s$。したがって $\nabla^*\nabla$ のシンボルは $|\xi|^2\mathrm{id}_E$（$\nabla^*\nabla$ は``ラフ Laplacian''）。
+\end{ex}
+\begin{ex}[Dirac 作用素の予告]\label{ex:dirac}
+$S\to M$ を Clifford 加群の束（第8巻）、$c:T^*M\to\End(S)$ を Clifford 乗法で $c(\xi)^2=-|\xi|^2$ を満たすものとし、$D=\sum_jc(e^j)\nabla_{e_j}$ とおく。$\sigma_1(D)(x,\xi)=i\,c(\xi)$ で、$\sigma_1(D)^2=-c(\xi)^2=|\xi|^2$。つまり $D$ は「シンボルが $\Delta$ の平方根」であるような 1 階作用素で、$\sigma(D^2)=|\xi|^2$ は $\Delta$ と同じ。Riemann 面では、スピン構造 $K^{1/2}$ をとると $D=\bar\partial_{K^{1/2}}+\bar\partial_{K^{1/2}}^*$ の形になる（第4巻 \S10、第8巻）。
+\end{ex}
+\begin{ex}[座標変換での確認：$x\partial_x$ と $b$-シンボルの予告]\label{ex:logcoord}
+$(0,\infty)$ 上で $P=x^2\partial_x^2+x\partial_x$ を考える。$x=e^t$ と座標変換すると $x\partial_x=\partial_t$ で $P=\partial_t^2$。主シンボルは $x$ 座標では $-x^2\xi^2$、$t$ 座標では $-\eta^2$ である。余接ベクトルは $\xi\,dx=\eta\,dt$、$dt=dx/x$ より $\eta=x\xi$ と変換されるので、$-x^2\xi^2=-\eta^2$：座標によらない量として確かに一致する（定理 \ref{thm:symbol}）。また、$x$ 座標の $P$ には 1 階の項 $x\partial_x$ があるが、$x^2\partial_x^2=\partial_t^2-\partial_t$ なので $t$ 座標では 1 階の項が消えて $P=\partial_t^2$ になる。``低階の項''は座標変換で現れたり消えたりし、不変なのは主シンボルだけである。
+さらに、$x$ 座標では $x\to0$ でシンボル $-x^2\xi^2$ が（$\xi$ を固定すると）$0$ に退化し、楕円性が一様でない。しかし $b$-余接ベクトル $\eta=x\xi$ を使えば退化しない。このことが \S\ref{sec:noncompact} と第10巻の $b$-計算の出発点である。
+\end{ex}
+\begin{keybox}{§1 の要点}
+\begin{itemize}
+\item 微分作用素は局所的に $\sum a_\alpha(x)\partial^\alpha$。最高次の部分の座標変換則が主シンボル $\sigma_m(P)(x,\xi)\in\Hom(E_x,F_x)$（$\xi\in T^*_xM$ の $m$ 次斉次多項式）。公式 $\sigma_m(P)s(x)=\frac{i^m}{m!}P(f^ms)(x)$ で不変性が見える。
+\item $\sigma(QP)=\sigma(Q)\sigma(P)$、$\sigma(P^*)=\sigma(P)^*$（規約：$\partial\leftrightarrow i\xi$）。
+\item $\sigma(\Delta)=|\xi|^2$、$\sigma(d)=i\xi\wedge$、$\sigma(\bar\partial)=i\xi^{0,1}\wedge$、$\sigma(D)=ic(\xi)$。
+\end{itemize}
+\end{keybox}
+
+\paragraph{問題}
+\begin{prob}{基本}\label{p:symcalc}
+次の作用素の主シンボル（指定の階数）を求めよ。(a) $\R^2$ 上の $\partial_x^2+x\,\partial_y$（2 階）。(b) $\R^{1+n}$ 上の熱作用素 $\partial_t-\sum_j\partial_{x_j}^2$（2 階）。(c) 波動作用素 $\partial_t^2-\sum_j\partial_{x_j}^2$（2 階）。(d) Cauchy--Riemann 作用素 $\bar\partial=\frac12(\partial_x+i\partial_y)$（1 階）。
+\end{prob}
+\begin{prob}{基本}\label{p:polar}
+$\R^2\setminus\{0\}$ の極座標 $(r,\theta)$ で Laplacian（正の符号 $d^*d$）は $-(\partial_r^2+r^{-1}\partial_r+r^{-2}\partial_\theta^2)$ である。このシンボルを極座標の余接ベクトル $\xi=\xi_rdr+\xi_\theta d\theta$ で書き、Cartesian の $|\xi|^2$ と一致することを確かめよ。
+\end{prob}
+\begin{prob}{標準}\label{p:adjsym}
+$\R$ 上の $P=x\partial_x$ の（Lebesgue 測度に関する）形式的随伴 $P^*$ を求め、$\sigma_1(P^*)=\overline{\sigma_1(P)}$ を確認せよ。また $\C$ 上の $\bar\partial=\frac12(\partial_x+i\partial_y)$ の随伴 $\bar\partial^*$ を求め、そのシンボルが $\sigma_1(\bar\partial)$ の複素共役であることを確かめよ。
+\end{prob}
+\begin{prob}{標準}\label{p:poisson}
+$\R^n$ 上のベクトル場 $X=\sum X^j\partial_j$、$Y=\sum Y^j\partial_j$ に対し、$\sigma_1(X)=i\sum X^j\xi_j$ である。Poisson 括弧 $\{p,q\}=\sum_j(\partial_{\xi_j}p\,\partial_{x_j}q-\partial_{x_j}p\,\partial_{\xi_j}q)$ を使って、$[X,Y]$ の 1 階のシンボルが $\sigma_1([X,Y])=-i\{\sigma_1(X),\sigma_1(Y)\}$ であることを示せ（一般の $\sigma_{m+m'-1}([P,Q])=-i\{\sigma_m(P),\sigma_{m'}(Q)\}$ の特別な場合。\S\ref{sec:psido}）。
+\end{prob}
+
+%==========================================================================
+\section{楕円作用素}\label{sec:ell}
+\begin{defn}[楕円作用素]\label{def:elliptic}
+$P\in\Diff^m(E,F)$ が\emph{楕円型}であるとは、すべての $x\in M$ と $\xi\in T^*_xM\setminus\{0\}$ に対し、$\sigma_m(P)(x,\xi):E_x\to F_x$ が同型であることをいう。（特に $\rk E=\rk F$。）
+\end{defn}
+\begin{center}
+\begin{tikzpicture}[>=Stealth,font=\small]
+\draw[fill=blue!5] (0,0) ellipse (2.6 and 0.6);
+\node at (0,-0.9) {$M$ の点 $x$};
+\draw[thick] (0,0.1) -- (0,2.2);
+\node[right] at (0,2.2) {$T_x^*M$};
+\draw[thick,blue!60!black] (-1.2,2.0) arc (180:360:1.2 and 0.45) arc (0:180:1.2 and 0.45);
+\node[below] at (0,1.5) {\scriptsize $|\xi|=1$};
+\fill (0.9,2.0) circle (1.2pt) node[right] {\scriptsize $\xi\neq0$};
+\draw[->,thick] (3.6,2.0)--node[above]{$\sigma_m(P)(x,\xi)$}(6.4,2.0);
+\node[draw,rounded corners,fill=green!6] at (7.7,2.0) {$E_x\xrightarrow{\ \cong\ }F_x$};
+\node[align=left,font=\scriptsize] at (7.3,0.7) {各 $\xi\neq0$ で可逆 $\iff$ 楕円型\\（$\xi=0$ では $0$ 写像でよい）};
+\end{tikzpicture}
+\end{center}
+\begin{prop}\label{prop:ellclosure}\tP
+(a) $P\in\Diff^m(E,F)$ が楕円型なら $P^*$、$P^*P$、$PP^*$ も楕円型。(b) 楕円型作用素の合成は楕円型。(c) 楕円型作用素に低階の微分作用素を加えても楕円型。
+\end{prop}
+\begin{proof}
+(a) $\sigma(P^*)=\sigma(P)^*$ は可逆で、$\sigma(P^*P)=\sigma(P)^*\sigma(P)$、$\sigma(PP^*)=\sigma(P)\sigma(P)^*$ も可逆（命題 \ref{prop:symrules}）。(b) 可逆写像の積。(c) 主シンボルが変わらない。
+\end{proof}
+\begin{ex}[楕円型の例]\label{ex:ellipticlist}
+\begin{enumerate}
+\item $\Delta_g$、$\Delta_d$（$k$ 形式上）：シンボル $|\xi|^2\mathrm{id}$。$\nabla^*\nabla$：$|\xi|^2\mathrm{id}_E$。
+\item $d+d^*:\Omega^{\rm even}(M)\to\Omega^{\rm odd}(M)$：$\sigma=i(\xi\wedge-\iota_\xi)$。$(\xi\wedge-\iota_\xi)^2=-\xi\wedge\iota_\xi-\iota_\xi\xi\wedge=-|\xi|^2$（$(\xi\wedge)^2=0=\iota_\xi^2$ を使った）なので $\sigma^2=|\xi|^2$、可逆。階数は $\sum_{k\ \rm even}\binom nk=2^{n-1}=\sum_{k\ \rm odd}\binom nk$ で等しい（$n\ge1$）。
+\item Cauchy--Riemann 作用素 $\bar\partial:C^\infty(\R^2)\to C^\infty(\R^2)$：$\sigma=\frac i2(\xi+i\eta)$、$(\xi,\eta)\ne0$ で $\neq0$。一般に Riemann 面上の $\bar\partial_L:\mathcal A^0(L)\to\mathcal A^{0,1}(L)$ は 1 階の楕円型（階数 $1\to1$）。
+\item $\Delta_{\bar\partial}=\bar\partial\bar\partial^*+\bar\partial^*\bar\partial$：$\sigma=(i\xi^{0,1}\wedge)(-i\iota)+(-i\iota)(i\xi^{0,1}\wedge)=|\xi^{0,1}|^2=\frac12|\xi|^2$。ここで $|\xi^{0,1}|^2=\frac{a^2+b^2}4\cdot|d\bar z|^2=\frac{a^2+b^2}{2}$（$|d\bar z|^2=2$）。第5巻 \S2 で使った「$\Delta_{\bar\partial}$ のシンボルは $\frac12|\xi|^2$」の確認。
+\item $\bar\partial+\bar\partial^*:\mathcal A^{0,\rm even}(E)\to\mathcal A^{0,\rm odd}(E)$：シンボル $i(\xi^{0,1}\wedge-\iota)$、二乗は $|\xi^{0,1}|^2$ で可逆。
+\item Dirac 型作用素 $D$：$\sigma(D)^2=|\xi|^2$（例 \ref{ex:dirac}）。
+\end{enumerate}
+\end{ex}
+\begin{ex}[楕円型でない例]\label{ex:nonell}
+波動作用素 $\partial_t^2-\sum_j\partial_{x_j}^2$：シンボル $-\tau^2+|\xi_x|^2$、``光円錐'' $\tau=\pm|\xi_x|$ で $0$。熱作用素 $\partial_t-\sum\partial_{x_j}^2$：2 階のシンボルは $|\xi_x|^2$（$\partial_t$ は 1 階で主部に入らない）で、$\xi_x=0$、$\tau\neq0$ で $0$。Lie 微分 $\mathcal L_X$（$n\ge2$）：$\xi(X)=0$ の方向で $0$。$\C^n$（$n\ge2$）の $\bar\partial:C^\infty\to\mathcal A^{0,1}$ は階数 $1\to n$ で、過剰決定系であり、楕円型作用素ではない。ただしこれは Dolbeault 複体の一部であり、複体としては楕円型である（\S\ref{sec:cx}）。
+\end{ex}
+\begin{rem}[なぜ楕円型を考えるか]
+非楕円型の例では、シンボルの零方向（特性方向）に沿って特異性が伝わり（波動方程式）、解空間は無限次元になる。楕円型ではそれが起きず、(i) 解は滑らか（楕円正則性、\S\ref{sec:reg}）、(ii) 閉多様体上で解空間は有限次元（\S\ref{sec:closed}）になる。この 2 つが Hodge 理論の骨格である。
+\end{rem}
+
+\begin{keybox}{§2 の要点}
+\begin{itemize}
+\item 楕円型 $=$ すべての $\xi\ne0$ で $\sigma_m(P)(x,\xi)$ が可逆。$P^*P$、$PP^*$、合成、低階の摂動で保たれる。
+\item 例：$\Delta$、$d+d^*$、$\bar\partial+\bar\partial^*$、Dirac 型作用素、Riemann 面の $\bar\partial_L$。波動・熱・$\mathcal L_X$ は楕円型でない。
+\end{itemize}
+\end{keybox}
+\paragraph{問題}
+\begin{prob}{基本}\label{p:elllist}
+$\R^2$ 上の次の作用素のうち、楕円型であるものを判定せよ。(a) $\partial_x^2+\partial_x\partial_y+\partial_y^2$。(b) $\partial_x^2+4\partial_x\partial_y+\partial_y^2$。(c) $\partial_x^2-\partial_y^2$。(d) $(u,v)\mapsto(u_x-v_y,\ u_y+v_x)$（$\R^2$ 値関数に作用する 1 階の系）。(e) $\partial_x^2+x\partial_y$。
+\end{prob}
+\begin{prob}{標準}\label{p:sigmaDirac}
+(a) $\R^n$ の Euclid 計量で、$\xi\wedge\iota_\xi+\iota_\xi\,\xi\wedge=|\xi|^2$ を示せ。(b) したがって $(\xi\wedge-\iota_\xi)^2=-|\xi|^2$ であり、$d+d^*$ が楕円型であることを示せ。(c) $n=3$ で $d+d^*:\Omega^{\rm even}\to\Omega^{\rm odd}$ の階数（束の階数 $\Lambda^0\oplus\Lambda^2\to\Lambda^1\oplus\Lambda^3$）が $4\to4$ であることを確認せよ。
+\end{prob}
+\begin{prob}{標準}\label{p:paulidirac}
+$\R^2$ 上の $D=-i(\sigma_x\partial_x+\sigma_y\partial_y)$（$\sigma_x=\begin{pmatrix}0&1\\1&0\end{pmatrix}$、$\sigma_y=\begin{pmatrix}0&-i\\i&0\end{pmatrix}$）の主シンボルを求め、$\sigma_1(D)^2=|\xi|^2$ を示せ。また $D$ を $\partial=\frac12(\partial_x-i\partial_y)$、$\bar\partial=\frac12(\partial_x+i\partial_y)$ で $2\times2$ 行列として書け。
+\end{prob}
+\begin{prob}{発展}\label{p:scalarodd}
+$n\ge3$ とする。$\R^n$（または $n$ 次元多様体の自明な直線束）上の\emph{スカラー}（$\C$ 値関数に作用する）の $m$ 階楕円型作用素の階数 $m$ は偶数であることを示せ。（ヒント：$p(\xi)=\sigma_m(P)(\xi)$ は $S^{n-1}$ から $\C^*$ への連続写像で、$p(-\xi)=(-1)^mp(\xi)$。$S^{n-1}$ は $n\ge3$ で単連結。）$n=2$（$\bar\partial$）と $n=1$（$d/d\theta$）ではなぜ反例が許されるか。
+\end{prob}
+\begin{prob}{基本}\label{p:dbarlap}
+Riemann 面（実 2 次元の Riemann 多様体で複素構造と整合）上で、$\bar\partial:C^\infty\to\mathcal A^{0,1}$ のシンボルを用いて、$\bar\partial^*\bar\partial$ の主シンボルが $\frac12|\xi|^2$ であることを確かめよ。
+\end{prob}
+
+%==========================================================================
+\section{楕円複体}\label{sec:cx}
+\subsection{定義と例}
+\begin{defn}[楕円複体]\label{def:ellcx}
+ベクトル束と 1 階微分作用素の列
+\[
+0\to\Gamma(E_0)\xrightarrow{P_0}\Gamma(E_1)\xrightarrow{P_1}\cdots\xrightarrow{P_{N-1}}\Gamma(E_N)\to0,\qquad P_{k+1}P_k=0
+\]
+を（1 階の）\emph{微分作用素の複体}という。各 $(x,\xi)$、$\xi\ne0$ に対し\emph{シンボル列}
+\[
+0\to E_{0,x}\xrightarrow{\sigma(P_0)(x,\xi)}E_{1,x}\to\cdots\to E_{N,x}\to0
+\]
+が複体になる（$\sigma(P_{k+1})\sigma(P_k)=\sigma(P_{k+1}P_k)=0$）。これがすべての $\xi\ne0$ で\emph{完全}なとき、$(E_\bullet,P_\bullet)$ を\emph{楕円複体}という。（高階の作用素の複体にも同様の定義があるが、本巻の例はすべて 1 階。）
+\end{defn}
+$N=1$（$0\to E_0\to E_1\to0$）なら、シンボル列が完全 $\iff\sigma(P_0)$ が同型 $\iff P_0$ が楕円型。つまり楕円複体は楕円作用素の一般化である。
+
+\begin{ex}[de Rham 複体]\label{ex:dRcx}\tP
+$(\Omega^\bullet(M),d)$：シンボル列は $(\Lambda^\bullet T_x^*M,\ i\xi\wedge)$。$\xi\ne0$ のとき $\xi\wedge\iota_\xi+\iota_\xi\xi\wedge=|\xi|^2$ なので、$h=\iota_\xi/|\xi|^2$ は $\xi\wedge h+h\,\xi\wedge=\mathrm{id}$ を満たす鎖ホモトピー。ゆえに完全：$\xi\wedge\omega=0\Rightarrow\omega=\xi\wedge(h\omega)$。楕円複体。
+\end{ex}
+\begin{ex}[Dolbeault 複体]\label{ex:Dolcx}\tP
+$E$ を正則ベクトル束とする。$(\mathcal A^{0,\bullet}(E),\bar\partial_E)$：シンボル列は $(\Lambda^\bullet\overline{T^{*1,0}_x}\otimes E_x,\ i\xi^{0,1}\wedge)$。$v=\xi^{0,1}\neq0$（実の $\xi\ne0$ のとき）に対し、$v\wedge\iota_v+\iota_vv\wedge=|v|^2>0$ により完全。楕円複体。
+\end{ex}
+\begin{ex}[統合論文の複体の全複体]\label{ex:unifiedcx}
+$X$ をコンパクト複素多様体（$\dim_\C X=n$）、$\sigma\in H^0(X,\wedge^2T_X)$ を正則 Poisson 構造、$E$ を Poisson 加群（正則ベクトル束と平坦な $A$-接続の組。局所正則枠で $d_E=[\sigma,\cdot\,]+V\wedge$、$V$ は接続から定まる局所的な $\mathrm{End}(E)$ 値ベクトル場）とする。統合論文の複体は、層の複体 $K^\bullet=(\wedge^\bullet T_X\otimes E,\ d_E=[\sigma,\cdot\,]+V\wedge\cdot)$ で、その\emph{超コホモロジー} $\mathrm{HH}^k(E)=\mathbb H^k(X;K^\bullet)$ が一般化 Dolbeault コホモロジーである（第5巻 \S11 参照）。$d_E$ は正則な 1 階微分作用素（係数は正則、$z$ 方向の微分のみ）で、$\bar\partial$ と可換、$d_E^2=0$ である。各項を Dolbeault 分解して全複体
+\[
+\mathcal K^k=\bigoplus_{a+b=k}\mathcal A^{0,a}(\wedge^bT_X\otimes E),\qquad D=\bar\partial+(-1)^a d_E\quad(\text{on }\mathcal A^{0,a}(\wedge^bT_X\otimes E))
+\]
+をつくる（$\bar\partial d_E=d_E\bar\partial$ なので $D^2=0$）。第3巻 \S8 の超コホモロジーの計算（細分解の全複体）により $\mathrm{HH}^k(E)=H^k(\Gamma(X,\mathcal K^\bullet),D)$ である\tC。符号 $(-1)^a$ は全複体の標準的な規約で、論文（命題 6(b)、§3 の証明 (0)）の $D=\bar\partial+d_K$、$d_K(\varphi\otimes Pe)=(-1)^a\varphi\otimes d(Pe)$ と同じである。論文の $\mathrm{HH}$ と一般化 Dolbeault 複体の同一視（LGSX、Mokri）は論文自身が再導出していないので\tQ。論文 §3 の楕円性の証明も、主シンボルが $v(\xi)=(\xi^{0,1},\sigma^\sharp\xi^{1,0})$ との外積（Koszul 複体）になる、という同じ形である。
+\end{ex}
+\begin{lem}[フィルトレーション補題]\label{lem:filt}\tP
+有限次元ベクトル空間の複体 $(V^\bullet,s)$、$V^k=\bigoplus_{b=0}^{B}V^{k-b,b}$ で、$s=s_0+s_1$、$s_0$ は $b$ を保ち $k$ を $1$ 上げ、$s_1$ は $b$ を $1$ 上げ $k$ を $1$ 上げるとする。各 $b$ について $(V^{\bullet,b},s_0)$ が完全なら $(V^\bullet,s)$ は完全。
+\end{lem}
+\begin{proof}
+$s x=0$ とし、$x=\sum_{b\ge b_0}x_b$（$x_{b_0}\ne0$ とする最小の $b_0$）とする。$sx$ の $b_0$ 成分は $s_0x_{b_0}$ だけ（$s_1$ は $b$ を上げる）だから $s_0x_{b_0}=0$。$(V^{\bullet,b_0},s_0)$ が完全なので $x_{b_0}=s_0y$。$x'=x-sy=x-s_0y-s_1y$ は $s$ 閉で、$b\le b_0$ の成分が $0$（$s_1y$ は $b_0+1$ 成分）。$b_0$ を上げて繰り返し、$b_0>B$ になれば $x'=0$、すなわち $x\in\operatorname{im}s$。
+\end{proof}
+\begin{prop}\label{prop:unifiedell}\tP
+例 \ref{ex:unifiedcx} の全複体 $(\mathcal K^\bullet,D)$ は楕円複体である。
+\end{prop}
+\begin{proof}
+$D$ は 1 階。$\xi\ne0$ のシンボルは $\sigma(D)=s_0+s_1$、$s_0=i\xi^{0,1}\wedge$（$\mathcal A^{0,a}$ の因子に作用）、$s_1=(-1)^a\sigma_1(d_E)(\xi)$。$d_E=[\sigma,\cdot]+V\wedge$ のうち $V\wedge$ は $0$ 階。Schouten 括弧 $[\sigma,\cdot]$ は多重ベクトル場の $b$ 次を $b+1$ 次に写す 1 階作用素で、$[\sigma,fX]=[\sigma,f]\wedge X+f[\sigma,X]$、$[\sigma,f]=\pm\sigma^\sharp(\partial f)$（ベクトル場）なので、$\sigma_1([\sigma,\cdot])(\xi)=\pm i\,\sigma^\sharp(\xi^{1,0})\wedge\cdot$、すなわち\emph{ある（$\xi$ に線形に依存する）ベクトルとの外積}である（符号は規約によるが、以下の議論には無関係\tQ）。したがって $s_1$ は $\wedge^bT$ の次数 $b$ を $1$ 上げる。各 $b$ で $(\Lambda^{0,\bullet}\otimes\wedge^bT_x\otimes E_x,\ s_0)$ は例 \ref{ex:Dolcx} により完全。補題 \ref{lem:filt} より全シンボル列は完全。
+\end{proof}
+この命題は、一般化 Dolbeault コホモロジー $\mathrm{HH}^k(E)$ が楕円複体のコホモロジーであること、したがって第7節で見るように有限次元で調和表示をもつことを意味する（命題 \ref{prop:HHfinite}）。ただし $\sigma$ が $D_{\rm sing}$ などで消える対数的な設定（統合論文 §10 の $U=X\setminus D$）は閉多様体上の議論の範囲外で、\S\ref{sec:noncompact} で扱う。
+
+\subsection{複体が楕円型であることの同値条件}
+$(E_\bullet,P_\bullet)$ に Hermite 計量と体積形式を与え、$\Delta_k=P_k^*P_k+P_{k-1}P_{k-1}^*\in\Diff^2(E_k,E_k)$（Laplacian）、$P+P^*:E^{\rm ev}\to E^{\rm odd}$（$E^{\rm ev}=\bigoplus_{k\ \rm even}E_k$）とする。
+\begin{prop}\label{prop:cxequiv}\tP
+次は同値。(i) $(E_\bullet,P_\bullet)$ は楕円複体。(ii) すべての $\Delta_k$ が楕円型（$\sigma(\Delta_k)$ が $\xi\ne0$ で可逆）。(iii) $D=P+P^*:\Gamma(E^{\rm ev})\to\Gamma(E^{\rm odd})$ が楕円型。
+\end{prop}
+\begin{proof}
+各 $(x,\xi)$、$\xi\neq0$ で、Hermite 空間 $V_k=E_{k,x}$ と写像 $s_k=\sigma(P_k)(x,\xi)\cdot(-i)$（定数倍で $s_{k+1}s_k=0$ は保たれる）を考える。$\sigma(\Delta_k)=s_k^*s_k+s_{k-1}s_{k-1}^*$（ここで $\sigma(P^*)=\sigma(P)^*$、定数倍の $|\cdot|^2=1$）。\\
+(i)$\iff$(ii)：$\langle\sigma(\Delta_k)v,v\rangle=|s_kv|^2+|s_{k-1}^*v|^2$ は $\ge0$ で、$0$ になるのは $v\in\ker s_k\cap\ker s_{k-1}^*=\ker s_k\cap(\operatorname{im}s_{k-1})^\perp$ のとき。この空間は $\ker s_k/\operatorname{im}s_{k-1}$ と同型。ゆえに $\sigma(\Delta_k)$ が可逆（正定値）$\iff$ この空間が $0$ $\iff$ 完全。\\
+(i)$\iff$(iii)：$s=\sum s_k$ とすると $s^2=0$、$(s^*)^2=0$、$(s+s^*)^2=ss^*+s^*s=\bigoplus\sigma(\Delta_k)$。(i)なら $(s+s^*)^2$ は可逆なので $s+s^*:V^{\rm ev}\to V^{\rm odd}$ は単射、$s+s^*:V^{\rm odd}\to V^{\rm ev}$ も単射。第 2 の写像は第 1 の随伴だから第 1 は全射。ゆえに同型（階数も等しい）。逆に $s+s^*$ が $V^{\rm ev}\to V^{\rm odd}$ で同型なら、その随伴 $(s+s^*)^*=s+s^*:V^{\rm odd}\to V^{\rm ev}$ も同型で、$(s+s^*)^2=\sigma(\Delta)$ は可逆。
+\end{proof}
+\begin{rem}[階数の交代和]\label{rem:rankalt}
+シンボル列が完全なら、各 $\xi\neq0$ で $\sum_k(-1)^k\rk E_k=0$。de Rham：$\sum(-1)^k\binom nk=0$。Dolbeault：$\sum(-1)^q\binom{n}{q}\rk E=0$（$n=\dim_\C X\ge1$）。Euler 標数 $\chi(E,P)$ の定義（\S\ref{sec:closed}）は、この「階数が打ち消し合う」ことと両立する。
+\end{rem}
+\begin{keybox}{§3 の要点}
+\begin{itemize}
+\item 楕円複体 $=$ シンボル列が $\xi\ne0$ で完全。$\iff$ 全 Laplacian が楕円型 $\iff$ $P+P^*:E^{\rm ev}\to E^{\rm odd}$ が楕円型。
+\item de Rham 複体と Dolbeault 複体は楕円複体（Koszul 型の完全性：$\xi\wedge\iota_\xi+\iota_\xi\xi\wedge=|\xi|^2$）。
+\item 統合論文の複体は、$(\mathcal A^{0,a}(\wedge^bT\otimes E),\bar\partial+(-1)^ad_E)$ という全複体にすると楕円複体：$d_E$ のシンボルが $b$ を上げる、というフィルトレーション補題による。
+\end{itemize}
+\end{keybox}
+\paragraph{問題}
+\begin{prob}{基本}\label{p:koszul3}
+$\R^3$ で $\xi=(1,0,0)$ のとき、シンボル複体 $\Lambda^0\to\Lambda^1\to\Lambda^2\to\Lambda^3$（$\xi\wedge$）の各写像の階数を求め、完全であることを確かめよ。vector analysis の言葉で、この複体は grad--curl--div のシンボルと同じことを説明せよ（$\xi\times$、$\xi\cdot$）。
+\end{prob}
+\begin{prob}{基本}\label{p:dbarcx2}
+$\C^2$ の Dolbeault 複体 $0\to\mathcal A^{0,0}\to\mathcal A^{0,1}\to\mathcal A^{0,2}\to0$ のシンボル列の階数 $(1,2,1)$ を確認し、$\xi^{0,1}=(v_1,v_2)\ne(0,0)$ のとき各写像の階数を求めて完全性を確かめよ。単独の作用素 $\bar\partial:\mathcal A^{0,0}\to\mathcal A^{0,1}$ が楕円型でないことと比べよ。
+\end{prob}
+\begin{prob}{標準}\label{p:n1total}
+$n=1$（Riemann 面）で、例 \ref{ex:unifiedcx} の全複体のシンボル列は $V^{0,0}\to V^{0,1}\oplus V^{1,0}\to V^{1,1}$（各 $\C^{\rk E}$ としてスカラーの場合、すなわち各 $V^{a,b}=\C$）となる。$s_0$ を $v=i\xi^{0,1}$ 倍、$s_1$ を（$\wedge^0T\to\wedge^1T$ で）ある $w\in\C$ 倍とすると、第 1 の写像は $x\mapsto(w x,\ v x)$（$V^{0,1}$ 成分が $s_1$ 由来、$V^{1,0}$ 成分が $s_0$ 由来）、第 2 の写像は $(y,z)\mapsto v y-w z$ で、合成が $0$ であることを確かめ、$v\neq0$ なら完全であることを示せ。$v=0$ のとき（$\bar\partial$ のシンボルが消える）も完全か。（注：Riemann 面には非自明な Poisson 構造はない。これはフィルトレーション補題の最小の例として読む。）
+\end{prob}
+\begin{prob}{標準}\label{p:cxcheck}
+(a) $(E_\bullet,P_\bullet)$ が楕円複体なら、各 $x$ で $\sum(-1)^k\rk E_k=0$ を示せ。(b) $N=1$ の複体 $0\to E_0\xrightarrow{P}E_1\to0$ が楕円複体であることと $P$ が楕円作用素であることが同値であることを示せ。(c) 楕円複体 $E_\bullet$ で $\rk E_k=(1,3,3,1)$ をもつものを、$\R^3$ の de Rham 複体以外に 1 つ挙げよ（$E_k$ を平行化された束としてよい）。
+\end{prob}

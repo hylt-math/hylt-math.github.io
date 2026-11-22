@@ -1,0 +1,126 @@
+
+%==========================================================================
+\section{非コンパクト・境界つきの場合：楕円性だけでは Fredholm にならない}\label{sec:noncompact}
+閉多様体では「楕円型 $\Rightarrow$ Fredholm」（定理 \ref{thm:mainFredholm}）だった。その証明で使ったのは (i) 楕円評価と (ii) Rellich のコンパクト性で、(ii) は $M$ のコンパクト性による。コンパクト性を落とすと何が起きるかを、最も簡単な例で見る。これは第10巻（APS、$b$-計算）の動機であり、統合論文の指数予想（\S\ref{sec:conj}）を読むための背景でもある。
+\begin{center}
+\begin{tikzpicture}[>=Stealth,font=\small]
+% closed
+\draw[thick,blue!60!black] (0,0) circle (0.7);
+\node at (0,-1.25) {閉多様体};
+\node[align=center,font=\scriptsize] at (0,-1.85) {楕円型 $\Rightarrow$ Fredholm\\（Rellich）};
+% cylinder
+\draw[thick,orange!70!black] (3.6,0.7)--(6.8,0.7);
+\draw[thick,orange!70!black] (3.6,-0.7)--(6.8,-0.7);
+\draw[thick,orange!70!black] (3.6,0) ellipse (0.25 and 0.7);
+\draw[thick,orange!70!black,dashed] (6.8,0.7) arc (90:-90:0.25 and 0.7);
+\draw[thick,orange!70!black] (6.8,0.7) arc (90:270:0.25 and 0.7);
+\node[right] at (6.9,0) {$\cdots$};
+\node at (5.2,-1.25) {円筒端 $\R_t\times N$};
+\node[align=center,font=\scriptsize] at (5.2,-1.85) {$\partial_t+A$：$A$ が可逆なら Fredholm\\$\iff$ 無限遠の「正規作用素」が可逆};
+% b-compactification
+\draw[thick,green!40!black] (9.2,0.8)..controls (9.9,0.4) and (10.0,0.2)..(10.1,0.0)..controls (10.0,-0.2) and (9.9,-0.4)..(9.2,-0.8);
+\draw[thick,green!40!black,dashed] (10.1,0.0)--(10.1,0.0);
+\node at (10.5,0) {$x=0$};
+\node at (9.7,-1.25) {$b$-多様体 $[0,1)_x\times N$};
+\node[align=center,font=\scriptsize] at (9.7,-1.85) {$x\partial_x$：境界で縮退する楕円型\\重み $a$ と指数的な根の関係};
+\end{tikzpicture}
+\end{center}
+
+\subsection{$\R$ 上：Rellich が効かない}
+\begin{prop}\label{prop:Rnotfred}\tP
+$P=d/dx:H^1(\R)\to L^2(\R)$ は楕円型（シンボル $i\xi$）だが Fredholm でない。$-\frac{d^2}{dx^2}-1:H^2(\R)\to L^2(\R)$（シンボル $\xi^2$、楕円型）も Fredholm でない。
+\end{prop}
+\begin{proof}
+$\varphi(x)=\pi^{-1/4}e^{-x^2/2}$（$\nrm\varphi0=1$、$\nrm{\varphi'}0^2=\frac12$）として $u_N(x)=N^{-1/2}\varphi(x/N)$ とおく。$\nrm{u_N}0=1$、$\nrm{u_N'}0=N^{-1}\nrm{\varphi'}0\to0$。$P$ は単射だが下から $\nrm{Pu}0\ge c\nrm u{H^1}$ を満たさない（$\nrm{u_N}{H^1}\ge1$、$\nrm{Pu_N}0\to0$）。単射で値域が閉なら下に有界になるので、値域は閉でなく、$P$ は Fredholm でない。2 つ目：$u_N(x)e^{ix}$ について $(-\partial^2-1)(u_Ne^{ix})=e^{ix}(-u_N''-2iu_N')$、$\nrm{\cdot}0\le N^{-2}\nrm{\varphi''}0+2N^{-1}\nrm{\varphi'}0\to0$、一方 $\nrm{u_Ne^{ix}}0=1$。これは $-\frac{d^2}{dx^2}-1$ の（連続）スペクトルに $0$ が入る（Fourier 側で $\xi^2-1$ が $\xi=\pm1$ で $0$）ことの反映：Weyl の特異列。核は $0$（$L^2$ に平面波はない）、値域は閉でない。
+\end{proof}
+\noindent 閉多様体でこれが起きないのは、Rellich の補題で ``逃げる列''（平行移動、高周波）がなく、楕円評価 $\nrm u{s+m}\le C(\nrm{Pu}s+\nrm us)$ の $\nrm us$ がコンパクトな項になるからである。$\R$ 上では $H^1\hookrightarrow L^2$ はコンパクトでない（平行移動 $u(\cdot-N)$）。楕円型であることは\emph{高周波}の振る舞いだけを制御し、\emph{無限遠}の振る舞いは別の条件が要る。
+
+\subsection{円筒端：$\partial_t+c$ と $\partial_t+A$}
+\begin{prop}\label{prop:cyl}\tP
+$c\in\C$ とする。$\partial_t+c:H^1(\R)\to L^2(\R)$ は、$\Re c\neq0$ なら同型（特に指数 $0$）、$\Re c=0$ なら Fredholm でない。
+\end{prop}
+\begin{proof}
+Fourier 変換で $\partial_t+c$ は $i\tau+c$ の掛け算。$\Re c\ne0$ なら $|i\tau+c|^2=(\tau+\Im c)^2+(\Re c)^2\ge c'(1+\tau^2)$（$c'>0$）なので、逆が $L^2\to H^1$ で有界。$c=i\gamma$ なら $\tau=-\gamma$ で $0$：命題 \ref{prop:Rnotfred} と同様に、$\tau\approx-\gamma$ に集中する波束 $u_N=N^{-1/2}\varphi(x/N)e^{-i\gamma x}$ で $\nrm{(\partial_t+c)u_N}0\to0$。
+\end{proof}
+一般に、閉多様体 $N$ 上の 1 階の自己随伴楕円型作用素 $A$（スペクトルは離散）に対し、$\partial_t+A$ を円筒 $\R\times N$ 上の作用素と見ると、$L^2$ 上で Fredholm であることと $A$ が可逆（$0\notin\operatorname{spec}A$）であることは同値で、$t$ に依存する $A(t)$（$A(\pm\infty)=A_\pm$ が可逆）では指数は $A(t)$ のスペクトル流（spectral flow）に等しい（符号は規約による）\tC\ （Atiyah--Patodi--Singer III；Robbin--Salamon, \emph{The spectral flow and the Maslov index}；符号の規約は\tQ）。これが APS の指数定理の中心にある機構である（第10巻）。
+
+\subsection{$b$-型のおもちゃ：$x\partial_x-r$ と重みつき空間}
+円筒端を $x=e^{-t}$ で閉じると、$x\to0$ で縮退する作用素（$x\partial_x$ は $\partial_t$ の $-1$ 倍）になる。Melrose の $b$-計算の最も簡単な場合：$b$-ベクトル場（境界に接するベクトル場）$x\partial_x$ から生成される作用素と、重みつき $L^2$ 空間。
+\begin{thm}[おもちゃの模型：半直線上の $b$-作用素]\label{thm:toyb}\tP
+$a,r\in\R$ とする。$X_a=\{u:\ x^{-a}u\in L^2((0,1],\tfrac{dx}x)\}$（$x\to0$ で $x^a$ より速く減衰する関数）、$P_r=x\partial_x-r$、定義域 $\mathcal D_a=\{u\in X_a:\ x\partial_xu\in X_a\}$ とする。
+\begin{enumerate}
+\item $r>a$：$\Ker P_r=\C\,x^r$（1 次元）、$P_r:\mathcal D_a\to X_a$ は全射。指数 $1$。
+\item $r<a$：$P_r$ は全単射（$\Ker=0$、$\Coker=0$）。指数 $0$。
+\item $r=a$：$P_r$ は Fredholm でない。
+\end{enumerate}
+すなわち、$P_r$ が Fredholm であるのは重み $a$ が\emph{指数的な根} $x^r$ の指数 $r$ と異なるときで、重みが根を横切ると指数が $1$ だけ跳ぶ。
+\end{thm}
+\begin{proof}
+$t=-\log x\in[0,\infty)$、$U=x^{-a}u=e^{at}u$ とおくと、$\nrm u{X_a}^2=\int_0^\infty|U|^2dt$、$x\partial_x=-\partial_t$ で、$P_ru=-e^{-at}\bigl(U'+(r-a)U\bigr)$。また $x^{-a}x\partial_xu=-U'+aU$ なので $\mathcal D_a\leftrightarrow H^1(0,\infty)$。したがって $P_r$ は $T_c=\partial_t+c:H^1(0,\infty)\to L^2(0,\infty)$、$c=r-a$ とユニタリ同値（符号 $-1$ を除く）。核：$U=e^{-ct}$（$u=x^r$ に当たる）、これが $L^2(0,\infty)$ に入るのは $\Re c>0$ のとき。\\
+$\Re c>0$：任意の $F\in L^2$ に対し $U(t)=\int_0^te^{-c(t-s)}F(s)\,ds$ は $L^1$ 核 $e^{-ct}1_{t>0}$ との畳み込みなので $L^2$、$U'=F-cU\in L^2$、$U'+cU=F$。全射、核は 1 次元で指数 $1$。\\
+$\Re c<0$：核は $e^{-ct}$（増大）で $L^2$ に入らず $0$。全射：$U(t)=-\int_t^\infty e^{c(s-t)}F(s)\,ds$ は $L^1$ 核（$\Re c<0$ で減衰）で $L^2$、$U'+cU=F$（微分して確認）。ゆえに全単射、指数 $0$。\\
+$\Re c=0$、$c=i\gamma$：$T_c$ は単射（$e^{-i\gamma t}\notin L^2$）。$\varphi\in C_c^\infty(-1,1)$、$\nrm\varphi0=1$ として $U_N(t)=N^{-1/2}\varphi\bigl(\tfrac{t-2N}N\bigr)e^{-i\gamma t}$（台は $(N,3N)\subset(0,\infty)$）をとると、$\nrm{U_N}0=1$、$\nrm{U_N'+cU_N}0=N^{-1}\nrm{\varphi'}0\to0$。値域が閉なら単射な $T_c$ は下に有界のはずで矛盾。Fredholm でない。
+\end{proof}
+\begin{center}
+\begin{tikzpicture}[font=\small,>=Stealth,x=1.0cm,y=0.8cm]
+\draw[->] (0,0)--(8.6,0) node[right]{$r$};
+\draw[->] (0,-0.4)--(0,2.2);
+\node[left] at (0,0) {$0$}; \node[left] at (0,1) {$1$};
+\draw[thick,blue!60!black] (0.2,0)--(4,0);
+\draw[thick,blue!60!black] (4,1)--(8.2,1);
+\draw[blue!60!black,fill=white] (4,0) circle (1.6pt); \draw[blue!60!black,fill=white] (4,1) circle (1.6pt);
+\draw[dashed] (4,-0.4)--(4,2.0);
+\node[below] at (4,-0.4) {$r=a$};
+\node[align=center,font=\scriptsize] at (2.1,1.5) {$\ind=0$\\（全単射）};
+\node[align=center,font=\scriptsize] at (6.2,1.7) {$\ind=1$\\（核 $\C x^r$、全射）};
+\node[align=center,font=\scriptsize,red!60!black] at (4,2.3) {Fredholm でない};
+\end{tikzpicture}
+\end{center}
+\begin{rem}[$b$-計算の標準的な言い方]
+$P_r$ の \emph{指数族（indicial family）}は $I(P_r,\lambda)=-i\lambda-r$（$x\partial_x\mapsto-i\lambda$）、その零点 $\lambda=ir$ が指数的な根。Melrose の定理：$b$-楕円型作用素（内部のシンボルと indicial family が可逆）は、重みつき $b$-Sobolev 空間で、重みの線上に indicial family の零点がなければ Fredholm \tC\ （Melrose, \emph{The Atiyah--Patodi--Singer Index Theorem}, 第 5--6 章；Grieser, \emph{Basics of the $b$-calculus}；章の番号は記憶\tQ）。上のおもちゃはその最も簡単な場合である。
+\end{rem}
+
+\subsection{境界つき：条件が要る}
+\begin{ex}[円板上の $\bar\partial$]\label{ex:disc}
+$D=\{|z|\le1\}$、$\bar\partial:H^1(D)\to L^2(D)$（楕円型）。$\Ker\bar\partial\supset\{z^k\}_{k\ge0}$ は無限次元。したがって Fredholm でない。境界条件（Lopatinsky--Shapiro 条件を満たすもの、あるいは Dirac 型作用素では APS の非局所境界条件）を課して初めて Fredholm 問題になる\tC\ （第10巻）。閉多様体では境界条件がいらないのは、核が滑らかな関数で、局所的な``自由度''が Rellich で押さえ込まれるから。
+\end{ex}
+
+\subsection{統合論文の指数予想の位置づけ}\label{sec:conj}
+統合論文 §10.4 の指数予想（予想 94）を、本巻の言葉で位置づける。\textbf{以下は論文の記述に基づく紹介であり、すべて【予想】である。論文自身が「文献に、L の留数を重みとする対数 Dolbeault 複体の指数定理は見つからなかった」と述べており、本巻は何も証明していない。}
+\paragraph{設定（論文より）。}$X$ をコンパクト複素多様体、$\sigma$ を対数シンプレクティック（$\sigma$ の退化因子 $D$ は単純正規交差）、$L$ を $D$ に沿った留数 $r_i$ をもつ直線束（Poisson 加群）、$U=X\setminus D$（非コンパクト）とする。論文は Lie 亜代数 $A=TX(-\log D)$（対数接束）をとり、複体 $\mathcal D_L=(\wedge^\bullet T\otimes L,\ \bar\partial+[\sigma,\cdot])$ を $U$ 上、$A$ から決まる重みつき Sobolev 空間の上の閉作用素と見る。$A$ の意味での主シンボルは可逆（論文の補題 12 と局所計算\ 【計算で確認】とされている）。したがって、$U$ の内部では楕円型で、非 Fredholm 性があるとすれば無限遠 $D$ に近いところの \emph{指数的な根}から生じる。滑らかな点 $D=\{z=0\}$ での局所模型では $\nabla z^k=(k-r)z^k\,dz/z$ なので、根は $k=r$ にあり、局所的に整数べきの $z^k$ が存在するのは $r\in\Z$ のとき。
+\paragraph{予想の内容（論文の予想 94、【予想】）。}(I1) 重み $r$ の Sobolev 空間上の閉拡大は、すべての $r_i\notin\Z$ のとき、またそのときに限り Fredholm。(I2) Fredholm のとき指数（次数の交代和）は $\chi(U)+(-1)^n\#D^{(n)}=(-1)^n\chi(X)$（$D^{(n)}$ は $D$ の $n$ 重点の集合）。(I3) $r_i\in\Z$ のとき、$j_!$ 型と $Rj_*$ 型の 2 つの閉拡大の核・余核の差は $H^*(\partial U;L)$ の部分商で与えられ、$\chi(\partial U)=0$ なので指数は変わらない。(I4) 次数つきの精密化。
+\paragraph{古典との対比。}
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{>{\raggedright\arraybackslash}p{3.6cm}>{\raggedright\arraybackslash}p{5.6cm}>{\raggedright\arraybackslash}p{5.0cm}}
+\toprule
+ & 古典（閉多様体、本巻） & 指数予想（【予想】）\\
+\midrule
+空間 & コンパクト、境界なし & $U=X\setminus D$ 非コンパクト\\
+楕円性 & 通常のシンボルが可逆 & $A=TX(-\log D)$ のシンボルが可逆（論文：計算で確認）\\
+Fredholm か & 常に Fredholm（定理 \ref{thm:mainFredholm}） & 重み（留数）が根を避けるときだけ（I1）\\
+指数 & シンボル類で決まる、整数、Atiyah--Singer & $\chi(U)+(-1)^n\#D^{(n)}=(-1)^n\chi(X)$（I2）\\
+跳び & 連続変形で不変 & 根（$r\in\Z$）で Fredholm でなくなる；拡張の選択\\
+未証明の点 & なし（本巻で証明） & $A$ 上の擬微分計算、Fredholm 性、指数公式（論文の「証明すべきこと」(1)--(5)）\\
+\bottomrule
+\end{tabular}
+\end{center}
+\paragraph{おもちゃとの関係（類比であって、予想の根拠ではない）。}定理 \ref{thm:toyb} は、(i) 内部で楕円型でも無限遠の指数的な根で Fredholm 性が失われうること、(ii) 重みが根を横切ると指数が跳ぶこと、を示す。(I1) の「$r\in\Z$ で Fredholm でなくなる」はこの機構に対応する形である。一方、(I3) は、論文の設定では $\chi(\partial U)=0$（境界 $\partial U$ は閉奇数次元多様体で、$D$ が滑らかなら $D$ 上の $S^1$ 束）のため、跳びに当たる量が消えると主張する。おもちゃでは跳びが $1$（境界の断面が 1 点で、$\chi=1$）で、論文の設定とは断面が違う。したがって、おもちゃは\emph{機構}の説明にしかならず、(I2)(I3) の値を支持する証拠ではない。ここは類比にとどめ、細部は\tQ。
+\paragraph{既に証明されている部分。}論文は、(I2) の右辺の値（全 Euler 標数 $\chi$、論文の定理 22、25）を\emph{位相的に}証明している。未証明なのは、それが Fredholm 指数であること（Fredholm 性 $+$ 指数公式）である。閉多様体の場合の対応物は、本巻の命題 \ref{prop:HHfinite}（$\chi(\mathrm{HH})=\sum_b(-1)^b\chi(X,\wedge^bT\otimes E)$）と、第8巻で証明される指数公式による $(-1)^n\rk(E)\chi(X)$ の再導出である。
+\begin{keybox}{§10 の要点}
+\begin{itemize}
+\item 閉多様体：楕円型 $\Rightarrow$ Fredholm。非コンパクト：楕円型でも Fredholm とは限らない（$d/dx$ on $\R$、$\partial_t+i\gamma$、$x\partial_x-a$ の重み $a$）。境界つき：境界条件が必要（$\bar\partial$ on 円板）。
+\item 無限遠の「正規作用素」（indicial family、円筒の $A$）が可逆であることが Fredholm 性の条件。重みが根を横切ると指数が跳ぶ。第10巻（APS、$b$-計算）。
+\item 統合論文の指数予想（【予想】）は、$U=X\setminus D$ 上で同様のことを予想するもの。内部の楕円性は計算済み、Fredholm 性と指数公式は未証明。本巻は背景を与えただけである。
+\end{itemize}
+\end{keybox}
+\paragraph{問題}
+\begin{prob}{基本}\label{p:weyl}
+$\varphi(x)=\pi^{-1/4}e^{-x^2/2}$、$u_N=N^{-1/2}\varphi(x/N)$ に対し、$\nrm{u_N}{L^2(\R)}$、$\nrm{u_N'}{L^2}$ を計算せよ。これから $d/dx:H^1(\R)\to L^2(\R)$ が下に有界でないことを示し、$d/dx$ が楕円型であるにもかかわらず Fredholm でない理由を、「Rellich の補題が $\R$ で成り立たない」という言葉で説明せよ。
+\end{prob}
+\begin{prob}{標準}\label{p:cyl}
+$\partial_t+c:H^1(\R)\to L^2(\R)$ について、(a) $c=1$ のとき逆作用素の積分核を求めよ。(b) $c=-1$ のとき同様に。(c) $c=i\gamma$ のとき値域が閉でないことを示せ。(d) $\partial_t+A$（$A=\operatorname{diag}(a_1,a_2,\dots)$ を $\ell^2$ に作用する自己随伴な作用素と見て）が Fredholm であるための条件を、各成分の $c=a_j$ の結果から推測せよ。
+\end{prob}
+\begin{prob}{発展}\label{p:toydirichlet}
+定理 \ref{thm:toyb} の $T_c=\partial_t+c$ を、境界条件 $U(0)=0$ をつけた $H^1_0(0,\infty)\to L^2(0,\infty)$ で考える（$x=1$ に境界条件を課したことに当たる）。(a) $\Re c>0$ なら全単射、(b) $\Re c<0$ なら核 $0$、余核 1 次元（値域は $\int_0^\infty e^{cs}F(s)ds=0$ をみたす $F$ 全体）、(c) $\Re c=0$ は Fredholm でない、を示せ。定理 \ref{thm:toyb} の指数（$1,0$）との差は何か。
+\end{prob}

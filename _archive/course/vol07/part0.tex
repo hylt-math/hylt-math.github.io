@@ -1,0 +1,81 @@
+\input{pre_course.tex}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{arrows.meta,positioning,calc}
+\fancyhead[L]{\small 第7巻　楕円作用素と Fredholm 指数}
+\setlength{\headheight}{14pt}
+% --- 本巻の記号 ---
+\newcommand{\Oc}{\mathcal O}
+\newcommand{\Ker}{\operatorname{Ker}}
+\newcommand{\Coker}{\operatorname{Coker}}
+\newcommand{\Ran}{\operatorname{Ran}}
+\newcommand{\Diff}{\mathrm{Diff}}
+\newcommand{\Op}{\operatorname{Op}}
+\newcommand{\jb}[1]{\langle #1\rangle}
+\newcommand{\T}{\mathbb T}
+\newcommand{\ft}[1]{\widehat{#1}}
+\newcommand{\nrm}[2]{\lVert #1\rVert_{#2}}
+\newcommand{\ip}[2]{\langle #1,#2\rangle}
+\newcommand{\sym}{\sigma}
+\newcommand{\CP}{\mathbb{CP}}
+\newcommand{\vol}{\mathrm{vol}}
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+\renewcommand{\contentsname}{目次}\renewcommand{\figurename}{図}
+\usepackage{fontspec}\newfontfamily\lmfont{Latin Modern Roman}
+\begin{document}
+\sloppy
+\begin{center}
+{\LARGE\bfseries\sffamily 第7巻　楕円作用素と Fredholm 指数}\\[4pt]
+{\large\sffamily （主シンボル・楕円複体・Sobolev 空間・楕円正則性・Fredholm 作用素・指数の不変性）}\\[8pt]
+{\large 学習コース「一般化幾何への道」}\\[6pt]
+{\large 執筆：Claude\ ／\ 企画：森}\\[3pt]
+2026年11月22日（v1）\\[3pt]
+{\small （外部の査読は受けていない教材。執筆者とは別の AI による独立検査と、可能な範囲の計算での検算は行った。標準的な結果には出典を付け、確認できていないものは\tQ\ で示す。）}
+\end{center}
+
+\begin{goalbox}{この巻の学習目標}
+\begin{itemize}
+\item \textbf{微分作用素と主シンボル}：ベクトル束の間の線形微分作用素を局所表示で定義し、主シンボルを座標によらない公式で定義して不変性を示す。合成と随伴のシンボルを計算できる。
+\item \textbf{楕円性と楕円複体}：楕円性（シンボルの可逆性）を判定でき、Laplacian、$\bar\partial$、$d+d^*$、Dirac 型作用素（予告）を例として扱える。シンボル列の完全性として楕円複体を定義し、de Rham 複体、Dolbeault 複体、さらに統合論文の複体 $(\wedge^\bullet T\otimes E,\ d_E)$ の全複体が楕円複体であることを示せる。
+\item \textbf{トーラス上の完全な解析}：Fourier 級数により Sobolev 空間 $H^s(\T^n)$、Rellich の補題、楕円正則性、Gårding 型の評価を\emph{変数係数でも}完全に証明する。一般の閉多様体では主張と骨子を述べる。
+\item \textbf{Fredholm 理論}：Fredholm 作用素と指数、Atkinson の定理、小さな摂動・コンパクト摂動・ホモトピーでの指数の不変性を証明する。閉多様体上の楕円作用素が Fredholm で、核と余核が滑らかな関数からなることを示す。
+\item \textbf{Hodge 理論の一般化}：楕円複体の Hodge 分解、調和表示、$\chi(E,P)=\ind(P+P^*)$ を示し、第5巻の Hodge の定理と Dolbeault の定理の「楕円型の核心」を回収する。
+\item \textbf{指数はシンボルだけで決まる}：指数が主シンボルのホモトピー類の関数であること、擬微分作用素の入口（シンボル計算とパラメトリクスの存在）、Atiyah--Singer の公式の形（予告）を知る。
+\item \textbf{例}：$S^1$ 上の $d/d\theta$、トーラスの Dolbeault 複体、$T^2$ 上の $\bar\partial_L$（指数 $=\deg L$、調和振動子への帰着）、Riemann 面の $\bar\partial_L$（指数 $=\deg L+1-g$）、指数 $0$ の自己随伴作用素を計算できる。
+\item \textbf{非コンパクト・境界つき}の場合に、楕円性だけでは Fredholm にならない例（第10巻 APS・$b$-計算への動機づけ）を理解し、統合論文の指数予想（\textbf{予想}）の位置づけを、古典の事実との対比として説明できる。
+\end{itemize}
+\end{goalbox}
+\begin{goalbox}{前提と記法}
+第1巻（多様体、ベクトル束、接続、微分形式、de Rham）と第2巻（複素多様体、$\bar\partial$、正則ベクトル束、Hermite 計量）を既知とする。関数解析の基本（Hilbert 空間、有界作用素、コンパクト作用素、Fourier 級数の Parseval 等式）は既知とし、必要な事実は本文で述べる。第3〜6巻は、例と橋渡しで引用する。\\
+$M$ は特に断らなければ\textbf{閉多様体}（コンパクト、境界なし、滑らか）、$E,F$ は $M$ 上の複素ベクトル束（Hermite 計量つき）、$n=\dim_{\R}M$。複素多様体では $n$ は実次元とは限らないので、そのときは $\dim_{\C}X$ と明記する。\\
+\textbf{規約。} $\partial_j=\partial/\partial x_j$、多重指数 $\partial^\alpha=\partial_1^{\alpha_1}\cdots\partial_n^{\alpha_n}$。$m$ 階微分作用素 $P=\sum_{|\alpha|\le m}a_\alpha(x)\partial^\alpha$ の\emph{主シンボル}は $\sigma_m(P)(x,\xi)=\sum_{|\alpha|=m}a_\alpha(x)(i\xi)^\alpha$（$i$ を含める規約。Fourier 変換 $\partial_j\leftrightarrow ik_j$ と一致し、$\Delta=-\sum\partial_j^2$ のシンボルが $|\xi|^2$ になる）。トーラスは $\T^n=\R^n/(2\pi\Z)^n$、測度は全体積が $1$ になるよう正規化する。$\jb k=(1+|k|^2)^{1/2}$。\tC\ は標準的な結果（出典を併記）、\tP\ は本文で証明したもの、\tQ\ は記憶に基づく・未確認の箇所を表す。統合論文の内容は\emph{予想}と明記したものを含み、本巻では過大に扱わない。
+\end{goalbox}
+\tableofcontents
+\newpage
+\section*{この巻の読み方}
+\addcontentsline{toc}{section}{この巻の読み方}
+\begin{itemize}
+\item \textbf{最短ルート}：\S\ref{sec:symbol}（主シンボル）$\to$ \S\ref{sec:ell}（楕円性）$\to$ \S\ref{sec:sobolev}、\S\ref{sec:reg}（トーラス上の解析。結果だけ先に読んでもよい）$\to$ \S\ref{sec:fred}（Fredholm）$\to$ \S\ref{sec:closed}（閉多様体上の Fredholm 性と Hodge）$\to$ \S\ref{sec:indsym}（指数とシンボル）。
+\item \textbf{第8巻に進む人}：\S\ref{sec:indsym} と \S\ref{sec:examples}（例）。
+\item \textbf{統合論文に進む人}：\S\ref{sec:cx}（例 \ref{ex:unifiedcx}）、\S\ref{sec:closed} の命題 \ref{prop:HHfinite}、\S\ref{sec:noncompact}（指数予想の位置づけ）。
+\item 証明は、トーラス上のものを\emph{すべて}書いた。一般の閉多様体は、局所化でトーラスの議論に帰着する骨子を述べる。
+\item 問題は各節末に置き、全問の解答は巻末にある。計算の多くは Python で検算し、検算した項目は巻末の付録に一覧する。
+\end{itemize}
+\begin{center}
+\begin{tikzpicture}[node distance=3.5mm,font=\footnotesize,>=Stealth,every node/.style={draw,rounded corners=2pt,inner sep=2.5pt,fill=blue!4,align=center}]
+\node (sym) {主シンボル\\[-1pt]{\scriptsize \S1}};
+\node[right=of sym] (ell) {楕円性・楕円複体\\[-1pt]{\scriptsize \S2--3}};
+\node[right=of ell] (sob) {Sobolev・Rellich\\[-1pt]{\scriptsize \S4}};
+\node[right=of sob] (reg) {正則性・Gårding\\[-1pt]{\scriptsize \S5}};
+\node[below=8mm of ell] (fred) {Fredholm・指数の安定性\\[-1pt]{\scriptsize \S6}};
+\node[right=of fred] (cl) {閉多様体：Fredholm・Hodge\\[-1pt]{\scriptsize \S7}};
+\node[right=of cl] (is) {指数 $=$ シンボルの関数\\[-1pt]{\scriptsize \S8}};
+\node[below=8mm of cl,fill=green!6] (ex) {例（$S^1,\T^n,T^2,$ Riemann 面）\\[-1pt]{\scriptsize \S9}};
+\node[right=of ex,fill=orange!10] (nc) {非コンパクト：Fredholm でない\\[-1pt]{\scriptsize \S10（第10巻へ）}};
+\draw[->] (sym)--(ell); \draw[->] (ell)--(sob); \draw[->] (sob)--(reg);
+\draw[->] (reg.south)--++(0,-2mm)-|(cl.north);
+\draw[->] (fred)--(cl); \draw[->] (cl)--(is); \draw[->] (is)--(ex); \draw[->] (ex)--(nc);
+\end{tikzpicture}
+\end{center}
+

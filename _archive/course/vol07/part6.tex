@@ -1,0 +1,243 @@
+
+%==========================================================================
+\section*{解答}
+\addcontentsline{toc}{section}{解答}
+\begin{sol}{\ref{p:symcalc}}
+(a) $\partial_x^2$ が 2 階の部分、$\sigma_2=(i\xi)^2=-\xi^2$（$x\partial_y$ は 1 階）。(b) 2 階の部分は $-\sum\partial_{x_j}^2$、$\sigma_2=-\sum(i\xi_j)^2=|\xi_x|^2$（$\tau$ によらない）。(c) $\sigma_2=(i\tau)^2-\sum(i\xi_j)^2=-\tau^2+|\xi_x|^2$。(d) $\sigma_1(\bar\partial)=\frac12(i\xi+i\cdot i\eta)=\frac i2(\xi+i\eta)$。
+\end{sol}
+\begin{sol}{\ref{p:polar}}
+計量 $dr^2+r^2d\theta^2$ で $|\xi|^2=\xi_r^2+r^{-2}\xi_\theta^2$。作用素の 2 階の部分 $-(\partial_r^2+r^{-2}\partial_\theta^2)$ のシンボルは $-((i\xi_r)^2+r^{-2}(i\xi_\theta)^2)=\xi_r^2+r^{-2}\xi_\theta^2$。Cartesian の $\xi=\xi_xdx+\xi_ydy$ は $dx=\cos\theta\,dr-r\sin\theta\,d\theta$、$dy=\sin\theta\,dr+r\cos\theta\,d\theta$ により $\xi_r=\xi_x\cos\theta+\xi_y\sin\theta$、$\xi_\theta=r(-\xi_x\sin\theta+\xi_y\cos\theta)$。$\xi_r^2+r^{-2}\xi_\theta^2=\xi_x^2+\xi_y^2$（回転）で一致。
+\end{sol}
+\begin{sol}{\ref{p:adjsym}}
+$\int xu'\bar v=-\int u\,(x\bar v)'=\int u\,\overline{(-(xv)')}$ なので $P^*v=-(xv)'=-xv'-v$。$\sigma_1(P)=ix\xi$、$\sigma_1(P^*)=-ix\xi=\overline{ix\xi}$。$\bar\partial$：$\int(u_x+iu_y)\bar v=-\int u(\bar v_x+i\bar v_y)=-\int u\,\overline{(v_x-iv_y)}$ より $\bar\partial^*=-\frac12(\partial_x-i\partial_y)=-\partial$。$\sigma_1(\bar\partial^*)=-\frac i2(\xi-i\eta)=\overline{\frac i2(\xi+i\eta)}$。
+\end{sol}
+\begin{sol}{\ref{p:poisson}}
+$p=i\sum_l\xi_lX^l$、$q=i\sum_l\xi_lY^l$。$\partial_{\xi_j}p=iX^j$、$\partial_{x_j}q=i\sum_l\xi_l\partial_jY^l$ なので $\sum_j\partial_{\xi_j}p\,\partial_{x_j}q=-\sum_{j,l}\xi_lX^j\partial_jY^l$。同様に $\sum_j\partial_{x_j}p\,\partial_{\xi_j}q=-\sum_{j,l}\xi_lY^j\partial_jX^l$。したがって $\{p,q\}=-\sum_l\xi_l(X^j\partial_jY^l-Y^j\partial_jX^l)=-\xi([X,Y])$。$-i\{p,q\}=i\xi([X,Y])=\sigma_1([X,Y])$。
+\end{sol}
+\begin{sol}{\ref{p:elllist}}
+(a) シンボル $-(\xi^2+\xi\eta+\eta^2)$、判別式 $1-4<0$ なので $(\xi,\eta)\ne0$ で $\ne0$：楕円型。(b) $\xi^2+4\xi\eta+\eta^2=0$ は実の $(\xi,\eta)\neq0$（$\eta=(-2\pm\sqrt3)\xi$）をもつ：楕円型でない。(c) $\xi^2-\eta^2=0$（$\xi=\pm\eta$）：楕円型でない。(d) シンボル行列 $\begin{pmatrix}i\xi&-i\eta\\i\eta&i\xi\end{pmatrix}$、$\det=-\xi^2-\eta^2\ne0$：楕円型（Cauchy--Riemann 系）。(e) 2 階の部分 $\partial_x^2$、シンボル $-\xi^2$ が $\xi=0$、$\eta\ne0$ で $0$：楕円型でない。
+\end{sol}
+\begin{sol}{\ref{p:sigmaDirac}}
+(a) $\iota_\xi$ は反微分で $\iota_\xi(\xi\wedge\omega)=|\xi|^2\omega-\xi\wedge\iota_\xi\omega$。(b) $(\xi\wedge-\iota_\xi)^2=(\xi\wedge)^2-\xi\wedge\iota_\xi-\iota_\xi\xi\wedge+\iota_\xi^2=-|\xi|^2$（$(\xi\wedge)^2=0=\iota_\xi^2$）。$\sigma(d+d^*)=i(\xi\wedge-\iota_\xi)$ の二乗は $|\xi|^2$ で、$\xi\ne0$ で可逆。（Python：$n=2,3,4,5$ の乱数 $\xi$ で $|S^2-|\xi|^2|<10^{-14}$。）(c) $\Lambda^0\oplus\Lambda^2$ の階数 $1+3=4$、$\Lambda^1\oplus\Lambda^3$ の階数 $3+1=4$。
+\end{sol}
+\begin{sol}{\ref{p:paulidirac}}
+$\sigma_1(D)=-i\cdot i(\sigma_x\xi+\sigma_y\eta)=\sigma_x\xi+\sigma_y\eta=\begin{pmatrix}0&\xi-i\eta\\\xi+i\eta&0\end{pmatrix}$。二乗は $(\xi^2+\eta^2)I$。$D=-i\begin{pmatrix}0&\partial_x-i\partial_y\\\partial_x+i\partial_y&0\end{pmatrix}=-2i\begin{pmatrix}0&\partial\\\bar\partial&0\end{pmatrix}$。
+\end{sol}
+\begin{sol}{\ref{p:scalarodd}}
+$m$ が奇数とする。$p(\xi)=\sigma_m(P)(\xi)$ は $S^{n-1}\to\C^*$ の連続写像で $p(-\xi)=-p(\xi)$。$n\ge3$ で $S^{n-1}$ は単連結なので $p=e^h$（$h$ は連続）。$p(-\xi)=-p(\xi)$ から $h(-\xi)-h(\xi)\in i\pi(2\Z+1)$、これは連続な関数なので整数 $j$ について $h(-\xi)-h(\xi)=i\pi(2j+1)$（$S^{n-1}$ は連結）。$\xi\to-\xi$ とすると $h(\xi)-h(-\xi)=i\pi(2j+1)$。足して $0=2\pi i(2j+1)$、矛盾。$n=2$：$p(\xi,\eta)=\xi+i\eta$（$\bar\partial$ の $2\times$ シンボル）は 1 階で $p(-\xi)=-p(\xi)$、$S^1$ は単連結でなく、$p$ は回転数 $1$。$n=1$：$S^0$ は 2 点で $p(\xi)=i\xi$。
+\end{sol}
+\begin{sol}{\ref{p:dbarlap}}
+$\sigma_1(\bar\partial)(\xi)=i\xi^{0,1}\wedge:\C\to\Lambda^{0,1}$。Euclid 計量で $|d\bar z|^2=2$、$\xi^{0,1}=\frac{a+ib}2d\bar z$（$\xi=a\,dx+b\,dy$）。$\sigma_1(\bar\partial)^*\sigma_1(\bar\partial)=|\xi^{0,1}|^2=\frac{a^2+b^2}4\cdot2=\frac12|\xi|^2$。
+\end{sol}
+\begin{sol}{\ref{p:koszul3}}
+$\xi\wedge$ は $e_1\wedge$。$\Lambda^0\to\Lambda^1$：$1\mapsto e_1$、階数 $1$。$\Lambda^1\to\Lambda^2$：$e_1\mapsto0$、$e_2\mapsto e_{12}$、$e_3\mapsto e_{13}$、階数 $2$。$\Lambda^2\to\Lambda^3$：$e_{12},e_{13}\mapsto0$、$e_{23}\mapsto e_{123}$、階数 $1$。各場所で $\dim\Ker=$ 次の階数：$\Lambda^1$：$3-2=1=$ 前の階数。$\Lambda^2$：$3-1=2$。$\Lambda^0$ 単射、$\Lambda^3$ 全射。完全。$\Lambda^1,\Lambda^2\cong\R^3$（Hodge 星）で $\xi\wedge$ はそれぞれ $f\mapsto f\xi$（grad のシンボル）、$v\mapsto\xi\times v$（curl）、$w\mapsto\xi\cdot w$（div）。$\xi\times(f\xi)=0$、$\Ker(\xi\times)=\R\xi$、$\Ran(\xi\times)=\xi^\perp=\Ker(\xi\cdot)$。
+\end{sol}
+\begin{sol}{\ref{p:dbarcx2}}
+階数 $1,2,1$。$v=(v_1,v_2)\neq0$：第 1 写像 $1\mapsto v_1d\bar z_1+v_2d\bar z_2$、階数 $1$。第 2 写像 $\alpha\mapsto v\wedge\alpha$：$\alpha=\alpha_1d\bar z_1+\alpha_2d\bar z_2\mapsto(v_1\alpha_2-v_2\alpha_1)d\bar z_1\wedge d\bar z_2$、階数 $1$。中央の $\dim\Ker=2-1=1=$ 第 1 写像の階数、完全。単独の $\bar\partial:\mathcal A^{0,0}\to\mathcal A^{0,1}$ は階数 $1\to2$ で同型にならず楕円型作用素ではない（シンボルは単射だが全射でない。``過剰決定''）が、複体としては楕円型。
+\end{sol}
+\begin{sol}{\ref{p:n1total}}
+合成：$x\mapsto(wx,vx)\mapsto v(wx)-w(vx)=0$。$v\ne0$：第 1 写像は第 2 成分 $vx$ により単射、第 2 写像は $(y,z)\mapsto vy-wz$ が全射。$\Ker$（第 2）$=\{(y,z):vy=wz\}=\{(wx,vx)\}$（$x=z/v$）は第 1 写像の像に一致：完全。$v=0$：第 1 写像 $x\mapsto(wx,0)$、第 2 写像 $(y,z)\mapsto-wz$。$w\ne0$ なら単射、$\Ker=\{z=0\}=$ 像、全射で、やはり完全。$v=w=0$ のときだけ完全でない。
+\end{sol}
+\begin{sol}{\ref{p:cxcheck}}
+(a) 完全列 $0\to V_0\to\cdots\to V_N\to0$ の次元の交代和は、$\dim V_k=\rk s_k+\rk s_{k-1}$（$\ker s_k=\operatorname{im}s_{k-1}$）の交代和で、telescoping により $0$。(b) 列 $0\to E_{0,x}\xrightarrow{\sigma(P)}E_{1,x}\to0$ が完全 $\iff$ $\sigma(P)$ が同型。(c) $\C^3$（または 3 次元複素多様体）の Dolbeault 複体：階数 $\binom3q=1,3,3,1$。または、平坦な直線束 $\C_\rho$ 係数の de Rham 複体 $(\Omega^\bullet(\R^3;\C_\rho),d_\nabla)$。
+\end{sol}
+\begin{sol}{\ref{p:absx}}
+$\ft u(k)=\frac1{2\pi}\int_{-\pi}^\pi|x|e^{-ikx}dx=\frac1\pi\int_0^\pi x\cos kx\,dx=\frac{(-1)^k-1}{\pi k^2}$（$k\ne0$）、$\ft u(0)=\pi/2$。$k$ 奇数で $|\ft u(k)|=\frac2{\pi k^2}$、偶数で $0$。$\sum_{k\ \rm odd}\jb k^{2s}k^{-4}\asymp\sum k^{2s-4}$ は $2s-4<-1$ すなわち $s<\frac32$ のとき有限。ゆえに $u\in H^s\iff s<3/2$（数値で係数を確認）。
+\end{sol}
+\begin{sol}{\ref{p:delta}}
+$\nrm{\delta_0}s^2=\sum_{k\in\Z^n}\jb k^{2s}<\infty\iff2s<-n$、すなわち $s<-n/2$。汎関数 $u\mapsto u(0)=\sum\ft u(k)$ が $H^s$ 上有界 $\iff\delta_0\in H^{-s}\iff-s<-n/2\iff s>n/2$。これは $H^s\subset C^0$ の閾値 $s>n/2$ と一致する。
+\end{sol}
+\begin{sol}{\ref{p:rellichfail}}
+(a) $\nrm{e_k}s=\jb k^s\to0$（$s<0$）。(b) $\jb k^{-s}e_k$ は $H^s$ の正規直交系で互いの距離が $\sqrt2$、収束部分列なし：恒等写像は単位球をコンパクト集合に写さない。(c) 乗数 $\jb k^{-1}$ は、$\Pi_N$ との差のノルムが $\le\jb N^{-1}\to0$ で、有限階数作用素のノルム極限なのでコンパクト。（Rellich の補題の一般形。）
+\end{sol}
+\begin{sol}{\ref{p:H12}}
+(a) $\nrm u{1/2}^2=2\sum_{k\ge2}\jb k\,\frac1{k^2\log^2k}\le C\sum\frac1{k\log^2k}<\infty$（積分判定 $\int\frac{dx}{x\log^2x}<\infty$）。(b) $u\in L^\infty$ なら Fejér 核 $F_N\ge0$、$\int F_N=1$ より $\sigma_Nu(0)=\int uF_N\le\nrm u\infty$。他方 $\ft u\ge0$ なので $\sigma_Nu(0)\ge\frac12\sum_{2\le|k|<N/2}\ft u(k)=\sum_{2\le k<N/2}\frac1{k\log k}\to\infty$（$\int\frac{dx}{x\log x}=\log\log x$）。矛盾。
+\end{sol}
+\begin{sol}{\ref{p:solveFourier}}
+乗数 $k^2+1$ により $u=\frac15\sin2x+\frac12\cdot\frac1{26}\cos5x=\frac15\sin2x+\frac1{52}\cos5x$。一般に $\ft u(k)=(1+k^2)^{-1}\ft f(k)$ で、$(1+k^2)^{-1}\le\jb k^{-2}$ だから $\nrm u{s+2}\le\nrm fs$（$\jb k^{2(s+2)}|\ft u|^2\le\jb k^{2s}|\ft f|^2$）。
+\end{sol}
+\begin{sol}{\ref{p:bochner}}
+$\bar\partial e_k=\frac12(ik_1+i\cdot ik_2)e_k=\frac i2(k_1+ik_2)e_k$、$|\cdot|^2=\frac14|k|^2$。$4\nrm{\bar\partial u}0^2=\sum|k|^2|\ft u|^2=\nrm{\nabla u}0^2$。$\nrm u1^2=\nrm u0^2+\nrm{\nabla u}0^2=\nrm u0^2+4\nrm{\bar\partial u}0^2$（Gårding 型の評価が定数 $1$ で等号）。$\bar\partial u=0$ なら $\nabla u=0$、$u$ は定数。核は定数関数。
+\end{sol}
+\begin{sol}{\ref{p:Deltamu}}
+$\widehat{Pu}(k)=(|k|^2-\mu)\ft u(k)$ なので $Pu=0\iff\ft u(k)=0$（$|k|^2\ne\mu$）。核は $|k|^2=\mu$ の有限個の $e_k$ の張る空間。$P$ は実乗数で自己随伴、余核 $=$ 核、指数 $0$（定数係数の定理 \ref{thm:constell}(c)）。$\dim\Ker P=r_2(\mu)=\#\{k\in\Z^2:|k|^2=\mu\}$：$\mu=1$：$4$；$\mu=2$：$4$（$(\pm1,\pm1)$）；$\mu=3$：$0$；$\mu=5$：$8$（$(\pm1,\pm2),(\pm2,\pm1)$）；$\mu=25$：$12$（$(\pm5,0),(0,\pm5),(\pm3,\pm4),(\pm4,\pm3)$）。Python で確認。
+\end{sol}
+\begin{sol}{\ref{p:nonell}}
+$u=f(x)$ なら $\partial_yu=0$。(a) $f\in L^2\setminus C^\infty$ なら $Pu=0\in C^\infty$ だが $u\notin C^\infty$。(b) $\Ker P\supset\{f(x)\}$ は無限次元、Fredholm でない。
+\end{sol}
+\begin{sol}{\ref{p:laxsturm}}
+(a) 部分積分で $\ip{Pu}v=\int au'\bar v'+qu\bar v=\ip u{Pv}$（$q$ 実）：自己随伴。定理 \ref{thm:garding2}（$a_{11}=a\ge\theta$）と系 \ref{cor:lax}、または系 \ref{cor:indzero}(b) により指数 $0$。(b) $(au')'=qu$ は 2 階の線形 ODE で、解は $(u(0),u'(0))$ で決まるから、解空間は 2 次元以下、周期解はその部分空間。$a\equiv1$、$q\equiv-1$：$-u''-u=0$ の解 $\cos x,\sin x$ はともに周期的で $\dim\Ker P=2$（余核も 2）。(c) $\ip{Pu}u=\int a|u'|^2+q|u|^2=0$ なら $u'\equiv0$、$u\equiv c$、$|c|^2\int q=0$ より $c=0$。
+\end{sol}
+\begin{sol}{\ref{p:fredbasic}}
+(a) $S^3$：核 $0$、余核 $\operatorname{span}\{e_0,e_1,e_2\}$、指数 $-3$。$(S^*)^2$：核 $\operatorname{span}\{e_0,e_1\}$、全射、指数 $2$。$S^2(S^*)^5$：指数 $-2+5=3$。(b) $T_t=t$：$t=0$ で核・余核とも 1 次元、$t\ne0$ で $0$、指数 $0$。$\operatorname{diag}(t,1)$ も同様。
+\end{sol}
+\begin{sol}{\ref{p:notfred}}
+(a) $D$ は単射（$De_j=\frac1{j+1}e_j$）。値域が閉なら下に有界（開写像定理）のはずだが $\nrm{De_j}{}\to0$ で矛盾。(b) $\Ker(1-\Pi_0)=\C e_0$、$\Ran=e_0^\perp$（閉、余次元 1）、指数 $0$。(c) $D$ はコンパクト（有限階数 $\Pi_N$ へのノルム収束）、$1$ は指数 $0$ の Fredholm なので $1+D$ も Fredholm で指数 $0$（実際は可逆）。
+\end{sol}
+\begin{sol}{\ref{p:toeplitz2}}
+$(S-a)(S+a)=S^2-a^2=S^2+0.3$、$a=i\sqrt{0.3}$、$|a|\approx0.548<1$。$S-a$：$(Sx)_j=x_{j-1}$（$x_{-1}=0$）、$(S-a)x=0$ なら $j=0$ で $-ax_0=0$、$x_0=0$、順に $x_j=0$。核 $0$。$(S-a)^*=S^*-\bar a$、$(S^*x)_j=x_{j+1}$、$S^*x=\bar ax$ なら $x_j=\bar a^jx_0$、$|\bar a|<1$ なので $\ell^2$：1 次元。余核 1 次元、指数 $-1$。$S+a=S-(-a)$ も同じ。命題 \ref{prop:compose} より $\ind T_f=-2$、核 $0$、余核は $x^{(1)}_j=\bar a^j$、$x^{(2)}_j=(-\bar a)^j$（すなわち $(-i\sqrt{0.3})^j$ と $(i\sqrt{0.3})^j$）で張られる 2 次元。Python：$(S^*)^2x+0.3x=0$ を確認（$10^{-16}$）。
+\end{sol}
+\begin{sol}{\ref{p:sixterm}}
+$\Ker T=0$、$\Ker ST=\Ker S^2=0$、$\Ker S=0$、$Y/\Ran T=\ell^2/\Ran S=\C[e_0]$、$Z/\Ran ST=\ell^2/\Ran S^2=\operatorname{span}\{[e_0],[e_1]\}$、$Z/\Ran S=\C[e_0]$。列：$0\to0\to0\to0\to\C\to\C^2\to\C\to0$。$\bar S[e_0]=[Se_0]=[e_1]$、最後の写像は $[e_0]\mapsto[e_0]$、$[e_1]\mapsto[e_1]=0$（$e_1\in\Ran S$）。完全（$\bar S$ の像 $=\C[e_1]=$ 最後の写像の核）。次元の交代和 $0-0+0-1+2-1=0$。指数 $\ind S^2=-2=(-1)+(-1)$。
+\end{sol}
+\begin{sol}{\ref{p:green1}}
+$\mathcal H=\{\text{定数}\}$、$Ge_k=k^{-2}e_k$（$k\ne0$）、$Ge_0=0$。$Hf=3$、$Gf=\sin x+\frac14\cos2x$、$\Delta Gf=\sin x+\cos2x$（$\Delta\sin x=\sin x$、$\Delta\cos2x=4\cos2x$）。ゆえに $f=3+\Delta Gf$。
+\end{sol}
+\begin{sol}{\ref{p:hodge1form}}
+$d\alpha=-\cos(x+y)\,dx\wedge dy$、$d^*\alpha=-\cos(x+y)$。係数が平均 $0$ なので調和部分 $h=0$。$\varphi=-\frac12\cos(x+y)$ とすると $d\varphi=\frac12\sin(x+y)(dx+dy)$（$\Delta\varphi=-\varphi_{xx}-\varphi_{yy}=-\cos(x+y)=d^*\alpha$ を満たす）。残り $\alpha-d\varphi=\frac12\sin(x+y)(dx-dy)$。$\psi=g\,dx\wedge dy$、$g=-\frac12\cos(x+y)$ とすると $d^*\psi=g_y\,dx-g_x\,dy=\frac12\sin(x+y)(dx-dy)$。よって $\alpha=0+d\varphi+d^*\psi$、$\varphi=\psi$ の係数 $=-\frac12\cos(x+y)$。（有限差分で成分を検算。）
+\end{sol}
+\begin{sol}{\ref{p:chiind}}
+(a) $b=(1,2g,1)$、$\chi=2-2g$。(b) $b_k=\binom nk$、$\chi=0$。(c) $S^n$：$b_0=b_n=1$、$\chi=1+(-1)^n$（偶数で $2$、奇数で $0$）。(d) $\CP^2$：$1+1+1=3$。いずれも $\ind(d+d^*:\Omega^{\rm ev}\to\Omega^{\rm odd})=\sum_{\rm ev}b_k-\sum_{\rm odd}b_k$。
+\end{sol}
+\begin{sol}{\ref{p:torusa}}
+$P_ae_k=\bigl(\frac i2(k_1+ik_2)+a\bigr)e_k$。零になるのは $a=-\frac i2(k_1+ik_2)=\frac12(k_2-ik_1)$。したがって $a\in\frac12(\Z+i\Z)$ のときだけ、$k=(k_1,k_2)$ に対応する 1 つの $e_k$ が核（1 次元）、他の $a$ では核 $0$。$P_a^*e_k=\overline{\lambda_k}e_k$（$\lambda_k$ は $P_a$ の固有値）なので $\Ker P_a^*$ も同じ条件で 1 次元（同じ $e_k$）。余核 $=\Ker P_a^*$、指数 $0$。
+\end{sol}
+\begin{sol}{\ref{p:stronglyell}}
+(a) $V$ 実なので $\Delta_g+V$ は形式的に自己随伴：指数 $0$（系 \ref{cor:indzero}(b)）。(b) シンボル $|\xi|^2$（正定値）、$(1-t)|\xi|^2+t|\xi|^2$ のホモトピー（定数）で $\Delta_g$ に等しい。強楕円型：指数は $\Delta_g$ の指数 $0$。$\nabla^*\nabla+V$：シンボルは $|\xi|^2\mathrm{id}_E$（正定値）なので、$V$ が自己随伴でなくても（低階の摂動）指数 $0$（系 \ref{cor:indzero}(a)(c)）。
+\end{sol}
+\begin{sol}{\ref{p:composition}}
+$a\#b=ab-i\,\partial_\xi a\,\partial_xb=f\xi^2-if'\xi$。右辺：$\Op(f\xi^2-if'\xi)u=fD^2u-if'Du=-fu''-if'(-iu')=-fu''-f'u'$。左辺：$D(fDu)=-i(f\cdot(-iu'))'=-(fu')'=-fu''-f'u'$。一致。交換子：$[D,fD]u=-fu''-f'u'+fu''=-f'u'=-if'Du$、シンボル $-if'\xi$。$-i\{a,b\}=-i(\partial_\xi a\,\partial_xb-\partial_xa\,\partial_\xi b)=-i\,f'\xi$。一致。
+\end{sol}
+\begin{sol}{\ref{p:Af}}
+$w=2$：$A e_k=e_{k+2}$（$k\ge0$）、$=e_k$（$k<0$）。像は $e_0,e_1$ 以外すべて（$e_{j}$、$j\ge2$ は $e_{j-2}$ から、$e_k$、$k<0$ は $e_k$ から）、核 $0$。余核 $\operatorname{span}\{e_0,e_1\}$、指数 $-2$。$w=-2$：$e_0\mapsto e_{-2}$、$e_1\mapsto e_{-1}$、$e_j\mapsto e_{j-2}$（$j\ge2$）、$e_{-1}\mapsto e_{-1}$、$e_{-2}\mapsto e_{-2}$。核 $\operatorname{span}\{e_0-e_{-2},\,e_1-e_{-1}\}$、全射、指数 $+2=-w$。$f_t=e^{2i\theta}+0.3t$：$|f_t|\ge1-0.3t\ge0.7>0$ なので $a_t=f_t\chi+1-\chi$ は楕円型シンボルの連続な族、$\ind A_{f_1}=\ind A_{f_0}=\ind A_{e^{2i\theta}}=-2$。
+\end{sol}
+\begin{sol}{\ref{p:S1odd}}
+$A:S^1\to GL_r(\C)$ はループで、$\pi_1(GL_r(\C))\cong\Z$（$\det$ の回転数 $w$）なので、$A$ は $A_0=\operatorname{diag}(e^{iw\theta},1,\dots,1)$ にループとしてホモトピック（$A_t$）。$P_t=A_t\frac d{d\theta}$ のシンボルは $iA_t(\theta)\xi$、$\xi\ne0$ で可逆。定理 \ref{thm:symhomotopy} と $B$（0 階）の除去により $\ind P=\ind(A_0\frac d{d\theta})$。後者は直和 $e^{iw\theta}\frac d{d\theta}\oplus\frac d{d\theta}\oplus\cdots$。$e^{iw\theta}\frac d{d\theta}$：核 $=$ 定数（1 次元）。随伴 $-\frac d{d\theta}\circ e^{-iw\theta}$ の核：$(e^{-iw\theta}v)'=0$、$v=ce^{iw\theta}$（1 次元）。指数 $0$。$\frac d{d\theta}$ も指数 $0$。ゆえに $\ind P=0$。
+\end{sol}
+\begin{sol}{\ref{p:S1b}}
+$\int_0^{2\pi}b=2\pi c$ なので核が $0$ でないのは $c\in i\Z$、$c=in$ のとき核は $e^{in\theta+\varepsilon\sin\theta}$ で張られる。$c=0.5$：$u'-bu=f$ の一般解 $u=e^{B}(u_0+\int_0^\theta e^{-B}f)$、$B=c\theta+\varepsilon\sin\theta$。周期条件 $u(2\pi)=u(0)$：$e^{2\pi c}(u_0+I)=u_0$、$I=\int_0^{2\pi}e^{-B}f$。$e^{2\pi c}=e^\pi\ne1$ なので $u_0=\frac{e^{\pi}I}{1-e^{\pi}}$ と一意に決まる。任意の $f$ で一意に解けるので余核 $0$、核 $0$。（$c=2i$ の数値例の最小特異値 $10^{-16}$ と整合。）
+\end{sol}
+\begin{sol}{\ref{p:landau2}}
+$k=2$：$v_\rho(s)=\exp(\rho s-\frac{s^2}{2\pi})$、$u_\rho(x,y)=\sum_jv_\rho(x-2\pi j)e^{i(\rho+2j)y}$（$\rho=0,1$）。$u_\rho(x+2\pi,y)=\sum_jv_\rho(x-2\pi(j-1))e^{i(\rho+2j)y}$、$j'=j-1$ で $=\sum_{j'}v_\rho(x-2\pi j')e^{i(\rho+2j'+2)y}=e^{2iy}u_\rho(x,y)$。$n=\rho+2j$ の係数は $v_\rho(x-2\pi j)$（$\rho=0$、$n=2j$ で $v_0(x-2\pi j)$）。（数値：準周期性の誤差 $10^{-15}$、$\bar\partial_Lu$ の残差 $10^{-11}$。）
+\end{sol}
+\begin{sol}{\ref{p:RRtable}}
+(a) $g=3$：$\ind=d-2$：$d=-1,0,2,4,6$ で $-3,-2,0,2,4$。(b) $d=5>2g-2=4$、$h^1=0$、$h^0=5+1-3=3$。(c) $L=K$、$d=4$：$\ind=4+1-3=2$、$h^0(K)=g=3$、$h^1(K)=h^0(\Oc)=1$（Serre 双対）、差 $3-1=2$ で一致。
+\end{sol}
+\begin{sol}{\ref{p:weyl}}
+$\nrm{u_N}0=\nrm\varphi0=1$、$u_N'=N^{-3/2}\varphi'(x/N)$、$\nrm{u_N'}0=N^{-1}\nrm{\varphi'}0=\frac1{N\sqrt2}\to0$。$\nrm{u_N}{H^1}\ge1$ で $\nrm{Pu_N}0\to0$：$P$ は下に有界でない。単射で値域が閉なら下に有界なので、値域は閉でない。$u_N$ は $H^1$ で有界（$\nrm{u_N}{H^1}^2=1+\frac1{2N^2}$）だが、$u_N\rightharpoonup0$ かつ $\nrm{u_N}0=1$ で $L^2$ で収束部分列をもたない：包含 $H^1(\R)\to L^2(\R)$ はコンパクトでない（Rellich が成り立たない）。核が有限次元で値域が閉という Fredholm の証明は Rellich に依存する。
+\end{sol}
+\begin{sol}{\ref{p:cyl}}
+(a) $c=1$：$(\partial_t+1)^{-1}F(t)=\int_{-\infty}^te^{-(t-s)}F(s)ds$、核 $e^{-(t-s)}1_{t>s}$。(b) $c=-1$：$(\partial_t-1)^{-1}F(t)=-\int_t^\infty e^{t-s}F(s)ds$、核 $-e^{t-s}1_{s>t}$。いずれも $L^1$ 核による畳み込みで有界。(c) 定理 \ref{thm:toyb}、命題 \ref{prop:cyl} の波束。(d) 各成分 $\partial_t+a_j$ は $a_j\ne0$ なら可逆で、逆のノルムは $1/|a_j|$。したがって直和が（有界に）可逆であるための条件は $\inf|a_j|>0$（$A$ が可逆）、$a_j=0$ の成分があれば Fredholm でない。$A$ の固有値が離散的で $|a_j|\to\infty$ の場合は「$A$ が可逆（すべての $a_j\ne0$）」。
+\end{sol}
+\begin{sol}{\ref{p:toydirichlet}}
+(a) $\Re c>0$：核は $e^{-ct}$ で $U(0)=1\ne0$、境界条件に反するので核 $0$。$U(t)=\int_0^te^{-c(t-s)}F\,ds$ は $L^2$、$U(0)=0$、$U'+cU=F$：全単射、指数 $0$。(b) $\Re c<0$：一般解 $U=e^{-ct}(U_0+\int_0^te^{cs}F)$、$U(0)=0$ で $U_0=0$。$e^{-ct}$ は増大なので $L^2$ に入るには $\int_0^\infty e^{cs}F\,ds=0$ が必要十分（$e^{cs}\in L^2$ なので有界線形汎関数）。核 $0$、値域は閉な超平面で余核 1 次元、指数 $-1$。(c) $\Re c=0$：定理 \ref{thm:toyb} の波束（台は $(N,3N)$）が $H^1_0$ に入るので Fredholm でない。差：境界条件なしでは指数 $1$（$\Re c>0$）と $0$（$\Re c<0$）、Dirichlet 条件つきでは $0$ と $-1$。境界条件 1 個で指数が丁度 $1$ 下がる（APS の境界条件の指数への寄与の最も簡単な形）。
+\end{sol}
+
+%==========================================================================
+\section{この巻の理解チェック（自己診断 11 問）}\label{sec:check}
+正誤（○／×）または短答で答えよ。解答は各問の直後。
+\begin{enumerate}
+\item 主シンボル $\sigma_m(P)(x,\xi)$ は、座標変換で不変な（$\xi\in T_x^*M$ の）量である。\\
+\textbf{解答。}○（最高次の係数の変換則だけが相手：定理 \ref{thm:symbol}）。
+\item $\C^2$ の $\bar\partial:C^\infty\to\mathcal A^{0,1}$ は楕円型作用素である。\\
+\textbf{解答。}×。階数 $1\to2$ でシンボルが同型にならない。Dolbeault 複体としては楕円型。
+\item 閉多様体上の楕円型作用素の核は有限次元で、滑らかな関数からなる。\\
+\textbf{解答。}○（定理 \ref{thm:mainFredholm}(b)）。
+\item $P:H^{s+m}\to H^s$ の指数は $s$ に依存する。\\
+\textbf{解答。}×。核・余核が滑らかな関数で $s$ によらない。
+\item Fredholm 作用素にコンパクト作用素を加えると指数が変わりうる。\\
+\textbf{解答。}×（定理 \ref{thm:stab}(b)）。
+\item 閉多様体上の自己随伴な楕円型作用素 $P:E\to E$ の指数は？\\
+\textbf{解答。}$0$（$\Ker P=\Ker P^*$）。
+\item $d+d^*:\Omega^{\rm ev}(M)\to\Omega^{\rm odd}(M)$ の指数は？\\
+\textbf{解答。}$\chi(M)=\sum(-1)^kb_k$。
+\item $\R$ 上の $d/dx:H^1\to L^2$ は楕円型だが Fredholm でない。この理由を一言で。\\
+\textbf{解答。}$\R$ は非コンパクトで Rellich が成り立たない（平行移動する波束が $\nrm{Pu_N}{}\to0$）。
+\item 種数 $g$ のコンパクト Riemann 面上、次数 $d$ の正則直線束 $L$ の $\ind\bar\partial_L$ は？\\
+\textbf{解答。}$d+1-g=h^0-h^1$。
+\item 指数が、主シンボルの（楕円型なものの間の）ホモトピー類だけで決まる理由は？\\
+\textbf{解答。}主シンボルが同じ作用素の差は低階でコンパクト（Rellich）、ホモトピーは作用素ノルムで連続な Fredholm 族を与えるので指数が一定。
+\item 統合論文の指数予想（予想 94）は、証明された定理か。\\
+\textbf{解答。}×。論文自身が【予想】と明記している（Fredholm 性と指数公式が未証明）。
+\end{enumerate}
+
+%==========================================================================
+\section{次巻以降への橋渡しと統合論文との対応}\label{sec:bridge}
+\paragraph{第8巻（Atiyah--Singer の指数定理）へ。}\S\ref{sec:indsym} の「指数 $=$ シンボルの類 $[\sigma]\in K(T^*M)$ の準同型」に、位相的な公式 $\ind P=(-1)^n\int_{T^*M}\ch([\sigma])\Td(TM\otimes\C)$ を与えるのが Atiyah--Singer の定理である。第8巻では、Clifford 代数・スピン構造・Dirac 作用素（本巻の例 \ref{ex:dirac}）を導入し、$\bar\partial_E+\bar\partial_E^*$（例 \ref{ex:hodgeD}）に適用して HRR $\chi(X,E)=\int\ch(E)\Td(X)$（第6巻）を\emph{指数として再導出}する。符号定理（$d+d^*$ に符号の次数づけを入れた作用素）、Gauss--Bonnet（$\chi(M)=\ind(d+d^*)$、例 \ref{ex:hodgeR}）も同じ枠組み。本巻の命題 \ref{prop:HHfinite} の左辺（統合論文の Euler 標数）は、第8巻の公式で $(-1)^n\rk(E)\chi(X)$ と計算される（第6巻の HRR 計算の指数的な読み直し）。熱核による証明の概略では、本巻の Hodge 理論（定理 \ref{thm:spectral}：離散スペクトル、固有関数は滑らか）が使われる。
+\paragraph{第8巻で再導出される指数の値（既知の結果の一覧）。}以下の値は、第4巻・第6巻で（Riemann--Roch、HRR、Noether の公式として）得た結果である。第8巻で Atiyah--Singer の公式から統一的に導く。
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{>{\raggedright\arraybackslash}p{5.4cm}>{\raggedright\arraybackslash}p{4.2cm}>{\raggedright\arraybackslash}p{4.4cm}}
+\toprule
+作用素 & 指数 & 出典\\
+\midrule
+$d+d^*:\Omega^{\rm ev}\to\Omega^{\rm odd}$ & $\chi(M)$ & 本巻 例 \ref{ex:hodgeR}\\
+$\bar\partial_L$（Riemann 面） & $\deg L+1-g$ & 第4巻\\
+$\bar\partial_E+\bar\partial_E^*$（複素 $n$ 次元） & $\int\ch(E)\Td(X)$ & 第6巻 HRR\\
+$\bar\partial$（複素曲面、$E=\Oc$） & $\chi(\Oc)=\frac{c_1^2+c_2}{12}$ & 第6巻 Noether の公式\\
+符号作用素（$d+d^*$ の次数づけ） & 符号数 $\tau(M)$ & 第6巻（主張）、第8巻\\
+スピン Dirac 作用素 & $\int\widehat A(M)$ & 第6巻（主張）、第8巻\\
+\bottomrule
+\end{tabular}
+\end{center}
+\paragraph{第9巻（族の指数定理）へ。}連続な楕円型作用素の族 $\{P_b\}_{b\in B}$ に対し、核の次元は跳ぶ（系 \ref{cor:fredopen}、上半連続）が、指数は一定（系 \ref{cor:family}）。族としての指数 $[\Ker]-[\Coker]\in K^0(B)$ は、核・余核を安定化して定義する（Atiyah--Jänich）。例：楕円曲線 $E$ 上の平坦直線束 $L_a$ の族（問 \ref{p:torusa}）：核は $a\in\frac12(\Z+i\Z)$ で跳ぶが、指数束は $\Pic^0$ 上の $K$ 群の元（第4巻 \S10 の $\Pic^d$ 上の Poincaré 束との関係、Bismut 超接続による $\ch$ の計算は第9巻）。
+\paragraph{第10巻（APS・$b$-計算）へ。}\S\ref{sec:noncompact} の例（$\partial_t+A$、$x\partial_x-r$、円板上の $\bar\partial$）の一般化。APS の指数定理は、境界つき多様体の Dirac 型作用素を境界での非局所条件（$\partial_t+A$ の $A$ の正のスペクトル射影）で Fredholm にし、指数を $\int\hat A\ch-\frac{h+\eta}2$ で与える（第10巻）。Melrose の $b$-計算は、$x\partial_x$ などの境界に接するベクトル場から生成される計算で、indicial family の可逆性が Fredholm 性の条件。Lie 亜群・Lie 構造つき無限遠（Ammann--Lauter--Nistor 等）は、楕円型シンボルと「正規作用素」の両方の可逆性で Fredholm 性を判定する枠組み。
+\paragraph{第11〜13巻へ。}Lie 亜代数・Poisson 加群・一般化正則束（第11〜13巻）の複体はいずれも、$\bar\partial$ と第 2 の微分（$[\sigma,\cdot]+V\wedge$）の全複体であり、本巻のフィルトレーション補題（補題 \ref{lem:filt}）で、``$\bar\partial$ のシンボルが楕円性を担う''という見方になる（命題 \ref{prop:unifiedell}）。
+\paragraph{第14巻（統合論文への案内）と統合論文との対応。}
+\begin{itemize}
+\item 論文の $\mathrm{HH}^k(E)$（コンパクト $X$、$\sigma$ 正則 Poisson）は楕円複体（全複体）のコホモロジーとして有限次元（命題 \ref{prop:HHfinite}）。ただし符号規約と複体の同定は\tQ。
+\item 論文の定理 22（全 Euler 標数 $=(-1)^n\rk(E)\chi(X)$、第6巻）：左辺は指数で、$\sigma,V$ によらない（命題 \ref{prop:HHfinite}(ii)）。値は第6巻の HRR で、また第8巻の指数公式で計算される。
+\item 論文の指数予想（予想 94、§10.4、\textbf{予想}）：$U=X\setminus D$ 上で、本巻 \S\ref{sec:noncompact} の対比を述べた。閉多様体の「楕円型 $\Rightarrow$ Fredholm」に対し、非コンパクトでは重み（留数 $r_i$）が指数的な根 $r\in\Z$ を避けるときだけ Fredholm になる、という形の予想。論文は、証明すべきこととして、Lie 亜代数 $TX(-\log D)$ 上の Fredholm 理論（Ammann--Lauter--Nistor の枠組みの重みつき版が自然としつつ未実施）、$b$-型の指数公式などを挙げている（論文の「証明すべきこと」(1)--(5)）。本巻はその背景（Fredholm 理論、Rellich の役割、おもちゃの模型）を準備した。
+\end{itemize}
+
+%==========================================================================
+\section*{付録：検算した項目}
+\addcontentsline{toc}{section}{付録：検算した項目}
+Python（numpy と自作コード。sympy は使えない）で次を検算した。スクリプトは \texttt{vol07/verify.py}、\texttt{vol07/verify2.py}（執筆者）と \texttt{vol07/verify3.py}（査読者による別実装。Clifford 関係式と Koszul 複体の完全性、統合論文の全複体のシンボル列の完全性、格子点数、Landau 準位の等間隔性 $\frac{k}{4\pi}n$、$\CP^n$ の $\sum_b(-1)^b\chi(\wedge^bT(m))=(-1)^n(n+1)$、Toeplitz の回転数、$\T^2$ の Hodge 分解、$P_a$ の核、Peetre・補間・正則化の不等式の数値確認）。
+\begin{itemize}
+\item $\sigma(d+d^*)^2=|\xi|^2$（$n=2,3,4,5$、乱数 $\xi$、誤差 $\le10^{-14}$）。$\xi\wedge$ の Koszul 複体の完全性（階数の和 $\binom nk$）、$n\le5$。
+\item Dolbeault のシンボル列（$\xi^{0,1}\wedge$、$n=1,\dots,4$）の完全性。
+\item 全複体 $s_0+t\,s_1$（$s_1$ は $\wedge^bT$ の外積）：$D^2=0$、完全性（$n=1,2,3$、$t=0,0.3,1,5$）。フィルトレーション補題の数値確認。
+\item 平坦トーラス $\T^{2n}$ の Dolbeault 複体の Hodge 数 $h^{0,q}=\binom nq$、$\chi=0$（$n\le5$）。
+\item 擬微分作用素の合成公式 $\Op(a)\Op(b)=\Op(ab-i\,\partial_\xi a\,\partial_xb)$（$S^1$、64 点、誤差 $1.3\times10^{-11}$）。
+\item $S^1$ 上の $d/d\theta-b$（$b=c_0+1.5\cos\theta$）の Fourier 行列の最小特異値：$c_0=0$：$2\times10^{-16}$、$c_0=2i$：$10^{-16}$、$c_0=0.5$：$0.122$、$c_0=0.3+i$：$0.066$。核が $\int b\in2\pi i\Z$ のときだけ現れることの確認。
+\item Toeplitz 型作用素 $A_f$（$\Pi_+f+\Pi_-$、$|k|\le80$ の切断行列）：$f=e^{2i\theta}+0.3$：最小特異値 2 個が $\approx10^{-16}$（他は $0.70$ 以上）、$f=e^{3i\theta}+0.5e^{i\theta}$：3 個、$f=e^{-i\theta}+0.3$：1 個、$f=1+0.3e^{i\theta}$（回転数 $0$）：なし。個数が $|\ind|=|w|$ に一致（符号は解析的に $-w$）。
+\item $T^2$ 上の $\bar\partial_L$ の核：$u_\rho=\sum_jv_\rho(x-2\pi j)e^{i(\rho+jk)y}$、$k=2,3$、すべての $\rho$ で準周期性（誤差 $\le10^{-15}$）と $\bar\partial_Lu=0$（残差 $\le10^{-9}$）。
+\item $|x|$ の Fourier 係数 $\frac{(-1)^k-1}{\pi k^2}$（数値積分との一致）。$r_2(\mu)$（$\mu=1,2,3,5,25$：$4,4,0,8,12$）。$\T^2$ の 1 形式 $\sin(x+y)dx$ の Hodge 分解（有限差分）。$T_f=S^2+0.3$ の余核ベクトル（$S^{*2}x+0.3x=0$、誤差 $10^{-16}$）。$e^{in\theta+\varepsilon\sin\theta}$ の周期性。
+\end{itemize}
+\textbf{検算していないもの}：Rellich、楕円正則性、Gårding、Fredholm の安定性、Hodge 分解、$b$-型のおもちゃ（定理 \ref{thm:toyb}）の証明は手計算（手元の再読のみ）。擬微分作用素の基本定理（定理 \ref{thm:psido}）、Atiyah--Singer の公式、Atiyah--Jänich、Toeplitz の指数（Douglas）、スペクトル流と APS、Melrose の $b$-計算の Fredholm 定理は文献の結果として使い、検算していない。外部の査読は受けていない。別の AI による独立検査（全 40 問の解き直しを含む）を受けた。
+
+\section*{記号表}
+\addcontentsline{toc}{section}{記号表}
+\begin{tabular}{lp{10cm}}
+$\Diff^m(E,F)$ & $m$ 階以下の線形微分作用素\\
+$\sigma_m(P)(x,\xi)$ & 主シンボル（規約：$\partial\leftrightarrow i\xi$）\\
+$P^*$ & 形式的随伴\\
+$\T^n$ & トーラス $\R^n/(2\pi\Z)^n$\\
+$\ft u(k)$、$e_k$ & Fourier 係数、$e^{ik\cdot x}$\\
+$\jb k$ & $(1+|k|^2)^{1/2}$\\
+$H^s$、$\nrm us$ & Sobolev 空間とそのノルム\\
+$\Lambda^s=\jb D^s$、$J_\varepsilon$ & Fourier 乗数（Bessel ポテンシャル、正則化）\\
+$\Ker,\Ran,\Coker$ & 核・値域・余核\\
+$\ind P$ & Fredholm 指数 $\dim\Ker P-\dim\Coker P$\\
+$(E_\bullet,P_\bullet)$ & 微分作用素の複体（楕円複体）\\
+$\Delta_k$、$\mathcal H_k$ & 複体の Laplacian、調和空間\\
+$\Op(a)$、$S^m$、$\Psi^m$ & 擬微分作用素、シンボルのクラス\\
+$\bar\partial_L$ & 正則直線束 $L$ の $\bar\partial$ 作用素\\
+$\mathrm{HH}^k(E)$ & 一般化 Dolbeault コホモロジー（統合論文）\\
+$S$ & 片側シフト（第6節）\\
+\end{tabular}
+
+\section*{参考文献}
+\addcontentsline{toc}{section}{参考文献}
+書名と章（節）まで。定理番号は確信がないため書かない。\tQ\ は章の番号が記憶に基づくもの。
+\begin{enumerate}
+\item H.~B.~Lawson, M.-L.~Michelsohn, \emph{Spin Geometry}, Princeton. 第 III 章（Dirac 作用素、微分作用素、Sobolev、楕円型作用素の理論、Fredholm、Hodge、指数定理の主張）。節の番号は記憶\tQ。
+\item R.~O.~Wells, \emph{Differential Analysis on Complex Manifolds}, Springer GTM. 第 III--IV 章（微分作用素、楕円型作用素の理論、Hodge 理論）。\tQ\ （章の割付）
+\item F.~W.~Warner, \emph{Foundations of Differentiable Manifolds and Lie Groups}, Springer GTM. 第 6 章（Hodge の定理、楕円型作用素）。
+\item J.~Roe, \emph{Elliptic Operators, Topology and Asymptotic Methods}, Longman/Chapman--Hall. 第 2--4 章あたり（Sobolev、楕円型作用素、Fredholm、Hodge）\tQ。
+\item L.~Hörmander, \emph{The Analysis of Linear Partial Differential Operators III}, Springer. 第 18 章（擬微分作用素）。
+\item M.~E.~Taylor, \emph{Pseudodifferential Operators}, Princeton. 擬微分作用素の基本。\emph{Partial Differential Equations I}, Springer（Sobolev、楕円型）。章番号は\tQ。
+\item M.~Ruzhansky, V.~Turunen, \emph{Pseudo-Differential Operators and Symmetries}, Birkhäuser. トーラス上の擬微分作用素（Fourier 級数による定式化）。章番号\tQ。
+\item M.~F.~Atiyah, I.~M.~Singer, \emph{The index of elliptic operators I}, \emph{III}, Ann.\ of Math.\ 87 (1968). 指数定理、シンボルの K 理論。
+\item R.~Palais, \emph{Seminar on the Atiyah--Singer Index Theorem}, Princeton. 楕円型作用素の解析と Fredholm 指数（前半）。章番号\tQ。
+\item M.~F.~Atiyah, \emph{K-Theory}, Benjamin. 付録（Fredholm 作用素と $K^0$、Atiyah--Jänich）。\tQ\ （付録の位置）
+\item T.~Kato, \emph{Perturbation Theory for Linear Operators}, Springer. 第 IV 章（Fredholm 作用素、指数の安定性）。
+\item J.~B.~Conway, \emph{A Course in Functional Analysis}, Springer GTM. 第 XI 章（Fredholm 理論）\tQ。R.~G.~Douglas, \emph{Banach Algebra Techniques in Operator Theory}, Springer. 第 7 章（Toeplitz 作用素）\tQ。
+\item M.~F.~Atiyah, V.~K.~Patodi, I.~M.~Singer, \emph{Spectral asymmetry and Riemannian geometry I, II, III}, Math.\ Proc.\ Cambridge Philos.\ Soc.\ 77, 78, 79 (1975--76). 境界つき多様体の指数定理、スペクトル流（第10巻）。
+\item R.~B.~Melrose, \emph{The Atiyah--Patodi--Singer Index Theorem}, A.~K.~Peters. $b$-計算（第10巻）。D.~Grieser, \emph{Basics of the $b$-calculus}, in: Approaches to Singular Analysis, Birkhäuser（章の位置は\tQ）。
+\item J.~Robbin, D.~Salamon, \emph{The spectral flow and the Maslov index}, Bull.\ London Math.\ Soc.\ 27 (1995).
+\item P.~Griffiths, J.~Harris, \emph{Principles of Algebraic Geometry}, Wiley. 第 0 章 \S6（Hodge 理論、楕円型作用素の取り扱い）。D.~Huybrechts, \emph{Complex Geometry}, Springer. 第 4 章（Hodge 理論）。
+\item 統合論文：\texttt{generalized-geometry-poisson-unified}（2026-11-22）、v1 PDF の §10.4（指数予想、予想 94、【予想】）と §4（定理 22）。同論文の文献表のうち、本巻で触れた Ammann--Lauter--Nistor、Braverman--Loizides--Song、Qiao--So、Mazzeo--Melrose は、論文の記述を通じて知ったのみで原典は未確認\tQ。
+\end{enumerate}
+\end{document}

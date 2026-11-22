@@ -1,0 +1,209 @@
+
+%==========================================================================
+\section{指数はシンボルだけで決まる：擬微分作用素の入口}\label{sec:indsym}
+\subsection{指数とシンボルのホモトピー}
+\begin{thm}\label{thm:lowerorder}\tP
+$P,Q\in\Diff^m(E,F)$ が楕円型で $\sigma_m(P)=\sigma_m(Q)$ なら $\ind P=\ind Q$。
+\end{thm}
+\begin{proof}
+$P-Q\in\Diff^{m-1}$ なので $P-Q:H^{s+m}\to H^{s+1}$ は有界で、包含 $H^{s+1}\hookrightarrow H^s$ はコンパクト（Rellich）。ゆえに $P-Q:H^{s+m}\to H^s$ はコンパクト。定理 \ref{thm:stab}(b)。
+\end{proof}
+\begin{thm}[シンボルのホモトピー不変性]\label{thm:symhomotopy}\tP
+$\sigma_t$（$t\in[0,1]$）を、$\Gamma(\mathrm{Sym}^mTM\otimes\Hom(E,F))$ の切断（局所座標での係数が $t$ について連続、微分も込めて連続）の族で、すべての $t$ で楕円型（$\xi\ne0$ で可逆）なものとする。$P_0,P_1\in\Diff^m(E,F)$ が $\sigma_m(P_i)=\sigma_i$ なら $\ind P_0=\ind P_1$。
+\end{thm}
+\begin{proof}
+有限個の座標近傍 $U_j$（自明化つき）、$\{\varphi_j\}$ をそれに従属する 1 の分割、$\varphi_j'\in C^\infty_c(U_j)$ を $\operatorname{supp}\varphi_j$ 上で $1$ とする。シンボル $\sigma$ の $U_j$ での局所表示 $\sigma=\sum_{|\alpha|=m}a^{(j)}_\alpha(i\xi)^\alpha$ に対し $\mathcal Q(\sigma)u=\sum_j\varphi_j\sum_{|\alpha|=m}a^{(j)}_\alpha\partial^\alpha(\varphi'_ju)$ と定める。$\mathcal Q(\sigma)\in\Diff^m$、$\sigma_m(\mathcal Q(\sigma))=\sum\varphi_j\sigma=\sigma$、$\sigma\mapsto\mathcal Q(\sigma)$ は線形で、係数の連続性から $B(H^{s+m},H^s)$ への連続写像（系 \ref{cor:Pbdd} の局所版）。$\mathcal Q(\sigma_t)$ は楕円型作用素の連続な族だから各 $t$ で Fredholm で（定理 \ref{thm:mainFredholm}）、指数は $t$ によらない（定理 \ref{thm:stab}(c)）。$P_i-\mathcal Q(\sigma_i)$ は $m-1$ 階なので定理 \ref{thm:lowerorder} により $\ind P_i=\ind\mathcal Q(\sigma_i)$。
+\end{proof}
+\begin{cor}\label{cor:indzero}\tP
+(a)（低階の項に依らない）$\ind P$ は主シンボルだけで決まる。特に Hermite 計量・接続の取り方によらない。\\
+(b)（自己随伴）$E=F$、$P=P^*$ なら $\ind P=0$。\\
+(c)（強楕円型）$E=F$、$m=2k$ で $\sigma_{2k}(P)(x,\xi)$ の Hermite 部分 $\frac12(\sigma+\sigma^*)$ が $\xi\ne0$ で正定値なら $\ind P=0$。\\
+(d)（積と随伴）$\ind(QP)=\ind Q+\ind P$、$\ind P^*=-\ind P$。\\
+(e)（正則構造の変形）$\bar\partial_{E_t}$（同じ $C^\infty$ ベクトル束上の正則構造の連続な族）の指数は $t$ によらない。
+\end{cor}
+\begin{proof}
+(a) 定理 \ref{thm:lowerorder}。(b) 定理 \ref{thm:spectral}（または $\Ker P=\Ker P^*$）。(c) $\sigma_t=(1-t)\sigma+t|\xi|^{2k}\mathrm{id}$ は各 $t$ で可逆（$\Re\ip{\sigma_tv}v>0$ だから $\sigma_tv=0$ なら $v=0$）、$t=1$ は $\Delta^k$（自己随伴）のシンボルで指数 $0$。定理 \ref{thm:symhomotopy}。(d) 命題 \ref{prop:compose}。(e) 主シンボルは $i\xi^{0,1}\wedge$ で $t$ によらない。
+\end{proof}
+\begin{rem}[位相的な量としての指数]
+指数は、楕円型シンボル $\sigma(x,\xi)$ の``類''の関数である。精確には、$\sigma$ は $T^*M$ の部分 $\{|\xi|\le1\}$（球束 $B^*M$）上のベクトル束の対 $(\pi^*E,\pi^*F)$ とその境界（球面束 $S^*M$）上の同型 $\sigma$ からなる組で、コンパクト台の K 理論 $K(T^*M)$ の元 $[\sigma]$ を定める。微分作用素のシンボルだけでは $K(T^*M)$ の全体を表せないが、擬微分作用素まで広げると（定理 \ref{thm:psido}(e)）、直和での加法性と合わせて $\ind$ は準同型 $K(T^*M)\to\Z$ を定める\tC\ （Atiyah--Singer I, III）。Atiyah--Singer の指数定理（第8巻）は
+\[
+\ind P=(-1)^n\int_{T^*M}\ch\bigl([\sigma(P)]\bigr)\,\Td(TM\otimes\C)\qquad(n=\dim_{\R}M)
+\]
+という形で、この準同型を特性類で書く\tC\ （Atiyah--Singer, \emph{The index of elliptic operators I, III}；Lawson--Michelsohn, 第 III 章 \S13；向きと符号の規約は文献によるので第8巻で精確に述べる\tQ）。Riemann 面上の $\bar\partial_L$ では右辺が $\deg L+1-g$ になる（第4巻 \S10、第6巻）。
+\end{rem}
+\begin{ex}[$\bar\partial$ のシンボルの回転数]\label{ex:windsymbol}
+$\R^2=\C$ 上の $\bar\partial$ のシンボルは $p(\xi,\eta)=\frac i2(\xi+i\eta)$。単位円 $|(\xi,\eta)|=1$ 上で $p/|p|=ie^{i\phi}$ は $\C^*$ への写像として回転数 $1$ をもつ。これは $\bar\partial$ のシンボルがファイバー方向に自明でないこと（Thom 類に当たる）を表す位相的なデータである。指数公式 $\deg L+1-g$ の $1-g=\frac12c_1(T\Sigma)$（$\ind\bar\partial_{\Oc}=\chi(\Sigma)/2$）は Todd 類 $\Td_1=\frac12c_1$ から出るが（第8巻）、回転数 $1$ からこの値が直接読めるわけではない。一方 $\deg L$ は、シンボルを $L$ でひねった（ベクトル束の係数）寄与である。
+\begin{center}
+\begin{tikzpicture}[>=Stealth,font=\small,scale=0.95]
+\draw[->] (-1.6,0)--(1.6,0) node[right]{$\xi$}; \draw[->] (0,-1.6)--(0,1.6) node[above]{$\eta$};
+\draw[thick,blue!60!black] (0,0) circle (1.1);
+\fill[red] (1.1,0) circle (1.5pt); \fill[red] (0,1.1) circle (1.5pt); \fill[red] (-1.1,0) circle (1.5pt); \fill[red] (0,-1.1) circle (1.5pt);
+\node at (0,-2.1) {$(\xi,\eta)\in S^1$};
+\draw[->,thick] (2.2,0)--node[above]{$p=\frac i2(\xi+i\eta)$}(4.4,0);
+\draw[->] (4.8,0)--(7.6,0) node[right]{$\Re$}; \draw[->] (6.2,-1.6)--(6.2,1.6) node[above]{$\Im$};
+\draw[thick,blue!60!black] (6.2,0) circle (0.55);
+\fill[red] (6.2,0.55) circle (1.5pt) node[above right]{\scriptsize $\phi=0$};
+\fill[red] (5.65,0) circle (1.5pt); \fill[red] (6.2,-0.55) circle (1.5pt); \fill[red] (6.75,0) circle (1.5pt);
+\node at (6.2,-2.1) {$p(S^1)\subset\C^*$：回転数 $1$};
+\end{tikzpicture}
+\end{center}
+\end{ex}
+\begin{rem}[奇数次元]
+$M$ が奇数次元の閉多様体で、$P$ が楕円型\emph{微分}作用素なら $\ind P=0$ が知られている（シンボルが $\sigma(x,-\xi)=(-1)^m\sigma(x,\xi)$ を満たすため、$K(T^*M)$ の元としては反対称で、指数が $0$ になる）\tC\ （Atiyah--Singer III、\S\ref{sec:examples} の $S^1$ の例と問 \ref{p:S1odd} を参照）。非自明な指数を見るには、次元が偶数であるか、擬微分作用素まで広げる必要がある。
+\end{rem}
+
+\subsection{擬微分作用素の入口}\label{sec:psido}
+微分作用素は、パラメトリクス（逆）をつくる際に微分作用素の外に出る。それを自然に扱うのが擬微分作用素である。ここでは $\T^n$ で、定義と主な事実だけを述べる。
+\begin{defn}[シンボルと擬微分作用素]
+$S^m=S^m(\T^n\times\R^n;\mathrm{Mat}_{r'\times r})$ を、$a\in C^\infty$ で $|\partial_x^\beta\partial_\xi^\gamma a(x,\xi)|\le C_{\beta\gamma}\jb\xi^{m-|\gamma|}$ を満たすもの全体とする。$a\in S^m$ に対し
+\[
+\Op(a)u(x)=\sum_{k\in\Z^n}a(x,k)\,\ft u(k)\,e^{ik\cdot x}
+\]
+を\emph{擬微分作用素}（$\Psi^m$ の元）という。微分作用素 $\sum a_\alpha(x)\partial^\alpha$ は $a(x,\xi)=\sum a_\alpha(x)(i\xi)^\alpha\in S^m$ に対応する。$a\in S^m$ が\emph{楕円型}であるとは、$|a(x,\xi)^{-1}|\le C\jb\xi^{-m}$（$|\xi|\ge R$）が成り立つこと。
+\end{defn}
+\begin{thm}[擬微分作用素の基本事実]\label{thm:psido}\tC
+(a) $\Op(a):H^s\to H^{s-m}$ は有界（すべての $s$）。\\
+(b)（合成）$a\in S^m$、$b\in S^{m'}$ に対し $\Op(a)\Op(b)=\Op(a\#b)$、$a\#b\sim\sum_{\alpha}\frac1{\alpha!}\,\partial_\xi^\alpha a\cdot D_x^\alpha b$（$D_x=-i\partial_x$、漸近展開：有限項で打ち切った残りは $S^{m+m'-N}$）。特に $a\#b-ab\in S^{m+m'-1}$。\\
+(c)（随伴）$\Op(a)^*=\Op(a^*)$、$a^*\sim\sum\frac1{\alpha!}\partial_\xi^\alpha D_x^\alpha a^\dagger$。\\
+(d)（パラメトリクス）$a$ が楕円型なら、$b\in S^{-m}$ が存在して $\Op(b)\Op(a)-1$、$\Op(a)\Op(b)-1$ は\emph{滑らかにする作用素}（$\bigcap_m\Psi^{-m}$、すべての $H^s\to H^t$ が有界）。\\
+(e)（帰結）楕円型 $\Op(a)$ は $H^{s+m}\to H^s$ で Fredholm、正則性・評価が成り立つ。指数は $s$ によらず、主シンボル（$a$ の最高次の斉次部分）のホモトピー類だけで決まる。
+\end{thm}
+\src{Hörmander, \emph{The Analysis of Linear Partial Differential Operators III}, 第 18 章；Taylor, \emph{Pseudodifferential Operators}, 第 I--III 章；Ruzhansky--Turunen, \emph{Pseudo-Differential Operators and Symmetries}（トーラスと Fourier 級数での定式化、第 4 章あたり\tQ）；Wells, 第 III 章。}
+\paragraph{(d) の構成の骨子。}$a$ の主部 $a_0=a$ は $|\xi|\ge R$ で可逆。$\chi(\xi)$ を $|\xi|\le R$ で $0$、$|\xi|\ge2R$ で $1$ の滑らかな関数として $b_0=\chi\,a^{-1}\in S^{-m}$ とおく。(b) より $b_0\#a=1-r_1$、$r_1\in S^{-1}$（$|\xi|\le R$ の近傍で補正する項は $S^{-\infty}$）。$r_1^{\#j}\in S^{-j}$ なので、Borel の補題（漸近和の存在）により $\sum_{j\ge0}r_1^{\#j}\sim c\in S^0$ を作り、$b=c\#b_0$ とおくと $b\#a-1\in S^{-\infty}$。右パラメトリクスも同様で、両者は $S^{-\infty}$ を除いて一致する。（$\Op$ が $S^{-\infty}$ を滑らかにする作用素に写し、それは Rellich によりコンパクト、したがって Atkinson の定理（定理 \ref{thm:atkinson}）で Fredholm。）
+\begin{rem}[微分作用素の場合の確認]
+(b) の第 2 項は交換子の主部を与える：$\Op(a)\Op(b)-\Op(b)\Op(a)$ のシンボルは $-i\{a,b\}+\cdots$（問 \ref{p:poisson}）。例：$a=\xi$（$D=-i\partial_x$ の $x$ 方向、全シンボル $\xi$）、$b=f(x)\xi$ について $a\#b=f\xi^2-if'\xi$（問 \ref{p:composition}）。また、数値でも、$a=(2+\cos x)\xi+\sin x$、$b=(1+\frac12\sin x)\xi^2+\cos2x\,\xi$ の積 $\Op(a)\Op(b)$ と $\Op(ab-i\,\partial_\xi a\,\partial_xb)$ を $S^1$ 上（64 点格子）で比較し、誤差 $10^{-11}$ 程度（丸め誤差）で一致することを確認した（$a$ が $\xi$ の 1 次式なので級数は有限項）。
+\end{rem}
+\begin{ex}[$S^1$ 上の指数が $0$ でない作用素]\label{ex:A_f}
+$f\in C^\infty(S^1;\C^*)$ とし、$\chi(\xi)$ を $\xi\ge1$ で $1$、$\xi\le-1$ で $0$ の滑らかな関数とする。$a(x,\xi)=f(x)\chi(\xi)+(1-\chi(\xi))\in S^0$ は楕円型（$|\xi|\ge1$ で $f$ または $1$、可逆）。$A_f=\Op(a)$ は有限階数を除いて $\Pi_+f+\Pi_-$（$\Pi_+$：$k\ge0$ のモードへの射影、$\Pi_-=1-\Pi_+$）に等しい。$f=e^{iw\theta}$ なら $A_f(e_k)=e_{k+w}$（$k\ge0$）、$=e_k$（$k<0$）で、$w=1$：像は $e_0$ 以外すべて、核は $0$、余核は $\C e_0$、指数 $-1$。$w=-1$：$e_0-e_{-1}$ が核で全射、指数 $+1$。一般に $\ind A_{e^{iw\theta}}=-w$。シンボルのホモトピーで一般の $f$（回転数 $w(f)$）でも $\ind A_f=-w(f)$（例 \ref{ex:toeplitz} の Toeplitz 作用素と同じ）。これは $S^1$ 上に指数が $0$ でない楕円型作用素があることを示す（微分作用素では起きない：問 \ref{p:S1odd}）。
+\end{ex}
+\begin{keybox}{§8 の要点}
+\begin{itemize}
+\item 低階の項はコンパクト摂動：$\ind P$ は主シンボルだけで決まり、楕円型シンボルのホモトピーで不変。自己随伴・強楕円型は指数 $0$。$\ind$ は $K(T^*M)\to\Z$ の準同型（Atiyah--Singer への入口）。
+\item 擬微分作用素 $\Op(a)$：シンボル計算 $a\#b\sim\sum\frac1{\alpha!}\partial_\xi^\alpha a\,D_x^\alpha b$、楕円型ならパラメトリクスが存在（主張）。$S^1$ 上の $A_f$ で、指数が回転数で $\ne0$ になる。
+\end{itemize}
+\end{keybox}
+\paragraph{問題}
+\begin{prob}{基本}\label{p:stronglyell}
+$M$ を閉 Riemann 多様体、$V\in C^\infty(M;\R)$ とする。$P=\Delta_g+V$ の指数が $0$ であることを、(a) 自己随伴性、(b) 強楕円性の 2 通りで説明せよ。また $E\to M$ に Hermite 接続を与えたとき、$\nabla^*\nabla+V$（$V$ は $\End E$ の滑らかな切断）は指数 $0$ か。
+\end{prob}
+\begin{prob}{標準}\label{p:composition}
+$\T^1$ 上で $a(x,\xi)=\xi$（$\Op(a)=D=-i\,d/dx$）、$b(x,\xi)=f(x)\xi$ とする。$\Op(a)\Op(b)=\Op(a\#b)$ の右辺を $a\#b=ab+(-i)\partial_\xi a\,\partial_xb$ で求め、左辺 $D(fD)u$ を直接計算して一致を確認せよ。また $[\Op(a),\Op(b)]$ の主シンボル（1 階）が $-i\{a,b\}$ と一致することを確認せよ（$\{a,b\}=\partial_\xi a\,\partial_xb-\partial_xa\,\partial_\xi b$）。
+\end{prob}
+\begin{prob}{標準}\label{p:Af}
+例 \ref{ex:A_f} の $A_{e^{iw\theta}}$ について、$w=2$ と $w=-2$ の核と余核を具体的に書き、指数が $-w$ であることを確かめよ。さらに $f(\theta)=e^{2i\theta}+0.3$（回転数 $2$）について、$f_t=e^{2i\theta}+0.3t$ のホモトピーが $\C^*$ 値であることを確かめ、指数が $-2$ であることを導け。
+\end{prob}
+\begin{prob}{発展}\label{p:S1odd}
+$S^1$ 上の $r\times r$ 行列係数の 1 階楕円型微分作用素 $P=A(\theta)\frac d{d\theta}+B(\theta)$（$A(\theta)\in GL_r(\C)$）の指数は $0$ であることを示せ。（ヒント：$\pi_1(GL_r(\C))\cong\Z$（$\det$ の回転数）を使い、$A$ を $\operatorname{diag}(e^{iw\theta},1,\dots,1)$ にホモトピックにして、$B$ を落とす。スカラー作用素 $e^{iw\theta}\frac d{d\theta}$ の核と随伴の核を求める。）
+\end{prob}
+
+%==========================================================================
+\section{例}\label{sec:examples}
+\subsection{$S^1$ 上の $d/d\theta-b$}
+$P=\frac d{d\theta}-b(\theta):C^\infty(S^1)\to C^\infty(S^1)$（$S^1=\R/2\pi\Z$、$b\in C^\infty(S^1;\C)$）。$\sigma_1(P)=i\xi$、楕円型。$Pu=0$ の解は $u=c\,e^{B(\theta)}$、$B(\theta)=\int_0^\theta b$。周期的になるのは $e^{B(2\pi)}=1$、すなわち $\int_0^{2\pi}b\in2\pi i\Z$ のとき。したがって
+\[
+\dim\Ker P=\begin{cases}1&\int_0^{2\pi}b\,d\theta\in2\pi i\Z\\0&\text{それ以外}\end{cases}
+\]
+形式的随伴 $P^*=-\frac d{d\theta}-\bar b$ の核 $\{e^{-\bar B}\}$ も、$e^{-\overline{B(2\pi)}}=1$ すなわち同じ条件で 1 次元。よって指数は常に $0$（奇数次元の微分作用素、系 \ref{cor:indzero}、問 \ref{p:S1odd}）。\emph{核の次元は $b$ の関数として跳ぶが、指数は一定}。$b=c_0+b_1\cos\theta$ に対し、Fourier 基底での行列の最小特異値を数値で調べると、$c_0\in i\Z$（$c_0=0,2i$）で $\approx10^{-16}$、$c_0=0.5$ で $0.122$、$c_0=0.3+i$ で $0.066$（$b_1=1.5$、$|k|\le60$）で、$\int b=2\pi c_0$ の条件と一致する（付録）。
+
+\subsection{平坦トーラスの Dolbeault 複体}
+$\T^{2n}=\R^{2n}/(2\pi\Z)^{2n}=\C^n/(2\pi\Z^n+2\pi i\Z^n)$（座標 $z_j=x_j+iy_j$）。$\mathcal A^{0,q}=C^\infty\otimes\Lambda^q\langle d\bar z_1,\dots,d\bar z_n\rangle$。$e_k=e^{i(k_x\cdot x+k_y\cdot y)}$（$k=(k_x,k_y)\in\Z^{2n}$）について
+\[
+\bar\partial(e_k\,\omega)=e_k\,\bigl(i\,k^{0,1}\wedge\omega\bigr),\qquad k^{0,1}=\sum_j\tfrac{k_{x,j}+ik_{y,j}}2\,d\bar z_j,\quad\omega\in\Lambda^q.
+\]
+すなわち複体は $k$ ごとの有限次元複体 $(\Lambda^\bullet\C^n,\ ik^{0,1}\wedge)$ の直和。$k\ne0$ では $k^{0,1}\neq0$ なので Koszul 型で完全（例 \ref{ex:Dolcx}）。$k=0$ では微分が $0$。したがって
+\[
+H^{0,q}_{\bar\partial}(\T^{2n})\cong\Lambda^q\C^n,\qquad h^{0,q}=\binom nq,\qquad\chi(\Oc)=\sum_q(-1)^q\binom nq=0\quad(n\ge1).
+\]
+これは第2・5巻の複素トーラスの Hodge 数 $h^{0,q}=\binom nq$ の、Fourier による完全な証明であり、$\chi(\Oc)=0$（第6巻 HRR、$\Td$ の最高次が $0$）とも一致する。Python で各 $n\le5$、ランダムな $\xi$ で $k^{0,1}\wedge$ の階数を確認し、$\dim\Lambda^q=\operatorname{rk}_{q-1}+\operatorname{rk}_q$ を検算した（付録）。
+\begin{rem}
+$E$ を平坦ユニタリ直線束（$\bar\partial+a$、$a\in\C^n$ 定数）にすると、複体は $k$ ごとに $(\Lambda^\bullet,\ ik^{0,1}\wedge+\alpha\wedge)$（$\alpha=\sum a_jd\bar z_j$。複素共役ではない）となり、$ik^{0,1}+\alpha=0$ となる $k$ があるときだけコホモロジーが現れる。$n=1$ が問 \ref{p:torusa}。
+\end{rem}
+
+\subsection{$T^2$ 上の $\bar\partial_L$：指数 $=\deg L$（調和振動子への帰着）}
+次数 $k\in\Z$ の直線束を $T^2=\R^2/(2\pi\Z)^2$ 上に具体的に構成し、$\bar\partial_L$ の核と余核を完全に計算する。
+\begin{thm}\label{thm:landau}\tP
+$L_k$ を、$\R^2$ 上の関数 $u$ で $u(x,y+2\pi)=u(x,y)$、$u(x+2\pi,y)=e^{iky}u(x,y)$ を満たすものを切断とする直線束とする。接続 $\nabla=d-i\frac k{2\pi}x\,dy$ はこの条件と整合し、曲率 $F=-\frac{ik}{2\pi}dx\wedge dy$、$\int_{T^2}c_1(L_k)=k$（第1巻の規約 $c_1=\frac i{2\pi}F$）。$\bar\partial_L=\frac12(\nabla_x+i\nabla_y)=\frac12\bigl(\partial_x+i\partial_y+\frac k{2\pi}x\bigr)$ について、$\bar\partial_L:\mathcal A^0(L_k)\to\mathcal A^{0,1}(L_k)\cong\mathcal A^0(L_k)$ は
+\begin{itemize}
+\item $k>0$：$\dim\Ker=k$、$\Coker=0$、
+\item $k=0$：$\Ker$、$\Coker$ ともに 1 次元（定数）、
+\item $k<0$：$\Ker=0$、$\dim\Coker=|k|$
+\end{itemize}
+で、いずれの場合も $\ind\bar\partial_L=k=\deg L_k$。（これは $T^2$ で $\deg L+1-g=k$ という Riemann--Roch、第4巻 \S10 の例（複素トーラス上の Landau 準位）の $h^0(L)=k$ に一致する。）
+\end{thm}
+\begin{proof}
+$u=\sum_nu_n(x)e^{iny}$ と Fourier 展開（$y$ 方向）する。条件 $u(x+2\pi,y)=e^{iky}u(x,y)$ は $u_n(x+2\pi)=u_{n-k}(x)$ と同値。$k>0$ とし、剰余類 $\rho\in\{0,\dots,k-1\}$ ごとに $v(x):=u_\rho(x)$ とおくと $u_{\rho+jk}(x)=v(x-2\pi j)$（$j\in\Z$）。$(\bar\partial_Lu)_n=\frac12\bigl(u_n'-nu_n+\frac k{2\pi}xu_n\bigr)$ に $n=\rho+jk$、$s=x-2\pi j$ を代入すると $\frac k{2\pi}x-n=\frac k{2\pi}s-\rho$ なので、$j$ によらず
+\[
+(\bar\partial_Lu)_{\rho+jk}(x)=\tfrac12\bigl(v'+(\tfrac k{2\pi}s-\rho)v\bigr)(s).
+\]
+$L^2$ ノルム：$\nrm u0^2=\frac1{2\pi}\int_0^{2\pi}\sum_n|u_n|^2dx$（$y$ の平均）$=\sum_\rho\int_{\R}|v_\rho|^2\frac{ds}{2\pi}$。したがって $\bar\partial_L$ は $\bigoplus_{\rho=0}^{k-1}L^2(\R)$ 上の作用素 $\frac12\bigl(\frac d{ds}+\frac k{2\pi}s-\rho\bigr)$ の直和に（ユニタリ同値で）帰着する。核：$v'=(\rho-\frac k{2\pi}s)v$、$v_\rho=\exp(\rho s-\frac k{4\pi}s^2)$（$k>0$ で Gauss 型、$L^2$）。各 $\rho$ で 1 次元、全体で $k$ 次元。形式的随伴は $\frac12(-\frac d{ds}+\frac k{2\pi}s-\rho)$（$i\partial_y$ は自己随伴、$x$ 倍は実）で、核は $v'=(\frac k{2\pi}s-\rho)v$、$v=\exp(\frac k{4\pi}s^2-\rho s)$ は $L^2$ に入らない。したがって $\Coker=\Ker\bar\partial_L^*=0$（定理 \ref{thm:mainFredholm}）。$k<0$：同じ構成（$|k|$ 個の剰余類）で核は $\exp(\rho s+\frac{|k|}{4\pi}s^2)$ で $L^2$ にならず、随伴の核が $\exp(-\frac{|k|}{4\pi}s^2-\rho s)$ で $|k|$ 次元。$k=0$：定数。
+\end{proof}
+核の元は $u_\rho(x,y)=\sum_{j\in\Z}v_\rho(x-2\pi j)\,e^{i(\rho+jk)y}$（Gauss 関数の $k$ 周期化、Jacobi の $\theta$ 関数）で、$k=3$、$\rho=0,1,2$ について、準周期性 $u(x+2\pi,y)=e^{iky}u(x,y)$ と $\bar\partial_Lu=0$ を数値で確認した（残差 $10^{-9}$ 以下、付録）。この計算は $T^2$ での Riemann--Roch（楕円曲線で $h^0(L)=\deg L$、$h^1=0$）の初等的な証明にもなっている。向きと符号：複素座標 $z=x+iy$ は向き $dx\wedge dy$ を定め、$c_1(L_k)=\frac k{4\pi^2}dx\wedge dy$、$\int_{[0,2\pi]^2}=k$。
+\begin{rem}[物理との対応]
+ここで見た $\bar\partial_L^*\bar\partial_L$ は、磁場 $B$ の下の Landau Hamiltonian（平面の荷電粒子）に相当し、スペクトルは等間隔の Landau 準位で、最低準位（固有値 $0$）が $\bar\partial_L$ の核（縮退度 $k$）である。等間隔性は上の帰着から出る：$\omega=\frac{|k|}{2\pi}$ として $A=\frac d{ds}+\omega s-\rho$ は平行移動 $s\mapsto s-\rho/\omega$ で $\frac d{ds}+\omega s$ に移り、$A^*A=-\frac{d^2}{ds^2}+\omega^2s^2-\omega$ は調和振動子（固有値 $\omega(2n+1)$、$n\ge0$）から $\omega$ を引いたもの、すなわち固有値 $2\omega n$。$\bar\partial_L=\frac12A$ なので $\bar\partial_L^*\bar\partial_L$ の固有値は $\frac{|k|}{4\pi}n$（$n=0,1,2,\dots$、各 $|k|$ 重）\tP\ （$k>0$。$k<0$ は $\bar\partial_L\bar\partial_L^*$ について同様。数値でも確認した）。指数 $k$ は「磁束量子の数」という位相的な量である。
+\end{rem}
+
+\subsection{Riemann 面上の $\bar\partial_L$：指数 $=\deg L+1-g$}
+$\Sigma$ を種数 $g$ のコンパクト Riemann 面、$L$ を次数 $d$ の正則直線束とする。$\bar\partial_L:\mathcal A^0(L)\to\mathcal A^{0,1}(L)$ は 1 階の楕円型（シンボル $i\xi^{0,1}\wedge$、階数 $1\to1$）。Dolbeault の定理と Hodge 理論（例 \ref{ex:hodgeD}）から $\Ker\bar\partial_L=H^0(\Sigma,L)$、$\Coker\bar\partial_L\cong\Ker\bar\partial_L^*\cong H^{0,1}(L)\cong H^1(\Sigma,L)$ なので
+\[
+\ind\bar\partial_L=h^0(L)-h^1(L)=\chi(L)=d+1-g
+\]
+（第4巻 Riemann--Roch）。この右辺が主シンボルだけで決まることは、系 \ref{cor:indzero}(a)(e) から：$d$ は $L$ の位相的な型で決まり、正則構造・Hermite 計量・接続を動かしても指数は変わらない。Serre 双対 $H^1(L)^*\cong H^0(K\otimes L^{-1})$ は、$\Coker\bar\partial_L=\Ker\bar\partial_L^*$ の言い換えである。$g=1$ では $T^2$ の定理 \ref{thm:landau} に一致する。$L=\Oc$：$\ind=1-g=\frac12\chi(\Sigma)$。$L=K^{1/2}$（$d=g-1$）：$\ind=0$（Riemann 面上の Dirac 作用素の指数 $0$、第4巻）。
+\begin{thm}[有限性と Serre 双対（Riemann 面）]\label{thm:serre1}
+コンパクト Riemann 面 $\Sigma$ 上の正則直線束 $L$ について (a) $h^0(L),h^1(L)<\infty$。(b) $H^1(\Sigma,L)\cong H^0(\Sigma,K\otimes L^{-1})^*$。
+\end{thm}
+\begin{proof}
+(a) $\Ker\bar\partial_L=H^0$、$\Coker\bar\partial_L\cong H^1$（Dolbeault）で、定理 \ref{thm:mainFredholm} により $\bar\partial_L$ は Fredholm \tP。第4巻 \S3 で「楕円型作用素論により」と述べた有限性定理の証明がこれである。(b) $\Coker\bar\partial_L\cong\Ker\bar\partial_L^*$。Hermite 計量 $h$ と Riemann 面の計量から決まる共役線形な Hodge 星 $\bar\star:\mathcal A^{0,1}(L)\to\mathcal A^{1,0}(L^{-1})$ について $\bar\partial_L^*=-\bar\star\,\bar\partial_{L^{-1}}\,\bar\star$ が成り立つ\tC\ （Griffiths--Harris, 第 0 章 \S6；第5巻 \S5。符号と共役の位置の細部は\tQ）ので、$\bar\star$ は $\Ker\bar\partial_L^*$ から $\{\text{正則な }K\otimes L^{-1}\text{ の切断}\}=H^0(K\otimes L^{-1})$ への共役線形同型を与える。複素共役を合成すれば双対 $H^1(L)^*\cong H^0(K\otimes L^{-1})$（Hermite 内積による同一視）。
+\end{proof}
+\begin{center}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{rrrrrl}
+\toprule
+$g$ & $d$ & $h^0$ & $h^1$ & $d+1-g$ & 備考\\
+\midrule
+0 & $-3$ & 0 & 2 & $-2$ & $\Oc(-3)$\\
+0 & $2$ & 3 & 0 & $3$ & $\Oc(2)$\\
+1 & $0$（$L\ne\Oc$） & 0 & 0 & 0 & 跳ばない\\
+1 & $0$（$L=\Oc$） & 1 & 1 & 0 & 核・余核が同時に跳ぶ\\
+2 & $2$（$L=K$） & 2 & 1 & 1 & $h^0(K)=g$、$h^1(K)=1$\\
+2 & $1$（$L=K^{1/2}$） & $0$ または $1$ & $=h^0$ & 0 & 偶・奇スピン構造\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{指数が $0$ の自己随伴楕円型作用素}
+\begin{ex}[自己随伴と chirality]\label{ex:selfadj}
+$\Delta_g$（関数上）：$\Ker=$ 定数（連結なら 1 次元）、$\Ker\Delta^*=$ 定数、指数 $0$。$d+d^*:\Omega^*(M)\to\Omega^*(M)$（全次数）：自己随伴楕円型で指数 $0$。しかし\emph{次数づけ}（偶 $\to$ 奇）を入れた $D^+=d+d^*:\Omega^{\rm ev}\to\Omega^{\rm odd}$ の指数は $\chi(M)$（定理 \ref{thm:hodgecx}(d)）。$S=S^+\oplus S^-$ が $\mathbb Z/2$ 次数つきで $D=\begin{pmatrix}0&D^-\\D^+&0\end{pmatrix}$（$D^-=(D^+)^*$）なら、$D$ 自体は自己随伴で指数 $0$、$D^+$ の指数 $=\dim\Ker D^+-\dim\Ker D^-$ が非自明になりうる：これが Dirac 作用素の「指数」の意味（第8巻）。Riemann 面では $D=\bar\partial_L+\bar\partial_L^*$ on $\mathcal A^0(L)\oplus\mathcal A^{0,1}(L)$。
+\end{ex}
+\begin{center}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{llccc}
+\toprule
+作用素 & 空間 & $\dim\Ker$ & $\dim\Coker$ & 指数\\
+\midrule
+$\frac d{d\theta}-b$ & $S^1$ & $0$ または $1$ & 同じ & $0$\\
+$\bar\partial_{L_k}$ & $T^2$ & $k$（$k>0$） & $0$ & $k$\\
+$\bar\partial_L$ & $\Sigma_g$ & $h^0(L)$ & $h^1(L)$ & $d+1-g$\\
+$\Delta_g$（$P=P^*$） & $M$ 連結 & $1$ & $1$ & $0$\\
+$d+d^*:\Omega^{\rm ev}\to\Omega^{\rm odd}$ & $M$ & $\sum_{\rm ev}b_k$ & $\sum_{\rm odd}b_k$ & $\chi(M)$\\
+$A_f$（擬微分） & $S^1$ & $\ldots$ & $\ldots$ & $-w(f)$\\
+\bottomrule
+\end{tabular}
+\end{center}
+\begin{keybox}{§9 の要点}
+\begin{itemize}
+\item $S^1$ 上の $d/d\theta-b$：核は $\int b\in2\pi i\Z$ のときだけ 1 次元に跳ぶ。指数は $0$。
+\item 平坦トーラスの Dolbeault 複体：$k=0$ のモードだけがコホモロジー、$h^{0,q}=\binom nq$。
+\item $T^2$ 上の $\bar\partial_{L_k}$：調和振動子 $\frac d{ds}+\frac k{2\pi}s-\rho$ の直和に帰着し、核 $=k$ 個の Gauss 関数。指数 $=k=\deg L$。Riemann 面では $\deg L+1-g$。
+\item 自己随伴は指数 $0$。次数づけ（chirality）すると非自明な指数が現れる。
+\end{itemize}
+\end{keybox}
+\paragraph{問題}
+\begin{prob}{標準}\label{p:S1b}
+$b(\theta)=c+\varepsilon\cos\theta$（$c\in\C$、$\varepsilon\in\R$）に対し、$\frac d{d\theta}-b$ の核が $0$ でない $c$ の集合を決定し、そのときの核の基底を書け。$c=0.5$ のとき、$u'-bu=f$ の周期解が $f$ について（一意に）解けること（余核 $=0$）を、解の公式 $u(\theta)=\dots$ から確かめよ。
+\end{prob}
+\begin{prob}{標準}\label{p:landau2}
+$k=2$ として、定理 \ref{thm:landau} の核の基底 $u_\rho$（$\rho=0,1$）を具体的に書き、$u_\rho(x+2\pi,y)=e^{2iy}u_\rho(x,y)$ を（和の添字の付け替えで）確かめよ。$u_0$ の $y$-Fourier 展開の第 $n$ 係数が $v_0(x-2\pi j)$（$n=2j$）であることを確認せよ。
+\end{prob}
+\begin{prob}{標準}\label{p:RRtable}
+種数 $g$ の Riemann 面で $L=\Oc(D)$、$\deg D=d$ のとき、$\ind\bar\partial_L=d+1-g$。(a) $g=3$、$d=-1,0,2,4,6$ の指数を求めよ。(b) $d>2g-2$ なら $h^1=0$ で $h^0=d+1-g$（第4巻）であることを使って、$g=3$、$d=5$ の $h^0$ を求めよ。(c) $d=2g-2$ で $L=K$ なら $h^0=g$、$h^1=1$ であること（Serre 双対 $H^1(K)\cong H^0(\Oc)^*$）と指数が整合することを確かめよ。
+\end{prob}

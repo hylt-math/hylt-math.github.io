@@ -1,0 +1,231 @@
+
+%==========================================================================
+\section{トーラス上の Sobolev 空間と Rellich の補題}\label{sec:sobolev}
+楕円作用素の解析（正則性、Fredholm 性）の核心を、まず\textbf{トーラス} $\T^n=\R^n/(2\pi\Z)^n$ 上で、Fourier 級数だけで完全に証明する。一般の閉多様体では、局所化によってトーラスの議論に帰着する（\S\ref{sec:general}）。以下、$u$ は $\C^r$ 値関数（成分ごとに扱う）、$e_k(x)=e^{ik\cdot x}$（$k\in\Z^n$）、$\ft u(k)=\int_{\T^n}u\,\overline{e_k}\,dx$（$dx$ は全体積 $1$ に正規化）、$\jb k=(1+|k|^2)^{1/2}$。Parseval：$\nrm u0^2=\int|u|^2=\sum_k|\ft u(k)|^2$。
+
+\subsection{定義と基本性質}
+\begin{defn}[Sobolev 空間]\label{def:Hs}
+$s\in\R$ に対し $H^s(\T^n)$ を、複素数列 $(\ft u(k))_{k\in\Z^n}$（形式的 Fourier 級数 $u=\sum_k\ft u(k)e_k$）で
+\[
+\nrm us^2:=\sum_{k\in\Z^n}\jb k^{2s}|\ft u(k)|^2<\infty
+\]
+を満たすもの全体とする。内積 $\ip uv_s=\sum\jb k^{2s}\ft u(k)\overline{\ft v(k)}$ で Hilbert 空間。$H^0=L^2$。$\mathcal D'(\T^n):=\bigcup_sH^s$（超関数の空間）、$C^\infty(\T^n)$ は滑らかな関数。微分は Fourier 係数ごとに $\widehat{\partial^\alpha u}(k)=(ik)^\alpha\ft u(k)$ と定める。
+\end{defn}
+（$\mathcal D'$ の通常の定義との同値は\tC\ （Fourier 級数による超関数の特徴づけ）。本巻では上の定義を採用する。）
+\begin{prop}\label{prop:Hsbasic}\tP
+(a) $t>s$ なら $H^t\subset H^s$、$\nrm us\le\nrm ut$。三角多項式は各 $H^s$ で稠密。\\
+(b) $\partial^\alpha:H^s\to H^{s-|\alpha|}$ は有界（ノルム $\le1$）。\\
+(c) 対 $\ip uv=\sum\ft u(k)\overline{\ft v(k)}$ は $H^s\times H^{-s}\to\C$ を定め、$|\ip uv|\le\nrm us\nrm v{-s}$。これにより $H^{-s}\cong(H^s)^*$（共役線形）。\\
+(d) $u\in C^\infty\iff$ すべての $s$ で $u\in H^s$（$C^\infty=\bigcap_sH^s$）。\\
+(e)（Sobolev の埋め込み）$s>j+n/2$ なら $H^s\subset C^j(\T^n)$、$\nrm u{C^j}\le C\nrm us$。
+\end{prop}
+\begin{proof}
+(a)(b) 定義から（$\jb k^{2s}\le\jb k^{2t}$、$|(ik)^\alpha|\le\jb k^{|\alpha|}$）。(c) Cauchy--Schwarz。$H^{-s}\to(H^s)^*$ が全射であることは Riesz の表現定理（$\ell^2$ の重み付き空間の双対）。(d) $\Rightarrow$：$u$ が滑らかなら $(ik)^\alpha\ft u(k)=\widehat{\partial^\alpha u}(k)$ が有界（$|\ft{(\cdot)}(k)|\le\sup|\cdot|$）なので $|\ft u(k)|\le C_N\jb k^{-N}$（すべての $N$）、よってすべての $H^s$ に入る。$\Leftarrow$：すべての $N$ で $\sum\jb k^{2N}|\ft u|^2<\infty$ なら Cauchy--Schwarz で $\sum_k\jb k^{N}|\ft u(k)|<\infty$（$N$ を $N+n$ に取り替えて $\sum\jb k^{-2n}$ の収束を使う）、よって級数は各階数の導関数まで絶対一様収束し滑らか。(e) $|\alpha|\le j$ で $\sum_k|k^\alpha\ft u(k)|\le\sum\jb k^{j-s}\cdot\jb k^s|\ft u(k)|\le(\sum\jb k^{2(j-s)})^{1/2}\nrm us$。$2(s-j)>n$ なので $\sum_k\jb k^{-2(s-j)}<\infty$。したがって $\partial^\alpha u$ が絶対一様収束し、$u\in C^j$。
+\end{proof}
+
+\begin{lem}[Peetre の不等式と Young の不等式]\label{lem:peetre}\tP
+(a) すべての $k,l\in\R^n$ と $t\in\R$ に対し $\jb k^t\le2^{|t|/2}\jb{k-l}^{|t|}\jb l^t$。(b) $a\in\ell^1(\Z^n)$、$b\in\ell^2(\Z^n)$ なら $\nrm{a*b}{\ell^2}\le\nrm a{\ell^1}\nrm b{\ell^2}$。
+\end{lem}
+\begin{proof}
+(a) $1+|k|^2\le1+2|k-l|^2+2|l|^2\le2(1+|k-l|^2)(1+|l|^2)$。ゆえに $\jb k\le\sqrt2\jb{k-l}\jb l$、同様に $\jb l\le\sqrt2\jb{k-l}\jb k$（$|l|\le|l-k|+|k|$）。$t\ge0$ なら第 1 式を $t$ 乗。$t<0$ なら第 2 式から $\jb k^{-1}\le\sqrt2\jb{k-l}\jb l^{-1}$ を $|t|$ 乗。(b) Minkowski の不等式。
+\end{proof}
+\begin{prop}[滑らかな関数の掛け算]\label{prop:mult}\tP
+$f\in C^\infty(\T^n)$ とする。任意の $s\in\R$ に対し $u\mapsto fu$ は $H^s\to H^s$ の有界作用素で、$\nrm{fu}s\le C_{s}(f)\nrm us$、$C_s(f)=2^{|s|/2}\sum_j\jb j^{|s|}|\ft f(j)|<\infty$。
+\end{prop}
+\begin{proof}
+$u$ が三角多項式なら $\widehat{fu}(k)=\sum_l\ft f(k-l)\ft u(l)$。補題 \ref{lem:peetre}(a) より $\jb k^s|\widehat{fu}(k)|\le2^{|s|/2}\sum_l\jb{k-l}^{|s|}|\ft f(k-l)|\cdot\jb l^s|\ft u(l)|$。Young の不等式で $\nrm{fu}s\le C_s(f)\nrm us$。$f$ が滑らかなので $\ft f$ は急減少し $C_s(f)<\infty$。一般の $u\in H^s$ は三角多項式の極限で、この評価で $fu$ が定義される。
+\end{proof}
+\begin{cor}\label{cor:Pbdd}
+$P=\sum_{|\alpha|\le m}a_\alpha(x)\partial^\alpha$（$a_\alpha$ は滑らかな行列値関数）は、任意の $s$ について $H^{s+m}\to H^s$ の有界作用素。
+\end{cor}
+
+\begin{thm}[Rellich の補題]\label{thm:rellich}\tP
+$t>s$ なら、包含 $H^t(\T^n)\hookrightarrow H^s(\T^n)$ は\emph{コンパクト}作用素である。
+\end{thm}
+\begin{proof}
+$\Pi_N$ を $|k|\le N$ の Fourier モードへの射影とする（有限階数）。$|k|>N$ では $\jb k^{2s}=\jb k^{2(s-t)}\jb k^{2t}\le(1+N^2)^{-(t-s)}\jb k^{2t}$ だから $\nrm{(1-\Pi_N)u}s\le(1+N^2)^{-(t-s)/2}\nrm ut$。有限階数作用素 $\Pi_N$ のノルム極限（$N\to\infty$）なので、包含はコンパクト。
+\end{proof}
+\begin{ex}[Rellich は等号で成立しない]
+$e_k$（$|k|\to\infty$）は $H^0$ で有界（$\nrm{e_k}0=1$）だが、$L^2$ では互いの距離が $\sqrt2$ で、収束部分列をもたない。一方 $\nrm{e_k}{-1}=\jb k^{-1}\to0$。滑らかさを $1$ 失えば（$t=0>s=-1$）、$H^0$ の有界列は $H^{-1}$ で収束部分列をもつ。
+\end{ex}
+\begin{rem}[この節の使い方]
+Rellich の補題は「高周波成分は、少し弱いノルムで見ると小さい」という事実で、楕円型作用素の核が有限次元になる理由である：核の元は $\nrm u{s+m}\le C(\nrm{Pu}s+\nrm us)$ を満たし、$\nrm us$ は $\nrm u{s+m}$ より弱いのでコンパクト性が使える（\S\ref{sec:fred}、\S\ref{sec:closed}）。
+\end{rem}
+\begin{keybox}{§4 の要点}
+\begin{itemize}
+\item $H^s(\T^n)=\{\sum\ft u(k)e_k:\ \sum\jb k^{2s}|\ft u(k)|^2<\infty\}$。$\partial^\alpha:H^s\to H^{s-|\alpha|}$、滑らかな関数の掛け算は $H^s\to H^s$（Peetre の不等式 $+$ Young）。$\bigcap H^s=C^\infty$。
+\item Sobolev 埋め込み：$s>j+n/2\Rightarrow H^s\subset C^j$。Rellich：$t>s\Rightarrow H^t\hookrightarrow H^s$ はコンパクト。
+\end{itemize}
+\end{keybox}
+\paragraph{問題}
+\begin{prob}{基本}\label{p:absx}
+$\T^1$ 上で $u(x)=|x|$（$|x|\le\pi$）の Fourier 係数 $\ft u(k)$ を求め、$u\in H^s$ となる $s$ の範囲を決定せよ。
+\end{prob}
+\begin{prob}{基本}\label{p:delta}
+Dirac 測度 $\delta_0=\sum_ke_k$（$\ft\delta(k)=1$）が $H^s(\T^n)$ に属する $s$ の範囲を求めよ。この結果は Sobolev 埋め込みの閾値 $s>n/2$ とどう対応するか（双対性 $H^{-s}=(H^s)^*$ の言葉で）。
+\end{prob}
+\begin{prob}{標準}\label{p:rellichfail}
+(a) $H^0$ の有界列 $e_k$ が $H^s$（$s<0$）で $0$ に収束することを示せ。(b) 恒等写像 $H^s\to H^s$ はコンパクトでないことを示せ（Rellich の補題の仮定 $t>s$ が必要）。(c) 作用素 $\sum\ft u(k)e_k\mapsto\sum\jb k^{-1}\ft u(k)e_k$ は $H^s\to H^s$ でコンパクトであることを示せ。
+\end{prob}
+\begin{prob}{発展}\label{p:H12}
+$\T^1$ 上で $\ft u(k)=\ft u(-k)=\dfrac1{|k|\log|k|}$（$|k|\ge2$）、$\ft u(0)=\ft u(\pm1)=0$ とする。(a) $u\in H^{1/2}$ を示せ。(b) $u\in L^\infty$ でないことを示せ（ヒント：Fejér 平均 $\sigma_N u(0)=\sum_{|k|<N}(1-|k|/N)\ft u(k)$ は $\|u\|_\infty$ 以下）。したがって Sobolev 埋め込みは $s>n/2$ を $s\ge n/2$ に弱められない。
+\end{prob}
+
+%==========================================================================
+\section{楕円正則性と Gårding の不等式（トーラス上の完全な証明）}\label{sec:reg}
+\subsection{定数係数の場合}
+$P=\sum_{|\alpha|\le m}a_\alpha\partial^\alpha$（$a_\alpha\in\mathrm{Mat}_{r\times r}(\C)$ は定数）を $\T^n$ 上の $\C^r$ 値関数に作用させる。$\widehat{Pu}(k)=p(k)\ft u(k)$、$p(\xi)=\sum a_\alpha(i\xi)^\alpha$（全シンボル）、$p_m(\xi)=\sum_{|\alpha|=m}a_\alpha(i\xi)^\alpha$（主シンボル）。以下 $m\ge1$（$m=0$ なら $P$ は可逆行列で自明）。
+\begin{lem}\label{lem:lowerbd}\tP
+$p_m(\xi)$ が $\xi\ne0$ で可逆なら、定数 $c_0>0$、$R\ge1$ があって
+\[
+|p_m(\xi)v|\ge2c_0|\xi|^m|v|\ \ (\xi\in\R^n),\qquad|p(\xi)v|\ge c_0|\xi|^m|v|\ \ (|\xi|\ge R),\quad v\in\C^r.
+\]
+\end{lem}
+\begin{proof}
+単位球面 $S^{n-1}$ はコンパクトで $p_m$ は連続かつ可逆なので $\min_{|\omega|=1,|v|=1}|p_m(\omega)v|=:2c_0>0$。$p_m$ は $m$ 次斉次なので第 1 式。$|p(\xi)-p_m(\xi)|\le C|\xi|^{m-1}$（$|\xi|\ge1$）なので、$|p(\xi)v|\ge(2c_0|\xi|^m-C|\xi|^{m-1})|v|\ge c_0|\xi|^m|v|$（$|\xi|\ge R:=\max(1,C/c_0)$）。
+\end{proof}
+\begin{thm}[定数係数楕円型作用素]\label{thm:constell}\tP
+$P$ を上の定数係数の楕円型作用素とする。\\
+(a)（評価）すべての $s$ で $\nrm u{s+m}\le C(\nrm{Pu}s+\nrm us)$（$u\in H^{s+m}$）。\\
+(b)（正則性）$u\in\mathcal D'$、$Pu\in H^s$ なら $u\in H^{s+m}$。特に $Pu\in C^\infty\Rightarrow u\in C^\infty$。\\
+(c)（Fredholm 性）$P:H^{s+m}\to H^s$ は有界で、核は有限個の三角関数 $e^{ik\cdot x}v$（$|k|<R$、$p(k)v=0$）で張られる有限次元空間、値域は閉で余核も有限次元。さらに\emph{指数} $\dim\Ker P-\dim\Coker P=0$。
+\end{thm}
+\begin{proof}
+(a) $|k|\ge R$：$\jb k^{s+m}|\ft u(k)|\le C\jb k^s|p(k)\ft u(k)|$（補題 \ref{lem:lowerbd} と $|k|^m\ge2^{-m/2}\jb k^m$）。$|k|<R$：$\jb k^{s+m}|\ft u(k)|\le\jb R^m\jb k^s|\ft u(k)|$。2 乗して足す。(b) 同じ不等式は $\ft u(k)$ が多項式増大の数列でも成立するので、$\sum_{|k|\ge R}\jb k^{2(s+m)}|\ft u(k)|^2\le C\sum\jb k^{2s}|\widehat{Pu}(k)|^2<\infty$、残りは有限和。(c) $P$ は各 $k$ で行列 $p(k):\C^r\to\C^r$ として作用する。$|k|\ge R$ では $p(k)$ は可逆で $|p(k)^{-1}|\le c_0^{-1}|k|^{-m}$。したがって $P$ は、高周波部分空間 $\{\ft u(k)=0\ (|k|<R)\}$ 上で $H^{s+m}\to H^s$ の同型（逆は有界）、低周波部分空間（有限次元）上では正方行列の有限個の直和 $\bigoplus_{|k|<R}p(k)$ である。核・余核の次元は $\bigoplus p(k)$ のそれ、指数は $\sum_{|k|<R}(\dim\Ker p(k)-\dim\Coker p(k))=0$（正方行列）。
+\end{proof}
+
+\begin{center}
+\begin{tikzpicture}[font=\small,>=Stealth]
+\draw[->] (0,0)--(10.3,0) node[right] {$|k|$};
+\draw[fill=orange!12] (0,0) rectangle (3,1.0);
+\draw[fill=blue!8] (3,0) rectangle (10,1.0);
+\node[align=center] at (1.5,0.5) {低周波 $|k|<R$\\{\scriptsize 有限次元}};
+\node[align=center] at (6.5,0.5) {高周波 $|k|\ge R$\\{\scriptsize $|p(k)^{-1}|\le c^{-1}\jb k^{-m}$：$H^{s+m}\to H^s$ の同型}};
+\node[align=center] at (1.5,-0.9) {$\bigoplus_{|k|<R}p(k)$\\{\scriptsize 正方行列の直和、指数 $0$}};
+\draw[->] (1.5,-0.35)--(1.5,-0.05);
+\node[align=center] at (6.5,-0.9) {可逆};
+\end{tikzpicture}
+\end{center}
+定数係数の場合の Fredholm 性は、この図のとおり、``有限次元の低周波部分と、可逆な高周波部分の直和''という形にほかならない。変数係数ではモードが混ざるので直和にならないが、以下の議論は高周波部分が（コンパクト摂動を除いて）可逆であることを局所化で示す形になる。
+
+\subsection{変数係数の場合}
+次に $P=\sum_{|\alpha|\le m}a_\alpha(x)\partial^\alpha$、$a_\alpha\in C^\infty(\T^n;\mathrm{Mat}_{r\times r}(\C))$ とし、$\sigma_m(P)(x,\xi)=\sum_{|\alpha|=m}a_\alpha(x)(i\xi)^\alpha$ が $\xi\ne0$ で可逆（楕円型）とする。鍵は次の交換子の評価である。$\mu(D)$ を Fourier 乗数 $\widehat{\mu(D)u}(k)=\mu(k)\ft u(k)$ とする。
+\begin{lem}[交換子の補題]\label{lem:commutator}\tP
+$\mu\in C^1(\R^n)$ が、ある $M,r\in\R$ について $|\nabla\mu(\eta)|\le M\jb\eta^{r-1}$（$\eta\in\R^n$）を満たすとする。このとき任意の $a\in C^\infty(\T^n)$、$t\in\R$ に対し、交換子 $[a,\mu(D)]$ は $H^{t+r-1}\to H^t$ の有界作用素で、ノルムは $M$、$a$、$t$、$r$ だけで決まる定数 $\le C\cdot M$。
+\end{lem}
+\begin{proof}
+$([a,\mu(D)]u)^\wedge(k)=\sum_l\ft a(k-l)(\mu(l)-\mu(k))\ft u(l)$。平均値の定理で $|\mu(l)-\mu(k)|\le|k-l|\sup_{\eta\in[l,k]}|\nabla\mu(\eta)|$。線分上の $\eta$ は $|\eta-l|\le|k-l|$ を満たすので Peetre の不等式で $\jb\eta^{r-1}\le2^{|r-1|/2}\jb{k-l}^{|r-1|}\jb l^{r-1}$。よって $|\mu(l)-\mu(k)|\le CM\jb{k-l}^{|r-1|+1}\jb l^{r-1}$。さらに $\jb k^t\le2^{|t|/2}\jb{k-l}^{|t|}\jb l^t$ を掛けて
+\[
+\jb k^t\bigl|([a,\mu(D)]u)^\wedge(k)\bigr|\le CM\sum_l\jb{k-l}^{|t|+|r-1|+1}|\ft a(k-l)|\cdot\jb l^{t+r-1}|\ft u(l)|.
+\]
+$\ft a$ は急減少なので $\sum_j\jb j^{|t|+|r-1|+1}|\ft a(j)|<\infty$。Young の不等式より $\nrm{[a,\mu(D)]u}t\le CM\nrm u{t+r-1}$。
+\end{proof}
+\noindent 使う 2 つの場合：(1) $\mu=\jb\xi^s$（$s\in\R$）：$|\nabla\mu|=|s|\jb\xi^{s-2}|\xi|\le|s|\jb\xi^{s-1}$、$r=s$。これは $\Lambda^s:=\jb D^s$（$\Lambda^se_k=\jb k^se_k$）の交換子で、$[a,\Lambda^s]:H^{t+s-1}\to H^t$。(2) $\mu_\varepsilon(\xi)=e^{-\varepsilon|\xi|^2}$（$0<\varepsilon\le1$）：$|\nabla\mu_\varepsilon(\eta)|=2\varepsilon|\eta|e^{-\varepsilon|\eta|^2}$。$|\eta|\le1$ なら $\le2\sqrt\varepsilon\sup_{y\ge0}ye^{-y^2}\le1$、$|\eta|>1$ なら $\varepsilon|\eta|e^{-\varepsilon|\eta|^2}=|\eta|^{-1}(\varepsilon|\eta|^2)e^{-\varepsilon|\eta|^2}\le(e|\eta|)^{-1}$（$ze^{-z}\le e^{-1}$）。いずれも $\le3\jb\eta^{-1}$（$|\eta|\ge\jb\eta/\sqrt2$ を使った）。したがって $r=0$、$M=3$ が $\varepsilon$ によらず成り立ち、$[a,\mu_\varepsilon(D)]:H^{t-1}\to H^t$ のノルムは $\varepsilon\in(0,1]$ によらず有界。
+
+\begin{lem}\label{lem:gabs}\tP
+$g\in C^\infty(\T^n)$、$t\in\R$ に対し $\nrm{gv}t\le\sup|g|\cdot\nrm vt+C(g,t)\nrm v{t-1}$。
+\end{lem}
+\begin{proof}
+$\nrm{gv}t=\nrm{\Lambda^t(gv)}0\le\nrm{g\Lambda^tv}0+\nrm{[\Lambda^t,g]v}0\le\sup|g|\nrm vt+C\nrm v{t-1}$（補題 \ref{lem:commutator}(1)、$H^{t-1}\to H^0$）。
+\end{proof}
+
+\begin{thm}[楕円評価（Gårding 型の不等式）]\label{thm:garding}\tP
+$P=\sum_{|\alpha|\le m}a_\alpha(x)\partial^\alpha$ を $\T^n$ 上の $r\times r$ 行列係数の楕円型作用素（$m\ge1$）とする。任意の $s\in\R$ に対し、$C=C(s,P)$ があって
+\[
+\nrm u{s+m}\le C\bigl(\nrm{Pu}s+\nrm us\bigr)\qquad(u\in C^\infty(\T^n;\C^r)).
+\]
+\end{thm}
+\begin{proof}
+\emph{準備。}$\sigma_m(P)$ は $\T^n\times S^{n-1}$ 上で連続かつ可逆でコンパクトだから、$x$ によらない $c_0>0$ が存在して $|\sigma_m(P)(x,\xi)v|\ge2c_0|\xi|^m|v|$。$N_m=\#\{|\alpha|=m\}$ とおく。\\
+\emph{定数係数の凍結。}$x_0\in\T^n$ に対し $P^0_{x_0}=\sum_{|\alpha|=m}a_\alpha(x_0)\partial^\alpha$ は定数係数、同次で、シンボル $\sigma_m(P)(x_0,\xi)$。定理 \ref{thm:constell}(a) の証明（$R=1$、$|k|\ge1$ で $|p_m(k)v|\ge2c_0|k|^m|v|$）から、$x_0$ に\emph{よらない} $C_1$ で
+\[
+\nrm w{s+m}\le C_1\bigl(\nrm{P^0_{x_0}w}s+\nrm ws\bigr)\qquad\text{(すべての }w\in C^\infty).\tag{5.1}
+\]
+\emph{$\varepsilon$ の選択。}$\varepsilon:=\bigl(2C_1N_m\bigr)^{-1}$ とおく。$a_\alpha$ の一様連続性から、$\delta>0$ を、$|x-y|<2\delta$ なら $|a_\alpha(x)-a_\alpha(y)|\le\varepsilon$（$|\alpha|=m$）となるようにとる。\\
+\emph{局所化。}$\T^n$ を有限個の球 $B(x_j,\delta)$ で覆い、$\psi_j\ge0$ を $\operatorname{supp}\psi_j\subset B(x_j,\delta)$、$\sum\psi_j>0$ となる滑らかな関数、$\chi_j=\psi_j/(\sum_l\psi_l^2)^{1/2}$ とおくと $\sum\chi_j^2=1$、$\operatorname{supp}\chi_j\subset B(x_j,\delta)$。命題 \ref{prop:mult} より、すべての $t$ について
+\[
+\nrm ut=\bigl\|\textstyle\sum_j\chi_j(\chi_ju)\bigr\|_t\le C\sum_j\nrm{\chi_ju}t,\qquad\nrm{\chi_ju}t\le C\nrm ut.\tag{5.2}
+\]
+\emph{局所評価。}$u_j=\chi_ju$（$B(x_j,\delta)$ に台）、$P^0_j=P^0_{x_j}$。$\theta_j$ を $B(x_j,\delta)$ で $1$、$B(x_j,2\delta)$ に台をもつ滑らかな関数、$g_{\alpha,j}=\theta_j\,(a_\alpha-a_\alpha(x_j))$ とすると $\sup|g_{\alpha,j}|\le\varepsilon$ で、
+\[
+(P-P^0_j)u_j=\sum_{|\alpha|=m}g_{\alpha,j}\partial^\alpha u_j+\sum_{|\alpha|<m}a_\alpha\partial^\alpha u_j.
+\]
+補題 \ref{lem:gabs} と $\nrm{\partial^\alpha v}{t}\le\nrm v{t+|\alpha|}$ から $\nrm{(P-P^0_j)u_j}s\le N_m\varepsilon\nrm{u_j}{s+m}+C_2\nrm{u_j}{s+m-1}$（$C_2$ は $j$ ごとの有限個の定数の最大値。$\varepsilon,\delta$ を決めた後なので循環しない）。(5.1) より
+\[
+\nrm{u_j}{s+m}\le C_1\nrm{Pu_j}s+C_1N_m\varepsilon\nrm{u_j}{s+m}+C_1C_2\nrm{u_j}{s+m-1}+C_1\nrm{u_j}s.
+\]
+$C_1N_m\varepsilon=\frac12$ なので、$u_j$ は滑らか（ノルムが有限）だから左辺に吸収でき、$\nrm{u_j}{s+m}\le2C_1\nrm{Pu_j}s+C_3\nrm{u_j}{s+m-1}$。\\
+\emph{貼り合わせ。}$Pu_j=\chi_jPu+[P,\chi_j]u$、$[P,\chi_j]$ は $m-1$ 階の微分作用素（Leibniz 則：$[a\partial^\alpha,\chi]=a[\partial^\alpha,\chi]$ で、これは $|\alpha|-1$ 階以下）で滑らかな係数をもつから、命題 \ref{prop:mult} より $\nrm{[P,\chi_j]u}s\le C\nrm u{s+m-1}$。(5.2) を使って総和をとると
+\[
+\nrm u{s+m}\le C\bigl(\nrm{Pu}s+\nrm u{s+m-1}\bigr).
+\]
+\emph{補間。}$m\ge1$ なので、任意の $\eta>0$ に対し $\jb k^{2(s+m-1)}\le\eta\jb k^{2(s+m)}+\eta^{-(m-1)}\jb k^{2s}$（$\jb k^2\ge1/\eta$ なら $\jb k^{-2}\le\eta$、そうでなければ $\jb k^{2(m-1)}<\eta^{-(m-1)}$）。ゆえに $\nrm u{s+m-1}\le\sqrt\eta\nrm u{s+m}+\eta^{-(m-1)/2}\nrm us$。$C\sqrt\eta=\frac12$ にとって吸収すれば証明が終わる。
+\end{proof}
+
+\begin{thm}[楕円正則性]\label{thm:regularity}\tP
+$P$ を $\T^n$ 上の楕円型作用素（$m$ 階、行列係数）とする。$u\in\mathcal D'(\T^n)$（ある $H^t$ の元）が $Pu\in H^s$ を満たすなら、$u\in H^{s+m}$。特に $Pu\in C^\infty\Rightarrow u\in C^\infty$。
+\end{thm}
+\begin{proof}
+$u\in H^t$、$t<s+m$ とする。$\theta=\min(1,s+m-t)>0$ とおき、$u\in H^{t+\theta}$ を示せば、有限回の繰り返しで $H^{s+m}$ に達する。$J_\varepsilon=\mu_\varepsilon(D)$（$\mu_\varepsilon=e^{-\varepsilon|\xi|^2}$、$0<\varepsilon\le1$）とおく。$J_\varepsilon u\in C^\infty$ で $\nrm{J_\varepsilon u}\tau\le\nrm u\tau$（すべての $\tau$）。定理 \ref{thm:garding} を $J_\varepsilon u$ と $s'=t+\theta-m$ について用いて
+\[
+\nrm{J_\varepsilon u}{t+\theta}\le C\bigl(\nrm{PJ_\varepsilon u}{t+\theta-m}+\nrm{J_\varepsilon u}{t+\theta-m}\bigr).
+\]
+$PJ_\varepsilon u=J_\varepsilon Pu+[P,J_\varepsilon]u$。$\nrm{J_\varepsilon Pu}{t+\theta-m}\le\nrm{Pu}{t+\theta-m}\le\nrm{Pu}s$（$t+\theta-m\le s$）。$J_\varepsilon$ は $\partial^\alpha$ と可換なので $[P,J_\varepsilon]=\sum[a_\alpha,J_\varepsilon]\partial^\alpha$、補題 \ref{lem:commutator}(2)（$H^{\tau-1}\to H^\tau$、$\varepsilon$ によらない定数）により
+\[
+\nrm{[a_\alpha,J_\varepsilon]\partial^\alpha u}{t+\theta-m}\le C\nrm{\partial^\alpha u}{t+\theta-m-1}\le C\nrm u{t+\theta-m-1+|\alpha|}\le C\nrm ut.
+\]
+（$\theta\le1$、$|\alpha|\le m$。）最後に $\nrm{J_\varepsilon u}{t+\theta-m}\le\nrm ut$ もよい。したがって $\nrm{J_\varepsilon u}{t+\theta}\le C'$（$\varepsilon$ によらない）。すなわち $\sum_k\jb k^{2(t+\theta)}e^{-2\varepsilon|k|^2}|\ft u(k)|^2\le C'^2$。$\varepsilon\downarrow0$ で単調収束により $\sum\jb k^{2(t+\theta)}|\ft u(k)|^2\le C'^2$、$u\in H^{t+\theta}$。
+\end{proof}
+\begin{cor}[Weyl の補題の一般化]
+$\T^n$ 上の楕円型作用素 $P$ について、$Pu=0$（超関数の意味）なら $u$ は滑らか。特に調和超関数（$\Delta u=0$）は滑らか。
+\end{cor}
+
+\subsection{Gårding の不等式（強楕円型の場合）}
+上の定理 \ref{thm:garding} は、教科書によって「Gårding の不等式」と呼ばれる（Lawson--Michelsohn, 第 III 章：楕円型作用素の基本不等式；呼び名と節番号の細部は\tQ）。狭義には次の形を Gårding の不等式という。
+\begin{thm}[強楕円型 2 階作用素の Gårding の不等式]\label{thm:garding2}\tP
+$P u=-\sum_{i,j}\partial_i(a_{ij}(x)\partial_ju)+\sum_ib_i(x)\partial_iu+c(x)u$（スカラー、$a_{ij}=a_{ji}\in C^\infty$ は実、$b_i,c\in C^\infty$ は複素）で、一様楕円性 $\sum a_{ij}(x)\xi_i\xi_j\ge\theta|\xi|^2$（$\theta>0$）を満たすとする。このとき $u\in H^1(\T^n)$ について
+\[
+\Re\ip{Pu}{u}\ge\frac\theta2\nrm u1^2-C\nrm u0^2.
+\]
+（左辺は $H^{-1}\times H^1$ の対。$u$ が滑らかなら $L^2$ 内積。）
+\end{thm}
+\begin{proof}
+部分積分（$\T^n$ に境界はない）で $\ip{Pu}u=\sum\int a_{ij}\partial_ju\overline{\partial_iu}+\int\sum b_i\partial_iu\,\bar u+\int c|u|^2$。第 1 項は実で $\ge\theta\sum_i\nrm{\partial_iu}0^2=\theta\nrm{\nabla u}0^2$（点ごとの正定値性）。第 2 項は $|\cdot|\le B\nrm{\nabla u}0\nrm u0\le\frac\theta2\nrm{\nabla u}0^2+\frac{B^2}{2\theta}\nrm u0^2$。第 3 項は $\ge-\sup|c|\nrm u0^2$。$\nrm u1^2=\nrm u0^2+\nrm{\nabla u}0^2$ に注意。
+\end{proof}
+\begin{cor}\label{cor:lax}\tP
+上の $P$ について、十分大きな $\mu>0$ で $P+\mu:H^1\to H^{-1}$ は同型（Lax--Milgram）。$P:H^2\to L^2$ は Fredholm で指数 $0$。
+\end{cor}
+\begin{proof}
+$\Re\ip{(P+\mu)u}u\ge\frac\theta2\nrm u1^2$（$\mu\ge C$）なので、双線形形式は有界かつ強圧的で、Lax--Milgram により $P+\mu:H^1\to H^{-1}$ は同型。正則性（定理 \ref{thm:regularity}）で $H^2\to L^2$ でも同型。$\mu:H^2\to L^2$ は Rellich によりコンパクトなので、$P=(P+\mu)-\mu$ は同型のコンパクト摂動、Fredholm 指数 $0$（定理 \ref{thm:stab}）。
+\end{proof}
+
+\subsection{一般の閉多様体}\label{sec:general}
+\begin{prop}[閉多様体上の Sobolev 空間と楕円評価]\label{prop:generalM}\tC
+$M$ を閉多様体、$E\to M$ をベクトル束とする。有限個の座標近傍と自明化、およびそれに従属する 1 の分割で $H^s(E)$ を定義する（トーラスの場合の $H^s$ を各チャートの台つきの関数に使う）。(a) $H^s(E)$ は選び方によらず（同値なノルムを除いて）定まり、$\Gamma(E)=\bigcap H^s$、$H^s\subset H^t$ は $s>t$ でコンパクト（Rellich）、$s>j+n/2$ なら $H^s\subset C^j$。(b) $P\in\Diff^m(E,F)$ が楕円型なら、定理 \ref{thm:garding} と同じ評価 $\nrm u{s+m}\le C(\nrm{Pu}s+\nrm us)$ と、定理 \ref{thm:regularity} と同じ正則性が成り立つ。
+\end{prop}
+\src{Lawson--Michelsohn, \emph{Spin Geometry}, 第 III 章 \S2--\S5（Sobolev 空間、楕円評価、Rellich）；Warner, \emph{Foundations}, 第 6 章；Wells, \emph{Differential Analysis}, 第 IV 章；Roe, \emph{Elliptic Operators}, 第 2--4 章（章番号は記憶\tQ）。}
+\paragraph{証明の骨子。}トーラスの証明は、実は局所的であった。(i) 台が小さな球に入る関数 $u_j=\chi_ju$ だけを扱い、(ii) 係数を $x_j$ で凍結した定数係数作用素に対する Fourier の評価（5.1）と、(iii) 凍結との差が小さいこと、(iv) 切断関数との交換子が $m-1$ 階であること、(v) 補間、の 5 点しか使っていない。一般の $M$ では、チャートの像（開球の閉包）は十分大きなトーラス $\R^n/(2\pi L\Z)^n$ の中に入るので、チャートの中で凍結した作用素と $u_j$ をトーラスに移して (5.1) を使える。ベクトル束の接続関数・座標変換の係数は低階の項（交換子）に入る。定理 \ref{thm:regularity} も同様。Rellich は、有限個のチャートの和に Rellich（定理 \ref{thm:rellich} の台つき版）を使えばよい。
+\begin{keybox}{§5 の要点}
+\begin{itemize}
+\item 定数係数では Fourier 乗数の下からの評価 $|p(k)v|\ge c|k|^m|v|$ から、評価・正則性・Fredholm 性（指数 $0$）がすべて出る。
+\item 変数係数では、（凍結）$+$（小さな台）$+$（交換子は低階）$+$（補間）で楕円評価 $\nrm u{s+m}\le C(\nrm{Pu}s+\nrm us)$ を示し、Friedrichs 型の正則化 $J_\varepsilon$ で楕円正則性を導く。鍵は交換子の補題（Peetre $+$ Young）。
+\item 強楕円型では Gårding の不等式 $\Re\ip{Pu}u\ge c\nrm u1^2-C\nrm u0^2$ と Lax--Milgram で可解性が得られる。
+\item 一般の閉多様体：同じ議論（局所化）が成り立つ。主張は\tC、骨子は上のとおり。
+\end{itemize}
+\end{keybox}
+\paragraph{問題}
+\begin{prob}{基本}\label{p:solveFourier}
+$\T^1$ 上で $-u''+u=f$、$f=\sin 2x+\tfrac12\cos 5x$ の解を Fourier で求め、$f\in H^s$ なら $u\in H^{s+2}$ となる理由を、乗数 $(1+k^2)^{-1}$ の言葉で説明せよ。
+\end{prob}
+\begin{prob}{標準}\label{p:bochner}
+$\T^2=\R^2/(2\pi\Z)^2$ 上の関数 $u$ に対して、$\bar\partial=\frac12(\partial_x+i\partial_y)$ とするとき、恒等式 $4\nrm{\bar\partial u}0^2=\nrm{\nabla u}0^2$ を Fourier 係数で示せ。これから $\nrm u1^2=\nrm u0^2+4\nrm{\bar\partial u}0^2$ を導き、$\bar\partial$ の楕円評価（$m=1$、$s=0$）と、核が定数関数であることを確かめよ。
+\end{prob}
+\begin{prob}{標準}\label{p:Deltamu}
+$\T^n$ 上の $P=-\Delta-\mu=-\sum\partial_j^2-\mu$（$\mu\ge0$）に対し、$\Ker P=\operatorname{span}\{e_k:|k|^2=\mu\}$ であり、指数 $0$ であることを示せ。$n=2$ について、$\mu=1,2,3,5,25$ での $\dim\Ker P=\#\{k\in\Z^2:|k|^2=\mu\}$ を求めよ。$\mu$ の関数として核の次元は跳ぶが指数は一定、という例になっている。
+\end{prob}
+\begin{prob}{基本}\label{p:nonell}
+$\T^2$ 上の（楕円型でない）$P=\partial_y$ について、$u(x,y)=f(x)$（$f\in L^2(\T^1)$ は任意）が $Pu=0$ を満たすことを使って、(a) 正則性が破れること（$Pu\in C^\infty$ だが $u\notin C^\infty$ となる $u$ がある）、(b) $\Ker P$ が無限次元で $P$ は Fredholm でないこと、を示せ。
+\end{prob}
+\begin{prob}{発展}\label{p:laxsturm}
+$\T^1$ 上で $Pu=-(a(x)u')'+q(x)u$（$a>0$、$q$ は滑らかな実関数）を考える。(a) $P$ は自己随伴で、$H^2\to L^2$ で Fredholm 指数 $0$ であることを示せ。(b) $\dim\Ker P\le2$ であることを常微分方程式の解の一意性から示し、$a\equiv1$、$q\equiv-1$ では $\dim\Ker P=2$ となることを確かめよ。(c) $q\ge0$、$q\not\equiv0$ なら $\Ker P=0$ であることを部分積分で示せ。
+\end{prob}

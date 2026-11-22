@@ -1,0 +1,194 @@
+
+%==========================================================================
+\section{Fredholm 作用素と指数}\label{sec:fred}
+この節は抽象的な関数解析で、微分作用素は出てこない。$X,Y,Z$ は Hilbert 空間（Banach 空間でも同様だが、証明を簡単にするため Hilbert 空間とする）、$B(X,Y)$ は有界作用素の空間（作用素ノルム）。
+\begin{defn}[Fredholm 作用素と指数]\label{def:fredholm}
+$T\in B(X,Y)$ が\emph{Fredholm} であるとは、$\dim\Ker T<\infty$、$\Ran T$ が閉、$\dim\Coker T=\dim Y/\Ran T<\infty$ であることをいう。\emph{指数}を $\ind T=\dim\Ker T-\dim\Coker T\in\Z$ と定める。
+\end{defn}
+（$\Ran T$ が有限余次元なら閉である：有限次元の補空間 $W$ をとり、$X_1=(\Ker T)^\perp$ として $\tilde T:X_1\oplus W\to Y$、$(x,w)\mapsto Tx+w$ を考えると、全単射な有界作用素で、開写像定理により逆も有界。$\Ran T=\tilde T(X_1\oplus0)$ は閉（$\Ker T$ が非自明なときは $X$ ではなく $X_1$ をとる必要がある）。定義には含めておく。）
+\begin{ex}\label{ex:fredex}
+(a) $X,Y$ が有限次元なら任意の $T$ は Fredholm で、$\ind T=\dim X-\dim Y$（rank--nullity）。指数は $T$ によらない。(b) 片側シフト $S:\ell^2(\N)\to\ell^2(\N)$、$S(x_0,x_1,\dots)=(0,x_0,x_1,\dots)$：$\Ker S=0$、$\Coker S=\C e_0$、$\ind S=-1$。$S^*$：$\ind S^*=+1$。$S^p(S^*)^q$ の指数は $q-p$。(c) 可逆作用素は指数 $0$ の Fredholm。(d) 対角作用素 $\operatorname{diag}(d_j)$（$d_j\to0$、すべて $\ne0$）は単射で値域は稠密だが閉でない：Fredholm でない。
+\end{ex}
+\begin{lem}\label{lem:closedrange}\tP
+$T\in B(X,Y)$、$K:X\to Z$ をコンパクト作用素とし、$\nrm x{}\le C(\nrm{Tx}{}+\nrm{Kx}{})$（$x\in X$）とする。このとき $\dim\Ker T<\infty$ で、$\Ran T$ は閉。
+\end{lem}
+\begin{proof}
+$\Ker T$ の単位球は $K$ でコンパクト集合に写り、$\nrm x{}\le C\nrm{Kx}{}$ なので、単位球上で $K$ が下から評価される。$x\in\Ker T$ の列 $x_j$（有界）から $Kx_j$ の収束部分列をとると、$\nrm{x_i-x_j}{}\le C\nrm{K(x_i-x_j)}{}\to0$ で $x_j$ も収束する。単位球がコンパクトなので $\dim\Ker T<\infty$。値域：$X=\Ker T\oplus X_1$（$X_1=(\Ker T)^\perp$）とすると、$\nrm x{}\le C'\nrm{Tx}{}$（$x\in X_1$）が成り立つ。（そうでなければ $x_j\in X_1$、$\nrm{x_j}{}=1$、$Tx_j\to0$ となる列があり、$Kx_j$ が収束する部分列をとると、上と同様に $x_j$ が Cauchy 列、極限 $x_*\in X_1$、$\nrm{x_*}{}=1$、$Tx_*=0$ で矛盾。）$T|_{X_1}$ が下に有界なので値域 $T(X_1)=\Ran T$ は閉。
+\end{proof}
+\begin{thm}[Atkinson]\label{thm:atkinson}\tP
+$T\in B(X,Y)$ が Fredholm $\iff$ ある $S\in B(Y,X)$ があって $ST-1_X$ と $TS-1_Y$ がともにコンパクト。（このとき $S$ を $T$ の\emph{パラメトリクス}という。）
+\end{thm}
+\begin{proof}
+($\Rightarrow$) $X=\Ker T\oplus(\Ker T)^\perp$、$Y=\Ran T\oplus(\Ran T)^\perp$ とし、$T_1:=T|_{(\Ker T)^\perp}:(\Ker T)^\perp\to\Ran T$ は全単射、開写像定理で逆が有界。$S=T_1^{-1}\Pi_{\Ran T}$ とおくと $ST=1-\Pi_{\Ker T}$、$TS=\Pi_{\Ran T}=1-\Pi_{(\Ran T)^\perp}$ は 1 から有限階数作用素を引いたもの。($\Leftarrow$) $ST=1+K_1$ なら $\nrm x{}\le\nrm{STx}{}+\nrm{K_1x}{}\le\nrm S{}\nrm{Tx}{}+\nrm{K_1x}{}$、補題 \ref{lem:closedrange} により核は有限次元で値域は閉。$TS=1+K_2$ なら $\Ran T\supset\Ran(1+K_2)$、そして $1+K_2$ の値域は有限余次元（Riesz--Schauder 理論\tC\ ：コンパクト作用素 $K_2$ について $1+K_2$ は指数 $0$ の Fredholm）。
+\end{proof}
+\begin{prop}[合成と随伴]\label{prop:compose}\tP
+$T\in B(X,Y)$、$S\in B(Y,Z)$ が Fredholm なら $ST$ も Fredholm で $\ind(ST)=\ind S+\ind T$。また $T^*$ も Fredholm で $\Ker T^*=(\Ran T)^\perp\cong\Coker T$、$\ind T^*=-\ind T$。
+\end{prop}
+\begin{proof}
+Fredholm 性は Atkinson の定理（パラメトリクスの合成 $T'S'$：$T'S'ST-1=T'(S'S-1)T+(T'T-1)$ がコンパクト）。指数の加法性：次の有限次元の完全列がある。
+\[
+0\to\Ker T\to\Ker ST\xrightarrow{\ T\ }\Ker S\xrightarrow{\ \pi\ }Y/\Ran T\xrightarrow{\ \bar S\ }Z/\Ran ST\to Z/\Ran S\to0
+\]
+（$\pi$ は商写像、$\bar S[y]=[Sy]$ は $S(\Ran T)=\Ran ST$ により定義される、最後は標準的な全射）。各場所の完全性は定義から直接確かめられる（例えば $\Ker\bar S$：$[y]$ で $Sy=STx$ なら $y-Tx\in\Ker S$、$[y]=[y-Tx]\in\operatorname{im}\pi$）。有限完全列の次元の交代和は $0$：$\dim\Ker T-\dim\Ker ST+\dim\Ker S-\dim\Coker T+\dim\Coker ST-\dim\Coker S=0$、これが $\ind ST=\ind T+\ind S$。随伴：$\Ker T^*=(\Ran T)^\perp$、$\Ran T$ が閉なので $\Coker T=Y/\Ran T\cong(\Ran T)^\perp$。$T$ のパラメトリクス $S$ に対し $S^*T^*-1$、$T^*S^*-1$ もコンパクト（コンパクト作用素の随伴はコンパクト）なので、Atkinson により $T^*$ も Fredholm。$T^{**}=T$ だから $\Coker T^*\cong\Ker T$、よって $\ind T^*=\dim\Ker T^*-\dim\Ker T=-\ind T$。
+\end{proof}
+
+\begin{thm}[指数の安定性]\label{thm:stab}\tP
+$T\in B(X,Y)$ を Fredholm とする。\\
+(a)（小さな摂動）ある $\varepsilon>0$ があって、$\nrm A{}<\varepsilon$ ならば $T+A$ は Fredholm、$\ind(T+A)=\ind T$、$\dim\Ker(T+A)\le\dim\Ker T$。\\
+(b)（コンパクト摂動）$K$ がコンパクトなら $T+K$ は Fredholm で $\ind(T+K)=\ind T$。\\
+(c)（ホモトピー不変性）$[0,1]\ni t\mapsto T_t\in B(X,Y)$ が（ノルムで）連続で各 $T_t$ が Fredholm なら、$\ind T_t$ は $t$ によらず一定。
+\end{thm}
+\begin{proof}
+(a) $X=K_0\oplus X_1$（$K_0=\Ker T$）、$Y=R\oplus Y_1$（$R=\Ran T$ 閉、$Y_1=R^\perp$ 有限次元）と分解し、$T=\begin{pmatrix}T_{11}&0\\0&0\end{pmatrix}$、$T_{11}:X_1\to R$ は同型。$A=\begin{pmatrix}A_{11}&A_{12}\\A_{21}&A_{22}\end{pmatrix}$ とする。$\nrm A{}<\varepsilon:=\nrm{T_{11}^{-1}}{}^{-1}$ なら $B=T_{11}+A_{11}$ は可逆（Neumann 級数）。ブロックの Gauss 消去で
+\[
+T+A=\begin{pmatrix}1&0\\A_{21}B^{-1}&1\end{pmatrix}\begin{pmatrix}B&0\\0&\Sigma\end{pmatrix}\begin{pmatrix}1&B^{-1}A_{12}\\0&1\end{pmatrix},\qquad\Sigma=A_{22}-A_{21}B^{-1}A_{12}:K_0\to Y_1.
+\]
+両端の行列は可逆。ゆえに $\Ker(T+A)\cong\Ker\Sigma$、$\Coker(T+A)\cong\Coker\Sigma$ で、$\Sigma$ は有限次元空間の間の線形写像だから $\ind(T+A)=\dim K_0-\dim Y_1=\ind T$、$\dim\Ker(T+A)=\dim\Ker\Sigma\le\dim K_0$。\\
+(c) (a) により $t\mapsto\ind T_t$ は局所定数。$[0,1]$ は連結。\\
+(b) 各 $t\in[0,1]$ で $T+tK$ は Fredholm（Atkinson：$S(T+tK)-1=(ST-1)+tSK$ はコンパクト）。$t\mapsto T+tK$ は連続なので (c) による。
+\end{proof}
+\begin{cor}\label{cor:fredopen}
+Fredholm 作用素の集合 $\mathrm{Fred}(X,Y)\subset B(X,Y)$ は開集合で、指数は連結成分上で一定。核の次元は上半連続だが、一般には連続でない（$T_t=t:\C\to\C$ で $\dim\Ker T_t$ は $t=0$ で $1$、$t\neq0$ で $0$。指数は $0$）。
+\end{cor}
+\begin{center}
+\begin{tikzpicture}[font=\small,>=Stealth,x=1.0cm,y=0.55cm]
+\draw[->] (0,0)--(8,0) node[right] {$t$};
+\draw[->] (0,0)--(0,3.2);
+\node[left] at (0,1) {$1$}; \node[left] at (0,2) {$2$};
+\draw[thick,blue!60!black] (0,0.0)--(2,0.0); \draw[thick,blue!60!black] (2,1)--(5,1); \draw[thick,blue!60!black] (5,0)--(7.5,0);
+\draw[blue!60!black,fill=white] (2,0) circle (1.5pt); \fill[blue!60!black] (2,1) circle (1.5pt);
+\fill[blue!60!black] (5,1) circle (1.5pt); \draw[blue!60!black,fill=white] (5,0) circle (1.5pt);
+\node[blue!60!black,above] at (1,0.0) {\scriptsize $\dim\Ker T_t$};
+\draw[thick,dashed,red!60!black] (0,0.0)--(7.5,0.0);
+\node[red!60!black,below right] at (5.5,0) {\scriptsize $\dim\Ker T_t-\dim\Coker T_t=\ind T_t=0$（一定）};
+\node[align=left,font=\scriptsize] at (3.5,2.5) {$\dim\Ker$ は $t=2,5$ で跳ぶ（上半連続）。\\$\dim\Coker$ も同時に跳び、差は一定。};
+\end{tikzpicture}
+\end{center}
+\begin{rem}
+$X=Y=$ 無限次元の可分 Hilbert 空間のとき、$\mathrm{Fred}$ の連結成分は指数で分類される（Atiyah--Jänich）\tC\ （Atiyah, \emph{K-theory}, 付録；Jänich、1965）。$\mathrm{Fred}$ に位相空間 $B$ からの連続写像があれば、その指数は $K^0(B)$ の元（\emph{指数束}）で、これが第9巻の族の指数定理の舞台である（核の次元が跳ぶので、ベクトル束の差としてしか定義できない）。
+\end{rem}
+\begin{ex}[Toeplitz 作用素と指数 $=-$ 回転数]\label{ex:toeplitz}
+$H^2\subset L^2(S^1)$ を $k\ge0$ の Fourier モードで張られる Hardy 空間、$\Pi_+$ を射影、$f\in C(S^1;\C^*)$ に対し $T_f=\Pi_+f|_{H^2}$。$T_{z^w}$（$z=e^{i\theta}$、$w\ge0$）は $S^w$ で、$\ind=-w$。一般に $T_gT_f-T_{gf}$ はコンパクト\tC\ （Douglas, \emph{Banach Algebra Techniques in Operator Theory}, 第 7 章）だから Atkinson で $T_f$ は Fredholm、$f_t$ が $\C^*$ への連続な道なら定理 \ref{thm:stab}(c) より $\ind T_f$ は $f$ のホモトピー類（$=$ 回転数 $w(f)\in\Z$）だけで決まり、$\ind T_f=-w(f)$ である\tC。数値実験：$f=e^{2i\theta}+0.3$（$w=2$）の有限切断 $N\times N$ 行列の最小特異値は $|w|=2$ 個がほぼ $0$（$10^{-16}$ 程度）で、他は $\approx0.70$ 以上（付録）。
+\end{ex}
+\begin{keybox}{§6 の要点}
+\begin{itemize}
+\item Fredholm $=$ 核・余核が有限次元（値域は閉）。$\ind=\dim\Ker-\dim\Coker$。Atkinson：パラメトリクス（逆がコンパクトを除いてある）の存在と同値。
+\item $\ind(ST)=\ind S+\ind T$、$\ind T^*=-\ind T$。\textbf{指数は小さな摂動・コンパクト摂動・連続な変形で不変}。核の次元は上半連続で跳ぶ。
+\item 指数が $K$ 群（族の場合）に値をもつことが第9巻の主題。
+\end{itemize}
+\end{keybox}
+\paragraph{問題}
+\begin{prob}{基本}\label{p:fredbasic}
+(a) $S$ を片側シフトとして、$S^3$、$(S^*)^2$、$S^2(S^*)^5$ の核・余核・指数を求めよ。(b) $T_t=t\cdot1_{\C}:\C\to\C$ の核の次元が $t=0$ で跳ぶことと、$\C^2\to\C^2$ の $T_t=\operatorname{diag}(t,1)$ でも同様であること、指数は不変であることを確かめよ。
+\end{prob}
+\begin{prob}{標準}\label{p:notfred}
+(a) $\ell^2$ 上の対角作用素 $D=\operatorname{diag}(1,\frac12,\frac13,\dots)$ が Fredholm でないことを示せ（値域が閉でない）。(b) 射影 $\Pi_0$（$e_0$ への射影）に対し $1-\Pi_0$ は Fredholm で指数 $0$。(c) $D$ はコンパクトなので $1+D$ は Fredholm、指数 $0$ であることを定理 \ref{thm:stab}(b) から確認せよ。
+\end{prob}
+\begin{prob}{標準}\label{p:toeplitz2}
+$f(z)=z^2+0.3$ に対し、$T_f=S^2+0.3$ を $(S-a)(S+a)$（$a^2=-0.3$、$|a|<1$）と分解し、$S-a$ の核が $0$、余核が（$S^*-\bar a$ の核）1 次元であることから $\ind T_f=-2$ を示せ。$S-a$ の余核を張るベクトル（$S^*$ の固有ベクトル）を具体的に書け。
+\end{prob}
+\begin{prob}{標準}\label{p:sixterm}
+$S=T=$ 片側シフト（$ST=S^2$）に対し、命題 \ref{prop:compose} の完全列の各項を具体的に書き下し、次元の交代和が $0$ であることを確かめよ。
+\end{prob}
+
+%==========================================================================
+\section{閉多様体上の楕円作用素は Fredholm である：Hodge 理論の一般化}\label{sec:closed}
+\subsection{主定理}
+\begin{thm}[楕円作用素の Fredholm 性]\label{thm:mainFredholm}
+$M$ を閉多様体、$E,F\to M$ を Hermite ベクトル束、$P\in\Diff^m(E,F)$ を楕円型とする。\\
+(a) 任意の $s\in\R$ について $P:H^{s+m}(E)\to H^s(F)$ は Fredholm。\\
+(b) $\Ker P\subset\Gamma(E)$（滑らか）で $s$ によらず、$\Ker P^*\subset\Gamma(F)$ も滑らか。値域は $\Ran P=\{f\in H^s(F):\ \ip fg=0\ \ \forall g\in\Ker P^*\}$。したがって $\Coker P\cong\Ker P^*$。\\
+(c) $\ind P=\dim\Ker P-\dim\Ker P^*$ は $s$ によらず、また Hermite 計量・体積形式のとり方にもよらない。\\
+(d) $L^2$ 直交分解 $\Gamma(F)=P(\Gamma(E))\oplus\Ker P^*$。
+\end{thm}
+\begin{proof}
+\tP\ （トーラスでは完全。一般の $M$ は命題 \ref{prop:generalM} の評価と正則性を使う。）(a) 楕円評価 $\nrm u{s+m}\le C(\nrm{Pu}s+\nrm us)$（滑らかな $u$ で示したが、滑らかな関数の稠密性と両辺の連続性で $H^{s+m}$ 全体に拡張される）と、$H^{s+m}\hookrightarrow H^s$ のコンパクト性（Rellich）から、補題 \ref{lem:closedrange}（$K$ を包含写像にとる）により $\dim\Ker P<\infty$ で $\Ran P$ は閉。$P^*$ も楕円型（命題 \ref{prop:ellclosure}）なので同様。(b) $\Ker P$ の元 $u\in H^{s+m}$ は $Pu=0\in C^\infty$ なので、正則性で滑らか。値域の記述：$H^s$ と $H^{-s}$ は対 $\ip{\cdot}{\cdot}$ で双対（命題 \ref{prop:Hsbasic}(c)）。$\Ran P$ が閉なので $\Ran P=\{f:\ip fg=0\ \forall g\in(\Ran P)^{\circ}\}$、ここで $(\Ran P)^\circ=\{g\in H^{-s}:\ip{Pu}g=0\ \forall u\in H^{s+m}\}=\{g:P^*g=0\text{ （超関数の意味）}\}$。$P^*$ の楕円正則性から $g\in C^\infty$。したがって $(\Ran P)^\circ=\Ker P^*$（滑らか、有限次元）、$\Coker P=H^s/\Ran P\cong(\Ker P^*)^*$ で次元は $\dim\Ker P^*$。(c) $\Ker P$ は滑らかな元からなるので $s$ によらない。$\Coker P=H^s/P(H^{s+m})$ は計量・体積形式を使わずに定義され（$H^s$ も計量によらず同値なノルムを除いて定まる）、$\dim\Coker P=\dim\Ker P^*$ は $P^*$ の取り方（計量）によらない。したがって指数も $s$・計量によらない。(d) $s=0$：$L^2(F)=\Ran P\oplus(\Ran P)^\perp$、$(\Ran P)^\perp=\Ker P^*$。$f$ が滑らかなら $f=Pu+g$、$g\in\Ker P^*$ 滑らか、$Pu=f-g$ も滑らかなので $u$ は滑らか（正則性）。
+\end{proof}
+\begin{cor}[Fredholm の二者択一と応用]\label{cor:alt}\tP
+$P$ を閉多様体上の楕円型作用素とする。$Pu=f$（$f$ は滑らか）が解をもつことと、すべての $g\in\Ker P^*$ について $\ip fg=0$ が成り立つことは同値。解は $\Ker P$（有限次元）の分だけ自由度があり、解は滑らか。
+\end{cor}
+\begin{proof}
+定理 \ref{thm:mainFredholm}(d) と正則性。
+\end{proof}
+\begin{ex}[Poisson 方程式]\label{ex:poisson}
+$M$ を連結な閉 Riemann 多様体とする。$\Delta u=f$ が解をもつ $\iff\int_Mf\,dV=0$（$\Ker\Delta^*=\Ker\Delta=$ 定数）。第5巻 \S1 の Riemann 面上で曲率が一定な Hermite 計量を作るのに使った「$\Delta\psi=f$ は $f\perp$ 定数なら解ける」は、この系の $P=\Delta$ の場合である。トーラスなら Fourier：$\ft u(k)=|k|^{-2}\ft f(k)$（$k\ne0$）、$\ft f(0)=0$ が条件で、$u$ は定数の差を除いて一意。
+\end{ex}
+
+\begin{cor}[連続族の指数と核の次元の上半連続性]\label{cor:family}\tP
+$P_t$（$t\in[0,1]$）を、各 $t$ で係数が滑らかな楕円型作用素で、係数が $t$ について一様ノルム（$C^0$ 位相。$C^\infty$ 位相ならなおよい）で連続なものとする。(a) $\ind P_t$ は $t$ によらず一定。(b) $t\mapsto\dim\Ker P_t$ は上半連続。
+\end{cor}
+\begin{proof}
+$s=0$ をとると、$\nrm{(P_t-P_{t'})u}0\le\sum_\alpha\sup|a_{\alpha,t}-a_{\alpha,t'}|\,\nrm u m$ なので、$P_t:H^m\to L^2$ は作用素ノルムで連続。核は滑らかな元からなり $s$ によらない（定理 \ref{thm:mainFredholm}）から $s=0$ で十分。定理 \ref{thm:stab}(a)(c) による。
+\end{proof}
+この系の (b) は第5巻 \S9（Kodaira--Spencer 理論）で使った「$t\mapsto h^q(X_t,\Omega^p_{X_t})$ は上半連続」の証明を与える：複体構造 $J_t$ の族に対し、Dolbeault Laplacian $\Delta_{\bar\partial,t}$（楕円型、連続に動く）の核の次元が $h^{p,q}(X_t)$（次節の Hodge 定理）である。ただし $\Lambda^{p,q}_{J_t}$ は $t$ とともに変わるので、$t_0$ の近くで射影 $\Lambda^{p,q}_{J_0}\to\Lambda^{p,q}_{J_t}$ が同型になることを使って同一視し、$\Delta_{\bar\partial,t}$ を固定した束上の作用素（係数は $t$ に連続）とみなす。核の次元は共役で変わらない。(a) は、$\chi(X,E)=\sum(-1)^q\dim H^q(X,E)$ が（$C^\infty$ ベクトル束と複素構造の連続変形で）不変であることを意味する。
+
+\subsection{自己随伴な楕円型作用素のスペクトル}
+\begin{thm}\label{thm:spectral}\tP
+$P=P^*\in\Diff^m(E,E)$（形式的に自己随伴）を楕円型とする。(a) $\ind P=0$。(b) $L^2(E)$ は $P$ の固有空間の直交直和に分解され、固有空間は有限次元、固有値は実で $|\lambda_j|\to\infty$、固有関数は滑らか。
+\end{thm}
+\begin{proof}
+(a) $\Ker P^*=\Ker P$（定理 \ref{thm:mainFredholm}(b)）。(b) $P+i:\ H^m\to L^2$ は楕円型（低階の摂動）。核は $0$：$(P+i)u=0$ なら $\ip{Pu}{u}$ は実（$P$ は $H^m$ 上自己随伴、部分積分）で $\Im\ip{(P+i)u}u=\nrm u0^2$ より $u=0$。同様に $P-i$ も単射。指数 $0$（$P:H^m\to L^2$ の指数は (a) で $0$、$i:H^m\to L^2$ はコンパクトなので定理 \ref{thm:stab}(b) により $P+i$ も指数 $0$）なので、単射と合わせて $P+i:H^m\to L^2$ は同型、$R=(P+i)^{-1}:L^2\to H^m\hookrightarrow L^2$ はコンパクト（Rellich）で正規（$R^*=(P-i)^{-1}$ と可換）。コンパクト正規作用素のスペクトル定理から $L^2$ は $R$ の固有空間の直和、各固有空間は有限次元。$R$ の固有値 $(\lambda+i)^{-1}$ は $P$ の固有値 $\lambda$ に対応し、$R$ の固有値が $0$ に集積することから $|\lambda|\to\infty$。固有関数は $Pu=\lambda u$ に正則性を使って滑らか。
+\end{proof}
+
+\begin{ex}[トーラスのスペクトルと Weyl の漸近公式]\label{ex:weyl}
+$\T^n$ 上の $\Delta=-\sum\partial_j^2$：固有関数 $e_k$、固有値 $|k|^2$（重複度 $r_n(|k|^2)$）。固有値 $\le\lambda$ の個数 $N(\lambda)=\#\{k\in\Z^n:|k|^2\le\lambda\}$ は半径 $\sqrt\lambda$ の球の中の格子点の数で、$N(\lambda)\sim\omega_n\lambda^{n/2}$（$\omega_n$：単位球の体積）。$n=2$：$\lambda=100,1000,10000$ で $N=317,\,3149,\,31417$、$\pi\lambda=314.2,\,3141.6,\,31415.9$（比 $1.009,\,1.0024,\,1.00003$）。$n=3$：$\lambda=100,1000$ で $N=4169,\,132451$、$\frac43\pi\lambda^{3/2}=4188.8,\,132461.2$（Python）。一般の閉 Riemann 多様体でも、$\Delta$ の固有値の個数は $N(\lambda)\sim\omega_n(2\pi)^{-n}\operatorname{vol}(M)\lambda^{n/2}$ （Weyl の法則）\tC\ （Berline--Getzler--Vergne、第 2 章：熱核の漸近展開から。章番号は記憶\tQ。第8巻）。
+\end{ex}
+
+\subsection{楕円複体の Hodge 理論}
+$(E_\bullet,P_\bullet)$ を閉多様体 $M$ 上の楕円複体（1 階）、各 $E_k$ に Hermite 計量、$M$ に体積形式を与える。$\Delta_k=P_k^*P_k+P_{k-1}P_{k-1}^*$、$\mathcal H_k=\Ker\Delta_k$。
+\begin{thm}[楕円複体の Hodge 分解]\label{thm:hodgecx}
+(a) $\mathcal H_k$ は有限次元で滑らか、$\mathcal H_k=\Ker P_k\cap\Ker P_{k-1}^*$。\\
+(b) $L^2$ 直交分解 $\Gamma(E_k)=\mathcal H_k\oplus P_{k-1}\Gamma(E_{k-1})\oplus P_k^*\Gamma(E_{k+1})$。\\
+(c) $H^k(\Gamma(E),P):=\Ker P_k/\operatorname{im}P_{k-1}\cong\mathcal H_k$。特にコホモロジーは有限次元で、各類は調和な代表元をただ一つもつ。\\
+(d) $\chi(E,P):=\sum_k(-1)^k\dim H^k=\ind\bigl(P+P^*:\Gamma(E^{\rm ev})\to\Gamma(E^{\rm odd})\bigr)$。
+\end{thm}
+\begin{proof}
+\tP\ $\Delta_k$ は自己随伴で、命題 \ref{prop:cxequiv} により楕円型。(a) $\mathcal H_k$ の有限次元性・滑らかさは定理 \ref{thm:spectral}。$\Delta_k\alpha=0$ なら $0=\ip{\Delta_k\alpha}\alpha=\nrm{P_k\alpha}0^2+\nrm{P_{k-1}^*\alpha}0^2$ で $\mathcal H_k=\Ker P_k\cap\Ker P_{k-1}^*$（逆は明らか）。(b) 定理 \ref{thm:mainFredholm}(d)：$\Gamma(E_k)=\Delta_k\Gamma(E_k)\oplus\mathcal H_k$。$\Delta_k\beta=P_{k-1}(P_{k-1}^*\beta)+P_k^*(P_k\beta)$ なので $\Gamma(E_k)=\mathcal H_k+\operatorname{im}P_{k-1}+\operatorname{im}P_k^*$。3 つは直交する：$\ip{P_{k-1}a}{P_k^*b}=\ip{P_kP_{k-1}a}b=0$、$\mathcal H_k\perp\operatorname{im}P_{k-1}$ は $P_{k-1}^*h=0$ から、$\mathcal H_k\perp\operatorname{im}P_k^*$ は $P_kh=0$ から。(c) $P_k\alpha=0$ とし $\alpha=h+P_{k-1}a+P_k^*b$ と分解する。$0=P_k\alpha=P_kP_k^*b$ より $\nrm{P_k^*b}0^2=\ip b{P_kP_k^*b}=0$、すなわち $\alpha=h+P_{k-1}a$。よって $\Ker P_k=\mathcal H_k\oplus\operatorname{im}P_{k-1}$ で $H^k\cong\mathcal H_k$。(d) $D=P+P^*$ とすると、$\Gamma(E^{\rm ev})\to\Gamma(E^{\rm odd})$ の $D$ の形式的随伴は $\Gamma(E^{\rm odd})\to\Gamma(E^{\rm ev})$ の同じ形の作用素で、$D^*D=\Delta|_{\rm ev}$、$DD^*=\Delta|_{\rm odd}$（$P^2=0$、$(P^*)^2=0$ から）。$\Ker D=\bigoplus_{k\ \rm even}\mathcal H_k$（$\nrm{D\alpha}0^2=\ip{\Delta\alpha}\alpha$）、$\Ker D^*=\bigoplus_{k\ \rm odd}\mathcal H_k$。
+\end{proof}
+\begin{ex}[de Rham の Hodge 定理]\label{ex:hodgeR}
+$(\Omega^\bullet(M),d)$：$\Delta_d$ 楕円型（例 \ref{ex:dsym}）。定理 \ref{thm:hodgecx} は、第5巻の Hodge の定理（$H^k_{dR}(M)\cong\mathcal H^k$、$\Omega^k=\mathcal H^k\oplus d\Omega^{k-1}\oplus d^*\Omega^{k+1}$）の完全な証明を与える（第5巻 \S2 で「楕円型作用素の理論（第7巻）」と述べた部分）。(d) より $\chi(M)=\sum(-1)^kb_k=\ind\bigl(d+d^*:\Omega^{\rm ev}\to\Omega^{\rm odd}\bigr)$。
+\end{ex}
+\begin{ex}[Dolbeault の Hodge 定理と $\chi(X,E)=$ 指数]\label{ex:hodgeD}
+$X$ コンパクト複素多様体、$E$ 正則ベクトル束：$(\mathcal A^{0,\bullet}(E),\bar\partial_E)$ は楕円複体（例 \ref{ex:Dolcx}）。$H^q(X,E)\cong H^{0,q}_{\bar\partial}(X,E)\cong\mathcal H^{0,q}(E)=\Ker\Delta_{\bar\partial}$（第3巻の Dolbeault の定理を併用）は有限次元で、
+\[
+\chi(X,E)=\sum_q(-1)^q\dim H^q(X,E)=\ind\bigl(\bar\partial_E+\bar\partial_E^*:\mathcal A^{0,\rm ev}(E)\to\mathcal A^{0,\rm odd}(E)\bigr).
+\]
+これは第2〜4巻で何度も触れた「Euler 標数は Dolbeault 作用素の指数」の正確な意味である。Serre 双対（第5巻）は、$\Delta_{\bar\partial}$ が Hodge 星作用素（共役線形同型 $\mathcal H^{0,q}(E)\to\mathcal H^{n,n-q}(E^*)$）と可換なことの帰結。
+\end{ex}
+\begin{prop}[一般化 Dolbeault コホモロジー]\label{prop:HHfinite}
+例 \ref{ex:unifiedcx} の設定（$X$ コンパクト複素多様体、$\sigma$ 正則 Poisson、$E$ Poisson 加群）で、（i）$\mathrm{HH}^k(E)$ は有限次元で、全複体 $(\mathcal K^\bullet,D)$ の調和空間と同型。（ii）Euler 標数について
+\[
+\sum_k(-1)^k\dim\mathrm{HH}^k(E)=\sum_{b}(-1)^b\chi\bigl(X,\wedge^bT_X\otimes E\bigr).
+\]
+特に左辺は $\sigma$ と $V$ によらない。
+\end{prop}
+\begin{proof}
+\tP\ （例 \ref{ex:unifiedcx} の同定 $\mathrm{HH}^k=H^k(\Gamma(\mathcal K^\bullet),D)$ を認めた上で。符号規約は\tQ。）(i) 命題 \ref{prop:unifiedell} と定理 \ref{thm:hodgecx}(c)。（有限性自体は、スペクトル系列 $E_1^{a,b}=H^a(X,\wedge^bT\otimes E)$ と連接層のコホモロジーの有限性からも従う。ここでは楕円型作用素論から出ることを示した。）(ii) $t\in[0,1]$ に対し $D_t=\bar\partial+t(-1)^ad_E$ も複体（$(td_E)^2=0$、$\bar\partial$ と可換）で、フィルトレーション補題により楕円複体。$D_t$ は $t$ について連続（実は 1 次式）なので、系 \ref{cor:family} と定理 \ref{thm:hodgecx}(d) により $\chi(\mathcal K^\bullet,D_t)=\ind(D_t+D_t^*)$ は $t$ によらない。$t=0$ では全複体は $\bigoplus_b(\mathcal A^{0,\bullet}(\wedge^bT\otimes E),\bar\partial)$（$b$ ごとに $b$ ずらした Dolbeault 複体）で、その Euler 標数は $\sum_b(-1)^b\chi(X,\wedge^bT\otimes E)$（例 \ref{ex:hodgeD}）。
+\end{proof}
+\begin{rem}[統合論文との関係]
+(ii) の右辺が $(-1)^n\rk(E)\chi(X)$（$\chi(X)$ は位相的 Euler 数）に等しいことが、統合論文の定理 22 である（第6巻 \S9：HRR による計算）。命題 \ref{prop:HHfinite} は、その左辺が (a) 指数であり、(b) したがって（指数の安定性により）$\sigma,V$ のとり方によらないことを示す、という「橋渡し」である。なお「$\sigma,V$ によらない」は、正則ベクトル束 $E$ を固定したときの意味である。左辺の独立性は、スペクトル系列の $E_1$ 項の Euler 標数が $\mathrm{HH}$ の Euler 標数に等しいことからも従うので、新しい情報ではない。本質的に新しいのは、(1) 定理 22 の値が Atiyah--Singer の公式（第8巻）で再導出できること、(2) 次の予想（\S\ref{sec:noncompact}）のように非コンパクトな設定では「指数」が定義できるかどうかが非自明になること。
+\end{rem}
+\begin{ex}[$\CP^2$、$E=\Oc$、$\sigma=0$]\label{ex:CP2}
+$\sigma=0$、$V=0$ なら $d_E=0$ で、$\mathrm{HH}^k(E)=\bigoplus_{a+b=k}H^a(X,\wedge^bT_X\otimes E)$（第5巻 \S11）。$X=\CP^2$、$E=\Oc$：$H^0(\Oc)=\C$（$b=0$、次元 1）、$H^0(T_{\CP^2})=\mathfrak{sl}_3$（次元 8）、$H^0(\wedge^2T)=H^0(\Oc(3))$（次元 $\binom52=10$）、他の $H^a$ は $0$（第5〜6巻）。$\mathrm{HH}^0=\C$、$\mathrm{HH}^1=\C^8$、$\mathrm{HH}^2=\C^{10}$、Euler 標数 $1-8+10=3=(-1)^2\cdot1\cdot\chi(\CP^2)$。全複体の階数は $\dim\wedge^b T\otimes\Lambda^{0,a}$ から $\binom4k=1,4,6,4,1$（階数の交代和 $0$、注意 \ref{rem:rankalt} と整合）。これは命題 \ref{prop:HHfinite}(ii) と第6巻の定理（$\sum_b(-1)^b\chi(\wedge^bT\otimes\Oc(m))=3$ がすべての $m$ で成立）の最も簡単な場合である。
+\end{ex}
+
+\begin{keybox}{§7 の要点}
+\begin{itemize}
+\item 閉多様体上の楕円作用素 $P:H^{s+m}\to H^s$ は Fredholm。$\Ker P$、$\Ker P^*$ は滑らかで有限次元、$\Coker P\cong\Ker P^*$、$\ind P=\dim\Ker P-\dim\Ker P^*$。族で指数は不変、核の次元は上半連続。
+\item 自己随伴楕円型作用素は指数 $0$、スペクトルは離散。
+\item 楕円複体の Hodge 理論：$H^k\cong\mathcal H_k=\Ker\Delta_k$、Hodge 分解、$\chi(E,P)=\ind(P+P^*)$。de Rham、Dolbeault、および統合論文の全複体に適用。
+\end{itemize}
+\end{keybox}
+\paragraph{問題}
+\begin{prob}{基本}\label{p:green1}
+$\T^1$ 上で $\Delta=-d^2/dx^2$ の調和空間、Green 作用素 $G$（$\mathcal H^\perp$ 上 $\Delta^{-1}$、$\mathcal H$ 上 $0$）を Fourier 乗数として書き、$f=3+\sin x+\cos 2x$ に対し $f=Hf+\Delta Gf$ を具体的に計算せよ。
+\end{prob}
+\begin{prob}{標準}\label{p:hodge1form}
+$\T^2=\R^2/(2\pi\Z)^2$（平坦計量）の 1 形式 $\alpha=\sin(x+y)\,dx$ の Hodge 分解 $\alpha=h+d\varphi+d^*\psi$ を求めよ。（$d^*(f\,dx+g\,dy)=-(f_x+g_y)$、$d^*(h\,dx\wedge dy)=h_y\,dx-h_x\,dy$。）
+\end{prob}
+\begin{prob}{標準}\label{p:chiind}
+Hodge の定理により $\chi(M)=\ind(d+d^*)$ である。(a) 向きづけ可能な種数 $g$ の閉曲面 $\Sigma_g$ で $\ind=2-2g$。(b) $T^n$、(c) $S^n$（$n$ 偶数・奇数）、(d) $\CP^2$ の $\chi$ を Betti 数から求めよ（$b_0,\dots,b_4=1,0,1,0,1$）。
+\end{prob}
+\begin{prob}{標準}\label{p:torusa}
+$\T^2$（座標 $z=x+iy$）上で、定数 $a\in\C$ に対し $P_a=\bar\partial+a=\frac12(\partial_x+i\partial_y)+a:C^\infty(\T^2)\to C^\infty(\T^2)$ の核と余核（$P_a^*$ の核）を Fourier で求めよ。$\dim\Ker P_a$ が $a$ の関数として $0$ または $1$ になる $a$ の集合を決定し、指数は常に $0$ であることを確かめよ。（これは平坦な直線束 $L_a$ 上の $\bar\partial$：$H^0(L_a)$ が $a$ の特別な値で跳ぶ例で、楕円曲線の次数 $0$ の直線束の $h^0$ の跳び（第4巻）に当たる。）
+\end{prob}
