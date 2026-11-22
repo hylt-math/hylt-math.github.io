@@ -23,6 +23,8 @@
 
 - 2026-11-22 generalized-geometry-poisson-part2 v1（ja/en、新記事、status: partial）。ソースは _archive/2026-11-22/paper2_ja, paper2_en。Part I への影響確認の結果（撤回なし）は notes/v3_corrections.md。
 
+- 11:00 ごろ: Part V v2（定理 V 追加、ja/en 13ページ）を公開。ソースは paper5_v2_ja/en。キュー①完了。②総合論文の凝縮版（エージェント a8b58…）と③P² m=3（エージェント a6095…）は実行中。
+
 ## 作業キュー（優先順・更新）
 G. 公開サイトの反映確認（ブラウザ系ツールが使えるとき、または WebFetch で新しい URL を取得）。
 H. 完了（Part V）。残り: 準斉次な局所公式の収束複体への移行の詳細、s=1。

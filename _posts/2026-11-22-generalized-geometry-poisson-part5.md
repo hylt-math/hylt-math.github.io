@@ -8,14 +8,15 @@ series_label: "Part V"
 status: partial
 tags: [一般化複素幾何, 正則Poisson構造, Riemann-Roch, 指数定理, 研究ノート]
 abstract: "対数シンプレクティックな場合の Riemann–Roch 型の公式として、Euler 標数が $$\\chi(U)$$ に等しいこと、Poincaré 多項式を $$H^*(U;L_U)$$ で書く公式を示し、次元が $$m$$ の多項式にならない理由を説明する。準斉次な特異点の局所公式も証明した。留数を重みとする指数定理を予想として述べる。査読を受けていない。"
-pdf: /assets/pdf/generalized-geometry-poisson-part5-v1-ja.pdf
-pdf_version: "v1"
+updated: 2026-11-22
+pdf: /assets/pdf/generalized-geometry-poisson-part5-v2-ja.pdf
+pdf_version: "v2"
 ---
 
 調査・執筆：Claude　／　問題設定：森
 
 <div class="remark">
-**英語版 PDF**：[generalized-geometry-poisson-part5-v1-en.pdf]({{ '/assets/pdf/generalized-geometry-poisson-part5-v1-en.pdf' | relative_url }})（日本語版が原本です）。
+**英語版 PDF**：[generalized-geometry-poisson-part5-v2-en.pdf]({{ '/assets/pdf/generalized-geometry-poisson-part5-v2-en.pdf' | relative_url }})（日本語版が原本です）。旧版：[v1（日本語）]({{ '/assets/pdf/generalized-geometry-poisson-part5-v1-ja.pdf' | relative_url }})、[v1（英語）]({{ '/assets/pdf/generalized-geometry-poisson-part5-v1-en.pdf' | relative_url }})。
 [Part I]({{ '/2026/11/22/generalized-geometry-poisson/' | relative_url }})、[II]({{ '/2026/11/22/generalized-geometry-poisson-part2/' | relative_url }})、[III]({{ '/2026/11/22/generalized-geometry-poisson-part3/' | relative_url }})、[IV]({{ '/2026/11/22/generalized-geometry-poisson-part4/' | relative_url }}) の続編です。本稿は**査読を受けていない研究ノート**で、各主張には【文献】【証明済】【計算で確認】【予想】【要確認】の区別を付けています。
 </div>
 
@@ -54,10 +55,11 @@ $$
 重み付き $$b$$-計算で、一般化 Dolbeault 作用素が Fredholm になるのは留数 $$r\notin\mathbb Z$$ のときで、指数は $$\chi(U)$$ であり、$$r\in\mathbb Z$$ では指数が $$H^*(\partial U;L)$$ だけ跳ぶ、と予想します（APS の壁越えの三角形と同じ構造）。Hu の Lie 亜群版の Riemann–Roch は、この複体には適用できません。証明には、対数接 Lie 亜群上の指数理論が必要で、これは存在しません。
 
 <div class="remark">
-**未確認・未証明の点**：$$s$$ の符号の規約と、形式的な重み分解から収束する複体への移行は、データでのみ確認しています。定理 K は、$$n>2$$ では定理 R の【要確認】を引き継ぎます。$$r\notin\mathbb Z$$ かつ $$n>2$$ のとき、定理 K は $$\chi(X)t^n$$ をまだ再現せず（$$k<n$$ で $$H^k(U;L_U)=0$$ を示していないため）、この点は未解決です。
+**未確認・未証明の点**：$$s$$ の符号の規約と、形式的な重み分解から収束する複体への移行は、データでのみ確認しています。定理 K は、$$n>2$$ では定理 R の【要確認】を引き継ぎます。v2 では定理 V を追加し、全留数が非整数のとき $$H^k(U;L_U)=0$$（$$k<n$$）を証明したので、そのとき定理 K は $$\chi(X)t^n$$ を再現します。一部の留数だけが整数の混合の場合の消滅は未解決です。
 </div>
 
 ## 改訂履歴
 
 - 2026-11-22：v1 公開（日本語版・英語版）。
-- 2026-11-22：$$r\notin\mathbb Z$$ かつ $$n>2$$ で未解決としていた $$H^k(U;L_U)=0$$（$$k<n$$）は、[総合版]({{ '/2026/11/22/generalized-geometry-poisson-main/' | relative_url }})の定理 V で証明された（本記事の PDF v1 では未解決のまま）。
+- 2026-11-22：v1 の時点で $$r\notin\mathbb Z$$ かつ $$n>2$$ で未解決としていた $$H^k(U;L_U)=0$$（$$k<n$$）は、[総合版]({{ '/2026/11/22/generalized-geometry-poisson-main/' | relative_url }})の定理 V で証明された。
+- 2026-11-22：v2 公開（日本語版・英語版）。定理 V を節として追加し、定理 K の照合の段落と状態表を更新した。主張の変更はなし。
