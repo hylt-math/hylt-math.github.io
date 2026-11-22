@@ -1,0 +1,95 @@
+=== roundH_proof_check
+A1 zw: mu=1, identities OK, 12 values of k0 checked
+A2 z2+w3: mu=2, identities OK, 29 values of k0 checked
+A3 z2+w4: mu=3, identities OK, 21 values of k0 checked
+A6 z2+w7: mu=6, identities OK, 65 values of k0 checked
+D4 z2w+w3: mu=4, identities OK, 17 values of k0 checked
+D5 z2w+w4: mu=5, identities OK, 39 values of k0 checked
+E6 z3+w4: mu=6, identities OK, 57 values of k0 checked
+E8 z3+w5: mu=8, identities OK, 71 values of k0 checked
+T236 z3+w6: mu=10, identities OK, 31 values of k0 checked
+z4+w5 (lct9/20): mu=12, identities OK, 95 values of k0 checked
+z5+w5: mu=16, identities OK, 27 values of k0 checked
+z4+w4: mu=9, identities OK, 22 values of k0 checked
+z3+w7: mu=12, identities OK, 99 values of k0 checked
+z5+w6: mu=20, identities OK, 143 values of k0 checked
+total mismatches: 0
+=== roundK_check
+(K1) chi(X;DR_log(O(a))) = c_2(T(-log D)) = chi(U): mismatches 0 of 175
+smooth(Fermat)                     mismatches=0
+nodal y2z-x3-x2z                   mismatches=0
+conic+secant x(yz-x2)              mismatches=0
+triangle xyz                       mismatches=0
+smooth(random 2,2)                 mismatches=0
+two (1,1) conics, transverse       mismatches=0
+four lines x0x1y0y1                mismatches=0
+(1,1)+(1,0)+(0,1)                  mismatches=0
+(K2a) Theorem K on surface tables: 0 mismatches of 188
+P2 (1,) chi(X)= 3 running mismatches 0 of 4
+P2 (3,) chi(X)= 3 running mismatches 0 of 13
+P1xP1 (1, 1) chi(X)= 4 running mismatches 0 of 18
+P1xP1 (2, 3) chi(X)= 4 running mismatches 0 of 28
+P4 (1,) chi(X)= 5 running mismatches 0 of 34
+P2xP2 (1, 1) chi(X)= 9 running mismatches 0 of 44
+P1^4 (1, 1, 1, 1) chi(X)= 16 running mismatches 0 of 61
+(K2b) Theorem K, toric n=2,4: 0 mismatches of 61
+=== roundJ2_vanish_check
+P4 (1,) rho (Fraction(1, 2), Fraction(1, 3), Fraction(1, 5), Fraction(1, 7)) res ['1/2', '1/3', '1/5', '1/7', '-457/210'] all nonint True poly [0, 0, 0, 0, 5] euler 5
+P4 (2,) rho (Fraction(1, 3), Fraction(1, 3), Fraction(1, 3), Fraction(1, 3)) res ['1/3', '1/3', '1/3', '1/3', '-10/3'] all nonint True poly [0, 0, 0, 0, 5] euler 5
+P2xP2 (1, 2) rho (Fraction(1, 2), Fraction(1, 3), Fraction(1, 2), Fraction(1, 3)) res ['1/2', '1/3', '-11/6', '1/2', '1/3', '-17/6'] all nonint True poly [0, 0, 0, 0, 9] euler 9
+P2xP2 (1, 1) rho (Fraction(1, 2), Fraction(-1, 2), Fraction(1, 3), Fraction(1, 3)) res ['1/2', '-1/2', '-1', '1/3', '1/3', '-5/3'] all nonint False poly [0, 0, 0, 0, 9] euler 9
+P1^4 (1, 1, 1, 1) rho (Fraction(1, 2), Fraction(1, 2), Fraction(1, 2), Fraction(1, 2)) res ['1/2', '-3/2', '1/2', '-3/2', '1/2', '-3/2', '1/2', '-3/2'] all nonint True poly [0, 0, 0, 0, 16] euler 16
+P1xP3 (1, 1) rho (Fraction(1, 2), Fraction(1, 3), Fraction(1, 3), Fraction(1, 3)) res ['1/2', '-3/2', '1/3', '1/3', '1/3', '-2'] all nonint False poly [0, 0, 0, 0, 8] euler 8
+=== roundD_check
+(1) total Euler characteristic == (-1)^n chi(P^n) for n=1..6, m=-12..12: True
+P2 (1,) V = 3 running mismatches 0 of 28
+P2 (2,) V = 3 running mismatches 0 of 58
+P2 (3,) V = 3 running mismatches 0 of 90
+P1xP1 (1, 1) V = 4 running mismatches 0 of 110
+P1xP1 (1, 2) V = 4 running mismatches 0 of 136
+P1xP1 (2, 3) V = 4 running mismatches 0 of 170
+P4 (1,) V = 5 running mismatches 0 of 192
+P2xP2 (1, 1) V = 9 running mismatches 0 of 212
+P1^4 (1, 1, 1, 1) V = 16 running mismatches 0 of 246
+(2) Theorem T: mismatches 0 of 246
+=== ncd_local_weights
+r= ('-3', '-3')  | stalk FULL [1, 2, 2] LOG [1, 2, 1] coneQ [0, 0, 1] inj | locH(deg shifted by 2) FULL [1, 0, 0] LOG [0, 0, 0] coneQ [1, 0, 0] inj
+r= ('0', '-2')  | stalk FULL [1, 2, 2] LOG [1, 2, 1] coneQ [0, 0, 1] inj | locH(deg shifted by 2) FULL [1, 0, 0] LOG [0, 0, 0] coneQ [1, 0, 0] inj
+r= ('1', '-3') RESONANT | stalk FULL [0, 9, 10] LOG [0, 0, 0] coneQ [0, 9, 10] inj | locH(deg shifted by 2) FULL [8, 7, 0] LOG [0, 0, 0] coneQ [8, 7, 0] inj
+r= ('1', '-2') RESONANT | stalk FULL [0, 9, 10] LOG [0, 0, 0] coneQ [0, 9, 10] inj | locH(deg shifted by 2) FULL [8, 7, 0] LOG [0, 0, 0] coneQ [8, 7, 0] inj
+r= ('1', '-1') RESONANT | stalk FULL [0, 9, 10] LOG [0, 0, 0] coneQ [0, 9, 10] inj | locH(deg shifted by 2) FULL [8, 7, 0] LOG [0, 0, 0] coneQ [8, 7, 0] inj
+r= ('1', '0') RESONANT | stalk FULL [0, 9, 10] LOG [0, 0, 0] coneQ [0, 9, 10] inj | locH(deg shifted by 2) FULL [8, 7, 0] LOG [0, 0, 0] coneQ [8, 7, 0] inj
+r= ('1', '1') RESONANT | stalk FULL [0, 18, 19] LOG [0, 0, 0] coneQ [0, 18, 19] inj | locH(deg shifted by 2) FULL [15, 14, 0] LOG [1, 2, 1] coneQ [16, 15, 0] NOT-inj
+r= ('1', '1/2') RESONANT | stalk FULL [0, 9, 10] LOG [0, 0, 0] coneQ [0, 9, 10] inj | locH(deg shifted by 2) FULL [8, 7, 0] LOG [0, 0, 0] coneQ [8, 7, 0] inj
+r= ('1', '-1/2') RESONANT | stalk FULL [0, 9, 10] LOG [0, 0, 0] coneQ [0, 9, 10] inj | locH(deg shifted by 2) FULL [8, 7, 0] LOG [0, 0, 0] coneQ [8, 7, 0] inj
+r= ('1', '1/3') RESONANT | stalk FULL [0, 9, 10] LOG [0, 0, 0] coneQ [0, 9, 10] inj | locH(deg shifted by 2) FULL [8, 7, 0] LOG [0, 0, 0] coneQ [8, 7, 0] inj
+r= ('1', '-2/3') RESONANT | stalk FULL [0, 9, 10] LOG [0, 0, 0] coneQ [0, 9, 10] inj | locH(deg shifted by 2) FULL [8, 7, 0] LOG [0, 0, 0] coneQ [8, 7, 0] inj
+r= ('2', '1') RESONANT | stalk FULL [0, 9, 10] LOG [0, 0, 0] coneQ [0, 9, 10] inj | locH(deg shifted by 2) FULL [8, 7, 0] LOG [1, 2, 1] coneQ [8, 7, 0] NOT-inj
+r= ('2', '2')  | stalk FULL [0, 0, 1] LOG [0, 0, 0] coneQ [0, 0, 1] inj | locH(deg shifted by 2) FULL [2, 2, 1] LOG [1, 2, 1] coneQ [1, 0, 0] inj
+r= ('3', '1') RESONANT | stalk FULL [0, 9, 10] LOG [0, 0, 0] coneQ [0, 9, 10] inj | locH(deg shifted by 2) FULL [8, 7, 0] LOG [1, 2, 1] coneQ [8, 7, 0] NOT-inj
+r= ('3', '3')  | stalk FULL [0, 0, 1] LOG [0, 0, 0] coneQ [0, 0, 1] inj | locH(deg shifted by 2) FULL [2, 2, 1] LOG [1, 2, 1] coneQ [1, 0, 0] inj
+r= ('3', '1/2')  | stalk FULL [0, 0, 1] LOG [0, 0, 0] coneQ [0, 0, 1] inj | locH(deg shifted by 2) FULL [1, 0, 0] LOG [0, 0, 0] coneQ [1, 0, 0] inj
+r= ('1/2', '-1/2')  | stalk FULL [0, 0, 1] LOG [0, 0, 0] coneQ [0, 0, 1] inj | locH(deg shifted by 2) FULL [1, 0, 0] LOG [0, 0, 0] coneQ [1, 0, 0] inj
+r= ('5/2', '1') RESONANT | stalk FULL [0, 9, 10] LOG [0, 0, 0] coneQ [0, 9, 10] inj | locH(deg shifted by 2) FULL [8, 7, 0] LOG [0, 0, 0] coneQ [8, 7, 0] inj
+non-resonant cases violating (Q=C_p[-2] and connecting map zero): 0
+=== ncd_cochain_check
+node d1d0=0: True  dQ formula: True
+smooth d1d0=0: True  dQ formula: True
+=== duality_ndim_exact
+Traceback (most recent call last):
+  File "/home/claude/hylt-math.github.io/_archive/2026-11-22/scripts/duality_ndim_exact.py", line 5, in <module>
+    from duality_ndim import *
+ModuleNotFoundError: No module named 'duality_ndim'
+=== serre_rr_check
+P2 E_1^{a>0,b}=0 for all m >= -2 ; non-vanishing m in [-20,20): [-20, -19, -18, -17, -16, -15, -14, -13, -12, -11, -10, -9, -8, -7, -6, -5, -4, -3]
+P1xP1 E_1^{a>0,b}=0 for all m >= -1 ; non-vanishing m in [-20,20): [-20, -19, -18, -17, -16, -15, -14, -13, -12, -11, -10, -9, -8, -7, -6, -5, -4, -3, -2]
+smooth(Fermat)                   degrees>=3 vanish for m>=-2: True;  period 3 for m>=1: True
+nodal y2z-x3-x2z                 degrees>=3 vanish for m>=-2: True;  period 3 for m>=1: True
+conic+secant x(yz-x2)            degrees>=3 vanish for m>=-2: True;  period 3 for m>=1: True
+triangle xyz                     degrees>=3 vanish for m>=-2: True;  period 3 for m>=1: True
+smooth(random 2,2)               degrees>=3 vanish for m>=-1: True;  period 2 for m>=1: True
+two (1,1) conics, transverse     degrees>=3 vanish for m>=-1: True;  period 2 for m>=1: True
+four lines x0x1y0y1              degrees>=3 vanish for m>=-1: True;  period 2 for m>=1: True
+(1,1)+(1,0)+(0,1)                degrees>=3 vanish for m>=-1: True;  period 2 for m>=1: True
+Poincare polynomial formula in r=-m/k: 80 values, 0 mismatches
+duality symmetry P_r(k)=P_{2-r}(4-k) violations: 0

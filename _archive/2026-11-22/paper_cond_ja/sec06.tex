@@ -1,0 +1,184 @@
+%==============================================================
+\section{トーリック多様体と局所項}\label{sec:toric}
+%==============================================================
+\subsection{トーリック対数シンプレクティック構造と weight 公式}
+$X$ を滑らかな射影的トーリック多様体（$N=\Z^n$、$n=2k$、$M=\mathrm{Hom}(N,\Z)$）、$u_i\in N$ を光線の生成元、$D=\sum D_i$ をトーリック境界（SNC）とする。対数枠 $E_j=z_j\partial_j$ に関し、定数の非退化歪対称行列 $A$ により $\sigma=\tfrac12\sum A_{ij}E_i\wedge E_j$（トーラス不変で $D$ に沿って対数シンプレクティック）。$L=\mathcal O(\sum a_iD_i)$ に平坦対数接続 $d+\rho$（$\rho\in M_\C$）を与える。留数は $r_i=\langle\rho,u_i\rangle-a_i$、$c_1(L)=-\sum r_i[D_i]$。すべての加群はこの形である（$H^0(\Omega^1(\log D))=M_\C$、補題 \ref{lem:res}）\tP。$\chi\in M$ に対し
+\begin{gather*}c_i(\chi)=\langle\chi,u_i\rangle+a_i,\quad C(\chi)=\{i:c_i(\chi)=-1\},\\ W(\chi)=\mathrm{span}(u_i:i\in C(\chi)),\quad s(\chi)=\dim W(\chi).\end{gather*}
+
+\begin{thm}[weight 公式]\tP\ \tV\label{thm:weight}
+$E_1^{a,b}=H^a(X,\wedge^bT\otimes L)=0\ (a>0)$ を仮定する（例：$L=L_0^m$、$m\gg0$、$L_0$ は豊富な Poisson 加群。定理 \ref{thm:serre}）。このとき
+\[P_{\HH}(t)=\sum_{\chi\in\Lambda}t^{s(\chi)}(1+t)^{n-s(\chi)},\qquad\Lambda=\{\chi\in M:\ c_i(\chi)\ge-1\ \forall i,\ A(\chi+\rho)\in W(\chi)\}.\]
+\end{thm}
+\begin{hyptab}
+トーリック、$\sigma$ トーラス不変、定数 $A$ & 大域切断の複体がトーラスの指標 $\chi\in M$ で次数付けられ、各 weight で有限次元の線形代数になる & weight $\chi$ の部分複体 $G^b_\chi$ の決定\\\midrule
+$E_1^{a>0}=0$ & $\HH^*$ が大域切断の複体のコホモロジーに等しい（定理 \ref{thm:serre}(b) の議論） & 最初の等式\\\midrule
+$A$ 非退化 & $\sigma^\sh:B\cong T_D$ が成立し、対数 de Rham 微分 $(\chi+\rho)\wedge$ が $v_\chi\wedge$（$v_\chi=A(\chi+\rho)$）に写る & 補題 \ref{lem:iso}、定理 \ref{thm:main1}(e)
+\end{hyptab}
+\begin{proof}
+$z^\chi w$（$w\in\wedge^bN_\C$）が $\wedge^bT\otimes L$ の正則切断であるための条件は、各 $D_i$ に沿って $c_i(\chi)\ge-1$、かつ $c_i(\chi)=-1$ なら $u_i\wedge w=0$（$w$ が $E_i=z_i\partial_i$ で割れる）。よって weight $\chi$ の部分は $G^b_\chi=\{w\in\wedge^bN_\C:u_i\wedge w=0\ (i\in C(\chi))\}$（ある $c_i<-1$ なら空）で、$\wedge^sW$ の生成元 $\omega_W$ を用いて $G^\bullet_\chi=\omega_W\wedge\wedge^{\bullet-s}(N_\C/W)$。微分は $\wedge\sigma^\sh$ により $v_\chi\wedge$ に対応する。$v_\chi\in W$ のとき微分は 0 で、Poincar\'e 多項式 $t^s(1+t)^{n-s}$。そうでなければ $v_\chi\bmod W\neq0$ の Koszul 複体として非輪状。\qedhere
+\end{proof}
+\tV\ 閉公式と、線形代数による直接計算（\texttt{toric\_hh.py}）が 60 個のランダムな場合（$\mathbb P^2$, $\mathbb P^1\times\mathbb P^1$, $\mathbb P^4$, $\mathbb P^2\times\mathbb P^2$, $(\mathbb P^1)^4$）で一致した。
+
+\begin{cor}\tP\label{cor:weight}
+(a) $E_1^{a>0}=0$ なら全 Euler 標数は $s(\chi)=n$ となる weight の個数（頂点の個数）$=\chi(X)$（定理 \ref{thm:E} と整合）。
+(b) 寄与の由来：$x=\chi+\rho$ とおく。$s=0$ は $\chi=-\rho$、$\rho\in M$ かつ全 $r_i\le0$ のとき $(1+t)^n=H^*(U)$（$Rj_*$ の場合）。$s=n$ は常に条件を満たし頂点 weight、$t^n$ を各 1 個。$0<s<n$ は $x\in A^{-1}W$ かつ $\langle x,u_i\rangle=r_i-1\ (i\in C)$ が必要で、積分格子上の「共鳴」でのみ解がある。
+(c) $s=n-1$ で全 $r_i=1\ (i\in C)$ のとき条件は自動的に成り立ち、トーリック曲線 $C$ 上の格子点の個数 $\deg(L|_C)+1$ 個のクラス $t^{n-1}(1+t)$ が現れる（次元 2 の $r_i=1$ の共鳴に対応）。
+\end{cor}
+
+%--------------------------------------------------------------
+\subsection{トーリック曲面：留数が不等な場合}
+%--------------------------------------------------------------
+$\Delta_\Sigma$ をファン $\Sigma$ の光線を頂点とする単体複体（$\Sigma$ の錐の光線の集合を単体とする）、$V_S$ を頂点集合 $S$ で張られる full な部分複体とし、$\tilde h^q(V_S)$ を被約コホモロジーの次元とする（$V_\emptyset=\emptyset$ では $\tilde h^{-1}=1$、他は 0 と約束）。
+
+\begin{thm}[$\mathrm{DR}_{\log}$ のトーリックなコホモロジー]\tP\ \tC\label{thm:C1}
+$X=X_\Sigma$ を完備な滑らかなトーリック多様体、$L=\mathcal O(\sum a_iD_i)$、$\nabla=d+\rho$ とし、$S=\{i:\langle\rho,u_i\rangle-a_i>0\}$ とおく。このとき
+\[\sum_k\dim H^k(X;\mathrm{DR}_{\log}(L))\,t^k=\begin{cases}(1+t)^n\sum_q\tilde h^{q-1}(V_S)\,t^q&(\rho\in M),\\ 0&(\rho\notin M).\end{cases}\]
+\end{thm}
+\begin{hyptab}
+トーラス不変な構造 & 複体が weight $\chi\in M$ で次数付けられ、各 weight で独立に計算できる & 証明の最初の分解\\\midrule
+完備性 & 超コホモロジーが有限次元、\v Cech 複体が有限個のアファイン開集合で計算できる & \v Cech 複体\\\midrule
+$\Omega^1(\log D)\cong\mathcal O\otimes M$ & Koszul 複体との直積分解（Künneth） & weight $\chi$ 部分が $\check C^\bullet_\chi\otimes(\wedge M_\C,(\chi+\rho)\wedge)$ の形\\\midrule
+Cox--Little--Schenck の weight 公式 & $H^a(X;L)_\chi$ が単体複体の被約コホモロジーで書ける & 最後の同定
+\end{hyptab}
+\begin{proof}
+$T$-同変なアファイン開被覆の \v Cech 複体は weight $\chi$ ごとに分解し、weight $\chi$ 部分は $\check C^\bullet(L)_\chi\otimes\wedge^\bullet M_\C$（微分 $d_{\check C}\otimes1\pm1\otimes(\chi+\rho)\wedge$）のテンソル積複体。Künneth より $H^k(X;\mathrm{DR}_{\log})_\chi=\bigoplus_{a+b=k}H^a(X;L)_\chi\otimes H^b(\wedge M_\C,(\chi+\rho)\wedge)$。Koszul 複体は $\chi+\rho\neq0$ で非輪状、$\chi+\rho=0$（$\rho\in M$ が必要）で次元 $\binom nb$ の $\wedge^bM_\C$。ゆえに $\rho\notin M$ なら全体が 0、$\rho\in M$ なら $\chi=-\rho$ のみが寄与し $(1+t)^n\sum_ah^a(X;L)_{-\rho}t^a$。最後に Cox--Little--Schenck \cite{CLS}（Thm.~9.1.3\tC\ \tQ）：$H^a(X,\mathcal O(\sum a_iD_i))_m\cong\tilde H^{a-1}(V_{D,m};\C)$、$V_{D,m}$ は $\langle m,u_i\rangle<-a_i$ の光線で張られる full な部分複体。$m=-\rho$ で条件は $\langle\rho,u_i\rangle>a_i$、すなわち $i\in S$。\qedhere
+\end{proof}
+\begin{thm}[トーリック曲面、留数が不等]\tP\ \tV\label{thm:C2}
+$X$ を完備な滑らかなトーリック曲面、$A$ を $2\times2$ の非退化歪対称行列、すべての $r_i\ne1$ とする。このとき
+\[P_{\HH}(t)=\chi(X)\,t^2+[\rho\in M]\,(1+t)^2\sum_q\tilde h^{q-1}(V_S)\,t^q,\qquad S=\{i:r_i\ge2\}.\]
+特に $S=\emptyset$（すべて $r_i\le0$）で $(1+t)^2+\chi(X)t^2$、$S$ が全光線で $t^2(1+t)^2+\chi(X)t^2$。
+\end{thm}
+\begin{hyptab}
+トーリック曲面、$\sigma$ が対数シンプレクティック & 定理 \ref{thm:main2} の適用条件：$D$ は被約で通常二重点のみ（二重点はトーラス不変点）、$\mu=\chi(X)$ & $\HH^*=H^*(X;\mathcal F)\oplus\C^\mu[-2]$\\\midrule
+$r_i\ne1$（全成分） & 補題 \ref{lem:Q}（商複体 $Q$ の非輪状性）の条件 & 同上\\\midrule
+$\mathrm{DR}_{\log}\simeq\mathcal F$ & 補題 \ref{lem:stalk} の混合の場合 & $H^*(X;\mathcal F)=H^*(X;\mathrm{DR}_{\log})$ に帰着し定理 \ref{thm:C1} を適用
+\end{hyptab}
+\begin{proof}
+定理 \ref{thm:main2} により $\HH^*=H^*(X;\mathcal F)\oplus\C^\mu[-2]$、トーリック曲面では $\mu=$ 極大錐の個数 $=\chi(X)$。補題 \ref{lem:stalk} により $H^*(X;\mathcal F)=H^*(X;\mathrm{DR}_{\log})$、定理 \ref{thm:C1} で $\rho\in M$（すなわちすべての $r_i\in\Z$）のとき $(1+t)^2\sum\tilde h^{q-1}(V_S)t^q$、$S=\{r_i\ge1\}=\{r_i\ge2\}$（$r_i\ne1$）。\qedhere
+\end{proof}
+\tV\ $\mathbb{CP}^2$（三角形、$m=-9..6$、留数 $\{-2..3,\pm\tfrac12\}$）で 755 行、$\mathbb{CP}^1\times\mathbb{CP}^1$（4 本の直線）で 729 行について、weight 分解した \v Cech 超コホモロジーの厳密な線形代数（\texttt{roundC\_toric\_cech.py, roundC\_p2\_sweep*.py, roundC\_p1p1\_sweepA.py}）と食い違い 0。$\mathbb{CP}^1\times\mathbb{CP}^1$ で $S=$ 対辺の 2 本（$V_S$ は 2 点）のとき公式が予言する $t(1+t)^2$ の項が実際に現れる。等しい留数 $r_i=r$ では $S=\emptyset$ または全光線で、定理 \ref{thm:B} の三つの場合に一致する（例：三角形で $r\le0$：$(1+t)^2+3t^2=[1,2,4]$）。\tC\ これらの大規模な表は総合版の記録からの転記で、本論文の執筆中には再実行していない\tQ。
+
+%--------------------------------------------------------------
+\subsection{トーリック多様体（任意の偶数次元）：一般の $\sigma$}
+%--------------------------------------------------------------
+\begin{thm}[トーリック、一般の $\sigma$]\tP\ \tV\label{thm:T}
+$X$ を滑らかな射影トーリック多様体（$\dim X=n$ は偶数）、$\sigma$ をトーラス不変な対数シンプレクティック構造（定数行列 $A$）、$L=\mathcal O(\sum a_iD_i)$、$\nabla=d+\rho$ とし、次を仮定する。
+\begin{itemize}
+\item[(V)] $H^a(X,\wedge^bT\otimes L)=0$（$a>0$、すべての $b$）。
+\item[(A)] $L(D):=L\otimes\mathcal O(\sum D_i)$ が ample。
+\item[(GEN)] $\mathrm{Pf}(A)\ne0$ かつ数 $A_{ij}\ (i<j)$ が $K=\mathbb Q(\rho_1,\dots,\rho_n)$ 上 1 次独立。
+\item[(R)] すべての $i$ で $r_i\ne1$。
+\end{itemize}
+このとき $P_{\HH}(t)=[\ \rho\in M\ \text{かつ}\ r_i\le0\ (\forall i)\ ]\,(1+t)^n+\chi(X)\,t^n$。同値な言い方：$L$ に正の整数留数がないとき $\HH^*(L)\cong H^*(U;L_U)\oplus\C^{\chi(X)}[-n]$（$\rho\notin M$ なら $L_U$ は $(\C^*)^n$ 上の自明でない局所系で $H^*(U;L_U)=0$）。
+\end{thm}
+\begin{hyptab}
+(V) & 超コホモロジーが大域切断の複体のコホモロジーに等しくなる & weight 公式（定理 \ref{thm:weight}）の前提。$L=L_0^m$（$m\gg0$）では定理 \ref{thm:serre} による\\\midrule
+(A) $L(D)$ ample & 多面体 $\{\chi:c_i(\chi)\ge-1\}$ が単純で法ファンが $\Sigma$、頂点がちょうど $\chi(X)$ 個 & $s=n$：頂点 weight $\chi(X)$ 個、各 $t^n$\\\midrule
+(GEN) & $A(\chi+\rho)\in W(\chi)$ が $K$ 上で $x\parallel m$ に退化し、算術的な偶然を排除する & $0<s<n$ の中間層の寄与を消す\\\midrule
+(R) $r_i\ne1$ & $r_i=1$ だと $x=0$ または $x\parallel m_0$ の解が現れる（共鳴） & $s=n-1$ と $\chi=-\rho$ の場合に共鳴の寄与を消す\\\midrule
+$\mathrm{Pf}(A)\ne0$ & $\sigma$ が対数シンプレクティック & 対数 de Rham 微分 $(\chi+\rho)\wedge$ が $v_\chi\wedge$ に対応
+\end{hyptab}
+\begin{proof}
+定理 \ref{thm:weight} を使う。$x=\chi+\rho$、$C=C(\chi)$、$W=W(\chi)$、$s=\dim W$ とおく。$i\in C$ では $\langle x,u_i\rangle=r_i-1$。条件 $Ax\in W$ は $m\in\mathrm{Ann}_M(W)$ のすべてについて $\langle m,Ax\rangle=\sum_{i<j}A_{ij}(m_ix_j-m_jx_i)=0$ と同値。
+\emph{$s=n$：}条件は空。(A) により $c_i\ge-1$ かつ $C(\chi)$ が全空間を張る $\chi$ は多面体の頂点（単純、$X$ が滑らかなので格子点）と一対一で、各極大錐に 1 個、計 $\chi(X)$ 個。各々 $t^n$。
+\emph{$1\le s\le n-2$：}$\mathrm{Ann}_M(W)$ は階数 $\ge2$ なので、1 次独立な整数ベクトル $m,m'$ が取れる。係数 $m_ix_j-m_jx_i\in K$ で、(GEN) により $\sum A_{ij}(\cdots)=0$ なら全係数 0、すなわち $x\parallel m$。同様に $x\parallel m'$ で、$x=0$。$C\ne\emptyset$ のとき $x=0$ は $r_i-1=0$ を意味し (R) に反する。解なし。
+\emph{$s=n-1$：}$\mathrm{Ann}_M(W)=\Z m_0$。同様に $x=\tau m_0$ で、$i\in C$ について $0=\tau\langle m_0,u_i\rangle=r_i-1$。(R) に反する。解なし。
+\emph{$s=0$：}$W=0$ で条件は $x=0$、すなわち $\chi=-\rho$（$\rho\in M$ が必要）。$c_i(\chi)=-r_i\ge-1$ かつ $C=\emptyset$ なので $r_i\le0$。寄与は $(1+t)^n$。
+以上を足す。後半は、$\rho\in M$ のとき $L_U$ は自明、すべての $r_i\le0$ と「正の整数留数なし」が (R) のもとで同値であることによる。\qedhere
+\end{proof}
+\tV\ $\mathbb{P}^2$（$m=1,2,3$）、$\mathbb{P}^1\times\mathbb{P}^1$（$\mathcal O(1,1),\mathcal O(1,2),\mathcal O(2,3)$）、$\mathbb{P}^4$（$m=1$）、$\mathbb{P}^2\times\mathbb{P}^2$（$(1,1)$）、$(\mathbb{P}^1)^4$（$(1,1,1,1)$）、$\rho$ の格子点・有理点、$A$ はランダムな整数（素数 $2^{61}-1$ を法とする）、すべての $r_i\ne1$ の 246 例で定理の式と一致（食い違い 0、\texttt{roundD\_check.py}、再実行して確認）。共鳴を含むより広い 3626 例でも weight 公式の予言と一致している（\texttt{toric\_generic\_check2.py}。再実行していない\tQ）。
+
+\begin{obs}[(GEN) の必要性と $\sigma$ の算術への依存\ \tV]\label{obs:gen}
+次元 4 では $\HH^*$ は $(X,D,L,\text{留数})$ だけでは決まらない。$\mathbb P^2\times\mathbb P^2$（$\mathcal O(1,1)$、$\rho=0$）で、$\sigma$ がブロック対角のとき $[1,4,12,16,16]$（2 つの曲面の結果の積、Künneth）、一般の $A$ では $[1,4,6,4,10]$。差 $(0,0,6,12,6)=6t^2(1+t)^2$ は、余次元 2 の 6 個の層 $\{\text{一方の因子の二重点}\}\times(\C^*)^2$ からの寄与である。仕組み（weight 公式による）：$|C|=2$ の weight で $u_i,u_j$ が $\sigma$ に関してシンプレクティックなら $x\in A^{-1}W$ が $\langle x,u_i\rangle=r_i-1$ から一意に決まり、$x\in\rho+M$ となる算術的条件のときだけ $t^2(1+t)^2$ が寄与する。ブロック構造ではこの条件が自動的に成り立つ。\tK\ $\HH$ は対数シンプレクティック構造のパラメータ空間の可算個の真解析部分集合上で上に跳び（上半連続性）、一般の値は最小である。
+\end{obs}
+
+%--------------------------------------------------------------
+\subsection{共鳴 $r_i=1$}
+%--------------------------------------------------------------
+$r_i=1$ の成分があると定理 \ref{thm:main2} は適用できない（$d_Q=-u(1-r)p$ が 0）。次は計算に基づく。
+\begin{obs}[単一・二重共鳴（$\mathbb{CP}^2$, $\mathbb{CP}^1\times\mathbb{CP}^1$）\ \tV]\label{obs:res}
+$R$ を $r_i=1$ となる枝の集合、$N_R$ を共鳴枝の法束と $L$ のテンソル、$K_R=(K_X^{-1}\otimes L)|_{D_R}$、$\nu$ を共鳴枝を含まない二重点の数とするとき
+\[P_{\HH}(t)=t\,h^0(N_R)+t^2\bigl(h^1(N_R)+h^0(K_R)+\nu\bigr)+t^3\,h^1(K_R).\]
+$\mathbb{CP}^2$ の単一・二重共鳴と $\mathbb{CP}^1\times\mathbb{CP}^1$（非整数留数をもつ 108 例）で食い違い 0。共鳴枝が複数のときの $N_R$ の正確な定義は総合版の記録から転記したもので、確認していない\tQ。全留数が整数（$L_U$ 自明）で $m\ll0$ の場合と全分枝が共鳴する場合（$L=K_X$）は $H_c$ 型の連結写像が働き、公式は破れる（例：$\mathbb{CP}^2$ の二重共鳴 $m=-5$：観測値 $[0,0,5,2]$、公式の予言 $[0,0,6,3]$）。$L=K_X$ は命題 \ref{prop:KX} で別に扱う。\tK\ 共鳴公式は $L_U$ が自明でなく全分枝が共鳴しないときの一般の公式であろうが、証明には連結写像の計算（補題 \ref{lem:conn} の拡張）が必要で未完。トーリックでは系 \ref{cor:weight}(c) が対応する（証明済\tP）。
+\end{obs}
+
+%--------------------------------------------------------------
+\subsection{非ノーダルな特異点の局所項}\label{subsec:local}
+%--------------------------------------------------------------
+$D$ に尖点・tacnode・3 重点などがあるとき、定理 \ref{thm:main2} は使えない。局所モデルは $\sigma=h\,\partial_z\wedge\partial_w$、加群 $\mathcal O\,h^s$（$V=s\chi_h$、$\chi_h=h_w\partial_z-h_z\partial_w$）、茎の複体 $\mathcal C_s=(\mathcal O\xrightarrow{d_0}\mathcal O^2\xrightarrow{d_1}\mathcal O)$：
+\[d_0f=(hf_w+sfh_w)\partial_z-(hf_z+sfh_z)\partial_w,\qquad d_1(p,q)=h(p_z+q_w)-(1-s)(h_zp+h_wq)\]
+（式 \eqref{eq:dE} で $a=sh_w$, $b=-sh_z$ としたもの）。大域では $s=r$ で、$\mathbb{CP}^2$ なら $s=-m/3$、$\mathbb{CP}^1\times\mathbb{CP}^1$ なら $-m/2$。
+
+$h\in\C\{z,w\}$ を、正の整数の重み $(w_z,w_w)$、次数 $N_h$ に関する準斉次多項式で、原点が孤立特異点（したがって $h$ は被約）または滑らかな点とする。$\delta=N_h-w_z-w_w$、$e=w_zz\partial_z+w_ww\partial_w$（$eh=N_hh$）、$J=(h_z,h_w)$、$T=\mathcal O/J$、$\mu=\dim T$、$\mathrm{Sp}$ は多重集合 $\{\alpha_m=(\mathrm{wt}(m)+w_z+w_w)/N_h\}$（$m$ は $T$ の単項式基底）とする。
+
+\begin{thm}[準斉次な局所公式]\tP\ \tQ\label{thm:local}
+$s\ne1$ のとき、$\mathcal C_s$ のコホモロジーの Poincar\'e 多項式は
+\[\mu\,t^2\;+\;[\,s\in\Z,\ s\le0\,](1+t)\;+\;(t+t^2)\cdot\#\{\alpha\in\mathrm{Sp}:\ s+\alpha\in\Z,\ s+\alpha\le1\}.\]
+\end{thm}
+\begin{hyptab}
+準斉次 & $e\,h=N_hh$ により複体が重みで分解し、各重みが有限次元 & 手順 (2), (3)\\\midrule
+孤立特異点 & $h_z,h_w$ が正則列（Hilbert 級数の公式）、$h$ が被約（Saito の基底 $e,\chi_h$） & 手順 (1), (5), (4)\\\midrule
+$s\ne1$ & $s=1$ では商 $Q$ の微分が 0 で茎が無限次元 & 手順 (1)\\\midrule
+正の重み & 各重み成分 $\mathcal O_k$ が有限次元多項式空間、重みごとの割り算が有界 & 手順 (2)
+\end{hyptab}
+\begin{proof}
+\emph{(1) 分解。}$D=\{h=0\}$ は平面曲線で、$e,\chi_h\in\Theta(-\log D)$（$eh=N_hh$、$\chi_hh=0$）、$e\wedge\chi_h=-N_hh\,\partial_z\wedge\partial_w$ なので、$h$ が被約であることから Saito の判定法（\cite{Saito} Thm.~1.8\tC\ \tQ）により $\Theta(-\log D)=\mathcal Oe\oplus\mathcal O\chi_h$。基底 $(e,\chi_h)$ で書くと（$\chi_h$ の weight は $\delta$、$[e,\chi_h]=\delta\chi_h$）
+\begin{align}
+d_0f&=-\tfrac1{N_h}\chi_h(f)\,e+\tfrac1{N_h}\bigl(ef+sN_hf\bigr)\chi_h,\label{eq:d0}\\
+d_1(a\,e+b\,\chi_h)&=\bigl[(e+sN_h-\delta)a+\chi_h(b)\bigr]\,h\,\partial_z\wedge\partial_w.\label{eq:d1}
+\end{align}
+（\tV\ ランダムな多項式 $f,a,b$ と有理数 $s$、7 種の準斉次 $h$ で、これらを定義式と照合した（210 検査、不一致 0、\texttt{local\_basis\_check.py}、本論文のために作成）。）したがって $B_s:=(\mathcal O\to\Theta(-\log D)\to h\mathcal O\,\partial_z\wedge\partial_w)$ は $\mathcal C_s$ の部分複体である。商 $Q=\mathcal C_s/B_s$ は、$X\mapsto X(h)\bmod h$ により $Q^1\cong J\mathcal O_D\subset\mathcal O_D$、$Q^2=\mathcal O_D$、$Q^0=0$、微分は $-(1-s)\cdot$（包含）で、$s\ne1$ なら単射。$H^2(Q)=\mathcal O_D/J\mathcal O_D=\mathcal O/J$（$h\in J$：$N_hh=w_zzh_z+w_wwh_w$）。三角 $B_s\to\mathcal C_s\to Q$ の長完全列で $H^3(B_s)=0$、$H^0(Q)=H^1(Q)=0$ だから、$H^k(B_s)=H^k(\mathcal C_s)\ (k\le1)$、$0\to H^2(B_s)\to H^2(\mathcal C_s)\to\mathcal O/J\to0$。すなわち茎 $=\mu t^2+P(B_s)$。
+
+\emph{(2) 重みによる分解。}$\mathcal O=\prod_k\mathcal O_k$（$\mathcal O_k$ は重み $k$ の準斉次多項式）。$B_s$ の重み $k$ の部分は、$a\in\mathcal O_{k+\delta}$、$b\in\mathcal O_k$ として $B^0_k=\mathcal O_k$、$B^1_k=\{a\,e+b\,\chi_h\}$、$B^2_k=\mathcal O_{k+\delta}$、$\kappa:=k+sN_h$ とおくと式 \eqref{eq:d0}, \eqref{eq:d1} より
+\[d_0f=\bigl(-\tfrac1{N_h}\chi_hf,\ \tfrac\kappa{N_h}f\bigr),\qquad d_1(a,b)=\kappa a+\chi_hb.\]
+$\kappa\ne0$ のとき、ホモトピー $H^2(c)=(c/\kappa,0)$、$H^1(a,b)=N_hb/\kappa$ は $d_1H^2=\mathrm{id}$、$H^1d_0=\mathrm{id}$、$H^2d_1+d_0H^1=\mathrm{id}$ を満たす（直接計算）。$\kappa\ne0$ の重み全体では $|\kappa|\ge c>0$ なので $H$ は収束級数を保ち、$B_s$ は重み $k_0:=-sN_h$ の有限次元部分複体（$k_0\notin\Z$ なら 0）と、可縮な複体の直和に分解する。形式級数と収束級数の比較の問題は、この有界なホモトピーにより生じない。
+
+\emph{(3) 重み $k_0$ の部分。}$\kappa=0$ なので $d_0f=(-\tfrac1{N_h}\chi_hf,0)$、$d_1(a,b)=\chi_hb$。$K=\ker(\chi_h|\mathcal O_{k_0})$、$\mathrm{Cok}=\mathrm{coker}(\chi_h:\mathcal O_{k_0}\to\mathcal O_{k_0+\delta})$ とおくと $H^0=K$、$H^1=K\oplus\mathrm{Cok}$、$H^2=\mathrm{Cok}$（$\mathcal O_j=0\ (j<0)$ とする）。
+
+\emph{(4) $K$ の決定。}$f\in\mathcal O_{k_0}$、$\chi_hf=0$ とする。$\chi_hf=(df\wedge dh)/(dz\wedge dw)$（符号を除く）なので $df\wedge dh=0$。$e$ で縮約すると $k_0f\,dh-N_hh\,df=0$、すなわち $d(f^{N_h}/h^{k_0})=0$（$k_0>0$）。よって $f^{N_h}=c\,h^{k_0}$。$h$ は被約なので、既約因子 $p\mid h$ で $N_hv_p(f)=k_0$。$f\ne0$ なら $N_h\mid k_0$ で、$f/h^{k_0/N_h}$ は $N_h$ 乗が定数の有理関数、すなわち定数。したがって $K=\C\,h^{k_0/N_h}$（$k_0\in N_h\Z_{\ge0}$）、それ以外は $K=0$（$k_0=0$ では $f$ は定数）。
+
+\emph{(5) $\dim\mathrm{Cok}$。}$d=k_0+\delta$、$a=w_z$、$b=w_w$。$\sum_k\dim\mathcal O_kx^k=1/((1-x^a)(1-x^b))$、$h_z,h_w$ は次数 $N_h-a$, $N_h-b$ の正則列なので $\sum\dim T_kx^k=(1-x^{N_h-a})(1-x^{N_h-b})/((1-x^a)(1-x^b))$。恒等式 $x^\delta+x^{N_h}-x^{N_h-a}-x^{N_h-b}=x^\delta(1-x^a)(1-x^b)$ から
+\[\frac{(1-x^{N_h-a})(1-x^{N_h-b})}{(1-x^a)(1-x^b)(1-x^{N_h})}-\frac{1-x^\delta}{(1-x^a)(1-x^b)}=\frac{x^\delta}{1-x^{N_h}}.\]
+$x^d$ の係数を取ると $\sum_{r\ge0}\dim T_{d-rN_h}-(\dim\mathcal O_d-\dim\mathcal O_{k_0})=[\,k_0\in N_h\Z_{\ge0}\,]=\dim K$。$\dim\mathrm{Cok}=\dim\mathcal O_d-\dim\mathcal O_{k_0}+\dim K$ なので $\dim\mathrm{Cok}=\sum_{r\ge0}\dim T_{d-rN_h}$。
+
+\emph{(6) スペクトルへの翻訳。}$s=-k_0/N_h$。$T_{d-rN_h}$ の基底単項式 $m$（$\mathrm{wt}(m)=d-rN_h$）に対し $\alpha_m=(\mathrm{wt}(m)+w_z+w_w)/N_h=1-r-s$、すなわち $s+\alpha_m=1-r\in\Z_{\le1}$。逆に $s+\alpha\in\Z_{\le1}$ をみたす $\alpha$ はちょうど 1 つの $r\ge0$ に対応する。よって $\dim\mathrm{Cok}=\#\{\alpha\in\mathrm{Sp}:s+\alpha\in\Z,\ s+\alpha\le1\}$、$\dim K=[\,s\in\Z_{\le0}\,]$。(3) と (1) から定理を得る。\qedhere
+\end{proof}
+\begin{rem}[状態と残る未確認事項]
+\tV\ 手順 (3)--(6) の次元（$K$, $\mathrm{Cok}$ と上の公式）を、14 種（$A_1,A_2,A_3,A_6,D_4,D_5,E_6,E_8$, $z^3+w^6$, $z^4+w^5$, $z^5+w^5$, $z^4+w^4$, $z^3+w^7$, $z^5+w^6$）約 700 個の $k_0$ について有理数の厳密計算で照合し、不一致 0（\texttt{roundH\_proof\_check.py}、再実行して確認）。\tQ\ 残る未確認：(a) 局所モデル $\mathcal C_s$（$V=s\chi_h$）が大域的な Poisson 加群の茎として現れること（準斉次でない germ を含め、留数 $s$ の符号規約は式 \eqref{eq:dE} の $V=-\sigma^\sh\theta$ に合わせて固定した）、(b) Saito の判定法の番号。適用範囲は準斉次の孤立特異点（または滑らかな点）と $s\ne1$ のみで、準斉次でない孤立特異点・非孤立特異点・$s=1$ は\tK（未証明）。
+\end{rem}
+\begin{rem}[解釈\ \tC\ \tK]
+Milnor ファイバー束 $h:B\setminus D\to\C^*$ の Wang 完全列（ファイバーは $\mu$ 個の円の束で、$H^1$ のモノドロミー固有値は $e^{-2\pi\sqrt{-1}\alpha}$）から $(Rj_*L_s)_p=[s\in\Z](1+t)+(t+t^2)\#\{\alpha:s+\alpha\in\Z\}$ となる。定理の公式はこれに切り捨て $s+\alpha\le1$（部分複体 $B_s$ が重み $\ge-\delta$ の部分を計算することに由来）を課したものである。総合版（Part II v1）の規則 $[s<\mathrm{lct}]\cdot(\cdots)$ は $\mathrm{lct}<1/2$ のとき誤り（例：$z^4-w^5$、$\mathrm{lct}=9/20$ で $s=11/20=1-\mathrm{lct}$ には $s>\mathrm{lct}$ だが類が存在する）で、$\mathrm{lct}\ge1/2$ では一致する。Calder\'on-Moreno--Narv\'aez-Macarro \cite{CMNM} は自由因子について類似の対数比較定理を与えている（頁は\tQ）。
+\end{rem}
+\begin{obs}[代表的な型の茎の次元\ \tP]\label{obs:localtable}
+定理 \ref{thm:local} から $(\dim H^0,\dim H^1,\dim H^2)$ は次のようになる（$\mu$ は Milnor 数、「$\alpha$」の列は $s+\alpha\in\Z_{\le1}$ をみたす $\alpha\in\mathrm{Sp}$ がちょうど 1 つあり $\alpha\notin\Z$ のとき）：
+\begin{center}\small
+\begin{tabular}{llcccc}\toprule
+特異点 & $\mathrm{Sp}$ & $\mu$ & 一般の $s$ & $s\in\Z_{\le0}$ & $\alpha$\\\midrule
+滑らか $(z)$ & $\emptyset$ & 0 & $(0,0,0)$ & $(1,1,0)$ & ---\\
+二重点 $(zw)$ & $\{1\}$ & 1 & $(0,0,1)$ & $(1,2,2)$ & ---\\
+尖点 $(z^2-w^3)$ & $\{\frac56,\frac76\}$ & 2 & $(0,0,2)$ & $(1,1,2)$ & $(0,1,3)$\\
+tacnode $(z^2-w^4)$ & $\{\frac34,1,\frac54\}$ & 3 & $(0,0,3)$ & $(1,2,4)$ & $(0,1,4)$\\
+$A_4$ $(z^2-w^5)$ & $\{\frac7{10},\frac9{10},\frac{11}{10},\frac{13}{10}\}$ & 4 & $(0,0,4)$ & $(1,1,4)$ & $(0,1,5)$\\
+$D_4$ $(zw(z-w))$ & $\{\frac23,1,1,\frac43\}$ & 4 & $(0,0,4)$ & $(1,3,6)$ & $(0,1,5)$\\
+$D_5$ $(w(z^2-w^3))$ & $\{\frac58,\frac78,1,\frac98,\frac{11}8\}$ & 5 & $(0,0,5)$ & $(1,2,6)$ & $(0,1,6)$\\\bottomrule
+\end{tabular}
+\end{center}
+総合版の表（Part I §I.6.6）の値のうち、$A_4$ の最後の列は総合版では未記入であった。
+\end{obs}
+\noindent \tP\ 訂正：$D_5=z^2w-w^4$ の重みは $(3,2)$、次数 8、$\mathrm{Sp}=\{5/8,7/8,1,9/8,11/8\}$、$\mathrm{lct}=5/8$、$\mu=5$。内部メモにあった重み $(3,1,7)$ は誤りで、そこから出た値は無効（総合版の表と本文は正しい重みで書かれている）。
+
+\begin{obs}[留数が不等な三重点\ \tV]\label{obs:triple}
+$h=zw(z-w)$（$D_4$）、加群 $\prod h_i^{s_i}$（各枝に別の $s_i\ne1$）の茎は $\C^4[-2]\oplus R$、$R=H^*(U_{\rm loc};L_s)$（$s_1+s_2+s_3<2$）、$R=0$（それ以外）。$U_{\rm loc}=\C^2\setminus\{3\text{ 本の直線}\}\simeq\C^*\times(\mathbb P^1\setminus3\text{ 点})$。具体的には、すべての $s_i\in\Z_{\le0}$ なら茎 $(1,3,6)$、$\sum s_i\in\Z_{\le1}$ で $s_i$ が全部整数ではないとき $(0,1,5)$、それ以外 $(0,0,4)$。$s_i\in\tfrac16\Z\cap[-2,2]\setminus\{1\}$ のランダムな 533 組で食い違い 0（\texttt{local\_unequal.py, local\_unequal\_rule.py}。再実行していない\tQ）。節点では枝ごとの閾値 $s_i<1$ が $Rj_*$ 部分の有無を決めるのに対し、三重点では留数の\emph{和}が閾値 $2=w_z+w_w$ を超えるかで決まる。等しい留数 $s_1=s_2=s_3=s$ では、定理 \ref{thm:local} の $D_4$ の値と $s\in\tfrac13\Z$, $-10\le3s\le10$ ($s\ne1$) で一致する（照合\tV）。\tK\ 一般原理：閾値は germ の対称トーラスの下での加群の weight と log canonical weight の比較で決まる。
+\end{obs}
+\begin{conj}[精密化 Riemann--Roch（等留数）]\tK\label{conj:refined}
+$X$ をコンパクト曲面、$\sigma\in H^0(-K_X)$ の零曲線 $D$ は簡約で、すべての特異点が孤立・準斉次かつ $\mathrm{lct}_p\ge1/2$（$A_k,D_k,E_{6,7,8}$ 型など）とする。$L$ は $c_1(L)=sK_X$ の Poisson 加群、$\mathcal F_s$ は $U$ 上で $L_s$、$p\in D$ で $s<\mathrm{lct}_p$ なら $Rj_*L_s$ の茎、$s>\mathrm{lct}_p$ なら 0 とする構成可能複体とする。(a) $s\notin\mathrm{Sp}(D)\cup\{1\}$ のとき $\HH^*=H^*(X;\mathcal F_s)\oplus\bigoplus_p\C^{\mu_p}[-2]$。(b) Euler 標数は常に $\chi(X)$（$\chi(D)=\sum\mu_p$ と $\delta$-不変量から\tP）。(c) $s\ll0$ では $\mathcal F_s=Rj_*L_s$ で $\HH^*=H^*(U;L_s)\oplus\bigoplus\C^{\mu_p}[-2]$ は $s\bmod\Z$ のみに依存し次数 $\ge3$ で消える。(d) $s\in\mathrm{Sp}(D)$ では階数 1 のキャンセルが起こりうる。
+\end{conj}
+\tV\ $\mathbb{CP}^2$（滑らか・結節・尖点・円錐＋割線・円錐＋接線・三角形・3 重点）と $\mathbb{CP}^1\times\mathbb{CP}^1$（4 例）で $m=-15..15$（$-9..8$）に対し (d) 以外で矛盾なし。3 重点 $xy(x-y)$（$\mathbb{CP}^2$）：$m=1,2,4,5,\dots$ と $m=-1$ は $[0,1,4,0,0]$、$m=-5,-7,-8$ は $[0,0,4,1,0]$、$m=-2,-3,-4$ は $[0,0,3,0,0]$。後者の異常（$m=-2,-4$ で $\C^4$ の次数 2 の 1 クラスと $H_c$ の次数 3 の 1 クラスが相殺される）はスペクトル系列の高次微分によると推測するが、証明も定理 \ref{thm:local} による説明もない\tK。証明されていない：大域同定は当てはめで、茎の結果は準斉次 germ のみ。
+\begin{obs}[非被約な境界\ \tV]\label{obs:nr}
+$\sigma=\Pi_F$ で $F$ が重複因子をもつとき、$\HH^*$ の次元は $m$ について線形に増える（厳密な線形代数、$m=-15,\dots,15$、\texttt{roundF\_nonreduced.py}。再実行していない\tQ）。(a) $F=x^2y$（二重線と線、結節点 1 個、$U\simeq S^1$）：$m\ge-2$：$P(t)=[3\mid m](1+t)+3t^2+(m+2)(t+t^2)$、$m=-3$：$3t^2$、$m\le-4$：Serre 双対 $m\leftrightarrow-m-6$ の像。(b) $F=x^3$（三重線、$U=\C^2$）：$m\ge0$ で $[1,2m+5,2m+7]$、$m=-1$ で $[0,2,5]$、$m=-2,-3,-4$ で $[0,0,3]$。(c) $\mathbb P^1\times\mathbb P^1$、$D=2C$（$C$ は滑らかな $(1,1)$ 曲線）、$L=\mathcal O(m,m)$：$m\ge0$ で $H^0=1$, $H^1=2m+3$, $H^2=2m+6$。
+\end{obs}
+\begin{conj}[非被約な境界]\tK\label{conj:NR}
+$X=\mathbb P^2$ または $\mathbb P^1\times\mathbb P^1$、$D=\sum k_iD_i$（$D_i$ 滑らか、$D_{\mathrm{red}}$ は SNC）、$m\ge0$（または高次の層コホモロジーが消える範囲）で
+\[\HH^*(L)=H^*(U;L_U)\oplus\C^{\chi(D_{\mathrm{red}})}[-2]\oplus\bigoplus_i\bigoplus_{j=1}^{k_i-1}\bigl(H^0(D_i,L|_{D_i}\otimes N_{D_i}^{j})[-1]\oplus H^0(D_i,L|_{D_i}\otimes N_{D_i}^{j})[-2]\bigr).\]
+\end{conj}
+\noindent 確認は観察 \ref{obs:nr} の 3 つの族のみ。全 Euler 標数は $\chi(U)+\chi(D_{\mathrm{red}})=\chi(X)$ で定理 \ref{thm:E} と整合。ヒューリスティクス：$z^k\partial_z\wedge\partial_w$ の Poisson コホモロジーが無限次元の部分をもつ（Monnier, Roger--Vanhaecke 型の結果\tC\ \tQ、未確認）。$m$ が小さいと破れる（$x^3$ の $m=-1$ は合わない）ので、成り立つ範囲の正確な境界は未知。

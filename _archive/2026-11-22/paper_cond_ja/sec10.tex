@@ -1,0 +1,89 @@
+%==============================================================
+\section{Riemann--Roch 型の公式と指数予想}\label{sec:RR}
+%==============================================================
+\subsection{Poincar\'e 多項式の公式}
+定理 \ref{thm:E} は全 Euler 標数が位相的であることを述べた。次数ごとの次元は次の形になる。
+
+\begin{thm}[RR 型の Poincar\'e 多項式]\tP\ \tV\label{thm:K}
+定理 \ref{thm:R} の仮定（SNC、対数シンプレクティック、$r_i\notin\Z_{\ge1}$、(GEN$_Q$)）に加えて、(i) $U$ がアフィン、(ii) $n$ が偶数（対数シンプレクティックなら自動）とする。このとき
+\[P_{\HH}(t)\;=\;\chi(X)\,t^n\;+\;\sum_{k=0}^{n-1}h^k(U;L_U)\,\bigl(t^k-(-1)^kt^n\bigr).\]
+\end{thm}
+\begin{hyptab}
+簡約定理の仮定 & $\HH^*\cong H^*(U;L_U)\oplus\C^{\#D_{(n)}}[-n]$ を与える & (1)\\\midrule
+$U$ アフィン & Artin 消滅：局所系で $H^k(U;L_U)=0\ (k>n)$ & (2)。ないと「$k<n$ の和」に収まらない\\\midrule
+$n$ 偶数 & $\sum_k(-1)^kh^k+\#D_{(n)}=\chi(X)$ が符号なしで使える（定理 \ref{thm:E}） & (3)\\\midrule
+射影性・豊富性 & 不要 & ---
+\end{hyptab}
+\begin{proof}
+(1) 定理 \ref{thm:R} より $P_{\HH}=\sum_{k\le n}h^kt^k+\#D_{(n)}t^n$（$k>n$ は (2) で消える）。(2) Artin の消滅定理 \cite{SGA4} により $k>n$ で $h^k=0$。(3) 定理 \ref{thm:E}（$n$ 偶数）より $\sum_{k\le n}(-1)^kh^k+\#D_{(n)}=\chi(X)$、すなわち $h^n+\#D_{(n)}=\chi(X)-\sum_{k<n}(-1)^kh^k$。これを $t^n$ の係数に代入する。\qedhere
+\end{proof}
+\begin{cor}\tP
+すべての $r_i\notin\Z$ なら（定理 \ref{thm:V}）$P_{\HH}(t)=\chi(X)t^n$。すべての $r_i\in\Z_{\le0}$ で $L_U$ が自明なら $h^k=b_k(U)$。$n=2$ では $h^0=1$、$h^1=b_1$ で $P=\chi(X)t^2+(1-t^2)+b_1(t+t^2)$。
+\end{cor}
+\paragraph{検証。}\tV\ (a) $n=2$ の表 188 例、(b) トーリック $n=2,4$ の 61 例（$\rho\in M$ のとき $h^k=\binom nk$、それ以外は 0）で、実測の Poincar\'e 多項式と公式の予言が全例一致（食い違い 0、総合版の記録。再実行していない\tQ）。$\mathbb P^2$、$\rho\in M$ のトーリックでは $P=3t^2+(1-t^2)+2(t+t^2)=1+2t+4t^2$。これは定理 \ref{thm:B} の $[r\le0]$ の場合に一致する。$r\ge2$ の側は双対性（定理 \ref{thm:dual}）から得られる。
+
+\subsection{次元の 3 つの振る舞い}
+$L=L_0^m$ を取って $m$ を動かすとき、次数ごとの次元は設定によって質的に異なる振る舞いをする。
+\begin{center}\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{3.0cm}>{\raggedright\arraybackslash}p{4.4cm}>{\raggedright\arraybackslash}p{6.4cm}}
+\toprule 振る舞い & 次数 $k$ ごとの次元 & 例\\\midrule
+(A) 正則型 & $m$ の多項式（$m\gg0$）\tP & $X=\mathbb P^1$、$Y=T^2$（直積）、$G=\mathcal O(m)$：$(m+1,\ 3m+5,\ 3m+7,\ m+3)$（$m\ge-1$）\\\midrule
+(B) 対数シンプレクティック & 留数 $r=-m/3$ の整数性による周期的な跳び\tP\ \tV & $\mathbb P^2$、滑らかな 3 次曲線：$m=3k\ge0$ で $(1,0,2,0,0)$、それ以外 $m\ge-3$ で $(0,0,3,0,0)$（例 \ref{ex:cp2}）\\\midrule
+(C) 全 Euler 標数 & $m$ に依らない\tP & (A) では $\sum(-1)^kh^k=0$、(B) では $3=\chi(\mathbb P^2)$\\\bottomrule
+\end{tabular}
+\end{center}
+(A) では $(m+1)-(3m+5)+(3m+7)-(m+3)=0=\chi(Y)\chi(X)$ と整合する。読み方：(C) より、Riemann--Roch の素朴な形「$\chi(E)=\int\ch(E)\Td$ が $c_1(E)$ の多項式」は一般化幾何では退化し（$c_1$ を見ない）、情報は次数つきの次元にある。(A) では次数ごとの多項式、(B) では定理 \ref{thm:K} のように「留数の整数性にだけ依存する位相的な量 $h^k(U;L_U)$」と $\chi(X)$ に分解される。多項式的な振る舞いが全次数で成り立つのは正則型だけである。
+
+\subsection{先行研究との比較}\label{subsec:compare}
+\paragraph{Hodge 理論（形式係数）。}\tC\ Gualtieri は一般化 Kähler 多様体上の一般化 Hodge star、Born--Infeld 内積、Laplacian の等式、Hodge 分解、$dd^{\Jc}$-補題を示した（\cite{GuaHodge}, \cite{GuaK}、Cavalcanti \cite{Cav}。定理番号は精読していない\tQ）。これらは自明束または $H$-捩れ係数の理論であり、直線束（曲率つき）係数の Bochner--Kodaira--Nakano 恒等式は、調べた範囲では書かれていない。本論文の結果は、この係数付き版の穴を、Hodge 理論に頼らず、対数複体と構成可能層の比較で $\beta$-変換の場合に埋めたものと位置づけられる。
+
+\paragraph{Pal--Poddar。}\tC\ \cite{PP} は正則型（型 $k$ 一定）のコンパクト一般化複素多様体で葉空間が Kähler 軌道体の場合に、SGH 束の Hodge 理論、横断 Dolbeault 同型（Thm.\ 8.9, Cor.\ 8.10）、Hodge 分解と Serre 双対性（Thm.\ 11.2--11.7）、Kähler の恒等式（Prop.\ 11.8, Lemma 11.9）、正の SGH 直線束（Def.\ 11.10, 11.11）に対する消滅定理（Thm.\ 11.12）を与える（番号は\tQ）。違い：(i) 型が跳ぶ場合は Pal--Poddar の枠外で、本論文の $\mathbb{CP}^2$ などの例はこの場合。(ii) SGH 束は一般化正則束の真部分クラスで、本論文の Poisson 加群は $\beta$-変換構造における一般の GH 束。(iii) Thm.\ 11.12 の正確な主張は \S\ref{subsec:PPcompare}。原典の記述についての疑義（誤植・省略の可能性が高いが未検証\tQ）：主張の $(i/2\pi)$ と証明の $1/2\pi$、$gc_1$ の符号、「正のクラスから正曲率の計量が出る」ことが Def.\ 11.11 から証明されず Thm.\ 11.12 の証明が仮定していること、Def.\ 11.11 にコンパクト性・Kähler 性の明記がないこと。
+
+\paragraph{Hu の仕事。}\tC\ Hu \cite{Hu1,Hu2}。設定は実 Lie 亜群 $\mathfrak g$ にファイバー方向の可積分複素構造を与えたもの（本論文の、$\bT_\C$ の部分束としての複素 Lie 亜群 $L$ とは別物）。Riemann--Roch（2403.13424 Thm.\ 4）は $\dbar_{\mathfrak g}$ の楕円性と単模性の仮定の下で指数公式を主張し、消滅（Thm.\ 7）は Laplacian の核についての主張で、コホモロジーの消滅は導けない。\tP\ 本論文の一般化 Dolbeault 複体 $(T^{0,1}\bowtie A^{1,0})$ は Hu の設定に入らない（$L$ は複素 Lie 亜群で $J$ をもたず、$\wedge L^*$ は一般に $(p,q)$ 二重次数をもたない）。\tK\ Hu の指数は $m$ に多項式的に依存すると見込まれるが、本論文の全 Euler 標数は $m$ に依らず、周期的な跳びを決める留数 $-m/3$ は Hu のデータに含まれない。したがって Hu の定理は「一般化 Dolbeault コホモロジーに対する Riemann--Roch」ではない。原典の不整合（記号の未定義、符号の食い違い）：要約と本文の一部で気づいたが、付録は検証できていない\tQ。
+
+\paragraph{積分可能性。}\tC\ Gualtieri--Li \cite{GL} は対数シンプレクティック多様体の Hausdorff シンプレクティック亜群を分類し、滑らかな $D$ に沿って接する対数ベクトル場の Lie 亜群 $T_X(-\log D)$ が積分可能であることを与える。Bailey--Gualtieri \cite{BG}、Laurent-Gengoux--Stiénon--Xu \cite{LGSX2}、Crainic--Fernandes \cite{CF} は積分可能性の一般論を与える。これらは指数理論の入力としての群を与えるが、複素 Lie 亜群 $L$ 自体の積分は扱わない（定理番号は\tQ）。
+
+\subsection{指数予想}
+Hirzebruch--Riemann--Roch は Atiyah--Singer の指数定理 \cite{AS} の特別な場合であり、一般化幾何での Riemann--Roch は「一般化 Dolbeault 複体の指数定理」として定式化されるべきである。以下は\emph{すべて予想であり、証明されていない}（\tK）。
+
+\paragraph{既存の指数定理が使えない理由。}(1) Hu \cite{Hu2} の複体は実 Lie 亜代数に付随し、我々の複体 $(\wedge^\bullet T\otimes L,\dbar+[\sigma,\cdot])$ は複素 Lie 亜代数 $T^{0,1}\ltimes A^{1,0}$（実構造なし）の複体で別物。(2) Pflaum--Posthuma--Tang \cite{PPT} の Lie 亜群の指数はコンパクトな底、ユニモジュラー性等を要する\tQ。(3) 文献に、$L$ の留数を重みとする対数 Dolbeault 複体の指数定理は見つからなかった。近い文献：$b$-対称多様体の幾何学的量子化（Braverman--Loizides--Song \cite{BLS}）、境界亜群の指数公式（Qiao--So \cite{QS}）、Lie 構造をもつ多様体の擬微分作用素（Ammann--Lauter--Nistor \cite{ALN}）、ファイバー付き境界（Mazzeo--Melrose \cite{MM}）、複素対数 Hodge（Hausel--Hunsicker--Mazzeo \cite{HHM}）。いずれも設定が異なりそのままは適用できない（題名・著者・要旨を確認したのみ\tQ）。
+
+\paragraph{枠組み。}$A=T_X(-\log D)$ を Lie 亜代数（Gualtieri--Li \cite{GL}：対数シンプレクティックで積分可能、滑らかな $D$ で確認\tC\ \tQ）とみて、$U$ 上の複体 $\mathcal D_L=(\wedge^\bullet T\otimes L,\ \dbar+[\sigma,\cdot])$ を、$A$ から決まる重み付き Sobolev 空間（重みは留数 $r$）上の閉作用素と考える。$A$ の意味での主シンボルは可逆（補題 \ref{lem:iso} と局所計算\tV）なので、非 Fredholm 性は境界での指数的根から生じる。局所モデル（$D$ の滑らかな点）では $\nabla z^k=(k-r)z^k\,dz/z$ なので、指数的根は $k=r$ で、存在するのは $r\in\Z$ のとき。
+
+\begin{conj}[指数予想]\tK\label{conj:index}
+$X,\sigma,D,L$ を上のとおり（対数シンプレクティック、SNC）とする。
+\begin{itemize}
+\item[(I1)] $\mathcal D_L$ の、重み $r$ の Sobolev 空間上の閉拡大は、すべての $r_i\notin\Z$ のとき、またそのときに限り Fredholm である。
+\item[(I2)] Fredholm のとき、指数（交代和）は $\chi(U)+(-1)^n\#D_{(n)}=(-1)^n\chi(X)$ に等しい（$\int c_n(T(-\log D))$ に角の寄与 $\#D_{(n)}$ を加えたもの）。
+\item[(I3)] $r_i\in\Z$ のとき、$j_!$ 型と $Rj_*$ 型の 2 つの閉拡大の核・余核の差は $H^*(\partial U;L)$ の部分商で与えられ（APS 型の壁越え三角形）、$\chi(\partial U)=0$ なので指数は変わらない（系 \ref{cor:wall} と整合）。
+\item[(I4)] 次数つきの精密化：$P_{\HH}(t)$ は定理 \ref{thm:K} の形（$\chi(X)t^n$ と、指数的根の核が決める跳びの項）で与えられる。
+\end{itemize}
+\end{conj}
+\paragraph{既に証明されている部分との対応。}(I2) の値は定理 \ref{thm:E}、\ref{thm:K1} で証明済（$\chi(X)$、\tP）。(I3) の三角形は位相的なレベルでは $j_!L_U\to Rj_*L_U\to i_*i^*Rj_*L_U$ として本論文で使われ（$n=2$ で完全に確認\tP\ \tV）、この三角形の指数側の対応物が未証明。(I4) は $n=2$ では定理 \ref{thm:B} \tP、一般次元は定理 \ref{thm:K}（(GEN$_Q$) の下）\tP。
+\paragraph{証明すべきこと。}(1) 複素 Lie 亜代数（$J$ なし）上の Fredholm 理論：parametrix の構成と (I1) の「$\Leftrightarrow$」。Ammann--Lauter--Nistor の枠組みを重み付きに拡張する形が自然だが未実施。(2) (I2) の指数公式：b-接束上の Atiyah--Singer 公式 \cite{BLS} の類似を $\wedge^\bullet T$ 係数・重み付きで示す。角（高い余次元の層）の寄与が問題。(3) (I3) の APS 型の壁越え：$H^*(\partial U;L)$ との同定を $n=2$ の滑らかな $D$（Gysin 列）以外で行う。(4) (I4) の次数つき版：スペクトル流の次数つき精密化（文献は見つかっていない）。(5) (GEN$_Q$) の一般の十分条件。
+
+\subsection{三種の神器：到達点}
+\begin{center}\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{2.4cm}>{\raggedright\arraybackslash}p{6.5cm}>{\raggedright\arraybackslash}p{6.0cm}}
+\toprule 神器 & 別の形で成り立ったもの & 成り立たない／未解決\\\midrule
+Riemann--Roch & 全 Euler 標数（定理 \ref{thm:E}, \ref{thm:K1}）、Poincar\'e 多項式の公式（定理 \ref{thm:B}, \ref{thm:K}）、正則型の次数別多項式（系 \ref{cor:L}） & 素朴な HRR は不成立。指数定理による統一は予想（予想 \ref{conj:index}）\\\midrule
+Serre 消滅 & 横断次数 $a>0$ での消滅（定理 \ref{thm:serre}） & 全次数での消滅は不成立（注意 \ref{rem:total}）\\\midrule
+Kodaira 埋め込み & 葉空間版（定理 \ref{thm:K1leaf}）、トーリック Poisson--Kodaira（定理 \ref{thm:PKtoric}） & GH 断面による埋め込みは不可能（命題 \ref{prop:one}）。一般の Poisson--Kodaira は予想（予想 \ref{conj:PK}）\\\bottomrule
+\end{tabular}
+\end{center}
+
+%==============================================================
+\section{未解決問題}\label{sec:open}
+%==============================================================
+\begin{enumerate}
+\item \textbf{一般の Poisson--Kodaira}（予想 \ref{conj:PK}）：$\mathbb P^2$ の $m\ge3$、$\mathbb P^1\times\mathbb P^1$ の Segre 以外の場合、特異な $E$。障害類 $\mathcal J_0\bmod\mathrm{im}\,\mathcal L$ の消滅。
+\item \textbf{(GEN$_Q$) の一般の十分条件}、命題 \ref{prop:grQ} の一般 $n$ での証明、ホロモルフィックな対数 Darboux 定理（命題 \ref{prop:genNec}(b)）。
+\item \textbf{混合留数の消滅}：一部の $r_i$ が整数のとき $H^k(U;L_U)=0\ (k<n)$（定理 \ref{thm:V} の拡張）。
+\item \textbf{局所公式}：準斉次でない孤立特異点、非孤立特異点、$s=1$、非被約な境界（予想 \ref{conj:NR}）、精密化 Riemann--Roch の大域化（予想 \ref{conj:refined}）。三重点の異常 $m=-2,-4$ の説明。
+\item \textbf{共鳴 $r_i=1$} の一般の公式（観察 \ref{obs:res}）の証明。
+\item \textbf{指数予想}（予想 \ref{conj:index}）：重み付き b-計算の Fredholm 性、指数 $=\chi(U)$、境界のコホモロジーとの関係。
+\item \textbf{正則型の拡張}：非平坦なバンドル、hard Lefschetz をみたさないファイバー、統一予想（予想 \ref{conj:U}）の正確な定式化。
+\item \textbf{一般の一般化複素構造}に対する Riemann--Roch と Kodaira 型の定理（本研究では未着手）。一般化 Kähler 側の直線束係数の Bochner--Kodaira--Nakano 恒等式。
+\item \textbf{文献の未確認項目の解消}：Mokri の定理、LGSX Lemma 4.22 の再導出、Gualtieri \cite{Gua11} \S4 の精読、残る書誌情報（付録の一覧）。
+\item \textbf{非トーリック・非積の次元 4 の検証}。候補：$\mathbb P^4$ 上の Feigin--Odesskii 型の楕円 Poisson 構造（$D$ は SNC でない）。
+\end{enumerate}

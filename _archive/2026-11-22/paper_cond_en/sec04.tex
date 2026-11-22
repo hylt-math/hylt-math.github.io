@@ -1,0 +1,55 @@
+%==============================================================
+\section{Euler characteristic}\label{sec:euler}
+%==============================================================
+\subsection{The total Euler characteristic is a topological invariant}
+\begin{thm}[Euler characteristic theorem]\tP\label{thm:E}
+Let $X$ be a compact complex manifold ($\dim_\C X=n$), $\sigma$ any holomorphic Poisson structure, and $E$ a holomorphic vector bundle of rank $\rk E$ with a flat $A$-connection. The hypercohomology $\HH^k(E)$ of the complex $K^\bullet=(\wedge^\bullet T\otimes E,\ d_E)$ (the differential is $\C$-linear) is finite-dimensional and
+\[\sum_k(-1)^k\dim\HH^k(E)=\sum_b(-1)^b\chi(X,\wedge^bT\otimes E)=(-1)^n\,\rk(E)\,\chi(X).\]
+\end{thm}
+\begin{hyptab}
+$X$ compact & Each $H^a(X,K^b)$ is finite-dimensional and HRR can be used & (i), (ii)\\\midrule
+$K^b$ coherent & The Euler characteristic can be computed by HRR and the descending induction works & (i): induction over truncation triangles\\\midrule
+Flat $A$-connection & $d_E^2=0$ (a complex) & Definition of the hypercohomology. Not used in computing the Euler characteristic itself\\\midrule
+(not used) non-degeneracy of $\sigma$, positivity of $E$ & --- & Do not appear in the proof. Hence no dependence on $c_1(E)$
+\end{hyptab}
+\begin{proof}
+(i) The differential is $\C$-linear but not $\mathcal O$-linear; still the truncations $K^{\ge b}$ are subcomplexes and there are triangles $K^{\ge b+1}\to K^{\ge b}\to K^b[-b]\to$. Each $K^b$ is coherent and $X$ is compact, so $H^*(X;K^b)$ is finite-dimensional. By descending induction on $b$, all $H^*(X;K^{\ge b})$ are finite-dimensional and $\chi(K^{\ge b})=\chi(K^{\ge b+1})+(-1)^b\chi(X,K^b)$. Hence $\sum_k(-1)^k\dim\HH^k=\sum_b(-1)^b\chi(X,\wedge^bT\otimes E)$.
+(ii) By HRR, $\chi(X,\wedge^bT\otimes E)=\int\ch(E)\ch(\wedge^bT)\Td(T)$. With Chern roots $x_i$ of $T$, $\sum_b(-1)^b\ch(\wedge^bT)=\prod(1-e^{x_i})$, $\Td(T)=\prod x_i/(1-e^{-x_i})$, and $(1-e^x)/(1-e^{-x})=-e^x$, so the integrand is $(-1)^n\ch(E)e^{c_1(T)}c_n(T)$. Since $c_n(T)$ already has top degree, only the degree-0 part $\rk E$ of $\ch(E)e^{c_1(T)}$ survives, and by Gauss--Bonnet we get $(-1)^n\rk E\int c_n(T)=(-1)^n\rk E\,\chi(X)$. \qedhere
+\end{proof}
+\tV For $\mathbb P^n$ ($n\le6$), $E=\mathcal O(m)$ ($m=-12,\dots,12$) we recomputed $\sum_b(-1)^b\chi(\mathbb P^n,\wedge^bT(m))=(-1)^n(n+1)$ from Bott's formula and confirmed it (script \texttt{roundD\_check.py}).
+
+\begin{rem}[Meaning \tP]\label{rem:Emeaning}
+The left-hand side does not depend on $c_1(E)$. Example: $\sigma=0$, $\mathbb P^1$, $E=\mathcal O(m)$: $\chi(\mathcal O(m))-\chi(\mathcal O(m+2))=(m+1)-(m+3)=-2$. The classical $\chi(X,E)=\int\ch(E)\Td(X)$ corresponds to the Euler characteristic of the ``column'' $b=0$, $H^\bullet(X,E)$, not of the total complex. Hence a Riemann--Roch formula for the \emph{total} Euler characteristic of the generalized Dolbeault complex is topological and is not a generalization of classical HRR. Riemann--Roch as a ``polynomial in $m$'' becomes constant, and the dependence on $m$ appears only in the Poincar\'e polynomial (dimensions degree by degree) (\S\ref{sec:surface}, \S\ref{sec:regular}, \S\ref{sec:RR}).
+\end{rem}
+\begin{rem}[General generalized complex structures \tK]
+For a general $\Jc$ and a flat $L$-connection $E$, the Atiyah--Singer theorem gives $\mathrm{ind}(\wedge L^*\otimes E)=\int\ch(E)\cdot S$ ($S$ is the class of the symbol of $(\wedge L^*,d_L)$). By Chern--Weil and flatness of the $L$-connection, $\ch_j(E)$ should lie in the kernel of $H^{2j}_{dR}(M)\to H^{2j}(L)$, so only the rank should matter. Not proved.
+\end{rem}
+
+%--------------------------------------------------------------
+\subsection{Euler characteristic of the log de Rham complex and wall-crossing}
+%--------------------------------------------------------------
+\begin{thm}[Log version of the Euler characteristic]\tP\label{thm:K1}
+Let $X$ be a compact complex manifold, $D\subset X$ an SNC divisor, and $L$ a line bundle with a flat logarithmic connection $\nabla:L\to L\otimes\Omega^1_X(\log D)$. Then the hypercohomology $\mathbb H^k(X;\mathrm{DR}_{\log}(L))$ is finite-dimensional and
+\[\sum_k(-1)^k\dim\mathbb H^k(X;\mathrm{DR}_{\log}(L))\;=\;\int_Xc_n\bigl(T_X(-\log D)\bigr)\;=\;\chi(U)\;=\;\sum_{T}(-1)^{|T|}\chi(D_T),\]
+independent of $L$ and of the residues $r_i$.
+\end{thm}
+\begin{hyptab}
+$X$ compact & $H^q(X;\Omega^p(\log D)\otimes L)$ is finite-dimensional, HRR is available & (1), (2)\\\midrule
+$D$ SNC & $\Omega^p(\log D)$ is locally free, and $\Omega^\bullet(\log D)\simeq Rj_*\C_U$ (log Poincar\'e lemma) can be used & (3) (to get the topological value for $L=\mathcal O$)\\\midrule
+$\nabla$ flat log connection & $\mathrm{DR}_{\log}(L)$ is a complex (residues are constant since the rank is 1) & (1)\\\midrule
+(not needed) residues $r_i\notin\Z_{\ge1}$ & --- & Needed only for the identification $\mathrm{DR}_{\log}(L)\simeq Rj_*L_U$, not for the Euler characteristic\\\midrule
+(not needed) log-symplectic $\sigma$ & --- & Used only for the relation with the generalized Dolbeault complex (Theorem \ref{thm:main1}(e))
+\end{hyptab}
+\begin{proof}
+(1) The $E_1$ term of the filtration by $\Omega^p(\log D)\otimes L$ is $H^q(X;\Omega^p(\log D)\otimes L)$, which is finite-dimensional. Hence $\chi(\mathrm{DR}_{\log}(L))=\sum_p(-1)^p\chi(X;\Omega^p(\log D)\otimes L)$.
+(2) By HRR this equals $\int_X\bigl[\sum_p(-1)^p\ch(\Omega^p(\log D))\bigr]\ch(L)\Td(T_X)$. For the rank $n$ bundle $F=\Omega^1(\log D)$, $\sum_p(-1)^p\ch(\wedge^pF)=c_n(F^\vee)\,\Td(F^\vee)^{-1}$ starts in degree $n$. Hence only the constant term $1$ of $\ch(L)\Td(T_X)\Td(F^\vee)^{-1}$ matters, and the result is $\int_Xc_n(T_X(-\log D))$, independent of $L$.
+(3) For $L=\mathcal O$ ($\nabla=d$), the log Poincar\'e lemma (Deligne \cite{Del}) $\Omega^\bullet(\log D)\simeq Rj_*\C_U$ shows that the hypercohomology is $H^*(U;\C)$, and the Euler characteristic of (1) is $\chi(U)$. By (2) this equals $\int c_n(T_X(-\log D))$. Finally $\chi(U)=\sum_T(-1)^{|T|}\chi(D_T)$ follows from $\chi_c=\chi$ on the open manifold $U$ (Poincar\'e duality, real even dimension) and additivity of $\chi_c$. \qedhere
+\end{proof}
+\tV For $X=\mathbb P^2$, $D$ a smooth curve of degree $d=1,\dots,7$, and $L=\mathcal O(a)$ ($a=-12,\dots,12$) we computed $\sum_p(-1)^p\chi(\Omega^p(\log D)\otimes L)$ directly, and in all 175 cases it equals $3-3d+d^2=\chi(U)$ (script \texttt{roundK\_check.py}; re-run and confirmed).
+
+\begin{cor}[Wall-crossing identity]\tP\label{cor:wall}
+If $L_U$ is a rank one local system, then $\chi_c(U;L_U)=\chi(U;L_U)=\chi(U)$. This follows from the Euler characteristic of the triangle $j_!L_U\to Rj_*L_U\to i_*i^*Rj_*L_U$: the stalk of $Rj_*L_U$ over $D_T$ ($|T|\ge1$) is $H^*((S^1)^{|T|};\cdot)$, which has Euler characteristic 0 (the same reason as $\chi(\partial U)=0$). Hence the Euler characteristic does not change when $j_!$ and $Rj_*$ are exchanged as the residues cross integers.
+\end{cor}
+\begin{rem}[Relation to Theorem \ref{thm:E}]\tP
+Theorem \ref{thm:E} and this theorem are two faces of the same phenomenon ``the Euler characteristic does not see the higher terms of $\ch(L)$''. The Euler characteristic of the generalized Dolbeault complex is $(-1)^n\chi(X)$, that of its subcomplex $B\simeq\mathrm{DR}_{\log}(L)$ is $\chi(U)$, and the difference $(-1)^n\chi(X)-\chi(U)$ is taken up by the Euler characteristic of the quotient complex $Q$ (\S\ref{sec:reduction}).
+\end{rem}

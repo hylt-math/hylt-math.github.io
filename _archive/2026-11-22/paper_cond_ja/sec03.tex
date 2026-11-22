@@ -1,0 +1,69 @@
+%==============================================================
+\section{Serre 型消滅と双対性}\label{sec:serre}
+%==============================================================
+\subsection{Serre 型消滅（横断次数）}
+古典の Serre 消滅（連接層 $\mathcal F$ と豊富な $\mathcal O(1)$）との対応は次の通りである\tK（対応づけは筆者の整理）。連接層 $\mathcal F$ に当たるのは Lie 亜群複体の各項 $K^b=\wedge^bT\otimes E$、豊富な $\mathcal O(1)$ に当たるのは豊富かつ Poisson 加群である正則直線束 $L_0$（Poisson 加群構造は $C(A;\cdot)$ が複体になるためだけに必要で、正値性には関与しない）、結論 $H^q(\mathcal F(m))=0\ (q>0)$ に当たるのは $E_1^{a,b}=H^a(X,\wedge^bT\otimes E\otimes L_0^m)=0$（$a>0$：\emph{横断（Dolbeault）次数}）である。
+
+\begin{thm}[Serre 型定理（$\beta$-変換）]\tP\label{thm:serre}
+$X$ をコンパクト複素射影多様体（$\dim_\C X=n$）、$\sigma$ を\emph{任意の}正則 Poisson 構造（非退化性や対数条件は不要）、$E$ を Poisson 加群（正則ベクトル束）、$L_0$ を Poisson 加群構造をもつ豊富な正則直線束とする。このとき $X,\sigma,E,L_0$ のみに依存する $m_0$ があって、$m\ge m_0$ ならば
+\begin{enumerate}
+\item[(a)] すべての $a>0$、すべての $b$ で $H^a(X,\wedge^bT\otimes E\otimes L_0^m)=0$、
+\item[(b)] $\HH^k(E\otimes L_0^m)\cong H^k\bigl(\Gamma(X,\wedge^\bullet T\otimes E\otimes L_0^m),\,d\bigr)$。特に $k>n$ なら $\HH^k=0$、
+\item[(c)] $\HH^0(E\otimes L_0^m)=$ 平坦（Casimir）正則切断全体。
+\end{enumerate}
+\end{thm}
+\begin{hyptab}
+$X$ 射影的、$L_0$ 豊富 & 古典 Serre の仮定そのもの & (a)：Hartshorne III.5.2 を有限個（$b=0,\dots,n$）の連接層 $\wedge^bT\otimes E$ に適用\\\midrule
+$L_0$、$E$ が Poisson 加群 & $L_0^m$ にテンソル積の加群構造が入り $C(A;E\otimes L_0^m)$ が複体になる & 複体 $K^\bullet$ の定義。正値性とは無関係\\\midrule
+$[\sigma,\sigma]=0$ & $d^2=0$ & 同上\\\midrule
+（不要）$\sigma$ の非退化性・正規交差 & --- & この定理では使わない
+\end{hyptab}
+\begin{proof}
+$L_0^m$ はテンソル積の加群構造（Leibniz 則）をもつ。Serre の定理（Hartshorne III.5.2；$L_0$ が豊富なだけのときは、$L_0^{m_1}$ が非常に豊富となる $m_1$ をとり、有限個の捻り $\mathcal F\otimes L_0^j\ (0\le j<m_1)$ にも適用する）を $n+1$ 個の連接層 $\wedge^bT\otimes E$ に適用し、$m_0$ をそれらの最大にとれば (a)。各 $K^b$ は $\Gamma$-非輪状なので、有界な複体 $K^\bullet=C(A;E\otimes L_0^m)$（微分は $\C$-線形）に対し $E_1^{a,b}=H^a(K^b)$ は $a=0$ に集中し、$R\Gamma(K^\bullet)=\Gamma(K^\bullet)$（非輪状分解の補題）。これが (b)。$b\le n$ なので $k>n$ で消える。(c) は $\Gamma$-複体の $H^0$ で、観察 \ref{obs:casimir} による。\qedhere
+\end{proof}
+\begin{rem}[全次数での消滅は偽]\tP\label{rem:total}
+$\sigma=0$（複素構造）のとき $\HH^k(L)=\bigoplus_{a+b=k}H^a(X,\wedge^bT\otimes L)$ で、$m\gg0$ でも $H^0(\wedge^bT\otimes L^m)\ne0$ により $\HH^b\ne0\ (b=0,\dots,n)$。$\mathbb{CP}^2$ の $m=0$ では $[1,8,10,0,0]$。消えるのは横断次数 $a>0$ と全次数 $>n$ のみで、「全次数での Serre 消滅」は成り立たない。
+\end{rem}
+\begin{rem}[有効な閾値\ \tV]
+Bott の公式から、$E_1^{a>0}=0$ となる条件は $\mathbb{CP}^2$（$E=\mathcal O(m)$）で $m\ge-2$（$m=-3$ では $(2,0),(1,1),(0,2)$ の 3 項がすべて非零）、$\mathbb{CP}^1\times\mathbb{CP}^1$（$L_0=\mathcal O(1,1)$）で $m\ge-1$（$m=-2$ は $K_X$ で例外）。どちらも、計算した表（\S\ref{sec:surface}）で次数 $\ge3$ が消える範囲と一致する。
+\end{rem}
+\begin{rem}[Pal--Poddar との関係]
+Pal--Poddar \cite{PP} の Thm.~11.12(2) は正則型での類似の消滅だが、群は同じではない（葉方向の de Rham 因子の有無など）。比較は \S\ref{subsec:PPcompare}（命題 \ref{prop:PPcompare}）で行う。本定理は正則型や葉空間の軌道体を仮定せず、型が跳ぶ場合を含む代わりに、基礎の複素多様体が射影的であること（$\beta$-変換の場合に限る）を必要とする。一般の一般化複素多様体では「連接な濾過 $K^b$ の $E_1$ 項」を定義する方法がなく、これが一般化の主な障害である\tK。
+\end{rem}
+
+%--------------------------------------------------------------
+\subsection{Serre 双対性}
+%--------------------------------------------------------------
+\begin{thm}[一般化正則直線束の Serre 双対性]\tP\label{thm:dual}
+$X$ を任意のコンパクト複素多様体（$\dim_\C X=n$）、$\sigma$ を任意の正則 Poisson 構造（Kähler、射影、対数シンプレクティック、非退化のいずれも不要。$\sigma=0$ を含む）、$L$ を Poisson 加群である直線束とすると、すべての $k$ で
+\[\HH^k(L)^*\;\cong\;\HH^{2n-k}\bigl(L^\vee\otimes K_X^{2}\bigr).\]
+$L^\vee\otimes K_X^2$ はテンソル積の加群構造をもつ：局所枠 $e$ の双対枠 $e^\vee$ と $\omega=dz_1\wedge\cdots\wedge dz_n$ に対する枠 $\omega^2$ で $V'=-V+2V_K=-V-2M$。ここで $K_X$ の標準加群構造は $V_K^k=\sum_i\partial_i\sigma^{ki}$、$M=-V_K$（$M^j=\sum_i\partial_i\sigma^{ij}$）は $\omega$ に関する modular ベクトル場。
+\end{thm}
+\begin{hyptab}
+$X$ コンパクト & 楕円型複体の閉値域性・有限次元性、Stokes で境界項が出ない & 手順 (4)（双対の同定）、手順 (3)\\\midrule
+$[\sigma,\sigma]=0$、$L$ が Poisson 加群 & $D^2=0$、$D'^2=0$（$L'$ も加群） & 複体として扱うため\\\midrule
+（不要）Kähler／非退化／対数 & 楕円性を主シンボルから直接確かめ、転置は局所的な作用素の等式なので大域的な原始関数が不要 & 手順 (1), (3)
+\end{hyptab}
+\begin{proof}
+(0) Dolbeault モデル：$\mathrm{Tot}^k(L)=\bigoplus_{a+b=k}A^{0,a}(\wedge^bT\otimes L)$、$D=\dbar+d_K$（$d_K(\phi\otimes Pe)=(-1)^a\phi\otimes d(Pe)$、$d=[\sigma,\cdot]+V\wedge$）。$D^2=0$ は $\dbar^2=0$、$d^2=0$、$\dbar d_K+d_K\dbar=0$ による（命題 \ref{prop:ident}(b)）。
+
+(1) 楕円性：実余接ベクトル $\xi\ne0$ での $D$ の主シンボルは $v(\xi)=(\xi^{0,1},\sigma^\sh\xi^{1,0})\in L^*=T^{*0,1}\oplus T^{1,0}$ との外積で、$(\wedge L^*,v\wedge)$ は $v\ne0$ のときに限り完全。$v=0$ なら $\xi^{0,1}=0$、$\xi$ 実なので $\xi=0$。よって $\sigma$ が退化する点も含め、すべての点で楕円型（Gualtieri \cite{Gua11} Prop.~3.13 をこの場合に直接確かめたもの）。$L'=L^\vee\otimes K^2$ についても同様。
+
+(2) 完全対：$E^b(L)\times E^{n-b}(L')\to\wedge^nT\otimes K^2=K$ と $A^{0,a}\times A^{0,n-a}\to A^{0,n}(K)=A^{n,n}$ の積分により $\mathrm{Tot}^k(L)\times\mathrm{Tot}^{2n-k}(L')\to\C$ が各点で完全対をなす。
+
+(3) 転置：補題 \ref{lem:E}（下）から $d$ 部分の形式的転置が $d'$ に（符号を除いて）一致する。補題 \ref{lem:E} の右辺は $\partial_iF^i\,\omega\wedge d\bar z^{1\cdots n}=\pm d(F^i\iota_{\partial_i}\omega\wedge d\bar z^{1\cdots n})$ の形の全微分（$d\bar z^{1\cdots n}$ との積で $\dbar$ 成分が消える）で、Stokes により積分は 0。$\dbar$ 部分は古典的 Serre 双対性の計算で $\langle\dbar\alpha,\beta\rangle=-(-1)^{a+b}\langle\alpha,\dbar\beta\rangle$、$d$ 部分は $\langle d_K\alpha,\beta\rangle=-(-1)^{a+b}\langle\alpha,d'_K\beta\rangle$ で、2 つの符号が一致することを手計算で確認した（機械では未確認\tQ）。$D^t$ は局所作用素なので、座標近傍での等式から大域的に $\langle D\alpha,\beta\rangle=-(-1)^{\deg\alpha}\langle\alpha,D'\beta\rangle$。
+
+(4) 結論：$D,D'$ は閉多様体上の楕円型複体で、完全対に関して互いの転置（符号を除く）。楕円型複体の Hodge 理論により $\HH^k$ は有限次元で値域は閉、$\HH^k(L)^*$ は転置複体のコホモロジー（超関数係数）で、楕円正則性により滑らかな係数のもの $\HH^{2n-k}(L')$ に等しい。\qedhere
+\end{proof}
+\begin{lem}[補題 D：Schouten 括弧の最高次]\tP\ \tV\label{lem:D}
+$T=\sum_j(-1)^ju_j\,\partial_1\wedge\cdots\widehat{\partial_j}\cdots\wedge\partial_n\in\wedge^{n-1}T$ に対し $[\sigma,T]_{\rm top}=-\sum_{i,j}\partial_i(\sigma^{ij}u_j)+2\sum_jM^ju_j$、$(M\wedge T)_{\rm top}=\sum_jM^ju_j$。
+\end{lem}
+\begin{lem}[補題 E：転置恒等式]\tP\ \tV\label{lem:E}
+$P\in\wedge^bT$、$Q\in\wedge^{n-b-1}T$（滑らかな係数）、$d=[\sigma,\cdot]+V\wedge$、$d'=[\sigma,\cdot]+V'\wedge$、$V'=-V-2M$、$\langle P,Q\rangle:=(P\wedge Q)_{\rm top}$ のとき
+\[\langle dP,Q\rangle+(-1)^b\langle P,d'Q\rangle=-\sum_i\partial_i\Bigl(\sum_j\sigma^{ij}u_j\Bigr),\qquad T=P\wedge Q=\sum_j(-1)^ju_j\partial_{\hat j}.\]
+証明：Leibniz 則 $[\sigma,P\wedge Q]=[\sigma,P]\wedge Q+(-1)^bP\wedge[\sigma,Q]$（$\sigma$ は偶数次数）、$V$-項は $V\wedge P\wedge Q+(-1)^bP\wedge(-V)\wedge Q=0$、$M$-項は $-2M\wedge T$。補題 D から従う。
+\tV\ $n=2,3,4$ で、ランダムな多項式・Laurent 単項式データ、任意の二重ベクトル場 $\sigma$（Poisson でなくても恒等式自体は成立）に対し、恒等式を厳密算術で確認した（スクリプト \texttt{duality\_ndim\_exact.py}）。定数 $c=-2$ と符号 $(-1)^b$ は、導出とは独立に連立方程式として解いて求めた（\texttt{duality\_ndim.py}）。$[\sigma,M]=0$ と $d^2=0$（$V=M$）も確認した。
+\end{lem}
+\begin{rem}[整合性の確認\ \tV]
+(i) $\sigma=0$：古典的 Serre 双対性（$\wedge^bT^*=\wedge^{n-b}T\otimes K$）。(ii) $\mathbb{CP}^2$、$K^2=\mathcal O(-6)$：$m\leftrightarrow-m-6$；$\mathbb{CP}^1\times\mathbb{CP}^1$、$K^2=\mathcal O(-4,-4)$：$m\leftrightarrow-m-4$（\S\ref{sec:surface} の表と一致）。(iii) 対数シンプレクティックな場合、$K_X$ の標準加群構造の留数は 1 である（$\wedge^nT=K_X^{-1}$ の切断 $\sigma^k$ が平坦で $D$ に沿って 1 位に消えるため）ので、$L'$ の留数は $2-r_i$。これが曲面の主定理の公式の $r\leftrightarrow2-r$ の対称性の起源である（任意の偶数次元）。
+\end{rem}

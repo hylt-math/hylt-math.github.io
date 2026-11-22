@@ -1,10 +1,10 @@
 ---
 layout: post
 title: "一般化複素幾何の「三種の神器」へのアプローチ：正則 Poisson 構造の例から（総合版：Part I–V）"
-short_title: "総合版（Part I–V）：全体のまとめ"
+short_title: "総合版（旧）：Part I–V の合本（80ページ）"
 series: "一般化複素幾何の三種の神器（正則 Poisson 構造の例から）"
-series_order: 0
-series_label: "総合版"
+series_order: 6
+series_label: "合本"
 status: partial
 tags: [一般化複素幾何, 正則Poisson構造, Riemann-Roch, Serre消滅, Kodaira埋め込み, 総合版]
 abstract: "複素幾何の三種の神器（Riemann–Roch、Serre 消滅、Kodaira 埋め込み）の一般化複素幾何版を、正則 Poisson 構造の $$\\beta$$-変換から得る型が跳ぶ一般化複素構造と一般化正則直線束の例から調べた Part I–V の総合版。80ページ。各主張に証明済・文献・計算・予想の区別と、仮定の役割の表を付けた。査読を受けていない。"

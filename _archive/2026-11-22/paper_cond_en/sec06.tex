@@ -1,0 +1,184 @@
+%==============================================================
+\section{Toric varieties and local terms}\label{sec:toric}
+%==============================================================
+\subsection{Toric log-symplectic structures and the weight formula}
+Let $X$ be a smooth projective toric variety ($N=\Z^n$, $n=2k$, $M=\mathrm{Hom}(N,\Z)$), $u_i\in N$ the ray generators, and $D=\sum D_i$ the toric boundary (SNC). In the logarithmic frame $E_j=z_j\partial_j$ take a constant non-degenerate skew matrix $A$ and put $\sigma=\tfrac12\sum A_{ij}E_i\wedge E_j$ (torus invariant and log-symplectic along $D$). Give $L=\mathcal O(\sum a_iD_i)$ a flat log connection $d+\rho$ ($\rho\in M_\C$). The residues are $r_i=\langle\rho,u_i\rangle-a_i$ and $c_1(L)=-\sum r_i[D_i]$. Every module has this form ($H^0(\Omega^1(\log D))=M_\C$, Lemma \ref{lem:res}) \tP. For $\chi\in M$ put
+\begin{gather*}c_i(\chi)=\langle\chi,u_i\rangle+a_i,\quad C(\chi)=\{i:c_i(\chi)=-1\},\\ W(\chi)=\mathrm{span}(u_i:i\in C(\chi)),\quad s(\chi)=\dim W(\chi).\end{gather*}
+
+\begin{thm}[Weight formula]\tP \tV\label{thm:weight}
+Assume $E_1^{a,b}=H^a(X,\wedge^bT\otimes L)=0\ (a>0)$ (e.g.\ $L=L_0^m$, $m\gg0$, $L_0$ an ample Poisson module; Theorem \ref{thm:serre}). Then
+\[P_{\HH}(t)=\sum_{\chi\in\Lambda}t^{s(\chi)}(1+t)^{n-s(\chi)},\qquad\Lambda=\{\chi\in M:\ c_i(\chi)\ge-1\ \forall i,\ A(\chi+\rho)\in W(\chi)\}.\]
+\end{thm}
+\begin{hyptab}
+Toric, $\sigma$ torus invariant, constant $A$ & The complex of global sections is graded by torus characters $\chi\in M$ and each weight is finite-dimensional linear algebra & Determination of the weight-$\chi$ subcomplex $G^b_\chi$\\\midrule
+$E_1^{a>0}=0$ & $\HH^*$ equals the cohomology of the complex of global sections (argument of Theorem \ref{thm:serre}(b)) & The first equality\\\midrule
+$A$ non-degenerate & $\sigma^\sh:B\cong T_D$ holds and the log de Rham differential $(\chi+\rho)\wedge$ goes to $v_\chi\wedge$ ($v_\chi=A(\chi+\rho)$) & Lemma \ref{lem:iso}, Theorem \ref{thm:main1}(e)
+\end{hyptab}
+\begin{proof}
+$z^\chi w$ ($w\in\wedge^bN_\C$) is a holomorphic section of $\wedge^bT\otimes L$ iff $c_i(\chi)\ge-1$ along each $D_i$ and, if $c_i(\chi)=-1$, $u_i\wedge w=0$ ($w$ is divisible by $E_i=z_i\partial_i$). So the weight-$\chi$ part is $G^b_\chi=\{w\in\wedge^bN_\C:u_i\wedge w=0\ (i\in C(\chi))\}$ (empty if some $c_i<-1$), and with a generator $\omega_W$ of $\wedge^sW$ we have $G^\bullet_\chi=\omega_W\wedge\wedge^{\bullet-s}(N_\C/W)$. The differential corresponds to $v_\chi\wedge$ via $\wedge\sigma^\sh$. If $v_\chi\in W$ the differential is 0 and the Poincar\'e polynomial is $t^s(1+t)^{n-s}$; otherwise it is the Koszul complex of $v_\chi\bmod W\neq0$ and acyclic. \qedhere
+\end{proof}
+\tV The closed formula and direct linear algebra (\texttt{toric\_hh.py}) agree in 60 random cases ($\mathbb P^2$, $\mathbb P^1\times\mathbb P^1$, $\mathbb P^4$, $\mathbb P^2\times\mathbb P^2$, $(\mathbb P^1)^4$).
+
+\begin{cor}\tP\label{cor:weight}
+(a) If $E_1^{a>0}=0$, the total Euler characteristic is the number of weights with $s(\chi)=n$ (the vertices) $=\chi(X)$ (consistent with Theorem \ref{thm:E}).
+(b) Origin of the contributions: put $x=\chi+\rho$. $s=0$ is $\chi=-\rho$, $\rho\in M$ and all $r_i\le0$, giving $(1+t)^n=H^*(U)$ (the $Rj_*$ case). $s=n$ always satisfies the condition and gives the vertex weights, one $t^n$ each. $0<s<n$ requires $x\in A^{-1}W$ and $\langle x,u_i\rangle=r_i-1$ ($i\in C$), and has solutions only at ``resonances'' on the integral lattice.
+(c) For $s=n-1$ and all $r_i=1$ ($i\in C$) the condition holds automatically, and a class $t^{n-1}(1+t)$ appears for each of the $\deg(L|_C)+1$ lattice points on the toric curve $C$ (corresponding to the resonance $r_i=1$ in dimension 2).
+\end{cor}
+
+%--------------------------------------------------------------
+\subsection{Toric surfaces: unequal residues}
+%--------------------------------------------------------------
+Let $\Delta_\Sigma$ be the simplicial complex whose vertices are the rays of the fan $\Sigma$ (simplices are the sets of rays of cones of $\Sigma$), $V_S$ the full subcomplex spanned by a vertex set $S$, and $\tilde h^q(V_S)$ the dimension of reduced cohomology (with the convention $\tilde h^{-1}=1$ and the others $0$ for $V_\emptyset=\emptyset$).
+
+\begin{thm}[Toric cohomology of $\mathrm{DR}_{\log}$]\tP \tC\label{thm:C1}
+Let $X=X_\Sigma$ be a complete smooth toric variety, $L=\mathcal O(\sum a_iD_i)$, $\nabla=d+\rho$, and $S=\{i:\langle\rho,u_i\rangle-a_i>0\}$. Then
+\[\sum_k\dim H^k(X;\mathrm{DR}_{\log}(L))\,t^k=\begin{cases}(1+t)^n\sum_q\tilde h^{q-1}(V_S)\,t^q&(\rho\in M),\\ 0&(\rho\notin M).\end{cases}\]
+\end{thm}
+\begin{hyptab}
+Torus-invariant structure & The complex is graded by weights $\chi\in M$ and each weight can be computed independently & First decomposition in the proof\\\midrule
+Completeness & Hypercohomology is finite-dimensional and the \v Cech complex can be computed with finitely many affine opens & \v Cech complex\\\midrule
+$\Omega^1(\log D)\cong\mathcal O\otimes M$ & Splitting as a product with a Koszul complex (K\"unneth) & The weight-$\chi$ part has the form $\check C^\bullet_\chi\otimes(\wedge M_\C,(\chi+\rho)\wedge)$\\\midrule
+Cox--Little--Schenck weight formula & $H^a(X;L)_\chi$ is expressed by reduced cohomology of simplicial complexes & The last identification
+\end{hyptab}
+\begin{proof}
+The \v Cech complex of a $T$-equivariant affine cover splits by weight $\chi$, and the weight-$\chi$ part is the tensor product complex $\check C^\bullet(L)_\chi\otimes\wedge^\bullet M_\C$ (differential $d_{\check C}\otimes1\pm1\otimes(\chi+\rho)\wedge$). By K\"unneth, $H^k(X;\mathrm{DR}_{\log})_\chi=\bigoplus_{a+b=k}H^a(X;L)_\chi\otimes H^b(\wedge M_\C,(\chi+\rho)\wedge)$. The Koszul complex is acyclic for $\chi+\rho\neq0$ and equals $\wedge^bM_\C$ of dimension $\binom nb$ for $\chi+\rho=0$ (which requires $\rho\in M$). Hence the total is 0 if $\rho\notin M$, and for $\rho\in M$ only $\chi=-\rho$ contributes, giving $(1+t)^n\sum_ah^a(X;L)_{-\rho}t^a$. Finally by Cox--Little--Schenck \cite{CLS} (Thm.~9.1.3 \tC \tQ): $H^a(X,\mathcal O(\sum a_iD_i))_m\cong\tilde H^{a-1}(V_{D,m};\C)$, where $V_{D,m}$ is the full subcomplex spanned by the rays with $\langle m,u_i\rangle<-a_i$. For $m=-\rho$ the condition is $\langle\rho,u_i\rangle>a_i$, i.e.\ $i\in S$. \qedhere
+\end{proof}
+\begin{thm}[Toric surfaces, unequal residues]\tP \tV\label{thm:C2}
+Let $X$ be a complete smooth toric surface, $A$ a non-degenerate $2\times2$ skew matrix, and $r_i\ne1$ for all $i$. Then
+\[P_{\HH}(t)=\chi(X)\,t^2+[\rho\in M]\,(1+t)^2\sum_q\tilde h^{q-1}(V_S)\,t^q,\qquad S=\{i:r_i\ge2\}.\]
+In particular for $S=\emptyset$ (all $r_i\le0$) it is $(1+t)^2+\chi(X)t^2$, and when $S$ is all rays it is $t^2(1+t)^2+\chi(X)t^2$.
+\end{thm}
+\begin{hyptab}
+Toric surface, $\sigma$ log-symplectic & Hypotheses of Theorem \ref{thm:main2}: $D$ reduced with only ordinary double points (double points are torus-fixed points), $\mu=\chi(X)$ & $\HH^*=H^*(X;\mathcal F)\oplus\C^\mu[-2]$\\\midrule
+$r_i\ne1$ (all components) & Hypothesis of Lemma \ref{lem:Q} (acyclicity of the quotient complex $Q$) & Same\\\midrule
+$\mathrm{DR}_{\log}\simeq\mathcal F$ & The mixed case of Lemma \ref{lem:stalk} & Reduction to $H^*(X;\mathcal F)=H^*(X;\mathrm{DR}_{\log})$ and application of Theorem \ref{thm:C1}
+\end{hyptab}
+\begin{proof}
+By Theorem \ref{thm:main2}, $\HH^*=H^*(X;\mathcal F)\oplus\C^\mu[-2]$, and for a toric surface $\mu=$ number of maximal cones $=\chi(X)$. By Lemma \ref{lem:stalk}, $H^*(X;\mathcal F)=H^*(X;\mathrm{DR}_{\log})$, and Theorem \ref{thm:C1} gives, for $\rho\in M$ (i.e.\ all $r_i\in\Z$), $(1+t)^2\sum\tilde h^{q-1}(V_S)t^q$ with $S=\{r_i\ge1\}=\{r_i\ge2\}$ (as $r_i\ne1$). \qedhere
+\end{proof}
+\tV For $\mathbb{CP}^2$ (triangle, $m=-9..6$, residues $\{-2..3,\pm\tfrac12\}$) 755 rows, and for $\mathbb{CP}^1\times\mathbb{CP}^1$ (four lines) 729 rows, there are 0 discrepancies with exact linear algebra of the weight-decomposed \v Cech hypercohomology (\texttt{roundC\_toric\_cech.py, roundC\_p2\_sweep*.py, roundC\_p1p1\_sweepA.py}). For $\mathbb{CP}^1\times\mathbb{CP}^1$ with $S=$ two opposite lines ($V_S$ two points), the term $t(1+t)^2$ predicted by the formula does appear. For equal residues $r_i=r$, $S$ is empty or all rays, in agreement with the three cases of Theorem \ref{thm:B} (e.g.\ triangle with $r\le0$: $(1+t)^2+3t^2=[1,2,4]$). \tC These large tables are transcribed from the earlier records and were not re-run while writing this paper \tQ.
+
+%--------------------------------------------------------------
+\subsection{Toric varieties of any even dimension: general $\sigma$}
+%--------------------------------------------------------------
+\begin{thm}[Toric, general $\sigma$]\tP \tV\label{thm:T}
+Let $X$ be a smooth projective toric variety ($\dim X=n$ even), $\sigma$ a torus-invariant log-symplectic structure (constant matrix $A$), $L=\mathcal O(\sum a_iD_i)$, $\nabla=d+\rho$, and assume
+\begin{itemize}
+\item[(V)] $H^a(X,\wedge^bT\otimes L)=0$ ($a>0$, all $b$).
+\item[(A)] $L(D):=L\otimes\mathcal O(\sum D_i)$ is ample.
+\item[(GEN)] $\mathrm{Pf}(A)\ne0$ and the numbers $A_{ij}\ (i<j)$ are linearly independent over $K=\mathbb Q(\rho_1,\dots,\rho_n)$.
+\item[(R)] $r_i\ne1$ for all $i$.
+\end{itemize}
+Then $P_{\HH}(t)=[\ \rho\in M\ \text{and}\ r_i\le0\ (\forall i)\ ]\,(1+t)^n+\chi(X)\,t^n$. Equivalently: if $L$ has no positive integral residue, $\HH^*(L)\cong H^*(U;L_U)\oplus\C^{\chi(X)}[-n]$ (if $\rho\notin M$, $L_U$ is a non-trivial local system on $(\C^*)^n$ and $H^*(U;L_U)=0$).
+\end{thm}
+\begin{hyptab}
+(V) & Hypercohomology equals the cohomology of the complex of global sections & Prerequisite of the weight formula (Theorem \ref{thm:weight}). For $L=L_0^m$ ($m\gg0$) follows from Theorem \ref{thm:serre}\\\midrule
+(A) $L(D)$ ample & The polytope $\{\chi:c_i(\chi)\ge-1\}$ is simple, with normal fan $\Sigma$ and exactly $\chi(X)$ vertices & $s=n$: $\chi(X)$ vertex weights, each $t^n$\\\midrule
+(GEN) & $A(\chi+\rho)\in W(\chi)$ degenerates over $K$ to $x\parallel m$, excluding arithmetic coincidences & Kills the contributions of intermediate strata $0<s<n$\\\midrule
+(R) $r_i\ne1$ & For $r_i=1$ solutions with $x=0$ or $x\parallel m_0$ appear (resonance) & Kills resonance contributions in $s=n-1$ and $\chi=-\rho$\\\midrule
+$\mathrm{Pf}(A)\ne0$ & $\sigma$ is log-symplectic & The log de Rham differential $(\chi+\rho)\wedge$ corresponds to $v_\chi\wedge$
+\end{hyptab}
+\begin{proof}
+Use Theorem \ref{thm:weight}. Put $x=\chi+\rho$, $C=C(\chi)$, $W=W(\chi)$, $s=\dim W$. For $i\in C$, $\langle x,u_i\rangle=r_i-1$. The condition $Ax\in W$ is equivalent to $\langle m,Ax\rangle=\sum_{i<j}A_{ij}(m_ix_j-m_jx_i)=0$ for all $m\in\mathrm{Ann}_M(W)$.
+\emph{$s=n$:} the condition is empty. By (A), the $\chi$ with $c_i\ge-1$ for which $C(\chi)$ spans the whole space are in bijection with vertices of the polytope (simple; lattice points since $X$ is smooth), one for each maximal cone, $\chi(X)$ in total; each gives $t^n$.
+\emph{$1\le s\le n-2$:} $\mathrm{Ann}_M(W)$ has rank $\ge2$, so there are linearly independent integer vectors $m,m'$. The coefficients $m_ix_j-m_jx_i\in K$; by (GEN), $\sum A_{ij}(\cdots)=0$ forces all coefficients to vanish, i.e.\ $x\parallel m$. Likewise $x\parallel m'$, so $x=0$. For $C\ne\emptyset$, $x=0$ means $r_i-1=0$, contradicting (R). No solution.
+\emph{$s=n-1$:} $\mathrm{Ann}_M(W)=\Z m_0$. Similarly $x=\tau m_0$, and for $i\in C$, $0=\tau\langle m_0,u_i\rangle=r_i-1$, contradicting (R). No solution.
+\emph{$s=0$:} $W=0$ and the condition is $x=0$, i.e.\ $\chi=-\rho$ (requiring $\rho\in M$). Since $c_i(\chi)=-r_i\ge-1$ and $C=\emptyset$, we need $r_i\le0$. The contribution is $(1+t)^n$.
+Add up. For the last statement: for $\rho\in M$, $L_U$ is trivial, and under (R) ``all $r_i\le0$'' is equivalent to ``no positive integral residue''. \qedhere
+\end{proof}
+\tV In 246 examples with all $r_i\ne1$ ($\mathbb{P}^2$ ($m=1,2,3$), $\mathbb{P}^1\times\mathbb{P}^1$ ($\mathcal O(1,1),\mathcal O(1,2),\mathcal O(2,3)$), $\mathbb{P}^4$ ($m=1$), $\mathbb{P}^2\times\mathbb{P}^2$ ($(1,1)$), $(\mathbb{P}^1)^4$ ($(1,1,1,1)$), lattice and rational points $\rho$, random integer $A$ modulo the prime $2^{61}-1$) the formula of the theorem agrees (0 discrepancies, \texttt{roundD\_check.py}, re-run and confirmed). In the wider set of 3626 examples including resonances the predictions of the weight formula also agree (\texttt{toric\_generic\_check2.py}; not re-run \tQ).
+
+\begin{obs}[Necessity of (GEN) and dependence on the arithmetic of $\sigma$ \tV]\label{obs:gen}
+In dimension 4, $\HH^*$ is not determined by $(X,D,L,\text{residues})$ alone. For $\mathbb P^2\times\mathbb P^2$ ($\mathcal O(1,1)$, $\rho=0$) one gets $[1,4,12,16,16]$ when $\sigma$ is block diagonal (product of the results for two surfaces, K\"unneth) and $[1,4,6,4,10]$ for general $A$. The difference $(0,0,6,12,6)=6t^2(1+t)^2$ comes from six codimension-2 strata $\{\text{double point of one factor}\}\times(\C^*)^2$. Mechanism (via the weight formula): for a weight with $|C|=2$ where $u_i,u_j$ are symplectic with respect to $\sigma$, $x\in A^{-1}W$ is uniquely determined by $\langle x,u_i\rangle=r_i-1$, and $t^2(1+t)^2$ contributes only if the arithmetic condition $x\in\rho+M$ holds. For the block structure this condition holds automatically. \tK $\HH$ jumps upward on countably many proper analytic subsets of the parameter space of log-symplectic structures (upper semicontinuity), and the general value is the minimum.
+\end{obs}
+
+%--------------------------------------------------------------
+\subsection{Resonance $r_i=1$}
+%--------------------------------------------------------------
+If some component has $r_i=1$, Theorem \ref{thm:main2} does not apply ($d_Q=-u(1-r)p$ vanishes). The following is based on computation.
+\begin{obs}[Single and double resonance ($\mathbb{CP}^2$, $\mathbb{CP}^1\times\mathbb{CP}^1$) \tV]\label{obs:res}
+Let $R$ be the set of branches with $r_i=1$, $N_R$ the normal bundles of the resonant branches tensored with $L$, $K_R=(K_X^{-1}\otimes L)|_{D_R}$, and $\nu$ the number of double points not containing a resonant branch. Then
+\[P_{\HH}(t)=t\,h^0(N_R)+t^2\bigl(h^1(N_R)+h^0(K_R)+\nu\bigr)+t^3\,h^1(K_R).\]
+There are 0 discrepancies for single and double resonances in $\mathbb{CP}^2$ and for $\mathbb{CP}^1\times\mathbb{CP}^1$ (108 examples with non-integral residues). The exact definition of $N_R$ when there are several resonant branches is copied from the earlier records and not checked \tQ. When all residues are integers ($L_U$ trivial) and $m\ll0$, and when all branches are resonant ($L=K_X$), connecting maps of $H_c$-type act and the formula breaks (e.g.\ double resonance in $\mathbb{CP}^2$, $m=-5$: observed $[0,0,5,2]$, predicted $[0,0,6,3]$). $L=K_X$ is treated separately in Proposition \ref{prop:KX}. \tK The resonance formula is probably the general formula when $L_U$ is non-trivial and not all branches are resonant, but its proof requires a computation of connecting maps (an extension of Lemma \ref{lem:conn}) and is unfinished. For toric varieties Corollary \ref{cor:weight}(c) corresponds (proved \tP).
+\end{obs}
+
+%--------------------------------------------------------------
+\subsection{Local terms at non-nodal singularities}\label{subsec:local}
+%--------------------------------------------------------------
+If $D$ has cusps, tacnodes, triple points etc., Theorem \ref{thm:main2} does not apply. The local model is $\sigma=h\,\partial_z\wedge\partial_w$, the module $\mathcal O\,h^s$ ($V=s\chi_h$, $\chi_h=h_w\partial_z-h_z\partial_w$), and the stalk complex $\mathcal C_s=(\mathcal O\xrightarrow{d_0}\mathcal O^2\xrightarrow{d_1}\mathcal O)$:
+\[d_0f=(hf_w+sfh_w)\partial_z-(hf_z+sfh_z)\partial_w,\qquad d_1(p,q)=h(p_z+q_w)-(1-s)(h_zp+h_wq)\]
+(formula \eqref{eq:dE} with $a=sh_w$, $b=-sh_z$). Globally $s=r$; for $\mathbb{CP}^2$, $s=-m/3$, and for $\mathbb{CP}^1\times\mathbb{CP}^1$, $-m/2$.
+
+Let $h\in\C\{z,w\}$ be a quasi-homogeneous polynomial for positive integer weights $(w_z,w_w)$ and degree $N_h$, whose origin is an isolated singularity (hence $h$ is reduced) or a smooth point. Put $\delta=N_h-w_z-w_w$, $e=w_zz\partial_z+w_ww\partial_w$ ($eh=N_hh$), $J=(h_z,h_w)$, $T=\mathcal O/J$, $\mu=\dim T$, and let $\mathrm{Sp}$ be the multiset $\{\alpha_m=(\mathrm{wt}(m)+w_z+w_w)/N_h\}$ ($m$ running over a monomial basis of $T$).
+
+\begin{thm}[Quasi-homogeneous local formula]\tP \tQ\label{thm:local}
+For $s\ne1$ the Poincar\'e polynomial of the cohomology of $\mathcal C_s$ is
+\[\mu\,t^2\;+\;[\,s\in\Z,\ s\le0\,](1+t)\;+\;(t+t^2)\cdot\#\{\alpha\in\mathrm{Sp}:\ s+\alpha\in\Z,\ s+\alpha\le1\}.\]
+\end{thm}
+\begin{hyptab}
+Quasi-homogeneous & $e\,h=N_hh$ makes the complex split by weight, each weight finite-dimensional & Steps (2), (3)\\\midrule
+Isolated singularity & $h_z,h_w$ is a regular sequence (Hilbert series formula), $h$ reduced (Saito's basis $e,\chi_h$) & Steps (1), (5), (4)\\\midrule
+$s\ne1$ & For $s=1$ the differential of the quotient $Q$ is zero and the stalk is infinite-dimensional & Step (1)\\\midrule
+Positive weights & Each weight component $\mathcal O_k$ is a finite-dimensional space of polynomials, and weightwise division is bounded & Step (2)
+\end{hyptab}
+\begin{proof}
+\emph{(1) Decomposition.} $D=\{h=0\}$ is a plane curve, $e,\chi_h\in\Theta(-\log D)$ ($eh=N_hh$, $\chi_hh=0$) and $e\wedge\chi_h=-N_hh\,\partial_z\wedge\partial_w$, so since $h$ is reduced Saito's criterion (\cite{Saito} Thm.~1.8 \tC \tQ) gives $\Theta(-\log D)=\mathcal Oe\oplus\mathcal O\chi_h$. In the basis $(e,\chi_h)$ (the weight of $\chi_h$ is $\delta$, $[e,\chi_h]=\delta\chi_h$)
+\begin{align}
+d_0f&=-\tfrac1{N_h}\chi_h(f)\,e+\tfrac1{N_h}\bigl(ef+sN_hf\bigr)\chi_h,\label{eq:d0}\\
+d_1(a\,e+b\,\chi_h)&=\bigl[(e+sN_h-\delta)a+\chi_h(b)\bigr]\,h\,\partial_z\wedge\partial_w.\label{eq:d1}
+\end{align}
+(\tV We checked these against the defining formulas with random polynomials $f,a,b$ and rational $s$ for 7 quasi-homogeneous $h$: 210 checks, 0 discrepancies, \texttt{local\_basis\_check.py}, written for this paper.) Hence $B_s:=(\mathcal O\to\Theta(-\log D)\to h\mathcal O\,\partial_z\wedge\partial_w)$ is a subcomplex of $\mathcal C_s$. The quotient $Q=\mathcal C_s/B_s$ is, via $X\mapsto X(h)\bmod h$, $Q^1\cong J\mathcal O_D\subset\mathcal O_D$, $Q^2=\mathcal O_D$, $Q^0=0$, with differential $-(1-s)\cdot$(inclusion), injective for $s\ne1$. $H^2(Q)=\mathcal O_D/J\mathcal O_D=\mathcal O/J$ ($h\in J$: $N_hh=w_zzh_z+w_wwh_w$). In the long exact sequence of the triangle $B_s\to\mathcal C_s\to Q$, $H^3(B_s)=0$ and $H^0(Q)=H^1(Q)=0$, so $H^k(B_s)=H^k(\mathcal C_s)\ (k\le1)$ and $0\to H^2(B_s)\to H^2(\mathcal C_s)\to\mathcal O/J\to0$. That is, the stalk is $\mu t^2+P(B_s)$.
+
+\emph{(2) Weight decomposition.} $\mathcal O=\prod_k\mathcal O_k$ ($\mathcal O_k$ the quasi-homogeneous polynomials of weight $k$). The weight-$k$ part of $B_s$ is, with $a\in\mathcal O_{k+\delta}$, $b\in\mathcal O_k$, $B^0_k=\mathcal O_k$, $B^1_k=\{a\,e+b\,\chi_h\}$, $B^2_k=\mathcal O_{k+\delta}$; with $\kappa:=k+sN_h$, formulas \eqref{eq:d0}, \eqref{eq:d1} give
+\[d_0f=\bigl(-\tfrac1{N_h}\chi_hf,\ \tfrac\kappa{N_h}f\bigr),\qquad d_1(a,b)=\kappa a+\chi_hb.\]
+For $\kappa\ne0$ the homotopies $H^2(c)=(c/\kappa,0)$, $H^1(a,b)=N_hb/\kappa$ satisfy $d_1H^2=\mathrm{id}$, $H^1d_0=\mathrm{id}$, $H^2d_1+d_0H^1=\mathrm{id}$ (direct computation). Over all weights with $\kappa\ne0$ we have $|\kappa|\ge c>0$, so $H$ preserves convergent series, and $B_s$ splits into the finite-dimensional subcomplex of weight $k_0:=-sN_h$ (zero if $k_0\notin\Z$) and a contractible complex. The comparison problem between formal and convergent series does not arise thanks to this bounded homotopy.
+
+\emph{(3) The weight-$k_0$ part.} Here $\kappa=0$, so $d_0f=(-\tfrac1{N_h}\chi_hf,0)$ and $d_1(a,b)=\chi_hb$. Put $K=\ker(\chi_h|\mathcal O_{k_0})$ and $\mathrm{Cok}=\mathrm{coker}(\chi_h:\mathcal O_{k_0}\to\mathcal O_{k_0+\delta})$. Then $H^0=K$, $H^1=K\oplus\mathrm{Cok}$, $H^2=\mathrm{Cok}$ (with $\mathcal O_j=0$ for $j<0$).
+
+\emph{(4) Determination of $K$.} Let $f\in\mathcal O_{k_0}$ with $\chi_hf=0$. Since $\chi_hf=(df\wedge dh)/(dz\wedge dw)$ up to sign, $df\wedge dh=0$. Contracting with $e$, $k_0f\,dh-N_hh\,df=0$, i.e.\ $d(f^{N_h}/h^{k_0})=0$ ($k_0>0$). So $f^{N_h}=c\,h^{k_0}$. Since $h$ is reduced, for an irreducible factor $p\mid h$ we have $N_hv_p(f)=k_0$. If $f\ne0$ then $N_h\mid k_0$, and $f/h^{k_0/N_h}$ is a rational function whose $N_h$-th power is constant, i.e.\ a constant. Hence $K=\C\,h^{k_0/N_h}$ ($k_0\in N_h\Z_{\ge0}$) and $K=0$ otherwise (for $k_0=0$, $f$ is constant).
+
+\emph{(5) $\dim\mathrm{Cok}$.} Let $d=k_0+\delta$, $a=w_z$, $b=w_w$. $\sum_k\dim\mathcal O_kx^k=1/((1-x^a)(1-x^b))$, and since $h_z,h_w$ is a regular sequence of degrees $N_h-a$, $N_h-b$, $\sum\dim T_kx^k=(1-x^{N_h-a})(1-x^{N_h-b})/((1-x^a)(1-x^b))$. From the identity $x^\delta+x^{N_h}-x^{N_h-a}-x^{N_h-b}=x^\delta(1-x^a)(1-x^b)$,
+\[\frac{(1-x^{N_h-a})(1-x^{N_h-b})}{(1-x^a)(1-x^b)(1-x^{N_h})}-\frac{1-x^\delta}{(1-x^a)(1-x^b)}=\frac{x^\delta}{1-x^{N_h}}.\]
+Taking the coefficient of $x^d$ gives $\sum_{r\ge0}\dim T_{d-rN_h}-(\dim\mathcal O_d-\dim\mathcal O_{k_0})=[\,k_0\in N_h\Z_{\ge0}\,]=\dim K$. Since $\dim\mathrm{Cok}=\dim\mathcal O_d-\dim\mathcal O_{k_0}+\dim K$, we get $\dim\mathrm{Cok}=\sum_{r\ge0}\dim T_{d-rN_h}$.
+
+\emph{(6) Translation into the spectrum.} $s=-k_0/N_h$. For a basis monomial $m$ of $T_{d-rN_h}$ ($\mathrm{wt}(m)=d-rN_h$), $\alpha_m=(\mathrm{wt}(m)+w_z+w_w)/N_h=1-r-s$, i.e.\ $s+\alpha_m=1-r\in\Z_{\le1}$. Conversely each $\alpha$ with $s+\alpha\in\Z_{\le1}$ corresponds to exactly one $r\ge0$. Hence $\dim\mathrm{Cok}=\#\{\alpha\in\mathrm{Sp}:s+\alpha\in\Z,\ s+\alpha\le1\}$ and $\dim K=[\,s\in\Z_{\le0}\,]$. Steps (3) and (1) give the theorem. \qedhere
+\end{proof}
+\begin{rem}[Status and remaining unverified points]
+\tV The dimensions of steps (3)--(6) ($K$, $\mathrm{Cok}$ and the formula above) were checked by exact rational computation for 14 types ($A_1,A_2,A_3,A_6,D_4,D_5,E_6,E_8$, $z^3+w^6$, $z^4+w^5$, $z^5+w^5$, $z^4+w^4$, $z^3+w^7$, $z^5+w^6$) and about 700 values of $k_0$, with 0 discrepancies (\texttt{roundH\_proof\_check.py}, re-run and confirmed). \tQ Remaining unverified: (a) that the local model $\mathcal C_s$ ($V=s\chi_h$) appears as the stalk of a global Poisson module (including germs that are not quasi-homogeneous; the sign convention of the residue $s$ was fixed to agree with $V=-\sigma^\sh\theta$ in formula \eqref{eq:dE}), (b) the number of Saito's criterion. The range of applicability is only quasi-homogeneous isolated singularities (or smooth points) and $s\ne1$; non-quasi-homogeneous isolated singularities, non-isolated singularities and $s=1$ are \tK (unproved).
+\end{rem}
+\begin{rem}[Interpretation \tC \tK]
+From the Wang sequence of the Milnor fibration $h:B\setminus D\to\C^*$ (the fibre is a bouquet of $\mu$ circles, and the monodromy eigenvalues on $H^1$ are $e^{-2\pi\sqrt{-1}\alpha}$) one gets $(Rj_*L_s)_p=[s\in\Z](1+t)+(t+t^2)\#\{\alpha:s+\alpha\in\Z\}$. The formula of the theorem is this with the truncation $s+\alpha\le1$ (coming from the subcomplex $B_s$ computing the part of weight $\ge-\delta$). The rule $[s<\mathrm{lct}]\cdot(\cdots)$ of the earlier version (Part II v1) is wrong for $\mathrm{lct}<1/2$ (example: $z^4-w^5$, $\mathrm{lct}=9/20$, where for $s=11/20=1-\mathrm{lct}$ we have $s>\mathrm{lct}$ but the class exists) and agrees for $\mathrm{lct}\ge1/2$. Calder\'on-Moreno--Narv\'aez-Macarro \cite{CMNM} give an analogous logarithmic comparison theorem for free divisors (pages \tQ).
+\end{rem}
+\begin{obs}[Stalk dimensions for representative types \tP]\label{obs:localtable}
+From Theorem \ref{thm:local}, $(\dim H^0,\dim H^1,\dim H^2)$ is as follows ($\mu$ is the Milnor number; the column ``$\alpha$'' is for the case that exactly one $\alpha\in\mathrm{Sp}$ with $s+\alpha\in\Z_{\le1}$ exists and $\alpha\notin\Z$):
+\begin{center}\small
+\begin{tabular}{llcccc}\toprule
+Singularity & $\mathrm{Sp}$ & $\mu$ & generic $s$ & $s\in\Z_{\le0}$ & $\alpha$\\\midrule
+smooth $(z)$ & $\emptyset$ & 0 & $(0,0,0)$ & $(1,1,0)$ & ---\\
+double point $(zw)$ & $\{1\}$ & 1 & $(0,0,1)$ & $(1,2,2)$ & ---\\
+cusp $(z^2-w^3)$ & $\{\frac56,\frac76\}$ & 2 & $(0,0,2)$ & $(1,1,2)$ & $(0,1,3)$\\
+tacnode $(z^2-w^4)$ & $\{\frac34,1,\frac54\}$ & 3 & $(0,0,3)$ & $(1,2,4)$ & $(0,1,4)$\\
+$A_4$ $(z^2-w^5)$ & $\{\frac7{10},\frac9{10},\frac{11}{10},\frac{13}{10}\}$ & 4 & $(0,0,4)$ & $(1,1,4)$ & $(0,1,5)$\\
+$D_4$ $(zw(z-w))$ & $\{\frac23,1,1,\frac43\}$ & 4 & $(0,0,4)$ & $(1,3,6)$ & $(0,1,5)$\\
+$D_5$ $(w(z^2-w^3))$ & $\{\frac58,\frac78,1,\frac98,\frac{11}8\}$ & 5 & $(0,0,5)$ & $(1,2,6)$ & $(0,1,6)$\\\bottomrule
+\end{tabular}
+\end{center}
+Of the values in the table of the earlier version (Part I \S I.6.6), the last column for $A_4$ had been left blank.
+\end{obs}
+\noindent \tP Correction: for $D_5=z^2w-w^4$ the weights are $(3,2)$, degree 8, $\mathrm{Sp}=\{5/8,7/8,1,9/8,11/8\}$, $\mathrm{lct}=5/8$, $\mu=5$. The weights $(3,1,7)$ in an internal memo were wrong, and values derived from them are invalid (the table and text of the earlier version were written with the correct weights).
+
+\begin{obs}[Triple point with unequal residues \tV]\label{obs:triple}
+For $h=zw(z-w)$ ($D_4$) and the module $\prod h_i^{s_i}$ (a different $s_i\ne1$ on each branch), the stalk is $\C^4[-2]\oplus R$, with $R=H^*(U_{\rm loc};L_s)$ ($s_1+s_2+s_3<2$) and $R=0$ (otherwise). $U_{\rm loc}=\C^2\setminus\{3\text{ lines}\}\simeq\C^*\times(\mathbb P^1\setminus3\text{ points})$. Concretely, the stalk is $(1,3,6)$ if all $s_i\in\Z_{\le0}$, $(0,1,5)$ if $\sum s_i\in\Z_{\le1}$ and not all $s_i$ are integers, and $(0,0,4)$ otherwise. There are 0 discrepancies for 533 random triples $s_i\in\tfrac16\Z\cap[-2,2]\setminus\{1\}$ (\texttt{local\_unequal.py, local\_unequal\_rule.py}; not re-run \tQ). At a node the per-branch threshold $s_i<1$ decides the presence of the $Rj_*$ part, whereas at a triple point it is decided by whether the \emph{sum} of the residues exceeds the threshold $2=w_z+w_w$. For equal residues $s_1=s_2=s_3=s$ it agrees with the values of Theorem \ref{thm:local} for $D_4$ at $s\in\tfrac13\Z$, $-10\le3s\le10$ ($s\ne1$) (checked \tV). \tK General principle: the threshold is determined by comparing the weight of the module under the symmetry torus of the germ with the log canonical weight.
+\end{obs}
+\begin{conj}[Refined Riemann--Roch (equal residues)]\tK\label{conj:refined}
+Let $X$ be a compact surface, the zero curve $D$ of $\sigma\in H^0(-K_X)$ reduced and all its singularities isolated, quasi-homogeneous with $\mathrm{lct}_p\ge1/2$ (types $A_k,D_k,E_{6,7,8}$ etc.). Let $L$ be a Poisson module with $c_1(L)=sK_X$, and $\mathcal F_s$ the constructible complex equal to $L_s$ on $U$ and at $p\in D$ to the stalk of $Rj_*L_s$ if $s<\mathrm{lct}_p$ and $0$ if $s>\mathrm{lct}_p$. (a) For $s\notin\mathrm{Sp}(D)\cup\{1\}$, $\HH^*=H^*(X;\mathcal F_s)\oplus\bigoplus_p\C^{\mu_p}[-2]$. (b) The Euler characteristic is always $\chi(X)$ (from $\chi(D)=\sum\mu_p$ and $\delta$-invariants \tP). (c) For $s\ll0$, $\mathcal F_s=Rj_*L_s$ and $\HH^*=H^*(U;L_s)\oplus\bigoplus\C^{\mu_p}[-2]$ depends only on $s\bmod\Z$ and vanishes in degrees $\ge3$. (d) For $s\in\mathrm{Sp}(D)$, rank-one cancellations may occur.
+\end{conj}
+\tV For $\mathbb{CP}^2$ (smooth, nodal, cuspidal, conic plus secant, conic plus tangent, triangle, triple point) and $\mathbb{CP}^1\times\mathbb{CP}^1$ (4 examples) there is no contradiction except in (d), for $m=-15..15$ ($-9..8$). Triple point $xy(x-y)$ ($\mathbb{CP}^2$): $m=1,2,4,5,\dots$ and $m=-1$ give $[0,1,4,0,0]$, $m=-5,-7,-8$ give $[0,0,4,1,0]$, and $m=-2,-3,-4$ give $[0,0,3,0,0]$. We conjecture that the latter anomaly (at $m=-2,-4$ one class of $\C^4$ in degree 2 cancels against one class of $H_c$ in degree 3) is due to higher differentials of the spectral sequence, but there is no proof and no explanation by Theorem \ref{thm:local} \tK. Not proved: the global identification is a fit, and the stalk result concerns only quasi-homogeneous germs.
+\begin{obs}[Non-reduced boundary \tV]\label{obs:nr}
+When $\sigma=\Pi_F$ with $F$ having multiple factors, the dimension of $\HH^*$ grows linearly in $m$ (exact linear algebra, $m=-15,\dots,15$, \texttt{roundF\_nonreduced.py}; not re-run \tQ). (a) $F=x^2y$ (double line plus a line, one node, $U\simeq S^1$): for $m\ge-2$, $P(t)=[3\mid m](1+t)+3t^2+(m+2)(t+t^2)$; $m=-3$: $3t^2$; $m\le-4$: image under Serre duality $m\leftrightarrow-m-6$. (b) $F=x^3$ (triple line, $U=\C^2$): $[1,2m+5,2m+7]$ for $m\ge0$, $[0,2,5]$ for $m=-1$, $[0,0,3]$ for $m=-2,-3,-4$. (c) $\mathbb P^1\times\mathbb P^1$, $D=2C$ ($C$ a smooth $(1,1)$ curve), $L=\mathcal O(m,m)$: $H^0=1$, $H^1=2m+3$, $H^2=2m+6$ for $m\ge0$.
+\end{obs}
+\begin{conj}[Non-reduced boundary]\tK\label{conj:NR}
+For $X=\mathbb P^2$ or $\mathbb P^1\times\mathbb P^1$, $D=\sum k_iD_i$ ($D_i$ smooth, $D_{\mathrm{red}}$ SNC), and $m\ge0$ (or in the range where higher sheaf cohomology vanishes),
+\[\HH^*(L)=H^*(U;L_U)\oplus\C^{\chi(D_{\mathrm{red}})}[-2]\oplus\bigoplus_i\bigoplus_{j=1}^{k_i-1}\bigl(H^0(D_i,L|_{D_i}\otimes N_{D_i}^{j})[-1]\oplus H^0(D_i,L|_{D_i}\otimes N_{D_i}^{j})[-2]\bigr).\]
+\end{conj}
+\noindent It is confirmed only for the three families of Observation \ref{obs:nr}. The total Euler characteristic is $\chi(U)+\chi(D_{\mathrm{red}})=\chi(X)$, consistent with Theorem \ref{thm:E}. Heuristics: the Poisson cohomology of $z^k\partial_z\wedge\partial_w$ has an infinite-dimensional part (results of Monnier, Roger--Vanhaecke type \tC \tQ, unchecked). It fails for small $m$ ($m=-1$ for $x^3$ does not match), so the exact boundary of its range of validity is unknown.

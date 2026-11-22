@@ -1,0 +1,115 @@
+%==============================================================
+\section{Kodaira 型の問題}\label{sec:kodaira}
+%==============================================================
+\subsection{古典の Kodaira の埋め込み定理：どこで何を使うか}
+\begin{thm}[Kodaira の埋め込み定理]\tC\label{thm:Kod}
+$X$ をコンパクト複素多様体、$L$ を正の正則直線束とする。このとき $X$ は射影的で、十分大きな $m$ に対し $|L^m|$ が定める写像 $X\to\mathbb P(H^0(X,L^m)^*)$ は埋め込みである。
+\src{Kodaira \cite{Kod54}。教科書：Griffiths--Harris \cite{GH} Ch.\ 1 \S4、Huybrechts \cite{Huy} Prop.\ 5.3.1（番号は\tQ）。}
+\end{thm}
+\begin{hyptab}
+$X$ コンパクト & $H^0(X,L^m)$ が有限次元で $\mathbb P^N$ への写像が定義できる。閉埋め込み & 証明の最初と最後\\\midrule
+$L$ が正（$i\Theta_L>0$） & 曲率形式が Kähler 形式になり、Kodaira 消滅が使える & 点 $x$ での爆発 $\tilde X$ で $H^1(\tilde X,\pi^*L^m\otimes\mathcal O(-2E_x))=0$ を示す段\\\midrule
+正則断面が十分多い & 点と接ベクトルを分離する & 全射 $H^0(L^m)\to L^m\otimes\mathcal O/\mathfrak m_x^2$ が消滅から出る
+\end{hyptab}
+証明のどの段で、断面が\emph{点を区別する}ことが使われるかが重要である。一般化正則（GH）断面ではこの段が壊れる。
+
+\subsection{一般化正則断面では埋め込めない}
+\begin{prop}\tP\label{prop:one}
+$X$ を連結なコンパクト複素多様体、$\sigma$ を稠密な開集合 $U_0$ で非退化な正則 Poisson 構造、$L$ を Poisson 加群とする。このとき $\dim_\C\HH^0(L)\le1$。GH 断面は $U_0$ の 1 点での値で決まり、GH 断面による Kodaira 写像は定値（または定義できない）。
+\end{prop}
+\begin{hyptab}
+連結、$U_0$ 稠密 & 一致の定理が使える & (iii)\\\midrule
+$\sigma$ が $U_0$ で非退化 & $\sigma^\sh:A|_{U_0}\to T$ が同型になり、$A$-接続が通常の平坦接続に化ける & (i)\\\midrule
+$L$ が直線束 & 平坦断面は 1 点の値で決まる & (ii)
+\end{hyptab}
+\begin{proof}
+(i) $U_0$ 上で $\nabla_vs:=D_{(\sigma^\sh)^{-1}v}s$ とおくと、Leibniz 則から $\nabla$ は通常の平坦正則接続になる。GH 断面は $\nabla s=0$ をみたす（観察 \ref{obs:casimir}）。(ii) $U_0$ は連結（連結多様体から真の解析的部分集合を除いたもの）で $L$ は階数 1 なので、平坦断面の空間は $\le1$ 次元で、断面は 1 点の値で決まる。(iii) $s$ は $s|_{U_0}$ で決まる（一致の定理）。\qedhere
+\end{proof}
+\begin{ex}\tV
+$\mathbb{CP}^2$ と $\Pi_F$（$F$ は滑らかな 3 次式）：$\HH^0(\mathcal O(m))=\C F^k$（$m=3k\ge0$）、それ以外は 0（例 \ref{ex:cp2}）。$\mathbb P^1\times\mathbb P^1$ と滑らかな $(2,2)$ 曲線：$\HH^0(\mathcal O(m,m))=\C F^{m/2}$（$m\in2\Z_{\ge0}$、例 \ref{ex:p1p1}）。どの $m$ でも GH 断面による埋め込みは存在しない。
+\end{ex}
+\begin{prop}\tP\label{prop:leaf}
+$M$ をコンパクトな一般化複素多様体、$\Jc$ は稠密な開集合 $W$ 上で正則型 $k<n$（葉の次元 $2(n-k)>0$）、$L$ を一般化正則直線束とする。任意の GH 断面 $s_0,\dots,s_N$ について $\varphi=[s_0:\cdots:s_N]$（基点集合の外で定義）は $W$ の各葉の上で定値で、したがって $W$ 上はしめこみでない。
+\end{prop}
+\begin{hyptab}
+正則型（局所モデルが積） & $\pi_T(L)\supset T_F\otimes\C$ が使える & 局所 Darboux（Gualtieri \cite{Gua11} Thm.\ 4.3\tC）\\\midrule
+$k<n$ & 葉の次元が正 & 葉に沿って動ける\\\midrule
+$L$ 一般化正則 & $L$-接続 $D$ が $D_\xi(fs)=\pi_T(\xi)(f)s+fD_\xi s$ をみたす & GH 断面 $\Rightarrow$ 葉方向に平行
+\end{hyptab}
+\begin{proof}
+積モデル $L=\mathrm{graph}(\omega_Y)\oplus(T^{0,1}\oplus T^{*1,0})$ では $\pi_T(L)=T_Y\otimes\C\oplus T^{0,1}$。$\xi\in L$ が葉方向の成分をもつとき $D_\xi s=0$ は、$s$ が葉方向の平坦接続 $\nabla^F$ に関して平行であることを意味する。葉内の道に沿った平行移動 $P:L_x\to L_y$ について、すべての GH 断面で $s_i(y)=Ps_i(x)$。ゆえに比 $[s_0:\cdots:s_N]$ は $x,y$ で一致する。\qedhere
+\end{proof}
+\begin{rem}[古典の証明のどこが壊れるか]\tP
+古典の証明が使うのは「断面が点と接ベクトルを分離する」ことである。命題 \ref{prop:one} では分離する断面が（定数倍を除いて）1 つ以下、命題 \ref{prop:leaf} では同じ葉の点を分離できない。仮定（正の曲率）は断面の存在を保証するだけで、断面が GH（平坦）であることは保証しない。Pal--Poddar の「正の SGH 直線束」（Def.\ 11.10, 11.11\tC\ \tQ）は横断方向でだけ正であることを要求しており、この状況に対応する。
+\end{rem}
+
+\subsection{葉空間版 Kodaira}
+\begin{thm}[葉空間版 Kodaira]\tP\label{thm:K1leaf}
+$M$ をコンパクトな正則型一般化複素多様体で、次をみたすとする。
+\begin{itemize}
+\item[(K1)] シンプレクティック葉への射影 $\pi:M\to X$ は、連結なコンパクトファイバー（$=$ 葉）をもつ固有な沈めこみ（または軌道体の沈めこみ）で、$X$ は $k$ 次元のコンパクト複素多様体（軌道体）。
+\item[(K2)] $L$ は SGH 直線束で、$L\cong\pi^*L_X$（SGH 束として）となる正則直線束 $L_X\to X$ がある（葉に沿ったホロノミーが自明）。
+\item[(K3)] $L_X$ は豊富。
+\end{itemize}
+このとき $m_0$ があって、$m\ge m_0$ ならば $\HH^0(M,L^m)=\pi^*H^0(X,L_X^m)$ で、GH 断面による写像 $\varphi_m:M\to\mathbb P^N$ は $\varphi_m=\iota_m\circ\pi$。ここで $\iota_m:X\hookrightarrow\mathbb P^N$ は古典の Kodaira 埋め込み。したがって $\varphi_m$ の各ファイバーはちょうど 1 枚の葉である。軌道体の場合は $\iota_m$ は粗モジュライ空間の埋め込み（$m$ を等方群の位数の倍数にとる、Baily \cite{Bai}。記憶による引用\tQ）。
+\end{thm}
+\begin{hyptab}
+(K1) 連結・コンパクトなファイバー & 葉の上の平坦断面は定数（命題 \ref{prop:leaf} の逆向き）。ファイバーが連結だから $\varphi_m$ の逆像がちょうど 1 枚の葉 & (i), (iii)\\\midrule
+(K2) ホロノミー自明 & 葉上で $L^m$ が自明な平坦束になり GH 断面が存在する。非自明なら葉に沿って $\HH^0=0$ & (i)\\\midrule
+(K3) $L_X$ 豊富 & 古典 Kodaira（定理 \ref{thm:Kod}）を $X$ に使う & (ii)\\\midrule
+軌道体の場合 & 粗空間への Kodaira（Baily） & (ii) の軌道体版
+\end{hyptab}
+\begin{proof}
+(i) $\HH^0(M,L^m)$ は、葉に沿って平坦で横断方向に正則な $L^m$ の断面（SGH 束の定義、Pal--Poddar Cor.\ 8.10 の次数 0 部分\tC\ \tQ）。(K1), (K2) より各ファイバー上で $L^m=\pi^*L_X^m$ は自明な平坦束なので、平坦断面はファイバー上で定数、すなわち $\pi^*t$（$t$ は $L_X^m$ の断面）。横断方向の正則性は $t$ の正則性と同値。ゆえに $\HH^0(M,L^m)=\pi^*H^0(X,L_X^m)$。(ii) (K3) と定理 \ref{thm:Kod} により、$m\ge m_0$ で $\iota_m$ は埋め込み。(iii) $\varphi_m=\iota_m\circ\pi$ で $\iota_m$ は単射なので、$\varphi_m(x)=\varphi_m(y)\iff\pi(x)=\pi(y)$、すなわち同じ葉。\qedhere
+\end{proof}
+\begin{rem}[位置づけ]
+\tP\ 直接の帰着であり深い結果ではない。\tC\ 調べた範囲で、正則型の場合の Kodaira 型の主張を明示した文献は見つからなかった。Pal--Poddar の Thm.\ 11.12 に対応する埋め込み側の主張に当たる。\tQ\ 彼らの「正」の定義との同値は未確認。型が跳ぶ場合や一般の一般化複素構造に対する Kodaira 型の主張は見つかっていない。
+\end{rem}
+
+%--------------------------------------------------------------
+\subsection{Poisson--Kodaira：Poisson 対の埋め込み}
+%--------------------------------------------------------------
+GH 断面が（ほぼ）定数なので、問題を変えて、\emph{通常の}正則断面による Kodaira 埋め込み $\nu:X\hookrightarrow\mathbb P^N$ が Poisson 埋め込み、すなわち $\sigma$ が $\mathbb P^N$ 上の Poisson 構造 $\sigma_N$ の制限になっているかを問う。（これは筆者の提案であり、文献にある定式化ではない。）
+
+\begin{lem}[階数 1 の Poisson 加群の $\C^*$ 不変な持ち上げ]\tP\ \tQ\label{lem:lift}
+$L$ を Poisson 加群とする。全空間 $C=L^*\setminus0$ には、$\C^*$ 不変で $p_*\hat\pi=\sigma$ をみたす Poisson 構造 $\hat\pi=\sigma+u\,\theta\wedge\partial_u$ が一意にあり（局所枠 $e$、$D_\alpha e=\theta(\alpha)e$、$u$ はファイバー座標）、$L^k$ の断面は次数 $k$ の同次関数に対応する。$\hat\pi$ の Jacobi 恒等式は、$D$ の平坦性と Leibniz 則に同値。
+\end{lem}
+局所計算の確認は見取り図にとどまる\tQ。例：$\mathbb P^2$ で $\Pi_F$（$\mathbb C^3$ 上の 2 次 Poisson）、$L=\mathcal O(m)$（任意の $m$）。
+\begin{prop}\tP\label{prop:graded}
+$X$ 射影的、$L$ が豊富な Poisson 加群のとき、$R=\bigoplus_{k\ge0}H^0(X,L^k)$ は次数付き Poisson 環で、括弧の次数は 0（$\{R_a,R_b\}\subset R_{a+b}$）。
+\end{prop}
+\begin{proof}
+補題 \ref{lem:lift} により $R$ は $C$ 上の同次関数の環で、$\hat\pi$ の括弧は次数を保つ。\qedhere
+\end{proof}
+\begin{prop}[almost-Poisson な 2 次の持ち上げ]\tP\ \tC\label{prop:almost}
+$m\ge m_1$ のとき $R^{(m)}=\bigoplus_kR_{mk}=S/I$（$S=\mathrm{Sym}\,R_m$、$I$ は 2 次式で生成）である（Mumford \cite{Mum}。記憶による引用、頁は\tQ）。このとき $S$ 上の次数 0 の歪対称な biderivation $\{\ ,\ \}'$ で、商 $S/I$ に $R$ の括弧を誘導するものがある。
+\end{prop}
+\begin{proof}
+$S_2\to R_{2m}$ の線形な切断 $s$ を選び、$\{y_a,y_b\}:=s(\{\bar y_a,\bar y_b\})$ とおいて Leibniz 則で拡張する。$q\in I_2$、$g\in S_1$ に対し $\{q,g\}'\equiv\{\bar q,\bar g\}=0\bmod I_3$ なので $\{I_2,S_1\}'\subset I_3$。$I$ が $I_2$ で生成されるので Leibniz 則により $\{I,S\}'\subset I$。\qedhere
+\end{proof}
+持ち上げの Jacobiator $\mathcal J\in\mathrm{Hom}(\wedge^3S_1,I_3)$ は一般に 0 でなく、持ち上げの選び方の差は $\epsilon\in\mathrm{Hom}(\wedge^2S_1,I_2)$。Poisson 構造への拡張は 2 次の方程式 $\mathcal J_0+\mathcal L(\epsilon)+\mathcal J(\epsilon)=0$ が解 $\epsilon$ をもつことと同値。1 次の障害類は $\mathcal J_0\bmod\mathrm{im}\,\mathcal L$。
+
+\begin{thm}[Poisson--Kodaira、トーリック]\tP\label{thm:PKtoric}
+$X$ を滑らかな射影トーリック多様体（トーラス $T=N\otimes\C^*$）、$\sigma=\sum\omega^{ij}\xi_i\wedge\xi_j$（$\xi_i=x_i\partial_{x_i}$、$\omega\in\wedge^2N_\C$）とする。$L=\mathcal O(D)$ は豊富で多面体 $P$ をもち、$L^m$ は非常に豊富（断面 $\chi^a$、$a\in mP\cap M$）とする。このとき $\nu:X\hookrightarrow\mathbb P^N$、$\nu^*y_a=\chi^a$ は、$\mathbb P^N$ 上の対角的な 2 次 Poisson 構造
+\[\sigma_N=\sum_{a<b}\omega(a,b)\,y_ay_b\,\partial_{y_a}\wedge\partial_{y_b},\qquad\omega(a,b)=\sum\omega^{ij}a_ib_j\]
+に関する Poisson 埋め込みである。非常に豊富な任意のべき $L^m$ で成り立つ。
+\end{thm}
+\begin{hyptab}
+トーリック、$\sigma$ がトーラス不変 & 指標の括弧が単項式になる：$\{\chi^a,\chi^b\}=\omega(a,b)\chi^{a+b}$ & (2)。持ち上げを対角的に選べる\\\midrule
+$L^m$ が非常に豊富 & $\nu$ が埋め込みになる & 結論の「埋め込み」\\\midrule
+$X$ 滑らか・射影的 & 古典 Kodaira の設定 & 同上
+\end{hyptab}
+\begin{proof}
+(1) $\sigma_N$ は Poisson：歪対称な $\lambda_{ij}$ に対し $\{y_i,y_j\}=\lambda_{ij}y_iy_j$ とおくと $\{y_i,\{y_j,y_k\}\}=\lambda_{jk}(\lambda_{ij}+\lambda_{ik})y_iy_jy_k$ の巡回和は歪対称性から 6 項が対で打ち消し合って 0。スケーリングの weight は 0 なので $\mathbb P^N$ に落ちる。(2) トーラス上で $\{\chi^a,\chi^b\}=\sigma(d\chi^a,d\chi^b)=\omega(a,b)\chi^{a+b}=\nu^*(\omega(a,b)y_ay_b)$。$\sigma$ も $\nu^*\sigma_N$ も正則なので、トーラスの閉包 $X$ 上でも $\nu$ は Poisson 写像。\qedhere
+\end{proof}
+
+\begin{obs}[$\mathbb P^2$、3 次式、$m=2$：数値的確認]\tV\label{obs:P2}
+$X=\mathbb P^2$、$\sigma=\Pi_F$、Veronese $m=2$（$\mathbb C^6$、$\dim I_2=6$、未知数 $\epsilon$ は 90 個、方程式は 940 本）。自然な持ち上げの Jacobiator は Fermat で 18 個、Hesse で 19 個、$xyz$ で 1 個の三つ組、尖点でも、0 でない。完全な 2 次方程式 $\mathcal J_0+\mathcal L(\epsilon)+\mathcal J(\epsilon)=0$ を Levenberg--Marquardt 法で解くと、$F=xyz$、Fermat、Hesse（$x^3+y^3+z^3-21xyz$）、尖点（$x^3-y^2z$）のすべてで残差 $\le10^{-12}$ の解が見つかった。Fermat では有限差分でも独立に確認した（Jacobiator $\sim10^{-9}$、Veronese 錐への制限の誤差 $\sim10^{-10}$）。Fermat では線形部分 $\mathcal J_0+\mathcal L(\epsilon)=0$ だけでは解がなく、2 次の項が本質的である。$m=1$ は自明、$m\ge3$ は未知数が 1215 個で重すぎて計算していない。スクリプト \texttt{roundE\_*.py}（総合版の記録からの転記、再実行していない\tQ）。数値的な存在であって、厳密な代数的証明（certificate）ではない。
+\end{obs}
+\begin{obs}[$\mathbb P^1\times\mathbb P^1$ の Segre 埋め込み（$m=1$）：Sklyanin 型構造\ \tV]\label{obs:Segre}
+$\mathbb P^3$ 上の 2 次 Poisson 構造 $\{x_0,x_i\}=(J_j-J_k)x_jx_k$、$\{x_j,x_k\}=x_0x_i$（$(i,j,k)$ は $1,2,3$ の巡回、$J=(2,3,7)$）について、Jacobi 恒等式（4/4 の三つ組）と、2 次の Casimir がちょうど 2 つあり一般のランクが 2 であることを有理数で厳密に確認した。したがって Casimir の束の各 2 次曲面は Poisson 部分多様体で、滑らかなものは $\mathbb P^1\times\mathbb P^1$、$\sigma$ の零点は滑らかな楕円 4 次曲線 $E=Q_1\cap Q_2$ となる（「単純零点がちょうど $E$」はランクと葉の議論による同定で、計算してはいない）。これは古典的で新しくない（Feigin--Odesskii、Odesskii、Hua--Polishchuk の仕事\tC\ \tQ）。すべての滑らかな $(2,2)$ 曲線がこの形で現れるか、特異な $E$ の場合は未検査\tK。
+\end{obs}
+\begin{conj}[Poisson--Kodaira]\tK\label{conj:PK}
+$(X,\sigma)$ を射影的な正則 Poisson 多様体、$L$ を豊富な Poisson 加群とする。このとき $m_0$ があって、$m\ge m_0$ ならば $|L^m|$ による Kodaira 埋め込みは、$\mathbb P^N$ 上のある 2 次 Poisson 構造 $\sigma_N$ に関する Poisson 埋め込みである。
+\end{conj}
+\noindent 根拠：定理 \ref{thm:PKtoric}、観察 \ref{obs:P2}、観察 \ref{obs:Segre}。未解決：一般の障害理論（$\mathcal J_0\bmod\mathrm{im}\,\mathcal L$ は Poisson コホモロジー型の類で、$m\gg0$ では Koszul 複体の $H^1$ の Serre 型消滅で消えると期待されるが、証明していない）。$\mathbb P^2$ の $m=3$ の Fermat 型は未計算で、PK に有利でも不利でも証拠がない（$xyz$ の場合はトーリックの定理で証明済みで、独立な検査ではない）。反例は見つかっておらず、$m$ が小さいと破れる可能性は残る。$\sigma=0$ なら古典の Kodaira に一致する。正則型 $M\to X$ で葉が $Y$ のとき GH 断面は $X$ を経由する（命題 \ref{prop:leaf}）ので、$(M,\sigma_Y)$ を Poisson 対として埋め込むには GH でない通常の正則断面を使う必要があり、それが本節の定式化である。

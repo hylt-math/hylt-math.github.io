@@ -1,0 +1,109 @@
+%==============================================================
+\section{準備：一般化正則直線束と一般化 Dolbeault コホモロジー}\label{sec:prelim}
+%==============================================================
+\subsection{古典の三種の神器：主張と、仮定が証明のどこで効くか}\label{subsec:classical}
+一般化の目標を明確にするため、古典版の主張と証明の骨格を整理する。内容は標準的で新しい結果ではない\tC。
+
+\begin{itemize}
+\item \textbf{HRR。}$M$ コンパクト複素多様体、$E$ 正則ベクトル束とすると $\chi(M,E)=\int_M\ch(E)\Td(T^{1,0}M)$。\src{Hirzebruch, \emph{Neue topologische Methoden in der algebraischen Geometrie}, Springer 1956（射影的な場合）；Atiyah--Singer, Ann.\ Math.\ 87 (1968) 546--604（一般のコンパクト複素多様体、Dolbeault 複体の指数）；Huybrechts \cite{Huy} \S5.1。}
+\item \textbf{Serre の消滅定理。}$X$ 射影的、$\mathcal O(1)$ 非常に豊富、$\mathcal F$ 連接のとき、ある $m_0$ があり $m\ge m_0$ で $H^q(X,\mathcal F(m))=0\ (q>0)$。\src{Serre \cite{Serre}；Hartshorne \cite{Hart} Thm.\ III.5.2。}
+\item \textbf{Kodaira--Akizuki--Nakano 消滅。}$M$ コンパクト Kähler、$E$ 正の正則 Hermite 直線束のとき $p+q>n$ ならば $H^q(M,\Omega^p\otimes E)=0$。\src{Kodaira \cite{Kod53}；Akizuki--Nakano \cite{AN}；Griffiths--Harris \cite{GH} Ch.~1 \S2。}
+\item \textbf{Kodaira の埋め込み定理。}$M$ コンパクト、$L$ 正の正則直線束ならば、$M$ は射影的で、$m\gg0$ で $|L^m|$ による写像 $M\to\mathbb P(H^0(M,L^m)^*)$ は埋め込み。\src{Kodaira \cite{Kod54}；Griffiths--Harris Ch.~1 \S4；Huybrechts \S5.3。}
+\end{itemize}
+
+\begin{center}\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{2.3cm}>{\raggedright\arraybackslash}p{2.9cm}>{\raggedright\arraybackslash}p{4.4cm}>{\raggedright\arraybackslash}p{4.6cm}}
+\toprule 古典の定理 & 仮定 & なぜ必要か・証明のどこで効くか & 本論文での運命\\\midrule
+HRR & コンパクト、正則構造 & Dolbeault 複体が楕円型で Fredholm（指数が定義できる）、$\dbar^2=0$。シンボルから $\Td$ が現れ、$E$ は $\ch(E)$ として入る & 全 Euler 標数は $c_1$ を見ない（定理 \ref{thm:E}）。細分が必要（\S\ref{sec:RR}）\\\midrule
+Serre & 射影的、豊富、連接 & $\bigoplus\mathcal O(-N_i)\twoheadrightarrow\mathcal F$ と $\mathbb P^N$ の \v Cech 計算、下降帰納法 & 連接層 $\wedge^bT\otimes E$ に適用：横断次数で成立（定理 \ref{thm:serre}）\\\midrule
+KAN & コンパクト、Kähler、正 & Hodge 理論、Kähler 恒等式 $\Rightarrow$ BKN 恒等式、曲率項 $[i\Theta_E,\Lambda]$ の正値性 & 一般化 Kähler では直線束係数版は未記述。正則型は Pal--Poddar、Lie 亜群は Hu（\S\ref{subsec:compare}）\\\midrule
+Kodaira 埋め込み & コンパクト、正 & 爆発 $\tilde M$ 上の KAN 消滅から $H^0(L^m)\to L^m\otimes\mathcal O/\mathfrak m_x^2$ の全射性（点と接ベクトルを分離する切断が多い） & 一般化正則切断は平坦で点を分離できない（\S\ref{sec:kodaira}）\\\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{rem}\tK\ （一般化への示唆）
+古典では (1) Hodge 理論（楕円型）、(2) Kähler 恒等式 $\Rightarrow$ BKN 恒等式、(3) 曲率の正値性、(4) 大域切断の多さ、の 4 点が役割を分担している。一般化複素幾何では (1) は楕円型複体 $(\wedge L^*\otimes E,d_L)$ として成立する（Gualtieri \cite{Gua11}）。(2), (3) の直線束係数版は一般化 Kähler の枠組みではまだ書かれていない（調べた範囲）。(4) は、一般化正則切断が Casimir 型の平坦切断になる（観察 \ref{obs:casimir}）ため、古典と同じ形では成り立たない。
+\end{rem}
+
+%--------------------------------------------------------------
+\subsection{一般化複素構造と $\beta$-変換}
+%--------------------------------------------------------------
+\begin{defn}[一般化複素構造・型]\tC\label{defn:GC}
+$\Jc:\bT\to\bT$ が $\Jc^2=-1$ かつ内積を保つとき一般化概複素構造という。$+i$ 固有束 $L\subset\bT_\C$ が Courant 括弧で閉じるとき可積分（一般化複素構造）という。$\mathrm{type}(\Jc)_p=\mathrm{codim}_\C\,\pi_T(L_p)$ を型といい、局所定数な点を正則点という。型は一般に跳ぶ。複素構造 $I$ は型 $n$（$L=T^{0,1}\oplus T^{*1,0}$）、シンプレクティック構造は型 $0$ である。
+\src{Hitchin \cite{Hit03}；Gualtieri \cite{Gua11} \S3（型 Def.~3.5、標準束 Def.~3.7、一般化 Calabi--Yau Def.~3.17、Picard 群 Def.~3.18。番号は原文で確認）；Abouzaid--Boyarchenko \cite{AB}。}
+\end{defn}
+一般化 Dolbeault 複体 $(\wedge^\bullet L^*,d_L)$ は楕円型複体で、コンパクト多様体上でコホモロジーは有限次元である（Gualtieri \cite{Gua11} Prop.~3.13, Cor.~3.14\tC）。
+
+\begin{prop}[$\beta$-変換]\tC\label{prop:Jsigma}
+$X$ を複素多様体、$\sigma$ を正則 Poisson 構造とする。(a) $L_\sigma=T^{0,1}\oplus\{\sigma^\sh\xi+\xi:\xi\in T^{*1,0}\}$ は $\bT_\C$ の可積分な極大迷零部分束で、対応する一般化複素構造 $\Jc_\sigma$ の型は $p$ で $n-\mathrm{rk}_\C\sigma^\sh_p$。特に $\sigma$ が非退化な点では型 0、$\sigma=0$ の点では型 $n$。(b) $(\Xi,\xi)\mapsto(\Xi+\sigma^\sh\xi,\xi)$ は複素 Lie 亜群の同型 $T^{0,1}\bowtie(T^{1,0})^*_\sigma\to L_\sigma$（matched pair）。
+\src{(a) Gualtieri \cite{GuaBr} Prop.~5；Laurent-Gengoux--Sti\'enon--Xu（LGSX）\cite{LGSX1} Thm.~2.7, Rem.~2.8（$\Jc_\pi$, $\pi=\pi_R+i\pi_I$）。型の公式は筆者の整理で、Gualtieri の例と整合する\tQ。(b) LGSX Thm.~4.21, Lemma 4.22（$\Jc_{4\pi}$ の因子 4 は $\pi=\pi_R+i\pi_I$ の規格化による）。固有値の符号の取り方は文献で異なるが複素共役で移り、以下に影響しない。}
+\end{prop}
+
+\begin{defn}[一般化正則束・Poisson 加群]\tC\label{defn:GH}
+複素ベクトル束 $E$ に平坦 $L$-接続 $\dbar_E:\Gamma(E)\to\Gamma(L^*\otimes E)$（$\dbar_E^2=0$）が与えられたものを一般化正則束という。正則ベクトル束 $E$ と平坦 $A$-接続 $\nabla:\Gamma(E)\to\Gamma(A^*\otimes E)$（$\nabla_\xi(fs)=f\nabla_\xi s+(\sigma^\sh\xi)(f)s$、$[\nabla_a,\nabla_b]=\nabla_{[a,b]_\sigma}$、$a,b$ は正則 1-形式）の組を Poisson 加群という。
+\src{Gualtieri \cite{Gua11} \S3（一般化正則束は Thm.~3.15 の後に散文で導入、番号付き定義はない）；Gualtieri \cite{GuaBr} \S4.1；LGSX Def.~4.15, Lemma 4.16。}
+\end{defn}
+
+\begin{defn}[一般化 Dolbeault コホモロジー $\HH$]\label{defn:HH}
+Poisson 加群 $E$ に対し、Chevalley--Eilenberg 複体 $C(A;E)=(\wedge^\bullet T\otimes E,\ d_E)$（微分は $\C$-線形、局所正則枠 $e$ では $d_E=[\sigma,\cdot]+V\wedge$、$V$ は $\nabla_\beta e=\beta(V)e$ で定まる）の超コホモロジー $\HH^k(E):=H^k(X;C(A;E))$ を一般化 Dolbeault コホモロジーと呼ぶ。$b$ による濾過から、$E_1^{a,b}=H^a(X,\wedge^bT\otimes E)\Rightarrow\HH^{a+b}(E)$ なるスペクトル系列がある（$X$ コンパクトなら有限次元）。$P_E(t)=\sum_k\dim\HH^k(E)\,t^k$。
+\end{defn}
+
+\begin{prop}[一般化正則束 $=$ Poisson 加群、Dolbeault モデル]\label{prop:ident}
+(a) $\Jc_\sigma$ に関する一般化正則束は、Poisson 加群構造をもつ正則ベクトル束と同じものである。\tC\ Gualtieri \cite{GuaBr} Prop.~8；LGSX Lemma 4.16。直接の証明の概略を下に示す\tP。
+(b) $L^*=T^{*0,1}\oplus T^{1,0}$ より $\Gamma(\wedge^kL^*\otimes E)=\bigoplus_{a+b=k}A^{0,a}(\wedge^bT\otimes E)$ で、$d_L=\dbar+(-1)^ad_A$。したがって一般化 Dolbeault コホモロジー $H^k(\Gamma(\wedge^\bullet L^*\otimes E),d_L)$ は $\HH^k(E)$ に等しい。\tC\ LGSX Thm.~4.19（$H^*(A,E)=H^*(T^{0,1}\bowtie A^{1,0},E)$、$H^*(A,E)$ は Def.~4.17 で層コホモロジーとして定義）。\tP\ 証明の構造は下に示すが、matched pair に関する Mokri の定理（\cite{Mok}）と LGSX Lemma 4.22 に依存し、これらは再導出していない\tQ。
+\end{prop}
+\begin{proof}[証明の概略]
+(a) ($\Leftarrow$) 正則枠 $\{e_s\}$ に対し $\nabla_{\bar\Xi}\sum f_se_s=\sum(\bar\Xi f_s)e_s$、$\nabla_\xi\sum f_se_s=\sum((\sigma^\sh\xi)f_s)e_s+f_s\nabla_\xi e_s$ とおく（Leibniz 則から強制される唯一の拡張）。平坦性は、$(\bar\Xi,\bar\Upsilon)$ 型は正則構造の可積分性、$(\bar\Xi,\xi)$ 型は $\nabla_\xi$ が正則切断を正則切断に写すこと、$(\xi,\eta)$ 型は Poisson 加群の平坦性（曲率はテンソルなので $C^\infty$ に拡張できる）による。($\Rightarrow$) $T^{0,1}$ への制限が正則構造を与え（Koszul--Malgrange）、混合型の平坦性から $\nabla_\xi$ は正則切断を正則切断に写し、Leibniz 則と平坦性が加群の条件を与える。
+(b) $L\cong T^{0,1}\bowtie A^{1,0}$ の Chevalley--Eilenberg 複体は matched pair の一般論（Mokri）により、$T^{0,1}$ 方向（$\dbar$）と $A^{1,0}$ 方向（$d_A$）の二重複体の全複体になる。2 つの微分は Koszul 符号 $(-1)^a$ のもとで反可換で、全複体は $(\wedge^\bullet T\otimes E,d_A)$ の Dolbeault 分解なので、そのコホモロジーは超コホモロジーである。\qedhere
+\end{proof}
+以下、結果はすべて $\HH^*(E)=H^*(X;C(A;E))$ についての主張であり、一般化 Dolbeault コホモロジーとの同一視が必要な箇所では命題 \ref{prop:ident}(b) を使う。
+
+\begin{obs}[一般化正則切断は平坦切断]\tP\label{obs:casimir}
+$\HH^0(E)=\ker(d_E:H^0(E)\to H^0(T\otimes E))=\{s\in H^0(X,E):\nabla_\xi s=0\ \forall\xi\}$、すなわち平坦（Casimir 型）切断である。$\sigma$ が非退化な点の近くでは $\nabla$ は $\sigma^\sh$ により通常の平坦接続に対応し、平坦切断は局所定数になる。
+\end{obs}
+一般化正則切断が $X$ から射影空間への写像として埋め込みを与えられない理由はここにある（\S\ref{sec:kodaira}）。
+
+%--------------------------------------------------------------
+\subsection{対数シンプレクティックな場合：Poisson 加群 $=$ 対数的平坦接続}\label{subsec:logsymp}
+%--------------------------------------------------------------
+$X$ をコンパクト複素多様体（$\dim_\C X=n=2k$）、$D\subset X$ を簡約な因子（単純正規交差 SNC、曲面では通常二重点のみも許す）、$T_D=T_X(-\log D)$、$B=\Omega^1(\log D)$ とする。
+\begin{defn}[対数シンプレクティック]\tC\label{defn:logsymp}
+$\sigma\in H^0(\wedge^2T_D)$ かつ $\sigma^\sh:B\to T_D$ が同型であるとき、$\sigma$ は $D$ に沿って対数シンプレクティックであるという（同値：$\omega:=\sigma^{-1}\in H^0(\Omega^2(\log D))$ が非退化）。このとき $\mathrm{div}(\sigma^k)=D$、すなわち $-K_X=\mathcal O(D)$。曲面では、$\sigma\in H^0(-K_X)$ で零因子が簡約かつ通常二重点のみ、ということである。局所的に $\sigma=h\,\partial_1\wedge\partial_2$、$h=zu$（滑らかな点）または $z_1z_2u$（二重点）、$u$ は単元。
+\src{Goto \cite{Goto}；Gualtieri--Li \cite{GL}；Pym \cite{Pym} Lett.\ Math.\ Phys.\ 108 (2018) 573--632（書誌は確認）。Goto と Gualtieri--Li の掲載情報は\tQ。}
+\end{defn}
+
+\begin{thm}[Poisson 加群 $=$ 対数的平坦接続]\tP\label{thm:main1}
+$(X,D,\sigma)$ を対数シンプレクティック（任意の偶数次元、$D$ は SNC）、$E$ を Poisson 加群をもつ正則直線束とする。
+\begin{enumerate}
+\item[(a)] 局所枠 $e$ に対し $\nabla_\beta e=\beta(V)e$ で正則ベクトル場 $V$ が定まり $[\sigma,V]=0$（Poisson ベクトル場）。枠の取り替え $e\mapsto ge$ で $V$ は Hamilton 項 $X_{\log g}$ だけ変わる。
+\item[(b)] $V$ は自動的に対数的：$V\in T_D$。したがって $A$-加群構造は一意に $B$-加群構造に延び、$\sigma^\sh:B\cong T_D$ を通して、対数極をもつ平坦接続 $\nabla^{\log}:E\to\Omega^1(\log D)\otimes E$ と同じものになる。
+\item[(c)] $\nabla^{\log}$ の $D_i$ に沿った留数は定数 $r_i\in\C$ で、$H^2(X;\C)$ において $c_1(E)=-\sum_ir_i[D_i]$。
+\item[(d)] $D$ の点の近くで $\nabla^{\log}e=\sum_ir_i\,\dlog z_i\,e$ となる枠が取れる。
+\item[(e)] 部分複体 $C(T_D;E)=(\wedge^bT_D\otimes E,d_E)\subset C(A;E)$ は、$\wedge^b\sigma^\sh$ により対数 de Rham 複体 $\mathrm{DR}_{\log}(E)$ と同型。
+\end{enumerate}
+\end{thm}
+\begin{hyptab}
+対数シンプレクティック（$\sigma^\sh:B\cong T_D$） & $B$ 上の Lie 亜群構造 $(T_D^*)_\sigma$ と $T_D$ を同一視し、Poisson 加群を（対数極つき）平坦接続として扱うため & 補題 \ref{lem:iso}、(b), (e)\\\midrule
+$D$ 簡約・SNC & 局所方程式 $f=z_1\cdots z_s$ の各因子から極の位数を独立に評価するため & 補題 \ref{lem:log}（$V(f)\in(f)\Rightarrow V(z_i)\in(z_i)$）\\\midrule
+$X$ コンパクト & $c_1(E)$ と留数の関係は大域的なコホモロジー類の等式 & (c)。留数が定数であることは局所的\\\midrule
+$[\sigma,\sigma]=0$ & $A$ が Lie 亜群になり $d_E^2=0$ & 補題 \ref{lem:flat}
+\end{hyptab}
+
+\begin{lem}[平坦性 $\Leftrightarrow$ Poisson ベクトル場]\tP\label{lem:flat}
+局所枠 $e$ について $\Theta(\beta):=\nabla_\beta e/e$ とおくと $\nabla_a\nabla_be=(\sigma^\sh a)(\Theta b)e+\Theta(a)\Theta(b)e$。よって平坦性 $[\nabla_a,\nabla_b]=\nabla_{[a,b]_\sigma}$ は $(\sigma^\sh a)(\Theta b)-(\sigma^\sh b)(\Theta a)=\Theta([a,b]_\sigma)$、すなわち $\Theta$ が Lichnerowicz 複体の 1-コサイクル（$\Theta(\beta)=\beta(V)$, $[\sigma,V]=0$）と同値。曲面で $\sigma=h\partial_1\wedge\partial_2$、$a=\Theta(dz_1)$、$b=\Theta(dz_2)$ のとき条件は $h(a_1+b_2)=h_1a+h_2b$、すなわち $V(h)=h\,\mathrm{div}V$。微分は $C^0$ で $d_E(fe)=(-\sigma^\sh(df)+fV)e$、$c=X\otimes e$、$X=p\partial_1+q\partial_2$ に対し
+\begin{equation}\label{eq:dE}
+(d_Ec)(dz_1,dz_2)=h(p_1+q_2)-h_1p-h_2q+qa-pb.
+\end{equation}
+\end{lem}
+\begin{lem}[$V$ は対数的]\tP\label{lem:log}
+$D$ の局所方程式を $f=z_1\cdots z_s$ とする。$L_V\sigma=0$ から $L_V\sigma^k=0$。$\sigma^k=f'\partial_1\wedge\cdots\wedge\partial_n$（$f'=f\cdot$単元）なので $V(f')-f'\,\mathrm{div}V=0$、よって $V(f)\in(f)$。$V(f)/f=\sum_iV(z_i)/z_i$ の第 $i$ 項の極は $\{z_i=0\}$ のみで、全体が正則だから各 $V(z_i)/z_i$ が正則、すなわち $V(z_i)\in(z_i)$。
+\end{lem}
+\begin{lem}[$\sigma^\sh:B\to T_D$ は Lie 亜群の同型]\tP\label{lem:iso}
+$\sigma\in\wedge^2T_D$ は Lie 亜群 $T_D$ 上の非退化 Poisson 構造である。$\omega=\sigma^{-1}$ が $d_{T_D}$-閉であることは、$U$ 上で $\omega$ が閉（Poisson 構造の逆）で、$\Omega^3(\log D)$ の切断が稠密開集合上で 0 なら 0 であることから従う。閉 2-形式による非退化 Poisson 構造では $\sigma^\sh$ が括弧を保つので $(T_D^*)_\sigma=B\cong T_D$。
+\end{lem}
+\begin{lem}[留数・局所標準形・$c_1$]\tP\ \tC\label{lem:res}
+$\nabla^{\log}e=\theta e$、$\theta\in\Omega^1(\log D)$ は平坦性から閉。$D_i$ に沿った留数は、$d\theta$ を $D_i$ に制限して定数と分かる。$\theta-\sum r_i\dlog z_i$ は閉正則 1-形式で $=dg$、枠 $e'=e^{-g}e$ で $\nabla^{\log}e'=\sum r_i\dlog z_i\,e'$。$c_1(E)=-\sum r_i[D_i]$ は Esnault--Viehweg の留数公式による（\tC\ \cite{EV} \S2；\cite{Del} Ch.~II。符号の確認：標準切断が平坦な $\mathcal O(D)$ の留数は $-1$、$c_1=[D]$）。同じ $c_1$ をもつ加群構造の全体は $H^0(\Omega^1(\log D))=\ker(\C^c\to H^2(X;\C))$ 上のトーサー（Deligne）で、次元は $c-\rho_D$。$D$ が既約なら一意、可約なら留数ベクトルのアフィン族になる。
+\end{lem}
+\begin{proof}[定理 \ref{thm:main1} の証明]
+(a) 補題 \ref{lem:flat}。(b) 補題 \ref{lem:log} で $\Theta$ が $B$ に延び、平坦性は稠密開集合上の等式なので延長後も成り立つ。補題 \ref{lem:iso} と合わせる。(c), (d) 補題 \ref{lem:res}。(e) 補題 \ref{lem:iso}。
+\end{proof}

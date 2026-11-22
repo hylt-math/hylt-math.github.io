@@ -1,0 +1,148 @@
+%==============================================================
+\section{Closed formula for log-symplectic surfaces}\label{sec:surface}
+%==============================================================
+\subsection{Setting and main theorem}
+Let $X$ be a compact complex surface, $\sigma\in H^0(-K_X)$ with reduced zero divisor $D=\bigcup D_i$ (irreducible components $D_i$, singularities only ordinary double points, their number being $\mu$), and $E$ a line bundle with a Poisson module structure. The residues $r_i$ are given by Theorem \ref{thm:main1}(c) (constant along each branch; the two branches at a double point are regarded as different branches, and for an irreducible nodal curve the residues of the two branches are equal). Put
+\[I_*=\{i:r_i\in\Z_{\le0}\},\quad I_!=\{i:r_i\notin\Z_{\le0}\},\quad X'=X\setminus\bigcup_{i\in I_!}D_i,\quad j_1:U\hookrightarrow X',\ j_2:X'\hookrightarrow X,\]
+\[\mathcal F:=j_{2!}\,Rj_{1*}L_U\]
+($Rj_*$ along the components in $I_*$, extension by zero along those in $I_!$).
+
+\begin{thm}[Main theorem for surfaces]\tP\label{thm:main2}
+In the above setting assume $r_i\ne1$ for all branches. Then
+\[\HH^k(E)\;\cong\;H^k(X;\mathcal F)\ \oplus\ \C^{\mu}\quad(\text{the second term only for }k=2).\]
+In particular (i) if all $r_i\notin\Z_{>0}$ then $\HH^*(E)=H^*(U;L_U)\oplus\C^\mu[-2]$; (ii) if all $r_i\notin\Z_{\le0}$ then $\HH^*(E)=H^*_c(U;L_U)\oplus\C^\mu[-2]$; (iii) the total Euler characteristic is $\chi(U)+\mu=\chi(X)$ (independent of $E$, consistent with Theorem \ref{thm:E}).
+\end{thm}
+\begin{hyptab}
+Surface, $\sigma\in H^0(-K_X)$, $D$ reduced with only ordinary double points & To use the local normal forms $h=zu$ or $z_1z_2u$ and compute the quotient complex $Q$ explicitly & Lemma \ref{lem:Q}, Prop.\ \ref{prop:moser}, Lemma \ref{lem:conn}\\\midrule
+$r_i\ne1$ (all branches) & If $r_i=1$ the differential $-u(1-r)p$ of $Q$ vanishes, the cohomology sheaves of $Q$ become infinite-dimensional and the reduction breaks down & Lemma \ref{lem:Q} ($r_i=1$ is treated separately for $E=K_X$, Prop.\ \ref{prop:KX})\\\midrule
+Residues not positive integers / not non-positive integers & Condition for the comparison of the log complex with $Rj_*L_U$, $j_!L_U$ (Deligne) to be a quasi-isomorphism & Lemma \ref{lem:stalk}\\\midrule
+$X$ compact & $R\Gamma(X;j_!L_U)=R\Gamma_c(U;L_U)$ and the Euler characteristic computation & (ii), (iii)\\\midrule
+$-K_X=\mathcal O(D)$ & Gives $\chi(D)=\mu$ ($\omega_D=\mathcal O_D$, $p_a(D)=1$) & (iii)
+\end{hyptab}
+
+\subsection{Proof}
+\begin{lem}[Stalks of the log complex and Deligne's comparison]\tP \tC\label{lem:stalk}
+In the local frame of Theorem \ref{thm:main1}(d), the stalk of $\mathrm{DR}_{\log}$ at a point of $D_I$ ($|I|=s$) is the tensor product of the Koszul complex of the commuting operators $z_i\partial_i+r_i$ ($i\in I$) with the ordinary de Rham complex in the remaining variables. On a monomial $z^a$, $z_i\partial_i+r_i=a_i+r_i$ (a scalar), so the stalk cohomology is $\wedge^*\C^s$ (dimension $2^s$, Euler characteristic 0) if and only if $r_i\in\Z_{\le0}$ for all $i\in I$, and 0 otherwise. On the other hand the stalk of $Rj_*L_U$ at the same point is $\wedge^*\C^s$ if and only if $e^{2\pi\sqrt{-1}r_i}=1$ for all $i\in I$ ($r_i\in\Z$). Hence
+\begin{itemize}
+\item The natural map $\mathrm{DR}_{\log}\to Rj_*L_U$ is a quasi-isomorphism when no $r_i$ is a positive integer (Deligne \cite{Del} Ch.~II \S3, number \tQ; here confirmed by direct computation). Conversely, if $r_i\in\Z_{>0}$ for some $i$, at a smooth point of $D_i$ the stalks are $0$ versus $\wedge^*\C$, so it is not a quasi-isomorphism.
+\item The extension by zero $j_!L_U\to\mathrm{DR}_{\log}$ (extension by zero of a flat section is holomorphic) is a quasi-isomorphism when no $r_i$ lies in $\Z_{\le0}$.
+\item In the mixed case, $\mathrm{DR}_{\log}\simeq Rj_{1*}L_U$ on $X'$, and the stalks vanish along $\bigcup_{I_!}D_i$, so $\mathrm{DR}_{\log}\simeq j_{2!}j_2^*\mathrm{DR}_{\log}\simeq\mathcal F$.
+\end{itemize}
+Division by the coefficients $1/(a_i+r_i)$ does not spoil convergence, since $|a_i+r_i|\ge c>0$ except for finitely many $a$.
+\end{lem}
+\begin{lem}[Quotient complex $Q$]\tP \tV\label{lem:Q}
+$Q:=C(A;E)/C(T_D;E)$ is supported on $D$ and lives only in degrees 1, 2. $Q^1=(T/T_D)\otimes E$, $Q^2=(\wedge^2T/\wedge^2T_D)\otimes E$.
+\begin{itemize}
+\item Smooth point ($h=zu$): $Q^1=\partial_z\otimes\mathcal O_D$, $Q^2=\partial_z\wedge\partial_w\otimes\mathcal O_D$, $d_Q(p)=-u(1-r)\,p|_D$. Hence acyclic if $r\ne1$.
+\item Double point ($h=z_1z_2u$): $Q^1=\mathcal O_{D_1}\partial_1\oplus\mathcal O_{D_2}\partial_2$, $Q^2=\mathcal O_D$, $d_Q(p,q)=-u[(1-r_1)z_2p+(1-r_2)z_1q]\bmod z_1z_2$. If $r_1,r_2\ne1$ it is injective with image the maximal ideal $\mathfrak m_D$, so $H^1(Q)_p=0$ and $H^2(Q)_p=\mathcal O_D/\mathfrak m_D=\C$.
+\end{itemize}
+Hence for $r_i\ne1$, $Q\simeq\bigoplus_{\text{double points }p}\C_p[-2]$ in the derived category.
+\end{lem}
+\begin{proof}
+Restrict formula \eqref{eq:dE} to $z=0$ (to $z_1=0$ or $z_2=0$ at a double point). The sign convention for residues is $V=-\sigma^\sh\theta$ ($\nabla^{\log}e=\theta e$); at a smooth point $a|_D=\theta_2h$, $b|_D=-ru$ ($\theta=r\,\dlog z+\theta_2\,dw$), and at a double point $a=r_2z_1u$, $b=-r_1z_2u$. For $p\partial_z$, the value of $h(p_1+q_2)-h_1p-h_2q+qa-pb$ at $q=0$, $z=0$ is $-up+rup=-u(1-r)p$. The double point is computed similarly, and injectivity of $d_Q(p,q)$ follows by restricting to $z_1=0$: $(1-r_1)z_2p|_{z_1=0}=0\Rightarrow p=0$. The image is $(z_1,z_2)/(z_1z_2)=\mathfrak m_D$, so the cokernel is $\C$. \qedhere
+\end{proof}
+\tV With random polynomials $u,g,p,q$ and residues, we checked $d_E^2=0$ and the formula for $d_Q$ in exact arithmetic, 20 times each at smooth and double points (\texttt{ncd\_cochain\_check.py}, re-run and confirmed).
+
+\begin{prop}[Logarithmic Moser normal form at a double point]\tP\label{prop:moser}
+Near a double point $p$ let $\omega=\sigma^{-1}=u^{-1}\dlog z_1\wedge\dlog z_2$ and $c:=u(0)$. There is a biholomorphism $\phi$ preserving each branch of $D$ and fixing $p$ with $\phi^*\omega=c^{-1}\dlog z_1\wedge\dlog z_2$. The constant $c$ is a local invariant and cannot in general be made 1.
+\end{prop}
+\begin{proof}
+Put $\omega_0=\dlog z_1\wedge\dlog z_2$, $k=1/u-1/c$ ($k(0)=0$), $\omega_t=(c^{-1}+tk)\omega_0$. Then $\omega_t$ is closed and non-degenerate near $p$ for each $t\in[0,1]$. For $k=\sum k_{ab}z_1^az_2^b$,
+\[\alpha=\sum_{a\ge1,b\ge0}\tfrac{k_{ab}}{a}z_1^az_2^b\,\dlog z_2-\sum_{b\ge1}\tfrac{k_{0b}}{b}z_2^b\,\dlog z_1\]
+is a convergent log 1-form with $d\alpha=k\omega_0$. Since $X\mapsto\iota_X\omega_t$ is an isomorphism $T_D\to\Omega^1(\log D)$, there is a unique $X_t\in T_D$ with $\iota_{X_t}\omega_t=-\alpha$; it is tangent to each branch and vanishes at $p$. Its flow $\phi_t$ preserves $D$, and $\tfrac d{dt}\phi_t^*\omega_t=\phi_t^*(d\iota_{X_t}\omega_t+k\omega_0)=\phi_t^*(-d\alpha+k\omega_0)=0$. Hence $\phi_1^*\omega=\phi_1^*\omega_1=\omega_{t=0}=c^{-1}\omega_0$. \qedhere
+\end{proof}
+\begin{lem}[Vanishing of the connecting morphism]\tP \tV\label{lem:conn}
+The component $e_p\in H^3_p(X;\mathrm{DR}_{\log})$ at a double point $p$ of the connecting morphism of the exact triangle $C(T_D;E)\to C(A;E)\to Q\to C(T_D;E)[1]$ vanishes when $(r_1,r_2)\ne(1,1)$.
+\end{lem}
+\begin{proof}[Sketch]
+By Proposition \ref{prop:moser} and Lemma \ref{lem:res} we may assume $\sigma=c\,z_1z_2\partial_1\wedge\partial_2$ and $\nabla^{\log}e=(r_1\dlog z_1+r_2\dlog z_2)e$. All complexes are graded by the torus weight $\gamma\in\Z^2$ and the differentials preserve weights ($\lambda_i=\gamma_i+r_i$). Local cohomology can be computed from the Laurent tail $H^2_p(\mathcal O)=\mathrm{span}\{z^{-a}:a\ge1\}$. (a) $H^3_p(\mathrm{DR}_{\log})$ occurs only in the weight $\lambda_1=\lambda_2=0$ ($\gamma=-r$), and is non-zero only when $r_1,r_2$ are positive integers. (b) $H^2_p(Q)=\C$ sits in the single weight $\gamma=(-1,-1)$ (coming from the extra class $H^1_p(\mathcal O_D)$ in the local cohomology of $\mathcal O_D$), and $(-1,-1)=-r$ only if $r_1=r_2=1$. Since the connecting morphism preserves weights, $e_p=0$ for $(r_1,r_2)\ne(1,1)$. All maps are diagonal on monomials, so there is no convergence issue.
+\tV \texttt{ncd\_local\_weights.py}: for weights $|\gamma_i|\le8$ and 78 pairs of residues $r_i\in\{-3,\dots,3,\pm\tfrac12,\tfrac13,-\tfrac23,\tfrac52\}$ (including resonance $r_i=1$), we checked in exact arithmetic the stalk cohomology, the cone of local cohomology, and the injectivity of $H(\mathrm{LOG})\to H(\mathrm{FULL})$ (re-run and confirmed). There were 0 violations for $r_i\neq1$, and for $r=(1,1)$ the connecting morphism is non-zero. The weight-by-weight hand computations behind (a), (b) are omitted for reasons of space; their basis is this computation. \qedhere
+\end{proof}
+\begin{proof}[Proof of Theorem \ref{thm:main2}]
+By Theorem \ref{thm:main1}(e) and Lemma \ref{lem:stalk}, $C(T_D;E)\simeq\mathrm{DR}_{\log}\simeq\mathcal F$. By Lemmas \ref{lem:Q}, \ref{lem:conn}, $C(A;E)\simeq\mathrm{DR}_{\log}\oplus\bigoplus_p\C_p[-2]$ (in $D^b(\C_X)$). Apply $R\Gamma(X;\cdot)$. (i), (ii): $\mathcal F=Rj_*L_U$ or $j_!L_U$, and since $X$ is compact $R\Gamma(X;j_!L_U)=R\Gamma_c(U;L_U)$. (iii): $\chi(X;\mathcal F)=\sum_S\chi_c(S)\chi(\mathcal F_x)$, and the stalks over $D$ have Euler characteristic 0, so this is $\chi_c(U)=\chi(U)=\chi(X)-\chi(D)$. Since $D$ is anticanonical, $\omega_D=\mathcal O_D$ and $\chi(\mathcal O_D)=0$ gives $\sum_j(2-2\tilde g_j)=2\mu$ ($\tilde D_j$ the normalizations), so $\chi_{\rm top}(D)=\mu$ and $\chi(U)+\mu=\chi(X)$. (Alternative proof in the SNC case: $\chi(U)=\int c_2(T_X(-\log D))$, Theorem \ref{thm:K1}.) \qedhere
+\end{proof}
+
+\begin{prop}[$r_i=1$: $E=K_X$]\tP\label{prop:KX}
+For $E=K_X$ (canonical module structure, $r_i=1$ on all branches) we have $\wedge^bT\otimes K_X=\Omega^{2-b}$ and $E_1^{a,b}=H^{2-b,a}(X)$ (total degree $2+a-p$, $p=2-b$). If $h^{p,q}(X)=0$ for $p\ne q$, then $E_1$ is concentrated in total degree 2, the differential raises total degree by 1 and so degenerates, hence $\HH^k=0$ ($k\ne2$) and $\dim\HH^2=\sum_ph^{p,p}=\chi(X)$ (3 for $\mathbb{CP}^2$, 4 for $\mathbb{CP}^1\times\mathbb{CP}^1$).
+\end{prop}
+
+%--------------------------------------------------------------
+\subsection{Closed formula for the Poincar\'e polynomial}
+%--------------------------------------------------------------
+In the setting of Theorem \ref{thm:main2} we assume in addition: (H1) $H^1(X;\C)=0$; (H2) $U$ is affine; (H3) all components have the same residue $r_i=r\ne1$; (H4) if $r\notin\Z$ then $H^0(U;L_U)=H^1(U;L_U)=0$. Put $b_1=c-\rho_D$ ($c$ the number of components, $\rho_D$ the dimension of the span of the $[D_i]\in H^2(X;\C)$), $\chi_U=\chi(X)-\mu$, $b_2=\chi_U-1+b_1$.
+
+\begin{thm}[Riemann--Roch-type closed formula (surfaces)]\tP\label{thm:B}
+Under the above assumptions
+\begin{align*}
+P_E(t)&=1+b_1t+(b_2+\mu)t^2 &&(r\in\Z_{\le0}),\\
+P_E(t)&=(b_2+\mu)t^2+b_1t^3+t^4 &&(r\in\Z_{\ge2}),\\
+P_E(t)&=\chi(X)\,t^2 &&(r\notin\Z).
+\end{align*}
+Equivalently, $P_E(t)=\chi(X)t^2+[r\le0]\,\Delta(t)+[r\ge2]\,t^4\Delta(1/t)$ with $\Delta(t)=(1+t)(1+(b_1-1)t)$.
+\end{thm}
+\begin{hyptab}
+(H1) $H^1(X;\C)=0$ & From the Gysin sequence, $H^1(U)=\ker(\C^c\to H^2(X))$ & $b_1(U)=c-\rho_D$\\\midrule
+(H2) $U$ affine & Artin vanishing (\cite{SGA4}) & $b_3=b_4=0$, hence $b_2=\chi_U-1+b_1$\\\midrule
+(H3) equal residues & $\mathcal F$ is either $Rj_*$ or $j_!$ & Theorem \ref{thm:main2}(i), (ii)\\\midrule
+(H4) $r\notin\Z$ and $H^0(U;L)=H^1(U;L)=0$ & So that $H^*(U;L)=[0,0,\chi_U]$ & The row $r\notin\Z$. For nodal curves in $\mathbb{CP}^2$, $\pi_1(U)$ is abelian (Fulton \cite{Ful}, Deligne \cite{DelFG}) \tC\\\midrule
+$r_i\ne1$ & Hypothesis of Theorem \ref{thm:main2} & Lemma \ref{lem:Q}
+\end{hyptab}
+\begin{proof}
+Substitute into Theorem \ref{thm:main2}(i), (ii) the values $H^*(U)=[1,b_1,b_2,0,0]$ ($r\in\Z_{\le0}$, trivial local system), $H_c^*(U)=[0,0,b_2,b_1,1]$ (Poincar\'e duality, $r\in\Z_{\ge2}$), $H^*(U;L)=[0,0,\chi_U,0,0]$ ($r\notin\Z$: (H2), (H4), $\chi(U;L)=\chi(U)$) and add $\mu t^2$. The equivalent form follows from $\chi(X)=\chi_U+\mu=1-b_1+b_2+\mu$. \qedhere
+\end{proof}
+\begin{rem}[Properties \tP]
+(i) $P_E(-1)=\chi(X)$ (consistent with Theorem \ref{thm:E}, $n=2$). (ii) The duality $P_{2-r}(t)=t^4P_r(1/t)$ is evident from the formulas (a formula-level consequence of Theorem \ref{thm:dual}). (iii) $\mu$ and $b_2$ are absorbed in $\chi(X)t^2$, and the jump term $\Delta$ depends only on $b_1$. (iv) For $E=L_0^m$, the quasi-polynomial in $m$ given by classical RR is the constant $\chi(X)$, and the dependence on $m$ appears only through integrality (period $N$) and the sign of the residue $r=-ma$.
+\end{rem}
+\begin{rem}[On (H4) \tQ]\label{rem:G2}
+We verified (H4) in 8 examples (4 nodal curves in $\mathbb{CP}^2$ and 4 in $\mathbb{CP}^1\times\mathbb{CP}^1$). For smooth $(2,2)$ curves and two $(1,1)$ curves in $\mathbb{CP}^1\times\mathbb{CP}^1$ we cited Timmerscheidt \cite{Tim} and Arapura \cite{Ara} (the theorem on torsion translates) (applicability not fully checked \tQ). In general $H^1(U;L_\chi)=0\Leftrightarrow\chi\notin V^1(U)$ (the first characteristic variety), which can fail for non-nodal $D$ (e.g.\ three concurrent lines) (Libgober, Arapura).
+\end{rem}
+
+%--------------------------------------------------------------
+\subsection{Examples and periodic stabilization}
+%--------------------------------------------------------------
+\begin{ex}[$\mathbb{CP}^2$ and a smooth cubic]\tP \tV\label{ex:cp2}
+Let $F$ be a smooth homogeneous cubic on $\mathbb C^3$ and $\Pi^{ij}=\epsilon_{ijk}\partial_kF$. $\Pi$ is a homogeneous Poisson structure whose contraction with the Euler vector field vanishes, and defines a holomorphic Poisson structure $\sigma\in H^0(\wedge^2T)=H^0(\mathcal O(3))$ on $\mathbb{CP}^2$ vanishing to first order along $D=\{F=0\}$ (standard construction; identification of the source \tQ; the vanishing along $D$ is checked by local computation).
+\emph{Modules:} for every $m\in\Z$, $\mathcal O(m)$ has exactly one Poisson module structure, with residue $r=-m/3$. Indeed, Theorem \ref{thm:main1}(c) gives $r=-m/3$ ($[D]=3H$). Existence: the Atiyah class of $\mathcal O(m)$ vanishes in $H^1(\Omega^1(\log D))$ iff $c_1\in\C[D]$ ($H^0(\mathcal O_D)\to H^1(\Omega^1)\to H^1(\Omega^1(\log D))$), and $m[H]\in\C\cdot3[H]$. The curvature is an element of $H^0(\Omega^2(\log D))=\C\omega$ with residue $dr=0$, hence flat. Uniqueness: the difference lies in $H^0(\Omega^1(\log D))=0$.
+\emph{Result:} the dimensions $[\dim\HH^0,\dots,\dim\HH^4]$ of $\HH^*(\mathcal O(m))$ are
+\begin{center}\small
+\begin{tabular}{lll}\toprule
+$m$ & dimensions & Interpretation\\\midrule
+$m\in3\Z_{\ge0}$ & $[1,0,2,0,0]$ & $H^*(U;\C)$. $\HH^0=\C F^{m/3}$ is a Casimir section\\
+$m\in3\Z_{\le-6}$ & $[0,0,2,0,1]$ & $H^*_c(U;\C)$\\
+otherwise (including $m=-3$) & $[0,0,3,0,0]$ & $m\notin3\Z$: $H^*(U;L_m)$. $m=-3$ is $E=K_X$ (Prop.\ \ref{prop:KX})\\\bottomrule
+\end{tabular}
+\end{center}
+The total Euler characteristic is always $3=\chi(\mathbb{CP}^2)$. This follows from Theorem \ref{thm:B}: $c=\rho_D=1$, $b_1=0$, $\mu=0$, $\chi_U=3$, $b_2=2$. (H4) holds since $U=\{F=1\}/\mu_3$ and $\{F=1\}$ (the Milnor fibre, a bouquet of 8 copies of $S^2$) is simply connected, so $\pi_1(U)=\Z/3$ and $H^0=H^1=0$ for non-trivial characters (\tC Milnor \cite{Milnor}, details \tQ). $r=1$ occurs only for $m=-3$.
+\end{ex}
+\tV The table above agrees, for $m=-15,\dots,15$ and Fermat and Hesse cubics, with the direct computation (for $m\ge-2$ the complex of global sections, for $m\le-4$ a \v Cech computation with Laurent monomials) of the differential $d_1$ of the spectral sequence $E_1^{a,b}=H^a(\wedge^bT(m))$ by exact linear algebra modulo the prime $32003$ (scripts \texttt{poisson.py, table.py, neg\_check.py, predict.py}). Even for $m\gg0$, $\HH^2$ remains of dimension 2 or 3, so Serre vanishing in all degrees fails.
+
+\begin{ex}[$\mathbb{CP}^1\times\mathbb{CP}^1$]\tP \tV\label{ex:p1p1}
+$\sigma=\Pi_F$, $F\in H^0(\mathcal O(2,2))$ ($-K=\mathcal O(2,2)$). When $D$ is smooth, $\mathcal O(a,b)$ has a Poisson module structure only if $a=b=m$, the residue is $-m/2$ and the structure is unique (same argument as above). Exact computation for $m=-9,\dots,8$ (\texttt{p1p1.py}):
+\begin{center}\small
+\begin{tabular}{lll}\toprule
+$D$ & $m$ even $\ge0$ / even $\le-4$ & $m$ odd, $m=-2$\\\midrule
+smooth $(2,2)$ curve & $[1,0,3,0,0]$ / $[0,0,3,0,1]$ & $[0,0,4,0,0]$\\
+two transversal $(1,1)$ curves ($\mu=2$) & $[1,1,4,0,0]$ / $[0,0,4,1,1]$ & $[0,0,4,0,0]$\\
+four lines $x_0x_1y_0y_1$ ($\mu=4$) & $[1,2,5,0,0]$ / $[0,0,5,2,1]$ & $[0,0,4,0,0]$\\
+$(1,1)+(1,0)+(0,1)$ ($\mu=3$) & $[1,1,4,0,0]$ / $[0,0,4,1,1]$ & $[0,0,4,0,0]$\\\bottomrule
+\end{tabular}
+\end{center}
+Period 2, Serre duality $m\leftrightarrow-m-4$ and $\chi=4$ always hold. For reducible $D$ the Poisson module structure is not unique ($H^0(\Omega^1(\log D))\ne0$), and the table is the computation for the symmetric structure with equal residues on all components.
+\end{ex}
+\tV We compared Theorems \ref{thm:main2}, \ref{thm:B} with exact computations for smooth cubic, nodal cubic ($\mu=1$), conic plus secant ($\mu=2$), triangle ($\mu=3$) in $\mathbb{CP}^2$ ($m=-15..15$) and the four examples in $\mathbb{CP}^1\times\mathbb{CP}^1$ above ($m=-9..8$), in total 196 values of $m$, with 0 discrepancies (\texttt{ncd\_global\_check.py}). The duality $r\leftrightarrow2-r$ of the closed formula was checked on a lattice of 73 rational values of $r$ (\texttt{serre\_rr\_check.py}, re-run and confirmed). Cuspidal cubic, conic plus tangent, three concurrent lines and non-reduced $D$ are outside the scope of this section and are treated in \S\ref{subsec:local}.
+
+\begin{thm}[Periodic stabilization (log-symplectic surfaces)]\tP\label{thm:A2}
+Let $X$ be a simply connected projective surface, $\sigma$ log-symplectic along $D$ (anticanonical, only ordinary double points), $L_0$ a line bundle with a Poisson module structure whose residues are $\rho_i=-a_i$ ($a_i\in\mathbb Q_{>0}$, constant along each component), and $U=X\setminus D$ affine ($D$ ample). Let $N$ be the least common multiple of the denominators of the $a_i$. Then for $m\ge1$
+\[\HH^k(L_0^m)=0\ (k\ge3),\qquad\HH^*(L_0^m)=H^*(U;L_U^{(m)})\oplus\C^\mu[-2].\]
+Here $L_U^{(m)}$ is the local system with monodromy $e^{-2\pi\sqrt{-1}ma_i}$ around $D_i$. In particular $\HH^*(L_0^m)$ depends only on $m\bmod N$.
+\end{thm}
+\begin{hyptab}
+Residues $-ma_i<0$ & $r_i\ne1$ and not positive integers & Theorem \ref{thm:main2}(i): $\mathcal F=Rj_*L_U$\\\midrule
+$U$ affine ($D$ ample) & Artin vanishing $H^k(U;L)=0\ (k>2)$ & Vanishing in degrees $\ge3$ (Theorem \ref{thm:serre}(b) gives the same conclusion from projectivity and ampleness, making affineness unnecessary)\\\midrule
+$X$ simply connected & The abelianization of $\pi_1(U)$ is generated by meridians & The local system is determined by $m\bmod N$\\\midrule
+$a_i\in\mathbb Q_{>0}$ & $c_1(L_0)$ is a positive rational combination of the boundary components & Periodicity
+\end{hyptab}
+\begin{proof}
+Since $r_i=-ma_i<0$, Theorem \ref{thm:main2}(i) applies and $\HH^*(L_0^m)=H^*(U;L_U^{(m)})\oplus\C^\mu[-2]$. By Artin's vanishing theorem the terms in degree $k\ge3$ vanish. If $X$ is simply connected, $\pi_1(U)$ is generated by meridians, so a rank one local system is determined by the monodromies $e^{-2\pi\sqrt{-1}ma_i}$, which depend only on $m\bmod N$. \qedhere
+\end{proof}
+\tV Period 3 for $\mathbb{CP}^2$ ($L_0=\mathcal O(1)$, $a=1/3$) and period 2 for $\mathbb{CP}^1\times\mathbb{CP}^1$ ($L_0=\mathcal O(1,1)$, $a=1/2$), $m\ge1$. Confirmed in all 8 computed examples (\texttt{serre\_rr\_check.py}, re-run and confirmed).

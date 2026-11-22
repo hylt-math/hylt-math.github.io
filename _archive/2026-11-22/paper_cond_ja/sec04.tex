@@ -1,0 +1,55 @@
+%==============================================================
+\section{Euler 標数}\label{sec:euler}
+%==============================================================
+\subsection{全 Euler 標数は位相不変量}
+\begin{thm}[Euler 標数の定理]\tP\label{thm:E}
+$X$ をコンパクト複素多様体（$\dim_\C X=n$）、$\sigma$ を任意の正則 Poisson 構造、$E$ を平坦 $A$-接続をもつ階数 $\rk E$ の正則ベクトル束とする。複体 $K^\bullet=(\wedge^\bullet T\otimes E,\ d_E)$（微分は $\C$-線形）の超コホモロジー $\HH^k(E)$ は有限次元で
+\[\sum_k(-1)^k\dim\HH^k(E)=\sum_b(-1)^b\chi(X,\wedge^bT\otimes E)=(-1)^n\,\rk(E)\,\chi(X).\]
+\end{thm}
+\begin{hyptab}
+$X$ コンパクト & 各 $H^a(X,K^b)$ が有限次元になり、HRR が使える & (i), (ii)\\\midrule
+$K^b$ が連接層 & Euler 標数を HRR で計算でき、下降帰納法が回る & (i)：切り捨て三角形の帰納法\\\midrule
+平坦 $A$-接続 & $d_E^2=0$（複体になる） & 超コホモロジーの定義。Euler 標数の計算自体には使わない\\\midrule
+（使わない）$\sigma$ の非退化性、$E$ の正値性 & --- & 証明に現れない。したがって $c_1(E)$ にも依存しない
+\end{hyptab}
+\begin{proof}
+(i) 微分は $\C$-線形で $\mathcal O$-線形ではないが、切り捨て $K^{\ge b}$ は部分複体で、三角形 $K^{\ge b+1}\to K^{\ge b}\to K^b[-b]\to$ が成り立つ。各 $K^b$ は連接で $X$ はコンパクトなので $H^*(X;K^b)$ は有限次元。$b$ についての下降帰納法で $H^*(X;K^{\ge b})$ はすべて有限次元で、$\chi(K^{\ge b})=\chi(K^{\ge b+1})+(-1)^b\chi(X,K^b)$。したがって $\sum_k(-1)^k\dim\HH^k=\sum_b(-1)^b\chi(X,\wedge^bT\otimes E)$。
+(ii) HRR より $\chi(X,\wedge^bT\otimes E)=\int\ch(E)\ch(\wedge^bT)\Td(T)$。$T$ の Chern 根を $x_i$ とすると $\sum_b(-1)^b\ch(\wedge^bT)=\prod(1-e^{x_i})$、$\Td(T)=\prod x_i/(1-e^{-x_i})$、$(1-e^x)/(1-e^{-x})=-e^x$ なので被積分形式は $(-1)^n\ch(E)e^{c_1(T)}c_n(T)$。$c_n(T)$ は既に最高次なので、$\ch(E)e^{c_1(T)}$ の次数 0 の部分 $\rk E$ だけが残り、Gauss--Bonnet で $(-1)^n\rk E\int c_n(T)=(-1)^n\rk E\,\chi(X)$。\qedhere
+\end{proof}
+\tV\ $\mathbb P^n$（$n\le6$）、$E=\mathcal O(m)$（$m=-12,\dots,12$）で $\sum_b(-1)^b\chi(\mathbb P^n,\wedge^bT(m))=(-1)^n(n+1)$ を Bott の公式から再計算して確認した（スクリプト \texttt{roundD\_check.py}）。
+
+\begin{rem}[意味\ \tP]\label{rem:Emeaning}
+左辺は $c_1(E)$ に依存しない。例：$\sigma=0$、$\mathbb P^1$、$E=\mathcal O(m)$ で $\chi(\mathcal O(m))-\chi(\mathcal O(m+2))=(m+1)-(m+3)=-2$。古典の $\chi(X,E)=\int\ch(E)\Td(X)$ は $b=0$ の「列」$H^\bullet(X,E)$ の Euler 標数にあたり、全複体のものではない。したがって、一般化 Dolbeault 複体の「全」Euler 標数に対する Riemann--Roch 公式は位相的な公式であり、古典の HRR の一般化にはなっていない。「$m$ についての多項式」としての Riemann--Roch は定数になり、$m$ への依存は Poincar\'e 多項式（次数ごとの次元）にのみ現れる（\S\ref{sec:surface}, \S\ref{sec:regular}, \S\ref{sec:RR}）。
+\end{rem}
+\begin{rem}[一般の一般化複素構造\ \tK]
+一般の $\Jc$ と平坦 $L$-接続 $E$ について、Atiyah--Singer により $\mathrm{ind}(\wedge L^*\otimes E)=\int\ch(E)\cdot S$（$S$ は $(\wedge L^*,d_L)$ のシンボル類）。$L$-接続の平坦性から Chern--Weil で $\ch_j(E)$ は $H^{2j}_{dR}(M)\to H^{2j}(L)$ の核に入るはずなので、階数だけが効くと予想される。証明していない。
+\end{rem}
+
+%--------------------------------------------------------------
+\subsection{対数 de Rham 複体の Euler 標数と壁越え}
+%--------------------------------------------------------------
+\begin{thm}[対数版の Euler 標数]\tP\label{thm:K1}
+$X$ をコンパクト複素多様体、$D\subset X$ を SNC 因子、$L$ を平坦な対数接続 $\nabla:L\to L\otimes\Omega^1_X(\log D)$ をもつ直線束とする。このとき超コホモロジー $\mathbb H^k(X;\mathrm{DR}_{\log}(L))$ は有限次元で
+\[\sum_k(-1)^k\dim\mathbb H^k(X;\mathrm{DR}_{\log}(L))\;=\;\int_Xc_n\bigl(T_X(-\log D)\bigr)\;=\;\chi(U)\;=\;\sum_{T}(-1)^{|T|}\chi(D_T)\]
+が成り立ち、$L$ にも留数 $r_i$ にも依らない。
+\end{thm}
+\begin{hyptab}
+$X$ コンパクト & $H^q(X;\Omega^p(\log D)\otimes L)$ が有限次元、HRR が使える & (1), (2)\\\midrule
+$D$ が SNC & $\Omega^p(\log D)$ が局所自由、$\Omega^\bullet(\log D)\simeq Rj_*\C_U$（log Poincar\'e 補題）が使える & (3)（$L=\mathcal O$ の場合に位相的な値を得る）\\\midrule
+$\nabla$ が平坦な対数接続 & $\mathrm{DR}_{\log}(L)$ が複体になる（階数 1 なので留数は定数） & (1)\\\midrule
+（不要）留数 $r_i\notin\Z_{\ge1}$ & --- & 同定 $\mathrm{DR}_{\log}(L)\simeq Rj_*L_U$ にだけ必要で、Euler 標数には使わない\\\midrule
+（不要）$\sigma$ の対数シンプレクティック性 & --- & 一般化 Dolbeault 複体との関係（定理 \ref{thm:main1}(e)）を使うときだけ
+\end{hyptab}
+\begin{proof}
+(1) $\Omega^p(\log D)\otimes L$ に沿う濾過の $E_1$ 項は $H^q(X;\Omega^p(\log D)\otimes L)$ で有限次元。よって $\chi(\mathrm{DR}_{\log}(L))=\sum_p(-1)^p\chi(X;\Omega^p(\log D)\otimes L)$。
+(2) HRR により、これは $\int_X\bigl[\sum_p(-1)^p\ch(\Omega^p(\log D))\bigr]\ch(L)\Td(T_X)$。階数 $n$ の束 $F=\Omega^1(\log D)$ について $\sum_p(-1)^p\ch(\wedge^pF)=c_n(F^\vee)\,\Td(F^\vee)^{-1}$ は次数 $n$ から始まる。したがって $\ch(L)\Td(T_X)\Td(F^\vee)^{-1}$ の定数項 $1$ だけが効き、結果は $\int_Xc_n(T_X(-\log D))$ で $L$ に依らない。
+(3) $L=\mathcal O$（$\nabla=d$）のとき、log Poincar\'e 補題（Deligne \cite{Del}）$\Omega^\bullet(\log D)\simeq Rj_*\C_U$ により超コホモロジーは $H^*(U;\C)$ で、(1) の Euler 標数は $\chi(U)$。(2) よりこれは $\int c_n(T_X(-\log D))$ に等しい。最後に $\chi(U)=\sum_T(-1)^{|T|}\chi(D_T)$ は、開多様体 $U$ で $\chi_c=\chi$（Poincar\'e 双対性、実偶数次元）と $\chi_c$ の加法性から従う。\qedhere
+\end{proof}
+\tV\ $X=\mathbb P^2$、$D$ を次数 $d=1,\dots,7$ の滑らかな曲線、$L=\mathcal O(a)$（$a=-12,\dots,12$）で $\sum_p(-1)^p\chi(\Omega^p(\log D)\otimes L)$ を直接計算し、全 175 例で $3-3d+d^2=\chi(U)$ と一致（スクリプト \texttt{roundK\_check.py}。再実行して確認した）。
+
+\begin{cor}[壁越えの恒等式]\tP\label{cor:wall}
+$L_U$ が階数 1 の局所系のとき $\chi_c(U;L_U)=\chi(U;L_U)=\chi(U)$。これは、三角形 $j_!L_U\to Rj_*L_U\to i_*i^*Rj_*L_U$ の Euler 標数において、$D_T$（$|T|\ge1$）上の $Rj_*L_U$ の茎が $H^*((S^1)^{|T|};\cdot)$ で Euler 標数 0 である（$\chi(\partial U)=0$ と同じ理由）ことから従う。したがって、留数が整数を横切って $j_!$ と $Rj_*$ が入れ替わっても Euler 標数は変わらない。
+\end{cor}
+\begin{rem}[定理 \ref{thm:E} との関係]\tP
+定理 \ref{thm:E} と本定理は同じ現象「Euler 標数は $\ch(L)$ の高次項を見ない」の 2 つの顔である。一般化 Dolbeault 複体の Euler 標数が $(-1)^n\chi(X)$、その部分複体 $B\simeq\mathrm{DR}_{\log}(L)$ の Euler 標数が $\chi(U)$ で、差 $(-1)^n\chi(X)-\chi(U)$ は商複体 $Q$ の Euler 標数が受け持つ（\S\ref{sec:reduction}）。
+\end{rem}

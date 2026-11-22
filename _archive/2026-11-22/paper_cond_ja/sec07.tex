@@ -1,0 +1,91 @@
+%==============================================================
+\section{一般次元：簡約定理と定理 V}\label{sec:reduction}
+%==============================================================
+\subsection{設定、商複体、条件 (GEN$_Q$)}
+$X$ をコンパクト複素多様体（$\dim X=n$ は偶数）、$D=\sum D_i$ を SNC 因子、$\sigma$ を対数シンプレクティック、$L$ を Poisson 加群（$D$ に沿った平坦な対数接続、留数 $r_i$）とする（定義 \ref{defn:logsymp}、定理 \ref{thm:main1}）。次の複体の層を使う。
+\[C=(\wedge^\bullet T\otimes L,\ d_L=[\sigma,\cdot]+V\wedge),\quad B=\wedge^\bullet T_D\otimes L\subset C,\quad Q=C/B.\]
+$\HH^k=H^k(X;C)$。$\wedge\sigma^\sh$ により $B\cong\mathrm{DR}_{\log}(L)$（補題 \ref{lem:iso}）\tC。三角 $B\to C\to Q\xrightarrow{\ \partial\ }B[1]$ がある。
+
+\paragraph{$Q$ の構造。}対数座標 $(z_1,\dots,z_k,w)$ では $\wedge T$ の $\mathcal O$-基底は $\partial_S\wedge\partial_w^{Y}$（$S\subset\{1..k\}$）、$\wedge T_D$ の基底は $E_S\wedge\partial_w^Y=z^S\partial_S\wedge\partial_w^Y$。したがって $Q$ は、単項式 $z^a\partial_S\wedge\partial_w^Y$（$a_i=0$ となる $i\in S$ の集合 $T(s)\neq\emptyset$）で張られ、これは「$T(s)$ の各分枝に極をもつ多重ベクトル場」$z^{a-S}E_S\wedge\cdots$ と読める。$\sigma\in\wedge^2T_D$、$V\in T_D$ なので $d_L$ は新しい極を作らない（$[X,z_i^{-1}]\in z_i^{-1}\mathcal O$（$X\in T_D$））。よって $F_kQ=\{|T(s)|\le k\}$ は $Q$ の部分複体の増大列で、$\mathrm{gr}_0Q=0$。最上位 $F_nQ=Q$ では、$|T(s)|=n$ は $n$ 重点 $p$ での単項式 $\partial_1\wedge\cdots\wedge\partial_n$ だけである。次数 $n$ の部分では $Q^n=(\wedge^nT/\wedge^nT_D)\otimes L=K_X^{-1}\otimes L|_D$（$\wedge^nT=K_X^{-1}$、$\wedge^nT_D=K_X^{-1}(-D)$）である。この観察から、$Q$ から点への次の写像が定義される。
+\[\varepsilon^n:\ Q^n=K_X^{-1}\otimes L|_D\longrightarrow\bigoplus_{p\in D_{(n)}}(K_X^{-1}\otimes L)_p\otimes\C,\quad(\text{n 重点での値}),\qquad \varepsilon^k=0\ (k\ne n).\]
+
+\begin{prop}[\texttt{gr}\,$Q$ と $\varepsilon$\ \tQ]\label{prop:grQ}
+(a) $\varepsilon:Q\to\bigoplus_{p\in D_{(n)}}\C_p[-n]$ は複体の準同型である（すなわち $d_L(Q^{n-1})$ は各 $n$ 重点で値 0 をとる）。
+(b) $\mathrm{gr}_kQ=\bigoplus_{|T|=k}Q_T$、$Q_T\cong\bigl(\wedge^\bullet T_{D_T}(-\log D'_T)\otimes L|_{D_T}\bigr)\cdot z^{-T}E_T$（$D'_T$ は $D_T$ に他の成分が切り取る因子）、微分は $d_T=[\sigma_T,\cdot]+\nu_T\wedge$。ここで $\sigma_T$ は $D_T$ 上に誘導される Poisson 構造、$\nu_T=\sum_{i\in T}(r_i-1)H_i$、$H_i=\sigma^\sh(\dlog z_i)$。
+\end{prop}
+\begin{proof}[状態と根拠]
+$n=2$ は補題 \ref{lem:Q}（$d_Q$ の明示的な公式）：滑らかな点では $d_Q=-u(1-r)\cdot$、二重点では像が $\mathfrak m_D$ なので (a) は成り立ち、(b) も定義から従う\tP\ \tV。一般 $n$ では、(b) の「$-1$」は $[\sigma,z_i^{-1}]=-z_i^{-1}H_i$ から、「$r_i$」はモジュール構造 $V=\sigma^\sh(\sum r_i\dlog z_i)+\cdots$ から来て、$[\sigma_T,\nu_T]=0$ は $\sigma$ の Jacobi 恒等式と $\nu_T$ が Poisson ベクトル場の和であることから従う。一行ずつの Schouten 括弧の計算は書き下しておらず、(a), (b) を一般の $n$ で検査した計算もない。本論文はこの命題を、定理 \ref{thm:R} の\emph{仮定} (GEN$_Q$) を局所的な条件に言い換えるためにだけ使い、定理 \ref{thm:R} の証明には使わない。\tQ
+\end{proof}
+
+\begin{defn}[条件 (GEN$_Q$)。定理 \ref{thm:T} の (GEN) とは別]\label{defn:GEN}
+$\varepsilon:Q\to\bigoplus_{p\in D_{(n)}}\C_p[-n]$ が複体の準同型であり、かつ擬同型であること。
+\end{defn}
+\begin{defn}[条件 (GEN$'$)]
+$1\le|T|\le n-1$ のすべての層 $T$ について、$Q_T$ が茎ごとに非輪状であること。命題 \ref{prop:grQ} が成り立つなら、(GEN$'$) $\Rightarrow$ (GEN$_Q$) である（$F_{n-1}Q$ の次数商がすべて非輪状なので $F_{n-1}Q$ が非輪状、$Q/F_{n-1}Q=\mathrm{gr}_nQ\cong\bigoplus\C_p[-n]$）\tQ。$n=2$ では (GEN$_Q$) $\iff$ すべての $r_i\ne1$（補題 \ref{lem:Q}）\tP。
+\end{defn}
+
+\begin{prop}[(GEN$'$) の必要条件と例]\label{prop:genNec}
+(a) $\nu_T\equiv0$ なら $Q_T$ は $\sigma_T$ の Lichnerowicz 複体で、局所定数の Casimir が $H^0$ に入る。特に $|T|=1$ で $r_i\ne1$ が必要。\tP\ \tQ（命題 \ref{prop:grQ}(b) に依存）
+(b) $|T|=1$、$D$ の滑らかな点では、対数 Darboux 座標で $\sigma=E_z\wedge\partial_{w_1}+\sum_j\partial_{w_{2j}}\wedge\partial_{w_{2j+1}}$ と書けるとき $\nu=(r-1)\partial_{w_1}$、$Q$ はシンプレクティック部分の Lichnerowicz 複体への $(r-1)\cdot\mathrm{id}$ の写像錐で、非輪状 $\iff r\ne1$。\tC\ \tQ\ 対数 Darboux は実の $b$-シンプレクティックでは Guillemin--Miranda--Pires, Adv.\ Math.\ 264 (2014) が知られているが、正則版は同じ Moser の議論（命題 \ref{prop:moser} の対数版）によると思われるものの、確認していない。
+\end{prop}
+
+\subsection{簡約定理}
+\begin{thm}[簡約定理]\tP\label{thm:R}
+上の設定で、(i) どの $r_i$ も $\Z_{\ge1}$ に入らず、(ii) (GEN$_Q$)（定義 \ref{defn:GEN}）が成り立つとする。このとき
+\[\HH^*(L)\ \cong\ H^*(U;L_U)\ \oplus\ \bigoplus_{p\in D_{(n)}}\C[-n].\]
+特に $\chi(X)=\chi(U)+\#D_{(n)}$（$n$ は偶数）。
+\end{thm}
+\begin{hyptab}
+(i) $r_i\notin\Z_{\ge1}$ & 共鳴を避ける。$\mathrm{DR}_{\log}(L)\simeq Rj_*L_U$（Deligne）が成り立つための条件 & 手順 (1)\\\midrule
+(ii) (GEN$_Q$) & $Q$ が $n$ 重点だけの寄与になる。成り立たなければ余分なクラスが出る（観察 \ref{obs:gen}） & 手順 (2)\\\midrule
+$D$ が SNC、$\sigma$ が対数シンプレクティック & $B\cong\mathrm{DR}_{\log}(L)$ & 手順 (1)\\\midrule
+$X$ コンパクト & $H^*(X;\cdot)$ が有限次元、定理 \ref{thm:E} が使える & 手順 (4)\\\midrule
+$n$ 偶数 & 符号 $(-1)^n=1$。対数シンプレクティックなら自動 & 手順 (4)\\\midrule
+（不要）射影性、$L$ の豊富性、消滅 (V) & --- & 定理 \ref{thm:T} の weight 計算でのみ使う
+\end{hyptab}
+\begin{proof}
+(1) (i) により Deligne \cite{Del}（II.3.13；Esnault--Viehweg \cite{EV}）\tC\ から $B\simeq\mathrm{DR}_{\log}(L)\simeq Rj_*L_U$。
+(2) (ii) により $\varepsilon:Q\xrightarrow{\sim}\bigoplus_p\C_p[-n]$。したがって三角 $B\to C\to Q\xrightarrow\partial B[1]$ の連結射は $\partial\in\mathrm{Hom}_{D(X)}(Q,Rj_*L_U[1])=\mathrm{Hom}(\bigoplus_pi_{p*}\C[-n],Rj_*L_U[1])$。随伴 $j^*\dashv Rj_*$ より $=\mathrm{Hom}(j^*\bigoplus i_{p*}\C[-n],L_U[1])=0$（$p\in D$ なので $j^*i_{p*}=0$）。
+(3) よって三角は分裂し、$C\simeq B\oplus Q\simeq Rj_*L_U\oplus\bigoplus_p\C_p[-n]$。$H^*(X;\cdot)$ を取り、$H^*(X;Rj_*L_U)=H^*(U;L_U)$（定義）を使う。
+(4) Euler 標数：定理 \ref{thm:E} より $\chi(\HH)=(-1)^n\chi(X)=\chi(X)$、右辺は $\chi(U)+(-1)^n\#D_{(n)}=\chi(U)+\#D_{(n)}$（$L_U$ は階数 1）。\qedhere
+\end{proof}
+\begin{rem}[旧版との違い\ \tP]
+総合版の簡約定理の証明は $Q$ の濾過と次数商 (GEN$'$) を使い、一般の $n$ での次数商の導出が見取り図であった。上の証明は条件を (GEN$_Q$)（$\varepsilon$ が擬同型）の形で直接仮定するので、命題 \ref{prop:grQ} に依存しない。仮定の言い換え (GEN$'$) $\Rightarrow$ (GEN$_Q$) の部分が\tQ\ として残る。
+\end{rem}
+\tV\ $n=2$ では定理 \ref{thm:main2} と整合し、トーリック $n=2,4$ の 61 例（\texttt{roundK\_check.py}）で簡約定理と閉公式（定理 \ref{thm:K}）の予言が実測と一致（食い違い 0）。トーリックの場合に (GEN$_Q$) が成り立つ条件は、重み $\chi$ の部分の $Q_T$ が $\wedge(N_\C/W_T)$ の Koszul 複体（微分 $v_\chi\wedge$）になることから、$v_\chi\notin W_T$ で非輪状、すなわち定理 \ref{thm:T} の仮定 (GEN)（$A_{ij}$ の $\mathbb Q(\rho)$ 上の独立性）と (R) のもとでの定理 \ref{thm:T} の証明の $x=0$ の排除と同じ議論で成り立つ\tP\ \tQ（命題 \ref{prop:grQ} に依存）。定理 \ref{thm:T} 自身は weight 公式から直接証明されており、この議論には依存しない。
+
+\begin{conj}[(GEN$'$) が成り立たない場合]\tK\label{conj:nonacyc}
+$E_1^T=H^*(D_T;Q_T)\Rightarrow H^*(X;Q)$。$\nu_T=0$ の $Q_T$ がすべて「積型」なら、余分な部分は $\sum_Tt^{|T|}H^*(U_T;L_T)$。観察 \ref{obs:gen} の $6t^2(1+t)^2$ は、$T=(\text{一方の因子の二重点})\times Y$ の 6 個の層（$\nu_T=0$）が $Q_T\simeq Rj_*\C_{U_Y}$ を通して $t^2(1+t)^2$ を寄与する、と読める（\tV\ 数値の一致のみ）。
+\end{conj}
+
+%--------------------------------------------------------------
+\subsection{定理 V：$H^k(U;L_U)$ の消滅}
+%--------------------------------------------------------------
+簡約定理は $H^*(U;L_U)$ を未知量として残す。留数がすべて非整数ならこれは次のように決まる。
+
+\begin{thm}[定理 V]\tP\label{thm:V}
+$X$ をコンパクト複素多様体（$\dim_\C X=n\ge1$）、$D=\sum_{i=1}^sD_i$ を被約な SNC 因子、$U=X\setminus D$ は\emph{アフィン}とする。$L_U$ を $U$ 上の階数 1 の局所系で、$D_i$ のまわりの単純モノドロミーが $e^{-2\pi\sqrt{-1}\,r_i}$、かつ\emph{すべての $r_i\notin\Z$} とする。このとき $H^k(U;L_U)=0\ (k\ne n)$、したがって $\dim H^n(U;L_U)=(-1)^n\chi(U)$。
+\end{thm}
+\begin{hyptab}
+$r_i\notin\Z$（すべての $i$） & 各ストラタムでの茎が消える & (a)。ある層ですべての $r_i\in\Z$ なら茎は $H^*(T^k)\ne0$ で、これが第 5, 6 節の跳びの源\\\midrule
+$U$ アフィン & Artin 消滅 & (c)。$D=\emptyset$ など非アフィンでは不成立\\\midrule
+SNC & 局所基本群が $\Z^k$ & (a)。非 SNC（三重点など）では局所基本群が $\Z^k$ でなく、茎の規則に $\sum r_i$ が現れる（観察 \ref{obs:triple}）\\\midrule
+$X$ コンパクト & $Rj_*$ の大域切断が $U$ のコホモロジーを与え、$j_!=Rj_*$ なら $H^k=H^k_c$ & (b)
+\end{hyptab}
+\begin{proof}
+(a) $p\in D_I$（$|I|=k\ge1$）での $Rj_*L_U$ の茎は、小多重円板 $B$ に対する $H^*(U\cap B;L_U)$。$U\cap B\simeq(\Delta^*)^k\times\Delta^{n-k}\simeq(S^1)^k$ で、$L_U$ は各円周上のモノドロミー $\mu_i=e^{-2\pi\sqrt{-1}r_i}\ne1$ の局所系の外部テンソル積。Künneth により $H^*((S^1)^k;L)=\bigotimes_{i\in I}H^*(S^1;L_{\mu_i})$ で、$\mu\ne1$ なら $H^0=\ker(\mu-1)=0$、$H^1=\mathrm{coker}(\mu-1)=0$。ゆえに $D$ 上で茎が消え、$Rj_*L_U=j_!L_U$。
+(b) $X$ がコンパクトなので $H^k(U;L_U)=H^k(X;Rj_*L_U)=H^k(X;j_!L_U)=H^k_c(U;L_U)$。
+(c) $U$ がアフィンなので Artin の消滅定理（Andreotti--Frankel）\tC\ \cite{SGA4} により、任意の局所系 $F$ で $H^q(U;F)=0\ (q>n)$。よって $k>n$ では $H^k(U;L_U)=0$。向き付けられた $2n$ 次元多様体 $U$ での Poincar\'e 双対 $H^k_c(U;L_U)\cong H^{2n-k}(U;L_U^\vee)^*$ と (b) より、$2n-k>n$、すなわち $k<n$ で $H^k(U;L_U)=0$。最後に $\chi(U)=(-1)^n\dim H^n$。\qedhere
+\end{proof}
+\begin{cor}\tP\label{cor:Vgen}
+定理 \ref{thm:R} の仮定を満たし、すべての $r_i\notin\Z$、$U$ アフィンなら $P_{\HH}(t)=\chi(X)\,t^n$。
+\end{cor}
+\begin{proof}
+定理 \ref{thm:R} と定理 \ref{thm:V} より $P=\dim H^n(U;L_U)t^n+\#D_{(n)}t^n=(\chi(U)+\#D_{(n)})t^n=\chi(X)t^n$（$n$ 偶数）。\qedhere
+\end{proof}
+一部の $r_i$ だけが整数の「混合」の場合：$D_I$ 上の茎が残るのは全 $r_i\ (i\in I)$ が整数のときだけだが、$k<n$ での消滅は未証明\tK。
+\paragraph{計算による確認\tV。}トーリックで $n=4$ の厳密計算（$2^{61}-1$ を法とする線形代数）：$\mathbb P^4$（$\mathcal O(1)$、$r=(1/2,1/3,1/5,1/7,-457/210)$）が $(0,0,0,0,5)$、$\mathbb P^4$（$\mathcal O(2)$、$r=(1/3,1/3,1/3,1/3,-10/3)$）が $(0,0,0,0,5)$、$\mathbb P^2\times\mathbb P^2$ が $(0,0,0,0,9)$、$(\mathbb P^1)^4$ が $(0,0,0,0,16)$。いずれも $\chi(X)t^4$ で系 \ref{cor:Vgen} の予測に一致する。混合の例（$\mathbb P^1\times\mathbb P^3$ で整数留数 $-2$ を 1 つ含む）も $(0,0,0,0,8)$ となったが、これは観察で定理ではない。検証の範囲は、トーリック、対数枠で定数の $\sigma$、$L$ が十分 ample の場合であり、非トーリックな $U$ での検査ではない。これらの $n=4$ の計算は \texttt{roundJ2\_vanish\_check.py} を本論文の執筆中に再実行して確認した（$\mathbb P^2\times\mathbb P^2$ は $\mathcal O(1,2)$ で全留数が非整数のとき $(0,0,0,0,9)$。整数留数 $-1$ を含む $\mathcal O(1,1)$ の混合例でも $(0,0,0,0,9)$ となったが、これも観察）。
+
+\begin{ex}[積\ \tP\ \tV]\label{ex:prod}
+$(X_1,D_1,L_1)$, $(X_2,D_2,L_2)$ が定理 \ref{thm:B}（または \ref{thm:main2}）の対象で、$\sigma=\sigma_1\boxplus\sigma_2$（ブロック対角）のとき、複体は外部テンソル積なので Künneth により $P_{\HH}=P_1\cdot P_2$（$\HH$ の定義が超コホモロジーで有限次元なので）。次元 4 の $\mathbb P^2\times\mathbb P^2$（$\mathcal O(1,1)$、$\rho=0$）では $P_1=P_2=[1,2,4]$ のとき積は $[1,4,12,16,16]$ で、weight 公式による一般の $\sigma$ の値 $[1,4,6,4,10]$ と異なる（観察 \ref{obs:gen}）。積構造をもつ $\sigma$ は (GEN$_Q$) を満たさない特殊な場合である。
+\end{ex}

@@ -1,0 +1,107 @@
+%==============================================================
+\section{Introduction and main results}\label{sec:intro}
+%==============================================================
+\subsection{Motivation and setting}
+The ``three treasures'' of complex geometry are the Hirzebruch--Riemann--Roch theorem (HRR), Serre's vanishing theorem, and Kodaira's embedding theorem. The ultimate goal of this study is to ask whether they extend to generalized complex geometry (Hitchin, Gualtieri). As far as we could find, there are Kodaira--Nakano vanishing and Riemann--Roch--Hirzebruch on Lie groupoids by Hu \cite{Hu1,Hu2}, and vanishing theorems for strong generalized holomorphic bundles (regular type) by Pal--Poddar \cite{PP}, but we found no Kodaira embedding theorem or Riemann--Roch theorem for a general generalized complex structure \tC.
+
+We therefore start from the simplest non-trivial example: the generalized complex structure $\Jc_\sigma$ obtained as the $\beta$-transform of a holomorphic Poisson structure $\sigma$ on a complex manifold $X$. This example has two advantages. (i) The type jumps along the divisor $D$ where $\sigma$ degenerates (complex type and non-degenerate symplectic type coexist). (ii) Generalized holomorphic line bundles can be described concretely as Poisson modules (holomorphic bundles with a flat $A$-connection), and generalized Dolbeault cohomology can be computed as holomorphic Poisson hypercohomology. This paper collects the results obtained for this example into a single paper organized by theme.
+
+\paragraph{Policy of this paper.}
+(a) The paper is self-contained: every claim whose proof is given is proved in the text, and a claim whose proof is omitted for reasons of space is marked as such, with the script or computation named, and tagged \tV. (b) Every claim carries a status tag (\S\ref{subsec:tags}). A status is never upgraded beyond what is proved in the text (no conjecture is turned into a proved statement). (c) Definitions, hypotheses, the table ``Hypotheses and their roles'' (why each hypothesis is needed and where it enters the proof), and the symbol table are kept. (d) Numbering of theorems, lemmas, etc.\ is a single global numbering.
+
+\subsection{Overview of the main results}
+Throughout, $X$ is a compact complex manifold ($\dim_\C X=n$), $\sigma$ is a holomorphic Poisson structure, $E$ is a generalized holomorphic bundle (Poisson module), $\HH^k(E)$ is the generalized Dolbeault cohomology, and $P_E(t)=\sum_k\dim\HH^k(E)\,t^k$ is the Poincar\'e polynomial. If $\sigma$ is log-symplectic along a simple normal crossing divisor $D$, then $E$ carries a flat logarithmic connection along $D$ whose residues $r_i$ are constants.
+
+\begin{enumerate}
+\item[(1)] \textbf{Preliminaries (\S\ref{sec:prelim}).} A generalized holomorphic bundle is a Poisson module, and $\HH^*(E)=H^*(X;(\wedge^\bullet T\otimes E,\ [\sigma,\cdot]+V\wedge))$. If $\sigma$ is log-symplectic, a Poisson module is a flat logarithmic connection with constant residues and $c_1(E)=-\sum r_i[D_i]$ (Theorem \ref{thm:main1}). Generalized holomorphic sections are flat (Casimir-type) sections.
+\item[(2)] \textbf{Serre-type vanishing and duality (\S\ref{sec:serre}).} If $X$ is projective and $L_0$ is an ample Poisson module, then for $m\gg0$ all cohomology of transversal degree $a>0$ vanishes (Theorem \ref{thm:serre}). Vanishing in all degrees fails even for $\sigma=0$. Duality $\HH^k(L)^*\cong\HH^{2n-k}(L^\vee\otimes K_X^2)$ holds in any dimension for any $\sigma$ (Theorem \ref{thm:dual}).
+\item[(3)] \textbf{Euler characteristic (\S\ref{sec:euler}).} The total Euler characteristic is $(-1)^n\rk(E)\chi(X)$, independent of $c_1(E)$ (Theorem \ref{thm:E}). The Euler characteristic of the log de Rham complex is $\chi(U)$, $U=X\setminus D$ (Theorem \ref{thm:K1}).
+\item[(4)] \textbf{Log-symplectic surfaces (\S\ref{sec:surface}).} For $r_i\neq1$, $\HH^*(E)=H^*(X;\mathcal F)\oplus\C^\mu[-2]$ ($\mathcal F$ is an $Rj_*$/$j_!$-type extension of $L_U$, $\mu$ is the number of nodes), a closed formula for the Poincar\'e polynomial (Theorems \ref{thm:main2}, \ref{thm:B}), and periodic stabilization in $m$ (Theorem \ref{thm:A2}).
+\item[(5)] \textbf{Toric varieties and local terms (\S\ref{sec:toric}).} The weight formula for toric varieties, a closed formula for general $\sigma$ (Theorem \ref{thm:T}), surfaces with unequal residues (Theorem \ref{thm:C2}). We prove the stalk formula for plane curves with quasi-homogeneous isolated singularities for $s\neq1$ (Theorem \ref{thm:local}).
+\item[(6)] \textbf{Reduction theorem in general dimension and Theorem V (\S\ref{sec:reduction}).} The general-dimensional problem reduces to a condition (GEN$_Q$) on the quotient complex $Q$ (Theorem \ref{thm:R}). If all residues are non-integers and $U$ is affine, then $H^k(U;L_U)=0$ for $k\ne n$ (Theorem \ref{thm:V}).
+\item[(7)] \textbf{Comparison with regular type (\S\ref{sec:regular}).} For regular type (flat symplectic fibre bundles) the dimensions in each degree are polynomial in $m$ (Corollary \ref{cor:L}); in the type-jumping case they are periodic.
+\item[(8)] \textbf{Kodaira type (\S\ref{sec:kodaira}).} Embedding by generalized holomorphic sections is impossible; we prove a leaf-space version of Kodaira and the toric Poisson--Kodaira theorem (Proposition \ref{prop:one}, Theorems \ref{thm:K1leaf}, \ref{thm:PKtoric}).
+\item[(9)] \textbf{RR-type formulas and the index conjecture (\S\ref{sec:RR}).} The Poincar\'e polynomial formula $P(t)=\chi(X)t^n+\sum_{k<n}h^k(U;L_U)(t^k-(-1)^kt^n)$ (Theorem \ref{thm:K}). Unification by an index theorem (weighted $b$-calculus) remains a conjecture (Conjecture \ref{conj:index}).
+\end{enumerate}
+
+\subsection{Status table}\label{subsec:ledger}
+\begin{longtable}{>{\raggedright\arraybackslash}p{5.3cm}>{\raggedright\arraybackslash}p{2.6cm}>{\raggedright\arraybackslash}p{7.2cm}}
+\caption{Status of the main claims (meaning of tags: \S\ref{subsec:tags})}\label{tab:ledger}\\
+\toprule Claim & Status & Main hypotheses / remarks\\\midrule\endfirsthead
+\toprule Claim & Status & Main hypotheses / remarks\\\midrule\endhead
+\bottomrule\endfoot
+\footnotesize Prop.\ \ref{prop:ident} (GH bundle $=$ Poisson module, identification of $\HH$) & \tC \tP \tQ & Depends on LGSX Thm.~4.19 and Mokri's theorem; not re-derived\\
+\footnotesize Thm.\ \ref{thm:main1} (Poisson module $=$ flat log connection) & \tP & Any even dimension, SNC. The residue formula $c_1=-\sum r_i[D_i]$ is \tC\\
+\footnotesize Thm.\ \ref{thm:serre} (Serre-type vanishing, transversal degree) & \tP & $X$ projective, $\sigma$ arbitrary. False in all degrees (Remark \ref{rem:total})\\
+\footnotesize Thm.\ \ref{thm:dual} (duality, any dimension) & \tP \tV \tQ & Lemmas \ref{lem:D}, \ref{lem:E} machine-checked for $n\le4$. Consistency of Koszul signs between the $\dbar$-part and the $d$-part checked by hand only\\
+\footnotesize Thm.\ \ref{thm:E} (total Euler characteristic) & \tP & HRR only. Independent of $c_1(E)$\\
+\footnotesize Thm.\ \ref{thm:K1} (log version, $\chi(U)$) & \tP \tV & SNC, flat log connection\\
+\footnotesize Thm.\ \ref{thm:main2} (main theorem for surfaces) & \tP \tV & $r_i\ne1$. Depends on Prop.\ \ref{prop:ident}\\
+\footnotesize Thm.\ \ref{thm:B} (closed formula for surfaces) & \tP \tV & (H1)--(H4). (H4) checked in 8 examples; in general a condition on $V^1(U)$\\
+\footnotesize Thm.\ \ref{thm:A2} (periodic stabilization) & \tP & Theorem \ref{thm:main2} and $X$ simply connected, $U$ affine\\
+\footnotesize Thms.\ \ref{thm:weight}, \ref{thm:T}, \ref{thm:C2} (toric) & \tP \tV & (V) (follows from Thm.\ \ref{thm:serre} for $L_0^m$, $m\gg0$), (A), (GEN), (R)\\
+\footnotesize Obs.\ \ref{obs:res} (formula at resonance $r_i=1$) & \tV \tK & Definition of $N$ copied from earlier records, \tQ. Fails in some cases\\
+\footnotesize Thm.\ \ref{thm:local} (quasi-homogeneous local formula, $s\ne1$) & \tP \tQ & Link between local model and global module \tQ (in the earlier version: observation \tV \tK; updated, see the closing appendix)\\
+\footnotesize Local formula (non-quasi-homogeneous, $s=1$) & \tK & Unproved\\
+\footnotesize Conj.\ \ref{conj:refined}, Obs.\ \ref{obs:triple}, \ref{obs:nr}, Conj.\ \ref{conj:NR} & \tV \tK & Data fits. Triple points, non-reduced\\
+\footnotesize Thm.\ \ref{thm:R} (reduction theorem) & \tP & Hypothesis (GEN$_Q$). Rewritten here without the filtration\\
+\footnotesize Prop.\ \ref{prop:grQ} ((GEN$'$) $\Rightarrow$ (GEN$_Q$), $\mathrm{gr}\,Q$ for general $n$) & \tQ & General-$n$ local computation is a sketch. For $n=2$ see Lemma \ref{lem:Q}\\
+\footnotesize Thm.\ \ref{thm:V} (Theorem V: $H^k(U;L_U)=0$) & \tP & SNC, $U$ affine, all $r_i\notin\Z$. Mixed case (some $r_i\in\Z$): \tK\\
+\footnotesize Thm.\ \ref{thm:K} (RR-type Poincar\'e polynomial) & \tP \tV & Hypotheses of Thm.\ \ref{thm:R}, $U$ affine, $n$ even\\
+\footnotesize Thm.\ \ref{thm:L}, Cor.\ \ref{cor:L} (regular type) & \tP \tQ & Hard Lefschetz. Identification of $\partial$ with Gauss--Manin is a sketch\\
+\footnotesize Props.\ \ref{prop:one}, \ref{prop:leaf}, Thm.\ \ref{thm:K1leaf} (Kodaira type) & \tP & Impossibility and leaf-space version\\
+\footnotesize Thm.\ \ref{thm:PKtoric} (toric Poisson--Kodaira) & \tP & Obs.\ \ref{obs:P2} ($\mathbb P^2$, $m=2$) is a numerical existence result \tV\\
+\footnotesize Conj.\ \ref{conj:PK} (general Poisson--Kodaira) & \tK & $\mathbb P^2$, $m\ge3$ not computed\\
+\footnotesize Conj.\ \ref{conj:index} (index conjecture) & \tK & Unproved\\
+\end{longtable}
+
+\subsection{Correspondence with the three treasures}
+\begin{center}\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{2.4cm}>{\raggedright\arraybackslash}p{6.5cm}>{\raggedright\arraybackslash}p{6.0cm}}
+\toprule Treasure & What holds (in some form) & What fails / is open\\\midrule
+Riemann--Roch & Total Euler characteristic $(-1)^n\rk(E)\chi(X)$ (Thm.\ \ref{thm:E}), log version $\chi(U)$ (Thm.\ \ref{thm:K1}), Poincar\'e polynomial formulas (surfaces: Thm.\ \ref{thm:B}; general dimension: Thm.\ \ref{thm:K}), degree-wise polynomials for regular type (Cor.\ \ref{cor:L}) & A naive HRR depending on $c_1(E)$ fails. Unification by an index theorem is open (Conj.\ \ref{conj:index})\\\midrule
+Serre vanishing & Vanishing in transversal degree $a>0$ ($m\gg0$, $X$ projective, $\sigma$ arbitrary, Thm.\ \ref{thm:serre}) & Vanishing in all degrees fails even for $\sigma=0$\\\midrule
+Kodaira embedding & Leaf-space version (Thm.\ \ref{thm:K1leaf}), Poisson--Kodaira for toric varieties (Thm.\ \ref{thm:PKtoric}) & Embedding by generalized holomorphic sections is impossible (Prop.\ \ref{prop:one}). General Poisson--Kodaira is a conjecture (Conj.\ \ref{conj:PK}). Generalization to general generalized complex structures not attempted\\\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Three ideas running through the paper}
+(i) \emph{Translation to flat connections.} On a $\beta$-transform structure the generalized Dolbeault complex is identified with $(\wedge^\bullet T\otimes E,\ \dbar+[\sigma,\cdot])$ \tC (Laurent-Gengoux--Sti\'enon--Xu \cite{LGSX1}), and generalized holomorphic bundles are Poisson modules. If $\sigma$ is log-symplectic along $D$, this becomes a flat logarithmic connection along $D$, and the residues are constant.
+(ii) \emph{Separation of local and global.} Comparing the log de Rham complex with $Rj_*L_U$ (Deligne \cite{Del}) brings in the cohomology of the local system on $U=X\setminus D$; when residues are integers (resonance), the quotient complex contributes. The global part is $H^*(U;L_U)$ and $\chi(X)$; the local part is expressed by stalk formulas at the singularities of $D$.
+(iii) \emph{Three behaviours.} For regular type the dimensions in each degree are polynomial in $m$; for log-symplectic type they are periodic; the total Euler characteristic is independent of $m$ in both cases (\S\ref{sec:regular}, \S\ref{sec:RR}).
+
+\subsection{Meaning of the tags, symbol table, reading guide}\label{subsec:tags}
+\paragraph{Status tags.} \tC Quoted from the literature (the extent of checking against the original is stated case by case). \tP Proved in this paper (dependence on quoted results is stated). \tV Computer verification by exact linear algebra (rational or finite field $\mathbb F_{32003}$, $\mathbb F_{2^{61}-1}$) and the like; not a proof. \tK Conjecture or outlook. \tQ Unverified point (quotation from memory, derivation only sketched, sign convention unchecked, etc.). When several tags are attached, they refer to the respective parts of the claim.
+
+\paragraph{Reading guide.} \S\ref{sec:prelim}--\S\ref{sec:euler} are the foundations. \S\ref{sec:surface} is the complete result for surfaces; the toric case and local terms (\S\ref{sec:toric}) and general dimension (\S\ref{sec:reduction}) follow. \S\ref{sec:regular} (regular type) and \S\ref{sec:kodaira} (Kodaira type) are almost independent of each other; \S\ref{sec:RR} uses \S\ref{sec:reduction} and \S\ref{sec:euler}.
+
+\paragraph{Symbol table.}
+\begin{longtable}{>{\raggedright\arraybackslash}p{3.5cm}>{\raggedright\arraybackslash}p{11.3cm}}
+\toprule Symbol & Meaning\\ \midrule\endhead
+\bottomrule\endfoot
+\footnotesize $X,\ n$ & Compact complex manifold, $\dim_\C X=n$ ($n$ even in the log-symplectic case)\\
+\footnotesize $T,\ T^*,\ \Omega^p,\ K_X$ & Holomorphic tangent bundle, cotangent bundle, sheaf of holomorphic $p$-forms, $K_X=\Omega^n$\\
+\footnotesize $\bT=T\oplus T^*$ & Generalized tangent bundle. Pairing $\langle X+\xi,Y+\eta\rangle=\tfrac12(\xi(Y)+\eta(X))$, Courant (Dorfman) bracket $[X+\xi,Y+\eta]=[X,Y]+\mathcal L_X\eta-\iota_Yd\xi$\\
+\footnotesize $\Jc,\ L$ & Generalized complex structure and its $+i$-eigenbundle (a maximal isotropic subbundle of $\bT_\C$, a complex Lie algebroid). $L^*\cong\Lb$. $E$, $L_0$, $\mathcal O(m)$ etc.\ are also used for line bundles (distinguished by context)\\
+\footnotesize $\sigma,\ \sigma^\sh,\ \Jc_\sigma$ & Holomorphic Poisson structure ($\sigma\in H^0(\wedge^2T)$, $[\sigma,\sigma]=0$), $\sigma^\sh:T^*\to T$, $\xi\mapsto\sigma(\xi,\cdot)$, and its $\beta$-transform $L_\sigma=T^{0,1}\oplus\{\sigma^\sh\xi+\xi:\xi\in T^{*1,0}\}$\\
+\footnotesize $A=(T^*)_\sigma$ & Holomorphic Lie algebroid: anchor $\sigma^\sh$, bracket $[a,b]_\sigma=\mathcal L_{\sigma^\sh a}b-\mathcal L_{\sigma^\sh b}a-d\sigma(a,b)$\\
+\footnotesize Poisson module & Holomorphic vector bundle $(E,\nabla)$ with a flat $A$-connection $\nabla$ ($=$ generalized holomorphic bundle, Prop.\ \ref{prop:ident})\\
+\footnotesize $V$ & Holomorphic vector field (Poisson vector field) defined by $\nabla_\beta e=\beta(V)e$ for a local frame $e$\\
+\footnotesize $C(A;E)$, $\HH^k(E)$ & $(\wedge^bT\otimes E,\ d_E=[\sigma,\cdot]+V\wedge)$ (Chevalley--Eilenberg complex of $A$), $\HH^k(E)=H^k(X;C(A;E))$\\
+\footnotesize $E_1^{a,b}$ & $H^a(X,\wedge^bT\otimes E)\Rightarrow\HH^{a+b}$. We call $a$ the transversal degree\\
+\footnotesize $P_E(t),\ [\cdots]$ & $P_E(t)=\sum_k\dim\HH^k(E)t^k$; in tables abbreviated as $[\dim\HH^0,\dots,\dim\HH^{2n}]$\\
+\footnotesize $D=\sum D_i,\ U$ & Degeneracy divisor of $\sigma$ (reduced, SNC; for surfaces ordinary double points are allowed), $U=X\setminus D$. $D_T=\bigcap_{i\in T}D_i$, $D_{(n)}$ is the set of $n$-fold points\\
+\footnotesize $T_D,\ B,\ \mathrm{DR}_{\log}(E)$ & $T_D=T_X(-\log D)$, $B=\Omega^1(\log D)=T_D^*$, log de Rham complex $(\Omega^\bullet(\log D)\otimes E,\nabla^{\log})$\\
+\footnotesize log-symplectic & $\sigma\in H^0(\wedge^2T_D)$ and $\sigma^\sh:B\to T_D$ is an isomorphism\\
+\footnotesize $r_i,\ L_U$ & Residue along $D_i$ (constant); the local system of flat sections on $U$ (rank 1, monodromy $e^{\mp2\pi\sqrt{-1}r_i}$ around $D_i$)\\
+\footnotesize $Q$ & Quotient complex $C(A;E)/C(T_D;E)$, supported on $D$\\
+\footnotesize $\mu,\ c,\ \rho_D,\ b_1$ & (surfaces) number of double points $\mu$, number of irreducible components $c$ of $D$, dimension $\rho_D$ of the span of the $[D_i]\in H^2(X;\C)$, $b_1=c-\rho_D$\\
+\footnotesize $j_1,j_2,\ \mathcal F$ & Open embeddings $U\hookrightarrow X'\hookrightarrow X$, $\mathcal F=j_{2!}Rj_{1*}L_U$ (Theorem \ref{thm:main2})\\
+\footnotesize $N,M,\Sigma,u_i$ & Toric: lattice $N\cong\Z^n$, dual $M$, fan and ray generators\\
+\footnotesize $\rho,\ A,\ \chi,\ \Lambda$ & Toric: $\nabla=d+\rho$ ($\rho\in M_\C$), constant skew matrix $A$, character $\chi\in M$, set of characters in the weight formula\\
+\footnotesize $h,\ (w_z,w_w),\ N_h,\ \delta$ & Defining function of a quasi-homogeneous isolated singularity, weights, degree, $\delta=N_h-w_z-w_w$ (\S\ref{subsec:local})\\
+\footnotesize $\mu_p,\ \mathrm{Sp},\ \mathrm{lct}$ & Milnor number, spectrum, log canonical threshold $(w_z+w_w)/N_h$\\
+\footnotesize $s$ & Residue parameter of the local model $\mathcal O h^s$\\
+\footnotesize $Y\to M\to X$, $V^j$ & Flat symplectic fibre bundle; Gauss--Manin bundle of the fibre cohomology (\S\ref{sec:regular})\\
+\footnotesize $\partial U$ & Boundary of a tubular neighbourhood of $D$ (closed real $(2n-1)$-manifold, $\chi(\partial U)=0$)\\
+\end{longtable}

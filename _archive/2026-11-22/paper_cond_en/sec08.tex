@@ -1,0 +1,116 @@
+%==============================================================
+\section{Comparison with regular type: flat symplectic fibre bundles}\label{sec:regular}
+%==============================================================
+We treat the ``regular type'', in which the type is constant, in contrast to our earlier objects (type jumping), and show that the growth of dimensions is qualitatively different.
+
+\subsection{Setting and independence of $\omega$}
+\begin{defn}[Setting (S)]\label{defn:S}
+Let $X$ be a compact complex manifold, $\tilde X\to X$ the universal cover, $\Gamma=\pi_1(X)$, and $(Y,\omega_Y)$ a compact connected symplectic manifold. For a homomorphism $\rho:\Gamma\to\mathrm{Symp}(Y,\omega_Y)$ put $M=(Y\times\tilde X)/\Gamma$. The generalized complex structure ``symplectic structure on $Y$ $\times$ complex structure on $X$'' is $\Gamma$-invariant and so descends to $M$, giving a regular-type generalized complex structure of type $k=\dim_\C X$. The leaves are the fibres $Y_x$ and the leaf space is $X$. Let $E=\pi^*G$ ($G$ a holomorphic line bundle on $X$) be an SGH (strong generalized holomorphic) line bundle. \tC Definitions of regular type and SGH: Pal--Poddar \cite{PP} Def.\ 3.1 etc.\ (numbers \tQ).
+\end{defn}
+This setting includes direct products $Y\times X$ ($\Gamma$ trivial), $S^2$-bundles (holonomy in $SO(3)$), Kodaira--Thurston type $T^2$-bundles, etc. $\HH(E)=H^*(M;C(L;E))$ is defined as in \S\ref{sec:prelim}.
+
+\begin{prop}\tP\label{prop:omega}
+Let $\tilde\omega$ be the closed 2-form on $M$ obtained by descending $\mathrm{pr}_Y^*\omega_Y$. Then $e^{i\tilde\omega}$ is a Courant automorphism and $L=e^{i\tilde\omega}L_0$ ($L_0=T_{F,\C}\oplus T^{0,1}_{\mathrm{hor}}\oplus N^*$, $N^*=\pi^*T^{*1,0}_X$). Hence $L\cong L_0$ as Lie algebroids, and the generalized Dolbeault complex is identified with
+\[C(L;E)=\Omega^\bullet_{F_\C}(M;E\otimes\wedge^\bullet T^{1,0}_X),\qquad F_\C=T_{F,\C}\oplus T^{0,1}_{\mathrm{hor}}\ (\text{involutive}),\]
+and $N$ acts trivially on SGH bundles. The cohomology does not see $\omega$ (it sees only the foliated complex structure).
+\end{prop}
+\begin{proof}
+Locally this is the statement for products, and all objects are $\Gamma$-invariant. Since $d\tilde\omega=0$, $e^{i\tilde\omega}$ preserves the Courant bracket. That $N$ acts trivially is the definition of SGH (holomorphic in the transversal direction, flat along the leaves). \qedhere
+\end{proof}
+
+\subsection{Main theorem: Leray and Lefschetz}
+\begin{thm}[$\HH^*$ for regular type]\tP \tQ\label{thm:L}
+Assume setting (S) and (HL): $(Y,\omega_Y)$ satisfies hard Lefschetz (e.g.\ $Y$ K\"ahler). Let $V^j$ be the flat bundle with fibre $H^j(Y)$ (Gauss--Manin) and $E=\pi^*G$. Then
+\[\HH^k(M,E)\ \cong\ \bigoplus_{a+b+j=k}H^a\bigl(X,\ \wedge^bT_X\otimes V^j\otimes G\bigr).\]
+$X$ need not be K\"ahler or projective.
+\end{thm}
+\begin{hyptab}
+(S) flat fibre bundle & The decomposition $L\cong L_0$ from Proposition \ref{prop:omega}, and Ehresmann-type local triviality (the fibre cohomology becomes the local systems $V^j$) & Step (i)\\\midrule
+$Y$ compact connected & $H^j(Y)$ is finite-dimensional and the leafwise cohomology sheaf is the sheaf of smooth sections of $V^j$ & Step (i)\\\midrule
+(HL) hard Lefschetz & $\Lambda=\omega_F\wedge$ gives isomorphisms $V^{m_Y-i}\to V^{m_Y+i}$ (of flat bundles) & Step (iii): Deligne's lemma, $d_r=0\ (r\ge2)$\\\midrule
+$X$ compact & Each $H^a(X,\cdot)$ is finite-dimensional & Sum of dimensions\\\midrule
+$E=\pi^*G$ (SGH) & $N$ acts trivially, so the $\wedge^bT_X$-degree $b$ is a direct summand (no Poisson-type $d_1$) & Step (i): form of $E_2$
+\end{hyptab}
+\begin{proof}
+(i) (Double complex) By Proposition \ref{prop:omega}, $C(L;E)=\Omega^\bullet_{F_\C}(M;E\otimes\wedge^\bullet T_X)$. This forms a double complex of ``leafwise de Rham'' and ``Dolbeault on $X$ (coefficients $\wedge^bT_X\otimes G$)''. Since the fibres are compact, the leafwise cohomology sheaf is the sheaf of $C^\infty$ sections of $V^j$, and $\bar\partial$ on it is the $(0,1)$-part of the Gauss--Manin connection, independent of the choice of lifts (a difference of lifts is a leafwise Lie derivative, which is exact on closed forms). Hence
+\[E_2^{a,j}=\bigoplus_bH^a(X,\wedge^bT_X\otimes V^j\otimes G).\]
+(ii) The mixed components of $\omega_F:=\tilde\omega|_F$ vanish ($\tilde\omega$ is locally $\mathrm{pr}_Y^*\omega_Y$). Hence $\Lambda=\omega_F\wedge$ is a chain map of the double complex (commuting with $d_F$ and $\bar\partial$), acts on each term of the spectral sequence and commutes with $d_r$. On $E_2$ it is the fibrewise Lefschetz operator $V^j\to V^{j+2}$.
+(iii) (Deligne's lemma) By hard Lefschetz $V^{m_Y-i}\to V^{m_Y+i}$ is an isomorphism. If $x$ is a primitive element of weight $s$, then $\Lambda^{s+1}d_2x=0$, but $d_2x$ lies on the side of fibre degree $m_Y-s-1$ where $\Lambda^{s+1}$ is injective. So $d_2=0$; inductively $d_r=0\ (r\ge2)$ and the dimensions add up. \qedhere
+\src{Deligne \cite{Del68} (Publ.\ Math.\ IH\'ES 35). Leray spectral sequence: Bredon \cite{Bre} (location \tQ).}
+\end{proof}
+\tQ Points that remain a sketch: in (i) the identification of $\bar\partial$ with the $(0,1)$-part of Gauss--Manin and of $E_2$ of the leafwise Dolbeault-type double complex are not written in detail. Without (HL), $d_2\ne0$ may occur \tK (no concrete example computed).
+
+\begin{cor}[Degree-wise Riemann--Roch]\tP\label{cor:L}
+Under the hypotheses of Theorem \ref{thm:L}, assume further that $X$ is projective and $G$ ample. There is $m_0$ such that for $m\ge m_0$, $H^a(X,\wedge^bT_X\otimes V^j\otimes G^m)=0\ (a>0)$, hence
+\begin{gather*}\HH^k(M,E^m)=\bigoplus_{b+j=k}H^0\bigl(X,\wedge^bT_X\otimes V^j\otimes G^m\bigr),\\ \dim\HH^k(M,E^m)=\sum_{b+j=k}b_j(Y)\int_X\ch(\wedge^bT_X)\,e^{m\,c_1(G)}\,\Td(X).\end{gather*}
+The right-hand side is a polynomial in $m$ for each $k$.
+\end{cor}
+\begin{hyptab}
+$G$ ample, $X$ projective & Serre vanishing is applied to the coherent sheaves $\wedge^bT_X\otimes V^j$ & Vanishing of all terms of degree $a>0$\\\midrule
+$V^j$ flat & $\ch(V^j)=\mathrm{rk}\,V^j=b_j(Y)$ & $b_j(Y)$ comes out of the integral\\\midrule
+Theorem \ref{thm:L} & Decomposition of $\HH^k$ into $\bigoplus H^a$ & First equality\\\midrule
+HRR & When $a>0$ vanishes, $\dim H^0$ equals $\chi$ & Last equality
+\end{hyptab}
+\begin{proof}
+Apply Serre vanishing \tC \cite{Hart} (III.5.2) to the locally free sheaves $\wedge^bT_X\otimes V^j$ and take the largest $m_0$ over the finitely many $(b,j)$. The rest is HRR and $\ch(V^j)=b_j(Y)$. \qedhere
+\end{proof}
+The total Euler characteristic is $\sum_k(-1)^k\dim\HH^k=\chi(Y)\cdot(-1)^{\dim X}\chi(X)$, consistent with (the extension to this setting of) Theorem \ref{thm:E} \tV (checked in examples). The dimension in each degree grows as a polynomial in $m$, while the total alternating sum is independent of $m$.
+
+\subsection{Relation to the theorem of Pal--Poddar}\label{subsec:PPcompare}
+\begin{thm}[Pal--Poddar, Thm.\ 11.12]\tC
+Let $M$ be a compact regular-type generalized complex manifold, $M/\mathcal S$ a K\"ahler orbifold, and $E$ a positive SGH line bundle. (1) If $p+q>k$ then $H^q(M,(\mathcal G^*M)^p\otimes E)=0$. (2) For any SGH bundle $E'$, $H^q(M,E'\otimes E^m)=0$ for $m\ge m_0$, $q>0$.
+\src{\cite{PP}, Thm.\ 11.12 (hypotheses and statement from a re-reading recorded in \texttt{pp\_recheck.md}).}
+\end{thm}
+\begin{prop}\tP \tQ\label{prop:PPcompare}
+In setting (S), the groups $H^q(M,(\mathcal G^*M)^p\otimes E)$ of Pal--Poddar can be read as $H^q(X,\Omega^p_X\otimes G)$ (forms constant along the leaves). Then (1) is the classical Kodaira--Nakano vanishing on $X$, and (2) is the classical Serre vanishing for $E'=\pi^*(\wedge^bT_X\otimes V^j)$ (an SGH bundle), which is the same as the vanishing $H^a(X,\wedge^bT_X\otimes V^j\otimes G^m)=0\ (a>0)$ of Corollary \ref{cor:L}. Hence the vanishing in transversal degree coincides with Pal--Poddar Thm.\ 11.12(2) applied to $E'=\wedge^bT_X\otimes V^j$, and Corollary \ref{cor:L} is ``the Serre-type vanishing of Pal--Poddar $+$ Leray $+$ Lefschetz''.
+\end{prop}
+\begin{rem}[\tQ]
+If one takes literal sheaf cohomology on $M$, an extra leafwise factor $H^j(Y)$ appears because $R^j\pi_*\pi^{-1}\ne0$. Since Pal--Poddar Thm.\ 8.9, Cor.\ 8.10 identify $H^q(M,(\mathcal G^*M)^p)$ with transversal Dolbeault cohomology, their $H^q$ is presumably to be read on the leaf space, but we have not checked whether the original text says so explicitly. Moreover, vanishing of $\HH^k$ holds only for transversal degree $a>0$; the factor $H^j_{dR}(Y)$ remains in each degree $j$.
+\end{rem}
+
+\subsection{Examples}
+\begin{ex}[Direct product $Y\times\mathbb P^1$]\tP \tV\label{ex:prodY}
+$X=\mathbb P^1$, $G=\mathcal O(m)$, $m\ge-1$: by Theorem \ref{thm:L} and $H^0(\mathbb P^1,\mathcal O(m))=m+1$, $H^0(\mathbb P^1,T\otimes\mathcal O(m))=m+3$, $P_{\HH}(t)=P_Y(t)\bigl((m+1)+(m+3)t\bigr)$. For $Y=S^2$: $(m+1)(1+t^2)+(m+3)(t+t^3)$ ($m=0$: $1,3,1,3$). For $Y=T^2$: $1,5,7,3$ at $m=0$ and in general $(m+1,\ 3m+5,\ 3m+7,\ m+3)$. In both cases the dimensions grow linearly in $m$.
+\end{ex}
+\begin{ex}[Kodaira--Thurston: $T^2\to M\to E$]\tP \tV \tQ
+When the monodromy is the shear $\psi=\begin{pmatrix}1&1\\0&1\end{pmatrix}$, $V^0=V^2=\mathcal O$ and $V^1=F_2$ (Atiyah's non-trivial unipotent flat bundle \cite{Atiyah}, $h^0=h^1=1$ \tC). For $G=\mathcal O$, $P_{\HH}(t)=(1+t)^2(1+t+t^2)=1+3t+4t^2+3t^3+t^4$. Independent check: the Betti numbers of the Lie algebra complex obtained from the leafwise complex of the Heisenberg algebra $\mathfrak h_3$ times $\wedge N$ are $(1,3,4,3,1)$, in agreement \tV. This check assumes a Nomizu-type theorem saying that the model of invariant forms computes $\HH^*$, which we did not prove \tQ (Theorem \ref{thm:L} itself does not use it). For $\deg G=d>0$, $P_{\HH}(t)=d(1+t)^3$, and for $\deg G=0$, $G\not\cong\mathcal O$, $P_{\HH}=0$.
+\end{ex}
+\begin{ex}[Bieberbach quotient, $S^2$-bundles]\tP \tV
+$(T^2\times E)/\mathbb Z_2$ ($(y,x)\mapsto(-y,x+\tau/2)$): $V^1=L_{-1}\oplus L_{-1}$ (non-trivial sign representation) is acyclic for $G=\mathcal O$, and $P_{\HH}(t)=(1+t)^2(1+t^2)$ (agrees with the $\mathbb Z_2$-invariant part of K\"unneth). For $S^2$-bundles with holonomy in $SO(3)$ the $V^j$ are trivial bundles, so the numbers are the same as for the direct product.
+\end{ex}
+\begin{rem}\tP
+An SGH bundle with a non-trivial flat holonomy character $\chi$ along the leaves has $\chi$ locally constant over a compact base (maximum principle). If $Y$ is a torus and $\chi\ne1$ then $H^*(Y;L_\chi)=0$ and $\HH=0$.
+\end{rem}
+\tC The numerical values of these examples (Kodaira--Thurston, Bieberbach) are transcribed from the earlier records and were not recomputed while writing this paper \tQ.
+
+%--------------------------------------------------------------
+\subsection{Contrast with the type-jumping case: polynomial versus periodic}\label{subsec:contrast}
+%--------------------------------------------------------------
+\begin{center}\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{3.4cm}>{\raggedright\arraybackslash}p{4.4cm}>{\raggedright\arraybackslash}p{5.8cm}}\toprule
+ & Regular type ($Y=S^2$, $X=\mathbb P^1$) & Type jumping ($\mathbb{CP}^2$, smooth cubic)\\\midrule
+$\dim\HH^k$ for large $m$ & Linear in $m$: $(m+1),(m+3),(m+1),(m+3)$ & Bounded: $(1,0,2,0,0)$ for $m\in3\Z_{\ge0}$, $(0,0,3,0,0)$ otherwise\\\midrule
+$m=0$ & $(1,3,1,3)$ & $(1,0,2,0,0)$\\\midrule
+$m=1$ & $(2,4,2,4)$ & $(0,0,3,0,0)$\\\midrule
+$m=3$ & $(4,6,4,6)$ & $(1,0,2,0,0)$\\\midrule
+Total Euler characteristic & $\chi(Y)\cdot(-1)^{k}\chi(X)=-4$ ($k=\dim X=1$) & $\chi(\mathbb{CP}^2)=3$ (independent of $m$)\\\bottomrule
+\end{tabular}
+\end{center}
+\tV The right column is Example \ref{ex:cp2} (agrees with direct computation for $m=-15,\dots,15$), the left column is Corollary \ref{cor:L}.
+\begin{obs}\tP\label{obs:contrast}
+Both start from $E_1^{a,b}=H^a(\wedge^bT\otimes E)$. For regular type with SGH bundles $N$ acts trivially, so $d_1=0$ (Theorem \ref{thm:L}). In the type-jumping case $d_1=[\sigma,\cdot]+V\wedge$ is \emph{almost exact} between the $H^0$ terms, and although $H^0(\wedge^bT\otimes L^m)$ grows with $m$, the remaining cohomology is a bounded quantity determined by the topology of $U=X\setminus D$. The difference between ``polynomial in $m$'' and ``periodic'' reduces to whether $d_1$ vanishes or is (almost) exact.
+\end{obs}
+\begin{conj}[Unification (imprecise)]\tK\label{conj:U}
+For a compact generalized complex manifold with finitely many type strata and a module $E$ on which $N$ acts trivially along the holomorphic strata, $\HH^*(E)$ is filtered by stratumwise contributions of ``leafwise de Rham $\otimes$ transversal Dolbeault on the leaf space'', and for each stratum whether it is of $(c)$-type (compact support) or not is determined by the indicial roots (residues).
+\end{conj}
+\noindent This conjecture is not formulated precisely, and there is no verification beyond the two families above (regular type and log-symplectic). The dictionary is as follows.
+\begin{center}\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{3.0cm}>{\raggedright\arraybackslash}p{5.4cm}>{\raggedright\arraybackslash}p{5.6cm}}\toprule
+ & Regular type & Type jumping (log-symplectic)\\\midrule
+Leafwise de Rham & $H^j(Y)$ of the compact leaf $Y$ (local systems $V^j$) & $H^j(U;L_U)$ of the open leaf $U$\\\midrule
+Transversal & Dolbeault on $X$ & Complexes $Q_T$ on the strata of $D$\\\midrule
+Treatment of the boundary & None ($Y$ compact) & Choice of $Rj_*$ / $j_!$ by the residues (Deligne)\\\midrule
+Monodromy & Gauss--Manin & $e^{2\pi\sqrt{-1}r}$ (around $D$)\\\midrule
+Degeneration & $d_r=0$ by Lefschetz & $U$ is non-compact with no analogue, $d_1\ne0$\\\bottomrule
+\end{tabular}
+\end{center}

@@ -1,0 +1,91 @@
+%==============================================================
+\section{General dimension: the reduction theorem and Theorem V}\label{sec:reduction}
+%==============================================================
+\subsection{Setting, the quotient complex, the condition (GEN$_Q$)}
+Let $X$ be a compact complex manifold ($\dim X=n$ even), $D=\sum D_i$ an SNC divisor, $\sigma$ log-symplectic, and $L$ a Poisson module (a flat log connection along $D$ with residues $r_i$) (Definition \ref{defn:logsymp}, Theorem \ref{thm:main1}). We use the following sheaves of complexes.
+\[C=(\wedge^\bullet T\otimes L,\ d_L=[\sigma,\cdot]+V\wedge),\quad B=\wedge^\bullet T_D\otimes L\subset C,\quad Q=C/B.\]
+$\HH^k=H^k(X;C)$. By $\wedge\sigma^\sh$, $B\cong\mathrm{DR}_{\log}(L)$ (Lemma \ref{lem:iso}) \tC. There is a triangle $B\to C\to Q\xrightarrow{\ \partial\ }B[1]$.
+
+\paragraph{Structure of $Q$.} In logarithmic coordinates $(z_1,\dots,z_k,w)$ an $\mathcal O$-basis of $\wedge T$ is $\partial_S\wedge\partial_w^{Y}$ ($S\subset\{1..k\}$) and one of $\wedge T_D$ is $E_S\wedge\partial_w^Y=z^S\partial_S\wedge\partial_w^Y$. Hence $Q$ is spanned by the monomials $z^a\partial_S\wedge\partial_w^Y$ for which the set $T(s)$ of $i\in S$ with $a_i=0$ is non-empty; these are read as ``multivector fields with poles along each branch in $T(s)$'', $z^{a-S}E_S\wedge\cdots$. Since $\sigma\in\wedge^2T_D$ and $V\in T_D$, $d_L$ creates no new poles ($[X,z_i^{-1}]\in z_i^{-1}\mathcal O$ for $X\in T_D$). Hence $F_kQ=\{|T(s)|\le k\}$ is an increasing sequence of subcomplexes of $Q$, and $\mathrm{gr}_0Q=0$. In the top piece, $|T(s)|=n$ corresponds only to the monomial $\partial_1\wedge\cdots\wedge\partial_n$ at an $n$-fold point $p$. In degree $n$, $Q^n=(\wedge^nT/\wedge^nT_D)\otimes L=K_X^{-1}\otimes L|_D$ ($\wedge^nT=K_X^{-1}$, $\wedge^nT_D=K_X^{-1}(-D)$). This observation defines a map from $Q$ to points:
+\[\varepsilon^n:\ Q^n=K_X^{-1}\otimes L|_D\longrightarrow\bigoplus_{p\in D_{(n)}}(K_X^{-1}\otimes L)_p\otimes\C,\quad(\text{value at the }n\text{-fold points}),\qquad \varepsilon^k=0\ (k\ne n).\]
+
+\begin{prop}[$\mathrm{gr}\,Q$ and $\varepsilon$ \tQ]\label{prop:grQ}
+(a) $\varepsilon:Q\to\bigoplus_{p\in D_{(n)}}\C_p[-n]$ is a morphism of complexes (i.e.\ $d_L(Q^{n-1})$ takes value 0 at each $n$-fold point).
+(b) $\mathrm{gr}_kQ=\bigoplus_{|T|=k}Q_T$, $Q_T\cong\bigl(\wedge^\bullet T_{D_T}(-\log D'_T)\otimes L|_{D_T}\bigr)\cdot z^{-T}E_T$ ($D'_T$ the divisor cut out on $D_T$ by the other components), with differential $d_T=[\sigma_T,\cdot]+\nu_T\wedge$. Here $\sigma_T$ is the Poisson structure induced on $D_T$, $\nu_T=\sum_{i\in T}(r_i-1)H_i$, $H_i=\sigma^\sh(\dlog z_i)$.
+\end{prop}
+\begin{proof}[Status and basis]
+For $n=2$ this is Lemma \ref{lem:Q} (explicit formula for $d_Q$): at a smooth point $d_Q=-u(1-r)\cdot$ and at a double point the image is $\mathfrak m_D$, so (a) holds, and (b) follows from the definitions \tP \tV. For general $n$, the ``$-1$'' in (b) comes from $[\sigma,z_i^{-1}]=-z_i^{-1}H_i$, the ``$r_i$'' from the module structure $V=\sigma^\sh(\sum r_i\dlog z_i)+\cdots$, and $[\sigma_T,\nu_T]=0$ from the Jacobi identity for $\sigma$ and the fact that $\nu_T$ is a sum of Poisson vector fields. We have not written out the Schouten bracket computation line by line, and there is no computation checking (a), (b) for general $n$. This paper uses the proposition only to rephrase the \emph{hypothesis} (GEN$_Q$) of Theorem \ref{thm:R} in local terms, not in the proof of Theorem \ref{thm:R}. \tQ
+\end{proof}
+
+\begin{defn}[Condition (GEN$_Q$); distinct from (GEN) of Theorem \ref{thm:T}]\label{defn:GEN}
+$\varepsilon:Q\to\bigoplus_{p\in D_{(n)}}\C_p[-n]$ is a morphism of complexes and a quasi-isomorphism.
+\end{defn}
+\begin{defn}[Condition (GEN$'$)]
+For every stratum $T$ with $1\le|T|\le n-1$, $Q_T$ is acyclic stalkwise. If Proposition \ref{prop:grQ} holds, (GEN$'$) $\Rightarrow$ (GEN$_Q$) (all graded pieces of $F_{n-1}Q$ are acyclic so $F_{n-1}Q$ is acyclic, and $Q/F_{n-1}Q=\mathrm{gr}_nQ\cong\bigoplus\C_p[-n]$) \tQ. For $n=2$, (GEN$_Q$) $\iff$ all $r_i\ne1$ (Lemma \ref{lem:Q}) \tP.
+\end{defn}
+
+\begin{prop}[Necessary conditions for (GEN$'$) and examples]\label{prop:genNec}
+(a) If $\nu_T\equiv0$ then $Q_T$ is the Lichnerowicz complex of $\sigma_T$ and locally constant Casimirs enter $H^0$. In particular $r_i\ne1$ is necessary for $|T|=1$. \tP \tQ (depends on Proposition \ref{prop:grQ}(b))
+(b) For $|T|=1$ at a smooth point of $D$, if in logarithmic Darboux coordinates $\sigma=E_z\wedge\partial_{w_1}+\sum_j\partial_{w_{2j}}\wedge\partial_{w_{2j+1}}$ then $\nu=(r-1)\partial_{w_1}$, and $Q$ is the mapping cone of $(r-1)\cdot\mathrm{id}$ into the Lichnerowicz complex of the symplectic part, which is acyclic $\iff r\ne1$. \tC \tQ Logarithmic Darboux is known for real $b$-symplectic structures by Guillemin--Miranda--Pires, Adv.\ Math.\ 264 (2014); the holomorphic version presumably follows from the same Moser argument (the logarithmic version of Proposition \ref{prop:moser}), but we have not checked it.
+\end{prop}
+
+\subsection{The reduction theorem}
+\begin{thm}[Reduction theorem]\tP\label{thm:R}
+In the above setting assume (i) no $r_i$ lies in $\Z_{\ge1}$, and (ii) (GEN$_Q$) (Definition \ref{defn:GEN}). Then
+\[\HH^*(L)\ \cong\ H^*(U;L_U)\ \oplus\ \bigoplus_{p\in D_{(n)}}\C[-n].\]
+In particular $\chi(X)=\chi(U)+\#D_{(n)}$ ($n$ even).
+\end{thm}
+\begin{hyptab}
+(i) $r_i\notin\Z_{\ge1}$ & Avoids resonance. Condition for $\mathrm{DR}_{\log}(L)\simeq Rj_*L_U$ (Deligne) & Step (1)\\\midrule
+(ii) (GEN$_Q$) & $Q$ contributes only at $n$-fold points. If it fails, extra classes appear (Observation \ref{obs:gen}) & Step (2)\\\midrule
+$D$ SNC, $\sigma$ log-symplectic & $B\cong\mathrm{DR}_{\log}(L)$ & Step (1)\\\midrule
+$X$ compact & $H^*(X;\cdot)$ is finite-dimensional and Theorem \ref{thm:E} can be used & Step (4)\\\midrule
+$n$ even & Sign $(-1)^n=1$. Automatic for log-symplectic & Step (4)\\\midrule
+(not needed) projectivity, ampleness of $L$, vanishing (V) & --- & Used only in the weight computation of Theorem \ref{thm:T}
+\end{hyptab}
+\begin{proof}
+(1) By (i), Deligne \cite{Del} (II.3.13; Esnault--Viehweg \cite{EV}) \tC gives $B\simeq\mathrm{DR}_{\log}(L)\simeq Rj_*L_U$.
+(2) By (ii), $\varepsilon:Q\xrightarrow{\sim}\bigoplus_p\C_p[-n]$. Hence the connecting morphism of the triangle $B\to C\to Q\xrightarrow\partial B[1]$ is $\partial\in\mathrm{Hom}_{D(X)}(Q,Rj_*L_U[1])=\mathrm{Hom}(\bigoplus_pi_{p*}\C[-n],Rj_*L_U[1])$. By the adjunction $j^*\dashv Rj_*$ this equals $\mathrm{Hom}(j^*\bigoplus i_{p*}\C[-n],L_U[1])=0$ (since $p\in D$, $j^*i_{p*}=0$).
+(3) So the triangle splits and $C\simeq B\oplus Q\simeq Rj_*L_U\oplus\bigoplus_p\C_p[-n]$. Take $H^*(X;\cdot)$ and use $H^*(X;Rj_*L_U)=H^*(U;L_U)$ (by definition).
+(4) Euler characteristic: by Theorem \ref{thm:E}, $\chi(\HH)=(-1)^n\chi(X)=\chi(X)$, and the right-hand side is $\chi(U)+(-1)^n\#D_{(n)}=\chi(U)+\#D_{(n)}$ ($L_U$ has rank 1). \qedhere
+\end{proof}
+\begin{rem}[Difference from the earlier version \tP]
+The proof of the reduction theorem in the earlier version used the filtration of $Q$ and the graded pieces (GEN$'$), and the derivation of the graded pieces for general $n$ was a sketch. The proof above assumes the condition directly in the form (GEN$_Q$) ($\varepsilon$ is a quasi-isomorphism), so it does not depend on Proposition \ref{prop:grQ}. The step (GEN$'$) $\Rightarrow$ (GEN$_Q$) remains \tQ.
+\end{rem}
+\tV For $n=2$ it agrees with Theorem \ref{thm:main2}, and in 61 toric examples with $n=2,4$ (\texttt{roundK\_check.py}) the predictions of the reduction theorem and the closed formula (Theorem \ref{thm:K}) agree with the measured values (0 discrepancies). In the toric case, (GEN$_Q$) holds because the weight-$\chi$ part of $Q_T$ is the Koszul complex of $\wedge(N_\C/W_T)$ with differential $v_\chi\wedge$, acyclic when $v_\chi\notin W_T$, i.e.\ by the same argument as the exclusion of $x=0$ in the proof of Theorem \ref{thm:T} under the hypotheses (GEN) of Theorem \ref{thm:T} (independence of $A_{ij}$ over $\mathbb Q(\rho)$) and (R) \tP \tQ (depends on Proposition \ref{prop:grQ}). Theorem \ref{thm:T} itself is proved directly from the weight formula and does not depend on this argument.
+
+\begin{conj}[When (GEN$'$) fails]\tK\label{conj:nonacyc}
+$E_1^T=H^*(D_T;Q_T)\Rightarrow H^*(X;Q)$. If all $Q_T$ with $\nu_T=0$ are of ``product type'', the extra part is $\sum_Tt^{|T|}H^*(U_T;L_T)$. The $6t^2(1+t)^2$ of Observation \ref{obs:gen} can be read as follows: the six strata $T=(\text{double point of one factor})\times Y$ ($\nu_T=0$) each contribute $t^2(1+t)^2$ through $Q_T\simeq Rj_*\C_{U_Y}$ (\tV numerical agreement only).
+\end{conj}
+
+%--------------------------------------------------------------
+\subsection{Theorem V: vanishing of $H^k(U;L_U)$}
+%--------------------------------------------------------------
+The reduction theorem leaves $H^*(U;L_U)$ as an unknown. If all residues are non-integers it is determined as follows.
+
+\begin{thm}[Theorem V]\tP\label{thm:V}
+Let $X$ be a compact complex manifold ($\dim_\C X=n\ge1$), $D=\sum_{i=1}^sD_i$ a reduced SNC divisor, and $U=X\setminus D$ \emph{affine}. Let $L_U$ be a rank one local system on $U$ whose simple monodromy around $D_i$ is $e^{-2\pi\sqrt{-1}\,r_i}$, with \emph{all $r_i\notin\Z$}. Then $H^k(U;L_U)=0$ for $k\ne n$, hence $\dim H^n(U;L_U)=(-1)^n\chi(U)$.
+\end{thm}
+\begin{hyptab}
+$r_i\notin\Z$ (all $i$) & Stalks vanish on each stratum & (a). If all $r_i\in\Z$ on some stratum, the stalk is $H^*(T^k)\ne0$, which is the source of the jumps in \S\ref{sec:surface}, \S\ref{sec:toric}\\\midrule
+$U$ affine & Artin vanishing & (c). Fails for non-affine $U$, e.g.\ $D=\emptyset$\\\midrule
+SNC & Local fundamental group is $\Z^k$ & (a). For non-SNC (triple points etc.) the local fundamental group is not $\Z^k$ and $\sum r_i$ enters the stalk rule (Observation \ref{obs:triple})\\\midrule
+$X$ compact & Global sections of $Rj_*$ give the cohomology of $U$, and if $j_!=Rj_*$ then $H^k=H^k_c$ & (b)
+\end{hyptab}
+\begin{proof}
+(a) The stalk of $Rj_*L_U$ at $p\in D_I$ ($|I|=k\ge1$) is $H^*(U\cap B;L_U)$ for a small polydisc $B$. $U\cap B\simeq(\Delta^*)^k\times\Delta^{n-k}\simeq(S^1)^k$, and $L_U$ is the external tensor product of local systems with monodromy $\mu_i=e^{-2\pi\sqrt{-1}r_i}\ne1$ on each circle. By K\"unneth $H^*((S^1)^k;L)=\bigotimes_{i\in I}H^*(S^1;L_{\mu_i})$, and for $\mu\ne1$, $H^0=\ker(\mu-1)=0$ and $H^1=\mathrm{coker}(\mu-1)=0$. Hence the stalks vanish over $D$ and $Rj_*L_U=j_!L_U$.
+(b) Since $X$ is compact, $H^k(U;L_U)=H^k(X;Rj_*L_U)=H^k(X;j_!L_U)=H^k_c(U;L_U)$.
+(c) Since $U$ is affine, Artin's vanishing theorem (Andreotti--Frankel) \tC \cite{SGA4} gives $H^q(U;F)=0\ (q>n)$ for every local system $F$. Hence $H^k(U;L_U)=0$ for $k>n$. By Poincar\'e duality $H^k_c(U;L_U)\cong H^{2n-k}(U;L_U^\vee)^*$ on the oriented $2n$-manifold $U$ and (b), $H^k(U;L_U)=0$ when $2n-k>n$, i.e.\ $k<n$. Finally $\chi(U)=(-1)^n\dim H^n$. \qedhere
+\end{proof}
+\begin{cor}\tP\label{cor:Vgen}
+If the hypotheses of Theorem \ref{thm:R} hold, all $r_i\notin\Z$, and $U$ is affine, then $P_{\HH}(t)=\chi(X)\,t^n$.
+\end{cor}
+\begin{proof}
+By Theorems \ref{thm:R} and \ref{thm:V}, $P=\dim H^n(U;L_U)t^n+\#D_{(n)}t^n=(\chi(U)+\#D_{(n)})t^n=\chi(X)t^n$ ($n$ even). \qedhere
+\end{proof}
+For the ``mixed'' case where only some $r_i$ are integers: the stalk survives over $D_I$ only if all $r_i\ (i\in I)$ are integers, but vanishing for $k<n$ is unproved \tK.
+\paragraph{Computational confirmation \tV.} Exact toric computations with $n=4$ (linear algebra modulo $2^{61}-1$): $\mathbb P^4$ ($\mathcal O(1)$, $r=(1/2,1/3,1/5,1/7,-457/210)$) gives $(0,0,0,0,5)$, $\mathbb P^4$ ($\mathcal O(2)$, $r=(1/3,1/3,1/3,1/3,-10/3)$) gives $(0,0,0,0,5)$, $\mathbb P^2\times\mathbb P^2$ gives $(0,0,0,0,9)$, and $(\mathbb P^1)^4$ gives $(0,0,0,0,16)$. All are $\chi(X)t^4$, in agreement with the prediction of Corollary \ref{cor:Vgen}. A mixed example ($\mathbb P^1\times\mathbb P^3$ with one integral residue $-2$) also gave $(0,0,0,0,8)$, but this is an observation, not a theorem. The scope of the verification is toric, constant $\sigma$ in the log frame and $L$ sufficiently ample; it is not a test of Theorem V for non-toric $U$. These $n=4$ computations were re-run while writing this paper with \texttt{roundJ2\_vanish\_check.py} ($\mathbb P^2\times\mathbb P^2$ with $\mathcal O(1,2)$ and all residues non-integral gives $(0,0,0,0,9)$; the mixed example $\mathcal O(1,1)$ with the integral residue $-1$ also gives $(0,0,0,0,9)$, which is also only an observation).
+
+\begin{ex}[Products \tP \tV]\label{ex:prod}
+Let $(X_1,D_1,L_1)$, $(X_2,D_2,L_2)$ be objects of Theorem \ref{thm:B} (or \ref{thm:main2}) and $\sigma=\sigma_1\boxplus\sigma_2$ (block diagonal). The complex is an external tensor product, so by K\"unneth $P_{\HH}=P_1\cdot P_2$ (as $\HH$ is finite-dimensional hypercohomology). For $\mathbb P^2\times\mathbb P^2$ ($\mathcal O(1,1)$, $\rho=0$) in dimension 4, when $P_1=P_2=[1,2,4]$ the product is $[1,4,12,16,16]$, which differs from the value $[1,4,6,4,10]$ of the weight formula for general $\sigma$ (Observation \ref{obs:gen}). A $\sigma$ with product structure is a special case violating (GEN$_Q$).
+\end{ex}

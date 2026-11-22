@@ -1,0 +1,89 @@
+%==============================================================
+\section{Riemann--Roch-type formulas and the index conjecture}\label{sec:RR}
+%==============================================================
+\subsection{The Poincar\'e polynomial formula}
+Theorem \ref{thm:E} says that the total Euler characteristic is topological. The dimensions in each degree take the following form.
+
+\begin{thm}[RR-type Poincar\'e polynomial]\tP \tV\label{thm:K}
+In addition to the hypotheses of Theorem \ref{thm:R} (SNC, log-symplectic, $r_i\notin\Z_{\ge1}$, (GEN$_Q$)), assume (i) $U$ is affine and (ii) $n$ is even (automatic for log-symplectic). Then
+\[P_{\HH}(t)\;=\;\chi(X)\,t^n\;+\;\sum_{k=0}^{n-1}h^k(U;L_U)\,\bigl(t^k-(-1)^kt^n\bigr).\]
+\end{thm}
+\begin{hyptab}
+Hypotheses of the reduction theorem & Give $\HH^*\cong H^*(U;L_U)\oplus\C^{\#D_{(n)}}[-n]$ & (1)\\\midrule
+$U$ affine & Artin vanishing: $H^k(U;L_U)=0\ (k>n)$ for local systems & (2). Without it the formula does not reduce to a sum over $k<n$\\\midrule
+$n$ even & $\sum_k(-1)^kh^k+\#D_{(n)}=\chi(X)$ can be used without signs (Theorem \ref{thm:E}) & (3)\\\midrule
+Projectivity, ampleness & Not needed & ---
+\end{hyptab}
+\begin{proof}
+(1) By Theorem \ref{thm:R}, $P_{\HH}=\sum_{k\le n}h^kt^k+\#D_{(n)}t^n$ (the terms with $k>n$ vanish by (2)). (2) By Artin's vanishing theorem \cite{SGA4}, $h^k=0$ for $k>n$. (3) By Theorem \ref{thm:E} ($n$ even), $\sum_{k\le n}(-1)^kh^k+\#D_{(n)}=\chi(X)$, i.e.\ $h^n+\#D_{(n)}=\chi(X)-\sum_{k<n}(-1)^kh^k$. Substitute into the coefficient of $t^n$. \qedhere
+\end{proof}
+\begin{cor}\tP
+If all $r_i\notin\Z$ then (Theorem \ref{thm:V}) $P_{\HH}(t)=\chi(X)t^n$. If all $r_i\in\Z_{\le0}$ and $L_U$ is trivial then $h^k=b_k(U)$. For $n=2$, $h^0=1$ and $h^1=b_1$, and $P=\chi(X)t^2+(1-t^2)+b_1(t+t^2)$.
+\end{cor}
+\paragraph{Verification.} \tV (a) 188 examples in the tables for $n=2$, (b) 61 toric examples with $n=2,4$ ($h^k=\binom nk$ for $\rho\in M$, 0 otherwise): the measured Poincar\'e polynomials agree with the predictions of the formula in all cases (0 discrepancies; earlier records, not re-run \tQ). For toric $\mathbb P^2$ with $\rho\in M$, $P=3t^2+(1-t^2)+2(t+t^2)=1+2t+4t^2$. This agrees with the case $[r\le0]$ of Theorem \ref{thm:B}. The side $r\ge2$ follows from duality (Theorem \ref{thm:dual}).
+
+\subsection{Three behaviours of the dimensions}
+Taking $L=L_0^m$ and varying $m$, the degree-wise dimensions behave in qualitatively different ways depending on the setting.
+\begin{center}\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{3.0cm}>{\raggedright\arraybackslash}p{4.4cm}>{\raggedright\arraybackslash}p{6.4cm}}
+\toprule Behaviour & Dimension in degree $k$ & Example\\\midrule
+(A) Regular type & \emph{Polynomial} in $m$ ($m\gg0$) \tP & $X=\mathbb P^1$, $Y=T^2$ (product), $G=\mathcal O(m)$: $(m+1,\ 3m+5,\ 3m+7,\ m+3)$ ($m\ge-1$)\\\midrule
+(B) Log-symplectic & \emph{Periodic} jumps according to integrality of the residue $r=-m/3$ \tP \tV & $\mathbb P^2$, smooth cubic: $(1,0,2,0,0)$ for $m=3k\ge0$, $(0,0,3,0,0)$ otherwise for $m\ge-3$ (Example \ref{ex:cp2})\\\midrule
+(C) Total Euler characteristic & \emph{Independent} of $m$ \tP & In (A) $\sum(-1)^kh^k=0$, in (B) $3=\chi(\mathbb P^2)$\\\bottomrule
+\end{tabular}
+\end{center}
+In (A), $(m+1)-(3m+5)+(3m+7)-(m+3)=0=\chi(Y)\chi(X)$, consistent. How to read this: by (C), the naive form of Riemann--Roch, ``$\chi(E)=\int\ch(E)\Td$ is a polynomial in $c_1(E)$'', degenerates in generalized geometry (it does not see $c_1$), and the information lies in the graded dimensions. In (A) these are polynomials degree by degree; in (B), as in Theorem \ref{thm:K}, they decompose into the topological quantities $h^k(U;L_U)$ (depending only on the integrality of residues) and $\chi(X)$. Only in regular type does polynomial behaviour hold in all degrees.
+
+\subsection{Comparison with earlier work}\label{subsec:compare}
+\paragraph{Hodge theory (formal coefficients).} \tC Gualtieri proved the generalized Hodge star, the Born--Infeld pairing, equality of Laplacians, Hodge decomposition and the $dd^{\Jc}$-lemma on generalized K\"ahler manifolds (\cite{GuaHodge}, \cite{GuaK}, Cavalcanti \cite{Cav}; theorem numbers not read closely \tQ). These are theories with trivial or $H$-twisted coefficients, and a Bochner--Kodaira--Nakano identity with (curved) line bundle coefficients is not written, as far as we found. The results of this paper can be seen as filling this gap for the $\beta$-transform case, without Hodge theory, by comparing the log complex with constructible sheaves.
+
+\paragraph{Pal--Poddar.} \tC \cite{PP} treat regular-type (type $k$ constant) compact generalized complex manifolds whose leaf space is a K\"ahler orbifold, and give Hodge theory for SGH bundles, the transversal Dolbeault isomorphism (Thm.\ 8.9, Cor.\ 8.10), Hodge decomposition and Serre duality (Thm.\ 11.2--11.7), K\"ahler identities (Prop.\ 11.8, Lemma 11.9), and vanishing theorems for positive SGH line bundles (Def.\ 11.10, 11.11; Thm.\ 11.12) (numbers \tQ). Differences: (i) the type-jumping case is outside Pal--Poddar, and examples such as $\mathbb{CP}^2$ in this paper are of this kind. (ii) SGH bundles are a proper subclass of generalized holomorphic bundles, while Poisson modules in this paper are general GH bundles for the $\beta$-transform structure. (iii) The precise statement of Thm.\ 11.12 is in \S\ref{subsec:PPcompare}. Doubts about the original text (probably misprints or omissions, unverified \tQ): $(i/2\pi)$ in the statement versus $1/2\pi$ in the proof; the sign of $gc_1$; that ``a positive class yields a metric of positive curvature'' is not proved from Def.\ 11.11 and is assumed in the proof of Thm.\ 11.12; that compactness and the K\"ahler property are not stated in Def.\ 11.11.
+
+\paragraph{Hu's work.} \tC Hu \cite{Hu1,Hu2}. The setting is a real Lie algebroid $\mathfrak g$ with a fibrewise integrable complex structure (different from the complex Lie algebroid $L\subset\bT_\C$ of this paper). Riemann--Roch (2403.13424 Thm.\ 4) asserts an index formula under ellipticity of $\dbar_{\mathfrak g}$ and unimodularity, and the vanishing (Thm.\ 7) is a statement about the kernel of the Laplacian, from which vanishing of cohomology cannot be derived. \tP The generalized Dolbeault complex $(T^{0,1}\bowtie A^{1,0})$ of this paper is not in Hu's setting ($L$ is a complex Lie algebroid without $J$, and $\wedge L^*$ in general has no $(p,q)$ bigrading). \tK Hu's index is expected to depend polynomially on $m$, whereas the total Euler characteristic here is independent of $m$, and the residue $-m/3$ that determines the periodic jumps is not part of Hu's data. Hence Hu's theorem is not ``Riemann--Roch for generalized Dolbeault cohomology''. Inconsistencies in the original (undefined symbols, sign discrepancies): noticed in the summary and part of the text, but the appendix could not be verified \tQ.
+
+\paragraph{Integrability.} \tC Gualtieri--Li \cite{GL} classify Hausdorff symplectic groupoids of log-symplectic manifolds and show that the Lie algebroid $T_X(-\log D)$ of log vector fields tangent to a smooth $D$ is integrable. Bailey--Gualtieri \cite{BG}, Laurent-Gengoux--Sti\'enon--Xu \cite{LGSX2}, and Crainic--Fernandes \cite{CF} give general theory of integrability. These supply groups as input for index theory but do not treat the integration of the complex Lie algebroid $L$ itself (theorem numbers \tQ).
+
+\subsection{The index conjecture}
+The Hirzebruch--Riemann--Roch theorem is a special case of the Atiyah--Singer index theorem \cite{AS}, and Riemann--Roch in generalized geometry should be formulated as ``an index theorem for the generalized Dolbeault complex''. What follows is \emph{entirely conjectural and unproved} (\tK).
+
+\paragraph{Why existing index theorems do not apply.} (1) The complex of Hu \cite{Hu2} is attached to a real Lie algebroid, whereas our complex $(\wedge^\bullet T\otimes L,\dbar+[\sigma,\cdot])$ is the complex of the complex Lie algebroid $T^{0,1}\ltimes A^{1,0}$ (no real structure). (2) The index of Pflaum--Posthuma--Tang \cite{PPT} on Lie groupoids requires a compact base, unimodularity, etc.\ \tQ. (3) We found no index theorem in the literature for log Dolbeault complexes weighted by the residues of $L$. Related literature: geometric quantization of $b$-symplectic manifolds (Braverman--Loizides--Song \cite{BLS}), index formulas for boundary groupoids (Qiao--So \cite{QS}), pseudodifferential operators on manifolds with Lie structure (Ammann--Lauter--Nistor \cite{ALN}), fibred boundaries (Mazzeo--Melrose \cite{MM}), complex logarithmic Hodge theory (Hausel--Hunsicker--Mazzeo \cite{HHM}). All have different settings and do not apply directly (only titles, authors and abstracts were checked \tQ).
+
+\paragraph{Framework.} Regard $A=T_X(-\log D)$ as a Lie algebroid (Gualtieri--Li \cite{GL}: integrable for log-symplectic, checked for smooth $D$ \tC \tQ), and the complex $\mathcal D_L=(\wedge^\bullet T\otimes L,\ \dbar+[\sigma,\cdot])$ on $U$ as a closed operator on weighted Sobolev spaces determined by $A$ (the weight is the residue $r$). The principal symbol in the sense of $A$ is invertible (Lemma \ref{lem:iso} and a local computation \tV), so non-Fredholmness arises from indicial roots at the boundary. In the local model (a smooth point of $D$) $\nabla z^k=(k-r)z^k\,dz/z$, so the indicial root is $k=r$, which exists only for $r\in\Z$.
+
+\begin{conj}[Index conjecture]\tK\label{conj:index}
+Let $X,\sigma,D,L$ be as above (log-symplectic, SNC).
+\begin{itemize}
+\item[(I1)] The closed extension of $\mathcal D_L$ on Sobolev spaces of weight $r$ is Fredholm if and only if all $r_i\notin\Z$.
+\item[(I2)] When Fredholm, the index (alternating sum) equals $\chi(U)+(-1)^n\#D_{(n)}=(-1)^n\chi(X)$ ($\int c_n(T(-\log D))$ plus the corner contribution $\#D_{(n)}$).
+\item[(I3)] For $r_i\in\Z$, the difference of kernels and cokernels of the two closed extensions of $j_!$-type and $Rj_*$-type is given by a subquotient of $H^*(\partial U;L)$ (an APS-type wall-crossing triangle), and since $\chi(\partial U)=0$ the index does not change (consistent with Corollary \ref{cor:wall}).
+\item[(I4)] Graded refinement: $P_{\HH}(t)$ is given by the form of Theorem \ref{thm:K} ($\chi(X)t^n$ and the jump terms determined by the kernels of the indicial roots).
+\end{itemize}
+\end{conj}
+\paragraph{Correspondence with what is already proved.} The value in (I2) is proved by Theorems \ref{thm:E}, \ref{thm:K1} ($\chi(X)$, \tP). The triangle in (I3) is used in this paper at the topological level as $j_!L_U\to Rj_*L_U\to i_*i^*Rj_*L_U$ (completely checked for $n=2$ \tP \tV), and its index-theoretic counterpart is unproved. (I4) is Theorem \ref{thm:B} for $n=2$ \tP, and Theorem \ref{thm:K} (under (GEN$_Q$)) in general dimension \tP.
+\paragraph{What remains to be proved.} (1) Fredholm theory on the complex Lie algebroid (without $J$): construction of a parametrix and the ``$\Leftrightarrow$'' of (I1). Extending the framework of Ammann--Lauter--Nistor to the weighted setting seems natural but has not been done. (2) The index formula (I2): an analogue of the Atiyah--Singer formula on the $b$-tangent bundle \cite{BLS} for complexes with $\wedge^\bullet T$ coefficients and weights. The contribution of corners (strata of higher codimension) is the problem. (3) The APS-type wall-crossing of (I3): identification with $H^*(\partial U;L)$ beyond smooth $D$ with $n=2$ (Gysin sequence). (4) The graded version (I4): graded refinement of spectral flow (no literature found). (5) A general sufficient condition for (GEN$_Q$).
+
+\subsection{The three treasures: where we stand}
+\begin{center}\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{2.4cm}>{\raggedright\arraybackslash}p{6.5cm}>{\raggedright\arraybackslash}p{6.0cm}}
+\toprule Treasure & What holds in another form & What fails / is open\\\midrule
+Riemann--Roch & Total Euler characteristic (Thms.\ \ref{thm:E}, \ref{thm:K1}), Poincar\'e polynomial formulas (Thms.\ \ref{thm:B}, \ref{thm:K}), degree-wise polynomials for regular type (Cor.\ \ref{cor:L}) & The naive HRR fails. Unification by an index theorem is a conjecture (Conj.\ \ref{conj:index})\\\midrule
+Serre vanishing & Vanishing in transversal degree $a>0$ (Thm.\ \ref{thm:serre}) & Vanishing in all degrees fails (Remark \ref{rem:total})\\\midrule
+Kodaira embedding & Leaf-space version (Thm.\ \ref{thm:K1leaf}), toric Poisson--Kodaira (Thm.\ \ref{thm:PKtoric}) & Embedding by GH sections is impossible (Prop.\ \ref{prop:one}). General Poisson--Kodaira is a conjecture (Conj.\ \ref{conj:PK})\\\bottomrule
+\end{tabular}
+\end{center}
+
+%==============================================================
+\section{Open problems}\label{sec:open}
+%==============================================================
+\begin{enumerate}
+\item \textbf{General Poisson--Kodaira} (Conjecture \ref{conj:PK}): $\mathbb P^2$ with $m\ge3$, cases other than the Segre embedding of $\mathbb P^1\times\mathbb P^1$, singular $E$. Vanishing of the obstruction class $\mathcal J_0\bmod\mathrm{im}\,\mathcal L$.
+\item \textbf{General sufficient conditions for (GEN$_Q$)}, proof of Proposition \ref{prop:grQ} for general $n$, the holomorphic logarithmic Darboux theorem (Proposition \ref{prop:genNec}(b)).
+\item \textbf{Vanishing for mixed residues}: $H^k(U;L_U)=0\ (k<n)$ when only some $r_i$ are integers (extension of Theorem \ref{thm:V}).
+\item \textbf{Local formulas}: non-quasi-homogeneous isolated singularities, non-isolated singularities, $s=1$, non-reduced boundary (Conjecture \ref{conj:NR}), globalization of the refined Riemann--Roch (Conjecture \ref{conj:refined}). An explanation of the triple point anomalies at $m=-2,-4$.
+\item \textbf{A general formula at resonance $r_i=1$} (Observation \ref{obs:res}) and its proof.
+\item \textbf{The index conjecture} (Conjecture \ref{conj:index}): Fredholmness in weighted $b$-calculus, index $=\chi(U)$, relation with the cohomology of the boundary.
+\item \textbf{Extensions of regular type}: non-flat bundles, fibres failing hard Lefschetz, a precise formulation of the unification conjecture (Conjecture \ref{conj:U}).
+\item \textbf{Riemann--Roch and Kodaira-type theorems for general generalized complex structures} (not attempted in this study). A Bochner--Kodaira--Nakano identity with line bundle coefficients on the generalized K\"ahler side.
+\item \textbf{Resolution of unverified literature items}: Mokri's theorem, re-derivation of LGSX Lemma 4.22, a close reading of Gualtieri \cite{Gua11} \S4, remaining bibliographic data (list in the appendix).
+\item \textbf{Verification in dimension 4 beyond toric and product cases.} A candidate: an elliptic Poisson structure of Feigin--Odesskii type on $\mathbb P^4$ ($D$ is not SNC).
+\end{enumerate}

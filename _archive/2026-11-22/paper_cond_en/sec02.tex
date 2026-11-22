@@ -1,0 +1,109 @@
+%==============================================================
+\section{Preliminaries: generalized holomorphic line bundles and generalized Dolbeault cohomology}\label{sec:prelim}
+%==============================================================
+\subsection{The classical three treasures: statements and where the hypotheses enter}\label{subsec:classical}
+To make the goal of the generalization precise, we recall the classical statements and the skeleton of their proofs. The content is standard and not new \tC.
+
+\begin{itemize}
+\item \textbf{HRR.} For a compact complex manifold $M$ and a holomorphic vector bundle $E$, $\chi(M,E)=\int_M\ch(E)\Td(T^{1,0}M)$. \src{Hirzebruch \cite{Hirz} (projective case); Atiyah--Singer \cite{AS} (general compact complex manifolds, index of the Dolbeault complex); Huybrechts \cite{Huy} \S5.1.}
+\item \textbf{Serre vanishing.} If $X$ is projective, $\mathcal O(1)$ very ample and $\mathcal F$ coherent, there is $m_0$ with $H^q(X,\mathcal F(m))=0$ $(q>0)$ for $m\ge m_0$. \src{Serre \cite{Serre}; Hartshorne \cite{Hart} Thm.\ III.5.2.}
+\item \textbf{Kodaira--Akizuki--Nakano vanishing.} If $M$ is compact K\"ahler and $E$ a positive holomorphic Hermitian line bundle, then $H^q(M,\Omega^p\otimes E)=0$ for $p+q>n$. \src{Kodaira \cite{Kod53}; Akizuki--Nakano \cite{AN}; Griffiths--Harris \cite{GH} Ch.~1 \S2.}
+\item \textbf{Kodaira embedding theorem.} If $M$ is compact and $L$ a positive holomorphic line bundle, then $M$ is projective and for $m\gg0$ the map $M\to\mathbb P(H^0(M,L^m)^*)$ given by $|L^m|$ is an embedding. \src{Kodaira \cite{Kod54}; Griffiths--Harris Ch.~1 \S4; Huybrechts \S5.3.}
+\end{itemize}
+
+\begin{center}\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{2.3cm}>{\raggedright\arraybackslash}p{2.9cm}>{\raggedright\arraybackslash}p{4.4cm}>{\raggedright\arraybackslash}p{4.6cm}}
+\toprule Classical theorem & Hypotheses & Why needed / where used in the proof & Fate in this paper\\\midrule
+HRR & Compact, holomorphic structure & The Dolbeault complex is elliptic and Fredholm (index defined), $\dbar^2=0$. $\Td$ comes from the symbol, $E$ enters as $\ch(E)$ & The total Euler characteristic does not see $c_1$ (Thm.\ \ref{thm:E}). A refinement is needed (\S\ref{sec:RR})\\\midrule
+Serre & Projective, ample, coherent & $\bigoplus\mathcal O(-N_i)\twoheadrightarrow\mathcal F$, \v Cech computation on $\mathbb P^N$, descending induction & Applied to the coherent sheaves $\wedge^bT\otimes E$: holds in transversal degree (Thm.\ \ref{thm:serre})\\\midrule
+KAN & Compact, K\"ahler, positive & Hodge theory, K\"ahler identities $\Rightarrow$ BKN identity, positivity of the curvature term $[i\Theta_E,\Lambda]$ & The line-bundle-coefficient version is not written for generalized K\"ahler. Regular type: Pal--Poddar; Lie groupoids: Hu (\S\ref{subsec:compare})\\\midrule
+Kodaira embedding & Compact, positive & Surjectivity of $H^0(L^m)\to L^m\otimes\mathcal O/\mathfrak m_x^2$ from KAN vanishing on the blow-up $\tilde M$ (many sections separate points and tangent vectors) & Generalized holomorphic sections are flat and cannot separate points (\S\ref{sec:kodaira})\\\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{rem}\tK (Suggestions for the generalization)
+In the classical case four ingredients share the work: (1) Hodge theory (ellipticity), (2) K\"ahler identities $\Rightarrow$ BKN identity, (3) positivity of curvature, (4) abundance of global sections. In generalized complex geometry, (1) holds for the elliptic complex $(\wedge L^*\otimes E,d_L)$ (Gualtieri \cite{Gua11}). The line-bundle-coefficient versions of (2), (3) have not been written in the generalized K\"ahler framework (as far as we found). (4) fails in the classical form because generalized holomorphic sections are Casimir-type flat sections (Observation \ref{obs:casimir}).
+\end{rem}
+
+%--------------------------------------------------------------
+\subsection{Generalized complex structures and the $\beta$-transform}
+%--------------------------------------------------------------
+\begin{defn}[Generalized complex structure, type]\tC\label{defn:GC}
+A map $\Jc:\bT\to\bT$ with $\Jc^2=-1$ preserving the pairing is a generalized almost complex structure. It is integrable (a generalized complex structure) if its $+i$-eigenbundle $L\subset\bT_\C$ is closed under the Courant bracket. The number $\mathrm{type}(\Jc)_p=\mathrm{codim}_\C\,\pi_T(L_p)$ is the type; points where it is locally constant are called regular points. The type may jump. A complex structure $I$ has type $n$ ($L=T^{0,1}\oplus T^{*1,0}$); a symplectic structure has type $0$.
+\src{Hitchin \cite{Hit03}; Gualtieri \cite{Gua11} \S3 (type Def.~3.5, canonical bundle Def.~3.7, generalized Calabi--Yau Def.~3.17, Picard group Def.~3.18; numbers to be checked against the original); Abouzaid--Boyarchenko \cite{AB}.}
+\end{defn}
+The generalized Dolbeault complex $(\wedge^\bullet L^*,d_L)$ is an elliptic complex, and its cohomology is finite-dimensional on a compact manifold (Gualtieri \cite{Gua11} Prop.~3.13, Cor.~3.14 \tC).
+
+\begin{prop}[$\beta$-transform]\tC\label{prop:Jsigma}
+Let $X$ be a complex manifold and $\sigma$ a holomorphic Poisson structure. (a) $L_\sigma=T^{0,1}\oplus\{\sigma^\sh\xi+\xi:\xi\in T^{*1,0}\}$ is an integrable maximal isotropic subbundle of $\bT_\C$, and the corresponding generalized complex structure $\Jc_\sigma$ has type $n-\mathrm{rk}_\C\sigma^\sh_p$ at $p$. In particular the type is $0$ where $\sigma$ is non-degenerate and $n$ where $\sigma=0$. (b) $(\Xi,\xi)\mapsto(\Xi+\sigma^\sh\xi,\xi)$ is an isomorphism of complex Lie algebroids $T^{0,1}\bowtie(T^{1,0})^*_\sigma\to L_\sigma$ (matched pair).
+\src{(a) Gualtieri \cite{GuaBr} Prop.~5; Laurent-Gengoux--Sti\'enon--Xu (LGSX) \cite{LGSX1} Thm.~2.7, Rem.~2.8 ($\Jc_\pi$, $\pi=\pi_R+i\pi_I$). The type formula is our own organization and agrees with Gualtieri's examples \tQ. (b) LGSX Thm.~4.21, Lemma 4.22 (the factor 4 in $\Jc_{4\pi}$ comes from the normalization of $\pi=\pi_R+i\pi_I$). The choice of sign of the eigenvalue differs among references but they are exchanged by complex conjugation and nothing below is affected.}
+\end{prop}
+
+\begin{defn}[Generalized holomorphic bundle, Poisson module]\tC\label{defn:GH}
+A complex vector bundle $E$ with a flat $L$-connection $\dbar_E:\Gamma(E)\to\Gamma(L^*\otimes E)$ ($\dbar_E^2=0$) is called a generalized holomorphic bundle. A holomorphic vector bundle $E$ together with a flat $A$-connection $\nabla:\Gamma(E)\to\Gamma(A^*\otimes E)$ ($\nabla_\xi(fs)=f\nabla_\xi s+(\sigma^\sh\xi)(f)s$, $[\nabla_a,\nabla_b]=\nabla_{[a,b]_\sigma}$, $a,b$ holomorphic 1-forms) is called a Poisson module.
+\src{Gualtieri \cite{Gua11} \S3 (generalized holomorphic bundles are introduced in prose after Thm.~3.15, no numbered definition); Gualtieri \cite{GuaBr} \S4.1; LGSX Def.~4.15, Lemma 4.16.}
+\end{defn}
+
+\begin{defn}[Generalized Dolbeault cohomology $\HH$]\label{defn:HH}
+For a Poisson module $E$, the hypercohomology $\HH^k(E):=H^k(X;C(A;E))$ of the Chevalley--Eilenberg complex $C(A;E)=(\wedge^\bullet T\otimes E,\ d_E)$ (the differential is $\C$-linear; for a local holomorphic frame $e$, $d_E=[\sigma,\cdot]+V\wedge$, where $V$ is determined by $\nabla_\beta e=\beta(V)e$) is called generalized Dolbeault cohomology. The filtration by $b$ gives a spectral sequence $E_1^{a,b}=H^a(X,\wedge^bT\otimes E)\Rightarrow\HH^{a+b}(E)$ (finite-dimensional if $X$ is compact). $P_E(t)=\sum_k\dim\HH^k(E)\,t^k$.
+\end{defn}
+
+\begin{prop}[Generalized holomorphic bundle $=$ Poisson module; Dolbeault model]\label{prop:ident}
+(a) A generalized holomorphic bundle with respect to $\Jc_\sigma$ is the same as a holomorphic vector bundle with a Poisson module structure. \tC Gualtieri \cite{GuaBr} Prop.~8; LGSX Lemma 4.16. A sketch of a direct proof is given below \tP.
+(b) From $L^*=T^{*0,1}\oplus T^{1,0}$ we get $\Gamma(\wedge^kL^*\otimes E)=\bigoplus_{a+b=k}A^{0,a}(\wedge^bT\otimes E)$, with $d_L=\dbar+(-1)^ad_A$. Hence the generalized Dolbeault cohomology $H^k(\Gamma(\wedge^\bullet L^*\otimes E),d_L)$ equals $\HH^k(E)$. \tC LGSX Thm.~4.19 ($H^*(A,E)=H^*(T^{0,1}\bowtie A^{1,0},E)$, where $H^*(A,E)$ is defined as sheaf cohomology in Def.~4.17). \tP The structure of the proof is shown below, but it depends on Mokri's theorem on matched pairs (\cite{Mok}) and LGSX Lemma 4.22, which we did not re-derive \tQ.
+\end{prop}
+\begin{proof}[Sketch of proof]
+(a) ($\Leftarrow$) For a holomorphic frame $\{e_s\}$ put $\nabla_{\bar\Xi}\sum f_se_s=\sum(\bar\Xi f_s)e_s$ and $\nabla_\xi\sum f_se_s=\sum((\sigma^\sh\xi)f_s)e_s+f_s\nabla_\xi e_s$ (the unique extension forced by the Leibniz rule). Flatness: for the pair $(\bar\Xi,\bar\Upsilon)$ it is the integrability of the holomorphic structure, for $(\bar\Xi,\xi)$ it is that $\nabla_\xi$ maps holomorphic sections to holomorphic sections, and for $(\xi,\eta)$ it is the flatness of the Poisson module (the curvature is a tensor, so it extends to $C^\infty$). ($\Rightarrow$) The restriction to $T^{0,1}$ gives a holomorphic structure (Koszul--Malgrange); from flatness of mixed type, $\nabla_\xi$ maps holomorphic sections to holomorphic sections, and the Leibniz rule and flatness give the module condition.
+(b) By the general theory of matched pairs (Mokri), the Chevalley--Eilenberg complex of $L\cong T^{0,1}\bowtie A^{1,0}$ is the total complex of a double complex in the $T^{0,1}$-direction ($\dbar$) and the $A^{1,0}$-direction ($d_A$). The two differentials anticommute under the Koszul sign $(-1)^a$, and the total complex is the Dolbeault resolution of $(\wedge^\bullet T\otimes E,d_A)$, so its cohomology is the hypercohomology. \qedhere
+\end{proof}
+Below, all results are statements about $\HH^*(E)=H^*(X;C(A;E))$; Proposition \ref{prop:ident}(b) is used wherever the identification with generalized Dolbeault cohomology is needed.
+
+\begin{obs}[Generalized holomorphic sections are flat sections]\tP\label{obs:casimir}
+$\HH^0(E)=\ker(d_E:H^0(E)\to H^0(T\otimes E))=\{s\in H^0(X,E):\nabla_\xi s=0\ \forall\xi\}$, i.e.\ flat (Casimir-type) sections. Near a point where $\sigma$ is non-degenerate, $\nabla$ corresponds to an ordinary flat connection via $\sigma^\sh$, and flat sections are locally constant.
+\end{obs}
+This is why generalized holomorphic sections cannot give an embedding of $X$ into projective space (\S\ref{sec:kodaira}).
+
+%--------------------------------------------------------------
+\subsection{The log-symplectic case: Poisson modules $=$ flat logarithmic connections}\label{subsec:logsymp}
+%--------------------------------------------------------------
+Let $X$ be a compact complex manifold ($\dim_\C X=n=2k$), $D\subset X$ a reduced divisor (simple normal crossings, SNC; for surfaces ordinary double points only are also allowed), $T_D=T_X(-\log D)$, $B=\Omega^1(\log D)$.
+\begin{defn}[Log-symplectic]\tC\label{defn:logsymp}
+If $\sigma\in H^0(\wedge^2T_D)$ and $\sigma^\sh:B\to T_D$ is an isomorphism, $\sigma$ is called log-symplectic along $D$ (equivalently, $\omega:=\sigma^{-1}\in H^0(\Omega^2(\log D))$ is non-degenerate). Then $\mathrm{div}(\sigma^k)=D$, i.e.\ $-K_X=\mathcal O(D)$. For surfaces this means that $\sigma\in H^0(-K_X)$ has a reduced zero divisor with only ordinary double points. Locally $\sigma=h\,\partial_1\wedge\partial_2$, $h=zu$ (smooth point) or $z_1z_2u$ (double point), $u$ a unit.
+\src{Goto \cite{Goto}; Gualtieri--Li \cite{GL}; Pym \cite{Pym}, Lett.\ Math.\ Phys.\ 108 (2018) 573--632 (bibliographic data checked). Publication data of Goto and Gualtieri--Li: \tQ.}
+\end{defn}
+
+\begin{thm}[Poisson modules $=$ flat logarithmic connections]\tP\label{thm:main1}
+Let $(X,D,\sigma)$ be log-symplectic (any even dimension, $D$ SNC) and $E$ a holomorphic line bundle with a Poisson module structure.
+\begin{enumerate}
+\item[(a)] For a local frame $e$, $\nabla_\beta e=\beta(V)e$ defines a holomorphic vector field $V$ with $[\sigma,V]=0$ (a Poisson vector field). Under the change of frame $e\mapsto ge$, $V$ changes by the Hamiltonian term $X_{\log g}$.
+\item[(b)] $V$ is automatically logarithmic: $V\in T_D$. Hence the $A$-module structure extends uniquely to a $B$-module structure and, through $\sigma^\sh:B\cong T_D$, is the same as a flat connection with logarithmic poles $\nabla^{\log}:E\to\Omega^1(\log D)\otimes E$.
+\item[(c)] The residue of $\nabla^{\log}$ along $D_i$ is a constant $r_i\in\C$, and $c_1(E)=-\sum_ir_i[D_i]$ in $H^2(X;\C)$.
+\item[(d)] Near a point of $D$ there is a frame with $\nabla^{\log}e=\sum_ir_i\,\dlog z_i\,e$.
+\item[(e)] The subcomplex $C(T_D;E)=(\wedge^bT_D\otimes E,d_E)\subset C(A;E)$ is isomorphic via $\wedge^b\sigma^\sh$ to the log de Rham complex $\mathrm{DR}_{\log}(E)$.
+\end{enumerate}
+\end{thm}
+\begin{hyptab}
+Log-symplectic ($\sigma^\sh:B\cong T_D$) & To identify the Lie algebroid structure $(T_D^*)_\sigma$ on $B$ with $T_D$ and treat Poisson modules as flat connections (with log poles) & Lemma \ref{lem:iso}, (b), (e)\\\midrule
+$D$ reduced, SNC & To estimate the pole order from each factor of the local equation $f=z_1\cdots z_s$ independently & Lemma \ref{lem:log} ($V(f)\in(f)\Rightarrow V(z_i)\in(z_i)$)\\\midrule
+$X$ compact & The relation between $c_1(E)$ and the residues is an equality of global cohomology classes & (c). That residues are constant is local\\\midrule
+$[\sigma,\sigma]=0$ & $A$ is a Lie algebroid and $d_E^2=0$ & Lemma \ref{lem:flat}
+\end{hyptab}
+
+\begin{lem}[Flatness $\Leftrightarrow$ Poisson vector field]\tP\label{lem:flat}
+For a local frame $e$ put $\Theta(\beta):=\nabla_\beta e/e$. Then $\nabla_a\nabla_be=(\sigma^\sh a)(\Theta b)e+\Theta(a)\Theta(b)e$. Hence flatness $[\nabla_a,\nabla_b]=\nabla_{[a,b]_\sigma}$ is equivalent to $(\sigma^\sh a)(\Theta b)-(\sigma^\sh b)(\Theta a)=\Theta([a,b]_\sigma)$, i.e.\ $\Theta$ is a 1-cocycle of the Lichnerowicz complex ($\Theta(\beta)=\beta(V)$, $[\sigma,V]=0$). For a surface with $\sigma=h\partial_1\wedge\partial_2$, $a=\Theta(dz_1)$, $b=\Theta(dz_2)$, the condition reads $h(a_1+b_2)=h_1a+h_2b$, i.e.\ $V(h)=h\,\mathrm{div}V$. The differential is $d_E(fe)=(-\sigma^\sh(df)+fV)e$ in degree $0$, and for $c=X\otimes e$, $X=p\partial_1+q\partial_2$,
+\begin{equation}\label{eq:dE}
+(d_Ec)(dz_1,dz_2)=h(p_1+q_2)-h_1p-h_2q+qa-pb.
+\end{equation}
+\end{lem}
+\begin{lem}[$V$ is logarithmic]\tP\label{lem:log}
+Let $f=z_1\cdots z_s$ be a local equation of $D$. From $L_V\sigma=0$ we get $L_V\sigma^k=0$. Since $\sigma^k=f'\partial_1\wedge\cdots\wedge\partial_n$ ($f'=f\cdot$unit), $V(f')-f'\,\mathrm{div}V=0$, so $V(f)\in(f)$. In $V(f)/f=\sum_iV(z_i)/z_i$ the $i$-th term has a pole only along $\{z_i=0\}$; since the sum is holomorphic, each $V(z_i)/z_i$ is holomorphic, i.e.\ $V(z_i)\in(z_i)$.
+\end{lem}
+\begin{lem}[$\sigma^\sh:B\to T_D$ is an isomorphism of Lie algebroids]\tP\label{lem:iso}
+$\sigma\in\wedge^2T_D$ is a non-degenerate Poisson structure on the Lie algebroid $T_D$. That $\omega=\sigma^{-1}$ is $d_{T_D}$-closed follows from: $\omega$ is closed on $U$ (inverse of a Poisson structure), and a section of $\Omega^3(\log D)$ that vanishes on a dense open set vanishes. For a non-degenerate Poisson structure given by a closed 2-form, $\sigma^\sh$ preserves brackets, so $(T_D^*)_\sigma=B\cong T_D$.
+\end{lem}
+\begin{lem}[Residues, local normal form, $c_1$]\tP \tC\label{lem:res}
+Write $\nabla^{\log}e=\theta e$, $\theta\in\Omega^1(\log D)$; $\theta$ is closed by flatness. The residue along $D_i$ is constant, as seen by restricting $d\theta$ to $D_i$. $\theta-\sum r_i\dlog z_i$ is a closed holomorphic 1-form $=dg$, and for the frame $e'=e^{-g}e$ we get $\nabla^{\log}e'=\sum r_i\dlog z_i\,e'$. $c_1(E)=-\sum r_i[D_i]$ follows from the Esnault--Viehweg residue formula (\tC \cite{EV} \S2; \cite{Del} Ch.~II. Sign check: for $\mathcal O(D)$ with the canonical section flat, the residue is $-1$ and $c_1=[D]$). The set of module structures with the same $c_1$ is a torsor under $H^0(\Omega^1(\log D))=\ker(\C^c\to H^2(X;\C))$ (Deligne), of dimension $c-\rho_D$. If $D$ is irreducible it is unique; if reducible, it is an affine family of residue vectors.
+\end{lem}
+\begin{proof}[Proof of Theorem \ref{thm:main1}]
+(a) Lemma \ref{lem:flat}. (b) By Lemma \ref{lem:log}, $\Theta$ extends to $B$; flatness is an equality on a dense open set and so persists after the extension. Combine with Lemma \ref{lem:iso}. (c), (d) Lemma \ref{lem:res}. (e) Lemma \ref{lem:iso}.
+\end{proof}

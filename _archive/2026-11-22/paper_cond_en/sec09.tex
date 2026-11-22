@@ -1,0 +1,115 @@
+%==============================================================
+\section{The Kodaira-type problem}\label{sec:kodaira}
+%==============================================================
+\subsection{The classical Kodaira embedding theorem: where what is used}
+\begin{thm}[Kodaira embedding theorem]\tC\label{thm:Kod}
+Let $X$ be a compact complex manifold and $L$ a positive holomorphic line bundle. Then $X$ is projective, and for $m$ sufficiently large the map $X\to\mathbb P(H^0(X,L^m)^*)$ given by $|L^m|$ is an embedding.
+\src{Kodaira \cite{Kod54}. Textbooks: Griffiths--Harris \cite{GH} Ch.~1 \S4, Huybrechts \cite{Huy} Prop.\ 5.3.1 (number \tQ).}
+\end{thm}
+\begin{hyptab}
+$X$ compact & $H^0(X,L^m)$ is finite-dimensional and the map to $\mathbb P^N$ can be defined. Closed embedding & First and last steps of the proof\\\midrule
+$L$ positive ($i\Theta_L>0$) & The curvature form is a K\"ahler form and Kodaira vanishing is available & The step showing $H^1(\tilde X,\pi^*L^m\otimes\mathcal O(-2E_x))=0$ on the blow-up $\tilde X$ at a point $x$\\\midrule
+Enough holomorphic sections & They separate points and tangent vectors & Surjectivity of $H^0(L^m)\to L^m\otimes\mathcal O/\mathfrak m_x^2$ follows from the vanishing
+\end{hyptab}
+It matters at which step of the proof it is used that sections \emph{distinguish points}. This step breaks for generalized holomorphic (GH) sections.
+
+\subsection{Embedding by generalized holomorphic sections is impossible}
+\begin{prop}\tP\label{prop:one}
+Let $X$ be a connected compact complex manifold, $\sigma$ a holomorphic Poisson structure non-degenerate on a dense open set $U_0$, and $L$ a Poisson module. Then $\dim_\C\HH^0(L)\le1$. A GH section is determined by its value at one point of $U_0$, and the Kodaira map by GH sections is constant (or undefined).
+\end{prop}
+\begin{hyptab}
+Connected, $U_0$ dense & The identity theorem can be used & (iii)\\\midrule
+$\sigma$ non-degenerate on $U_0$ & $\sigma^\sh:A|_{U_0}\to T$ is an isomorphism and the $A$-connection becomes an ordinary flat connection & (i)\\\midrule
+$L$ a line bundle & A flat section is determined by its value at one point & (ii)
+\end{hyptab}
+\begin{proof}
+(i) On $U_0$ put $\nabla_vs:=D_{(\sigma^\sh)^{-1}v}s$; by the Leibniz rule $\nabla$ is an ordinary flat holomorphic connection. GH sections satisfy $\nabla s=0$ (Observation \ref{obs:casimir}). (ii) $U_0$ is connected (a connected manifold minus a proper analytic subset) and $L$ has rank 1, so the space of flat sections has dimension $\le1$ and a section is determined by its value at one point. (iii) $s$ is determined by $s|_{U_0}$ (identity theorem). \qedhere
+\end{proof}
+\begin{ex}\tV
+$\mathbb{CP}^2$ with $\Pi_F$ ($F$ a smooth cubic): $\HH^0(\mathcal O(m))=\C F^k$ ($m=3k\ge0$) and $0$ otherwise (Example \ref{ex:cp2}). $\mathbb P^1\times\mathbb P^1$ with a smooth $(2,2)$ curve: $\HH^0(\mathcal O(m,m))=\C F^{m/2}$ ($m\in2\Z_{\ge0}$, Example \ref{ex:p1p1}). For no $m$ is there an embedding by GH sections.
+\end{ex}
+\begin{prop}\tP\label{prop:leaf}
+Let $M$ be a compact generalized complex manifold, $\Jc$ of regular type $k<n$ on a dense open set $W$ (leaf dimension $2(n-k)>0$), and $L$ a generalized holomorphic line bundle. For any GH sections $s_0,\dots,s_N$, the map $\varphi=[s_0:\cdots:s_N]$ (defined outside the base locus) is constant on each leaf of $W$ and hence not an immersion on $W$.
+\end{prop}
+\begin{hyptab}
+Regular type (local model is a product) & $\pi_T(L)\supset T_F\otimes\C$ can be used & Local Darboux (Gualtieri \cite{Gua11} Thm.\ 4.3 \tC)\\\midrule
+$k<n$ & Leaves have positive dimension & Can move along leaves\\\midrule
+$L$ generalized holomorphic & The $L$-connection $D$ satisfies $D_\xi(fs)=\pi_T(\xi)(f)s+fD_\xi s$ & GH section $\Rightarrow$ parallel along the leaves
+\end{hyptab}
+\begin{proof}
+In the product model $L=\mathrm{graph}(\omega_Y)\oplus(T^{0,1}\oplus T^{*1,0})$ we have $\pi_T(L)=T_Y\otimes\C\oplus T^{0,1}$. When $\xi\in L$ has a leafwise component, $D_\xi s=0$ means $s$ is parallel for the leafwise flat connection $\nabla^F$. For parallel transport $P:L_x\to L_y$ along a path in a leaf, $s_i(y)=Ps_i(x)$ for all GH sections. Hence the ratio $[s_0:\cdots:s_N]$ agrees at $x$ and $y$. \qedhere
+\end{proof}
+\begin{rem}[What breaks in the classical proof]\tP
+The classical proof uses that sections separate points and tangent vectors. In Proposition \ref{prop:one} there is at most one separating section (up to scalars), and in Proposition \ref{prop:leaf} points of the same leaf cannot be separated. The hypothesis (positive curvature) guarantees only the \emph{existence} of sections, not that they are GH (flat). Pal--Poddar's ``positive SGH line bundle'' (Def.\ 11.10, 11.11 \tC \tQ) requires positivity only in the transversal direction, which corresponds to this situation.
+\end{rem}
+
+\subsection{Leaf-space version of Kodaira}
+\begin{thm}[Leaf-space version of Kodaira]\tP\label{thm:K1leaf}
+Let $M$ be a compact regular-type generalized complex manifold satisfying:
+\begin{itemize}
+\item[(K1)] The projection $\pi:M\to X$ to the symplectic leaves is a proper submersion (or orbifold submersion) with connected compact fibres ($=$ leaves), and $X$ is a compact complex manifold (orbifold) of dimension $k$.
+\item[(K2)] $L$ is an SGH line bundle and there is a holomorphic line bundle $L_X\to X$ with $L\cong\pi^*L_X$ (as SGH bundles) (holonomy along the leaves is trivial).
+\item[(K3)] $L_X$ is ample.
+\end{itemize}
+Then there is $m_0$ such that for $m\ge m_0$, $\HH^0(M,L^m)=\pi^*H^0(X,L_X^m)$, and the map $\varphi_m:M\to\mathbb P^N$ by GH sections is $\varphi_m=\iota_m\circ\pi$, where $\iota_m:X\hookrightarrow\mathbb P^N$ is the classical Kodaira embedding. Hence each fibre of $\varphi_m$ is exactly one leaf. In the orbifold case $\iota_m$ is an embedding of the coarse space ($m$ a multiple of the orders of the isotropy groups; Baily \cite{Bai}, quoted from memory \tQ).
+\end{thm}
+\begin{hyptab}
+(K1) connected compact fibres & Flat sections on a leaf are constant (converse of Prop.\ \ref{prop:leaf}). Since fibres are connected the preimage under $\varphi_m$ is exactly one leaf & (i), (iii)\\\midrule
+(K2) trivial holonomy & $L^m$ is a trivial flat bundle on leaves and GH sections exist. If the holonomy is non-trivial, $\HH^0=0$ along the leaves & (i)\\\midrule
+(K3) $L_X$ ample & Classical Kodaira (Theorem \ref{thm:Kod}) is applied on $X$ & (ii)\\\midrule
+Orbifold case & Kodaira for the coarse space (Baily) & Orbifold version of (ii)
+\end{hyptab}
+\begin{proof}
+(i) $\HH^0(M,L^m)$ consists of the sections of $L^m$ that are flat along leaves and holomorphic transversally (definition of SGH bundles; degree-0 part of Pal--Poddar Cor.\ 8.10 \tC \tQ). By (K1), (K2), $L^m=\pi^*L_X^m$ is a trivial flat bundle on each fibre, so flat sections are constant on fibres, i.e.\ of the form $\pi^*t$ ($t$ a section of $L_X^m$). Transversal holomorphy is equivalent to holomorphy of $t$. Hence $\HH^0(M,L^m)=\pi^*H^0(X,L_X^m)$. (ii) By (K3) and Theorem \ref{thm:Kod}, $\iota_m$ is an embedding for $m\ge m_0$. (iii) $\varphi_m=\iota_m\circ\pi$ and $\iota_m$ is injective, so $\varphi_m(x)=\varphi_m(y)\iff\pi(x)=\pi(y)$, i.e.\ $x,y$ are in the same leaf. \qedhere
+\end{proof}
+\begin{rem}[Position]
+\tP This is a direct consequence and not a deep result. \tC As far as we found, no reference states a Kodaira-type claim in regular type. It corresponds, on the embedding side, to Pal--Poddar Thm.\ 11.12. \tQ Equivalence with their definition of ``positive'' is unchecked. We found no Kodaira-type statements for the type-jumping case or for general generalized complex structures.
+\end{rem}
+
+%--------------------------------------------------------------
+\subsection{Poisson--Kodaira: embedding of Poisson pairs}
+%--------------------------------------------------------------
+Since GH sections are (almost) constant, we change the problem and ask whether a Kodaira embedding $\nu:X\hookrightarrow\mathbb P^N$ by \emph{ordinary} holomorphic sections is a Poisson embedding, i.e.\ whether $\sigma$ is the restriction of a Poisson structure $\sigma_N$ on $\mathbb P^N$. (This is the author's proposal, not a formulation in the literature.)
+
+\begin{lem}[$\C^*$-invariant lift of a rank one Poisson module]\tP \tQ\label{lem:lift}
+Let $L$ be a Poisson module. On the total space $C=L^*\setminus0$ there is a unique $\C^*$-invariant Poisson structure $\hat\pi=\sigma+u\,\theta\wedge\partial_u$ with $p_*\hat\pi=\sigma$ (local frame $e$, $D_\alpha e=\theta(\alpha)e$, $u$ the fibre coordinate), and sections of $L^k$ correspond to homogeneous functions of degree $k$. The Jacobi identity for $\hat\pi$ is equivalent to flatness of $D$ and the Leibniz rule.
+\end{lem}
+The local computation is checked only as a sketch \tQ. Example: $\Pi_F$ on $\mathbb P^2$ (a quadratic Poisson structure on $\mathbb C^3$), $L=\mathcal O(m)$ (any $m$).
+\begin{prop}\tP\label{prop:graded}
+If $X$ is projective and $L$ an ample Poisson module, then $R=\bigoplus_{k\ge0}H^0(X,L^k)$ is a graded Poisson algebra whose bracket has degree 0 ($\{R_a,R_b\}\subset R_{a+b}$).
+\end{prop}
+\begin{proof}
+By Lemma \ref{lem:lift}, $R$ is the ring of homogeneous functions on $C$ and the bracket of $\hat\pi$ preserves degree. \qedhere
+\end{proof}
+\begin{prop}[Almost-Poisson quadratic lift]\tP \tC\label{prop:almost}
+For $m\ge m_1$, $R^{(m)}=\bigoplus_kR_{mk}=S/I$ ($S=\mathrm{Sym}\,R_m$, $I$ generated by quadrics) (Mumford \cite{Mum}; quoted from memory, pages \tQ). Then there is a degree-0 skew biderivation $\{\ ,\ \}'$ on $S$ (a quadratic almost-Poisson structure) inducing the bracket of $R$ on the quotient $S/I$.
+\end{prop}
+\begin{proof}
+Choose a linear section $s$ of $S_2\to R_{2m}$, set $\{y_a,y_b\}:=s(\{\bar y_a,\bar y_b\})$ and extend by the Leibniz rule. For $q\in I_2$, $g\in S_1$, $\{q,g\}'\equiv\{\bar q,\bar g\}=0\bmod I_3$, so $\{I_2,S_1\}'\subset I_3$. Since $I$ is generated by $I_2$, the Leibniz rule gives $\{I,S\}'\subset I$. \qedhere
+\end{proof}
+The Jacobiator $\mathcal J\in\mathrm{Hom}(\wedge^3S_1,I_3)$ of the lift is in general non-zero, and the difference between choices of lift is $\epsilon\in\mathrm{Hom}(\wedge^2S_1,I_2)$. Extension to a Poisson structure is equivalent to the existence of a solution $\epsilon$ of the quadratic equation $\mathcal J_0+\mathcal L(\epsilon)+\mathcal J(\epsilon)=0$. The first-order obstruction class is $\mathcal J_0\bmod\mathrm{im}\,\mathcal L$.
+
+\begin{thm}[Poisson--Kodaira, toric]\tP\label{thm:PKtoric}
+Let $X$ be a smooth projective toric variety (torus $T=N\otimes\C^*$) and $\sigma=\sum\omega^{ij}\xi_i\wedge\xi_j$ ($\xi_i=x_i\partial_{x_i}$, $\omega\in\wedge^2N_\C$). Let $L=\mathcal O(D)$ be ample with polytope $P$ and $L^m$ very ample (sections $\chi^a$, $a\in mP\cap M$). Then $\nu:X\hookrightarrow\mathbb P^N$, $\nu^*y_a=\chi^a$, is a Poisson embedding for the diagonal quadratic Poisson structure on $\mathbb P^N$
+\[\sigma_N=\sum_{a<b}\omega(a,b)\,y_ay_b\,\partial_{y_a}\wedge\partial_{y_b},\qquad\omega(a,b)=\sum\omega^{ij}a_ib_j.\]
+This holds for any very ample power $L^m$.
+\end{thm}
+\begin{hyptab}
+Toric, $\sigma$ torus invariant & Brackets of characters are monomials: $\{\chi^a,\chi^b\}=\omega(a,b)\chi^{a+b}$ & (2). The lift can be chosen diagonal\\\midrule
+$L^m$ very ample & $\nu$ is an embedding & The ``embedding'' part of the conclusion\\\midrule
+$X$ smooth, projective & The setting of classical Kodaira & Same
+\end{hyptab}
+\begin{proof}
+(1) $\sigma_N$ is Poisson: for skew $\lambda_{ij}$ put $\{y_i,y_j\}=\lambda_{ij}y_iy_j$; then $\{y_i,\{y_j,y_k\}\}=\lambda_{jk}(\lambda_{ij}+\lambda_{ik})y_iy_jy_k$ and the cyclic sum vanishes because the six terms cancel in pairs by skew-symmetry. The scaling weight is 0, so it descends to $\mathbb P^N$. (2) On the torus, $\{\chi^a,\chi^b\}=\sigma(d\chi^a,d\chi^b)=\omega(a,b)\chi^{a+b}=\nu^*(\omega(a,b)y_ay_b)$. Since $\sigma$ and $\nu^*\sigma_N$ are both holomorphic, $\nu$ is a Poisson map also on the closure $X$ of the torus. \qedhere
+\end{proof}
+
+\begin{obs}[$\mathbb P^2$, cubic, $m=2$: numerical confirmation \tV]\label{obs:P2}
+$X=\mathbb P^2$, $\sigma=\Pi_F$, Veronese $m=2$ ($\mathbb C^6$, $\dim I_2=6$, 90 unknowns $\epsilon$, 940 equations). The Jacobiator of the natural lift is non-zero for 18 triples for Fermat, 19 for Hesse, 1 for $xyz$, and also for the cusp. Solving the full quadratic equation $\mathcal J_0+\mathcal L(\epsilon)+\mathcal J(\epsilon)=0$ by the Levenberg--Marquardt method, solutions with residual $\le10^{-12}$ were found for all of $F=xyz$, Fermat, Hesse ($x^3+y^3+z^3-21xyz$) and cusp ($x^3-y^2z$). For Fermat we confirmed also independently by finite differences (Jacobiator $\sim10^{-9}$, error of restriction to the Veronese cone $\sim10^{-10}$). For Fermat there is no solution of the linear part $\mathcal J_0+\mathcal L(\epsilon)=0$ alone, and the quadratic term is essential. $m=1$ is trivial; for $m\ge3$ there are 1215 unknowns and the computation is too heavy by this method and was not done. Scripts \texttt{roundE\_*.py} (transcribed from the earlier records, not re-run \tQ). This is numerical existence, not an exact algebraic proof (certificate).
+\end{obs}
+\begin{obs}[Segre embedding of $\mathbb P^1\times\mathbb P^1$ ($m=1$): Sklyanin-type structure \tV]\label{obs:Segre}
+For the quadratic Poisson structure on $\mathbb P^3$, $\{x_0,x_i\}=(J_j-J_k)x_jx_k$, $\{x_j,x_k\}=x_0x_i$ ($(i,j,k)$ cyclic in $1,2,3$, $J=(2,3,7)$), we confirmed in exact rational arithmetic the Jacobi identity (4 of 4 triples) and that there are exactly two quadratic Casimirs and the generic rank is 2. Hence each quadric surface of the Casimir pencil is a Poisson submanifold, the smooth ones are $\mathbb P^1\times\mathbb P^1$, and the zero locus of $\sigma$ is a smooth elliptic quartic curve $E=Q_1\cap Q_2$ (``the simple zeros are exactly $E$'' is an identification by rank and leaf arguments, not computed). This is classical and not new (work of Feigin--Odesskii, Odesskii, Hua--Polishchuk \tC \tQ). Whether all smooth $(2,2)$ curves arise in this form, and the case of singular $E$, are unchecked \tK.
+\end{obs}
+\begin{conj}[Poisson--Kodaira]\tK\label{conj:PK}
+Let $(X,\sigma)$ be a projective holomorphic Poisson manifold and $L$ an ample Poisson module. Then there is $m_0$ such that for $m\ge m_0$ the Kodaira embedding by $|L^m|$ is a Poisson embedding for some quadratic Poisson structure $\sigma_N$ on $\mathbb P^N$.
+\end{conj}
+\noindent Evidence: Theorem \ref{thm:PKtoric}, Observations \ref{obs:P2}, \ref{obs:Segre}. Open: a general obstruction theory ($\mathcal J_0\bmod\mathrm{im}\,\mathcal L$ is a class of Poisson cohomology type, expected to vanish for $m\gg0$ by Serre-type vanishing for $H^1$ of a Koszul complex, but not proved). For the Fermat type of $\mathbb P^2$ at $m=3$ there is no computation and no evidence either for or against PK (the case $xyz$ is proved by the toric theorem and is not an independent test). No counterexample has been found, and the possibility of failure for small $m$ remains. For $\sigma=0$ it agrees with classical Kodaira. For regular type $M\to X$ with leaf $Y$, GH sections factor through $X$ (Proposition \ref{prop:leaf}), so to embed $(M,\sigma_Y)$ as a Poisson pair one must use non-GH ordinary holomorphic sections; this is the formulation of this subsection.

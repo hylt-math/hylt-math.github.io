@@ -1,0 +1,119 @@
+%==============================================================
+\appendix
+\section{総合版からの変更点}\label{app:changes}
+%==============================================================
+本論文は総合版（Part I--V の統合、80 頁、2026-11-22 v1）を、テーマ別に 1 本の論文に書き直したものである。主張の格上げはしていない。変更を以下に列挙する。
+
+\subsection{状態表現の更新}
+\begin{enumerate}
+\item \textbf{局所公式}：総合版の第 II, III 部は「観察・予想」（\tP\ \tV\ \tK）としていたが、第 V 部で準斉次な germ の $s\ne1$ について証明された。本論文は定理 \ref{thm:local} として一箇所にまとめ、(e,$\chi_h$) 基底によるより短い証明に書き換えた（旧証明の符号規約と収束に関する\tQ\ を除去した。残る\tQ\ は、局所モデルと大域 Poisson 加群の茎の同定、Saito の判定法の番号）。規則 $R(s)$ は第 II 部 v2 の訂正版。旧版の閾値の規則 $[s<\mathrm{lct}]\cdot(\cdots)$ は $\mathrm{lct}<1/2$ で誤りであることを注意し、大域の精密化予想（予想 \ref{conj:refined}）は $\mathrm{lct}\ge1/2$ に限定した。
+\item \textbf{$n>2$ は未解決との記述}：簡約定理（定理 \ref{thm:R}）を、$\mathrm{gr}\,Q$ の濾過に依らない形（連鎖写像 $\varepsilon$ による (GEN$_Q$)）で証明し直した。一般 $n$ での (GEN$'$) $\Rightarrow$ (GEN$_Q$)（命題 \ref{prop:grQ}）は\tQ\ のまま。定理 V（補遺にあった）は第 7 節の本文に入れ、系 \ref{cor:Vgen} として定理 K（定理 \ref{thm:K}）の消滅部分に接続した。「定理 K の $k<n$ の消滅が未証明」という旧記述は、全 $r_i\notin\Z$ の場合に解消された（混合は未解決）。
+\item \textbf{三重点の異常}：$m=-2,-4$ の相殺は観察・予想のままとした（定理 \ref{thm:local} では説明されない）。
+\item \textbf{(GEN) の名称}：定理 \ref{thm:T} の仮定 (GEN)（定数行列 $A$ の算術的一般性）と、簡約定理の仮定を区別するため、後者を (GEN$_Q$) と改名した。
+\end{enumerate}
+
+\subsection{構成上の変更}
+\begin{itemize}
+\item 各部ごとの概観・記号表・状態表・「検証の範囲」を、第 1 節の 1 つの状態表と記号表に統合した。通し番号は定義・定理・命題・補題・系・例・注意・観察・予想で共通の 1 本。
+\item 旧 Part I の「古典の三種の神器」節は、古典定理と仮定の表（第 2 節）に圧縮した。旧 Part I の可積分性についての注意と、一部の古典定理の仮定表（Kodaira--Nakano など、本論文で使わないもの）は省いた。
+\item 旧 Part IV のトーリックの再証明（(GEN$'$) 経由）は、定理 \ref{thm:T} の直接証明があるため、証明を省き、第 7 節で関係を述べるにとどめた。
+\item 旧 Part I $\S$ の $\mathbb{CP}^2$ の例は、定理 \ref{thm:B} からの導出（例 \ref{ex:cp2}）として書き直した。
+\item 旧 Part III の積の命題（Künneth）は例 \ref{ex:prod} に、非被約な境界は観察 \ref{obs:nr} と予想 \ref{conj:NR} に統合した。
+\item 旧 Part II の「Part I への影響の確認」節は、各定理の仮定表に吸収したので独立の節としては残していない。
+\end{itemize}
+
+\subsection{旧部の主張と本論文の対応}
+\begin{center}\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{5.4cm}>{\raggedright\arraybackslash}p{9.2cm}}\toprule
+旧（総合版）の主張 & 本論文 \\\midrule
+Part I：GH 束 $=$ Poisson 加群、対数的平坦接続 & 命題 \ref{prop:ident}、定理 \ref{thm:main1}\\
+Part I：曲面の主定理、閉公式、周期的安定化 & 定理 \ref{thm:main2}, \ref{thm:B}, \ref{thm:A2}\\
+Part I：Serre 型定理、双対性 & 定理 \ref{thm:serre}, \ref{thm:dual}\\
+Part II：Euler 標数の定理 & 定理 \ref{thm:E}\\
+Part II：トーリック（曲面、一般次元）、共鳴 & 定理 \ref{thm:weight}, \ref{thm:C1}, \ref{thm:C2}, \ref{thm:T}、観察 \ref{obs:res}\\
+Part II, III, V：局所公式、三重点、非被約 & 定理 \ref{thm:local}、観察 \ref{obs:triple}, \ref{obs:nr}、予想 \ref{conj:refined}, \ref{conj:NR}\\
+Part III：Kodaira 型 & 命題 \ref{prop:one}, \ref{prop:leaf}、定理 \ref{thm:K1leaf}, \ref{thm:PKtoric}、予想 \ref{conj:PK}\\
+Part IV：正則型、簡約定理 & 定理 \ref{thm:L}、系 \ref{cor:L}、定理 \ref{thm:R}\\
+Part V：定理 K1（対数版 Euler 標数） & 定理 \ref{thm:K1}\\
+Part V：定理 K、指数予想 & 定理 \ref{thm:K}、予想 \ref{conj:index}\\
+補遺：定理 V、Poisson--Kodaira の追加検証 & 定理 \ref{thm:V}、観察 \ref{obs:Segre}\\\bottomrule
+\end{tabular}
+\end{center}
+総合版の「定理 K1（葉空間版 Kodaira）」（第 III 部）と「定理 K1（対数版 Euler 標数）」（第 V 部）は別物であったので、本論文では前者を定理 \ref{thm:K1leaf}、後者を定理 \ref{thm:K1} とした。
+
+\subsection{訂正・追記}
+\begin{itemize}
+\item 記号 $\rho$ の衝突（トーリックの $\rho\in M_\C$ と、曲面の $[D_i]$ の張る空間の次元）を、後者を $\rho_D$ に改めて解消した。
+\item 準斉次 $D_5=z^2w+w^4$ の重みは $(3,2)$、次数 8（総合版の表と本文は正しい。研究メモにあった別の重みは誤り）。局所表の $A_4$ の最後の列を埋めた。
+\item Hu の 2 本目の論文の題名は総合版の第 I, III 部の表記（Lie groupoid Riemann--Roch--Hirzebruch theorem and applications, arXiv:2403.13424）に統一した（題名の最終確認は\tQ）。
+\end{itemize}
+
+\subsection{検証の範囲とスクリプト}
+計算はすべて有理数または有限体（$32003$, $2^{61}-1$）上の厳密な線形代数、あるいは既知の公式の当てはめであり、証明ではない。曲線の選び方への依存、および法 $p$ での還元が標数 0 の結果を代表することは検証していない。
+\paragraph{本論文の執筆中に再実行したもの。}
+\begin{itemize}
+\item \texttt{duality\_ndim.py}, \texttt{duality\_ndim\_exact.py}：$n\le4$、すべて一致。
+\item \texttt{roundH\_proof\_check.py}：14 種の準斉次 germ、不一致 0。
+\item \texttt{roundK\_check.py}：175 例、188 例、61 例、不一致 0。
+\item \texttt{roundJ2\_vanish\_check.py}：$n=4$ の 6 例。
+\item \texttt{roundD\_check.py}, \texttt{ncd\_local\_weights.py}, \texttt{ncd\_cochain\_check.py}, \texttt{serre\_rr\_check.py}。
+\item 新規に書いたもの \texttt{local\_basis\_check.py}：$(e,\chi_h)$ 基底の式 \eqref{eq:d0}, \eqref{eq:d1} の 210 検査、不一致 0。
+\end{itemize}
+出力は \texttt{logs/} に保存した。
+\paragraph{総合版の記録からの転記で、再実行していないもの。}トーリックの大規模な表（\texttt{roundC\_*.py}, \texttt{toric\_hh.py}, \texttt{toric\_generic\_check2.py}）、三重点（\texttt{local\_unequal*.py}）、非被約（\texttt{roundF\_nonreduced.py}）、Poisson--Kodaira の数値（\texttt{roundE\_*.py}）、共鳴の公式の 108 例、正則型の例（Kodaira--Thurston, Bieberbach）。
+\paragraph{文献。}引用した定理の適用範囲を原典で確認していないものが多数残る（各所の\tQ\ 項目：LGSX Thm.~4.19 と Mokri の定理の再導出、Gualtieri 2011 \S4 の精読、Saito の判定法と Cox--Little--Schenck の番号、Pal--Poddar の定義番号、Hu の書誌など）。
+
+\subsection{確信度の低い箇所（まとめ）}
+(1) 命題 \ref{prop:ident}（LGSX と Mokri に依存、再導出なし）、(2) 命題 \ref{prop:grQ}（一般 $n$ の $\mathrm{gr}\,Q$ と $\varepsilon$ の連鎖写像性）、(3) 定理 \ref{thm:local} の局所モデルと大域加群の接続、(4) 定理 \ref{thm:dual} の Koszul 符号の整合（手計算のみ）、(5) 定理 \ref{thm:L} の (i)（Gauss--Manin との同定は概略）、(6) 観察 \ref{obs:res} の $N_R$ の定義、(7) 補題 \ref{lem:lift}（見取り図）。
+
+%==============================================================
+\begin{thebibliography}{99}\small
+\bibitem{AB} M.\ Abouzaid, M.\ Boyarchenko, Local structure of generalized complex manifolds, J.\ Symplectic Geom.\ 4 (2006) 43--62, arXiv:math/0511049.
+\bibitem{ALN} B.\ Ammann, R.\ Lauter, V.\ Nistor, Pseudodifferential operators on manifolds with a Lie structure at infinity, arXiv:math/0304044.
+\bibitem{AN} Y.\ Akizuki, S.\ Nakano, Note on Kodaira--Spencer's proof of Lefschetz's theorems, Proc.\ Japan Acad.\ 30 (1954) 266--272.
+\bibitem{AS} M.\ Atiyah, I.\ Singer, The index of elliptic operators III, Ann.\ Math.\ 87 (1968) 546--604.
+\bibitem{Ara} D.\ Arapura, Geometry of cohomology support loci for local systems I, arXiv:alg-geom/9612006; J.\ Algebraic Geom.\ 6 (1997) 563--597 [巻頁は記憶\tQ].
+\bibitem{Atiyah} M.\ Atiyah, Vector bundles over an elliptic curve, Proc.\ London Math.\ Soc.\ (3) 7 (1957) 414--452.
+\bibitem{BG} A.\ Bailey, M.\ Gualtieri, Integration of generalized complex structures, arXiv:1611.03850.
+\bibitem{BLS} M.\ Braverman, Y.\ Loizides, Y.\ Song, Geometric quantization of $b$-symplectic manifolds, arXiv:1910.10016.
+\bibitem{Bai} W.\ L.\ Baily, On the imbedding of V-manifolds in projective space, Amer.\ J.\ Math.\ 79 (1957) 403--430 [細部は\tQ].
+\bibitem{Bre} G.\ Bredon, \emph{Sheaf Theory}, 2nd ed., Springer GTM 170, 1997 [細部は\tQ].
+\bibitem{CF} M.\ Crainic, R.\ L.\ Fernandes, Integrability of Lie brackets, Ann.\ Math.\ 157 (2003) 575--620, arXiv:math/0105033.
+\bibitem{CLS} D.\ Cox, J.\ Little, H.\ Schenck, \emph{Toric Varieties}, Graduate Studies in Math.\ 124, AMS 2011 [細部は\tQ].
+\bibitem{CMNM} F.\ J.\ Calder\'on-Moreno, L.\ Narv\'aez-Macarro, Logarithmic comparison theorems for free divisors (Dualit\'e et comparaison sur les complexes de de Rham logarithmiques par rapport aux diviseurs libres), Proc.\ London Math.\ Soc.\ 98 (2009), doi:10.1112/plms/pdn043, arXiv:math/0603003 [細部は\tQ].
+\bibitem{Cav} G.\ Cavalcanti, New aspects of the $dd^c$-lemma, arXiv:math/0501406; The decomposition of forms and cohomology of generalized complex manifolds, J.\ Geom.\ Phys.\ 57 (2006) 121--132.
+\bibitem{Del} P.\ Deligne, \'Equations diff\'erentielles \`a points singuliers r\'eguliers, Lecture Notes in Math.\ 163, Springer 1970.
+\bibitem{Del68} P.\ Deligne, Th\'eor\`eme de Lefschetz et crit\`eres de d\'eg\'en\'erescence de suites spectrales, Publ.\ Math.\ IH\'ES 35 (1968) 259--278.
+\bibitem{DelFG} P.\ Deligne, Le groupe fondamental du compl\'ement d'une courbe plane n'ayant que des points doubles ordinaires est ab\'elien, S\'em.\ Bourbaki 543 (1979/80).
+\bibitem{EV} H.\ Esnault, E.\ Viehweg, Logarithmic de Rham complexes and vanishing theorems, Invent.\ Math.\ 86 (1986) 161--194.
+\bibitem{Ful} W.\ Fulton, On the fundamental group of the complement of a node curve, Ann.\ Math.\ 111 (1980) 407--409.
+\bibitem{GH} P.\ Griffiths, J.\ Harris, Principles of Algebraic Geometry, Wiley 1978.
+\bibitem{GL} M.\ Gualtieri, S.\ Li, Symplectic groupoids of log symplectic manifolds, IMRN 2014, arXiv:1206.3674.
+\bibitem{Goto} R.\ Goto, Unobstructed deformations of generalized complex structures induced by $C^\infty$ logarithmic symplectic structures, arXiv:1501.03398 [掲載誌・巻頁は未確認\tQ].
+\bibitem{Gua11} M.\ Gualtieri, Generalized complex geometry, Ann.\ Math.\ 174 (2011) 75--123, arXiv:math/0703298.
+\bibitem{GuaBr} M.\ Gualtieri, Branes on Poisson varieties, arXiv:0710.2719 (v2, 2010-07；arXiv ページに掲載書誌の記載なし。The Many Facets of Geometry, Oxford Univ.\ Press 2010 は記憶\tQ).
+\bibitem{GuaHodge} M.\ Gualtieri, Generalized geometry and the Hodge decomposition, arXiv:math/0409093.
+\bibitem{GuaK} M.\ Gualtieri, Generalized K\"ahler geometry, Comm.\ Math.\ Phys.\ 331 (2014) 297--331, arXiv:1007.3485.
+\bibitem{HHM} T.\ Hausel, E.\ Hunsicker, R.\ Mazzeo, Hodge cohomology of gravitational instantons, Duke Math.\ J.\ 122 (2004) 485--548, arXiv:math/0207169.
+\bibitem{Hart} R.\ Hartshorne, Algebraic Geometry, GTM 52, Springer 1977.
+\bibitem{Hit03} N.\ Hitchin, Generalized Calabi--Yau manifolds, Q.\ J.\ Math.\ 54 (2003) 281--308, arXiv:math/0209099.
+\bibitem{Hu1} T.\ Hu, Kodaira vanishing theorems for K\"ahler Lie algebroids, arXiv:2403.10876.
+\bibitem{Hu2} T.\ Hu, Lie groupoid Riemann--Roch--Hirzebruch theorem and applications, arXiv:2403.13424.
+\bibitem{Huy} D.\ Huybrechts, Complex Geometry: An Introduction, Springer 2005.
+\bibitem{Kod53} K.\ Kodaira, On a differential-geometric method in the theory of analytic stacks, Proc.\ Nat.\ Acad.\ Sci.\ USA 39 (1953) 1268--1273.
+\bibitem{Kod54} K.\ Kodaira, On K\"ahler varieties of restricted type, Ann.\ Math.\ 60 (1954) 28--48.
+\bibitem{LGSX1} C.\ Laurent-Gengoux, M.\ Sti\'enon, P.\ Xu, Holomorphic Poisson manifolds and holomorphic Lie algebroids, IMRN 2008, arXiv:0707.4253.
+\bibitem{LGSX2} C.\ Laurent-Gengoux, M.\ Sti\'enon, P.\ Xu, Integration of holomorphic Lie algebroids, arXiv:0803.2031.
+\bibitem{MM} R.\ Mazzeo, R.\ Melrose, Pseudodifferential operators on manifolds with fibred boundaries, arXiv:math/9812120.
+\bibitem{Milnor} J.\ Milnor, \emph{Singular Points of Complex Hypersurfaces}, Annals of Math.\ Studies 61, Princeton Univ.\ Press 1968 [細部は\tQ].
+\bibitem{Mok} T.\ Mokri, Matched pairs of Lie algebroids, Glasgow Math.\ J.\ 39 (1997) 167--181, doi:10.1017/S0017089500032055 [年・DOI は出版社ページで確認、巻頁は記憶\tQ].
+\bibitem{Mum} D.\ Mumford, Varieties defined by quadratic equations, in: Questions on Algebraic Varieties (C.I.M.E., Varenna 1969), Cremonese 1970 [細部は\tQ].
+\bibitem{PP} D.\ Pal, M.\ Poddar, Strong generalized holomorphic principal bundles, arXiv:2404.18113; Ann.\ Sc.\ Norm.\ Super.\ Pisa Cl.\ Sci., doi:10.2422/2036-2145.202501\_026（掲載巻号は\tQ）.
+\bibitem{PPT} M.\ Pflaum, H.\ Posthuma, X.\ Tang, The index of geometric operators on Lie groupoids, Indag.\ Math.\ 25 (2014) 1--18, arXiv:1308.0236.
+\bibitem{Pym} B.\ Pym, Constructions and classifications of projective Poisson varieties, Lett.\ Math.\ Phys.\ 108 (2018), no.\ 3, 573--632, doi:10.1007/s11005-017-0984-5.
+\bibitem{QS} Y.\ Qiao, Y.\ So, Deformation and K-theoretic index formulae on boundary groupoids, arXiv:2304.13345.
+\bibitem{SGA4} M.\ Artin, Th\'eor\`eme de finitude pour un morphisme propre; dimension cohomologique des sch\'emas alg\'ebriques affines, in SGA 4, Exp.\ XIV, Lecture Notes in Math.\ 305 [細部は\tQ].
+\bibitem{Saito} K.\ Saito, Theory of logarithmic differential forms and logarithmic vector fields, J.\ Fac.\ Sci.\ Univ.\ Tokyo Sect.\ IA Math.\ 27 (1980) 265--291 [判定法の定理番号は記憶\tQ].
+\bibitem{Serre} J.-P.\ Serre, Faisceaux alg\'ebriques coh\'erents, Ann.\ Math.\ 61 (1955) 197--278.
+\bibitem{Tim} K.\ Timmerscheidt, Mixed Hodge theory for unitary local systems, J.\ reine angew.\ Math.\ 379 (1987) 152--171.
+\end{thebibliography}

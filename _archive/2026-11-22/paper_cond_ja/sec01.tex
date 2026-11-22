@@ -1,0 +1,107 @@
+%==============================================================
+\section{序論と主結果}\label{sec:intro}
+%==============================================================
+\subsection{動機と問題設定}
+複素幾何の「三種の神器」とは、Hirzebruch--Riemann--Roch の定理（HRR）、Serre の消滅定理、Kodaira の埋め込み定理である。これらを一般化複素幾何（Hitchin, Gualtieri）に拡張できるかが、本研究の最終目標である。調べた範囲では、Hu \cite{Hu1,Hu2} による Lie 亜群上の Kodaira--Nakano 消滅と Riemann--Roch--Hirzebruch、Pal--Poddar \cite{PP} による強一般化正則束（正則型）の消滅定理はあるが、一般の一般化複素構造に対する Kodaira 埋め込みや Riemann--Roch は見つからなかった\tC。
+
+そこで「最も簡単な非自明な例」から攻める。選んだ例は、複素多様体 $X$ 上の正則 Poisson 構造 $\sigma$ の $\beta$-変換で得る一般化複素構造 $\Jc_\sigma$ である。この例には次の利点がある。(i) $\sigma$ が消える因子 $D$ の上で型が跳ぶ（複素型と非退化なシンプレクティック型が共存する）。(ii) 一般化正則直線束が Poisson 加群（平坦 $A$-接続をもつ正則束）として具体的に記述でき、一般化 Dolbeault コホモロジーが正則 Poisson 超コホモロジーとして計算できる。本論文は、この例について得られた結果を主題別に 1 本にまとめたものである。
+
+\paragraph{本論文の方針。}
+(a) 本論文は自己完結している：証明を載せた主張はすべて本文で証明し、紙幅のために証明を省いた主張は、省いた旨と根拠（スクリプトや計算の名前）を明記して\tV に留める。(b) すべての主張に状態タグ（\S\ref{subsec:tags}）を付ける。状態は、本文中に書いた証明の範囲を超えて格上げしていない（予想を証明済みにしていない）。(c) 定義、仮定、「その仮定がなぜ必要で証明のどこで効くか」（「仮定と、その役割」の表）、記号表を維持する。(d) 定理・補題等の番号は論文全体の通し番号である。
+
+\subsection{主結果の概観}
+以下、$X$ はコンパクト複素多様体（$\dim_\C X=n$）、$\sigma$ は正則 Poisson 構造、$E$ は一般化正則（Poisson 加群）束、$\HH^k(E)$ は一般化 Dolbeault コホモロジー、$P_E(t)=\sum_k\dim\HH^k(E)\,t^k$ は Poincar\'e 多項式である。$\sigma$ が単純正規交差因子 $D$ に沿って対数シンプレクティックなら、$E$ は $D$ に沿った平坦な対数接続をもち、その留数 $r_i$ は定数である。
+
+\begin{enumerate}
+\item[(1)] \textbf{準備（\S\ref{sec:prelim}）。}一般化正則束は Poisson 加群であり、$\HH^*(E)=H^*(X;(\wedge^\bullet T\otimes E,\ [\sigma,\cdot]+V\wedge))$ と計算できる。$\sigma$ が対数シンプレクティックなら Poisson 加群は対数的平坦接続で、留数は定数、$c_1(E)=-\sum r_i[D_i]$（定理 \ref{thm:main1}）。一般化正則切断は平坦（Casimir 型）切断である。
+\item[(2)] \textbf{Serre 型消滅と双対性（\S\ref{sec:serre}）。}$X$ が射影的で $L_0$ が豊富な Poisson 加群なら、$m\gg0$ で横断次数 $a>0$ のコホモロジーがすべて消える（定理 \ref{thm:serre}）。全次数での消滅は $\sigma=0$ でも成り立たない。双対性 $\HH^k(L)^*\cong\HH^{2n-k}(L^\vee\otimes K_X^2)$ が任意次元・任意の $\sigma$ で成り立つ（定理 \ref{thm:dual}）。
+\item[(3)] \textbf{Euler 標数（\S\ref{sec:euler}）。}全 Euler 標数は $(-1)^n\rk(E)\chi(X)$ で $c_1(E)$ に依らない（定理 \ref{thm:E}）。対数 de Rham 複体の Euler 標数は $\chi(U)$、$U=X\setminus D$（定理 \ref{thm:K1}）。
+\item[(4)] \textbf{対数シンプレクティック曲面（\S\ref{sec:surface}）。}$r_i\neq1$ なら $\HH^*(E)=H^*(X;\mathcal F)\oplus\C^\mu[-2]$（$\mathcal F$ は $L_U$ の $Rj_*$/$j_!$ 型の拡張、$\mu$ は二重点の数）、Poincar\'e 多項式の閉公式（定理 \ref{thm:main2}, \ref{thm:B}）、$m$ について周期的に安定化（定理 \ref{thm:A2}）。
+\item[(5)] \textbf{トーリックと局所項（\S\ref{sec:toric}）。}トーリック多様体の weight 公式、一般の $\sigma$ での閉公式（定理 \ref{thm:T}）、留数が不等な曲面（定理 \ref{thm:C2}）。準斉次な孤立特異点をもつ平面曲線の茎の公式を $s\neq1$ について証明した（定理 \ref{thm:local}）。
+\item[(6)] \textbf{一般次元の簡約定理と定理V（\S\ref{sec:reduction}）。}一般次元の問題は、商複体 $Q$ の条件 (GEN$_Q$) に帰着する（定理 \ref{thm:R}）。留数がすべて非整数で $U$ がアフィンなら $H^k(U;L_U)=0\ (k\ne n)$（定理 \ref{thm:V}）。
+\item[(7)] \textbf{正則型との比較（\S\ref{sec:regular}）。}正則型（平坦なシンプレクティックファイバー束）では次数ごとの次元が $m$ の多項式（系 \ref{cor:L}）、型が跳ぶ場合は周期的である。
+\item[(8)] \textbf{Kodaira 型（\S\ref{sec:kodaira}）。}一般化正則切断による埋め込みは不可能、葉空間版の Kodaira、トーリックでの Poisson--Kodaira を証明した（命題 \ref{prop:one}, 定理 \ref{thm:K1leaf}, \ref{thm:PKtoric}）。
+\item[(9)] \textbf{RR 型公式と指数予想（\S\ref{sec:RR}）。}Poincar\'e 多項式の公式 $P(t)=\chi(X)t^n+\sum_{k<n}h^k(U;L_U)(t^k-(-1)^kt^n)$（定理 \ref{thm:K}）。指数定理（重み付き $b$-計算）による統一は予想にとどまる（予想 \ref{conj:index}）。
+\end{enumerate}
+
+\subsection{主張の状態表}\label{subsec:ledger}
+\begin{longtable}{>{\raggedright\arraybackslash}p{5.3cm}>{\raggedright\arraybackslash}p{2.6cm}>{\raggedright\arraybackslash}p{7.2cm}}
+\caption{主な主張の状態（タグの意味は \S\ref{subsec:tags}）}\label{tab:ledger}\\
+\toprule 主張 & 状態 & 主な仮定・備考\\\midrule\endfirsthead
+\toprule 主張 & 状態 & 主な仮定・備考\\\midrule\endhead
+\bottomrule\endfoot
+\footnotesize 命題 \ref{prop:ident}（GH 束 $=$ Poisson 加群、$\HH$ の同定） & \tC\ \tP\ \tQ & LGSX Thm.~4.19 と Mokri の定理に依存し、再導出していない\\
+\footnotesize 定理 \ref{thm:main1}（Poisson 加群 $=$ 対数的平坦接続） & \tP & 任意の偶数次元、SNC。留数公式 $c_1=-\sum r_i[D_i]$ は \tC\\
+\footnotesize 定理 \ref{thm:serre}（Serre 型消滅、横断次数） & \tP & $X$ 射影的、$\sigma$ 任意。全次数では偽（注意 \ref{rem:total}）\\
+\footnotesize 定理 \ref{thm:dual}（双対性、任意次元） & \tP\ \tV\ \tQ & 補題 \ref{lem:D}, \ref{lem:E} は $n\le4$ で機械確認。$\dbar$ 部分と $d$ 部分の Koszul 符号の整合は手計算のみ\\
+\footnotesize 定理 \ref{thm:E}（全 Euler 標数） & \tP & HRR のみ。$c_1(E)$ に依らない\\
+\footnotesize 定理 \ref{thm:K1}（対数版 $\chi(U)$） & \tP\ \tV & SNC、平坦対数接続\\
+\footnotesize 定理 \ref{thm:main2}（曲面の主定理） & \tP\ \tV & $r_i\ne1$。命題 \ref{prop:ident} に依存\\
+\footnotesize 定理 \ref{thm:B}（曲面の閉公式） & \tP\ \tV & (H1)--(H4)。(H4) は 8 例で確認、一般には $V^1(U)$ の条件\\
+\footnotesize 定理 \ref{thm:A2}（周期的安定化） & \tP & 定理 \ref{thm:main2} と $X$ 単連結、$U$ アフィン\\
+\footnotesize 定理 \ref{thm:weight}, \ref{thm:T}, \ref{thm:C2}（トーリック） & \tP\ \tV & (V)（$L_0^m$, $m\gg0$ なら定理 \ref{thm:serre}）、(A), (GEN), (R)\\
+\footnotesize 観察 \ref{obs:res}（共鳴 $r_i=1$ の公式） & \tV\ \tK & $N$ の定義の転記は\tQ。破れる場合あり\\
+\footnotesize 定理 \ref{thm:local}（準斉次な局所公式、$s\ne1$） & \tP\ \tQ & $s$ の符号規約と収束の扱いが\tQ（総合版では観察 \tV\ \tK。更新、巻末の変更点）\\
+\footnotesize 局所公式（非準斉次、$s=1$） & \tK & 未証明\\
+\footnotesize 予想 \ref{conj:refined}、観察 \ref{obs:triple}, \ref{obs:nr}、予想 \ref{conj:NR} & \tV\ \tK & データへの当てはめ。三重点・非被約\\
+\footnotesize 定理 \ref{thm:R}（簡約定理） & \tP & 仮定 (GEN$_Q$)。本論文で濾過に依らない形に書き直した\\
+\footnotesize 命題 \ref{prop:grQ}（(GEN$'$) $\Rightarrow$ (GEN$_Q$)、一般 $n$ の $\mathrm{gr}\,Q$） & \tQ & 一般 $n$ の局所計算は見取り図。$n=2$ は補題 \ref{lem:Q}\\
+\footnotesize 定理 \ref{thm:V}（定理V：$H^k(U;L_U)=0$） & \tP & SNC、$U$ アフィン、すべて $r_i\notin\Z$。混合（一部の $r_i\in\Z$）は\tK\\
+\footnotesize 定理 \ref{thm:K}（RR 型 Poincar\'e 多項式） & \tP\ \tV & 定理 \ref{thm:R} の仮定、$U$ アフィン、$n$ 偶数\\
+\footnotesize 定理 \ref{thm:L}、系 \ref{cor:L}（正則型） & \tP\ \tQ & hard Lefschetz。$\partial$ と Gauss--Manin の同定は概略\\
+\footnotesize 命題 \ref{prop:one}, \ref{prop:leaf}、定理 \ref{thm:K1leaf}（Kodaira 型） & \tP & 不可能性と葉空間版\\
+\footnotesize 定理 \ref{thm:PKtoric}（トーリック Poisson--Kodaira） & \tP & 観察 \ref{obs:P2}（$\mathbb P^2$, $m=2$）は数値的存在 \tV\\
+\footnotesize 予想 \ref{conj:PK}（一般の Poisson--Kodaira） & \tK & $\mathbb P^2$, $m\ge3$ は未計算\\
+\footnotesize 予想 \ref{conj:index}（指数予想） & \tK & 未証明\\
+\end{longtable}
+
+\subsection{三種の神器との対応}
+\begin{center}\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{2.4cm}>{\raggedright\arraybackslash}p{6.5cm}>{\raggedright\arraybackslash}p{6.0cm}}
+\toprule 神器 & 成り立った形 & 成り立たない／未解決\\\midrule
+Riemann--Roch & 全 Euler 標数 $(-1)^n\rk(E)\chi(X)$（定理 \ref{thm:E}）、対数版 $\chi(U)$（定理 \ref{thm:K1}）、Poincar\'e 多項式の公式（曲面：定理 \ref{thm:B}、一般次元：定理 \ref{thm:K}）、正則型の次数別多項式（系 \ref{cor:L}） & $c_1(E)$ に依存する素朴な HRR は不成立。指数定理による統一は未証明（予想 \ref{conj:index}）\\\midrule
+Serre 消滅 & 横断次数 $a>0$ での消滅（$m\gg0$、$X$ 射影、$\sigma$ 任意、定理 \ref{thm:serre}） & 全次数での消滅は $\sigma=0$ でも不成立\\\midrule
+Kodaira 埋め込み & 葉空間版（定理 \ref{thm:K1leaf}）、トーリックでの Poisson--Kodaira（定理 \ref{thm:PKtoric}） & 一般化正則切断による埋め込みは不可能（命題 \ref{prop:one}）。一般の Poisson--Kodaira は予想（予想 \ref{conj:PK}）。一般の一般化複素構造への一般化は未着手\\\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{全体を貫く 3 つの考え}
+(i) \emph{平坦接続への翻訳。}$\beta$-変換構造上の一般化 Dolbeault 複体は $(\wedge^\bullet T\otimes E,\ \dbar+[\sigma,\cdot])$ と同一視でき\tC（Laurent-Gengoux--Sti\'enon--Xu \cite{LGSX1}）、一般化正則束は Poisson 加群である。$\sigma$ が $D$ に沿って対数シンプレクティックなら、これは $D$ に沿った平坦な対数接続になり、留数が定数になる。
+(ii) \emph{局所と大域の分離。}対数 de Rham 複体と $Rj_*L_U$ の比較（Deligne \cite{Del}）により $U=X\setminus D$ の局所系のコホモロジーが現れ、留数が整数のとき（共鳴）に商複体の寄与が出る。大域は $H^*(U;L_U)$ と $\chi(X)$、局所は $D$ の特異点の茎の公式で書ける。
+(iii) \emph{3 つの振る舞い。}正則型では次数ごとの次元が $m$ の多項式、対数シンプレクティック型では周期的、全 Euler 標数はどちらでも $m$ に依らない（\S\ref{sec:regular}, \S\ref{sec:RR}）。
+
+\subsection{タグの意味、記号表、読み方}\label{subsec:tags}
+\paragraph{状態タグ。}\tC\ 文献からの引用（原典での確認の範囲は個々に記す）。\tP\ 本論文に証明を書いたもの（引用した結果への依存は明記）。\tV\ 厳密な線形代数（有理数または有限体 $\mathbb F_{32003}$, $\mathbb F_{2^{61}-1}$）などによる計算機確認で、証明ではない。\tK\ 予想・見通し。\tQ\ 未確認の点（記憶による引用、導出が見取り図、符号規約の未確認など）。複数付く場合は、主張の各部分に対応する。
+
+\paragraph{読み方。}\S\ref{sec:prelim}--\S\ref{sec:euler} が基礎である。\S\ref{sec:surface} は曲面の完全な結果で、\S\ref{sec:toric} のトーリック・局所項、\S\ref{sec:reduction} の一般次元がそれに続く。\S\ref{sec:regular}（正則型）、\S\ref{sec:kodaira}（Kodaira 型）は互いにほぼ独立で、\S\ref{sec:RR} は \S\ref{sec:reduction} と \S\ref{sec:euler} を使う。
+
+\paragraph{記号表。}
+\begin{longtable}{>{\raggedright\arraybackslash}p{3.5cm}>{\raggedright\arraybackslash}p{11.3cm}}
+\toprule 記号 & 意味\\ \midrule\endhead
+\bottomrule\endfoot
+\footnotesize $X,\ n$ & コンパクト複素多様体、$\dim_\C X=n$（対数シンプレクティックでは $n$ は偶数）\\
+\footnotesize $T,\ T^*,\ \Omega^p,\ K_X$ & 正則接束、余接束、正則 $p$-形式の層、$K_X=\Omega^n$\\
+\footnotesize $\bT=T\oplus T^*$ & 一般化接束。内積 $\langle X+\xi,Y+\eta\rangle=\tfrac12(\xi(Y)+\eta(X))$、Courant（Dorfman）括弧 $[X+\xi,Y+\eta]=[X,Y]+\mathcal L_X\eta-\iota_Yd\xi$\\
+\footnotesize $\Jc,\ L$ & 一般化複素構造と、その $+i$ 固有束（$\bT_\C$ の極大迷零部分束、複素 Lie 亜群）。$L^*\cong\Lb$。直線束には $E$, $L_0$, $\mathcal O(m)$ 等も用いる（文脈で区別）\\
+\footnotesize $\sigma,\ \sigma^\sh,\ \Jc_\sigma$ & 正則 Poisson 構造（$\sigma\in H^0(\wedge^2T)$, $[\sigma,\sigma]=0$）、$\sigma^\sh:T^*\to T$, $\xi\mapsto\sigma(\xi,\cdot)$、その $\beta$-変換 $L_\sigma=T^{0,1}\oplus\{\sigma^\sh\xi+\xi:\xi\in T^{*1,0}\}$\\
+\footnotesize $A=(T^*)_\sigma$ & 正則 Lie 亜群：アンカー $\sigma^\sh$、括弧 $[a,b]_\sigma=\mathcal L_{\sigma^\sh a}b-\mathcal L_{\sigma^\sh b}a-d\sigma(a,b)$\\
+\footnotesize Poisson 加群 & 平坦 $A$-接続 $\nabla$ をもつ正則ベクトル束 $(E,\nabla)$（$=$ 一般化正則束、命題 \ref{prop:ident}）\\
+\footnotesize $V$ & 局所枠 $e$ に対し $\nabla_\beta e=\beta(V)e$ で定まる正則ベクトル場（Poisson ベクトル場）\\
+\footnotesize $C(A;E)$、$\HH^k(E)$ & $(\wedge^bT\otimes E,\ d_E=[\sigma,\cdot]+V\wedge)$（$A$ の Chevalley--Eilenberg 複体）、$\HH^k(E)=H^k(X;C(A;E))$\\
+\footnotesize $E_1^{a,b}$ & $H^a(X,\wedge^bT\otimes E)\Rightarrow\HH^{a+b}$。$a$ を横断次数と呼ぶ\\
+\footnotesize $P_E(t),\ [\cdots]$ & $P_E(t)=\sum_k\dim\HH^k(E)t^k$、表では $[\dim\HH^0,\dots,\dim\HH^{2n}]$ と略記\\
+\footnotesize $D=\sum D_i,\ U$ & $\sigma$ の退化因子（簡約、SNC、曲面では通常二重点のみも可）、$U=X\setminus D$。$D_T=\bigcap_{i\in T}D_i$、$D_{(n)}$ は $n$ 重点の集合\\
+\footnotesize $T_D,\ B,\ \mathrm{DR}_{\log}(E)$ & $T_D=T_X(-\log D)$、$B=\Omega^1(\log D)=T_D^*$、対数 de Rham 複体 $(\Omega^\bullet(\log D)\otimes E,\nabla^{\log})$\\
+\footnotesize 対数シンプレクティック & $\sigma\in H^0(\wedge^2T_D)$ かつ $\sigma^\sh:B\to T_D$ が同型\\
+\footnotesize $r_i,\ L_U$ & $D_i$ に沿った留数（定数）、$U$ 上の平坦切断の局所系（階数 1、$D_i$ まわりのモノドロミー $e^{\mp2\pi\sqrt{-1}r_i}$）\\
+\footnotesize $Q$ & 商複体 $C(A;E)/C(T_D;E)$。$D$ 上に台をもつ\\
+\footnotesize $\mu,\ c,\ \rho_D,\ b_1$ & （曲面）二重点の個数 $\mu$、$D$ の既約成分数 $c$、$[D_i]\in H^2(X;\C)$ の張る空間の次元 $\rho_D$、$b_1=c-\rho$\\
+\footnotesize $j_1,j_2,\ \mathcal F$ & 開埋め込み $U\hookrightarrow X'\hookrightarrow X$、$\mathcal F=j_{2!}Rj_{1*}L_U$（定理 \ref{thm:main2}）\\
+\footnotesize $N,M,\Sigma,u_i$ & トーリック：格子 $N\cong\Z^n$、双対 $M$、ファンと光線生成元\\
+\footnotesize $\rho,\ A,\ \chi,\ \Lambda$ & トーリック：$\nabla=d+\rho$（$\rho\in M_\C$）、定数歪対称行列 $A$、指標 $\chi\in M$、weight 公式の指標集合\\
+\footnotesize $h,\ (w_z,w_w),\ N_h,\ \delta$ & 準斉次な孤立特異点の定義関数、重み、次数、$\delta=N_h-w_z-w_w$（\S\ref{subsec:local}）\\
+\footnotesize $\mu_p,\ \mathrm{Sp},\ \mathrm{lct}$ & Milnor 数、スペクトル、log canonical threshold $(w_z+w_w)/N_h$\\
+\footnotesize $s$ & 局所モデル $\mathcal O h^s$ の留数パラメータ\\
+\footnotesize $Y\to M\to X$、$V^j$ & 平坦なシンプレクティックファイバー束、ファイバーコホモロジーの Gauss--Manin 束（\S\ref{sec:regular}）\\
+\footnotesize $\partial U$ & $D$ の管状近傍の境界（実 $2n-1$ 次元の閉多様体、$\chi(\partial U)=0$）\\
+\end{longtable}

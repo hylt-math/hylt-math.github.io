@@ -1,0 +1,120 @@
+%==============================================================
+\appendix
+\section{Changes from the comprehensive version}\label{app:changes}
+%==============================================================
+This paper rewrites the comprehensive version (Parts I--V stitched together, 80 pages, 2026-11-22 v1) as one paper organized by theme. No claim has been upgraded. The changes are listed below.
+
+\subsection{Updates of status wording}
+\begin{enumerate}
+\item \textbf{Local formula.} Parts II and III of the comprehensive version treated it as an ``observation/conjecture'' (\tP \tV \tK), but Part V proved it for quasi-homogeneous germs with $s\ne1$. Here it is collected in one place as Theorem \ref{thm:local}, with a shorter proof in the $(e,\chi_h)$ basis (the unchecked sign-convention and convergence issues of the old proof are removed; what remains \tQ is the identification of the local model with the stalk of a global Poisson module and the number of Saito's criterion). The rule $R(s)$ is the corrected version of Part II v2. We note that the threshold rule $[s<\mathrm{lct}]\cdot(\cdots)$ of the old version is wrong for $\mathrm{lct}<1/2$, and the global refined conjecture (Conjecture \ref{conj:refined}) is restricted to $\mathrm{lct}\ge1/2$.
+\item \textbf{``Unresolved for $n>2$''.} The reduction theorem (Theorem \ref{thm:R}) is reproved without the filtration of $\mathrm{gr}\,Q$, in terms of the chain map $\varepsilon$ (condition (GEN$_Q$)). The step (GEN$'$) $\Rightarrow$ (GEN$_Q$) for general $n$ (Proposition \ref{prop:grQ}) remains \tQ. Theorem V (which was in the addendum) is now in the text of \S\ref{sec:reduction}, connected to the vanishing part of Theorem K (Theorem \ref{thm:K}) through Corollary \ref{cor:Vgen}. The old statement ``vanishing of $H^k(U;L_U)$ for $k<n$ is unproved'' is resolved when all $r_i\notin\Z$ (the mixed case is open).
+\item \textbf{Triple-point anomalies.} The cancellation at $m=-2,-4$ is kept as an observation/conjecture (not explained by Theorem \ref{thm:local}).
+\item \textbf{Name of (GEN).} To distinguish the hypothesis (GEN) of Theorem \ref{thm:T} (arithmetic genericity of the constant matrix $A$) from the hypothesis of the reduction theorem, the latter is renamed (GEN$_Q$).
+\end{enumerate}
+
+\subsection{Structural changes}
+\begin{itemize}
+\item The overview, symbol table, status table and ``scope of verification'' of each part are merged into one status table and one symbol table in \S\ref{sec:intro}. Numbering is a single global sequence common to definitions, theorems, propositions, lemmas, corollaries, examples, remarks, observations and conjectures.
+\item The section on the ``classical three treasures'' of old Part I is compressed into the table of classical theorems and hypotheses (\S\ref{sec:prelim}). The remark on integrability in old Part I and some hypothesis tables for classical theorems not used here (Kodaira--Nakano etc.) are omitted.
+\item The toric re-proof of old Part IV (via (GEN$'$)) is omitted since Theorem \ref{thm:T} has a direct proof; the relation is stated in \S\ref{sec:reduction}.
+\item The example of $\mathbb{CP}^2$ in old Part I is rewritten as a derivation from Theorem \ref{thm:B} (Example \ref{ex:cp2}).
+\item The K\"unneth proposition of old Part III is merged into Example \ref{ex:prod}, and the non-reduced boundary into Observation \ref{obs:nr} and Conjecture \ref{conj:NR}.
+\item The section ``Checking the effect on Part I (v1, v2)'' of old Part II is absorbed into the hypothesis tables of the theorems and no longer stands as a section.
+\end{itemize}
+
+\subsection{Correspondence between old claims and this paper}
+\begin{center}\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{5.4cm}>{\raggedright\arraybackslash}p{9.2cm}}\toprule
+Old claim (comprehensive version) & This paper \\\midrule
+Part I: GH bundle $=$ Poisson module, flat log connection & Prop.\ \ref{prop:ident}, Thm.\ \ref{thm:main1}\\
+Part I: main theorem for surfaces, closed formula, periodic stabilization & Thms.\ \ref{thm:main2}, \ref{thm:B}, \ref{thm:A2}\\
+Part I: Serre-type theorem, duality & Thms.\ \ref{thm:serre}, \ref{thm:dual}\\
+Part II: Euler characteristic theorem & Thm.\ \ref{thm:E}\\
+Part II: toric (surfaces, general dimension), resonance & Thms.\ \ref{thm:weight}, \ref{thm:C1}, \ref{thm:C2}, \ref{thm:T}, Obs.\ \ref{obs:res}\\
+Parts II, III, V: local formula, triple points, non-reduced & Thm.\ \ref{thm:local}, Obs.\ \ref{obs:triple}, \ref{obs:nr}, Conj.\ \ref{conj:refined}, \ref{conj:NR}\\
+Part III: Kodaira type & Props.\ \ref{prop:one}, \ref{prop:leaf}, Thms.\ \ref{thm:K1leaf}, \ref{thm:PKtoric}, Conj.\ \ref{conj:PK}\\
+Part IV: regular type, reduction theorem & Thm.\ \ref{thm:L}, Cor.\ \ref{cor:L}, Thm.\ \ref{thm:R}\\
+Part V: Theorem K1 (log Euler characteristic) & Thm.\ \ref{thm:K1}\\
+Part V: Theorem K, index conjecture & Thm.\ \ref{thm:K}, Conj.\ \ref{conj:index}\\
+Addendum: Theorem V, additional Poisson--Kodaira checks & Thm.\ \ref{thm:V}, Obs.\ \ref{obs:Segre}\\\bottomrule
+\end{tabular}
+\end{center}
+``Theorem K1 (leaf-space Kodaira)'' of Part III and ``Theorem K1 (log Euler characteristic)'' of Part V in the comprehensive version were different theorems; here the former is Theorem \ref{thm:K1leaf} and the latter Theorem \ref{thm:K1}.
+
+\subsection{Corrections and additions}
+\begin{itemize}
+\item The clash of the symbol $\rho$ (toric $\rho\in M_\C$ versus the dimension of the span of the $[D_i]$ for surfaces) is resolved by renaming the latter $\rho_D$.
+\item For the quasi-homogeneous $D_5=z^2w+w^4$ the weights are $(3,2)$ and the degree is 8 (the table and text of the comprehensive version are correct; different weights in a research memo were wrong). The last column for $A_4$ in the local table is filled in.
+\item The title of Hu's second paper follows the notation of Parts I, III of the comprehensive version (Lie groupoid Riemann--Roch--Hirzebruch theorem and applications, arXiv:2403.13424) (final check of the title \tQ).
+\end{itemize}
+
+\subsection{Scope of verification and scripts}
+All computations are exact linear algebra over the rationals or finite fields ($32003$, $2^{61}-1$), or fits to known formulas; they are not proofs. Dependence on the choice of curves, and whether reduction modulo $p$ represents the characteristic 0 result, have not been verified.
+\paragraph{Re-run while writing this paper.}
+\begin{itemize}
+\item \texttt{duality\_ndim.py}, \texttt{duality\_ndim\_exact.py}: $n\le4$, all agree.
+\item \texttt{roundH\_proof\_check.py}: 14 quasi-homogeneous germs, 0 discrepancies.
+\item \texttt{roundK\_check.py}: 175, 188 and 61 examples, 0 discrepancies.
+\item \texttt{roundJ2\_vanish\_check.py}: 6 examples with $n=4$.
+\item \texttt{roundD\_check.py}, \texttt{ncd\_local\_weights.py}, \texttt{ncd\_cochain\_check.py}, \texttt{serre\_rr\_check.py}.
+\item Newly written, \texttt{local\_basis\_check.py}: 210 checks of formulas \eqref{eq:d0}, \eqref{eq:d1} in the $(e,\chi_h)$ basis, 0 discrepancies.
+\end{itemize}
+Outputs are saved in \texttt{logs/}.
+\paragraph{Transcribed from the records of the comprehensive version, not re-run.} The large toric tables (\texttt{roundC\_*.py}, \texttt{toric\_hh.py}, \texttt{toric\_generic\_check2.py}), triple points (\texttt{local\_unequal*.py}), non-reduced (\texttt{roundF\_nonreduced.py}), numerics of Poisson--Kodaira (\texttt{roundE\_*.py}), the 108 examples of the resonance formula, and the regular-type examples (Kodaira--Thurston, Bieberbach).
+\paragraph{Literature.} Many cited theorems remain whose range of applicability has not been checked in the original (the \tQ items in the text: re-derivation of LGSX Thm.~4.19 and Mokri's theorem, a close reading of Gualtieri 2011 \S4, the numbers of Saito's criterion and of Cox--Little--Schenck, the definition numbers of Pal--Poddar, Hu's bibliographic data, etc.).
+
+\subsection{Low-confidence points (summary)}
+(1) Proposition \ref{prop:ident} (depends on LGSX and Mokri, no re-derivation), (2) Proposition \ref{prop:grQ} (general-$n$ $\mathrm{gr}\,Q$ and chain-map property of $\varepsilon$), (3) the link between local model and global module in Theorem \ref{thm:local}, (4) consistency of Koszul signs in Theorem \ref{thm:dual} (hand computation only), (5) step (i) of Theorem \ref{thm:L} (identification with Gauss--Manin is a sketch), (6) the definition of $N_R$ in Observation \ref{obs:res}, (7) Lemma \ref{lem:lift} (sketch).
+
+%==============================================================
+\begin{thebibliography}{99}\small
+\bibitem{AB} M.\ Abouzaid, M.\ Boyarchenko, Local structure of generalized complex manifolds, J.\ Symplectic Geom.\ 4 (2006) 43--62, arXiv:math/0511049.
+\bibitem{ALN} B.\ Ammann, R.\ Lauter, V.\ Nistor, Pseudodifferential operators on manifolds with a Lie structure at infinity, arXiv:math/0304044.
+\bibitem{AN} Y.\ Akizuki, S.\ Nakano, Note on Kodaira--Spencer's proof of Lefschetz's theorems, Proc.\ Japan Acad.\ 30 (1954) 266--272.
+\bibitem{AS} M.\ Atiyah, I.\ Singer, The index of elliptic operators III, Ann.\ Math.\ 87 (1968) 546--604.
+\bibitem{Ara} D.\ Arapura, Geometry of cohomology support loci for local systems I, arXiv:alg-geom/9612006; J.\ Algebraic Geom.\ 6 (1997) 563--597 [volume/pages from memory \tQ].
+\bibitem{Atiyah} M.\ Atiyah, Vector bundles over an elliptic curve, Proc.\ London Math.\ Soc.\ (3) 7 (1957) 414--452.
+\bibitem{BG} A.\ Bailey, M.\ Gualtieri, Integration of generalized complex structures, arXiv:1611.03850.
+\bibitem{BLS} M.\ Braverman, Y.\ Loizides, Y.\ Song, Geometric quantization of $b$-symplectic manifolds, arXiv:1910.10016.
+\bibitem{Bai} W.\ L.\ Baily, On the imbedding of V-manifolds in projective space, Amer.\ J.\ Math.\ 79 (1957) 403--430 [details \tQ].
+\bibitem{Bre} G.\ Bredon, \emph{Sheaf Theory}, 2nd ed., Springer GTM 170, 1997 [details \tQ].
+\bibitem{CF} M.\ Crainic, R.\ L.\ Fernandes, Integrability of Lie brackets, Ann.\ Math.\ 157 (2003) 575--620, arXiv:math/0105033.
+\bibitem{CLS} D.\ Cox, J.\ Little, H.\ Schenck, \emph{Toric Varieties}, Graduate Studies in Math.\ 124, AMS 2011 [details \tQ].
+\bibitem{CMNM} F.\ J.\ Calder\'on-Moreno, L.\ Narv\'aez-Macarro, Logarithmic comparison theorems for free divisors (Dualit\'e et comparaison sur les complexes de de Rham logarithmiques par rapport aux diviseurs libres), Proc.\ London Math.\ Soc.\ 98 (2009), doi:10.1112/plms/pdn043, arXiv:math/0603003 [details \tQ].
+\bibitem{Cav} G.\ Cavalcanti, New aspects of the $dd^c$-lemma, arXiv:math/0501406; The decomposition of forms and cohomology of generalized complex manifolds, J.\ Geom.\ Phys.\ 57 (2006) 121--132.
+\bibitem{Del} P.\ Deligne, \'Equations diff\'erentielles \`a points singuliers r\'eguliers, Lecture Notes in Math.\ 163, Springer 1970.
+\bibitem{Del68} P.\ Deligne, Th\'eor\`eme de Lefschetz et crit\`eres de d\'eg\'en\'erescence de suites spectrales, Publ.\ Math.\ IH\'ES 35 (1968) 259--278.
+\bibitem{DelFG} P.\ Deligne, Le groupe fondamental du compl\'ement d'une courbe plane n'ayant que des points doubles ordinaires est ab\'elien, S\'em.\ Bourbaki 543 (1979/80).
+\bibitem{EV} H.\ Esnault, E.\ Viehweg, Logarithmic de Rham complexes and vanishing theorems, Invent.\ Math.\ 86 (1986) 161--194.
+\bibitem{Ful} W.\ Fulton, On the fundamental group of the complement of a node curve, Ann.\ Math.\ 111 (1980) 407--409.
+\bibitem{GH} P.\ Griffiths, J.\ Harris, Principles of Algebraic Geometry, Wiley 1978.
+\bibitem{GL} M.\ Gualtieri, S.\ Li, Symplectic groupoids of log symplectic manifolds, IMRN 2014, arXiv:1206.3674.
+\bibitem{Goto} R.\ Goto, Unobstructed deformations of generalized complex structures induced by $C^\infty$ logarithmic symplectic structures, arXiv:1501.03398 [journal and pages unchecked \tQ].
+\bibitem{Gua11} M.\ Gualtieri, Generalized complex geometry, Ann.\ Math.\ 174 (2011) 75--123, arXiv:math/0703298.
+\bibitem{GuaBr} M.\ Gualtieri, Branes on Poisson varieties, arXiv:0710.2719 (v2, 2010-07; no publication data on the arXiv page; The Many Facets of Geometry, Oxford Univ.\ Press 2010, from memory \tQ).
+\bibitem{GuaHodge} M.\ Gualtieri, Generalized geometry and the Hodge decomposition, arXiv:math/0409093.
+\bibitem{GuaK} M.\ Gualtieri, Generalized K\"ahler geometry, Comm.\ Math.\ Phys.\ 331 (2014) 297--331, arXiv:1007.3485.
+\bibitem{HHM} T.\ Hausel, E.\ Hunsicker, R.\ Mazzeo, Hodge cohomology of gravitational instantons, Duke Math.\ J.\ 122 (2004) 485--548, arXiv:math/0207169.
+\bibitem{Hart} R.\ Hartshorne, Algebraic Geometry, GTM 52, Springer 1977.
+\bibitem{Hit03} N.\ Hitchin, Generalized Calabi--Yau manifolds, Q.\ J.\ Math.\ 54 (2003) 281--308, arXiv:math/0209099.
+\bibitem{Hu1} T.\ Hu, Kodaira vanishing theorems for K\"ahler Lie algebroids, arXiv:2403.10876.
+\bibitem{Hu2} T.\ Hu, Lie groupoid Riemann--Roch--Hirzebruch theorem and applications, arXiv:2403.13424.
+\bibitem{Huy} D.\ Huybrechts, Complex Geometry: An Introduction, Springer 2005.
+\bibitem{Kod53} K.\ Kodaira, On a differential-geometric method in the theory of analytic stacks, Proc.\ Nat.\ Acad.\ Sci.\ USA 39 (1953) 1268--1273.
+\bibitem{Kod54} K.\ Kodaira, On K\"ahler varieties of restricted type, Ann.\ Math.\ 60 (1954) 28--48.
+\bibitem{LGSX1} C.\ Laurent-Gengoux, M.\ Sti\'enon, P.\ Xu, Holomorphic Poisson manifolds and holomorphic Lie algebroids, IMRN 2008, arXiv:0707.4253.
+\bibitem{LGSX2} C.\ Laurent-Gengoux, M.\ Sti\'enon, P.\ Xu, Integration of holomorphic Lie algebroids, arXiv:0803.2031.
+\bibitem{MM} R.\ Mazzeo, R.\ Melrose, Pseudodifferential operators on manifolds with fibred boundaries, arXiv:math/9812120.
+\bibitem{Milnor} J.\ Milnor, \emph{Singular Points of Complex Hypersurfaces}, Annals of Math.\ Studies 61, Princeton Univ.\ Press 1968 [details \tQ].
+\bibitem{Mok} T.\ Mokri, Matched pairs of Lie algebroids, Glasgow Math.\ J.\ 39 (1997) 167--181, doi:10.1017/S0017089500032055 [year and DOI checked on the publisher page, volume/pages from memory \tQ].
+\bibitem{Mum} D.\ Mumford, Varieties defined by quadratic equations, in: Questions on Algebraic Varieties (C.I.M.E., Varenna 1969), Cremonese 1970 [details \tQ].
+\bibitem{PP} D.\ Pal, M.\ Poddar, Strong generalized holomorphic principal bundles, arXiv:2404.18113; Ann.\ Sc.\ Norm.\ Super.\ Pisa Cl.\ Sci., doi:10.2422/2036-2145.202501\_026 (volume/issue \tQ).
+\bibitem{PPT} M.\ Pflaum, H.\ Posthuma, X.\ Tang, The index of geometric operators on Lie groupoids, Indag.\ Math.\ 25 (2014) 1--18, arXiv:1308.0236.
+\bibitem{Pym} B.\ Pym, Constructions and classifications of projective Poisson varieties, Lett.\ Math.\ Phys.\ 108 (2018), no.\ 3, 573--632, doi:10.1007/s11005-017-0984-5.
+\bibitem{QS} Y.\ Qiao, Y.\ So, Deformation and K-theoretic index formulae on boundary groupoids, arXiv:2304.13345.
+\bibitem{SGA4} M.\ Artin, Th\'eor\`eme de finitude pour un morphisme propre; dimension cohomologique des sch\'emas alg\'ebriques affines, in SGA 4, Exp.\ XIV, Lecture Notes in Math.\ 305 [details \tQ].
+\bibitem{Saito} K.\ Saito, Theory of logarithmic differential forms and logarithmic vector fields, J.\ Fac.\ Sci.\ Univ.\ Tokyo Sect.\ IA Math.\ 27 (1980) 265--291 [theorem number of the criterion from memory \tQ].
+\bibitem{Serre} J.-P.\ Serre, Faisceaux alg\'ebriques coh\'erents, Ann.\ Math.\ 61 (1955) 197--278.
+\bibitem{Tim} K.\ Timmerscheidt, Mixed Hodge theory for unitary local systems, J.\ reine angew.\ Math.\ 379 (1987) 152--171.
+\bibitem{Hirz} F.\ Hirzebruch, Neue topologische Methoden in der algebraischen Geometrie, Springer 1956.
+\end{thebibliography}
