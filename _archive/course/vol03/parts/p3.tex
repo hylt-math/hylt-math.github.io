@@ -1,0 +1,122 @@
+%==================================================
+\section{層コホモロジーの定義と基本性質}\label{sec:cohom}
+%==================================================
+
+\paragraph{動機。}\Cech{} コホモロジーは計算に向くが、被覆に依存し、短完全列 $0\to\sF'\to\sF\to\sF''\to0$ から長完全列を引き出すのに（$H^2$ 以上で）条件が要る。そこで、被覆によらない定義を与える。要求は次の三つである：(i) $H^0(X,\sF)=\sF(X)$、(ii) 短完全列から長完全列が得られる、(iii) 「十分よい」層（後述の軟層）では $H^k=0$（$k>0$）。(i)--(iii) を満たすコホモロジー理論は一意であり（Grothendieck の $\delta$ 関手の理論）、構成法は複数ある：\emph{導来関手}（入射分解）、\emph{Godement 分解}、\emph{\Cech{} の極限}。本巻では Godement 分解を選んで定義し、証明する。他の定義との一致は主張と出典に留める。
+
+\subsection{軟弱層と Godement 分解}
+\begin{defn}[軟弱層]
+層 $\sF$ が\emph{軟弱層}（flasque）であるとは、すべての開集合 $U\subset X$ で制限 $\sF(X)\to\sF(U)$ が全射であること（同値：$V\subset U$ なら $\sF(U)\to\sF(V)$ が全射）。
+\end{defn}
+\begin{ex}
+skyscraper 層は軟弱。定数層 $\Zs_X$（$X$ 連結で、非連結な開集合 $U$ をもつとき）は軟弱でない：$\Zs(X)=\Z\to\Zs(U)=\Z^2$ は全射でない。$C^0_X$、$\Oc_X$ も軟弱でない（局所的に定義された関数は大域に延びない）。
+\end{ex}
+\begin{defn}[Godement の分解]
+層 $\sF$ に対し、$C^0(\sF)(U)=\prod_{x\in U}\sF_x$（$U$ 上の\emph{芽の任意の族}、適合性を要求しない）、制限は成分への制限とする。これは軟弱層で、$\sF\to C^0(\sF)$、$s\mapsto(s_x)_x$ は単射（命題 \ref{prop:germ}(a)）。$\sZ^1=C^0(\sF)/\sF$ とおき、$C^1(\sF)=C^0(\sZ^1)$、$\sZ^2=C^1(\sF)/\sZ^1$、……と続けて、\emph{Godement 分解}（標準的な軟弱分解）
+\[
+0\to\sF\to C^0(\sF)\xrightarrow{d^0}C^1(\sF)\xrightarrow{d^1}C^2(\sF)\to\cdots
+\]
+を得る（$d^k$ は $C^k(\sF)\to\sZ^{k+1}\hookrightarrow C^{k+1}(\sF)$）。これは完全。$\sF$ に関して関手的。
+\end{defn}
+\begin{defn}[層コホモロジー]\label{def:sheafcohom}
+\[
+H^k(X,\sF)=H^k\big(\Gamma(X,C^\bullet(\sF))\big)\qquad(k\ge0).
+\]
+\end{defn}
+\begin{lem}\label{lem:flasque}\tP
+(i) $0\to\sF'\to\sF\to\sF''\to0$ が層の短完全列で $\sF'$ が軟弱ならば、$0\to\sF'(X)\to\sF(X)\to\sF''(X)\to0$ は完全。(ii) さらに $\sF$ も軟弱ならば $\sF''$ も軟弱。(iii) $C^0$ は完全関手：短完全列 $0\to\sF'\to\sF\to\sF''\to0$ に対し $0\to C^0\sF'\to C^0\sF\to C^0\sF''\to0$ は完全（各 $U$ でも完全）。
+\end{lem}
+\begin{proof}
+(iii) 各 $x$ で $0\to\sF'_x\to\sF_x\to\sF''_x\to0$ は完全で、その積 $\prod_{x\in U}$ も完全。
+(i) 命題 \ref{prop:exact}(c) より左完全は既知。全射性：$s''\in\sF''(X)$ とする。組 $(U,s)$（$s\in\sF(U)$、$s\mapsto s''|_U$）全体を、$(U,s)\le(U',s')\iff U\subset U'$ かつ $s'|_U=s$ で順序づける。鎖には貼り合わせ (S2) で上界があるから Zorn の補題で極大元 $(U,s)$ がある。$U\ne X$ とし $x\notin U$ をとる。局所持ち上げ（命題 \ref{prop:exact}(b)）で $x$ の近傍 $W$ と $t\in\sF(W)$（$t\mapsto s''|_W$）がある。$U\cap W$ 上で $s-t$ は $0$ に写るので $u\in\sF'(U\cap W)$ の像。$\sF'$ は軟弱なので $u$ は $\tilde u\in\sF'(W)$ に延びる。$t'=t+\tilde u$ とおくと $t'|_{U\cap W}=s|_{U\cap W}$ なので、$s$ と $t'$ が $U\cup W$ 上の切断に貼り合わさり、極大性に矛盾。よって $U=X$。
+(ii) $V\subset X$ 開、$s''\in\sF''(V)$。(i) を $V$ 上に制限した列（$\sF'|_V$ も軟弱）に適用して $s\in\sF(V)$ に持ち上がる。$\sF$ は軟弱なので $s$ は $\sF(X)$ に延び、その像が $s''$ の延長。\qedhere
+\end{proof}
+\begin{thm}[基本性質]\label{thm:les}\tP
+(a) $H^0(X,\sF)=\sF(X)$。(b) $\sF$ が軟弱ならば $H^k(X,\sF)=0$（$k\ge1$）。(c) 層の短完全列 $0\to\sF'\to\sF\to\sF''\to0$ に対し、自然な\emph{長完全列}
+\[
+0\to H^0(\sF')\to H^0(\sF)\to H^0(\sF'')\xrightarrow{\ \partial\ }H^1(\sF')\to H^1(\sF)\to H^1(\sF'')\xrightarrow{\ \partial\ }H^2(\sF')\to\cdots
+\]
+がある（連結準同型 $\partial$ は自然）。(d) $H^k(X,-)$ は関手的。
+\end{thm}
+\begin{proof}
+(a) $\sF=\Ker(C^0\sF\to C^1\sF)$ なので $\Gamma$ をとって $H^0=\Gamma(\sF)$（左完全）。
+(b) $\sF$ 軟弱とする。$0\to\sF\to C^0\sF\to\sZ^1\to0$ で $\sF,C^0\sF$ が軟弱なので補題 \ref{lem:flasque}(ii) により $\sZ^1$ も軟弱。帰納的にすべての $\sZ^k$ が軟弱で、各短完全列 $0\to\sZ^k\to C^k\sF\to\sZ^{k+1}\to0$（$\sZ^0=\sF$）で $\Gamma$ は完全（補題 \ref{lem:flasque}(i)）。これらを繋ぐと $0\to\Gamma(\sF)\to\Gamma(C^0\sF)\to\Gamma(C^1\sF)\to\cdots$ が完全。よって $H^k=0$（$k\ge1$）。
+(c) 補題 \ref{lem:flasque}(iii) とスネーク補題で、各 $k$ について $0\to\sZ'^k\to\sZ^k\to\sZ''^k\to0$ が完全であること、したがって $0\to C^k\sF'\to C^k\sF\to C^k\sF''\to0$ が完全であることを帰納的に得る（$k=0$：(iii)。次に $0\to\sF'\to C^0\sF'\to\sZ'^1\to0$ 等の $3\times3$ 図式のスネーク補題で $\sZ'^1\to\sZ^1\to\sZ''^1$ が短完全、……）。$C^k\sF'$ は軟弱なので補題 \ref{lem:flasque}(i) により $0\to\Gamma(C^k\sF')\to\Gamma(C^k\sF)\to\Gamma(C^k\sF'')\to0$ が完全。これは複体の短完全列だから、コホモロジーの長完全列を誘導する。(d) $C^\bullet$ の関手性。\qedhere
+\end{proof}
+\begin{rem}[他の定義との関係]\tC
+入射分解 $\sF\to\mathcal I^\bullet$（$\Gamma$ の右導来関手）で定義した $R^k\Gamma(X,\sF)$ も (a)(c) と、$\mathcal I$ 入射 $\Rightarrow$ 軟弱 $\Rightarrow$ $H^k=0$ をみたし、定理 \ref{thm:les} の $H^k$ と自然に同型である（$\delta$-関手の普遍性）。実際には、以後使うのは (a)--(d) と次の「非輪状分解による計算」だけである。
+\end{rem}
+\src{Hartshorne, 第III章 §1--2（導来関手とコホモロジー、軟弱層）。Godement, 第II章 §4（標準分解）。Bredon, \emph{Sheaf Theory}, 第II章。}
+
+\subsection{非輪状分解で計算する}
+\begin{defn}
+層 $\sA$ が \emph{非輪状}（$\Gamma$-acyclic）とは、$H^k(X,\sA)=0$（$k\ge1$）。軟弱層は非輪状（定理 \ref{thm:les}(b)）。
+\end{defn}
+\begin{prop}[非輪状分解定理]\label{prop:acyclic}\tP
+$0\to\sF\to\sA^0\xrightarrow{d}\sA^1\xrightarrow{d}\cdots$ が層の完全列で、各 $\sA^j$ が非輪状ならば
+\[
+H^k(X,\sF)\cong H^k\big(\Gamma(X,\sA^\bullet)\big)\qquad(k\ge0).
+\]
+\end{prop}
+\begin{proof}
+$\sZ^j=\Ker(\sA^j\to\sA^{j+1})$（$\sZ^0=\sF$）とおくと、短完全列 $0\to\sZ^j\to\sA^j\to\sZ^{j+1}\to0$。定理 \ref{thm:les}(c) の長完全列で $H^k(\sA^j)=0$（$k\ge1$）より
+\[
+H^k(\sZ^{j+1})\xrightarrow{\ \cong\ }H^{k+1}(\sZ^j)\ (k\ge1),\qquad 0\to\Gamma(\sZ^j)\to\Gamma(\sA^j)\to\Gamma(\sZ^{j+1})\to H^1(\sZ^j)\to0.
+\]
+$k\ge1$ のとき、前者を繰り返して $H^k(\sF)=H^k(\sZ^0)\cong H^{k-1}(\sZ^1)\cong\cdots\cong H^1(\sZ^{k-1})$。後者から $H^1(\sZ^{k-1})\cong\Gamma(\sZ^k)/\imm\big(\Gamma(\sA^{k-1})\to\Gamma(\sZ^k)\big)$。ここで $\Gamma(\sZ^k)=\Ker(\Gamma(\sA^k)\to\Gamma(\sA^{k+1}))$（$\Gamma$ は左完全）、また $\imm(\Gamma(\sA^{k-1})\to\Gamma(\sZ^k))=\imm(\Gamma(\sA^{k-1})\to\Gamma(\sA^k))$。よって右辺は $H^k(\Gamma(\sA^\bullet))$。$k=0$ は (a)。\qedhere
+\end{proof}
+この命題が、「局所的な情報（層の完全列）から大域的なコホモロジーを具体的に計算する」ための基本ツールである。軟弱でなくても非輪状な層は豊富にある。
+
+\subsection{細層（fine sheaf）：1 の分割と非輪状性}
+滑らかな多様体 $X$ 上の $C^\infty_X$-加群の層 $\sF$（$\A^k_X$、$\A^{p,q}(E)$ など）では、1 の分割がテクニックを与える。
+\begin{lem}\label{lem:finegamma}\tP
+$X$ を滑らかな多様体（Hausdorff、第2可算）とし、$0\to\sF'\to\sF\to\sF''\to0$ を $C^\infty_X$-加群の層の短完全列（射は $C^\infty_X$-線形）とする。このとき $\Gamma(X,\sF)\to\Gamma(X,\sF'')$ は全射である（$\sF'$ に条件は要らない）。
+\end{lem}
+\begin{proof}
+$s''\in\sF''(X)$。各点で局所持ち上げがあるので、$X$ の開被覆 $\{V_a\}$ と $s_a\in\sF(V_a)$（$s_a\mapsto s''|_{V_a}$）が存在する。$X$ は paracompact なので、局所有限な細分と、それに従属する 1 の分割 $\{\rho_i\}$（$\mathrm{supp}\,\rho_i\subset V_{a(i)}$、$\sum\rho_i=1$）がとれる。$\rho_is_{a(i)}\in\sF(V_{a(i)})$ は、$V_{a(i)}$ の外では $0$ とおくことで $X$ 上の切断 $t_i$ に延びる（$\mathrm{supp}\,\rho_i$ は閉集合で $V_{a(i)}\setminus\mathrm{supp}\rho_i$ 上では $\rho_i\equiv0$ なので $t_i$ は貼り合う）。$\{\mathrm{supp}\,\rho_i\}$ は局所有限なので $s=\sum_it_i$ は局所的に有限和として $\sF(X)$ の切断を定め、像は $\sum_i\rho_is''|_{V_{a(i)}}=\sum_i\rho_i\,s''=s''$。\qedhere
+\end{proof}
+\begin{prop}[fine 層は非輪状]\label{prop:fine}\tP
+$X$ を滑らかな多様体とする。任意の $C^\infty_X$-加群の層 $\sF$ は非輪状：$H^k(X,\sF)=0$（$k\ge1$）。特に $\A^k_X$、$\A^{p,q}$、$\A^{p,q}(E)$、$C^\infty_X$ は非輪状。
+\end{prop}
+\begin{proof}
+Godement 分解の各項 $C^k(\sF)$ は（芽の族の空間として）$C^\infty_X$-加群で、$\sZ^k$（商）も、$d$ も $C^\infty$-線形。補題 \ref{lem:finegamma} により各 $0\to\sZ^k\to C^k\sF\to\sZ^{k+1}\to0$ で $\Gamma$ が完全。したがって $\Gamma(C^\bullet\sF)$ は正の次数で完全で、$H^k=0$（$k\ge1$）。\qedhere
+\end{proof}
+\begin{rem}
+「$C^\infty_X$-加群」を、「1の分割をもつ環の層上の加群」に一般化したものを \emph{fine 層}という（Bredon, \emph{Sheaf Theory}, 第II章の fine 層・soft 層の節\tQ{}（節番号）参照。Hartshorne の第III章本文には fine 層は出てこない）。$C^0_X$ 上の加群も paracompact Hausdorff 空間で同様。一方、正則関数の層 $\Oc_X$ は、$\Oc$ に 1 の分割がない（$\rho$ が正則なら定数）ので fine でない：実際 $H^1(X,\Oc)\ne0$ となることがある（楕円曲線）。fine 性は「$C^\infty$ の自由度」であり、正則（代数的）な世界の障害がコホモロジーとして残る、というのが Dolbeault の定理の主張である。
+\end{rem}
+\begin{ex}[fine 層の $H^1$ を \Cech{} で直接]\label{ex:fineH1}
+$\sF=C^\infty_X$（または一般の $C^\infty_X$-加群の層）、$\mathcal U=(U_i)$ を局所有限な開被覆、$(\rho_i)$ を従属する 1 の分割（$\mathrm{supp}\,\rho_i\subset U_i$）とする。1 コサイクル $c=(c_{ij})$（$c_{kj}=c_{ki}+c_{ij}$）に対し
+\[
+h_i=\sum_k\rho_k\,c_{ki}\in\sF(U_i)
+\]
+とおく（$\rho_kc_{ki}\in\sF(U_k\cap U_i)$ は $U_i\setminus\mathrm{supp}\rho_k$ 上 $0$ として $U_i$ 全体に延長し、和は局所有限）。すると $h_j-h_i=\sum_k\rho_k(c_{kj}-c_{ki})=\sum_k\rho_kc_{ij}=c_{ij}$、すなわち $c=\delta h$。したがって $\check H^1(\mathcal U,\sF)=0$。これは第1巻で de Rham の $H^1$ のコサイクルを 1 の分割で解いた議論と同じ型で、「$C^\infty$ の層は大域的な障害をもたない」という主張の最も簡単な場合である（高次は命題 \ref{prop:fine}）。
+\end{ex}
+
+\subsection{Euler 標数への準備：次数と消滅}
+\begin{prop}\label{prop:vanish}\tP
+$X$ を $n$ 次元複素多様体とする。任意の正則ベクトル束 $E$ について、$H^q(X,\Omega^p\otimes E)=0$（$q>n$）。
+\end{prop}
+\begin{proof}
+Dolbeault 分解（命題 \ref{prop:resolutions}(b)）は $\A^{p,q}(E)$（$0\le q\le n$）で終わる非輪状分解で、$q>n$ に項がない。命題 \ref{prop:acyclic} より $H^q=H^q(\Gamma(\A^{p,\bullet}(E)))=0$（$q>n$）。\qedhere
+\end{proof}
+
+\begin{keybox}{要点（§\ref{sec:cohom}）}
+$H^k(X,\sF)$ は Godement 分解の大域切断複体のコホモロジーで、(a) $H^0=\Gamma$、(b) 軟弱層で消える、(c) 短完全列から長完全列、を満たす。非輪状分解（軟弱、または $C^\infty$-加群の層 $=$ fine 層でできた分解）で $H^k$ が計算できる（命題 \ref{prop:acyclic}）。1 の分割があると、短完全列で大域切断が全射になる（補題 \ref{lem:finegamma}）のが fine 層の核心。
+\end{keybox}
+
+\begin{prob}{基本}\label{p:flasque}
+次の層は軟弱か：(a) $\R$ 上の $C^\infty_\R$、(b) $\R$ 上の $\Zs$、(c) skyscraper 層 $i_{x*}A$、(d) $\C$ 上の $\Oc_\C$。軟弱でないものについて、(a) は fine 層として非輪状（命題 \ref{prop:fine}）であること、(b) の $H^k(\R,\Zs)=0$（$k\ge1$、$\R$ が可縮であることによる位相的な事実）、(d) の $H^k(\C,\Oc)=0$（$k\ge1$）を踏まえて、いずれも「軟弱ではないが非輪状」な層の例になっていることを述べよ。
+\end{prob}
+\begin{prob}{基本}\label{p:godement0}
+Godement の $C^0(\sF)$ について、(a) 軟弱であること、(b) $\sF\to C^0(\sF)$ が単射の層の射であること、(c) 短完全列に対する完全性（補題 \ref{lem:flasque}(iii)）を確かめよ。$X$ が 1 点のとき、$C^\bullet(\sF)$ はどうなるか。
+\end{prob}
+\begin{prob}{標準}\label{p:fineH1}
+例 \ref{ex:fineH1} の $h_i=\sum_k\rho_kc_{ki}$ が $c_{ij}=h_j-h_i$ をみたすことを確かめ、(a) どの段階で 1 の分割 $\sum\rho_k=1$ とコサイクル条件を使うか、(b) 局所有限性が必要な理由を述べよ。(c) $\sF=\Oc$ ではこの議論がなぜ失敗するか。
+\end{prob}
+\begin{prob}{標準}\label{p:Z2}
+$S^1$ について $H^0(S^1,\Z)=\Z$、$H^1(S^1,\Z)=\Z$、$H^k(S^1,\Z)=0$（$k\ge2$）を既知とする。完全列 $0\to\Zs\xrightarrow{\cdot2}\Zs\to\underline{\Z/2}\to0$ の長完全列から $H^1(S^1,\Z/2)=\Z/2$ を導け。（例 \ref{ex:S1cover}、問 \ref{p:moebius} と比較せよ。）
+\end{prob}
+\begin{prob}{発展}\label{p:flasquequot}
+補題 \ref{lem:flasque}(i)(ii) の証明の細部を補え：(a) $\sF'$ 軟弱のとき $\Gamma(\sF)\to\Gamma(\sF'')$ が全射であること（Zorn の補題を使う）。(b) Godement 分解の $\sZ^k$ がすべて軟弱であること（$\sF$ が軟弱な場合）。(c) $\sF$ が軟弱で $\sF'\subset\sF$ が軟弱な部分層なら、$\sF/\sF'$ が軟弱であること。
+\end{prob}
+

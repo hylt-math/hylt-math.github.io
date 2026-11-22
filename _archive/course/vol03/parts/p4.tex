@@ -1,0 +1,261 @@
+%==================================================
+\section{de Rham の定理と Dolbeault の定理}\label{sec:deRhamDolb}
+%==================================================
+
+\paragraph{動機。}第1巻の $H^k_{\mathrm{dR}}(M)$ と第2巻の $H^{p,q}_{\bar\partial}(X)$ は、微分形式の複体のコホモロジーとして定義された。一方、層コホモロジー $H^k(X,\sF)$ は微分形式を使わずに定義される。両者を結ぶのが次の二つの定理で、証明は\emph{局所的な補題（Poincar\'e、Dolbeault--Grothendieck）+ 1 の分割}という同じ型である。これにより、$H^{p,q}_{\bar\partial}(X)=H^q(X,\Omega^p)$ のように、解析的な量を層で扱える。
+
+\subsection{de Rham の定理}
+\begin{thm}[de Rham]\label{thm:deRham}\tP
+$X$ を滑らかな多様体とする。自然な同型 $H^k(X,\Rs)\cong H^k_{\mathrm{dR}}(X)$（$k\ge0$）がある。
+\end{thm}
+\begin{proof}
+命題 \ref{prop:resolutions}(a) の完全列 $0\to\Rs\to\A^0_X\to\A^1_X\to\cdots$ は、各 $\A^k_X$ が $C^\infty_X$-加群であるから非輪状分解（命題 \ref{prop:fine}）。非輪状分解定理（命題 \ref{prop:acyclic}）より $H^k(X,\Rs)\cong H^k(\Gamma(X,\A^\bullet_X))=H^k(\A^\bullet(X),d)=H^k_{\mathrm{dR}}(X)$。\qedhere
+\end{proof}
+複素係数の de Rham 複体 $\A^\bullet_X\otimes\C$ についても同様に $H^k(X,\Cs)\cong H^k_{\mathrm{dR}}(X;\C)$。
+\begin{rem}[位相的な不変性と整数係数]\tC
+$H^k(X,\Rs)$ は（定数層の層コホモロジーなので）$C^\infty$ 構造によらない位相不変量であり、$X$ が局所可縮（多様体は CW 複体と同じホモトピー型）なら特異コホモロジー $H^k_{\mathrm{sing}}(X;\R)$ と一致する。整数係数の $H^k(X,\Zs)$ も同様に特異コホモロジー $H^k(X;\Z)$ と一致する（de Rham 複体では整数性が見えないので、特異コチェインの層を使う別の非輪状分解で示す）。以後、$H^k(X,\Zs)=H^k(X;\Z)$ を位相の事実として使う。
+\end{rem}
+\src{Warner, \emph{Foundations of Differentiable Manifolds and Lie Groups}, 第5章（層と de Rham の定理）。Bredon, \emph{Sheaf Theory}, 第III章（特異コホモロジーとの一致）。Bott--Tu, 第II章（\Cech{}--de Rham）。}
+\begin{ex}[$S^1$ の $H^1$：\Cech{}--de Rham の対応]\label{ex:CechdR}
+閉形式 $\alpha$ から \Cech{} 類を作る手続きを具体的に見る。被覆 $\mathcal U=\{U_0,U_1\}$（例 \ref{ex:S1cover}）、$\alpha=\frac{d\theta}{2\pi}$（$S^1$ 上の閉 1 形式）。$U_i$ は可縮なので $\alpha|_{U_i}=df_i$（$f_i=\frac{\theta_i}{2\pi}$、$\theta_i$ は $U_i$ 上の偏角の枝）。重なりの各成分上で $f_1-f_0$ は定数（$d(f_1-f_0)=0$）で、一方の成分 $A$ では $0$、他方 $B$ では $1$ をとる（偏角の枝が $2\pi$ だけずれる）。よって $(f_1-f_0)\in C^1(\mathcal U,\Rs)$ は例 \ref{ex:S1cover} の生成元：$[\alpha]\mapsto$ 生成元。$\int_{S^1}\alpha=1$ と対応する。この「局所的に $\alpha=df_i$ と原始関数をとり、その差を見る」手続きが de Rham の定理の主張であり、証明は層の完全列 $0\to\Rs\to\A^0\to\A^1_{\mathrm{cl}}\to0$（問 \ref{p:closedforms}）による。
+\end{ex}
+
+\subsection{Dolbeault の定理}
+\begin{thm}[Dolbeault]\label{thm:Dolbeault}\tP
+$X$ を複素多様体、$E$ を正則ベクトル束とする。自然な同型
+\[
+H^q(X,\Omega^p\otimes E)\ \cong\ H^{p,q}_{\bar\partial}(X,E):=\frac{\Ker\big(\bar\partial_E:\A^{p,q}(E)(X)\to\A^{p,q+1}(E)(X)\big)}{\bar\partial_E\,\A^{p,q-1}(E)(X)}
+\]
+がある。特に $H^q(X,\Oc(E))\cong H^{0,q}_{\bar\partial}(X,E)$、$E$ が自明のとき $H^q(X,\Omega^p)\cong H^{p,q}_{\bar\partial}(X)$。
+\end{thm}
+\begin{proof}
+命題 \ref{prop:resolutions}(b) の完全列 $0\to\Omega^p\otimes E\to\A^{p,0}(E)\to\A^{p,1}(E)\to\cdots$ は、各項 $\A^{p,q}(E)$ が $C^\infty_X$-加群の層なので非輪状分解（命題 \ref{prop:fine}）。命題 \ref{prop:acyclic} より、$H^q(X,\Omega^p\otimes E)\cong H^q(\Gamma(X,\A^{p,\bullet}(E)),\bar\partial_E)$。\qedhere
+\end{proof}
+この証明の中で「局所的な $\bar\partial$-補題 $\Rightarrow$ 大域的な非輪状分解」が働いている。第2巻の補題がなければ、層 $\Omega^p$ の分解は得られなかった。
+\begin{cor}\label{cor:Hodgenumbers}
+(a) 第2巻で定義した Hodge 数 $h^{p,q}=\dim H^{p,q}_{\bar\partial}(X)$ は $\dim H^q(X,\Omega^p)$ に等しい。(b) $q>\dim X$ なら $H^q(X,\Omega^p\otimes E)=0$。(c) 複素トーラス $X=\C^n/\Lambda$ では $H^q(X,\Oc)\cong\Lambda^q\overline{(\C^n)^*}$、$\dim=\binom nq$（第2巻 §4 の複素トーラスの命題）。(d) 楕円曲線 $E$ で $H^1(E,\Oc)=\C$（$[d\bar z]$）。
+\end{cor}
+\begin{ex}[Cousin 第 I 問題と $H^1(X,\Oc)$]\label{ex:cousin}
+$X$ を複素多様体とする。開被覆 $\{U_i\}$ と、各 $U_i$ 上の有理型関数 $f_i$ で $f_i-f_j\in\Oc(U_{ij})$ をみたすもの（「主要部のデータ」）を与える。$X$ 上の有理型関数 $F$ で $F-f_i\in\Oc(U_i)$ となるものを求めたい（Mittag-Leffler / Cousin I）。$c_{ij}=f_i-f_j$ は $\Oc$ の 1 コサイクル。$H^1(X,\Oc)=0$ ならば（被覆が $\Oc$ に関する Leray の条件をみたす、または $\check H^1(\mathcal U,\Oc)\hookrightarrow H^1$ を使って）$c_{ij}=h_i-h_j$（$h_i\in\Oc(U_i)$）となり、$F=f_i-h_i$ は $U_i$ 上で $F-f_i=-h_i$ が正則、かつ $F_i-F_j=c_{ij}-(h_i-h_j)=0$ より大域的に定まる。$H^1(X,\Oc)=0$ は $X=\C$、多重円板、Stein 多様体で成り立つ（定理 \ref{thm:Stein}）。コンパクトでは一般に $H^1(X,\Oc)\ne0$（種数 $g$ の Riemann 面で $\dim=g$）で、Mittag-Leffler の定理は成り立たない。
+\end{ex}
+
+\begin{keybox}{要点（§\ref{sec:deRhamDolb}）}
+$0\to\Rs\to\A^\bullet\to$ と $0\to\Omega^p\otimes E\to\A^{p,\bullet}(E)$ は fine 層による分解。したがって $H^k(X,\Rs)=H^k_{\mathrm{dR}}(X)$、$H^q(X,\Omega^p\otimes E)=H^{p,q}_{\bar\partial}(X,E)$。局所的な補題（Poincar\'e、$\bar\partial$-補題）が分解を保証し、1 の分割が非輪状性を保証する。大域的な情報は $H^{p,q}$ に残る。
+\end{keybox}
+
+\begin{prob}{基本}\label{p:dRS1}
+定理 \ref{thm:deRham} を使い、$H^k(S^1,\Rs)$（$k=0,1$）を de Rham 複体 $\A^0(S^1)\xrightarrow{d}\A^1(S^1)$ から計算せよ（閉形式 $\Leftrightarrow\ f\,d\theta$ で $\int f=0$ なら完全）。
+\end{prob}
+\begin{prob}{標準}\label{p:closedforms}
+$\A^k_{\mathrm{cl}}$ を閉 $k$ 形式の層とする。(a) 層の完全列 $0\to\Rs\to\A^0\xrightarrow{d}\A^1_{\mathrm{cl}}\to0$、$0\to\A^{k}_{\mathrm{cl}}\to\A^k\xrightarrow{d}\A^{k+1}_{\mathrm{cl}}\to0$（$k\ge1$）を示せ。(b) 長完全列と命題 \ref{prop:fine} から $H^{k}(X,\Rs)\cong H^{k-1}(X,\A^1_{\mathrm{cl}})\cong\cdots\cong H^1(X,\A^{k-1}_{\mathrm{cl}})\cong\A^k_{\mathrm{cl}}(X)/d\A^{k-1}(X)$（$k\ge2$）を示せ。（これが de Rham の定理の別証明。）
+\end{prob}
+\begin{prob}{基本}\label{p:torusH}
+複素トーラス $X=\C^n/\Lambda$ について、第2巻の結果と Dolbeault の定理を使い、$\dim H^q(X,\Oc)$、$\dim H^q(X,\Omega^p)$ を求めよ。$\chi(\Oc_X)=\sum(-1)^q\dim H^q(X,\Oc)$ を求めよ。
+\end{prob}
+\begin{prob}{標準}\label{p:vanishnq}
+(a) $n$ 次元複素多様体上で $H^q(X,\Omega^p\otimes E)=0$（$q>n$）を示せ。(b) $X$ が 1 次元（Riemann 面）のとき、$H^1(X,E)\ne0$ となる条件を $\bar\partial_E:\A^0(E)\to\A^{0,1}(E)$ の全射性で述べよ。
+\end{prob}
+\begin{prob}{発展}\label{p:cousinpoly}
+$X=\CP^1$、被覆 $\{U_0,U_1\}$ で、有理型関数 $f_0=\frac1z$（$U_0$ 上）、$f_1=0$（$U_1$ 上）を考える。$f_0-f_1$ は $U_{01}$ で正則か。主要部のデータとして $\Oc(U_{01})$ の 1 コサイクルになるか。$F-f_i\in\Oc(U_i)$ となる有理型関数 $F$ は $\CP^1$ 上存在するか。結果を $H^1(\CP^1,\Oc)=0$（定理 \ref{thm:P1}）と比較せよ。（ヒント：$f_0$ は $U_0=\C$ の原点で極をもつ。）
+\end{prob}
+
+%==================================================
+\section{Leray の定理と \Cech{} による具体的計算}\label{sec:leray}
+%==================================================
+
+\paragraph{動機。}層コホモロジーは定義が抽象的だが、\Cech{} コホモロジーは具体的に計算できる。両者が一致するような被覆（Leray の被覆）をとれば、層コホモロジーを手で計算できる。この節で $\CP^1$ 上の $\Oc(k)$ のコホモロジーを完全に計算する。
+
+\subsection{Leray の定理}
+\begin{lem}\label{lem:flasqueCech}\tP
+$\sG$ が軟弱層、$\mathcal U$ が開被覆なら、$0\to\sG(X)\to C^0(\mathcal U,\sG)\xrightarrow{\delta}C^1(\mathcal U,\sG)\xrightarrow{\delta}\cdots$ は完全。すなわち $\check H^p(\mathcal U,\sG)=0$（$p\ge1$）。
+\end{lem}
+\begin{proof}
+層 $\check C^p(\mathcal U,\sG)$ を $V\mapsto\prod_{(i_0,\dots,i_p)}\sG(V\cap U_{i_0\cdots i_p})$（交代的）で定める。$\Gamma(X,\check C^p)=C^p(\mathcal U,\sG)$。まず $0\to\sG\to\check C^0\to\check C^1\to\cdots$ が\emph{層として}完全であることを示す。点 $x$ をとり $x\in U_a$ となる $a$ を選ぶ。$x$ の開近傍 $V\subset U_a$ に対し、$h:\check C^p(V)\to\check C^{p-1}(V)$ を $(h\sigma)_{i_0\cdots i_{p-1}}=\sigma_{a\,i_0\cdots i_{p-1}}$ で定める（$V\subset U_a$ なので $V\cap U_{ai_0\cdots i_{p-1}}=V\cap U_{i_0\cdots i_{p-1}}$ で意味をもつ）。直接計算で
+\[
+(\delta h\sigma+h\delta\sigma)_{i_0\cdots i_p}=\sigma_{i_0\cdots i_p}\quad(p\ge1),\qquad\sigma=\epsilon(\sigma_a)+h\delta\sigma\quad(p=0)
+\]
+が成り立つ（$\epsilon:\sG\to\check C^0$ は制限）。したがって $V\subset U_a$ 上の切断の複体 $0\to\sG(V)\to\check C^0(V)\to\cdots$ は完全で、$x$ の近傍の列について帰納極限をとれば茎で完全。次に各 $\check C^p(\mathcal U,\sG)$ は軟弱層（$\sG$ が軟弱なので $\sG(V\cap U_I)\to\sG(W\cap U_I)$ が全射）。補題 \ref{lem:flasque}(i)(ii) を完全列に繰り返し適用すれば（核が軟弱であることを順に確かめて）$\Gamma(X,-)$ をとっても完全。\qedhere
+\end{proof}
+\begin{thm}[Leray]\label{thm:leray}\tP
+$\mathcal U$ を $X$ の開被覆とし、すべての有限交叉 $U_{i_0\cdots i_p}$ で $H^q(U_{i_0\cdots i_p},\sF)=0$（$q\ge1$）が成り立つとする（\emph{Leray の被覆}）。このとき自然な同型 $\check H^p(\mathcal U,\sF)\cong H^p(X,\sF)$（$p\ge0$）。\\
+一般の被覆でも、自然な写像 $\check H^p(\mathcal U,\sF)\to H^p(X,\sF)$ がある。
+\end{thm}
+\begin{proof}
+Godement 分解 $C^q=C^q(\sF)$ に対し、二重複体 $K^{p,q}=C^p(\mathcal U,C^q)=\prod\Gamma(U_{i_0\cdots i_p},C^q)$ を考える。横の微分は \Cech{} の $\delta$、縦の微分は $C^q\to C^{q+1}$ の $d$ に符号 $(-1)^p$ を付けたもの。全複体 $\Tot(K)$。
+\begin{center}
+\begin{tikzcd}[column sep=small,row sep=small]
+\Gamma(X,C^0)\arrow[r]\arrow[d] & K^{0,0}\arrow[r,"\delta"]\arrow[d,"d"] & K^{1,0}\arrow[r,"\delta"]\arrow[d,"d"] & K^{2,0}\arrow[d]\arrow[r] & \cdots\\
+\Gamma(X,C^1)\arrow[r]\arrow[d] & K^{0,1}\arrow[r,"\delta"]\arrow[d] & K^{1,1}\arrow[r]\arrow[d] & K^{2,1}\arrow[d]\arrow[r]&\cdots\\
+\vdots & \vdots & \vdots & \vdots &
+\end{tikzcd}
+\end{center}
+（左端の列は $\Gamma(X,C^\bullet(\sF))$、$X$ 上の大域切断を制限して $K^{0,\bullet}$ に入れる写像。上端の行は、$\sF\to C^0\sF$ による $C^p(\mathcal U,\sF)\to K^{p,0}$。）
+\emph{行}（$q$ を固定）：$K^{\bullet,q}$ は軟弱層 $C^q(\sF)$ の \Cech{} 複体で、補題 \ref{lem:flasqueCech} により $\Gamma(X,C^q)\to K^{0,q}\to K^{1,q}\to\cdots$ は完全。\emph{列}（$p$ を固定）：$K^{p,\bullet}=\prod\Gamma(U_I,C^\bullet(\sF))$ で、Godement 分解は開集合への制限と可換なので、各因子は $U_I$ 上の層コホモロジーを計算する複体。仮定より、そのコホモロジーは $q\ge1$ で $0$、$q=0$ で $\sF(U_I)$。つまり $0\to C^p(\mathcal U,\sF)\to K^{p,0}\to K^{p,1}\to\cdots$ が完全。
+二重複体の標準的補題（第 1 象限の二重複体で、すべての行が（左に $\Gamma(X,C^q)$ を付け加えて）完全ならば、$\Gamma(X,C^\bullet)\to\Tot(K)$ は擬同型；すべての列が（上に $C^p(\mathcal U,\sF)$ を付け加えて）完全ならば $C^\bullet(\mathcal U,\sF)\to\Tot(K)$ は擬同型）から、
+\[
+\check H^p(\mathcal U,\sF)\xrightarrow{\ \cong\ }H^p(\Tot K)\ \xleftarrow{\ \cong\ }\ H^p(\Gamma(X,C^\bullet(\sF)))=H^p(X,\sF).
+\]
+（標準的補題の証明は、完全な行（または列）の一つ前の項をとる「ジグザグ」の議論：Bott--Tu 第II章 §8 の generalized Mayer--Vietoris principle。）最後の主張：行が完全であることは被覆の仮定なしに成り立つので、$\check C^\bullet(\mathcal U,\sF)\to\Tot K\xleftarrow{\simeq}\Gamma(X,C^\bullet)$ （右向きの写像は常に擬同型）から、自然な写像 $\check H^p(\mathcal U,\sF)\to H^p(\Tot K)\cong H^p(X,\sF)$ を得る。\qedhere
+\end{proof}
+\src{Hartshorne, 第III章 §4（\Cech{} とコホモロジーの比較）。Godement, 第II章 §5。Bott--Tu, 第II章 §8--9。Griffiths--Harris, 第0章 §3.}
+
+\subsection{Leray の被覆の例：Stein 多様体とアフィン被覆}
+\begin{thm}[Cartan の定理 B（Stein 多様体上）]\label{thm:Stein}\tC
+$X$ を Stein 多様体（$\C^N$ の閉部分多様体、または $\C^n$ の正則領域など）とする。このとき任意の正則ベクトル束（より一般に連接層）$E$ について $H^q(X,\Oc(E))=0$（$q\ge1$）。
+\end{thm}
+\src{Hörmander, \emph{An Introduction to Complex Analysis in Several Variables}（Stein 多様体と連接層の章、章番号は\tQ{}）。Gunning--Rossi, \emph{Analytic Functions of Several Complex Variables}（章は\tQ{}）。Grauert--Remmert, \emph{Theory of Stein Spaces}.}
+我々が必要とするのは次の二つだけで、前者は第2巻の $\bar\partial$ 方程式の結果に近い：
+\begin{itemize}
+\item $\C$ の任意の開集合 $\Omega$ について $H^1(\Omega,\Oc)=0$（Dolbeault の定理 $+$ $\C$ の開集合上の $\bar\partial u=f$ の可解性、Hörmander 第1章）。$H^q(\Omega,\Oc)=0$（$q\ge2$）は命題 \ref{prop:vanish}。
+\item $\C^n$ の開集合の積 $\C^{a}\times(\C^*)^b$ は Stein。特に $\CP^n$ の標準的な被覆 $U_i=\{Z_i\ne0\}\cong\C^n$ とその交叉 $U_{i_0\cdots i_p}\cong(\C^*)^p\times\C^{n-p}$ はすべて Stein。
+\end{itemize}
+したがって、$\CP^n$ の標準被覆は、すべての $\Oc(k)$ について Leray の被覆（$\Oc(k)$ は各 $U_i$ 上で自明）。
+
+\subsection{$\CP^1$ 上の $\Oc(k)$ のコホモロジー}
+\begin{thm}\label{thm:P1}\tP
+$\CP^1$ 上の $\Oc(k)$ について、
+\[
+\dim H^0(\CP^1,\Oc(k))=\begin{cases}k+1&(k\ge0)\\0&(k<0)\end{cases},\qquad
+\dim H^1(\CP^1,\Oc(k))=\begin{cases}0&(k\ge-1)\\-k-1&(k\le-2)\end{cases},
+\]
+$H^q=0$（$q\ge2$）。$H^0(\Oc(k))$ の基底は $z^n$（$0\le n\le k$）（$U_0$ の成分）、$H^1(\Oc(k))$ の基底は \Cech{} 類 $[z^n]$（$k<n<0$）。
+\end{thm}
+\begin{proof}
+標準被覆 $\mathcal U=\{U_0,U_1\}$ は Leray の被覆（上述）。$\Oc(k)$ の切断を $U_0$ では成分 $f_0$（$\Oc(U_0)=\{$整関数 $\sum_{n\ge0}a_nz^n\}$）、$U_1$ では成分 $f_1$（$w=1/z$ の整関数 $\sum_{m\ge0}b_mw^m$）、$U_{01}=\C^*$ では $e_0$ に関する成分（$\C^*$ 上の Laurent 級数 $\sum_{n\in\Z}c_nz^n$）で表す。$e_1=z^ke_0$ より、$f_1e_1=f_1z^ke_0$ の $e_0$ 成分は $z^kf_1(1/z)=\sum_mb_mz^{k-m}$。2 枚の被覆の複体（Mayer--Vietoris の形、§\ref{sec:cech}）は
+\[
+\delta(f_0,f_1)=\sum_{m\ge0}b_mz^{k-m}-\sum_{n\ge0}a_nz^n\ \in\ \Oc(\C^*)\quad\text{（Laurent 級数）}.
+\]
+\emph{核}：$\sum b_mz^{k-m}=\sum a_nz^n$ は係数比較で $a_n=b_{k-n}$。右辺は $n\ge0$ のみ、左辺は $n=k-m\le k$ のみなので、$0\le n\le k$ の範囲だけで、$k+1$ 個の自由パラメータ（$k\ge0$）。$k<0$ なら核は $0$。よって $\dim H^0=\max(k+1,0)$。
+\emph{余核}：$\Oc(\C^*)$ の Laurent 級数 $\sum_{n\in\Z}c_nz^n$（$\C^*$ で絶対収束）は、$n\ge0$ の部分（$\C$ 上の整関数）と $n<0$ の部分（$1/z$ の整関数）に収束する二つの級数に分かれる。像は、$n\ge0$ の項（$f_0$ の部分）と $n\le k$ の項（$f_1$ の部分）を自由に足したもの全体、すなわち $\{n\ge0\}\cup\{n\le k\}$ に台をもつ級数全体。余核は残りの指数 $n$ の自由度：$k<n<0$ を満たす $n$ の個数、すなわち $k\le-2$ のとき $-k-1$、$k\ge-1$ のとき $0$。基底は $[z^n]$（$k<n<0$）。
+$H^q$（$q\ge2$）は 2 枚の被覆で $C^q=0$ だから $0$。\qedhere
+\end{proof}
+\begin{cor}[表]\label{cor:P1table}
+\begin{center}
+\begin{tabular}{c|cccccccccc}
+\toprule
+$k$ & $\cdots$ & $-4$ & $-3$ & $-2$ & $-1$ & $0$ & $1$ & $2$ & $3$ & $\cdots$\\
+\midrule
+$h^0(\Oc(k))$ & $0$ & $0$ & $0$ & $0$ & $0$ & $1$ & $2$ & $3$ & $4$ & $k+1$\\
+$h^1(\Oc(k))$ & $-k-1$ & $3$ & $2$ & $1$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$\\
+$\chi(\Oc(k))$ & $k+1$ & $-3$ & $-2$ & $-1$ & $0$ & $1$ & $2$ & $3$ & $4$ & $k+1$\\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{cor}
+いくつかの照合：
+\begin{itemize}
+\item $K_{\CP^1}=\Omega^1\cong\Oc(-2)$（例 \ref{ex:Okcocycle}）。$H^1(\CP^1,\Omega^1)=\C$ は Dolbeault の定理により $H^{1,1}_{\bar\partial}(\CP^1)=\C$（第2巻の主張）に一致する。$H^0(\Omega^1)=H^0(\Oc(-2))=0$（$\CP^1$ に非零正則 1 形式はない）。
+\item $H^0(\CP^1,\Oc)=\C$（コンパクト連結な複素多様体上の正則関数は定数、第2巻）、$H^1(\CP^1,\Oc)=0$。
+\item Serre 双対（第4巻）：$H^1(\Oc(k))\cong H^0(\Oc(-2-k))^*$ で、$h^1(\Oc(k))=-k-1$ と $h^0(\Oc(-2-k))=(-2-k)+1=-k-1$ が一致（$k\le-2$）。
+\item $\chi(\Oc(k))=k+1=\deg\Oc(k)+1-g$、$g=0$（Riemann--Roch、第4巻）。
+\end{itemize}
+\begin{ex}[$\Omega^1$ の $H^1$ と留数]\label{ex:residue}\tP
+$\Omega^1$ に対する 2 枚被覆の複体：$\Omega^1(U_0)=\{f(z)dz:f\ \text{整}\}$、$\Omega^1(U_1)=\{g(w)dw\}=\{-g(1/z)z^{-2}dz\}$、$\Omega^1(U_{01})=\{\sum c_nz^ndz\}$。像に入る $dz$ のべき：$z^ndz$（$n\ge0$、$U_0$ から）、$z^{-m-2}dz$（$m\ge0$、$U_1$ から）、つまり $n\le-2$。余核は $z^{-1}dz$ の張る 1 次元。留数写像 $\omega\mapsto\operatorname{Res}_{z=0}\omega$ は像上 $0$ で、$[z^{-1}dz]\mapsto1$ となる同型
+\[
+\operatorname{Res}:H^1(\CP^1,\Omega^1)\xrightarrow{\ \cong\ }\C.
+\]
+これは曲線の Serre 双対のトレース写像 $H^1(X,K_X)\to\C$ の最も簡単な例（第4巻）。
+\end{ex}
+\begin{ex}[\Cech{} 類から Dolbeault 類を作る：留数と積分]\label{ex:CechDolb}\tP
+定理 \ref{thm:leray} と Dolbeault の定理（定理 \ref{thm:Dolbeault}）による $\check H^1(\mathcal U,\Omega^1)\cong H^1(\CP^1,\Omega^1)\cong H^{1,1}_{\bar\partial}(\CP^1)$ を、コサイクル $c=\frac{dz}z\in\Omega^1(U_{01})$ で具体的に追う。$\CP^1$ 上の滑らかな関数 $\rho_0$ で、$z=0$ の近傍（$|z|\le1$）で $\rho_0=1$、$z=\infty$ の近傍（$|z|\ge2$）で $\rho_0=0$ となるものをとり、$\rho_1=1-\rho_0$ とする（1 の分割、$\mathrm{supp}\rho_i\subset U_i$）。$U_{01}$ 上で $c=(\rho_0+\rho_1)c$ と書き、$s_1=\rho_0c$（$U_1=\CP^1\setminus\{0\}$ 上の滑らかな 1 形式。$\rho_0c$ は $\C^*$ 上で定義され、$\rho_0$ が $z=\infty$ の近傍で $0$ なので、$U_1$ の点 $z=\infty$ へ $0$ で延ばせる）、$s_0=-\rho_1c$（$U_0=\C$ 上の滑らかな 1 形式。$\rho_1$ が $z=0$ の近傍で $0$ なので $z=0$ へ $0$ で延ばせる）とおくと $c=s_1-s_0$ on $U_{01}$。$c$ は正則（$\bar\partial c=0$）なので $\bar\partial s_1=\bar\partial\rho_0\wedge c=\bar\partial s_0$ on $U_{01}$：これらは貼り合って $\CP^1$ 上の $(1,1)$ 形式
+\[
+\beta=\bar\partial\rho_0\wedge\frac{dz}z
+\]
+を定める。台は円環 $1\le|z|\le2$ にあり、$\bar\partial$-閉（$(1,2)$ 形式は $0$）。これが $[c]$ に対応する Dolbeault 類。$\bar\partial\rho_0\wedge\frac{dz}z=d\big(\rho_0\frac{dz}z\big)$（$\partial\rho_0\wedge dz=0$）なので、Stokes（円環の外周 $|z|=2$ で $\rho_0=0$、内周 $|z|=1$ で $\rho_0=1$）により
+\[
+\int_{\CP^1}\beta=\oint_{|z|=2}\rho_0\frac{dz}z-\oint_{|z|=1}\rho_0\frac{dz}z=0-2\pi i=-2\pi i.
+\]
+したがって $\int_{\CP^1}\beta=-2\pi i\operatorname{Res}_{z=0}c$：Dolbeault 側の「積分」$H^{1,1}_{\bar\partial}(\CP^1)\to\C$ は \Cech{} 側の「留数」に対応する（符号と $2\pi i$ は規約）。特に $[\beta]\ne0$、$H^{1,1}_{\bar\partial}(\CP^1)=\C$（第2巻の主張）で、生成元は円環に台をもつ $\beta$。
+\end{ex}
+\begin{ex}[$\C^2\setminus\{0\}$：コンパクトでないと $H^1$ が無限次元]\label{ex:C2minus0}\tP
+$X=\C^2\setminus\{0\}$ は $U_1=\{z_1\ne0\}=\C^*\times\C$、$U_2=\{z_2\ne0\}=\C\times\C^*$ で覆われ、$U_{12}=(\C^*)^2$。すべて Stein なので Leray の被覆。$\Oc(U_{12})$ は Laurent 級数 $\sum_{(m,n)\in\Z^2}c_{mn}z_1^mz_2^n$（$(\C^*)^2$ 上で絶対収束）で、$\Oc(U_1)$ は $n\ge0$ の項のみ、$\Oc(U_2)$ は $m\ge0$ の項のみの級数。したがって
+\[
+H^0(X,\Oc)=\Oc(U_1)\cap\Oc(U_2)=\{m\ge0,n\ge0\}=\Oc(\C^2)\quad(\text{Hartogs の拡張定理の特別な場合}),
+\]
+\[
+H^1(X,\Oc)=\Oc(U_{12})/(\Oc(U_1)+\Oc(U_2))\cong\Big\{\sum_{m<0,\,n<0}c_{mn}z_1^mz_2^n\ \text{（収束するもの）}\Big\}.
+\]
+右辺は $z_1^{-a}z_2^{-b}$（$a,b\ge1$）を線形独立に含むので\emph{無限次元}。（第2巻 備考 Hartogs が予告した「$H^{0,1}(\C^2\setminus0)$ は無限次元」の証明。）これは次節の有限性（コンパクトな $X$ で $\dim H^q<\infty$）にコンパクト性が本質的に効くことを示す。
+\end{ex}
+\begin{thm}[$\CP^n$ 上の $\Oc(k)$]\label{thm:Pn}\tC
+$\dim H^q(\CP^n,\Oc(k))$ は次の通り：$q=0$ のとき $\binom{n+k}{n}$（$k\ge0$）、$0$（$k<0$）；$q=n$ のとき $\binom{-k-1}{n}$（$k\le-n-1$）、$0$（それ以外）；$0<q<n$ のとき $0$。
+\end{thm}
+\begin{proof}[証明の筋（$n=1$ は定理 \ref{thm:P1}）]
+標準被覆（Leray）で \Cech{} 複体を、$k$ 次斉次な Laurent 単項式 $z^a=z_0^{a_0}\cdots z_n^{a_n}$（$a\in\Z^{n+1}$、$\sum a_i=k$）に分解する。単項式 $z^a$ が $U_I=\{z_i\ne0,\ i\in I\}$ 上で正則であるための条件は $S(a)=\{i:a_i<0\}\subset I$。したがって各単項式 $z^a$ の分だけ「$S(a)\subset I$ をみたす $I$ 上の単体コチェイン複体」が現れ、それは $S(a)=\emptyset$ のとき全単体のコチェイン複体（$H^0=\C$、他は $0$）、$S(a)=\{0,\dots,n\}$ のとき $I=\{0,\dots,n\}$ だけの複体（次数 $n$ に $\C$）、それ以外では $j\notin S(a)$ をとり $I\mapsto I\cup\{j\}$ による縮約ホモトピーで完全。したがって $H^0$ は $a_i\ge0$ かつ $\sum a_i=k$ の個数 $\binom{n+k}n$、$H^n$ は $a_i<0$ かつ $\sum a_i=k$ の個数 $\binom{-k-1}{n}$。収束する級数についても同じ縮約が使える（Laurent 展開の $z_j$ 方向への分解）。
+\end{proof}
+\src{Hartshorne, 第III章 §5（射影空間上の $\Oc(k)$ のコホモロジー。ただし代数的・Zariski 位相での計算。本巻の複素解析版は Stein 被覆による同じ単項式計算）。}
+\begin{rem}
+この結果は第5巻の Kodaira 型消滅（$H^q(X,K\otimes L)=0$、$q>0$、$L$ 正）と整合する：$K_{\CP^n}=\Oc(-n-1)$、$L=\Oc(k)$ $(k>0)$ で $K\otimes L=\Oc(k-n-1)$ の $H^q$ $(q>0)$ は $0$ ($k-n-1>-n-1$ より)。
+\end{rem}
+
+\subsection{指数完全列と $\Pic$}
+複素多様体 $X$ に対し、指数完全列 $0\to\Zs\to\Oc\to\Oc^*\to1$ の長完全列（定理 \ref{thm:les}(c)）：
+\begin{multline*}
+0\to H^0(X,\Zs)\to\Oc(X)\xrightarrow{\exp}\Oc^*(X)\to H^1(X,\Zs)\\
+\to H^1(X,\Oc)\to H^1(X,\Oc^*)\xrightarrow{\ c_1\ }H^2(X,\Zs)\to H^2(X,\Oc)\to\cdots
+\end{multline*}
+\begin{defn}
+連結準同型 $c_1:\Pic(X)=H^1(X,\Oc^*)\to H^2(X,\Z)$ を、直線束の第1 Chern 類という。\Cech{} の言葉では、コサイクル $g=(g_{ij})$ を（細分して）局所的に $g_{ij}=e^{2\pi i\ell_{ij}}$ と持ち上げ、$c_1[g]=[\delta\ell]$（$\delta\ell$ は $\Z$ 値のコサイクル）。
+\end{defn}
+\begin{rem}[符号の確認：第1・2巻の Chern--Weil との整合]\label{rem:c1sign}
+本巻の規約（$e_j=g_{ij}e_i$、$(\delta h)_{ij}=h_j-h_i$、連結準同型は「持ち上げて $\delta$ をとる」）のもとで、$c_1[g]$ は第1・2巻の Chern--Weil 類 $[\frac i{2\pi}\Theta]$ と一致する（符号は反転しない）。概略：接続を $\nabla e_i=\theta_ie_i$ とおくと、$e_j=g_{ij}e_i$ より $\theta_j-\theta_i=d\log g_{ij}=2\pi i\,d\ell_{ij}$。$\eta_i=\frac i{2\pi}\theta_i$ とおくと $\frac i{2\pi}\Theta|_{U_i}=d\eta_i$、$\eta_j-\eta_i=-d\ell_{ij}$。Bott--Tu の \Cech--de Rham 複体（微分 $D=\delta+(-1)^pd$）で $\frac i{2\pi}\Theta$ から出発して zigzag を実行すると、\Cech{} 側のコサイクルとして $-\delta(-\ell)=\delta\ell$ が得られる。検算：$\Oc(k)$（$g_{01}=z^k$）で $\int_{\CP^1}c_1=k$ となり、第2巻の $\int c_1(\Oc(k),h_k)=k$、第1巻の「$e_0=ge_1$ なら $\int c_1=-\mathrm{wind}(g)$」（第1巻の $g$ は本巻の $g_{01}^{-1}$）とも一致する。ただしこの符号は \Cech{} の $\delta$ の符号、貼り合わせ関数の向き、連結準同型の符号の取り方に依存する。文献との照合は Griffiths--Harris 第1章の第1 Chern 類の節\tQ{}（節番号）。
+\end{rem}
+\begin{prop}\label{prop:Pic}\tP
+(a) $H^1(X,\Oc)=0$ かつ $H^2(X,\Z)=0$ なら $\Pic(X)=0$（例：$X=\C$、$\C^n$、多重円板）。(b) $X$ がコンパクト連結ならば $H^1(X,\Z)\to H^1(X,\Oc)$ は単射で、$\ker c_1=H^1(X,\Oc)/H^1(X,\Z)$（$=:\Pic^0(X)$）。(c) $\Pic(\CP^1)\cong\Z$、生成元 $\Oc(1)$、すなわち任意の正則直線束は $\Oc(k)$ と同型で $k$ はただ一つ。
+\end{prop}
+\begin{proof}
+(a) 長完全列の $H^1(X,\Oc)\to\Pic(X)\to H^2(X,\Z)$ から。$X=\C$ では $H^1(\C,\Oc)=0$（上述）、$H^2(\C,\Z)=0$（可縮）。(b) $X$ コンパクト連結なら $\Oc(X)=\C$（最大値原理）、$\Oc^*(X)=\C^*$ で $\exp:\C\to\C^*$ は全射。長完全列より $H^1(X,\Zs)\to H^1(X,\Oc)$ は単射。(c) $L$ を $\CP^1$ 上の直線束とする。$U_0=\C$、$U_1=\C$ 上で (a) より $L$ は自明（$\Pic(\C)=0$）なので、被覆 $\{U_0,U_1\}$ に関する枠 $e_0,e_1$ がある。貼り合わせ関数 $g=g_{01}\in\Oc^*(\C^*)$ の単位円周に沿う巻き数を $m$ とすると、$g/z^m$ は巻き数 $0$ の零点をもたない正則関数だから $\C^*$ 上で対数をもち、$g=z^me^{h}$（$h\in\Oc(\C^*)$）。Laurent 展開を $n\ge0$ の部分 $h_+$ と $n<0$ の部分 $h_-$ に分ける：$h_+\in\Oc(U_0)$、$h_-\in\Oc(U_1)$。$h_0=e^{h_+}\in\Oc^*(U_0)$、$h_1=e^{-h_-}\in\Oc^*(U_1)$ とおくと $g\,h_1/h_0=z^m e^{h_++h_-}e^{-h_-}e^{-h_+}=z^m$。すなわち $L$ はコサイクル $z^m$ にコホモローグで、$L\cong\Oc(m)$（定理 \ref{thm:picH1}、例 \ref{ex:Okcocycle}）。一意性は命題 \ref{prop:Oknontriv}。\qedhere
+\end{proof}
+\begin{ex}[楕円曲線の $\Pic$]\label{ex:ellPic}\tP
+$E=\C/\Lambda$ とする。$H^1(E,\Z)=\Z^2$、$H^2(E,\Z)=\Z$（トーラスの位相）、$H^1(E,\Oc)=\C$（Dolbeault、第2巻）、$H^2(E,\Oc)=0$（$\dim_{\C}E=1$）。長完全列は
+\[
+0\to\Z^2\to\C\to\Pic(E)\xrightarrow{\ \deg\ }\Z\to0.
+\]
+したがって $\Pic^0(E)=\C/(\text{$\Z^2$ の像})$。$\Z^2\to\C$ の像は $\R$-線形同型 $H^1(E,\R)\to H^{0,1}\cong\C$（$[\alpha]\mapsto[\alpha^{0,1}]$）による格子 $\Lambda'$ で、$\Pic^0(E)=\C/\Lambda'$ はまた楕円曲線（Abel--Jacobi：$E$ 自身と同型\tC）。ここで $H^1(E,\C)\to H^1(E,\Oc)$ が Hodge 分解 $H^1(E,\C)=H^{1,0}\oplus H^{0,1}$ の $H^{0,1}$ への射影であることの理由：$\Cs\to\Oc$ は分解 $\Cs\to\A^\bullet$（de Rham）から $\Oc\to\A^{0,\bullet}$（Dolbeault）への複体の射 $\alpha\mapsto\alpha^{0,\bullet}$ で覆われる（$d=\partial+\bar\partial$ で $\partial$ は $p$ を上げるので $(d\alpha)^{0,k+1}=\bar\partial(\alpha^{0,k})$）。したがって de Rham の定理・Dolbeault の定理による同一視のもとで $[\alpha]\mapsto[\alpha^{0,1}]$。$H^{1,0}$ の代表元は $(0,1)$ 成分が $0$ なので核に入り、$H^1(E,\C)$ が $\C^2$、$H^{0,1}$ が $\C$ なので核はちょうど $H^{1,0}$。$\R$-線形同型であること：実クラス $\alpha$ は $\alpha^{1,0}=\overline{\alpha^{0,1}}$ をみたすので $\alpha^{0,1}=0$ なら $\alpha=0$、実次元 $2=2$。（$\Lambda'$ の具体的な標準化は第4巻の Jacobi 多様体。）
+\end{ex}
+
+\subsection{局所系と平坦直線束}
+第1巻の平坦接続（曲率 $0$ の接続）は、層の言葉では\emph{局所系}である。階数 1 の場合を調べる。$\underline{\C^*}_X$ を、$\C^*$ に値をとる局所定数関数の層（乗法群の層）とする。包含 $\underline{\C^*}_X\subset\Oc^*$ は層の準同型。
+\begin{itemize}
+\item $\check H^1(X,\underline{\C^*}_X)$ の元は、定数の貼り合わせ関数 $g_{ij}\in\C^*$ をもつ直線束 $L$ の同型類（\emph{平坦直線束}：枠 $e_i$ を使って $\nabla e_i=0$ とおくと、貼り合わせ関数が定数なので $\nabla$ は大域的に定まり、平坦）。自然な写像 $\iota:H^1(X,\underline{\C^*})\to H^1(X,\Oc^*)=\Pic(X)$ は「平坦な構造を忘れて正則直線束だけを見る」写像。$X$ が連結かつ局所可縮なら $H^1(X,\underline{\C^*})\cong\Hom(\pi_1(X),\C^*)$（ホロノミー）\tC{}。
+\item 例 \ref{ex:S1cover} と同じ計算（乗法群 $\C^*$ 係数）：$S^1$ の 2 枚被覆で $\check H^1=(\C^*)^2/\text{対角}\cong\C^*$（$(s,t)\mapsto s/t$）。これはホロノミーそのもの。$X=\C^*$（問 \ref{p:H1oneforms} の被覆）でも同様に $H^1(\C^*,\underline{\C^*})=\C^*$、一方 $\Pic(\C^*)=0$（$\C^*$ は Stein で $H^1(\Oc)=0$、$H^2(\C^*,\Z)=0$）：\emph{どの平坦直線束も正則直線束としては自明}（$\iota=0$）。
+\item 完全列 $0\to\Zs\to\Cs\xrightarrow{\exp(2\pi i\cdot)}\underline{\C^*}\to1$（指数完全列の定数版、完全性は命題 \ref{prop:resolutions}(c) と同様）と、$\Oc$ の指数完全列との間の可換図式から、$\iota$ と連結準同型 $c_1$ は可換：
+\[
+\begin{tikzcd}[column sep=small]
+H^1(X,\Cs)\arrow[r]\arrow[d] & H^1(X,\underline{\C^*})\arrow[r,"c_1"]\arrow[d,"\iota"] & H^2(X,\Z)\arrow[r]\arrow[d,equal] & H^2(X,\Cs)\arrow[d]\\
+H^1(X,\Oc)\arrow[r] & \Pic(X)\arrow[r,"c_1"] & H^2(X,\Z)\arrow[r] & H^2(X,\Oc)
+\end{tikzcd}
+\]
+特に平坦直線束の $c_1$ は $H^2(X,\Z)\to H^2(X,\C)$ で $0$ に写る（\emph{ねじれ類}）：第1巻の「平坦接続では Chern 形式が $0$」と整合する。
+\end{itemize}
+\begin{ex}[楕円曲線：平坦な直線束と $\Pic^0$]\label{ex:flatE}\tP
+$E=\C/\Lambda$。上の図式で $H^1(E,\Cs)=\C^2\to H^1(E,\Oc)=\C$ は Hodge 分解の射影 $H^{1,0}\oplus H^{0,1}\to H^{0,1}$（核 $H^{1,0}$）で全射。$H^1(E,\Z)=\Z^2$ で割って
+\[
+\Hom(\pi_1(E),\C^*)=H^1(E,\Cs)/H^1(E,\Z)=(\C^*)^2\ \twoheadrightarrow\ H^1(E,\Oc)/H^1(E,\Z)=\Pic^0(E).
+\]
+核は $H^{1,0}\cong\C$：平坦接続 $\nabla$ に正則 1 形式 $\omega\in H^0(\Omega^1)$ を足した $\nabla+\omega$ も平坦（曲率は $d\omega$ だけ変わるが、コンパクト Riemann 面上の正則 1 形式は閉形式なので $d\omega=0$）で、$\omega$ が $(1,0)$ 型なので $(0,1)$ 部分 $\bar\partial_L$ は変わらず、同じ正則直線束を与える。（\emph{注}：一般の接続の曲率は 2 形式で、1 次元だからといって $0$ にはならない。）したがって\emph{一つの正則直線束に平坦な構造は $\C$ のぶんだけ余る}。ユニタリ（$U(1)$ 係数）に制限すると $H^1(E,\R)/H^1(E,\Z)=\Hom(\pi_1,U(1))\to\Pic^0(E)$ は同型（$\R$-線形同型 $H^1(E,\R)\to H^{0,1}$ による）：任意の次数 0 の直線束はただ一つのユニタリ平坦構造をもつ。（この対応は第4--5巻の Jacobi 多様体、Narasimhan--Seshadri 型の定理の最初の例。）統合論文の「平坦な対数接続、留数が定数」は、この平坦直線束の対数版（極をもつ場合）で、第11--13巻で扱う。
+\end{ex}
+
+\begin{keybox}{要点（§\ref{sec:leray}）}
+Leray：$U_I$ 上の高次コホモロジーが消えれば \Cech{} $=$ 層コホモロジー（証明は \Cech{}--Godement の二重複体）。Stein 開集合（$\C^n$ の標準被覆の交叉）は Leray の被覆。$\CP^1$：$h^0(\Oc(k))=k+1$（$k\ge0$）、$h^1(\Oc(k))=-k-1$（$k\le-2$）、基底は Laurent 単項式 $z^n$。$H^1(\Omega^1)$ は留数で $\C$。$\C^2\setminus0$ では $H^1(\Oc)$ は無限次元。指数完全列から $\Pic(\CP^1)=\Z$、$\Pic^0(E)=\C/\Lambda'$。
+\end{keybox}
+
+\begin{prob}{基本}\label{p:P1dims}
+$\CP^1$ 上の $\Oc(4)$、$\Oc(-5)$ について、$H^0$、$H^1$ の次元と、\Cech{} による基底（$U_{01}$ 上の Laurent 単項式）を求めよ。$k=-1$ で両方 $0$ となる理由を、核と余核の指数の集合で説明せよ。
+\end{prob}
+\begin{prob}{標準}\label{p:C2}
+(a) $\C^2\setminus\{0\}$ で $H^0(X,\Oc)=\Oc(\C^2)$ を例 \ref{ex:C2minus0} の方法で示せ。(b) $H^1$ の線形独立な元 $[z_1^{-a}z_2^{-b}]$（$a,b\ge1$）が、$\Oc(U_1)+\Oc(U_2)$ に含まれないことを、Laurent 係数の台を使って示せ。(c)（発展）$\C^n\setminus\{0\}$（$n\ge2$）を $U_i=\{z_i\ne0\}$ $(1\le i\le n)$ で覆い、Laurent 単項式 $z^a$（$a\in\Z^n$）への分解と $S(a)=\{i:a_i<0\}$ を使って、$H^q(\C^n\setminus0,\Oc)=0$（$0<q<n-1$）、$H^{n-1}$ は $a_i<0\ (\forall i)$ の単項式で張られる無限次元空間であることを示せ。
+\end{prob}
+\begin{prob}{標準}\label{p:residue}
+$H^1(\CP^1,\Omega^1)=\Omega^1(U_{01})/(\Omega^1(U_0)+\Omega^1(U_1))$ に対し留数 $\operatorname{Res}_{z=0}:\Omega^1(U_{01})\to\C$ が $\Omega^1(U_0)$ と $\Omega^1(U_1)$ で $0$ になることを確かめよ。また $w=1/z$ での留数 $\operatorname{Res}_{w=0}$ との関係（$\operatorname{Res}_{w=0}(\omega)=-\operatorname{Res}_{z=0}(\omega)$ for $\omega\in\Omega^1(\C^*)$）を示せ。
+\end{prob}
+\begin{prob}{標準}\label{p:PicTorus}
+(a) 複素トーラス $T=\C^n/\Lambda$ について、指数完全列から $H^1(T,\Zs)=\Z^{2n}\to H^1(T,\Oc)=\C^n\to\Pic(T)\to H^2(T,\Z)=\Z^{n(2n-1)}$ を書け。(b) $\Pic^0(T)=H^1(T,\Oc)/\imm H^1(T,\Z)$ の実次元を求めよ（$\dim_\R H^1(T,\Oc)=2n$、像は階数 $2n$ の部分群）。
+\end{prob}
+\begin{prob}{発展}\label{p:Pnh}
+$\CP^2$ 上の標準被覆 $\{U_0,U_1,U_2\}$ と $\Oc(k)$ について、\Cech{} 複体を $(a_0,a_1,a_2)\in\Z^3$（$\sum a_i=k$）の単項式に分解して、(a) $\dim H^2(\CP^2,\Oc(-3))=1$、$\dim H^2(\CP^2,\Oc(-4))=3$、(b) $H^1(\CP^2,\Oc(k))=0$（すべての $k$）を示せ。$a$ ごとに $S(a)=\{i:a_i<0\}$ を使った分類（定理 \ref{thm:Pn} の筋）を詳述せよ。
+\end{prob}
+\begin{prob}{標準}\label{p:PicCPn}
+$H^q(\CP^n,\Oc)=0$（$q=1,2$、$n\ge2$；定理 \ref{thm:Pn} で $k=0$）と指数完全列から、$\Pic(\CP^n)\cong H^2(\CP^n,\Z)=\Z$ を導け。この生成元は何か。
+\end{prob}
+

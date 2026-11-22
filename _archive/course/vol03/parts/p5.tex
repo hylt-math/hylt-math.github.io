@@ -1,0 +1,204 @@
+%==================================================
+\section{有限性・Euler 標数・直像}\label{sec:finite}
+%==================================================
+
+\subsection{次元の有限性（Cartan--Serre）}
+\begin{defn}[連接層（概要）]
+複素多様体上の $\Oc$-加群の層 $\sF$ が\emph{連接}とは、各点の近傍で完全列 $\Oc^{p}\to\Oc^{q}\to\sF\to0$ が存在すること（有限生成かつ関係式も有限生成）。有限階数の局所自由層（正則ベクトル束）、イデアル層 $\sI_Z$、skyscraper 層 $\C_p$ は連接。短完全列の中の二つが連接ならば三つ目も連接（Oka の連接定理を含む標準的事実）。\tC
+\end{defn}
+\begin{thm}[Cartan--Serre]\label{thm:CS}\tC
+$X$ をコンパクト複素多様体、$\sF$ を連接層（特に正則ベクトル束）とする。このとき全ての $q$ について $\dim_{\C}H^q(X,\sF)<\infty$。さらに $q>\dim X$ で $H^q=0$。
+\end{thm}
+\src{H.~Cartan, J.-P.~Serre, C.~R.~Acad.~Sci.~Paris 237 (1953)\tQ{}。Grauert--Remmert, \emph{Coherent Analytic Sheaves}。Hartshorne, 第III章 §5（射影的な場合の代数的な証明）。Huybrechts, \emph{Complex Geometry}（有限性の証明、Hodge 理論による $\Oc(E)$ の場合は第3--4章）\tQ{}。}
+証明の構造だけ述べる。(i) 正則ベクトル束 $E$ の場合は、Dolbeault の定理 $H^q(X,E)=H^{0,q}_{\bar\partial}(X,E)$ と、$\bar\partial_E$ の複体が\emph{楕円複体}であること（第7巻）から、調和表示 $H^{0,q}(X,E)\cong\Ker\Delta_{\bar\partial}$ が有限次元（楕円正則性とコンパクト性、Hodge の定理）。(ii) 一般の連接層には、Cartan--Serre の原証明（Schwartz のコンパクト作用素の理論で、Stein 被覆のコサイクルの Banach 空間化）か、Grauert の直像定理を使う。本巻では (i) の方針（第7巻）と、$\CP^n$ での直接計算（定理 \ref{thm:Pn}）、および次の対比を覚えておけばよい：
+
+\emph{コンパクト性が本質的}：$\C^2\setminus\{0\}$ では $H^1(X,\Oc)$ は無限次元（例 \ref{ex:C2minus0}）。
+
+\subsection{Euler 標数}
+\begin{defn}
+$X$ をコンパクト複素多様体、$\sF$ を連接層とする。
+\[
+\chi(X,\sF)=\sum_{q=0}^{\dim X}(-1)^q\dim H^q(X,\sF)\in\Z.
+\]
+\end{defn}
+\begin{prop}[加法性]\label{prop:chiadd}\tP
+$0\to\sF'\to\sF\to\sF''\to0$ が連接層の短完全列ならば $\chi(\sF)=\chi(\sF')+\chi(\sF'')$。
+\end{prop}
+\begin{proof}
+長完全列（定理 \ref{thm:les}(c)）は有限次元ベクトル空間の完全列で、有限個（$q\le n$ で終わる：定理 \ref{thm:CS}）。有限次元ベクトル空間の有限完全列 $0\to V_0\to V_1\to\cdots\to V_m\to0$ では $\sum(-1)^i\dim V_i=0$（階数・退化次数の定理）。これを $0\to H^0(\sF')\to\cdots\to H^n(\sF'')\to0$ に適用して $\sum(-1)^q\big(\dim H^q(\sF')-\dim H^q(\sF)+\dim H^q(\sF'')\big)=0$。\qedhere
+\end{proof}
+\begin{ex}[$\chi(\Oc(k))=k+1$ の二通りの計算]\label{ex:chiEuler}\tP
+(1) 定理 \ref{thm:P1} から直接：$k\ge0$ で $h^0-h^1=k+1-0$、$k\le-2$ で $0-(-k-1)=k+1$、$k=-1$ で $0$。つねに $k+1$。
+(2) 完全列だけから：skyscraper 層 $\C_p$ の $\chi$ は $\chi(\C_p)=1$（$H^q(\CP^1,\C_p)=H^q(\mathrm{pt},\C)$、命題 \ref{prop:closedemb}）。例 \ref{ex:skyscraperseq} の $0\to\Oc(k-1)\to\Oc(k)\to\C_p\to0$ と加法性から $\chi(\Oc(k))=\chi(\Oc(k-1))+1$。$\chi(\Oc)=h^0-h^1=1-0=1$ から、帰納法で（上にも下にも）$\chi(\Oc(k))=k+1$。
+(3) Euler 完全列（例 \ref{ex:EulerP1}）：$0\to\Oc(-1)\to\Oc^{\oplus2}\to\Oc(1)\to0$ から $\chi(\Oc(1))=2\chi(\Oc)-\chi(\Oc(-1))=2-0=2$（確かに $h^0(\Oc(1))=2$）。同じ完全列に $\Oc(k)$ をテンソルして $\chi(\Oc(k+1))=2\chi(\Oc(k))-\chi(\Oc(k-1))$：これは $k+1$ が一次式であることと整合する。
+\end{ex}
+\begin{ex}[Riemann--Roch の予告]\label{ex:RR}\tC
+コンパクト Riemann 面 $X$（種数 $g$）上の直線束 $L$ について、Riemann--Roch の定理（第4巻）は $\chi(X,L)=\deg L+1-g$。$\CP^1$（$g=0$）で $\deg\Oc(k)=k$ より $\chi(\Oc(k))=k+1$（例 \ref{ex:chiEuler} と一致）。一般次元では Hirzebruch--Riemann--Roch（第6巻）：$\chi(X,E)=\int_X\ch(E)\Td(X)$。左辺は本巻で定義した\emph{層コホモロジー}の次元の交代和、右辺は第1巻の Chern--Weil で定義される\emph{位相的な量}である。この等式がコホモロジー（解析）と特性類（位相）をつなぐ。
+\end{ex}
+\begin{rem}[$\chi(\Lambda^{\bullet}T\otimes L)$ は $L$ によらない]\label{rem:chiLambdaT}
+$X$ を $n$ 次元コンパクト複素多様体、$L$ を直線束とする。HRR（第6巻、主張として使う）と Chern 根 $x_1,\dots,x_n$（$T_X$ の形式的な根）により $\ch(\Lambda^pT)$ の交代和は $\sum_p(-1)^p\ch(\Lambda^pT)=\prod_i(1-e^{x_i})$、$\Td(T)=\prod_i\frac{x_i}{1-e^{-x_i}}$ なので、
+\[
+\begin{aligned}\sum_{p=0}^n(-1)^p\chi(\Lambda^pT\otimes L)&=\int\prod_i\frac{x_i(1-e^{x_i})}{1-e^{-x_i}}\,e^{c_1(L)}\\&=(-1)^n\int\prod_ix_i\,e^{x_i}\,e^{c_1(L)}=(-1)^n\int_Xc_n(T_X)=(-1)^n\chi_{\mathrm{top}}(X)\end{aligned}
+\]
+（$\frac{1-e^x}{1-e^{-x}}=-e^x$。$\prod x_i$ はすでに最高次なので $e^{\cdots}$ の定数項 $1$ だけが効く。$\int c_n(T_X)=\chi_{\mathrm{top}}(X)$ は Gauss--Bonnet--Chern）。つまり $L$ の取り方（$c_1$）に\emph{よらない}。確認：$\CP^1$ で $\chi(\Oc(k))-\chi(\Oc(k+2))=(k+1)-(k+3)=-2=(-1)^1\cdot2$。$\CP^2$、$L=\Oc$：$\chi(\Oc)-\chi(T)+\chi(\Lambda^2T)=1-8+10=3$（$\chi(T)=3\chi(\Oc(1))-\chi(\Oc)=9-1=8$（Euler 完全列 $0\to\Oc\to\Oc(1)^{3}\to T\to0$）、$\Lambda^2T=\Oc(3)$、$\chi=\binom52=10$）。\tQ\ （HRR 本体は未証明。$\CP^1$ と $\CP^2$ での整数の検算のみ）。これは統合論文の定理（全 Euler 標数 $=(-1)^n\mathrm{rk}(E)\chi(X)$、$c_1(E)$ によらない。論文 v1 の定理 22）の証明（HRR、Chern 根、$(1-e^x)/(1-e^{-x})=-e^x$、Gauss--Bonnet）と同じ計算である（第13--14巻）。
+\end{rem}
+
+\subsection{直像と Leray スペクトル系列の入口}
+$f:X\to Y$ を連続写像とする。直像 $f_*$ は左完全だが右完全ではない。その右導来関手が高次直像である。
+\begin{defn}[高次直像]\tC
+$R^qf_*\sF$ を、前層 $V\mapsto H^q(f^{-1}(V),\sF)$ の層化とする。$R^0f_*=f_*$。茎は $(R^qf_*\sF)_y=\varinjlim_{V\ni y}H^q(f^{-1}V,\sF)$。短完全列 $0\to\sF'\to\sF\to\sF''\to0$ から長完全列 $0\to f_*\sF'\to f_*\sF\to f_*\sF''\to R^1f_*\sF'\to\cdots$。
+\end{defn}
+\begin{thm}[Leray スペクトル系列]\label{thm:Leray}\tC
+層 $\sF$ と連続写像 $f:X\to Y$ に対し、スペクトル系列
+\[
+E_2^{p,q}=H^p(Y,R^qf_*\sF)\ \Longrightarrow\ H^{p+q}(X,\sF)
+\]
+がある。
+\end{thm}
+\src{Godement, 第II章（節は\tQ{}）。Bredon, \emph{Sheaf Theory}, 第IV章（スペクトル系列の応用）\tQ{}（節）。Hartshorne, 第III章 §8（高次直像）と演習\tQ{}。Griffiths--Harris, 第3章（スペクトル系列）\tQ{}（章）。}
+証明は本巻では行わず、帰結だけ使う。
+\begin{cor}\label{cor:Lerayuse}\tC
+(a) $R^qf_*\sF=0$（$q>0$）ならば $H^p(X,\sF)\cong H^p(Y,f_*\sF)$。(b)（5 項完全列）$R^qf_*\sF=0$（$0<q<m$）ならば、$p<m$ で $H^p(Y,f_*\sF)\to H^p(X,\sF)$ が同型、$p=m$ で単射。(c) $E_2^{p,q}$ が $p,q\ge0$ の 1 象限にあることから、常に $H^1(X,\sF)$ は $0\to H^1(Y,f_*\sF)\to H^1(X,\sF)\to H^0(Y,R^1f_*\sF)\to H^2(Y,f_*\sF)\to H^2(X,\sF)$ に入る。
+\end{cor}
+\begin{prop}[閉埋め込み]\label{prop:closedemb}\tP
+$i:Z\hookrightarrow X$ を閉埋め込み、$\sF$ を $Z$ 上の層とする。$H^k(X,i_*\sF)\cong H^k(Z,\sF)$。特に skyscraper 層 $i_{x*}A$（$Z=\{x\}$）について $H^0(X,i_{x*}A)=A$、$H^k(X,i_{x*}A)=0$（$k\ge1$）。
+\end{prop}
+\begin{proof}
+$Z$ 上の Godement 分解 $\sF\to C^\bullet(\sF)$ に $i_*$ を作用させる。$i_*$ は完全（命題 \ref{prop:pushprops}(d)）で、軟弱層を軟弱層に写す（$U\subset X$ に対し $(i_*\sG)(U)=\sG(U\cap Z)$、$U\cap Z$ は $Z$ の開集合）。よって $i_*\sF\to i_*C^\bullet(\sF)$ は軟弱分解。命題 \ref{prop:acyclic} より $H^k(X,i_*\sF)=H^k(\Gamma(X,i_*C^\bullet\sF))=H^k(\Gamma(Z,C^\bullet\sF))=H^k(Z,\sF)$。1 点上の層はすべて軟弱（開集合は $\emptyset$ と全体のみ）なので $H^k(\mathrm{pt},A)=0$（$k\ge1$）。\qedhere
+\end{proof}
+\begin{ex}[有限被覆と直像]\label{ex:finitecover}
+$f:\C^*\to\C^*$、$f(z)=z^2$。$f$ は 2 重の被覆で、各点 $y$ の近傍 $V$（円板）では $f^{-1}V$ は 2 つの円板の非交和。$H^q(f^{-1}V,\Oc)=0$（$q\ge1$）なので $R^qf_*\Oc=0$（$q\ge1$）、よって $H^q(\C^*,\Oc)\cong H^q(\C^*,f_*\Oc)$。さらに $f_*\Oc\cong\Oc\oplus\Oc\cdot z$（問 \ref{p:pushO} の類似）。（結論は両辺 $0$：$q\ge1$ で $\C^*$ は Stein。）一般に、有限被覆・有限写像では $R^qf_*=0$ ($q>0$)（茎が有限個の点のコホモロジー、固有写像の底変換 \tC{}）で、コホモロジーの計算が下の空間に移る。
+\end{ex}
+
+\begin{keybox}{要点（§\ref{sec:finite}）}
+コンパクト複素多様体上の連接層（正則ベクトル束）のコホモロジーは有限次元で $q\le\dim X$（Cartan--Serre）。$\chi(\sF)=\sum(-1)^q\dim H^q$ は短完全列で加法的：$\chi(\Oc(k))=k+1$（$\CP^1$）。第4--6巻の Riemann--Roch はこの $\chi$ の位相的な公式。直像 $f_*$、高次直像 $R^qf_*$ と Leray スペクトル系列 $H^p(Y,R^qf_*\sF)\Rightarrow H^{p+q}(X,\sF)$（主張のみ）。閉埋め込みでは $H^k(X,i_*\sF)=H^k(Z,\sF)$。
+\end{keybox}
+
+\begin{prob}{基本}\label{p:chiOk}
+$\chi(\Oc(k))=k+1$ を、(a) $\Oc(-3)$、$\Oc(4)$ について定理 \ref{thm:P1} の次元から、(b) 例 \ref{ex:skyscraperseq} の完全列の長完全列と $\chi(\Oc)=1$ から、それぞれ確かめよ。
+\end{prob}
+\begin{prob}{標準}\label{p:Zpoints}
+$\CP^1$ の相異なる $m$ 点 $p_1,\dots,p_m$ と、これらで単純に零をもつ $s\in H^0(\Oc(m))$ をとる。$0\to\Oc(k-m)\xrightarrow{\cdot s}\Oc(k)\to\bigoplus_{j}\C_{p_j}\to0$ は完全。(a) 加法性から $\chi(\Oc(k))-\chi(\Oc(k-m))=m$ を確かめよ。(b) $k=0$ の場合の長完全列 $0\to H^0(\Oc(-m))\to H^0(\Oc)\to\C^m\to H^1(\Oc(-m))\to H^1(\Oc)\to0$ から $\dim H^1(\Oc(-m))=m-1$（$m\ge1$）を導き、定理 \ref{thm:P1} と一致することを確認せよ。
+\end{prob}
+\begin{prob}{標準}\label{p:RRcheck}
+Riemann--Roch（$\chi(L)=\deg L+1-g$）を主張として使う。(a) $K=\Oc(-2)$ を使って、$\CP^1$ で $\chi(K)=g-1$ となることを確かめよ。(b) 楕円曲線 $E$（$g=1$）で $\chi(\Oc_E)=0$ を第2巻の $H^{0,0}=\C$、$H^{0,1}=\C$ と照合せよ。(c) $E$ 上の $\deg L=d>0$ の直線束で $H^1(E,L)=0$ なら $h^0(L)=d$ となる。$d=1$ で $h^0=1$ を確かめよ。
+\end{prob}
+\begin{prob}{標準}\label{p:closedembProb}
+$i:Z\hookrightarrow X$ 閉埋め込み、$\sF$ を $Z$ 上の層とする。$i_*$ が完全であること、軟弱層を保つことを確かめ、$H^k(X,i_*\sF)=H^k(Z,\sF)$ の証明を自分で書き直せ。$X=\CP^1$、$Z=\{p_1,\dots,p_m\}$ のとき $H^q(X,i_*\C)$ を求めよ。
+\end{prob}
+
+%==================================================
+\section{層の複体と超コホモロジーの入口}\label{sec:hyper}
+%==================================================
+
+\paragraph{動機。}これまで層コホモロジーは単一の層 $\sF$ に対して定義した。しかし、本当に必要なのは\emph{層の複体}に対するコホモロジーである。理由は（i）Dolbeault 複体は $\Oc$ の\emph{分解}、すなわち $\Oc$ と擬同型な層の複体であり、（ii）微分が $\Oc$-線形でない（$d$、Poisson 加群の微分 $d_E=[\sigma,\cdot]+V\wedge$ など）複体の大域的なコホモロジーを、層の完全列では扱えないからである。複体に対するコホモロジーを\emph{超コホモロジー} $\HH^k$ と呼ぶ。
+
+\subsection{定義と基本性質}
+\begin{defn}[層の複体・擬同型]
+\emph{層の複体} $K^\bullet=(K^0\xrightarrow{d}K^1\xrightarrow{d}\cdots)$（有界、$d^2=0$、$d$ は層の準同型だが $\Oc$-線形でなくてもよい）。\emph{コホモロジー層} $\mathcal H^p(K^\bullet)=\Ker d/\imm d$（層化を含む）。複体の射 $\varphi:K^\bullet\to L^\bullet$ が\emph{擬同型}とは、すべての $\mathcal H^p$ に同型を誘導すること。層 $\sF$ の分解 $\sF\to K^\bullet$ とは、$\sF[0]\to K^\bullet$ が擬同型であること。
+\end{defn}
+\begin{defn}[超コホモロジー]\label{def:hyper}
+Godement 分解を各項に施した二重複体 $\Gamma(X,C^q(K^p))$（$p$ は $K$ の次数、$q$ は Godement の次数）の全複体のコホモロジーを
+\[
+\HH^k(X,K^\bullet)=H^k\Big(\Tot\ \Gamma\big(X,C^q(K^p)\big)\Big)
+\]
+と定める（全複体の微分 $d_K+(-1)^p d_C$）。
+\end{defn}
+$K=\sF[0]$（次数 $0$ の層）のときは $\HH^k(X,\sF)=H^k(X,\sF)$。以下の事実は、$\sF$ の場合の証明（定理 \ref{thm:les}、命題 \ref{prop:acyclic}、定理 \ref{thm:leray}）と同じ型の議論で得られる。
+\begin{prop}\label{prop:hyperfacts}
+\begin{enumerate}
+\item[(a)]\tP（短完全列）項ごとに完全な $0\to K'^\bullet\to K^\bullet\to K''^\bullet\to0$ に対し、長完全列 $\cdots\to\HH^k(K')\to\HH^k(K)\to\HH^k(K'')\xrightarrow{\partial}\HH^{k+1}(K')\to\cdots$。
+\item[(b)]\tP（非輪状な項）各 $K^p$ が非輪状（$H^q(X,K^p)=0$，$q>0$）ならば $\HH^k(X,K^\bullet)=H^k(\Gamma(X,K^\bullet))$。
+\item[(c)]\tP（Leray の被覆）開被覆 $\mathcal U$ について、すべての有限交叉 $U_I$ とすべての $p$ で $H^q(U_I,K^p)=0$（$q\ge1$）ならば、\Cech{} 二重複体 $C^s(\mathcal U,K^p)$ の全複体のコホモロジーが $\HH^k(X,K^\bullet)$。
+\item[(d)]\tC（擬同型不変性）擬同型 $K\to L$ は $\HH^k$ の同型を誘導する。したがって、$\sF\to K^\bullet$ が非輪状な層からなる分解なら $H^k(X,\sF)=\HH^k(X,K^\bullet)=H^k(\Gamma(X,K^\bullet))$（命題 \ref{prop:acyclic} の一般化）。
+\item[(e)]\tC（スペクトル系列）$E_1^{p,q}=H^q(X,K^p)\Rightarrow\HH^{p+q}(X,K^\bullet)$（$d_1$ は $d:K^p\to K^{p+1}$ が誘導）。また $E_2^{p,q}=H^p(X,\mathcal H^q(K^\bullet))\Rightarrow\HH^{p+q}(X,K^\bullet)$。
+\end{enumerate}
+\end{prop}
+\begin{proof}[(a)--(c) の証明の筋]
+(a)：Godement 分解は項ごとに完全関手（補題 \ref{lem:flasque}(iii)）なので $0\to C^q(K'^p)\to C^q(K^p)\to C^q(K''^p)\to0$ は完全、第1項が軟弱なので $\Gamma(X,-)$ で完全（補題 \ref{lem:flasque}(i)）。よって全複体の短完全列で、長完全列を得る。(b)：二重複体 $\Gamma(X,C^q(K^p))$ の $p$ を固定した $q$ 方向の複体のコホモロジーは $H^q(X,K^p)$ で、仮定により $q=0$ にのみ $\Gamma(X,K^p)$。二重複体の標準的補題（定理 \ref{thm:leray} の証明と同じ）で $\Gamma(X,K^\bullet)\to\Tot$ は擬同型。(c)：定理 \ref{thm:leray} の証明を、$\sF$ を $K^p$ に取り替えて三重の複体にしたものと同じ。\qedhere
+\end{proof}
+\src{Griffiths--Harris, 第3章 §5（超コホモロジー）\tQ{}。Voisin, \emph{Hodge Theory and Complex Algebraic Geometry I}, 第4章（層とコホモロジー）、スペクトル系列・超コホモロジーの章番号は\tQ{}。}
+\begin{prop}[2 項の複体の長完全列]\label{prop:twoterm}\tP
+$\varphi:A\to B$ を層の準同型とし、複体 $K^\bullet=[A\xrightarrow{\varphi}B]$（$A$ を次数 0、$B$ を次数 1）をとる。このとき長完全列
+\begin{multline*}
+\cdots\to H^{k-1}(X,A)\xrightarrow{\varphi_*}H^{k-1}(X,B)\to\HH^k(X,K^\bullet)\\
+\to H^k(X,A)\xrightarrow{\ \pm\varphi_*\ }H^k(X,B)\to\HH^{k+1}(X,K^\bullet)\to\cdots
+\end{multline*}
+がある。
+\end{prop}
+\begin{proof}
+複体の短完全列 $0\to B[-1]\to K^\bullet\to A[0]\to0$（$B[-1]$ は $B$ を次数 $1$ に置いたもの）に命題 \ref{prop:hyperfacts}(a) を適用する。$\HH^k(B[-1])=H^{k-1}(B)$、$\HH^k(A[0])=H^k(A)$。連結準同型 $H^k(A)\to\HH^{k+1}(B[-1])=H^k(B)$ を調べる：$a\in\Gamma(C^k(A))$ が $d_Ca=0$ をみたすとき、$(a,0)\in\Tot^k(K)$ は持ち上げで、全複体の微分で $(a,0)\mapsto(d_Ca,\ \pm\varphi(a))=(0,\pm\varphi(a))$。よって連結準同型は $[a]\mapsto\pm[\varphi(a)]$。\qedhere
+\end{proof}
+\begin{ex}[2 項の複体の超コホモロジー：零点を持つ切断]\label{ex:hyper1}\tP
+$\CP^1$ 上で、$s\in H^0(\Oc(1))$ を点 $p$ でのみ単純に零をもつ切断とし、$K^\bullet=[\Oc\xrightarrow{\ \cdot s\ }\Oc(1)]$。$\cdot s$ は単射で余核は $\C_p$（例 \ref{ex:skyscraperseq}）だから、コホモロジー層は $\mathcal H^0=0$、$\mathcal H^1=\C_p$：$K^\bullet\simeq\C_p[-1]$（次数 1 に置いた skyscraper）。したがって $\HH^k(K^\bullet)=H^{k-1}(\CP^1,\C_p)$、すなわち $\HH^1=\C$、他は $0$。一方、命題 \ref{prop:twoterm} の長完全列を使うと、$H^0(\Oc)=\C\xrightarrow{s}H^0(\Oc(1))=\C^2$ は単射、$H^1(\Oc)=H^1(\Oc(1))=0$：
+\[
+\HH^0=\Ker=0,\quad 0\to\operatorname{Coker}(\C\to\C^2)=\C\to\HH^1\to H^1(\Oc)=0,\quad\HH^2=0.
+\]
+どちらの方法でも $\HH^1=\C$、他は $0$（一致）。Euler 標数：$\sum(-1)^k\dim\HH^k=-1=\chi(\Oc)-\chi(\Oc(1))=1-2$。
+\end{ex}
+\begin{prop}\label{prop:hyperchi}\tP
+有界な複体 $K^\bullet$ の各項 $K^p$ が連接層で、$X$ がコンパクトなら（かつ微分が $\Oc$-線形でなくても各 $H^q(X,K^p)$ は有限次元なので）$\HH^k(X,K^\bullet)$ は有限次元で、
+\[
+\sum_k(-1)^k\dim\HH^k(X,K^\bullet)=\sum_p(-1)^p\chi(X,K^p).
+\]
+\end{prop}
+\begin{proof}
+スペクトル系列 $E_1^{p,q}=H^q(X,K^p)\Rightarrow\HH^{p+q}$（命題 \ref{prop:hyperfacts}(e)）：$E_1$ は有限次元、各ページで Euler 標数は不変（$d_r$ は次元の交代和を変えない）、$E_\infty$ は $\HH$ の次数付き商。したがって $\sum(-1)^{p+q}\dim E_1^{p,q}=\sum(-1)^k\dim\HH^k$。（あるいは項数に関する帰納法で (a) の長完全列から。）\qedhere
+\end{proof}
+この命題は、微分 $d$ が $\Oc$-線形でなくても、全 Euler 標数は各項の $\chi(X,K^p)$ だけから決まることを意味する（備考 \ref{rem:chiLambdaT} で使う）。
+
+\subsection{例：正則 de Rham 複体と Hodge--de Rham スペクトル系列}
+\begin{prop}[正則 Poincar\'e の補題]\label{prop:holPoincare}\tC
+複素多様体 $X$ 上の正則 de Rham 複体 $\Omega^\bullet_X=(\Oc\xrightarrow{d}\Omega^1\xrightarrow{d}\cdots\xrightarrow{d}\Omega^n)$ は $\Cs$ の分解：$\Cs\to\Omega^\bullet_X$ は擬同型。
+\end{prop}
+\src{Griffiths--Harris, 第0章（正則版 Poincar\'e の補題）\tQ{}（節）。Huybrechts, 第2章\tQ{}。証明は第1巻の Poincar\'e の補題と第2巻の $\bar\partial$-補題の組み合わせ：閉じた正則 $p$ 形式は、$C^\infty$ の原始 $\beta$ をもつが、その $(0,q)$ 成分を順に $\bar\partial$-補題で取り除いて正則な原始に修正する。}
+\begin{cor}[Hodge--de Rham スペクトル系列]\label{cor:HdR}\tC
+$X$ をコンパクト複素多様体とする。$H^k(X,\Cs)=\HH^k(X,\Omega^\bullet_X)$ で、スペクトル系列
+\[
+E_1^{p,q}=H^q(X,\Omega^p)\ \Longrightarrow\ H^{p+q}(X,\C)
+\]
+がある。$X$ がコンパクト Kähler なら $E_1$ で退化し（第5巻）、$b_k=\sum_{p+q=k}h^{p,q}$。
+\end{cor}
+確認：$\CP^1$：$h^{0,0}=1$、$h^{1,1}=1$、$h^{1,0}=h^{0,1}=0$ より $b_0=1$、$b_1=0$、$b_2=1$。楕円曲線：$h^{0,0}=h^{1,1}=1$、$h^{1,0}=h^{0,1}=1$ より $b_0=1$、$b_1=2$、$b_2=1$（トーラス $T^2$ の Betti 数）。
+\begin{ex}[$\C^*$ 上の正則 de Rham 複体]\label{ex:holdR}\tP
+$X=\C^*$、$K^\bullet=[\Oc\xrightarrow{d}\Omega^1]$ は $\Cs$ の分解（命題 \ref{prop:holPoincare}）なので $\HH^k(K^\bullet)=H^k(\C^*,\C)=\C,\C,0$（$k=0,1,2$）。命題 \ref{prop:twoterm} で確かめる：$H^0(\Oc)=\Oc(\C^*)\xrightarrow{d}\Omega^1(\C^*)$ は核が定数で $\C$、余核は $z^{-1}dz$ の張る $\C$（$z^ndz=d(z^{n+1}/(n+1))$、$n\ne-1$）。$H^1(\C^*,\Oc)=H^1(\C^*,\Omega^1)=0$（Stein）。よって $\HH^0=\C$、$0\to\C\to\HH^1\to0$ より $\HH^1=\C$、$\HH^2=0$。
+\end{ex}
+
+\subsection{統合論文との接点：一般化正則束の超コホモロジー}
+第13巻と統合論文で使う道具は、まさにここで導入した超コホモロジーである。次の対応を覚えておく。
+\begin{itemize}
+\item 複素多様体 $X$（$\dim X=n$）上の正則 Poisson 構造 $\sigma\in H^0(\Lambda^2T_X)$（$[\sigma,\sigma]=0$）と、$\sigma$ に関する Poisson 加群 $(L,\nabla)$（正則直線束 $L$ と、正則 Lie 亜代数 $A=(T^*)_\sigma$ の平坦な $A$-接続 $\nabla$）に対し、$A$ の Chevalley--Eilenberg 複体として層の複体
+\[
+C(A;L)=\big(L\xrightarrow{d_E}T_X\otimes L\xrightarrow{d_E}\Lambda^2T_X\otimes L\to\cdots\to\Lambda^nT_X\otimes L\big),\qquad d_E=[\sigma,\cdot\,]+V\wedge
+\]
+がある（$T_X$ は正則接束、$[\sigma,\cdot\,]$ は Schouten 括弧、$V$ は局所枠 $e$ に対し $\nabla_\beta e=\beta(V)e$ で定まる正則ベクトル場）。$d_E$ は\emph{$\C$-線形}で $\Oc$-線形ではない。
+\item \textbf{統合論文の一般化 Dolbeault コホモロジー $\mathbb{HH}^k(L)$ は、この層の複体 $(\Lambda^\bullet T\otimes L,\ d_E)$ の超コホモロジー $H^k(X;C(A;L))$ である}（統合論文 v1 の定義 5）。$\bar\partial$ は複体の微分ではなく、超コホモロジーを計算するときの Dolbeault 分解の方向の微分である：各項 $\Lambda^pT\otimes L$ を $\A^{0,q}(\Lambda^pT\otimes L)$ で分解（定理 \ref{thm:Dolbeault}）すれば、$\bar\partial$ と $d_E$ の二つの微分をもつ二重複体ができ、$\mathbb{HH}$ はその全複体（微分は $\bar\partial\pm d_E$、符号は Koszul 符号）のコホモロジーとして計算される（統合論文 v1 の命題 6(b)：一般化正則束の Lie 亜群 $T^{0,1}\bowtie A^{1,0}$ の複体としての記述。ただし論文自身が Mokri の定理と LGSX の補題に依存すると注記している）。
+\item スペクトル系列（命題 \ref{prop:hyperfacts}(e)）は $E_1^{p,q}=H^q(X,\Lambda^pT\otimes L)\Rightarrow\mathbb{HH}^{p+q}$。$d_1$ は $d_E$ が誘導する写像。
+\item 全 Euler 標数は、命題 \ref{prop:hyperchi} により $\sum_p(-1)^p\chi(\Lambda^pT\otimes L)$ で、備考 \ref{rem:chiLambdaT} により $(-1)^n\chi_{\mathrm{top}}(X)$ で $L$ によらない。
+\end{itemize}
+統合論文の定義 5・命題 6・定理 18・定理 22（v1 PDF の番号）を確認し、上の記述に合わせた。$d_E$ の符号、$A$-接続の平坦性の条件、Poisson 加群の例は第11--13巻で扱う。\tQ\ （論文の命題 6 の証明は Mokri と LGSX に依存し、論文自身が【要確認】としている。）
+\begin{ex}[$\CP^1$：$\sigma=0$、自明な加群構造の場合]\label{ex:HHP1}\tP
+$\dim X=1$ では $\Lambda^2T=0$ なので $\sigma=0$。さらに加群構造を自明（$V=0$、すなわち $L$ は通常の正則直線束で $A$-接続は $0$）とすると $d_E=0$。（$\sigma=0$ でも $V\in H^0(T_X)$ は任意にとれる：$\CP^1$ では $H^0(\Oc(2))$ の元。$V\ne0$ なら $d_E=V\wedge$ は零でなく、以下の表は変わる。ここでは複素構造に対応する $V=0$ の場合だけを扱う。）複体 $(L\to T\otimes L)$（微分 $0$）の超コホモロジーは、スペクトル系列が $E_1$ で退化し（微分 $0$ かつ $p\in\{0,1\}$ の 2 列で $d_r=0$）、$\HH^k=\bigoplus_{p+q=k}H^q(X,\Lambda^pT\otimes L)$。$X=\CP^1$、$T=\Oc(2)$、$L=\Oc(k)$：
+\[
+\HH^0=H^0(\Oc(k)),\quad\HH^1=H^1(\Oc(k))\oplus H^0(\Oc(k+2)),\quad\HH^2=H^1(\Oc(k+2)).
+\]
+$k=0$：$\HH^0=\C$、$\HH^1=0\oplus\C^3$、$\HH^2=0$（次元 $1,3,0$）。Euler 標数 $1-3=-2=-\chi_{\mathrm{top}}(\CP^1)$ で、備考 \ref{rem:chiLambdaT} と一致。$k=-2$（$L=K$）：$\HH^0=H^0(\Oc(-2))=0$、$\HH^1=H^1(\Oc(-2))\oplus H^0(\Oc)=\C\oplus\C$、$\HH^2=H^1(\Oc)=0$（次元 $0,2,0$）。Euler 標数 $-2$。
+\end{ex}
+
+\begin{keybox}{要点（§\ref{sec:hyper}）}
+層の複体 $K^\bullet$ の超コホモロジー $\HH^k(X,K^\bullet)$ は、Godement（または \Cech{}）二重複体の全複体のコホモロジー。(a) 層の場合を含み、(b) 擬同型で不変、(c) 各項が非輪状なら $\Gamma(X,K^\bullet)$ のコホモロジー、(d) スペクトル系列 $H^q(X,K^p)\Rightarrow\HH^{p+q}$、(e) 2 項の複体では長完全列、(f) Euler 標数は項だけで決まる。Dolbeault の定理は「$\Oc$ の分解 $\A^{0,\bullet}$」、正則 Poincar\'e の補題は「$\Cs$ の分解 $\Omega^\bullet$」の超コホモロジー。統合論文の $\mathbb{HH}$ は $(\Lambda^\bullet T\otimes L,\ d_E)$、$d_E=[\sigma,\cdot]+V\wedge$ の超コホモロジー（$\bar\partial$ は Dolbeault 分解の方向）。
+\end{keybox}
+
+\begin{prob}{標準}\label{p:hyperSection}
+$\CP^1$ 上で $s\in H^0(\Oc(2))$ を相異なる 2 点 $p,q$ で単純に零をもつ切断とし、$K^\bullet=[\Oc\xrightarrow{\cdot s}\Oc(2)]$ とする。(a) $K^\bullet\simeq(\C_p\oplus\C_q)[-1]$ を示し、超コホモロジーの次元を求めよ。(b) 命題 \ref{prop:twoterm} の長完全列で同じ結果を確かめよ。(c) $\sum(-1)^k\dim\HH^k=\chi(\Oc)-\chi(\Oc(2))$ を確認せよ。
+\end{prob}
+\begin{prob}{発展}\label{p:hyperchiProof}
+命題 \ref{prop:hyperchi} を、複体の長さ $\ell$ に関する帰納法で、(a) の長完全列（短完全列 $0\to\sigma_{\ge1}K\to K\to K^0\to0$）から証明せよ。
+\end{prob}
+\begin{prob}{標準}\label{p:HHP1}
+$\CP^1$ 上、$d_E=0$（$\sigma=0$ かつ $V=0$）の複体 $(\Lambda^\bullet T\otimes L)$ について、$L=\Oc(k)$ の $\HH^k$ の次元の表を $k=-4,\dots,2$ について作り、Euler 標数が常に $-2$ であること（備考 \ref{rem:chiLambdaT}）を確かめよ。
+\end{prob}
+\begin{prob}{発展}\label{p:chiCP2}
+$\CP^2$ で $\chi(\Oc)-\chi(T)+\chi(\Lambda^2T)=3$（備考 \ref{rem:chiLambdaT}）を、(a) $L=\Oc$、(b) $L=\Oc(1)$ について、Euler 完全列 $0\to\Oc\to\Oc(1)^{\oplus3}\to T\to0$ と定理 \ref{thm:Pn} から整数として検算せよ。$L=\Oc(1)$ のとき $\chi(\Oc(1))-\chi(T(1))+\chi(\Lambda^2T(1))=3$ となる。
+\end{prob}
+

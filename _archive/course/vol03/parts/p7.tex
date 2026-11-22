@@ -1,0 +1,168 @@
+%==================================================
+\section{この巻の理解チェック（自己診断10問）}\label{sec:check}
+%==================================================
+各問に正誤または短答で答え、直後の答えと照合せよ。2問以上間違えた節は、該当節の要点と例に戻る。
+
+\begin{enumerate}[label=\textbf{Q\arabic*.},leftmargin=2.4em]
+\item（正誤）$\R$ 上で $U\mapsto\{U\ \text{上の有界な連続関数}\}$ は層である。
+\item（正誤）層の射 $\sF\to\sG$ が全射（余核 $0$）ならば、大域切断の写像 $\sF(X)\to\sG(X)$ も全射である。
+\item（短答）skyscraper 層 $i_{x*}A$ の $H^k(X,-)$ $(k\ge1)$ はいくつか。その理由は。
+\item（短答）正則直線束 $L$ の同型類は $H^1(X,\Oc^*)$ の元として表される。$\Oc(k)\to\CP^1$ の標準被覆でのコサイクル $g_{01}$ は何か（本巻の規約）。
+\item（正誤）正則関数の層 $\Oc_X$ は 1 の分割をもつ fine 層なので、$H^1(X,\Oc)=0$ である。
+\item（短答）Dolbeault の定理 $H^q(X,\Omega^p\otimes E)\cong H^{p,q}_{\bar\partial}(X,E)$ の証明に使った二つの道具は。
+\item（短答）$\CP^1$ 上で $h^0,h^1$ を、$\Oc(3)$、$\Oc(-1)$、$\Oc(-5)$ のそれぞれについて答えよ。$\chi$ も。
+\item（正誤）$\C^2\setminus\{0\}$ で $H^1(X,\Oc)$ は有限次元である。
+\item（短答）$H^q(X,\sF)$ が有限次元になる十分条件と、Euler 標数 $\chi(\sF)$ が短完全列でどう振る舞うかを述べよ。
+\item（短答）層の複体 $K^\bullet$ の超コホモロジー $\HH^k(X,K^\bullet)$ とは何か。2 項の複体 $[A\xrightarrow{\varphi}B]$ ではどんな長完全列が成り立つか。統合論文の $\mathbb{HH}$ はどの複体の超コホモロジーか。
+\end{enumerate}
+\paragraph{解答。}
+\begin{enumerate}[label=\textbf{A\arabic*.},leftmargin=2.4em]
+\item 誤。有界性は局所的でなく (S2) が破れる（例 \ref{ex:notsheaf}）。
+\item 誤。層として全射でも大域切断は全射と限らない。$\exp:\Oc\to\Oc^*$ on $\C^*$（$z$ は $\exp$ の像にない。例 \ref{ex:logfail}）。余核は $H^1(\C^*,\Zs)=\Z$ に入る。
+\item $0$（$k\ge1$）。skyscraper 層は軟弱で（命題 \ref{prop:closedemb}、あるいは 1 点上の層はすべて軟弱）、軟弱層は非輪状。
+\item $g_{01}=z^k$（$e_1=z^ke_0$、切断の成分は $f_1=z^{-k}f_0$）。$\Oc(k)\otimes\Oc(l)=\Oc(k+l)$。
+\item 誤。$\Oc_X$ は 1 の分割をもたない（正則な 1 の分割は定数のみ）。$C^\infty$ の fine 層 $\A^{p,q}$ が分解に使われるのは、そこに障害が移るため。コンパクトな楕円曲線で $H^1(E,\Oc)=\C\ne0$。
+\item 局所的な補題（Dolbeault--Grothendieck の $\bar\partial$-補題）による分解（茎での完全性）と、1 の分割による $\A^{p,q}(E)$ の非輪状性（fine 層）。それに非輪状分解定理（命題 \ref{prop:acyclic}）。
+\item $\Oc(3)$：$(4,0)$、$\chi=4$。$\Oc(-1)$：$(0,0)$、$\chi=0$。$\Oc(-5)$：$(0,4)$、$\chi=-4$。
+\item 誤。無限次元（$z_1^{-a}z_2^{-b}$、$a,b\ge1$ が独立、例 \ref{ex:C2minus0}）。コンパクト性が有限性（Cartan--Serre）の本質的な条件。
+\item $X$ がコンパクト複素多様体、$\sF$ が連接層（正則ベクトル束）なら有限次元、$q>\dim X$ で $0$。$\chi$ は短完全列で加法的：$\chi(\sF)=\chi(\sF')+\chi(\sF'')$。
+\item 層の複体の各項に Godement（または \Cech{}）分解を施した二重複体の全複体のコホモロジー。$[A\xrightarrow{\varphi}B]$ では $\cdots\to H^{k-1}(A)\xrightarrow{\varphi}H^{k-1}(B)\to\HH^k\to H^k(A)\xrightarrow{\varphi}H^k(B)\to\cdots$（符号は規約による）。$\mathbb{HH}$ は層の複体 $(\Lambda^\bullet T\otimes L,\ d_E)$、$d_E=[\sigma,\cdot]+V\wedge$（Poisson 加群 $L$ の Chevalley--Eilenberg 複体）の超コホモロジー。$\bar\partial$ は複体の微分でなく、Dolbeault 分解で計算するときの方向（細部は第13巻、論文）。
+\end{enumerate}
+
+%==================================================
+\section{次巻への橋渡しと統合論文との対応}\label{sec:bridge}
+%==================================================
+\subsection{第4--6巻}
+\begin{itemize}
+\item \textbf{第4巻（Riemann 面と Riemann--Roch）}：因子 $D$ に対する直線束 $\Oc(D)$ と完全列 $0\to\Oc(D-p)\to\Oc(D)\to\C_p\to0$（例 \ref{ex:skyscraperseq} の一般化）から、$\chi(\Oc(D))=\deg D+1-g$ を導く。Serre 双対 $H^1(X,L)\cong H^0(X,K\otimes L^{-1})^*$ のトレース写像は、$H^1(X,K)\to\C$ の留数（例 \ref{ex:residue}）。$\Pic^0$ と Jacobi 多様体は指数完全列（例 \ref{ex:ellPic}）の一般化。Riemann--Hurwitz は、分岐被覆 $f:X\to Y$ の完全列 $0\to f^*K_Y\to K_X\to(\text{分岐点上の skyscraper})\to0$ の次数の比較から。
+\item \textbf{第5巻（Hodge 理論と Kodaira 型定理）}：Hodge 数 $h^{p,q}=\dim H^q(X,\Omega^p)$（系 \ref{cor:Hodgenumbers}）、Hodge--de Rham スペクトル系列の退化（系 \ref{cor:HdR}）。Serre 消滅（$H^q(X,F\otimes\Oc(m))=0$、$q>0$、$m\gg0$）は $\CP^n$ での定理 \ref{thm:Pn} が出発点。Kodaira 消滅 $H^q(X,K\otimes L)=0$（$L$ 正）の例が定理 \ref{thm:Pn} の後の備考。
+\item \textbf{第6巻（特性類と HRR）}：$\chi(X,E)=\int\ch(E)\Td(X)$ の左辺が §\ref{sec:finite} の層コホモロジーの Euler 標数。$\CP^1$、$\CP^2$ での整数の検算（例 \ref{ex:chiEuler}、備考 \ref{rem:chiLambdaT}、問 \ref{p:chiCP2}）を、第6巻で HRR から再導出する。$\sum(-1)^p\chi(\Lambda^pT\otimes L)=(-1)^n\chi_{\mathrm{top}}$ は splitting principle の計算。
+\end{itemize}
+\subsection{第7--9巻}
+Dolbeault の定理により $\chi(X,E)=\sum(-1)^q\dim H^{0,q}(X,E)$ は Dolbeault 複体 $(\A^{0,\bullet}(E),\bar\partial_E)$ の\emph{指数}（第7--8巻）。族 $f:X\to B$ の場合、$R^qf_*E$ の交代和が指数束（第9巻、Grothendieck--Riemann--Roch）で、Leray スペクトル系列（定理 \ref{thm:Leray}）が出発点。
+\subsection{第11--13巻（一般化正則束と超コホモロジー）}
+\begin{itemize}
+\item \S\ref{sec:hyper} の超コホモロジーが、第13巻で一般化正則直線束・Poisson 加群のコホモロジーを計算する道具。Lie 亜代数 $A$ の加群 $L$ に対し、層の複体 $(\Lambda^\bullet A^*\otimes L,\ d_A)$（第11巻：Lie 亜代数コホモロジー）の超コホモロジーを考える枠組みの原型が、正則 de Rham 複体 $\Omega^\bullet$ とその Dolbeault 分解である。
+\item $d_E$ が $\Oc$-線形でないため「層の完全列」でなく「層の複体」が必須で、各項の $H^q$ と $d_1$ から出発するスペクトル系列（命題 \ref{prop:hyperfacts}(e)）で計算する。
+\end{itemize}
+\subsection{統合論文との対応}
+統合論文（\texttt{generalized-geometry-poisson-unified}）の主な主張のうち、本巻が土台になるもの。（番号は統合論文 v1 PDF のもの。本文の定義 5、命題 6、定理 18、定理 22 を確認した。仮定の細部は論文本文で確認すること。）
+\begin{center}
+\begin{tabular}{p{0.40\textwidth}p{0.50\textwidth}}
+\toprule
+統合論文の主張・設定 & 本巻の対応 \\
+\midrule
+超コホモロジー $\mathbb{HH}$ を使った一般化正則直線束のコホモロジー & §\ref{sec:hyper}：層の複体 $(\Lambda^\bullet T\otimes L,\ d_E)$、$d_E=[\sigma,\cdot]+V\wedge$ の超コホモロジー（定義 5）。$\bar\partial$ は Dolbeault 分解の方向、Dolbeault 分解と \Cech{} 二重複体 \\
+全 Euler 標数が $c_1$ に依らない（$(-1)^n\mathrm{rk}(E)\chi(X)$） & 命題 \ref{prop:hyperchi}（$\chi$ は項だけで決まる）、備考 \ref{rem:chiLambdaT}（HRR で $(-1)^n\chi_{\mathrm{top}}$、$\CP^1$、$\CP^2$ で整数検算） \\
+双対性 $\mathbb H^k(L)^*\cong\mathbb H^{2n-k}(L^\vee\otimes K^2)$ & 項ごとの Serre 双対 $H^q(\Lambda^pT\otimes L)^*\cong H^{n-q}(\Lambda^{n-p}T\otimes L^\vee\otimes K^2)$（$\Lambda^pT^*\cong\Lambda^{n-p}T\otimes K$ による）が全次数 $p+q\leftrightarrow2n-p-q$ を入れ替える。$\CP^1$、$d_E=0$ で次元が一致することを数値確認（巻末）。論文の定理 18 は微分 $d_E$ まで込めて成り立つ（$L^\vee\otimes K^2$ に加群構造 $V'=-V+2V_K$ を入れる）。本巻で確認したのは項ごとの次元の整合のみ。 \\
+Serre 型消滅・Kodaira 型 & 定理 \ref{thm:Pn}（$\CP^n$ の $\Oc(k)$）、Dolbeault の定理、第5巻。ただし論文の Serre 型消滅は横断次数 $a>0$ の $E_1$ 項についてのみで、全次数では偽（論文の注意 15：$\CP^2$、$\sigma=0$、$m=0$ で $[\dim\mathbb{HH}^0,\dots]=[1,8,10,0,0]$）。 \\
+Riemann--Roch 型公式・指数予想 & §\ref{sec:finite} の $\chi$、HRR（第6巻）、Dolbeault 複体の指数（第7--9巻） \\
+\bottomrule
+\end{tabular}
+\end{center}
+（双対性の行：論文の定理 18 の主張は任意のコンパクト複素多様体・任意の正則 Poisson 構造・Poisson 加群である直線束で、Kähler や射影性は不要とある。本巻は項ごとの Serre 双対による次元の整合だけを示した。）
+
+%==================================================
+\section*{公式集（復習用）}
+\addcontentsline{toc}{section}{公式集}
+%==================================================
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabular}{p{0.28\textwidth}p{0.62\textwidth}}
+\toprule
+対象 & 公式\\
+\midrule
+層の公理 & (S1) $s|_{U_i}=0\ \forall i\Rightarrow s=0$；(S2) 適合する $s_i$ は貼り合う\\
+完全性 & 茎ごと。$\Gamma$ は左完全、右完全でない\\
+\Cech{} & $(\delta c)_{ij}=c_j-c_i$、$(\delta c)_{ijk}=c_{jk}-c_{ik}+c_{ij}$。$\check H^0=\Gamma(X,\sF)$\\
+2 枚被覆 & $0\to\check H^0\to\sF(U)\oplus\sF(V)\to\sF(U\cap V)\to\check H^1\to0$\\
+直線束 & $\Pic(X)=H^1(X,\Oc^*)$、$e_j=g_{ij}e_i$、$g_{ik}=g_{ij}g_{jk}$。$\Oc(k)$：$g_{01}=z^k$\\
+指数完全列 & $0\to\Zs\to\Oc\xrightarrow{e^{2\pi i\cdot}}\Oc^*\to1$。$c_1:\Pic\to H^2(X,\Z)$\\
+Godement & $C^0\sF(U)=\prod_{x\in U}\sF_x$。$H^k=H^k(\Gamma(C^\bullet\sF))$\\
+非輪状分解 & $\sF\to\sA^\bullet$、$H^k(\sF)=H^k(\Gamma(\sA^\bullet))$\\
+de Rham & $H^k(X,\Rs)=H^k_{\mathrm{dR}}(X)$\\
+Dolbeault & $H^q(X,\Omega^p\otimes E)=H^{p,q}_{\bar\partial}(X,E)$\\
+Leray の被覆 & $H^q(U_I,\sF)=0\ (q\ge1)\Rightarrow\check H^p(\mathcal U,\sF)=H^p(X,\sF)$\\
+$\CP^1$ & $h^0(\Oc(k))=k+1$（$k\ge0$）、$h^1(\Oc(k))=-k-1$（$k\le-2$）、$\chi=k+1$\\
+$\CP^n$ & $h^0=\binom{n+k}n$、$h^n=\binom{-k-1}n$、他 $0$\\
+Euler 標数 & $\chi(\sF)=\sum(-1)^q\dim H^q$、短完全列で加法的\\
+Leray s.s. & $E_2^{p,q}=H^p(Y,R^qf_*\sF)\Rightarrow H^{p+q}(X,\sF)$\\
+超コホモロジー & $E_1^{p,q}=H^q(X,K^p)\Rightarrow\HH^{p+q}(X,K^\bullet)$。$[A\to B]$：長完全列\\
+Hodge--de Rham & $H^q(X,\Omega^p)\Rightarrow H^{p+q}(X,\C)$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection*{つまずきやすい点}
+\begin{enumerate}
+\item 前層の像・余核・商は層ではない。層化を忘れない（例 \ref{ex:notsheaf}(3)）。
+\item 層として全射 $\neq$ 大域切断で全射。連結準同型 $H^0(\sF'')\to H^1(\sF')$ が障害。
+\item 軟弱（flasque）と fine は別物。fine $\Rightarrow$ 非輪状、軟弱 $\Rightarrow$ 非輪状。$\Oc$ は両方でない。
+\item \Cech{} は Leray の被覆（交叉が非輪状）でなければ層コホモロジーと一致しない（問 \ref{p:S2cech}）。$H^1$ は常に一致。
+\item 貼り合わせ関数の向き：$e_j=g_{ij}e_i$（成分 $f_i=g_{ij}f_j$）。$\Oc(k)$ では $g_{01}=z^k$。$g_{10}=z^{-k}$ と書く流儀に注意。
+\item $\Zs$ は $\Z$ 係数の定数層：$H^k(X,\Zs)$ は位相的（特異コホモロジー）で、de Rham では見えない。
+\item 超コホモロジーの微分は $\Oc$-線形でなくてよい。それでも $\chi$ は各項だけで決まる。
+\end{enumerate}
+
+%==================================================
+\section*{記号表}
+\addcontentsline{toc}{section}{記号表}
+%==================================================
+\begin{center}
+\begin{tabular}{p{0.38\textwidth}p{0.5\textwidth}}
+\toprule
+記号 & 意味\\
+\midrule
+$\sF(U)$、$\Gamma(U,\sF)$、$s|_V$、$\sF_x$、$s_x$ & 切断、制限、茎、芽\\
+$\Oc,\ \Oc^*,\ \Omega^p,\ \A^{p,q},\ C^\infty_X$ & 正則関数・可逆正則関数・正則 $p$ 形式・$(p,q)$ 形式・滑らかな関数の層\\
+$\Zs,\Rs,\Cs=\underline A_X$ & 定数層\\
+$i_{x*}A$、$\C_p$ & skyscraper 層\\
+$\Oc(E)$、$\Oc(k)$ & 正則切断の層、$\CP^1$ の $\Oc(k)$\\
+$f_*,\ f^{-1},\ R^qf_*$ & 直像、逆像、高次直像\\
+$j_!$ & 零拡張\\
+$C^\bullet(\mathcal U,\sF)$、$\check H^p(\mathcal U,\sF)$ & \Cech{} 複体・コホモロジー\\
+$C^\bullet(\sF)$ & Godement 分解\\
+$H^k(X,\sF)$ & 層コホモロジー\\
+$\HH^k(X,K^\bullet)$ & 超コホモロジー\\
+$\chi(\sF)$ & 層の Euler 標数\\
+$\Pic(X),\ c_1$ & 直線束の群、第1 Chern 類\\
+$h^{p,q}$ & Hodge 数 $\dim H^q(X,\Omega^p)$\\
+$d_\sigma$、$d_E$ & $d_\sigma=[\sigma,\cdot]$（Poisson 構造による）、$d_E=[\sigma,\cdot]+V\wedge$（Poisson 加群 $L$ の複体の微分）\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%==================================================
+\section*{参考文献}
+\addcontentsline{toc}{section}{参考文献}
+%==================================================
+章番号は書名と章（節）までとし、定理番号は書かない。章の対応は記憶に基づくものを含み、版により異なりうる\tQ。
+\begin{enumerate}[label={[\arabic*]},leftmargin=2.4em]
+\item R.~Hartshorne, \emph{Algebraic Geometry}, GTM 52, Springer. 第II章 §1（前層・層・直像・逆像）、第III章 §1--2（導来関手・軟弱層）、§4（\Cech{} コホモロジー）、§5（射影空間上の $\Oc(k)$ のコホモロジー）、§8（高次直像）。代数幾何の言葉だが、層コホモロジーの一般論は位相空間上でそのまま使える。
+\item P.~Griffiths, J.~Harris, \emph{Principles of Algebraic Geometry}, Wiley. 第0章 §3（層・\Cech{}・de Rham/Dolbeault の定理、シラバスの記載による）。スペクトル系列・超コホモロジーは同書第3章付近\tQ。
+\item C.~Voisin, \emph{Hodge Theory and Complex Algebraic Geometry I}, Cambridge. 第4章（層とコホモロジー）。スペクトル系列・超コホモロジーの章は\tQ。
+\item G.~E.~Bredon, \emph{Sheaf Theory}, 2nd ed., GTM 170, Springer. 第I章（層）、第II章（層コホモロジー、軟層・細層）、第III章（他のコホモロジーとの比較）、第IV章（スペクトル系列の応用）。章題は確認済、細かい節の対応は\tQ。
+\item R.~Godement, \emph{Topologie alg\'ebrique et th\'eorie des faisceaux}, Hermann. 第II章（Godement 分解、\Cech{} との比較、Leray スペクトル系列）。
+\item F.~W.~Warner, \emph{Foundations of Differentiable Manifolds and Lie Groups}, GTM 94. 第5章（層と de Rham の定理）。
+\item R.~Bott, L.~W.~Tu, \emph{Differential Forms in Algebraic Topology}, GTM 82. 第II章（\Cech{}--de Rham 複体、二重複体の補題）。
+\item D.~Huybrechts, \emph{Complex Geometry}, Springer. 第1--2章（局所理論、Dolbeault 補題、正則 Poincar\'e の補題）、層と $\Pic$ は第2--3章\tQ。
+\item L.~H\"ormander, \emph{An Introduction to Complex Analysis in Several Variables}, North-Holland. 第1章（1 変数の $\bar\partial$）。Stein 多様体と連接層の章番号は\tQ。
+\item H.~Grauert, R.~Remmert, \emph{Coherent Analytic Sheaves}, Springer. 連接層、Cartan--Serre の有限性、Cartan の定理 A/B。
+\item H.~Cartan, J.-P.~Serre, \emph{Un th\'eor\`eme de finitude concernant les vari\'et\'es analytiques compactes}, C.~R.~Acad.~Sci.~Paris 237 (1953)\tQ。
+\item J.-P.~Serre, \emph{Faisceaux alg\'ebriques coh\'erents}, Ann.~of Math.~61 (1955)\tQ。
+\end{enumerate}
+
+%==================================================
+\section*{検算について（正直な報告）}
+\addcontentsline{toc}{section}{検算について}
+%==================================================
+sympy は使えないので、整数・有理数の行列の階数と Smith 標準形、\Cech{} 複体の階数計算、Laurent 単項式の数え上げを自作コード（Python、標準ライブラリのみ）で行った。確認した項目：
+\begin{itemize}
+\item $S^1$ の 2 枚・3 枚の弧による被覆で、定数層 $\Zs$ の \Cech{} 複体の階数・Smith 標準形：$\check H^0=\Z$、$\check H^1=\Z$（トーションなし）、$\Z/2$ 係数で $\dim\check H^1=1$（問 \ref{p:S1cech}、\ref{p:moebius}、\ref{p:Z2}）。$S^2$ の 2 半球被覆で $\check H^0=\Z$、$\check H^1=0$（問 \ref{p:S2cech}）。
+\item $\CP^1$ の $\Oc(k)$：明示的な \Cech{} 写像 $\delta(f_0,f_1)=\sum b_mz^{k-m}-\sum a_nz^n$ を窓 $|n|\le40,60$ で作り、階数から $k=-7,\dots,7$ で $(h^0,h^1)=(\max(k+1,0),\max(-k-1,0))$ を確認（定理 \ref{thm:P1}、問 \ref{p:P1dims}）。窓の大きさを変えても結果が不変。
+\item $\CP^n$（$n=1,2,3$）の $\Oc(k)$（$k=-7,\dots,4$）：単項式 $z^a$ ごとの単体コチェイン複体（$S(a)\subset I$）の階数を計算し、$H^0=\binom{n+k}n$、$H^n=\binom{-k-1}n$、他 $0$ の公式と一致（定理 \ref{thm:Pn}、問 \ref{p:Pnh}）。$\CP^2$ で $h^2(\Oc(-3))=1$、$h^2(\Oc(-4))=3$、$h^2(\Oc(-6))=10$。窓は $|a_i|\le9$（$n=3$ は $8$）。
+\item $\C^2\setminus\{0\}$：窓 $|a_i|\le6$ で $H^0$ に寄与する単項式 $49$ 個、$H^1$ に寄与する単項式 $36$ 個（問 \ref{p:C2}）。
+\item Euler 標数：$\CP^1$ で $\chi(\Oc(k))-\chi(\Oc(k+2))=-2$、$\CP^2$ で $\chi(\Oc(k))-\chi(T(k))+\chi(\Oc(k+3))=3$（$k=-4,\dots,4$）、$\chi(\Oc(k))=k+1$ と Euler 完全列の漸化式（問 \ref{p:chiOk}、\ref{p:chiCP2}）。複素トーラスの $\chi(\Oc)=0$（$n=1,\dots,5$）。
+\item 超コホモロジー：$[\Oc\to\Oc(m)]$（$m$ 点で零）の長完全列の次元（$m=1,2,3$）、$\CP^1$ で $d_E=0$ の $\HH$ の表（$k=-4,\dots,2$）、および $\HH^j(\Oc(k))\leftrightarrow\HH^{2-j}(\Oc(-k-4))$ の次元の一致（$k=-9,\dots,9$）。
+\end{itemize}
+\textbf{検算していないもの}：位相的な結果（$H^k(X,\Zs)$ と特異コホモロジーの一致）、定理 \ref{thm:Stein}、Cartan--Serre、Leray スペクトル系列、HRR、Riemann--Roch（いずれも主張として使用）。証明は手計算で、細部の記号・符号（特に $\delta$ の符号、$\Oc(k)$ の貼り合わせ関数の向き、連結準同型の符号）に注意して書き、執筆者とは別の AI による独立検査を受けたが、外部の査読は受けていない。$c_1$ の符号は備考 \ref{rem:c1sign} で \Cech{}--de Rham の計算により確認した（規約依存）。

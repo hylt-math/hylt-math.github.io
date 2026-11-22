@@ -1,0 +1,68 @@
+\input{pre_course.tex}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{arrows.meta,calc,positioning}
+\fancyhead[L]{\small 第3巻　層とコホモロジー}
+% --- 本巻の記号 ---
+\newcommand{\Oc}{\mathcal O}
+\newcommand{\CP}{\mathbb{CP}}
+\newcommand{\A}{\mathcal A}
+\newcommand{\sF}{\mathcal F}\newcommand{\sG}{\mathcal G}\newcommand{\sH}{\mathcal H}
+\newcommand{\sK}{\mathcal K}\newcommand{\sL}{\mathcal L}\newcommand{\sI}{\mathcal I}
+\newcommand{\sC}{\mathcal C}\newcommand{\sZ}{\mathcal Z}\newcommand{\sA}{\mathcal A}
+\newcommand{\HH}{\mathbb H}
+\newcommand{\Zs}{\underline{\mathbb Z}}\newcommand{\Rs}{\underline{\mathbb R}}\newcommand{\Cs}{\underline{\mathbb C}}
+\newcommand{\Ker}{\operatorname{Ker}}\newcommand{\Coker}{\operatorname{Coker}}
+\newcommand{\imm}{\operatorname{im}}
+\newcommand{\Tot}{\operatorname{Tot}}
+\newcommand{\sk}{\mathrm{sk}}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\res}{\operatorname{Res}}
+\newcommand{\Ext}{\mathrm{Ext}}
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+\newfontfamily\Lat{DejaVu Serif}
+\newcommand{\Cech}{{\Lat \v{C}ech}}
+\renewcommand{\contentsname}{目次}\renewcommand{\figurename}{図}
+\begin{document}
+\sloppy
+\begin{center}
+{\LARGE\bfseries\sffamily 第3巻　層とコホモロジー}\\[8pt]
+{\large 学習コース「一般化幾何への道」}\\[6pt]
+{\large 執筆：Claude\ ／\ 企画：森}\\[3pt]
+2026年11月22日（v1）\\[3pt]
+{\small （外部の査読は受けていない教材。執筆者とは別の AI による独立検査と、可能な範囲の計算での検算は行った。標準的な結果には出典を付け、確認できていないものは\tQ\ で示す。）}
+\end{center}
+\medskip
+\begin{goalbox}{この巻の学習目標}
+\begin{itemize}
+\item 前層と層の違いを例（有界関数、定数前層、商前層）で説明でき、茎・層化・層の準同型・完全列（茎ごとの完全性）を使える。
+\item 連続関数・$C^\infty$・正則関数 $\Oc$・可逆正則関数 $\Oc^*$・定数層・skyscraper 層・正則ベクトル束の切断の層を扱え、直像 $f_*$ と逆像 $f^{-1}$ の定義と基本性質を述べられる。
+\item 指数完全列 $0\to\Z\to\Oc\to\Oc^*\to0$ の完全性を証明し、その長完全列から $\Pic(X)=H^1(X,\Oc^*)$ と第1 Chern 類の関係を読み取れる。
+\item \Cech{} コホモロジーの $H^0$、$H^1$ を具体的に手計算でき、直線束が $H^1(X,\Oc^*)$ の元（貼り合わせ関数のコサイクル）であることを証明できる。
+\item 層コホモロジーを Godement 分解で定義し、長完全列・軟層・fine 層の非輪状性・非輪状分解による計算定理を証明できる。
+\item de Rham の定理と Dolbeault の定理を（第1・2巻の補題を使って）証明でき、Leray の定理を \Cech{} 二重複体で証明できる。
+\item $\CP^1$ 上の $\Oc(k)$ の $H^0$、$H^1$ を \Cech{} で完全に計算し、次元の有限性（Cartan--Serre）と Euler 標数 $\chi(\sF)$ の加法性を使える。
+\item 直像の高次直像と Leray スペクトル系列（主張）、層の複体の超コホモロジー（\Cech{} 二重複体）の入口を理解し、第4--6巻・第13巻への橋渡しができる。
+\end{itemize}
+\end{goalbox}
+\begin{keybox}{前提と読み方}
+前提は第1巻（多様体、微分形式、de Rham 複体、Poincar\'e の補題、1の分割、ベクトル束、貼り合わせ関数）と第2巻（複素多様体、$\bar\partial$、Dolbeault--Grothendieck の補題、正則ベクトル束、$\Oc(k)$）。層の定義から始めるので、層論は未習でよい。
+各節は 動機 $\to$ 定義 $\to$ 例 $\to$ 定理 $\to$ 証明（または方針と出典）の順。標準的な結果は\tC、本文で証明したものは\tP、記憶に基づく出典・細部は\tQ\ で示す。問題は節末にあり（[基本][標準][発展]）、全40問、全問に解答がある。\textbf{検算}：計算を伴う解答は、自作の確認用コード（有理数・整数の線形代数、\Cech{} 複体の階数計算、単項式の数え上げ）で独立に確かめた。どれを確かめたかは巻末の「検算について」に正直に書いた。
+\textbf{読む順序の目安}：忘れた人は §1（層の定義）$\to$ §3（\Cech{}）$\to$ §6（$\CP^1$ の計算）を先に読み、証明を伴う §4--5 に戻ってもよい。第13巻を目標とする人は §8（超コホモロジー）の最後の小節を先に見てよい。
+\end{keybox}
+\tableofcontents
+\clearpage
+
+\section*{0\quad 記法と規約}
+\addcontentsline{toc}{section}{0\quad 記法と規約}
+\begin{itemize}
+\item 位相空間 $X$。特に断らない限り、多様体は第1巻の約束（Hausdorff、第2可算）に従う。第2可算 Hausdorff の局所コンパクト空間は paracompact で、1の分割が使える。
+\item 層は断らなければ Abel 群（または $\C$-ベクトル空間）の層。環の層 $\Oc_X$ 上の加群の層を単に「$\Oc_X$-加群」という。
+\item $\Oc=\Oc_X$：正則関数の層、$\Oc^*=\Oc^*_X$：零点をもたない正則関数のなす乗法群の層、$\A^{p,q}$：$(p,q)$ 形式の滑らかな切断の層（第2巻と同じ記号。切断の空間は $\A^{p,q}(X)$）、$\Omega^p=\Omega^p_X$：正則 $p$ 形式の層、$\A^k_X$：（実または複素係数の）滑らかな $k$ 形式の層（第1巻の $\Omega^k(M)$ は大域切断の空間 $\A^k_X(M)$ に当たる。本巻では $\Omega^p$ は常に正則 $p$ 形式の層を指す）。
+\item 定数層（定数係数 $A$ の層）を $\underline A_X$、$A=\Z,\R,\C$ のとき $\Zs,\Rs,\Cs$。
+\item 切断の制限を $s|_V$ と書く。$U_{i_0\cdots i_p}=U_{i_0}\cap\cdots\cap U_{i_p}$。
+\item 正則直線束 $\Oc(k)\to\CP^1$ の規約は第2巻 §5（正則ベクトル束）の $\CP^1$ 上の $\Oc(k)$ の例と同じ：座標 $z=Z_1/Z_0$（$U_0=\{Z_0\ne0\}$）、$w=1/z$（$U_1=\{Z_1\ne0\}$）、$\Oc(k)$ の切断 $\sigma$ の局所成分を $\sigma=f_0e_0=f_1e_1$ と書くとき $f_1=z^{-k}f_0$、すなわち枠は $e_1=z^{k}e_0$。$\Oc(-1)$ はタウトロジー束。
+\item $\sF(U)$ を $\Gamma(U,\sF)$ とも書く。
+\end{itemize}
+

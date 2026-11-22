@@ -1,0 +1,169 @@
+%==================================================
+\section{問題の解答}\label{sec:solutions}
+%==================================================
+\noindent 各解答の末尾の「検算」は、自作コード（有理数の線形代数、整数の Smith 標準形、\Cech{} 複体の階数計算、Laurent 単項式の数え上げ）で独立に確かめたことを示す。\textbf{検算なし}は手計算のみ。コードの内容は巻末の「検算について」を参照。
+
+\subsection*{§\ref{sec:sheaf} の解答}
+\begin{sol}{\ref{p:notsheaf}}
+(a) $P(U)=\{f\in C^0(U)\mid\int_U|f|\,dx<\infty\}$。制限で積分は減るので前層で、(S1) は関数の性質から成り立つ。しかし (S2) は破れる：$U_n=(-n,n)$ 上の定数関数 $s_n=1$ は適合し、各 $U_n$ 上で可積分。貼り合わせは $\R$ 上の定数関数 $1$ しかありえない（(S1) による一意性）が、$\int_\R1=\infty$。よって層ではない。\emph{局所可積分}にすれば層になる。
+(b) $P(U)=\{U\ \text{上の定数関数}\}$。(S1) は成り立つが (S2) は破れる：$U=(0,1)\cup(2,3)$ の被覆 $U_1=(0,1)$、$U_2=(2,3)$ で $s_1=0$、$s_2=1$ は（$U_{12}=\emptyset$ なので）適合するが、$U$ 上の定数関数で $U_1$ 上 $0$、$U_2$ 上 $1$ のものはない。（層化すれば局所定数関数の層 $\Rs$。）（検算なし）
+\end{sol}
+\begin{sol}{\ref{p:stalkO}}
+(a) 評価 $f\mapsto f(0)$ は全射環準同型 $\mathcal C_0\to\R$、核 $\mathfrak m$ は $f(0)=0$ の芽。$f(0)\ne0$ なら $0$ の近傍で $f\ne0$ なので $1/f$ も滑らかな芽で $f$ は可逆。よって $\mathfrak m$ に入らない元はすべて可逆、真のイデアルはすべて $\mathfrak m$ に含まれる。したがって $\mathfrak m$ が唯一の極大イデアル。(b) $x$ で $A$、$y\ne x$ で $0$（$y$ の近傍で $x\notin U$ なるものがとれる）。(c) 一致の定理から $f\ne0$ のベキ級数は零でない係数をもつ。最小の次数を $m$ として $f=z^mu$、$u=\sum_{n\ge0}a_{m+n}z^n$、$u(0)=a_m\ne0$ なので $1/u$ も正則な芽。一意性：$z^mu=z^{m'}u'$、$m<m'$ なら $u=z^{m'-m}u'$ で $u(0)=0$ となり矛盾。（検算なし）
+\end{sol}
+\begin{sol}{\ref{p:constsheaf}}
+$P(U)=\Z$（$U\neq\emptyset$）の茎は $\Z$。$P^+(U)$ は、各点 $x$ の近傍 $V$ と $t\in\Z=P(V)$ で $\sigma_y=t$（$y\in V$）となる族 $(\sigma_x)\in\prod\Z$、すなわち局所定数関数。よって $P^+=\Zs$。$X=S^1\sqcup S^1$ では連結成分 2 個なので $\Zs(X)=\Z^2$。$X=\Q$：$f(x)=0$（$x<\sqrt2$）、$f(x)=1$（$x>\sqrt2$）は $\sqrt2\notin\Q$ なので各点の近傍で定数、局所定数。一方 $f(0)=1$、他で $0$ の関数は、$0$ のどの近傍にも $f=0$ の点があるので局所定数でない。したがって $\Zs(\Q)=\{\text{連続な}\ \Q\to\Z\}\subsetneq\Z^{\Q}$。（検算なし）
+\end{sol}
+\begin{sol}{\ref{p:expsurj}}
+(a) 命題 \ref{prop:resolutions}(c) の (iii) の通り。$g(x)\ne0$ の芽 $g$ は円板 $D\ni x$ 上零点をもたず、$g'/g$ の原始関数 $h$ をとると $(ge^{-h})'=0$、$g=ce^h$、$c=e^{c'}$、$f=(h+c')/2\pi i$。(b) $g\in\Oc^*(\C^*)$ の単位円周に沿う巻き数 $W(g)=\frac1{2\pi i}\oint_{|z|=1}\frac{g'}gdz\in\Z$ は準同型 $\Oc^*(\C^*)\to\Z$。全射（$W(z^m)=m$）。$g=e^{2\pi if}$ なら $g'/g=2\pi if'$ は完全形式で $W(g)=0$。逆に $W(g)=0$ なら $g'/g$ は $\C^*$ 上の閉形式で円周に沿う積分が $0$、$H_1(\C^*)=\Z$ なので原始関数 $h$ をもち、$g=ce^h$、$g=e^{2\pi if}$。よって $\imm(\exp)=\Ker W$ で、余核 $\cong\Z$、生成元は $[z]$。（検算なし）
+\end{sol}
+\begin{sol}{\ref{p:extzero}}
+前層 $P(V)=\sF(V)$（$V\subset U$）、$=0$（$V\not\subset U$）。(S2) の破れの例：$X=\R$、$U=(0,\infty)$、$\sF=C^\infty_U$ とし、$V_1=U$、$V_2=(-\infty,1)$ で覆う。$s_1\in\sF(U)$ を $(1,\infty)$ に台をもつ非零の関数、$s_2=0\in P(V_2)=0$ とする。$V_{12}=(0,1)\subset U$ で $s_1|_{V_{12}}=0=s_2|_{V_{12}}$（制限は $0$）なので適合するが、$P(\R)=0$ なので $s|_{V_1}=s_1\ne0$ となる $s$ はない。
+(a) 茎：$x\in U$ では $x$ の十分小さい近傍は $U$ に入るので $P_x=\sF_x$。$x\notin U$ では、どの近傍 $V$ も $U$ に入らないので $P(V)=0$、$P_x=0$。層化は茎を変えない。(b) 左の射の茎：$x>0$ で $\Z\xrightarrow{\mathrm{id}}\Z$、$x\le0$ で $0\to\Z$。右の射は制限：$x\le0$ で $\Z\to\Z$（恒等）、$x>0$ で $\Z\to0$（$i_*\Zs_Z$ の $x\notin Z$ での茎は $0$）。したがって $x>0$ で $0\to\Z\to\Z\to0\to0$、$x\le0$ で $0\to0\to\Z\to\Z\to0$。いずれも完全。（検算なし）
+\end{sol}
+
+\subsection*{§\ref{sec:examples} の解答}
+\begin{sol}{\ref{p:pushO}}
+$V\subset\C_u$ 開、$W=f^{-1}(V)$（$z\mapsto-z$ で不変）、$g\in\Oc(W)$。$g_{\mathrm{ev}}(z)=\frac12(g(z)+g(-z))$、$g_{\mathrm{odd}}(z)=\frac12(g(z)-g(-z))$ とおくと $g=g_{\mathrm{ev}}+g_{\mathrm{odd}}$。偶関数 $g_{\mathrm{ev}}$ は $g_{\mathrm{ev}}(z)=a(z^2)$ と書け（$a(u)=g_{\mathrm{ev}}(\sqrt u)$ は枝によらず定まり、$u\ne0$ では $z\mapsto z^2$ が局所双正則なので正則、$0\in V$ なら $g_{\mathrm{ev}}$ のベキ級数が $z^2$ のベキだけなので $a$ も正則）、$a\in\Oc(V)$。奇関数 $g_{\mathrm{odd}}$ は $0\in W$ なら $g_{\mathrm{odd}}(0)=0$ なので $g_{\mathrm{odd}}=z\,\tilde b(z)$、$\tilde b$ は偶関数、$\tilde b=b(z^2)$。ゆえに $g=a(z^2)+zb(z^2)$。偶奇への分解の一意性から $(a,b)\in\Oc(V)^2$ は一意。この対応 $\Oc(V)\oplus\Oc(V)\to(f_*\Oc)(V)$、$(a,b)\mapsto a(z^2)+zb(z^2)$ は制限と可換で、$\Oc_{\C_u}$-加群の準同型（$u$ の乗法は $z^2$ の乗法）。よって $f_*\Oc\cong\Oc\cdot1\oplus\Oc\cdot z$。（検算なし）
+\end{sol}
+\begin{sol}{\ref{p:euler}}
+$\Oc(-1)$：$\sigma=f_0e_0=f_1e_1$、$e_0=ze_1$ より $f_1=zf_0$。$\alpha(\sigma)$ は $U_0$ 上 $f_0(1,z)$、$U_1$ 上 $f_1(w,1)=zf_0(w,1)=f_0(1,z)$（$zw=1$）で一致。$\Oc(1)$：$f_1=wf_0$。$\beta(g,h)$ の成分 $f_0=zg-h$、$f_1=g-wh$ は $wf_0=g-wh=f_1$ をみたし貼り合う。$\beta\alpha$：$(g,h)=(f_0,zf_0)$ で $f_0'=zf_0-zf_0=0$、$U_1$ では $(wf_1,f_1)$ で $f_1'=wf_1-wf_1=0$。$\Ker\beta$：$zg-h=0\iff h=zg\iff(g,h)=g(1,z)=\alpha(ge_0)$（$U_1$ でも同様）。局所全射性は例のとおり。（検算なし）
+\end{sol}
+\begin{sol}{\ref{p:skysc}}
+閉埋め込み $i:\{x\}\to X$ に対し $(i_*A)(U)=A(i^{-1}U)=A$（$x\in U$）、$=A(\emptyset)=0$（$x\notin U$）で、これは skyscraper 層。茎は $x$ で $A$、$y\ne x$ で $0$。$A=k$（体）なら $\dim\Gamma(U,i_{x*}k)=1$（$x\in U$）、$0$（$x\notin U$）。（検算なし）
+\end{sol}
+\begin{sol}{\ref{p:idealseq}}
+(a) 茎：$x\ne p$ では、$p$ を含まない近傍がとれて $\sI_{p,x}=\Oc_x$、$\C_{p,x}=0$：$0\to\Oc_x\to\Oc_x\to0$ で完全。$x=p$：$0\to\mathfrak m_p\to\Oc_p\xrightarrow{\mathrm{ev}}\C\to0$、$\mathrm{ev}$ は全射で核が $\mathfrak m_p=(\sI_p)_p$。(b) $\Gamma(\sI_0)=\{f\ \text{整}:f(0)=0\}$、$\Gamma(\Oc)\to\C$、$f\mapsto f(0)$ は定数関数で全射、核は $\Gamma(\sI_0)$。よって完全。(c) $\C^*$ の指数完全列では $H^1(\C^*,\Zs)=\Z\ne0$ により連結準同型 $\Gamma(\Oc^*)\to H^1(\Zs)$ が非自明（$z\mapsto1$）で、大域切断の列は右で完全でない（問 \ref{p:expsurj}）。（検算なし）
+\end{sol}
+\begin{sol}{\ref{p:fpush}}
+(a) 左完全：$0\to\sF'\to\sF\to\sF''$ が完全なら、各開集合 $f^{-1}V$ で $0\to\sF'(f^{-1}V)\to\sF(f^{-1}V)\to\sF''(f^{-1}V)$ は完全（命題 \ref{prop:exact}(c)）。これはまさに $f_*$ の各切断での完全性で、層としての完全性。(b) $X=Y_1\sqcup Y_2$、$(f_*\sF)(V)=\sF(V_1\sqcup V_2)=\sF(V_1)\oplus\sF(V_2)$（層の公理）なので $f_*\sF=\sF|_{Y_1}\oplus\sF|_{Y_2}$（それぞれ $Y$ 上の層とみなす）。開部分集合への制限は完全（茎で見る）。ゆえに $f_*$ は完全。(c) 茎は 2 点 $\pm\sqrt y$ の和で $\dim=2$。被覆変換 $\tau(z)=-z$ は $f_*\Cs$ に作用し、固有層 $(f_*\Cs)^{\pm}=\{(a,\pm a)\}$ に分解（$\C$ 係数で $(a,b)=\frac{a+b}2(1,1)+\frac{a-b}2(1,-1)$）。$(f_*\Cs)^+=\Cs$、$(f_*\Cs)^-=L$ はモノドロミー $-1$ の局所系。$\Z$ 係数：茎 $\Z^2$ のモノドロミーは交換 $T$。仮に $f_*\Zs\cong\Zs\oplus L'$（$L'$ は階数 1）なら、$\Z^2$ は $T$ の固有ベクトル（固有値 $+1$ と $\pm1$）で張られる基底をもつが、$T$ の固有ベクトルは $\Z(1,1)$、$\Z(1,-1)$ の元に限られ、$\Z(1,1)\oplus\Z(1,-1)$ は $\Z^2$ の指数 2 の部分群。したがって分解は $\Z$ 上では存在しない（$2$ を逆転しなければならない）。（検算なし）
+\end{sol}
+
+\subsection*{§\ref{sec:cech} の解答}
+\begin{sol}{\ref{p:S1cech}}
+$C^0=\Z^3$、$C^1=\Z^3$（成分 $c_{01},c_{12},c_{02}$）、$C^2=0$（$U_{012}=\emptyset$）。$\delta a=(a_1-a_0,\ a_2-a_1,\ a_2-a_0)$。$\Ker\delta=\{a_0=a_1=a_2\}\cong\Z$：$\check H^0=\Z$。像 $=\{(x,y,x+y)\}$。写像 $\varphi(c)=c_{02}-c_{01}-c_{12}:\Z^3\to\Z$ は全射で $\Ker\varphi=\imm\delta$。ゆえに $\check H^1=\Z^3/\imm\delta\cong\Z$。$(0,0,1)$ は $\varphi=1$ で、$\imm\delta$ の元は $\varphi=0$ なのでコボーダリーでない。そして生成元。（検算：Smith 標準形で $\delta$ の階数 2、トーションなし。）
+\end{sol}
+\begin{sol}{\ref{p:S2cech}}
+(a) $C^0=\Z^2$、$C^1=\Z$（$U_{01}$ は連結な帯）、$\delta(a_0,a_1)=a_1-a_0$。全射で核は対角。$\check H^0=\Z$、$\check H^1=0$。(b) 2 枚の被覆では $C^2=0$ だから $\check H^2(\mathcal U,\Zs)=0$。一方 $H^2(S^2,\Z)=\Z$。矛盾しないのは、この被覆が Leray の被覆でないからである：$U_{01}\simeq S^1$ で $H^1(U_{01},\Zs)=\Z\ne0$（定理 \ref{thm:leray} の仮定が破れる）。第1巻の Mayer--Vietoris で $H^2(S^2)$ は $H^1(U_0\cap U_1)\to H^2(S^2)$ から来る。より細かい被覆（例えば 4 面体の 4 枚）では \Cech{} が $H^2=\Z$ を与える。（検算：2 枚の被覆の \Cech{} 複体の階数。）
+\end{sol}
+\begin{sol}{\ref{p:cocycleOk}}
+$\Oc(3)\otimes\Oc(-5)$ のコサイクルは $z^3\cdot z^{-5}=z^{-2}$（$\Oc(-2)$ のコサイクルと同じ）。$K_{\CP^1}$：$g_{01}=-z^{-2}$。$g'=g\,h_1/h_0$ で $h_0=1\in\Oc^*(U_0)$、$h_1=-1\in\Oc^*(U_1)$ とすると $g'_{01}=-z^{-2}\cdot(-1)/1=z^{-2}$。定数は正則で零点をもたないのでこれは許される。したがって $K\cong\Oc(-2)$。（検算なし）
+\end{sol}
+\begin{sol}{\ref{p:moebius}}
+(a) 乗法群 $\{\pm1\}$ の層。$C^0=\{\pm1\}^2$、$C^1=\{\pm1\}^2$（$A$、$B$ 上の値）、$\delta(a_0,a_1)=(a_1/a_0,\ a_1/a_0)$。像 $=\{(r,r)\}$、余核 $\{\pm1\}^2/\{(r,r)\}\cong\{\pm1\}$（$(s,t)\mapsto s/t$）。ゆえに $\check H^1\cong\Z/2$。(b) コサイクル $g_{01}=(s,t)$。$(+1,+1)$（または $(r,r)$）は自明束（枠を $\pm$ で取り替えて貼り合わせ関数を $1$ にできる）。$(+1,-1)$：$A$ 上は $\mathrm{id}$、$B$ 上は $-1$ で貼る。$S^1$ を 1 周すると繊維の向きが反転するので Möbius 束で自明でない。これは $\check H^1$ の非自明元で、類 $s/t=-1$。（検算：Smith 標準形/$\mathbb F_2$ 上の階数で $\check H^1(\mathcal U,\Z/2)$ の次元 1。）
+\end{sol}
+\begin{sol}{\ref{p:refinj}}
+$\tau:J\to I$、$V_j\subset U_{\tau(j)}$。$c\in C^1(\mathcal U,\sF)$ を 1 コサイクル、$\tau^*c=\delta h$：$c_{\tau(j)\tau(l)}|_{V_{jl}}=h_l-h_j$（$h_j\in\sF(V_j)$）とする。$i\in I$ を固定し、$U_i\cap V_j$ 上の切断 $k^{(j)}_i=h_j+c_{\tau(j)i}$ を考える（$V_j\subset U_{\tau(j)}$ なので $c_{\tau(j)i}\in\sF(U_{\tau(j)i})$ の $U_i\cap V_j$ への制限）。$U_i\cap V_{jl}$ 上で、コサイクル条件 $c_{\tau(j)i}=c_{\tau(j)\tau(l)}+c_{\tau(l)i}$ より
+\[
+k^{(j)}_i-k^{(l)}_i=(h_j-h_l)+c_{\tau(j)\tau(l)}=(h_j-h_l)+(h_l-h_j)=0.
+\]
+$\{U_i\cap V_j\}_j$ は $U_i$ の被覆なので (S2) で $k_i\in\sF(U_i)$ に貼り合う。$U_{ii'}\cap V_j$ 上で $k_{i'}-k_i=c_{\tau(j)i'}-c_{\tau(j)i}=c_{ii'}$（コサイクル条件）。(S1) より $U_{ii'}$ 上で $k_{i'}-k_i=c_{ii'}$、すなわち $c=\delta k$。したがって $\tau^*[c]=0\Rightarrow[c]=0$：単射。（検算なし）
+\end{sol}
+\begin{sol}{\ref{p:H1oneforms}}
+$U_1=\C^*\setminus\R_{\ge0}$、$U_2=\C^*\setminus\R_{\le0}$ はともに単連結。$U_{12}$ は上半平面 $H$ と下半平面 $L$ の非交和。$\Cs$ の \Cech{} 複体：$C^0=\C^2$、$C^1=\C^2$（$H$、$L$ 上）、$\delta(a_1,a_2)=(a_2-a_1,\ a_2-a_1)$。核は対角、余核 $\C^2/\text{対角}\cong\C$（$(s,t)\mapsto s-t$）。$\check H^1=\C$。$\alpha=\frac{dz}{2\pi iz}$：$U_1$ 上の原始関数 $f_1=\frac{\log_1z}{2\pi i}$（$\arg\in(0,2\pi)$）、$U_2$ 上 $f_2=\frac{\log_2z}{2\pi i}$（$\arg\in(-\pi,\pi)$）。$H$ では $\arg$ が一致して $f_2-f_1=0$、$L$ では $\arg_1=\arg_2+2\pi$ で $f_2-f_1=-1$。対応するコサイクルは $(0,-1)$（$H$ で $0$、$L$ で $-1$）で、類は $s-t=1$。これは $\int_{|z|=1}\alpha=1$ に対応する。（検算：$\C^2/$対角 の階数。）
+\end{sol}
+
+\subsection*{§\ref{sec:cohom} の解答}
+\begin{sol}{\ref{p:flasque}}
+(a) $C^\infty_\R$：$U=\R\setminus\{0\}$ 上の $1/x$ は $\R$ 上の滑らかな関数に延びないので軟弱でない。ただし $C^\infty_\R$ は $C^\infty$-加群なので非輪状（命題 \ref{prop:fine}）。(b) $\Zs_\R$：$U=(0,1)\cup(2,3)$ 上の切断 ($0$ と $1$) は $\R$ 上の定数関数に延びないので軟弱でない。$H^k(\R,\Zs)=H^k(\mathrm{pt},\Z)=0$（$k\ge1$、可縮）で非輪状。(c) skyscraper：$(i_{x*}A)(X)=A\to(i_{x*}A)(U)$ は $x\in U$ で $\mathrm{id}_A$、$x\notin U$ で $A\to0$、どちらも全射。軟弱。(d) $\Oc_\C$：$1/z\in\Oc(\C\setminus0)$ は延びないので軟弱でない。$H^1(\C,\Oc)=0$（定理 \ref{thm:Stein}/Hörmander）、$H^{\ge2}=0$（命題 \ref{prop:vanish}）で非輪状。したがって「非輪状だが軟弱でない」層の例が (a)(b)(d)。軟弱 $\Rightarrow$ 非輪状（定理 \ref{thm:les}(b)）だが逆は成り立たない。（検算なし）
+\end{sol}
+\begin{sol}{\ref{p:godement0}}
+(a) $(C^0\sF)(U)=\prod_{x\in U}\sF_x\to\prod_{x\in V}\sF_x$ は成分の射影で全射。(b) $s\mapsto(s_x)_x$ は制限と可換な加法的写像。$s_x=0$（$\forall x\in U$）なら命題 \ref{prop:germ}(a) で $s=0$、単射。$C^0\sF$ 自身が層：(S1)(S2) は積の性質。(c) $0\to\sF'_x\to\sF_x\to\sF''_x\to0$ が各 $x$ で完全なので、その積 $0\to\prod_{x\in U}\sF'_x\to\prod\sF_x\to\prod\sF''_x\to0$ は各 $U$ で完全。切断で完全なので茎でも完全。$X=\mathrm{pt}$：$C^0\sF(\mathrm{pt})=\sF_{\mathrm{pt}}=\sF(\mathrm{pt})$、$C^0\sF=\sF$、$\sZ^1=0$、$C^k=0$（$k\ge1$）。複体は $\sF$ だけで $H^k=0$（$k\ge1$）、$H^0=\sF(\mathrm{pt})$。（検算なし）
+\end{sol}
+\begin{sol}{\ref{p:fineH1}}
+$h_j-h_i=\sum_k\rho_k(c_{kj}-c_{ki})$。コサイクル条件（添字 $k,i,j$）$c_{kj}=c_{ki}+c_{ij}$ より $c_{kj}-c_{ki}=c_{ij}$、したがって $h_j-h_i=c_{ij}\sum_k\rho_k=c_{ij}$。(a) コサイクル条件を $c_{kj}-c_{ki}=c_{ij}$ に使い、$\sum\rho_k=1$ を最後に使う。(b) 無限個の $k$ にわたる和 $\sum_k\rho_kc_{ki}$ が $U_i$ 上の切断を定める（各点の近傍で有限和になる）には $\{\mathrm{supp}\rho_k\}$ の局所有限性が必要。(c) $\sF=\Oc$ では $\rho_kc_{ki}$ が正則でない（1 の分割 $\rho_k$ は滑らかだが正則でない、正則関数の 1 の分割は定数のみ）ので $h_i\in\Oc(U_i)$ にならず、議論は失敗する。（検算なし）
+\end{sol}
+\begin{sol}{\ref{p:Z2}}
+$0\to\Zs\xrightarrow{2}\Zs\to\underline{\Z/2}\to0$ の長完全列（$S^1$ 上）：
+\[
+H^0(\Z)\xrightarrow{2}H^0(\Z)\to H^0(\Z/2)\to H^1(\Z)\xrightarrow{2}H^1(\Z)\to H^1(\Z/2)\to H^2(\Z)=0.
+\]
+$H^0(\Z)=\Z$、$H^0(\Z/2)=\Z/2$（$S^1$ は連結）、$H^1(\Z)=\Z$。$\Z\xrightarrow{2}\Z$ の余核が $\Z/2$ で、これは $H^0(\Z/2)=\Z/2$ に全単射なので、$H^0(\Z/2)\to H^1(\Z)$ は $0$。したがって $H^1(\Z)\xrightarrow{2}H^1(\Z)$ は単射で、余核 $\Z/2\cong H^1(\Z/2)$（$H^2(\Z)=0$ より全射）。ゆえに $H^1(S^1,\Z/2)=\Z/2$。問 \ref{p:moebius} の $\check H^1(\mathcal U,\{\pm1\})=\Z/2$ と一致し、非自明な類が Möbius 束に対応する。（検算：$\mathbb F_2$ 上の \Cech{} 複体の階数で $\dim\check H^1=1$。）
+\end{sol}
+\begin{sol}{\ref{p:flasquequot}}
+(a) $s''\in\sF''(X)$、$\{(U,s)\}$ を持ち上げのなす集合（延長順序）。鎖の和集合は (S2) で貼り合うので上界をもち、Zorn の補題で極大元 $(U,s)$。$x\notin U$ なら、局所持ち上げ $(W,t)$。$U\cap W$ 上で $s-t$ は $\sF'(U\cap W)$ の元（核は切断ごとに計算できる）。$\sF'$ が軟弱なので $\sF'(W)$ に延ばせ、$t$ を修正して $t'|_{U\cap W}=s|_{U\cap W}$。貼り合わせて $(U\cup W,\cdot)$ は極大性に矛盾。(b) $\sF$ 軟弱なら $\sZ^1=C^0\sF/\sF$ は軟弱（問 (c)）。$C^1\sF=C^0(\sZ^1)$ 軟弱、$\sZ^2=C^1\sF/\sZ^1$ は軟弱 $/$ 軟弱で軟弱、…帰納法。(c) $V\subset X$、$s''\in(\sF/\sF')(V)$。(a) を $\sF|_V\to(\sF/\sF')|_V$ に適用して $s\in\sF(V)$ に持ち上げ（$\sF'|_V$ は軟弱）。$\sF$ 軟弱から $s$ は $\sF(X)$ に延び、像が $s''$ の延長。（検算なし）
+\end{sol}
+
+\subsection*{§\ref{sec:deRhamDolb} の解答}
+\begin{sol}{\ref{p:dRS1}}
+$S^1$ の 1 形式は $f\,d\theta$（$f$ は $2\pi$ 周期的な滑らかな関数）、$\A^0(S^1)\xrightarrow{d}\A^1(S^1)$。$H^0=\Ker d=\R$（定数）。$H^1=\A^1(S^1)/d\A^0(S^1)$：$f\,d\theta=dF$ ($F$ は周期的) $\iff\int_0^{2\pi}f\,d\theta=0$（$\Rightarrow$ は周期性、$\Leftarrow$ は $F(\theta)=\int_0^\theta f$ が周期的）。よって $f\,d\theta\mapsto\int_0^{2\pi}f\,d\theta$ は同型 $H^1\cong\R$。$H^k=0$（$k\ge2$）。de Rham の定理（定理 \ref{thm:deRham}）より $H^k(S^1,\Rs)=\R,\R,0$。例 \ref{ex:S1cover} の \Cech{} 計算と一致。（検算なし）
+\end{sol}
+\begin{sol}{\ref{p:closedforms}}
+(a) $0\to\Rs\to\A^0\to\A^1_{\mathrm{cl}}\to0$：核は $df=0$ の局所定数関数（$=\Rs$）、全射性は茎で、閉 1 形式の芽は Poincar\'e の補題により完全。$k\ge1$：$0\to\A^k_{\mathrm{cl}}\to\A^k\xrightarrow{d}\A^{k+1}_{\mathrm{cl}}\to0$ も同様（核は定義、全射は茎での Poincar\'e の補題）。(b) $\A^m$ は非輪状。$0\to\A^m_{\mathrm{cl}}\to\A^m\to\A^{m+1}_{\mathrm{cl}}\to0$ の長完全列から $j\ge2$ で $H^{j-1}(\A^{m+1}_{\mathrm{cl}})\cong H^j(\A^m_{\mathrm{cl}})$、また $H^1(\A^m_{\mathrm{cl}})=\Gamma(\A^{m+1}_{\mathrm{cl}})/d\Gamma(\A^m)$。$\A^0_{\mathrm{cl}}=\Rs$ から出発して、$H^k(\Rs)\cong H^{k-1}(\A^1_{\mathrm{cl}})\cong\cdots\cong H^1(\A^{k-1}_{\mathrm{cl}})=\A^k_{\mathrm{cl}}(X)/d\A^{k-1}(X)=H^k_{\mathrm{dR}}(X)$。（検算なし）
+\end{sol}
+\begin{sol}{\ref{p:torusH}}
+Dolbeault の定理と第2巻の複素トーラスの命題（$H^{p,q}_{\bar\partial}=\Lambda^p\otimes\Lambda^q$、$\dim=\binom np\binom nq$）より $\dim H^q(X,\Omega^p)=\binom np\binom nq$。$p=0$：$\dim H^q(X,\Oc)=\binom nq$。$\chi(\Oc_X)=\sum_q(-1)^q\binom nq=(1-1)^n=0$（$n\ge1$）。（検算：$n=1,\dots,5$ で整数として確認。）
+\end{sol}
+\begin{sol}{\ref{p:vanishnq}}
+(a) 命題 \ref{prop:vanish}：Dolbeault 分解は $q\le n$ で終わる非輪状分解。(b) $\dim X=1$ なら $\A^{0,q}=0$（$q\ge2$）で $H^1(X,E)=H^{0,1}(X,E)=\A^{0,1}(E)(X)/\bar\partial_E\A^0(E)(X)$。したがって $H^1(X,E)=0\iff\bar\partial_E:\A^0(E)(X)\to\A^{0,1}(E)(X)$ が全射。$H^1(X,E)\ne0$ は、大域的に $\bar\partial_Eu=\beta$ が解けない $(0,1)$ 形式 $\beta$ の存在。（検算なし）
+\end{sol}
+\begin{sol}{\ref{p:cousinpoly}}
+$f_0-f_1=1/z\in\Oc(\C^*)$ で正則（$U_{01}=\C^*$）。2 枚の被覆では 1 コチェインはすべて 1 コサイクルなので $c_{01}=1/z$ はコサイクル（Cousin I のデータ）。有理型関数 $F=1/z$ が解：$F-f_0=0$（$U_0$ 上正則）、$F-f_1=1/z=w$（$U_1$ 上正則）。$H^1(\CP^1,\Oc)=0$（定理 \ref{thm:P1}、$k=0$）と整合する：$c_{01}=1/z=h_0-h_1$、$h_0=0\in\Oc(U_0)$、$h_1=-w\in\Oc(U_1)$ で、$F=f_i-h_i$。（一般のコサイクル $\sum c_nz^n$ は $n\ge0$ 部分を $h_0$、$n<0$ 部分を $-h_1$ とすれば常にコボーダリー。）（検算なし）
+\end{sol}
+
+\subsection*{§\ref{sec:leray} の解答}
+\begin{sol}{\ref{p:P1dims}}
+$\Oc(4)$：$\delta(f_0,f_1)=\sum b_mz^{4-m}-\sum a_nz^n$。核は $a_n=b_{4-n}$（$0\le n\le4$）、$\dim H^0=5$、基底は $(f_0,f_1)=(z^n,w^{4-n})$（$n=0,\dots,4$、$f_1=z^{-4}f_0$ を確認）。余核：像は $\{n\ge0\}\cup\{n\le4\}=\Z$ に台をもつ級数全部、よって $H^1=0$。$\Oc(-5)$：核は $0\le n\le-5$ が空で $0$。像は $\{n\ge0\}\cup\{n\le-5\}$、余核の指数は $-5<n<0$：$n=-4,-3,-2,-1$。$\dim H^1=4$、基底 $[z^{-4}],[z^{-3}],[z^{-2}],[z^{-1}]$。$k=-1$：核は $0\le n\le-1$ で空、余核の指数は $-1<n<0$ で空。（検算：窓 $|n|\le40$ での明示的 \Cech{} 写像の階数で $k=-7,\dots,7$ の $(h^0,h^1)$ が $(\max(k+1,0),\max(-k-1,0))$ に一致。）
+\end{sol}
+\begin{sol}{\ref{p:C2}}
+(a) $H^0=\Oc(U_1)\cap\Oc(U_2)$（命題 \ref{prop:cechH0}）：$(\C^*)^2$ 上の Laurent 級数 $\sum c_{mn}z_1^mz_2^n$（展開は一意）で、$U_1=\C^*\times\C$ では $n\ge0$、$U_2$ では $m\ge0$ に台がある。両方なら $m,n\ge0$：$(\C^*)^2$ 上で収束するテイラー級数は $\C^2$ 全体で収束するので $\Oc(\C^2)$ の元。(b) $\sum_{a,b\ge1}c_{ab}z_1^{-a}z_2^{-b}=f_1+f_2$（$f_1\in\Oc(U_1)$：$n\ge0$、$f_2\in\Oc(U_2)$：$m\ge0$）とすると、$(m,n)=(-a,-b)$（$a,b\ge1$）の係数は左辺で $c_{ab}$、右辺で $0$（$f_1$ は $n<0$ の項をもたず、$f_2$ は $m<0$ の項をもたない）。よって $c_{ab}=0$。$[z_1^{-a}z_2^{-b}]$ は線形独立、$H^1$ は無限次元。(c) $U_i=\{z_i\ne0\}$（$1\le i\le n$）、交叉 $U_I\cong(\C^*)^{|I|}\times\C^{n-|I|}$ は Stein で Leray の被覆。$z^a$（$a\in\Z^n$）への分解：$z^a$ が $U_I$ で正則 $\iff S(a)=\{i:a_i<0\}\subset I$。各 $a$ の複体は $\{I\ne\emptyset:S(a)\subset I\}$ 上の単体コチェイン複体。$S=\emptyset$：全単体、$H^0=\C$ のみ。$S=\{1,\dots,n\}$：$I=\{1..n\}$ のみで次数 $n-1$ に $\C$。$S\ne\emptyset$、$\ne$ 全体：$j\notin S$ をとると $(hc)_I=c_{jI}$ が縮約ホモトピー、完全。よって $H^q=0$（$0<q<n-1$）、$H^{n-1}=\operatorname{span}\{z^a:a_i<0\ \forall i\}$（無限次元）、$H^0=\Oc(\C^n)$。$n=2$ が (a)(b)。（検算：$n=2$ の窓 $|a_i|\le6$ で、$H^0$ に寄与する単項式が $49=7^2$ 個（$a_1,a_2\ge0$、窓内で $7\times7=49$）、$H^1$ が $36=6^2$ 個（$a_1,a_2<0$）。）
+\end{sol}
+\begin{sol}{\ref{p:residue}}
+$\omega=\sum_{n\ge0}c_nz^ndz\in\Omega^1(U_0)$ は $z=0$ で正則で $\operatorname{Res}_{z=0}\omega=0$。$\omega\in\Omega^1(U_1)$：$g(w)dw$（$g$ 整）、$dw=-z^{-2}dz$ で $\omega=-\sum_{m\ge0}b_mz^{-m-2}dz$：$z^{-1}dz$ の項（$-m-2=-1$、$m=-1$）がないので $\operatorname{Res}_{z=0}\omega=0$。よって $\operatorname{Res}$ は商 $H^1(\CP^1,\Omega^1)$ 上の写像として定まり、$[z^{-1}dz]\mapsto1$、同型。$\omega=\sum c_nz^ndz$ ($\C^*$ 上) は $z^ndz=-w^{-n-2}dw$ なので $w^{-1}dw$ の係数は $-n-2=-1$、すなわち $n=-1$ のとき $-c_{-1}$：$\operatorname{Res}_{w=0}\omega=-c_{-1}=-\operatorname{Res}_{z=0}\omega$。（検算なし）
+\end{sol}
+\begin{sol}{\ref{p:PicTorus}}
+(a) 指数完全列の長完全列：$0\to H^0(\Zs)\to\Oc(T)=\C\to\Oc^*(T)=\C^*\to H^1(T,\Z)=\Z^{2n}\to H^1(T,\Oc)=\C^n\to\Pic(T)\to H^2(T,\Z)=\Z^{n(2n-1)}\to H^2(T,\Oc)=\C^{\binom n2}$（$H^q(T,\Oc)=\Lambda^q\overline{(\C^n)^*}$、第2巻、定理 \ref{thm:Dolbeault}）。$\exp:\C\to\C^*$ は全射なので $H^1(T,\Z)\to H^1(T,\Oc)$ は単射。(b) $\Pic^0(T)=H^1(T,\Oc)/\imm H^1(T,\Z)=\C^n/\Z^{2n}$。像は $H^1(T,\R)\to H^{0,1}$（Hodge 分解の射影、$\R$-線形同型：$H^{1,0}=\overline{H^{0,1}}$ なので実クラスの $(0,1)$ 成分が $0$ なら全部 $0$）の格子なので、$\Pic^0(T)$ は実次元 $2n$ のコンパクト複素トーラス。（$H^1(T,\Z)\to H^1(T,\Oc)$ が Hodge 分解の射影であることは、例 \ref{ex:ellPic} の複体の射 $\alpha\mapsto\alpha^{0,\bullet}$ の議論と同じ。）（検算なし）
+\end{sol}
+\begin{sol}{\ref{p:Pnh}}
+$a\in\Z^3$、$\sum a_i=k$。$z^a$ が $U_I$（$I\subset\{0,1,2\}$ 非空）で正則 $\iff S(a)\subset I$。型ごとに複体（$C^p$ の次元 $=$ $|I|=p+1$ かつ $I\supset S$ の個数）：
+\begin{itemize}
+\item $S=\emptyset$：全単体 $\{0,1,2\}$ の（空でない面の）コチェイン複体。次元 $3,3,1$。$H^0=\C$（定数 $=$ $a_i\ge0$ の単項式）、$H^1=H^2=0$。
+\item $S=\{0\}$（他も同様）：$I\in\{0\},\{01\},\{02\},\{012\}$、次元 $1,2,1$。$\delta(c)=(-c,-c)$、$\delta(c_{01},c_{02})=c_{01}-c_{02}$（$c_{12}=0$）。階数 $1,1$：完全。
+\item $S=\{0,1\}$（他も同様）：$I\in\{01\},\{012\}$、次元 $1,1$、$\delta c=c_{01}$ は同型：完全。
+\item $S=\{0,1,2\}$：$I=\{012\}$ のみ、次数 2 に $\C$：$H^2$ に寄与。
+\end{itemize}
+したがって $H^1=0$（すべての $k$）。(a) $H^2(\Oc(k))$ の次元 $=\#\{a\in\Z^3:a_i\le-1,\sum a_i=k\}$。$k=-3$：$a=(-1,-1,-1)$ で $1$。$k=-4$：$(-2,-1,-1)$ とその置換で $3$（$=\binom{3}{2}$）。公式 $\binom{-k-1}2$ は $k=-3$：$\binom22=1$、$k=-4$：$\binom32=3$。（検算：$\CP^2$ で $k=-7,\dots,4$ のすべてについて、単体複体の階数計算による $(h^0,h^1,h^2)$ が公式と一致（$\CP^1$、$\CP^3$ でも）。$\Oc(-6)$ で $h^2=10$。）
+\end{sol}
+\begin{sol}{\ref{p:PicCPn}}
+$n\ge2$。定理 \ref{thm:Pn}（$k=0$）：$H^1(\CP^n,\Oc)=0$、$H^2(\CP^n,\Oc)=0$（$n=2$ で $H^n(\Oc(0))=0$ は $0\le-n-1$ が偽、$n\ge3$ では $0<q<n$）。指数完全列の $H^1(\Oc)\to\Pic\to H^2(\Z)\to H^2(\Oc)$ から $\Pic(\CP^n)\cong H^2(\CP^n,\Z)=\Z$（位相）。生成元：直線 $\CP^1\subset\CP^n$ への制限 $\Pic(\CP^n)\to\Pic(\CP^1)=\Z$ は準同型で $\Oc(1)\mapsto\Oc(1)$。$\Pic(\CP^n)=\Z\cdot g$ とすると $\Oc(1)=mg$、$r(\Oc(1))=m\,r(g)=1$ より $m=\pm1$：超平面束 $\Oc(1)$ が生成元。（検算なし）
+\end{sol}
+
+\subsection*{§\ref{sec:finite} の解答}
+\begin{sol}{\ref{p:chiOk}}
+(a) $\Oc(-3)$：$h^0=0$、$h^1=2$、$\chi=-2=-3+1$。$\Oc(4)$：$h^0=5$、$h^1=0$、$\chi=5$。(b) $0\to\Oc(k-1)\to\Oc(k)\to\C_p\to0$ より $\chi(\Oc(k))-\chi(\Oc(k-1))=\chi(\C_p)=1$（命題 \ref{prop:closedemb}：$H^0=\C$、他 $0$）。$\chi(\Oc)=1$ から $\chi(\Oc(k))=1+k$（$k\ge0$ は $+1$ を $k$ 回、$k<0$ は $-1$ を $|k|$ 回）。確認：$\Oc(-3)$ は $\chi(\Oc)-3=-2$ で (a) に一致。（検算：$k=-7,\dots,7$ で $\chi=k+1$、窓計算。）
+\end{sol}
+\begin{sol}{\ref{p:Zpoints}}
+(a) $\bigoplus_j\C_{p_j}$ の $\chi$ は $m$ なので、加法性（命題 \ref{prop:chiadd}）で $\chi(\Oc(k))-\chi(\Oc(k-m))=m$。$(k+1)-(k-m+1)=m$ で整合。(b) $k=0$：$0\to H^0(\Oc(-m))\to H^0(\Oc)\to H^0(\bigoplus\C_{p_j})=\C^m\to H^1(\Oc(-m))\to H^1(\Oc)\to H^1(\bigoplus\C_{p_j})=0$。$H^0(\Oc(-m))=0$（$m\ge1$）、$H^0(\Oc)=\C$、$H^1(\Oc)=0$ なので $0\to\C\to\C^m\to H^1(\Oc(-m))\to0$：$\dim H^1(\Oc(-m))=m-1$。定理 \ref{thm:P1}：$-(-m)-1=m-1$。一致。（検算：$m=1,\dots,5$ で整数として確認。）
+\end{sol}
+\begin{sol}{\ref{p:RRcheck}}
+(a) $\chi(K)=\chi(\Oc(-2))=-2+1=-1$、$g-1=-1$。一般に $\deg K=2g-2$ なので $\chi(K)=2g-2+1-g=g-1$。(b) $\chi(\Oc_E)=h^{0,0}-h^{0,1}=1-1=0=\deg\Oc+1-g=0+1-1$。(c) $d=\deg L>0$ で $H^1(E,L)=0$ とすると $h^0(L)=\chi(L)=d+1-1=d$。$d=1$ で $h^0=1$：$L=\Oc(p)$ の非自明な切断は定数倍を除いて一意（$p$ で零）。（検算なし。RR は主張として使用。）
+\end{sol}
+\begin{sol}{\ref{p:closedembProb}}
+$i_*$ の完全性：茎で、$x\in Z$ では $(i_*\sG)_x=\sG_x$、$x\notin Z$ では $X\setminus Z$ が $x$ の開近傍で $i^{-1}(X\setminus Z)=\emptyset$ から $0$。したがって茎の完全性が $\sG$ の完全性から従う。軟弱性：$(i_*\sG)(U)=\sG(U\cap Z)$、$U\cap Z$ は $Z$ の開集合で、$\sG(Z)\to\sG(U\cap Z)$ が全射なら $(i_*\sG)(X)\to(i_*\sG)(U)$ は全射。$Z$ 上の Godement 分解 $\sF\to C^\bullet\sF$ に $i_*$ を施すと $i_*\sF\to i_*C^\bullet\sF$ は軟弱分解で、$\Gamma(X,i_*C^\bullet\sF)=\Gamma(Z,C^\bullet\sF)$。命題 \ref{prop:acyclic} より $H^k(X,i_*\sF)=H^k(Z,\sF)$。$Z=\{p_1,\dots,p_m\}$（離散）：$i_*\C=\bigoplus\C_{p_j}$ で $H^0=\C^m$、$H^q=0$（$q\ge1$、離散空間上の層は軟弱）。（検算なし。）
+\end{sol}
+
+\subsection*{§\ref{sec:hyper} の解答}
+\begin{sol}{\ref{p:hyperSection}}
+(a) $\cdot s$ は単射（$\Ker=0$）、余核は $s$ の零点 $p,q$ で $\C$ の skyscraper：$\mathcal H^0=0$、$\mathcal H^1=\C_p\oplus\C_q$。よって $K\simeq(\C_p\oplus\C_q)[-1]$、$\HH^k(K)=H^{k-1}(\C_p\oplus\C_q)$：$\HH^1=\C^2$、他は $0$。(b) 命題 \ref{prop:twoterm}：$H^0(\Oc)=\C\xrightarrow{s}H^0(\Oc(2))=\C^3$ は単射、$H^1(\Oc)=H^1(\Oc(2))=0$。$\HH^0=\Ker=0$、$\HH^1=\Coker=\C^2$（$0\to\Coker\to\HH^1\to H^1(\Oc)=0$）、$\HH^2$：$H^1(\Oc(2))=0\to\HH^2\to H^2(\Oc)=0$ より $0$。(c) $\sum(-1)^k\dim\HH^k=-2$、$\chi(\Oc)-\chi(\Oc(2))=1-3=-2$。（検算：一般の $m=1,2,3$ 点の場合 $(\HH^0,\HH^1,\HH^2)=(0,m,0)$ を長完全列の次元計算で確認。）
+\end{sol}
+\begin{sol}{\ref{p:hyperchiProof}}
+長さ $\ell$ の複体 $K^0\to\cdots\to K^\ell$。$\ell=0$：$\HH^k=H^k(K^0)$ で自明。$\ell\ge1$：$K'=(K^1\to\cdots\to K^\ell)$ とおくと $\sigma_{\ge1}K=K'[-1]$（$K^1$ を次数 1 に置いたもの）。項ごとに完全な $0\to K'[-1]\to K\to K^0[0]\to0$ に命題 \ref{prop:hyperfacts}(a) を適用し、長完全列は有限次元空間の有限完全列（帰納法の仮定で $\HH(K')$ 有限次元、$H^q(K^0)$ 有限次元）。Euler 標数の加法性：$\chi(\HH(K))=\chi(\HH(K'[-1]))+\chi(K^0)$。$\HH^k(K'[-1])=\HH^{k-1}(K')$ より $\chi(\HH(K'[-1]))=-\chi(\HH(K'))=-\sum_{p\ge1}(-1)^{p-1}\chi(K^p)=\sum_{p\ge1}(-1)^p\chi(K^p)$。したがって $\chi(\HH(K))=\sum_{p\ge0}(-1)^p\chi(K^p)$。（検算なし）
+\end{sol}
+\begin{sol}{\ref{p:HHP1}}
+$d_E=0$（$\sigma=0$、$V=0$）、$\HH^0=h^0(\Oc(k))$、$\HH^1=h^1(\Oc(k))+h^0(\Oc(k+2))$、$\HH^2=h^1(\Oc(k+2))$。
+\begin{center}
+\begin{tabular}{c|ccccccc}
+\toprule
+$k$ & $-4$ & $-3$ & $-2$ & $-1$ & $0$ & $1$ & $2$\\
+\midrule
+$(\HH^0,\HH^1,\HH^2)$ & $(0,3,1)$ & $(0,2,0)$ & $(0,2,0)$ & $(0,2,0)$ & $(1,3,0)$ & $(2,4,0)$ & $(3,5,0)$\\
+Euler 標数 & $-2$ & $-2$ & $-2$ & $-2$ & $-2$ & $-2$ & $-2$\\
+\bottomrule
+\end{tabular}
+\end{center}
+例：$k=-4$：$h^1(\Oc(-4))=3$、$h^0(\Oc(-2))=0$ より $\HH^1=3$。$h^1(\Oc(-2))=1$ より $\HH^2=1$。$k=-1$：$h^1(\Oc(-1))=0$、$h^0(\Oc(1))=2$、$h^1(\Oc(1))=0$。Euler 標数は $\chi(\Oc(k))-\chi(\Oc(k+2))=-2$（$k$ によらない）。（検算：窓計算の $h^0,h^1$ から表を生成して一致。）
+\end{sol}
+\begin{sol}{\ref{p:chiCP2}}
+$\CP^2$：$\chi(\Oc(k))=\binom{k+2}2$（$k\ge-2$ で多項式として成立、定理 \ref{thm:Pn}）：$\chi(\Oc)=1$、$\chi(\Oc(1))=3$、$\chi(\Oc(2))=6$、$\chi(\Oc(3))=10$、$\chi(\Oc(4))=15$。Euler 完全列を $\Oc(k)$ でねじって $\chi(T(k))=3\chi(\Oc(k+1))-\chi(\Oc(k))$。(a) $L=\Oc$：$\chi(T)=9-1=8$、$\Lambda^2T=\det T=\Oc(3)$ で $\chi=10$。$1-8+10=3$。(b) $L=\Oc(1)$：$\chi(T(1))=3\cdot6-3=15$、$\Lambda^2T(1)=\Oc(4)$ で $\chi=15$。$3-15+15=3$。ともに $\chi_{\mathrm{top}}(\CP^2)=3$。（検算：$k=-4,\dots,4$ のすべてで $\chi(\Oc(k))-\chi(T(k))+\chi(\Oc(k+3))=3$。）
+\end{sol}
+

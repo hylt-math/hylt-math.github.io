@@ -1,0 +1,201 @@
+%==================================================
+\section{前層と層}\label{sec:sheaf}
+%==================================================
+
+\paragraph{動機。}第2巻の $\bar\partial$-補題は「$\bar\partial\alpha=0$ ならば \emph{各点のまわりで} $\alpha=\bar\partial\beta$」という局所的な主張であった。しかし \emph{大域的に} $\alpha=\bar\partial\beta$ が解けるとは限らず、そのずれ（楕円曲線の $H^{0,1}_{\bar\partial}\ne0$、第2巻 §4 の Fourier 級数の例）が複素幾何の中身であった。「局所的には解ける」から「大域的には解けない」への橋が \emph{層} と \emph{コホモロジー} である。層とは、開集合 $U$ ごとに「$U$ 上の切断（関数・形式・……）の集まり」$\sF(U)$ を対応させ、その局所的な振る舞いを貼り合わせの規則として記録する道具である。
+
+\subsection{前層と層}
+\begin{defn}[前層]
+位相空間 $X$ 上の（Abel 群の）\emph{前層} $\sF$ とは、各開集合 $U\subset X$ に Abel 群 $\sF(U)$ を、$V\subset U$ に対し \emph{制限写像} $\sF(U)\to\sF(V)$, $s\mapsto s|_V$ を対応させ、$s|_U=s$、$(s|_V)|_W=s|_W$（$W\subset V\subset U$）、$\sF(\emptyset)=0$ をみたすものである。$s\in\sF(U)$ を $U$ 上の\emph{切断}、$\sF(X)$ の元を\emph{大域切断}という。環・ベクトル空間・加群の前層も同様に定める（制限写像は準同型）。
+\end{defn}
+\begin{defn}[層]
+前層 $\sF$ が\emph{層}であるとは、開集合 $U$ の任意の開被覆 $U=\bigcup_iU_i$ について次の二つが成り立つことをいう。
+\begin{itemize}
+\item[(S1)]（局所性）$s\in\sF(U)$ が、すべての $i$ で $s|_{U_i}=0$ ならば $s=0$。
+\item[(S2)]（貼り合わせ）切断 $s_i\in\sF(U_i)$ が $s_i|_{U_{ij}}=s_j|_{U_{ij}}$（$U_{ij}=U_i\cap U_j$）をみたせば、$s|_{U_i}=s_i$ となる $s\in\sF(U)$ が存在する（(S1) より一意）。
+\end{itemize}
+\end{defn}
+(S1) と (S2) は「切断は局所的に決まり、局所切断は適合すれば貼り合わさる」という、関数・微分形式・（局所的に定義される条件をみたす）切断すべての共通の性質である。
+
+\begin{ex}[層になる例]\label{ex:sheaves}
+\begin{enumerate}
+\item $C^0_X$（連続関数）、$C^\infty_X$（$X$ が多様体のとき滑らかな関数）、$\A^k_X$（滑らかな $k$ 形式）、$\A^{p,q}$（複素多様体上の $(p,q)$ 形式）。定義が「各点の近傍での性質」だけで決まるから (S1)(S2) は明らか。
+\item $X$ が複素多様体のとき、正則関数の層 $\Oc=\Oc_X$、零点をもたない正則関数の層 $\Oc^*$（積について Abel 群。$\Oc^*(U)=\Oc(U)^\times$）、正則 $p$ 形式の層 $\Omega^p$。
+\item 複素ベクトル束 $E\to X$ の滑らかな切断の層 $\A^0(E)$。$E$ が正則ベクトル束なら正則切断の層 $\Oc(E)$（$\Oc_X$-加群）。
+\item 定数 $a\in A$ に値をとる \emph{局所定数関数} の層 $\underline A_X$：$\underline A_X(U)=\{U\to A\ \text{局所定数}\}$。$U$ が局所連結なら $\underline A_X(U)=A^{\pi_0(U)}$（連結成分の個数だけ $A$ のコピー）。（正式には離散位相の $A$ に値をとる連続関数の層である。）
+\item \emph{skyscraper 層}：$x\in X$、$A$ を Abel 群として、$(i_{x*}A)(U)=A$（$x\in U$）、$=0$（$x\notin U$）、制限は $x\in V\subset U$ のとき $\mathrm{id}_A$、それ以外は $0$。(S2) は明らか。$x$ だけに「台」をもつ層。
+\end{enumerate}
+\end{ex}
+\begin{ex}[前層だが層でないもの]\label{ex:notsheaf}
+\begin{enumerate}
+\item $X=\R$、$B(U)=\{U\ \text{上の有界な連続関数}\}$。(S1) は成り立つが (S2) が成り立たない：$U_n=(-n,n)$ 上の $s_n(x)=x$ は適合するが、$\R$ 上の有界関数には貼り合わさらない。\emph{「有界」は局所的でない条件}。
+\item \emph{定数前層} $P(U)=\Z$（$U\ne\emptyset$）、制限は恒等写像。$U=U_1\sqcup U_2$（空でない互いに素な開集合の和）で、$s_1=0$、$s_2=1$ とおくと $U_{12}=\emptyset$ で適合するが、$P(U)=\Z$ の元で $U_1$ 上 $0$、$U_2$ 上 $1$ となるものはない。(S2) が成り立たない。（層にするには局所定数関数にする：例 \ref{ex:sheaves}(4)。）
+\item \emph{商前層}（本巻の核心）。$X=\C^*$、$\sH(U)=\Omega^1(U)/d\Oc(U)$（正則 1 形式を完全形式で割った商）。$\C^*$ を二つの単連結な開集合 $U_1=\C^*\setminus\R_{\ge0}$、$U_2=\C^*\setminus\R_{\le0}$ で覆う。$U_i$ 上では正則な閉 1 形式は完全（Poincar\'e の補題）なので $\sH(U_i)=0$。ところが $\omega=dz/z\in\Omega^1(\C^*)$ は $\C^*$ 上完全でない（周期 $\oint_{|z|=1}dz/z=2\pi i\ne0$）から $[\omega]\ne0$ in $\sH(\C^*)$。したがって $\sH$ は (S1) をみたさない。\emph{商や像をとる操作は前層の段階では層を保たない}。この「ずれ」こそが後で $H^1$ として現れる。
+\end{enumerate}
+\end{ex}
+
+\subsection{茎と芽}
+\begin{defn}[茎・芽]
+$x\in X$ における $\sF$ の\emph{茎}は
+\[
+\sF_x=\varinjlim_{U\ni x}\sF(U)=\Big(\bigsqcup_{U\ni x}\sF(U)\Big)\Big/\sim,
+\]
+ただし $s\in\sF(U)$、$t\in\sF(V)$ が $\sim$ とは、$x$ の近傍 $W\subset U\cap V$ で $s|_W=t|_W$ となること。$s\in\sF(U)$ の類を $s_x\in\sF_x$（$x$ における\emph{芽}）という。
+\end{defn}
+\begin{ex}\label{ex:stalks}
+(1) $\Oc_{\C^n,0}$ は原点で収束するベキ級数環 $\C\{z_1,\dots,z_n\}$ に同型（一意の定理）。(2) $(C^\infty_{\R})_0$：$0$ の近傍で定義された滑らかな関数の芽。ベキ級数展開は $C^\infty$ の芽の情報を完全には決めない（$e^{-1/x^2}$ はテイラー級数が $0$ だが芽としては $0$ でない）。解析的（正則）と滑らかの違い。(3) $\underline A_X$ の茎は $A$（$X$ が局所連結）。(4) skyscraper $i_{x*}A$：$x$ での茎は $A$。$y\ne x$ で $X$ が Hausdorff ならば $x\notin U$ となる近傍 $U\ni y$ がとれるので茎は $0$。
+\end{ex}
+
+\begin{prop}\label{prop:germ}\tP
+$\sF$ を層とする。(a) $s\in\sF(U)$ について、$s=0\iff$ すべての $x\in U$ で $s_x=0$。したがって $s,t\in\sF(U)$ は、すべての芽が一致すれば等しい。(b) 芽の族 $(\sigma_x)_{x\in U}$（$\sigma_x\in\sF_x$）が\emph{局所的に切断で表される}（各点 $x$ に開近傍 $V\ni x$ と $t\in\sF(V)$ があり、すべての $y\in V$ で $\sigma_y=t_y$）ならば、$\sigma_x=s_x$（$\forall x\in U$）となる $s\in\sF(U)$ が一意に存在する。
+\end{prop}
+\begin{proof}
+(a) $s_x=0$ とは、$x$ の近傍 $W_x$ で $s|_{W_x}=0$ ということ。$\{W_x\}$ は $U$ の開被覆なので (S1) より $s=0$。(b) 各 $x$ について $(V_x,t^{(x)})$ をとる。$y\in V_x\cap V_{x'}$ で $t^{(x)}_y=\sigma_y=t^{(x')}_y$ だから、$y$ の近傍で $t^{(x)}=t^{(x')}$。したがって $t^{(x)}|_{V_x\cap V_{x'}}$ と $t^{(x')}|_{V_x\cap V_{x'}}$ のすべての芽が一致し、(a) より等しい。(S2) で貼り合わせて $s$ を得る。一意性は (a)。\qedhere
+\end{proof}
+つまり層の切断とは、「局所的に切断で表される芽の族」のことである。これを使えば、前層から層を作れる。
+
+\subsection{層化}
+\begin{defn}[層化]
+前層 $\sF$ に対し、
+\[
+\sF^+(U)=\Big\{(\sigma_x)_{x\in U}\in\prod_{x\in U}\sF_x\ \Big|\ \text{局所的に}\ \sF\ \text{の切断で表される}\Big\}
+\]
+とおく（制限は成分の制限）。自然な写像 $\theta:\sF\to\sF^+$、$s\mapsto(s_x)_x$ がある。$\sF^+$ を $\sF$ の\emph{層化}（associated sheaf）という。
+\end{defn}
+\begin{prop}\label{prop:sheafify}\tP
+(a) $\sF^+$ は層で、$\theta$ は茎の同型 $\sF_x\cong\sF^+_x$ を誘導する。(b)（普遍性）$\sG$ が層、$\varphi:\sF\to\sG$ が前層の射なら、$\varphi=\tilde\varphi\circ\theta$ となる層の射 $\tilde\varphi:\sF^+\to\sG$ が一意に存在する。(c) $\sF$ が層なら $\theta$ は同型。
+\end{prop}
+\begin{proof}
+(a) 条件が局所的なので (S1)(S2) は容易（芽の族として貼り合わせればよい）。茎：全射は、$\sF^+_x$ の元が $x$ の近傍上の族 $(\sigma_y)$ で、$x$ の近傍で $t_y=\sigma_y$ となる $t\in\sF(V)$ をもつから、$\sigma$ の芽は $\theta(t)$ の芽。単射は、$\theta(t)_x=0$ なら $t_x=0\in\sF_x$ より。(b) $\sigma\in\sF^+(U)$ に対し、各点で $t^{(x)}\in\sF(V_x)$ をとり $\varphi(t^{(x)})\in\sG(V_x)$ を作る。重なりで芽が一致するので、命題~\ref{prop:germ}(a) により $V_x\cap V_{x'}$ 上で一致し、(S2) で $\sG(U)$ の元に貼り合う。これを $\tilde\varphi(\sigma)$ とする。一意性は (a)。(c) 命題 \ref{prop:germ}(b)。\qedhere
+\end{proof}
+\begin{ex}[定数層]\label{ex:constsheaf}
+定数前層 $P(U)=A$ の層化は局所定数関数の層 $\underline A_X$。実際 $P_x=A$ で、$P^+(U)$ は「各点の近傍で定数に見える族 $x\mapsto a_x\in A$」、すなわち局所定数関数。$U$ が局所連結なら $\underline A_X(U)=A^{\pi_0(U)}$。
+\end{ex}
+\begin{ex}[商前層の層化]\label{ex:quotsheafify}
+例 \ref{ex:notsheaf}(3) の商前層 $\sH$ の層化は、各点で $\sH_x=\Omega^1_x/d\Oc_x=0$（1 変数なので正則 1 形式の芽 $f\,dz$ は原始関数をもち、\emph{すべて} $d\Oc_x$ に入る）だから $0$ となる。したがって $\sH^+=0$：局所的には商は消える。$\C^*$ 上の $dz/z$ は前層としては $\sH(\C^*)\ne0$ に住むが、層化では見えない。
+\end{ex}
+
+\subsection{層の射・核・像・余核・完全列}
+層の射 $\varphi:\sF\to\sG$ とは、制限と可換な準同型の族 $\varphi_U:\sF(U)\to\sG(U)$。茎への準同型 $\varphi_x:\sF_x\to\sG_x$ が誘導される。
+\begin{itemize}
+\item \emph{核}：$(\Ker\varphi)(U)=\Ker(\varphi_U)$ は（部分）層。
+\item \emph{像}：前層 $U\mapsto\varphi_U(\sF(U))$ の層化 $\imm\varphi\subset\sG$（部分層）。
+\item \emph{余核}：前層 $U\mapsto\sG(U)/\varphi_U(\sF(U))$ の層化 $\Coker\varphi$（これが商層 $\sG/\imm\varphi$）。
+\end{itemize}
+例 \ref{ex:notsheaf}(3) の通り、像・余核では層化が不可欠。層化が茎を変えないので、$(\Ker\varphi)_x=\Ker\varphi_x$、$(\imm\varphi)_x=\imm\varphi_x$、$(\Coker\varphi)_x=\Coker\varphi_x$ である。
+\begin{defn}
+層の列 $\sF'\xrightarrow{\varphi}\sF\xrightarrow{\psi}\sF''$ が \emph{完全}とは $\imm\varphi=\Ker\psi$。これは \textbf{すべての茎で完全}であることと同値である。$0\to\sF'\to\sF\to\sF''\to0$ を\emph{短完全列}という。
+\end{defn}
+\begin{prop}\label{prop:exact}\tP
+層の射 $\varphi:\sF\to\sG$ について、
+(a) $\varphi$ が単射（$\Ker\varphi=0$）$\iff$ すべての $U$ で $\varphi_U$ が単射 $\iff$ すべての茎で $\varphi_x$ が単射。
+(b) $\varphi$ が全射（$\Coker\varphi=0$）$\iff$ すべての茎で $\varphi_x$ が全射 $\iff$ \emph{局所的に持ち上がる}（$s\in\sG(U)$ と $x\in U$ に対し、$x$ の近傍 $V$ と $t\in\sF(V)$ で $\varphi(t)=s|_V$ となるものがある）。\ ただし $\varphi_U$ が全射であることは\textbf{必要でない}。
+(c) $0\to\sF'\to\sF\to\sF''$ が完全ならば任意の $U$ で $0\to\sF'(U)\to\sF(U)\to\sF''(U)$ は完全（$\Gamma$ は\emph{左完全}）。
+\end{prop}
+\begin{proof}
+(a) 核は切断で定義されるので $\Ker\varphi=0\iff$ 各 $\varphi_U$ が単射。茎では、$\Ker\varphi_x=(\Ker\varphi)_x$ が $0$ であることと、前者から後者は直ちに、逆は 命題~\ref{prop:germ}(a)。(b) 茎の全射と局所持ち上げは $\varphi_x$ の定義より同値（芽 $s_x$ の持ち上げ $t_x$ をとり、近傍まで $t$ を延ばして $\varphi(t)_x=s_x$ なので、さらに縮めて $\varphi(t)=s|_V$）。余核が $0$ であることは茎ごとに $0$ であること。(c) $\sF'(U)\to\sF(U)$ の単射性は (a)。$s\in\sF(U)$ が $\sF''$ で $0$ ならば、各茎で $s_x\in\Ker\psi_x=\imm\varphi_x$ なので、局所的に $s|_{V}=\varphi(t)$ となる $t\in\sF'(V)$ がある。重なり上で $\varphi(t-t')=0$ より (a) から $t=t'$。(S2) で貼り合わせて $\sF'(U)$ の元を得る。\qedhere
+\end{proof}
+\begin{ex}[全射な層の射だが大域切断は全射でない]\label{ex:logfail}
+$X=\C^*$、$\exp:\Oc\to\Oc^*$、$f\mapsto e^{2\pi if}$（準同型：$\Oc$ は加法、$\Oc^*$ は乗法）。この射は\emph{層として全射}（茎で全射：$g(0)\ne0$ の正則な芽 $g$ に対し $\log g$ の枝が小さな円板で選べる）。しかし $\Gamma(\C^*,\Oc)\to\Gamma(\C^*,\Oc^*)$ は全射でない：$g(z)=z$ は $e^{2\pi if}$ の形に書けない（$f=\frac1{2\pi i}\log z$ は $\C^*$ 上一価に定義できない）。「局所的に解ける $\Rightarrow$ 大域的に解ける」の失敗である。\emph{失敗の度合いを測る装置がコホモロジー}である（定理 \ref{thm:les} 以降）。
+\end{ex}
+
+\begin{keybox}{要点（§\ref{sec:sheaf}）}
+層 $=$ 局所性 (S1) $+$ 貼り合わせ (S2)。有界関数、定数前層、商前層は前層だが層でない。層の情報は茎に集約される（切断 $=$ 局所的に切断で表される芽の族）。前層から層を作る操作が層化で、像・余核は層化を経て定義される。完全性は茎ごとに判定し、$\Gamma(U,-)$ は左完全だが右完全でない（例 \ref{ex:logfail}）。
+\end{keybox}
+
+\begin{prob}{基本}\label{p:notsheaf}
+(a) $X=\R$ 上で $U\mapsto\{f\in C^0(U)\mid\int_U|f|\,dx<\infty\}$ は層か。(b) $X=\R$、$P(U)=\{U\ \text{上の定数関数}\}$（$U$ の連結成分が複数あっても全体で一つの定数）は層か。いずれも判定し、層でないなら (S1)(S2) のどちらが破れるか理由とともに示せ。
+\end{prob}
+\begin{prob}{基本}\label{p:stalkO}
+(a) 原点における $C^\infty(\R)$ の茎 $\mathcal C_0$ は局所環であり、極大イデアルは $f(0)=0$ の芽の全体であることを示せ。(b) skyscraper 層 $i_{x*}A$ の（Hausdorff 空間での）各点の茎を求めよ。(c) $\C$ 上の $\Oc$ について、$\Oc_0$ の元 $f\ne0$ は $f=z^mu$（$m\ge0$、$u$ は可逆）の形に一意に書けることを示せ。
+\end{prob}
+\begin{prob}{標準}\label{p:constsheaf}
+定数前層 $P(U)=\Z$ の層化は局所定数関数の層 $\Zs$ であることを、層化の定義に従って確認せよ。$X=S^1\sqcup S^1$ で $\Zs(X)$ を求めよ。また $X=\Q\subset\R$ では $\Zs(X)$ が「$\Q$ の各点に $\Z$ を一つずつ」の積 $\Z^{\Q}$ より真に小さいことを、局所定数でない関数の例で説明せよ。
+\end{prob}
+\begin{prob}{基本}\label{p:expsurj}
+$X=\C^*$ の指数写像 $\exp:\Oc\to\Oc^*$ について、(a) 茎で全射であること、(b) $\Gamma(X,\Oc)\to\Gamma(X,\Oc^*)$ の余核が $\Z$ であること（生成元は $[z]$）を示せ。
+\end{prob}
+\begin{prob}{発展}\label{p:extzero}
+$j:U\hookrightarrow X$ を開埋め込み、$\sF$ を $U$ 上の層とする。前層 $V\mapsto\sF(V)$（$V\subset U$）、$V\mapsto0$（$V\not\subset U$）の層化 $j_!\sF$ を\emph{零拡張}という。(a) $j_!\sF$ の茎は、$x\in U$ で $\sF_x$、$x\notin U$ で $0$ であることを示せ。(b) $X=\R$、$U=(0,\infty)$、$Z=X\setminus U=(-\infty,0]$、$i:Z\hookrightarrow X$ を閉埋め込みとする。$0\to j_!\Zs_U\to\Zs_X\to i_*\Zs_Z\to0$ が完全であることを茎で確認せよ（左の射は零拡張の自然な射、右の射は制限）。
+\end{prob}
+
+%==================================================
+\section{基本的な層と層の操作}\label{sec:examples}
+%==================================================
+
+\subsection{ベクトル束と局所自由層}
+\begin{prop}\label{prop:locfree}\tP
+複素多様体 $X$ 上の階数 $r$ の正則ベクトル束 $E$ に対し、正則切断の層 $\Oc(E)$ は\emph{局所自由な}（各点の近傍 $U$ で $\Oc(E)|_U\cong\Oc_U^{\oplus r}$ となる）$\Oc_X$-加群である。逆に階数 $r$ の局所自由な $\Oc_X$-加群 $\sF$ は、ある正則ベクトル束 $E$ により $\sF\cong\Oc(E)$ と書け、$E$ は同型を除いて一意。
+\end{prop}
+\begin{proof}
+局所自明化 $E|_U\cong U\times\C^r$ により、$\Oc(E)|_U\cong\Oc_U^r$。逆に、局所自由な $\sF$ の自明化 $\sF|_{U_i}\cong\Oc_{U_i}^r$ をとると、$U_{ij}$ 上の二つの自明化の差は $\Oc_{U_{ij}}^r$ の自己同型で、それは正則な $\mathrm{GL}_r$-値関数 $g_{ij}$ で与えられる（$\Oc$-線形な自己同型は標準基底の像で決まる）。$g_{ij}g_{jk}=g_{ik}$ が成り立つので、第1巻の貼り合わせ構成で正則ベクトル束 $E$ を得て、$\Oc(E)\cong\sF$。\qedhere
+\end{proof}
+したがって「正則ベクトル束 $=$ 局所自由層」と同一視してよい。以後 $\Oc(E)$ を単に $E$ と書くことがある。$\Oc(k)\to\CP^1$ の層は同じ記号 $\Oc(k)$ と書く。$C^\infty$ 切断の層 $\A^0(E)$ は $C^\infty_X$-加群である。
+
+\subsection{直像と逆像}
+\begin{defn}[直像・逆像]
+$f:X\to Y$ を連続写像とする。$\sF$ を $X$ 上の層として、\emph{直像}（押し出し）$f_*\sF$ を $(f_*\sF)(V)=\sF(f^{-1}V)$（$V\subset Y$ 開）で定める。これは $Y$ 上の層。$\sG$ を $Y$ 上の層として、\emph{逆像} $f^{-1}\sG$ を前層 $U\mapsto\varinjlim_{V\supset f(U)}\sG(V)$（$V$ は $Y$ の開集合）の層化で定める。茎は $(f^{-1}\sG)_x=\sG_{f(x)}$。
+\end{defn}
+\begin{prop}[性質]\label{prop:pushprops}\tC
+(a) $f_*$ は左完全（命題~\ref{prop:exact}(c) と同様）。(b) $f^{-1}$ は完全。(c)（随伴）$\Hom_X(f^{-1}\sG,\sF)\cong\Hom_Y(\sG,f_*\sF)$。(d) $f$ が開埋め込みなら $f^{-1}\sG=\sG|_{f(X)}$、$f$ が閉埋め込みなら $f_*$ は完全で $(f_*\sF)_y=\sF_y$（$y\in Z$）、$=0$（$y\notin Z$）。
+\end{prop}
+\src{Hartshorne, \emph{Algebraic Geometry}, 第II章 §1 の演習（直像・逆像）。Godement, \emph{Topologie alg\'ebrique et th\'eorie des faisceaux}, 第II章（節は\tQ{}）。}
+\begin{ex}\label{ex:pushforwards}
+(1) $f:X\to\{\mathrm{pt}\}$ なら $f_*\sF=\sF(X)=\Gamma(X,\sF)$：直像は「大域切断」の一般化。(2) 一点 $\{x\}\hookrightarrow X$ の直像は skyscraper 層：$i_{x*}A$。(3) $f:\C\to\C$、$f(z)=z^2$：$(f_*\Oc)_0$ は $\Oc_0$ の元 $g(z)$ のうち、偶数部分 $g_{\mathrm{ev}}(z^2)$ と奇数部分 $z\,g_{\mathrm{odd}}(z^2)$ に分ける：$f_*\Oc_{\C}$ は $\Oc_{\C}$（目標の座標 $u=z^2$）上、基底 $1,z$ の階数 2 の自由加群（問 \ref{p:pushO}）。
+\end{ex}
+
+\subsection{層の複体としての重要な完全列}
+以下の列は本巻を通じて使う。それぞれの完全性は茎での完全性であり、その根拠は既に第1、2巻にある。
+\begin{prop}\label{prop:resolutions}\tP
+(a)（de Rham 複体）$X$ を滑らかな多様体とする。
+\[
+0\to\Rs\to\A^0_X\xrightarrow{d}\A^1_X\xrightarrow{d}\cdots\xrightarrow{d}\A^n_X\to0
+\]
+は層の完全列。(b)（Dolbeault 複体）$X$ を複素多様体、$E$ を正則ベクトル束とする。各 $p$ について
+\[
+0\to\Omega^p\otimes E\to\A^{p,0}(E)\xrightarrow{\bar\partial_E}\A^{p,1}(E)\xrightarrow{\bar\partial_E}\cdots\xrightarrow{\bar\partial_E}\A^{p,n}(E)\to0
+\]
+は層の完全列。(c)（指数完全列）複素多様体上
+\[
+0\to\Zs\xrightarrow{\ \iota\ }\Oc\xrightarrow{\ \exp\ }\Oc^*\to1,\qquad \exp(f)=e^{2\pi if}
+\]
+は層の完全列。
+\end{prop}
+\begin{proof}
+(a) $\Rs\to\A^0$ の単射性は明らか。$\A^0\to\A^1$ の核は $df=0$ となる関数の芽、すなわち局所定数関数の芽で $\Rs_x=\R$。$k\ge1$ では、茎でのコホモロジーを見る：芽 $\alpha_x$（$d\alpha=0$）は座標球の上で閉形式に延ばせるから、Poincar\'e の補題（第1巻 §4）により完全形式。よって各茎で完全。(b) $E$ の局所正則枠をとれば $E|_U\cong U\times\C^r$ で $\bar\partial_E=\bar\partial$（成分ごと）。$p=0$ の核は $\bar\partial f=0$ すなわち正則な切断で $\Oc(E)$ に等しい。$q\ge1$ では第2巻 §4 の Dolbeault--Grothendieck の補題（多重円板で $\bar\partial\alpha=0$ ならばより小さい多重円板で $\alpha=\bar\partial\beta$）から茎で完全。(c) 茎ごとに示す。(i) $\iota$ は単射。(ii) $\exp\circ\iota=1$：$f\in\Z$ ならば $e^{2\pi if}=1$。$\Ker(\exp)_x$：芽 $f$ が $e^{2\pi if}=1$ をみたせば、$f$ は（連続で整数値）局所定数で整数、すなわち $\Zs_x=\Z$ に入る。(iii) 全射：$g_x\in\Oc^*_x$ は $g(x)\ne0$。$x$ のまわりの小さな円板 $D$ 上で $g$ は零点をもたない。$g'/g$ は $D$ 上の正則関数なので原始関数 $h$ をもつ（円板上の正則関数は原始関数をもつ）。$(ge^{-h})'=g'e^{-h}-gh'e^{-h}=0$ より $ge^{-h}$ は定数 $c\ne0$。$c=e^{c'}$ と書けば $g=e^{h+c'}$、$f=(h+c')/(2\pi i)$ で $\exp(f)=g$。\qedhere
+\end{proof}
+\begin{ex}[$\CP^1$ の Euler 完全列]\label{ex:EulerP1}
+$\CP^1$ 上、層の完全列
+\[
+0\to\Oc(-1)\xrightarrow{\ \alpha\ }\Oc\oplus\Oc\xrightarrow{\ \beta\ }\Oc(1)\to0
+\]
+を次で定める（$\Oc\oplus\Oc$ の切断は成分 $(g,h)$、ただし $\C^2$ の定数枠に関する成分）。$\alpha$：$\Oc(-1)$ の切断 $\sigma=f_0e_0=f_1e_1$（$f_1=zf_0$）を、$U_0$ 上で $(g,h)=(f_0,zf_0)$、$U_1$ 上で $(g,h)=(wf_1,f_1)$ に送る。$e_0=(1,z)$、$e_1=(w,1)$ は $\C^2$ のベクトルとして $\sigma$ の位置であり、$wf_1=f_0$、$f_1=zf_0$ なので二つの定義は $U_{01}$ で一致する。$\beta$：$(g,h)$ を、成分 $f_0=zg-h$（$U_0$ 上）、$f_1=g-wh$（$U_1$ 上）の $\Oc(1)$ の切断に送る（$f_1=wf_0=z^{-1}f_0$ と整合）。$\beta\alpha=0$：$z\cdot f_0-zf_0=0$。$\beta$ の局所全射性：$U_0$ で $(g,h)=(0,-f_0)$、$U_1$ で $(g,h)=(f_1,0)$。核：$zg-h=0\iff(g,h)=g\cdot(1,z)=ge_0$。後で $\chi$ の計算に使う（例 \ref{ex:chiEuler}）。整合の詳細は問 \ref{p:euler}。
+\end{ex}
+\begin{ex}[点での完全列]\label{ex:skyscraperseq}\tP
+$\CP^1$ の点 $p$ と、$p$ でのみ（単純に）零点をもつ $s\in H^0(\Oc(1))$ に対し、
+\[
+0\to\Oc(k-1)\xrightarrow{\ \cdot s\ }\Oc(k)\to\C_p\to0\qquad(k\in\Z)
+\]
+は完全。ここで $\C_p=i_{p*}\C$ は skyscraper 層。実際、$s$ は各チャートで恒等的に $0$ でない正則関数なので $\cdot s$ は単射（$sf=0\Rightarrow f=0$：$s$ の零点集合は孤立点）。$p$ 以外では $s$ は可逆で余核の茎は $0$。$p$ の近傍では $s=z\cdot(\text{可逆})$ で、余核の茎は $\Oc_p/z\Oc_p=\C$（$f\mapsto f(p)$）。
+\end{ex}
+
+\begin{keybox}{要点（§\ref{sec:examples}）}
+正則ベクトル束 $=$ 局所自由な $\Oc$-加群の層。直像 $f_*$、逆像 $f^{-1}$（茎は $\sG_{f(x)}$）。三つの基本的な完全列：de Rham $0\to\Rs\to\A^\bullet$、Dolbeault $0\to\Omega^p\otimes E\to\A^{p,\bullet}(E)$、指数 $0\to\Zs\to\Oc\to\Oc^*\to1$。いずれも局所的に完全で、大域的には完全でない。この「失敗」を測るのがコホモロジー（§\ref{sec:cohom}）。
+\end{keybox}
+
+\begin{prob}{標準}\label{p:pushO}
+$f:\C\to\C$、$f(z)=z^2$ に対し、$f_*\Oc_{\C}$ が $\Oc_{\C}$ 上の階数 2 の自由加群（基底 $1,z$）であることを示せ。（ヒント：$u=z^2$ の開集合 $V$ について $g\in\Oc(f^{-1}V)$ は $g(z)=a(z^2)+zb(z^2)$ と一意に書ける。$f^{-1}V$ は $z\mapsto-z$ で不変であることに注意。）
+\end{prob}
+\begin{prob}{標準}\label{p:euler}
+例 \ref{ex:EulerP1} の写像 $\alpha,\beta$ が貼り合わせと整合すること（$U_0$ 成分と $U_1$ 成分が $U_{01}$ 上で規約 $\Oc(-1)$：$f_1=zf_0$、$\Oc(1)$：$f_1=z^{-1}f_0$ をみたすこと）を確かめ、$\beta\circ\alpha=0$ と $\Ker\beta=\imm\alpha$ を示せ。
+\end{prob}
+\begin{prob}{基本}\label{p:skysc}
+Hausdorff 空間 $X$ の点 $x$ と群 $A$ について、skyscraper 層 $i_{x*}A$ は閉埋め込み $\{x\}\hookrightarrow X$ の直像であることを確かめ、茎を求めよ。また $A$ が体 $k$ のとき、$\Gamma(U,i_{x*}k)$ の次元を $U\ni x$、$U\not\ni x$ で求めよ。
+\end{prob}
+\begin{prob}{標準}\label{p:idealseq}
+$X$ を複素多様体、$p\in X$ とし、$\sI_p\subset\Oc_X$ を $p$ で $0$ になる正則関数のなす\emph{イデアル層}（$\sI_p(U)=\Oc(U)$ if $p\notin U$、$=\{f\in\Oc(U)\mid f(p)=0\}$ if $p\in U$）とする。(a) $0\to\sI_p\to\Oc\to\C_p\to0$（右の射は $f\mapsto f(p)$）が完全であることを茎で示せ。(b) $X=\C$、$p=0$ のとき、$0\to\Gamma(\sI_p)\to\Gamma(\Oc)\to\C\to0$ が完全であることを確かめよ。(c) $X=\C^*$ の指数完全列で、(b) のような「大域切断も完全」とならない理由を一言で述べよ（問 \ref{p:expsurj}）。
+\end{prob}
+\begin{prob}{発展}\label{p:fpush}
+$f:X\to Y$ を連続写像とする。(a) $f_*$ が左完全であることを示せ。(b) $X=Y\sqcup Y$（二つのコピー）、$f$ を二つのコピーを $Y$ に重ねる写像とするとき、任意の層 $\sF$ に対して $f_*\sF=\sF_1\oplus\sF_2$（二つのコピー上への制限の直和）であり、$f_*$ が完全であることを示せ。(c) $f:\C^*\to\C^*$、$f(z)=z^2$ で $f_*\Cs$ の茎の次元を求め、$f_*\Cs\cong\Cs\oplus L$ となる階数 1 の局所系 $L$（モノドロミー $-1$）を記述せよ。（$\Z$ 係数では $f_*\Zs\ne\Zs\oplus L'$：なぜか。）
+\end{prob}
+
