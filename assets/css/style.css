@@ -138,3 +138,29 @@ img { max-width: 100%; }
 @media (max-width: 700px) { .pdf-view { display: none; } }
 .pdf-badge { font-size: 0.72rem; font-weight: 700; padding: 0 6px; border-radius: 4px; background: #cf222e; color: #fff; line-height: 1.6; }
 .pdf-badge:hover { text-decoration: none; }
+
+/* 一覧の操作パネル */
+.toolbar { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: end; background: var(--box); border: 1px solid var(--line); border-radius: 6px; padding: 12px 14px; margin-bottom: 8px; font-size: 0.85rem; color: var(--muted); }
+.toolbar[hidden], .post-item[hidden] { display: none; }
+.toolbar label { display: flex; flex-direction: column; gap: 2px; }
+.toolbar label.grow { flex: 1 1 180px; }
+.toolbar select, .toolbar input { font: inherit; color: var(--text); background: var(--bg); border: 1px solid var(--line); border-radius: 4px; padding: 3px 6px; }
+.tag-filter { flex-basis: 100%; }
+.tag-btn { cursor: pointer; font-family: inherit; color: var(--text); margin-bottom: 4px; }
+.tag-btn small { color: var(--muted); }
+.tag-btn.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+.tag-btn.on small { color: #fff; }
+.count { flex-basis: 100%; margin: 0; }
+.series-head { padding: 22px 0 4px !important; border-bottom: 2px solid var(--line) !important; }
+.series-head h3 { margin: 0; font-size: 1.1rem; }
+.series-head p { margin: 4px 0 0; color: var(--muted); font-size: 0.88rem; line-height: 1.6; }
+.full-title { color: var(--muted); font-size: 0.85rem; line-height: 1.5; margin-top: 2px; }
+.series-label { font-weight: 600; color: var(--text); }
+
+/* 記事ページのシリーズ目次 */
+.series-box { border: 1px solid var(--line); border-radius: 6px; padding: 10px 18px; margin: 0 0 24px; font-size: 0.9rem; }
+.series-box h2 { font-size: 0.95rem; border: none; margin: 4px 0 4px; color: var(--muted); }
+.series-box ol { list-style: none; padding: 0; margin: 4px 0 6px; }
+.series-box li { padding: 2px 0; line-height: 1.6; }
+.series-box li.current { font-weight: 700; }
+.series-box li.current::after { content: "（この記事）"; font-weight: 400; color: var(--muted); }

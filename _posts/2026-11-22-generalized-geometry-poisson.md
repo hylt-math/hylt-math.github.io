@@ -1,6 +1,10 @@
 ---
 layout: post
 title: "一般化複素幾何における Serre 型消滅・双対性・Riemann–Roch 型公式：正則 Poisson 構造の例から"
+short_title: "Part I：Serre 型消滅・双対性・対数シンプレクティック曲面"
+series: "一般化複素幾何の三種の神器（正則 Poisson 構造の例から）"
+series_order: 1
+series_label: "Part I"
 status: partial
 tags: [一般化複素幾何, 正則Poisson構造, Serre消滅, Riemann-Roch, 研究ノート]
 abstract: "複素幾何の三種の神器（Riemann–Roch、Serre 消滅、Kodaira 埋め込み）の一般化複素幾何版を目指し、正則 Poisson 構造から作る一般化複素構造と一般化正則直線束の具体例を調べた研究ノート。Serre 型消滅は「横断次数」での消滅として定式化され、対数シンプレクティックな曲面では留数に応じたコホモロジーの閉じた公式が得られた。Kodaira 埋め込みは未着手。査読を受けていない。"

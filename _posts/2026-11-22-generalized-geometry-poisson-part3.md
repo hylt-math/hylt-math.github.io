@@ -1,6 +1,10 @@
 ---
 layout: post
 title: "一般化正則直線束のコホモロジーと Kodaira 型定理（Part III）：断面による埋め込みの不可能性、葉空間版 Kodaira、Poisson–Kodaira 予想"
+short_title: "Part III：Kodaira 型の定理と Poisson–Kodaira 予想"
+series: "一般化複素幾何の三種の神器（正則 Poisson 構造の例から）"
+series_order: 3
+series_label: "Part III"
 status: partial
 tags: [一般化複素幾何, 正則Poisson構造, Kodaira埋め込み, 研究ノート]
 abstract: "三種の神器の残り、Kodaira の埋め込み定理の一般化を考える。一般化正則断面による埋め込みは一般には不可能であることを示し、正則型では葉空間への Kodaira 埋め込みに帰着する定理を得た。代わりの定式化として Poisson–Kodaira 予想を提案し、トーリックの場合を証明した。非被約な境界の例も計算した。査読を受けていない。"

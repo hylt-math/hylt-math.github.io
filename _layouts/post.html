@@ -14,6 +14,18 @@ layout: default
     {% endif %}
   </header>
 
+  {% if page.series %}
+  {% assign sp = site.posts | where: "series", page.series | sort: "series_order" %}
+  <section class="series-box">
+    <h2>シリーズ：{{ page.series | escape }}</h2>
+    <ol>
+      {% for sp_post in sp %}
+      <li{% if sp_post.url == page.url %} class="current"{% endif %}>{% if sp_post.url == page.url %}{{ sp_post.short_title | default: sp_post.title | escape }}{% else %}<a href="{{ sp_post.url | relative_url }}">{{ sp_post.short_title | default: sp_post.title | escape }}</a>{% endif %}</li>
+      {% endfor %}
+    </ol>
+  </section>
+  {% endif %}
+
   {% if page.abstract %}
   <section class="abstract">
     <h2>概要</h2>

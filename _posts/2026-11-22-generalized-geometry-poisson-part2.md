@@ -1,6 +1,10 @@
 ---
 layout: post
 title: "一般化正則直線束のコホモロジーと Riemann–Roch 型公式（Part II）：トーリック多様体・Euler 標数・留数が不等な場合"
+short_title: "Part II：トーリック多様体・Euler 標数・Riemann–Roch 型公式"
+series: "一般化複素幾何の三種の神器（正則 Poisson 構造の例から）"
+series_order: 2
+series_label: "Part II"
 status: partial
 tags: [一般化複素幾何, 正則Poisson構造, トーリック多様体, Riemann-Roch, 研究ノート]
 abstract: "Part I の続編。任意次元で全複体の Euler 標数が $$(-1)^n\\,\\mathrm{rk}(E)\\chi(X)$$ になること、トーリック多様体での対数 de Rham 複体のコホモロジーの公式、留数が不等なトーリック曲面の閉公式、一般的な対数シンプレクティック構造をもつトーリック多様体での定理を与える。共鳴や特異点の局所公式は計算に基づく予想を含む。査読を受けていない。"

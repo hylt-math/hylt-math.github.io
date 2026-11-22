@@ -36,3 +36,8 @@ plugins:
 exclude:
   - README.md
   - CLAUDE.md
+
+# シリーズの説明（記事の front matter の series: に同じ名前を書くと、一覧と記事ページにまとめて表示される）
+series_info:
+  "一般化複素幾何の三種の神器（正則 Poisson 構造の例から）":
+    summary: "Riemann–Roch・Serre 消滅・Kodaira 埋め込みの一般化複素幾何版を、正則 Poisson 構造の具体例から調べる研究。まず「総合版」を読み、詳細は Part I から順に。"

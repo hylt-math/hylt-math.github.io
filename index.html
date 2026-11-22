@@ -1,27 +1,142 @@
 ---
 layout: default
 ---
+{% assign status_order = "proved,partial,conjecture,wip,open,retracted" | split: "," %}
 <section class="intro">
   <p>{{ site.description | escape }}</p>
 </section>
 
 <section class="post-list">
   <h2>記事一覧</h2>
+
+  <div class="toolbar" id="toolbar" hidden>
+    <label>表示
+      <select id="sort">
+        <option value="series">シリーズ別</option>
+        <option value="date-desc">日付（新しい順）</option>
+        <option value="date-asc">日付（古い順）</option>
+        <option value="title">タイトル順</option>
+        <option value="status">状態順</option>
+      </select>
+    </label>
+    <label>状態
+      <select id="status-filter">
+        <option value="">すべて</option>
+        {% for s in site.status_labels %}<option value="{{ s[0] }}">{{ s[1] }}</option>{% endfor %}
+      </select>
+    </label>
+    <label class="grow">検索
+      <input type="search" id="q" placeholder="タイトル・概要・タグ">
+    </label>
+    <div class="tag-filter" id="tag-filter">
+      {% for t in site.tags %}<button type="button" class="tag tag-btn" data-tag="{{ t[0] }}">{{ t[0] }} <small>{{ t[1].size }}</small></button>{% endfor %}
+    </div>
+    <p class="count" id="count" aria-live="polite"></p>
+  </div>
+
   {% if site.posts.size == 0 %}
     <p>まだ記事はありません。</p>
   {% endif %}
-  <ul>
+
+  <ul id="posts">
     {% for post in site.posts %}
-    <li>
+    {% assign st = post.status | default: "wip" %}
+    <li class="post-item"
+        data-date="{{ post.date | date: '%Y-%m-%d' }}"
+        data-title="{{ post.short_title | default: post.title | escape }}"
+        data-status="{{ st }}"
+        data-status-rank="{% for s in status_order %}{% if s == st %}{{ forloop.index0 }}{% endif %}{% endfor %}"
+        data-series="{{ post.series | escape }}"
+        data-order="{{ post.series_order | default: 0 }}"
+        data-tags="{{ post.tags | join: '|' | escape }}"
+        data-text="{{ post.title | append: ' ' | append: post.short_title | append: ' ' | append: post.abstract | strip_html | strip_newlines | escape }}">
       <div class="meta">
         <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%Y-%m-%d' }}</time>
+        {% if post.updated %}<span>更新 {{ post.updated | date: '%Y-%m-%d' }}</span>{% endif %}
+        {% if post.series_label %}<span class="series-label">{{ post.series_label | escape }}</span>{% endif %}
         {% if post.status %}<span class="status status-{{ post.status }}">{{ site.status_labels[post.status] | default: post.status }}</span>{% endif %}
         {% if post.pdf %}<a class="pdf-badge" href="{{ post.pdf | relative_url }}">PDF</a>{% endif %}
       </div>
-      <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+      <a class="post-link" href="{{ post.url | relative_url }}">{{ post.short_title | default: post.title | escape }}</a>
+      {% if post.short_title %}<div class="full-title">{{ post.title | escape }}</div>{% endif %}
       {% if post.abstract %}<div class="summary">{{ post.abstract | markdownify }}</div>{% endif %}
       {% if post.tags.size > 0 %}<p class="tags">{% for t in post.tags %}<span class="tag">{{ t }}</span>{% endfor %}</p>{% endif %}
     </li>
     {% endfor %}
   </ul>
+
+  <div hidden id="series-info">
+    {% for s in site.series_info %}<div data-series="{{ s[0] | escape }}">{{ s[1].summary | escape }}</div>{% endfor %}
+  </div>
 </section>
+
+<script>
+(function () {
+  var list = document.getElementById('posts');
+  if (!list) return;
+  var items = Array.prototype.slice.call(list.querySelectorAll('.post-item'));
+  var toolbar = document.getElementById('toolbar');
+  var sortSel = document.getElementById('sort'), statusSel = document.getElementById('status-filter');
+  var q = document.getElementById('q'), countEl = document.getElementById('count');
+  var tagBtns = Array.prototype.slice.call(document.querySelectorAll('.tag-btn'));
+  var activeTag = '';
+  var infos = {};
+  Array.prototype.forEach.call(document.querySelectorAll('#series-info > div'), function (d) { infos[d.getAttribute('data-series')] = d.textContent; });
+  toolbar.hidden = false;
+
+  function ds(el, k) { return el.getAttribute('data-' + k) || ''; }
+  var cmp = {
+    'date-desc': function (a, b) { return ds(b, 'date').localeCompare(ds(a, 'date')); },
+    'date-asc': function (a, b) { return ds(a, 'date').localeCompare(ds(b, 'date')); },
+    'title': function (a, b) { return ds(a, 'title').localeCompare(ds(b, 'title'), 'ja'); },
+    'status': function (a, b) { return (+ds(a, 'status-rank') - +ds(b, 'status-rank')) || cmp['date-desc'](a, b); }
+  };
+
+  function matches(el) {
+    if (statusSel.value && ds(el, 'status') !== statusSel.value) return false;
+    if (activeTag && ('|' + ds(el, 'tags') + '|').indexOf('|' + activeTag + '|') < 0) return false;
+    var s = q.value.trim().toLowerCase();
+    if (s && ds(el, 'text').toLowerCase().indexOf(s) < 0 && ds(el, 'tags').toLowerCase().indexOf(s) < 0) return false;
+    return true;
+  }
+
+  function render() {
+    Array.prototype.forEach.call(list.querySelectorAll('.series-head'), function (h) { h.remove(); });
+    var shown = items.filter(matches);
+    items.forEach(function (el) { el.hidden = shown.indexOf(el) < 0; });
+    var order;
+    if (sortSel.value === 'series') {
+      var groups = {}, names = [];
+      shown.forEach(function (el) { var k = ds(el, 'series'); if (!groups[k]) { groups[k] = []; names.push(k); } groups[k].push(el); });
+      names.sort(function (a, b) {   // シリーズ（名前あり）を先、その他を後。各グループは最新日付の新しい順
+        if (!a !== !b) return a ? -1 : 1;
+        return cmp['date-desc'](groups[a][0], groups[b][0]) || a.localeCompare(b, 'ja');
+      });
+      order = [];
+      names.forEach(function (k) {
+        var g = groups[k];
+        g.sort(k ? function (a, b) { return +ds(a, 'order') - +ds(b, 'order'); } : cmp['date-desc']);
+        var head = document.createElement('li');
+        head.className = 'series-head';
+        var h = document.createElement('h3'); h.textContent = k || 'その他の記事'; head.appendChild(h);
+        if (k && infos[k]) { var p = document.createElement('p'); p.textContent = infos[k]; head.appendChild(p); }
+        order.push(head); order = order.concat(g);
+      });
+    } else {
+      order = shown.slice().sort(cmp[sortSel.value]);
+    }
+    items.forEach(function (el) { if (shown.indexOf(el) < 0) order.push(el); });
+    order.forEach(function (el) { list.appendChild(el); });
+    countEl.textContent = shown.length + ' / ' + items.length + ' 件';
+    tagBtns.forEach(function (b) { b.classList.toggle('on', b.getAttribute('data-tag') === activeTag); });
+  }
+
+  sortSel.addEventListener('change', render);
+  statusSel.addEventListener('change', render);
+  q.addEventListener('input', render);
+  tagBtns.forEach(function (b) {
+    b.addEventListener('click', function () { var t = b.getAttribute('data-tag'); activeTag = (activeTag === t) ? '' : t; render(); });
+  });
+  render();
+})();
+</script>

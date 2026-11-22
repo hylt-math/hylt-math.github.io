@@ -1,6 +1,10 @@
 ---
 layout: post
 title: "一般化正則直線束のコホモロジー（Part V）：Riemann–Roch 型公式と指数定理の予想、準斉次特異点の局所公式の証明"
+short_title: "Part V：指数定理の予想と準斉次特異点の局所公式"
+series: "一般化複素幾何の三種の神器（正則 Poisson 構造の例から）"
+series_order: 5
+series_label: "Part V"
 status: partial
 tags: [一般化複素幾何, 正則Poisson構造, Riemann-Roch, 指数定理, 研究ノート]
 abstract: "対数シンプレクティックな場合の Riemann–Roch 型の公式として、Euler 標数が $$\\chi(U)$$ に等しいこと、Poincaré 多項式を $$H^*(U;L_U)$$ で書く公式を示し、次元が $$m$$ の多項式にならない理由を説明する。準斉次な特異点の局所公式も証明した。留数を重みとする指数定理を予想として述べる。査読を受けていない。"

@@ -1,6 +1,10 @@
 ---
 layout: post
 title: "一般化正則直線束のコホモロジー（Part IV）：正則型（Gauss–Manin）と対数シンプレクティック型の比較、一般次元の簡約定理"
+short_title: "Part IV：正則型と対数シンプレクティック型の比較・簡約定理"
+series: "一般化複素幾何の三種の神器（正則 Poisson 構造の例から）"
+series_order: 4
+series_label: "Part IV"
 status: partial
 tags: [一般化複素幾何, 正則Poisson構造, Gauss–Manin, Riemann-Roch, 研究ノート]
 abstract: "正則型（葉がシンプレクティック）では各次数のコホモロジーの次元が $$m$$ の多項式になり、対数シンプレクティック型では周期的になることを対比する。一般次元の対数シンプレクティックな場合に、局所条件のもとでコホモロジーを $$H^*(U;L_U)$$ と境界の角の項に簡約する定理を証明した。査読を受けていない。"

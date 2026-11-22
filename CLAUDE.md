@@ -53,6 +53,19 @@ pdf_version: "v1"   # 省略可
 使えるクラス: `theorem` `lemma` `proposition` `corollary` `conjecture` `definition` `example`（通し番号つき）、`remark` `proof`（番号なし、proof には ∎ が付く）。
 `data-name` は省略可。
 
+## シリーズ記事・一覧表示用の追加フィールド（任意）
+
+```yaml
+short_title: "Part II：トーリック多様体・Euler 標数"   # 一覧と目次に出す短いタイトル（本来のタイトルは title）
+series: "シリーズ名"        # 同じ文字列の記事が一覧で1つにまとまり、記事ページに目次が出る
+series_order: 2            # シリーズ内の並び順（総合版は 0）
+series_label: "Part II"    # 一覧のバッジ
+```
+
+- シリーズの紹介文は `_config.yml` の `series_info` に同じシリーズ名で書く。
+- 一覧ページ（`index.html`）は、シリーズ別／日付順／タイトル順／状態順の切り替えと、状態・タグ・キーワードでの絞り込みができる（JavaScript 使用）。
+- 新しいシリーズ記事を追加するときは `short_title` を付けること。
+
 ## 方針
 
 - 誤りが見つかった記事は削除せず、`status: retracted` にして冒頭に理由と日付を書く。
