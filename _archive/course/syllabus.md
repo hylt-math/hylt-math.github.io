@@ -20,7 +20,18 @@
 | 11 | Lie 亜代数と Poisson 幾何 | 1,2 | Lie 亜代数、Poisson 多様体、シンプレクティック葉、正則 Poisson、Poisson 加群、対数シンプレクティック | Mackenzie; Crainic–Fernandes; Dufour–Zung; Laurent-Gengoux–Pichereau–Vanhaecke |
 | 12 | 一般化複素幾何 | 1,2,11 | T⊕T*、Courant 括弧、Dirac 構造、一般化複素構造、型、β 変換、Darboux、一般化 Dolbeault | Gualtieri（博士論文 math/0401221、Ann. 2011 math/0703298）; Hitchin math/0209099; Cavalcanti |
 | 13 | 一般化正則束と Poisson 加群 | 3,11,12 | 一般化正則束、Poisson 加群、超コホモロジーによる一般化 Dolbeault、論文での設定 | Gualtieri 0710.2719; Laurent-Gengoux–Stiénon–Xu 0707.4253 |
-| 14 | 統合論文への案内 | 全部 | 統合論文の各定理を、必要な巻と例で読み解く。残る問題の整理 | 統合論文 |
+| 14 | 統合論文への案内 | 3,11,12,13（指数の部分は 7–9） | 統合論文の各定理を、必要な巻と例で読み解く。残る問題の整理 | 統合論文 |
+| 15 | 主束・接続と Yang–Mills・instanton | 1,2（Kähler の場合は 5） | 主束と接続、Yang–Mills、(反)自己双対、instanton、Kobayashi–Hitchin 対応の紹介 | Donaldson–Kronheimer; Freed–Uhlenbeck; Hitchin |
+| 16 | Donaldson 理論 | 7,8,9,15 | ASD モジュライ空間、指数定理による次元、Donaldson 不変量、定理 A の紹介、determinant line | Donaldson–Kronheimer; Freed–Uhlenbeck |
+| 17 | Seiberg–Witten 理論 | 7,8,9,15 | spin^c Dirac、SW 方程式、モジュライ空間、SW 不変量、Kähler 曲面の場合（vortex） | Morgan; Nicolaescu; Moore |
+| 18 | gerbe と twisted K 理論 | 3,9,12 | gerbe と H^3、Deligne コホモロジー、twisted K 理論、奇数次元ファイバーの指数 gerbe | Brylinski; Hitchin; Carey–Mickelsson–Murray |
+
+## 読む順番・書く順番（2026-11-23 改訂）
+巻番号は識別子（PDF 名・相互参照のため固定。第7〜9巻の本文は「第10巻（APS）」を参照している）。
+読む順・書く順: 1→…→9（公開済み）→ 11 → 12 → 13 → 14 → 15 → 16 → 17 → 18 → 10。
+理由: 11–14 は 1–3 だけに依存し当初目標（論文）に直結。15–17 は 7–9 を使う。18 は 12（H^3）と 9（奇数次元）の続き。10 は研究（指数予想）・gluing/Floer 向けで基本理解には不要。
+第12巻には exact Courant 代数と H^3（twist・gerbe の入口）を節として含める。第18巻で本格的に扱う。
+ゲージ理論の優先を指示されたら 9→15 としてよい（11–14 に影響しない）。
 
 ## 各巻の構成（必須）
 1. 表紙：題、巻番号、日付、「執筆：Claude／企画：森」。2. 学習目標（goalbox）と前提。3. 目次。4. 本文：定義・定理・例。主要な定理には証明を付けるか、証明の方針と出典を明示。各節に「要点」（keybox）。5. 各節末に問題（prob 環境：[基本][標準][発展]、全体で 25〜40 問）。6. 解答の節：**全問**に解答（sol 環境）。計算問題は途中式を示す。7. この巻の理解チェック（10 問ほどの自己診断、正誤または短答）。8. 次巻への橋渡しと、統合論文との対応（どの定理にこの巻が効くか）。9. 参考文献（出典は書名・章節まで。**定理番号は確信がなければ書かず「第X章」までにする**）。
