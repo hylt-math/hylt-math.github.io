@@ -1,0 +1,74 @@
+%==================================================
+% 表紙・学習目標・前提と読み方・目次（統合担当）
+%==================================================
+\begin{titlepage}
+\thispagestyle{empty}
+\centering
+\vspace*{18mm}
+{\large\sffamily 学習コース「一般化幾何への道」}\\[6mm]
+{\Large\sffamily 第 1 巻}\\[8mm]
+{\Huge\sffamily\bfseries 多様体・微分形式・\\[3mm]ベクトル束・接続}\\[16mm]
+{\large 全 10 節　／　問題 88 問（全問に解答つき）　／　自己診断 15 問}\\[24mm]
+{\large 執筆：Claude\ ／\ 企画：森}\\[4mm]
+{\large 2026 年 11 月 28 日（v2）}\\[24mm]
+\begin{tcolorbox}[colback=gray!6!white,colframe=gray!60!black,boxrule=0.5pt,width=0.86\textwidth,left=6pt,right=6pt,top=4pt,bottom=4pt,halign=flush left]
+\small\textbf{この教材について。}外部の査読は受けていない教材。執筆者とは別の AI による独立検査と、可能な範囲の計算での検算は行った。標準的な結果には出典を付け、確認できていない出典・記述は\tQ で示す。
+\end{tcolorbox}
+\vfill
+{\small この巻は、統合論文「一般化複素幾何の三種の神器へのアプローチ」（2026-11-22）を 1 から読み、さらに指数定理・ゲージ理論に至る全 18 巻のコースの土台である。}
+\end{titlepage}
+
+\begin{goalbox}{この巻の学習目標}
+この巻を終えたとき、次のことが自分の言葉で説明でき、手を動かして計算できることを目標とする。
+\begin{enumerate}[leftmargin=2em]
+\item \textbf{多様体と接ベクトル（§1--§3）：}座標近傍とアトラスで多様体を定義し、$S^n,\ \RP^n,\ \CP^n,\ \SO(n)$ の座標・次元を求められる。正則値定理で部分多様体を判定できる。ベクトル場の流れと Lie 括弧を計算し、Frobenius の定理で分布の可積分性を判定できる。
+\item \textbf{微分形式と積分（§4）：}外微分・引き戻し・内部積・Lie 微分を計算でき、Cartan の公式と Stokes の定理を使える。$\R^3$ のベクトル解析を微分形式の言葉で言い換えられる。
+\item \textbf{de Rham コホモロジー（§5）：}Poincaré の補題、Mayer--Vietoris 完全列、写像度、Poincaré 双対を使って、$S^n$、$T^n$、種数 $g$ の曲面などのコホモロジーを計算できる。
+\item \textbf{Riemann 計量と Hodge 理論（§6）：}Hodge 星・$\delta$・Laplacian を計算し、トーラス上で Hodge の定理を Fourier 級数で証明できる。$\R^4$ の 2 形式の自己双対・反自己双対分解を説明できる。
+\item \textbf{ベクトル束・接続・曲率（§7--§8）：}ベクトル束を貼り合わせ関数で記述し、接続を局所的に $\nabla=\dd+A$ と書き、ゲージ変換則・曲率 $F=\dd A+A\wedge A$・Bianchi 恒等式・平行移動とホロノミーを導き、計算できる。
+\item \textbf{主束と Chern--Weil 理論（§9--§10）：}主束の接続 1 形式と曲率 2 形式を定義でき、Chern 形式が閉で、そのコホモロジー類が接続によらないことを証明できる。$\int_{\CP^1}c_1(\mathcal O(-1))=-1$、$\int_{S^2}c_1(TS^2)=2$ の符号を規約から確定できる。
+\item \textbf{後の巻との接点：}$V\oplus V^*$ の内積と Courant 括弧（一般化幾何）、Frobenius と葉層（Poisson 幾何）、平坦接続・ホロノミー・留数（統合論文の対数接続）、接続・曲率・ゲージ変換（Yang--Mills）、Chern--Weil（HRR・指数定理）が、この巻のどこから出てくるかを指摘できる。
+\end{enumerate}
+\end{goalbox}
+
+\clearpage
+\begin{keybox}{前提と読み方}
+\small
+\textbf{前提。}多変数の微積分（偏微分、重積分、逆関数定理は §1 で復習）、線形代数（基底、双対、行列式）、位相の初歩（開集合、連続、コンパクト）。群論や Lie 群は未習でもよい（必要な分は §3.8、§9.1 で述べる）。
+
+\textbf{全 10 節の地図。}
+\begin{center}\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}llp{9.2cm}@{}}
+\toprule
+部 & 節 & 内容 \\
+\midrule
+I & §1 & 道具の復習（双対・外積・$V\oplus V^*$・複素構造・ODE・位相）と本巻の規約表 \\
+I & §2 & 多様体、正則値定理、はめ込みと埋め込み、1 の分割、境界、向き \\
+I & §3 & 接空間、ベクトル場と流れ、Lie 括弧、Lie 群、Frobenius の定理、葉層 \\
+II & §4 & 微分形式、外微分、Cartan の公式、Stokes の定理 \\
+II & §5 & de Rham コホモロジー、Mayer--Vietoris、写像度、Poincaré 双対 \\
+II & §6 & Riemann 計量、Hodge 星、Laplacian、Hodge の定理、自己双対分解 \\
+III & §7 & ベクトル束、貼り合わせ関数、Hermite 計量、自明性 \\
+III & §8 & 接続、曲率、平行移動、ホロノミー、Levi-Civita 接続、平坦接続 \\
+III & §9 & 主束、接続 1 形式、ゲージ群 \\
+III & §10 & Chern--Weil 理論、Chern 数、Gauss--Bonnet、電磁気学との対応 \\
+\bottomrule
+\end{tabular}
+\end{center}
+依存関係は §1.1 の図に示した。§7--§10 が主役で、§1--§6 はその準備（接続の局所表示には §3、§4 が、Chern--Weil には §4 の外微分が要る）。
+
+\textbf{初読で飛ばしてよい箇所。}既習なら §1 は §1.1（規約）、§1.4（$V\oplus V^*$）、§1.5（複素構造）だけでよい。§2.9（曲面の分類）、§3.10（葉層の例）、§4.9（シンプレクティック形式）、§5.6--§5.7、§6.4--§6.5（Hodge の定理の証明）、§10.7--§10.8（予告）は、主張だけ読めば §7 以降に進める。定理の証明は、長いものは骨格のみで、初読は結果と例を優先してよい。
+
+\textbf{最短ルート。}ゲージ理論・指数定理へ急ぐなら、§1.1、§1.5、§2.1--§2.4、§2.6、§2.8、§3.1--§3.6、§4.1--§4.4、§4.6--§4.7（主張）、§5.1--§5.2、そして §7--§10。一般化幾何へ向かうなら、これに §1.4、§3.9、§4.9 を加える。
+
+\textbf{3 つのタグ。}\tC は標準的な結果で、出典（書名と章）を付けた。本文では証明しないことがある。\tP は本文中に証明がある。\tQ は出典の章番号や細部が記憶に基づき、確認できていないもの。定理番号は、確信がないときは書かず「第 X 章」までにした。
+
+\textbf{問題のレベル。}\textcolor{red!60!black}{[基本]} は定義・公式の直接の確認（数分）。\textcolor{red!60!black}{[標準]} は本文の議論を自分で再現・応用するもの。\textcolor{red!60!black}{[発展]} は複数の概念を組み合わせるか、やや長い議論を要するもの（ヒント付き）。問題は各節の末にあり（全 88 問）、全問の解答を巻末に載せた。解答は見る前に必ず自分で試すこと。
+
+\textbf{規約の注意。}符号・係数・記法の規約は §1.1 の表にまとめた。他の本と比べるときは、特に「$\mathrm{Alt}$ か行列式規約か」「$\iota_X$ の入れ方」「$e'=eg$ のときの $A'$」「Chern 形式の符号」「Hermite 計量の線形性」に注意すること。
+\end{keybox}
+
+{\setcounter{tocdepth}{2}
+\tableofcontents}
+\clearpage

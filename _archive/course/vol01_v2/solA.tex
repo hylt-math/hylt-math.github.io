@@ -1,0 +1,179 @@
+
+%==================================================
+% 担当 A の解答（§1〜§3）
+%==================================================
+\subsection*{§1 の解答}
+
+
+\begin{soll}{A_wedgecomm}
+$T\in T^N(V^*)$ と置換 $\sigma\in S_N$ に対し $(\sigma T)(v_1,\dots,v_N)=T(v_{\sigma(1)},\dots,v_{\sigma(N)})$ とおくと、$\Alt(\sigma T)=\sgn(\sigma)\Alt T$。実際 $(\sigma T)(v_{\rho(1)},\dots)=T(v_{\rho\sigma(1)},\dots)$ で、$\tau=\rho\sigma$ と置き換えると $\sum_\rho\sgn\rho\,T(v_{\rho\sigma})=\sgn\sigma\sum_\tau\sgn\tau\,T(v_\tau)$。
+$N=k+l$ とし、$\sigma(j)=l+j$（$1\le j\le k$）、$\sigma(k+i)=i$（$1\le i\le l$）とすると $(\sigma(\alpha\otimes\beta))(v)=\alpha(v_{l+1},\dots,v_{l+k})\beta(v_1,\dots,v_l)=(\beta\otimes\alpha)(v)$。$\sigma$ は長さ $l$ のブロックを長さ $k$ のブロックの後ろに動かす置換で、転倒数は $kl$、$\sgn\sigma=(-1)^{kl}$。したがって $\Alt(\beta\otimes\alpha)=(-1)^{kl}\Alt(\alpha\otimes\beta)$。定義の係数 $\frac{(k+l)!}{k!l!}$ は $k,l$ について対称なので $\beta\wedge\alpha=(-1)^{kl}\alpha\wedge\beta$。$k=l$ 奇数で $\alpha\wedge\alpha=-\alpha\wedge\alpha$ より $\alpha\wedge\alpha=0$。
+\end{soll}
+
+\begin{soll}{A_detA}
+(a) $(AB)^*\omega(v_1,\dots,v_n)=\omega(ABv_1,\dots)=(A^*\omega)(Bv_1,\dots)=(B^*A^*\omega)(v_1,\dots)$、すなわち $(AB)^*=B^*A^*$。$\omega\neq0$ をとると $\det(AB)\,\omega=B^*(\det A\cdot\omega)=\det A\det B\,\omega$。
+(b) 命題~\ref{A:prop:wedge}(3) より $(\alpha^1\wedge\cdots\wedge\alpha^n)(e_1,\dots,e_n)=\det(\alpha^i(e_j))=\det(M^i{}_j)$（$\alpha^i(e_j)=M^i{}_j$）。$\Lambda^nV^*$ は 1 次元で、$e^1\wedge\cdots\wedge e^n(e_1,\dots,e_n)=\det I=1$ なので $\alpha^1\wedge\cdots\wedge\alpha^n=\det M\,e^1\wedge\cdots\wedge e^n$。
+\end{soll}
+
+\begin{soll}{A_pair1}
+$\langle e_i,e_j\rangle=0$、$\langle e^i,e^j\rangle=0$、$\langle e_i,e^j\rangle=\frac12e^j(e_i)=\frac12\delta_{ij}$ より Gram 行列は $\dfrac12\begin{pmatrix}0&I_2\\I_2&0\end{pmatrix}$。$x=v+\xi$、$v=e_1-2e_2$、$\xi=3e^1+e^2$ で $\langle x,x\rangle=\xi(v)=3\cdot1+1\cdot(-2)=1$。
+$u_i^\pm=e_i\pm e^i$：$\langle u_i^+,u_j^+\rangle=\frac12(\delta_{ij}+\delta_{ij})=\delta_{ij}$、$\langle u_i^-,u_j^-\rangle=\frac12(-\delta_{ij}-\delta_{ij})=-\delta_{ij}$、$\langle u_i^+,u_j^-\rangle=\frac12(e^i(e_j)\cdot1+(-e^j)(e_i))=\frac12(\delta_{ij}-\delta_{ij})=0$。したがって $(u_1^+,u_2^+,u_1^-,u_2^-)$ は直交基底で、Gram 行列は $\operatorname{diag}(1,1,-1,-1)$、符号は $(2,2)$。
+\end{soll}
+
+\begin{soll}{A_pairB}
+以下 $B(v)(w)=B(v,w)=-B(w,v)$、$\iota_vB=B(v,\cdot)$ と書く。(a) $e^{B'}$ を先に作用させて $e^B(e^{B'}(v+\xi))=e^B(v+\xi+\iota_vB')=v+\xi+\iota_vB'+\iota_vB=e^{B+B'}(v+\xi)$。直交性：$x=v+\xi$、$y=w+\eta$ として
+\[
+\langle e^Bx,e^By\rangle=\tfrac12\bigl((\xi+\iota_vB)(w)+(\eta+\iota_wB)(v)\bigr)=\langle x,y\rangle+\tfrac12\bigl(B(v,w)+B(w,v)\bigr)=\langle x,y\rangle
+\]
+（$B$ 歪対称）。(b) $B$ が歪対称でなければ、ある $v,w$ で $B(v,w)+B(w,v)\ne0$。$\langle v+Bv,w+Bw\rangle=\frac12(B(v,w)+B(w,v))\ne0$ なので $\Gamma_B$ はイソトロピックでない。
+(c) $B=e^1\wedge e^2$：$B(e_1,e_2)=1$、$B(e_2,e_1)=-1$。$\iota_{e_1}B=e^2$、$\iota_{e_2}B=-e^1$。よって $\Gamma_B=\mathrm{span}\{e_1+e^2,\ e_2-e^1\}$。確認：$\langle e_1+e^2,e_2-e^1\rangle=\frac12(e^2(e_2)+(-e^1)(e_1))=\frac12(1-1)=0$。
+\end{soll}
+
+\begin{soll}{A_pairmax}
+$p:L\to V$、$v+\xi\mapsto v$ の核は $L\cap V^*=0$ なので $p$ は単射、$\dim L=n=\dim V$ より $p$ は全単射。$B:=\xi\circ p^{-1}:V\to V^*$、すなわち $B(v)=$ 「$v+\xi\in L$ の $\xi$」とおけば、$B$ は線形で $L=\Gamma_B$。$L$ はイソトロピックなので、命題~\ref{A:prop:isotropic}(b) より $B$ は歪対称、すなわち $B\in\Lambda^2V^*$。一意性：グラフは $B$ を決める（$L=\Gamma_B=\Gamma_{B'}$ なら各 $v$ で $Bv=B'v$）。
+\end{soll}
+
+\begin{soll}{A_J}
+(a) $V^{1,0}=\{v-iJv\}$ なので、$e_1-ie_2$、$e_3-ie_4$ が基底（$v=e_1,e_3$ に対応。$v=e_2$ では $e_2-iJe_2=e_2+ie_1=i(e_1-ie_2)$ で従属）。
+(b) $\dd z^1\wedge\dd z^2=(e^1+ie^2)\wedge(e^3+ie^4)=e^{13}+ie^{14}+ie^{23}-e^{24}$（$i\cdot i=-1$）。$(u,v)=(e_1,e_3)$：$\omega(e_1,e_3)=1$（$e^{13}$ の係数）。$Je_1=e_2$ より $\omega(Je_1,e_3)=\omega(e_2,e_3)=i$（展開式で $(e_2,e_3)$ に $0$ でない値をもつのは $ie^{23}$ の項だけで、$e^{23}(e_2,e_3)=1$）。したがって $\omega(Je_1,e_3)=i=i\,\omega(e_1,e_3)$。
+(c) $\mathcal J(v+\xi)=-Jv+\xi\circ J$。$x=v+\xi$、$y=w+\eta$：
+$\langle\mathcal Jx,\mathcal Jy\rangle=\frac12\bigl((\xi\circ J)(-Jw)+(\eta\circ J)(-Jv)\bigr)=\frac12\bigl(-\xi(J^2w)-\eta(J^2v)\bigr)=\frac12(\xi(w)+\eta(v))=\langle x,y\rangle$。また $\mathcal J^2(v+\xi)=J^2v+\xi\circ J^2=-(v+\xi)$。
+$g=\sum(e^i)^2$、$h=g-i\omega_g$（$\omega_g(u,v)=g(Ju,v)$）：$h(e_1,e_2)=g(e_1,e_2)-ig(Je_1,e_2)=0-ig(e_2,e_2)=-i$。$h(Je_1,e_2)=h(e_2,e_2)=1-ig(Je_2,e_2)=1-ig(-e_1,e_2)=1$。一方 $ih(e_1,e_2)=i(-i)=1$。一致する。
+\end{soll}
+
+\begin{soll}{A_ift}
+$F(\frac32,\frac32)=\frac{27}8+\frac{27}8-3\cdot\frac94=\frac{27}4-\frac{27}4=0$。$F_y=3y^2-3x=\frac{27}4-\frac92=\frac94\ne0$（$F_x=3x^2-3y=\frac94$）。陰関数定理により $x=\frac32$ の近傍で $y=g(x)$、$g'=-F_x/F_y=-1$。
+$(0,0)$：$F_x=F_y=0$ で定理の仮定（$F_y\ne0$、あるいは $F_x\ne0$）が成り立たない。実際、原点付近では $F=0$ は $3xy=x^3+y^3$ で、原点を通る 2 本の枝（ほぼ座標軸方向）が交わる自己交差点であり、$x$ の関数 $y=g(x)$ のグラフでも、$y$ の関数のグラフでもない。
+\end{soll}
+
+\begin{soll}{A_ode}
+(a) $x_0=1$、$x_1=1+t$、$x_2=1+\int_0^t(1+s)\,\dd s=1+t+\frac{t^2}2$。帰納的に $x_k=\sum_{j=0}^k\frac{t^j}{j!}$：$x_{k+1}=1+\int_0^t\sum_{j\le k}\frac{s^j}{j!}\dd s=1+\sum_{j\le k}\frac{t^{j+1}}{(j+1)!}$。$k\to\infty$ で $e^t$ の Taylor 級数（各 $t$ で収束し、一意の解 $e^t$）。
+(b) $t\le c$ で $x_c=0$、$t>c$ で $x_c=(t-c)^3$。$t>c$ で $\dot x_c=3(t-c)^2=3\bigl((t-c)^3\bigr)^{2/3}$、$t<c$ で $\dot x_c=0=3\cdot0$、$t=c$ では両側微分が $0$ で $x_c\in C^1$、$\dot x_c(c)=0=3x_c(c)^{2/3}$。$x_c(0)=0$（$c\ge0$）。$c\ge0$ ごとに別の解で、無限個ある。右辺 $f(x)=3x^{2/3}$ は $x=0$ で Lipschitz でない（$f'(x)=2x^{-1/3}$ が $x\to0$ で非有界；$|f(x)-f(0)|/|x|=3|x|^{-1/3}\to\infty$）。
+\end{soll}
+
+
+\subsection*{§2 の解答}
+
+
+\begin{soll}{A_stereo}
+(a) $x=\frac{(2u,|u|^2-1)}{|u|^2+1}$ とおくと $|x|^2=\frac{4|u|^2+(|u|^2-1)^2}{(|u|^2+1)^2}=\frac{(|u|^2+1)^2}{(|u|^2+1)^2}=1$、$1-x_{n+1}=\frac{2}{|u|^2+1}$ で $\sigma_N(x)=\frac{2u}{|u|^2+1}\cdot\frac{|u|^2+1}2=u$。$\sigma_N$ は単射（$x\ne N$ から $u$ が決まり、上の式が逆）なので $\sigma_N^{-1}$ は上の式。
+(b) $\iota(u)=u/|u|^2$ の成分 $\iota^i=u_i/|u|^2$、$\partial_j\iota^i=\frac{\delta_{ij}}{|u|^2}-\frac{2u_iu_j}{|u|^4}$。よって $D\iota=\frac1{|u|^2}(I-2\hat u\hat u^T)$。$I-2\hat u\hat u^T$ は $\hat u$ 方向を反転する鏡映（固有値 $-1$ が 1 個、$+1$ が $n-1$ 個）で $\det=-1$。$\det D\iota=|u|^{-2n}\cdot(-1)=-|u|^{-2n}$。
+(c) $\sigma_N$ と $\sigma_N$ の間の座標変換は恒等写像（行列式 $1$）、$r\circ\sigma_S$ と $r\circ\sigma_S$ の間も恒等。$(r\sigma_S)\circ\sigma_N^{-1}=r\circ\iota$ の行列式は $\det r\cdot\det D\iota=(-1)(-|u|^{-2n})=|u|^{-2n}>0$。逆向きの座標変換はこの逆写像で、行列式は逆数で正。したがって $\{\sigma_N,r\sigma_S\}$ は向きづけられたアトラス。
+\end{soll}
+
+\begin{soll}{A_cp1}
+$\CP^1$ の座標 $z=z_1/z_0$（$U_0$）と $w=z_0/z_1$（$U_1$）、$S^2$ の座標 $\sigma_N$、$\sigma_S$ を使う。$f:S^2\to\CP^1$：$S^2\setminus\{N\}$ で $x\mapsto[1:\sigma_N(x)]$（$\sigma_N(x)=u_1+iu_2\in\C$）、$f(N)=[0:1]$。
+$S^2\setminus\{N\}$ では $\sigma_N$ と $z$ に関して $f$ は恒等写像 $u\mapsto u$ で、全単射かつ滑らか（微分同相 $S^2\setminus\{N\}\to U_0$）。$N$ の近傍 $S^2\setminus\{S\}$ では、$\sigma_S(x)=\sigma_N(x)/|\sigma_N(x)|^2$（例~\ref{A:ex:Sn}）を複素数で書くと、$z=\sigma_N(x)$ のとき $\overline{\sigma_S(x)}=\bar z/|z|^2=1/z$。よって $x\neq N,S$ で $w(f(x))=1/z=\overline{\sigma_S(x)}$。$x=N$ では $\sigma_S(N)=0$、$w(f(N))=0$ で同じ式が成り立つ。すなわち、座標 $\sigma_S$（$S^2\setminus\{S\}$）と $w$（$U_1$）に関して $f$ は複素共役 $u\mapsto\bar u$（$\R^2$ の鏡映）で、全単射かつ滑らか。$f(S^2\setminus\{S\})=U_1$ もわかる。両側の逆写像も同じ局所表示で滑らか。ゆえに $f$ は微分同相。
+\end{soll}
+
+\begin{soll}{A_rp}
+(a) $\varphi_1[x]=(u,v)=(x_0/x_1,x_2/x_1)$ の逆は $(u,v)\mapsto[u:1:v]$。$\varphi_0[u:1:v]=(1/u,\ v/u)$（$u\ne0$）。よって $\varphi_0\varphi_1^{-1}(u,v)=(1/u,v/u)$。Jacobi 行列 $\begin{pmatrix}-1/u^2&0\\-v/u^2&1/u\end{pmatrix}$、行列式 $-\frac1{u^2}\cdot\frac1u-0=-\frac1{u^3}$。
+(b) $g[x_0:x_1]=\bigl(\frac{x_0^2-x_1^2}{x_0^2+x_1^2},\frac{2x_0x_1}{x_0^2+x_1^2}\bigr)$ は $(x_0,x_1)\mapsto\lambda(x_0,x_1)$ で不変（$\lambda\ne0$ は分子分母 $\lambda^2$）。$(x_0,x_1)=r(\cos\theta,\sin\theta)$ なら $g=(\cos2\theta,\sin2\theta)$。$\theta\in[0,\pi)$ が $\RP^1$ の点に 1 対 1 に対応するので $g$ は全単射。$U_0$ の座標 $t=x_1/x_0$（$\varphi_0$）では $g(t)=\bigl(\frac{1-t^2}{1+t^2},\frac{2t}{1+t^2}\bigr)=(\cos2\arctan t,\sin2\arctan t)$ で、角度 $2\arctan t\in(-\pi,\pi)$ の微分 $\frac2{1+t^2}\ne0$ なので、$U_0\to S^1\setminus\{(-1,0)\}$ は微分同相。$U_1$ の座標 $s=x_0/x_1$ では $g=\bigl(\frac{s^2-1}{s^2+1},\frac{2s}{s^2+1}\bigr)$ で、$[x_0:x_1]=[\sin\theta':\cos\theta']$ の形に書けば $g$ の角度は $\pi-2\theta'$（$s=\tan\theta'$）、微分 $\ne0$ の全単射として $U_1\to S^1\setminus\{(1,0)\}$ への微分同相。これらは $\RP^1$ を覆うので $g$ は微分同相。
+\end{soll}
+
+\begin{soll}{A_sl}
+(a) $\det(A+tH)=\det A\cdot\det(I+tA^{-1}H)=\det A\,(1+t\,\tr(A^{-1}H)+O(t^2))$ より $D\det_A(H)=\det A\,\tr(A^{-1}H)$。$A\in\SL(n,\R)$ で $H=\frac sn A$ とすると $D\det_A(H)=s$。よって全射、$1$ は正則値で $\SL(n,\R)=\det^{-1}(1)$ は $n^2-1$ 次元の部分多様体。
+(b) $F(A)=A^TA$、$DF_I(H)=H+H^T$。核 $=\{H^T=-H\}$ は歪対称行列の空間で、基底 $L_1,L_2,L_3$（例~\ref{A:ex:so3}）、次元 $3$ $=\frac{3\cdot2}2$。例~\ref{A:ex:SOn} から $\dim\SO(3)=9-6=3$。
+(c) $F(A)=A^*A:M_n(\C)\to\mathrm{Herm}_n$（実次元 $n+n(n-1)=n^2$）。$DF_A(H)=A^*H+H^*A$。$A\in\U(n)$ と Hermite 行列 $S$ に対し $H=\frac12AS$ とおくと $A^*H=\frac12S$、$H^*A=\frac12SA^*A=\frac12S$ なので和は $S$。全射。$\dim\U(n)=2n^2-n^2=n^2$。
+\end{soll}
+
+\begin{soll}{A_torus}
+(a) $r=\sqrt{x^2+y^2}$ として $\nabla F=\bigl(2(r-2)\frac xr,\ 2(r-2)\frac yr,\ 2z\bigr)$。零になるのは $z=0$ かつ $r=2$（$(x,y)\ne0$ なので $r-2=0$）のときだが、そこでは $F=0\ne1$。よって $1$ は正則値で、$F^{-1}(1)$ は 2 次元部分多様体。$F^{-1}(1)$ は $\{(r-2)^2+z^2=1\}$ で $1\le r\le3$、$|z|\le1$ なので有界、閉（$F$ は $\R^3$ 全体に連続に延びる）で、コンパクト。
+(b) $\Phi(\theta,\phi)=((2+\cos\phi)\cos\theta,(2+\cos\phi)\sin\theta,\sin\phi)$。$F(\Phi)=(\cos\phi)^2+\sin^2\phi=1$。\emph{はめ込み}：$\Phi_\theta=(2+\cos\phi)(-\sin\theta,\cos\theta,0)$、$\Phi_\phi=(-\sin\phi\cos\theta,-\sin\phi\sin\theta,\cos\phi)$。内積は $(2+\cos\phi)\sin\phi(\sin\theta\cos\theta-\cos\theta\sin\theta)=0$、$|\Phi_\theta|=2+\cos\phi>0$、$|\Phi_\phi|=1$ なので直交する非零ベクトルで一次独立。\emph{単射}：$\Phi=(X,Y,Z)$ から $\sin\phi=Z$、$\cos\phi=\sqrt{X^2+Y^2}-2$ で $\phi$ mod $2\pi$、次に $(X,Y)/(2+\cos\phi)=(\cos\theta,\sin\theta)$ で $\theta$。\emph{全射}：$(X,Y,Z)\in F^{-1}(1)$ なら $(r-2)^2+Z^2=1$ より $r-2=\cos\phi$、$Z=\sin\phi$ となる $\phi$ があり、$\theta=\arg(X+iY)$。$T^2$ はコンパクトなので命題~\ref{A:prop:compactemb} から埋め込み、像は $F^{-1}(1)$ 全体で、$\Phi:T^2\to F^{-1}(1)$ は微分同相。
+\end{soll}
+
+\begin{soll}{A_fig8}
+(a) $\beta'(t)=(2\cos2t,\cos t)$。$\cos t=0$ なら $t=\pm\frac\pi2$ で $\cos2t=-1$、第 1 成分は $-2\ne0$。$\cos t\ne0$ なら第 2 成分が $\ne0$。よって $\beta'\ne0$。
+(b) $\beta(t)=\beta(s)$、$t,s\in(-\pi,\pi)$ とする。$\sin t=\sin s$ から $s=t$、$s=\pi-t$、$s=-\pi-t$ のいずれか（$(-\pi,\pi)$ 内で）。$s=\pi-t$（$t\in(0,\pi)$）のとき $\sin2s=\sin(2\pi-2t)=-\sin2t$ なので $\sin2t=0$ が必要、$2t\in(0,2\pi)$ から $2t=\pi$、$t=\frac\pi2$、$s=\frac\pi2=t$。$s=-\pi-t$（$t\in(-\pi,0)$）のとき $\sin2s=\sin(-2\pi-2t)=-\sin2t$ なので同様に $t=-\frac\pi2=s$。ゆえに $s=t$、単射。
+(c) $\beta$ が像 $\Gamma$ への同相写像だとする。$\beta((-1,1))$ は $\Gamma$ で開なので、$\R^2$ の開集合 $W$ で $W\cap\Gamma=\beta((-1,1))$ となるものがある。$t_n\to\pi$（$t_n<\pi$）のとき $\beta(t_n)\to(0,0)=\beta(0)\in W$。よって十分大きい $n$ で $\beta(t_n)\in W\cap\Gamma=\beta((-1,1))$、$\beta$ の単射性から $t_n\in(-1,1)$ だが、$t_n\to\pi$ に矛盾。
+\end{soll}
+
+\begin{soll}{A_irrational}
+(a) $N\ge1$ とする。$N+1$ 個の数 $\{ja\}\in[0,1)$（$j=0,\dots,N$）のうち、鳩の巣原理により 2 つ（$j<k$）は距離 $<\frac1N$。$m=k-j\in[1,N]$ とおくと $\delta=\|ma\|<\frac1N$（$\|\cdot\|$ は最も近い整数までの距離）、$\delta\ne0$（$a$ は無理数）。$\ell\mapsto\ell ma\bmod1$（$\ell\in\Z$）は円周上を同じ向きに一定の歩幅 $\delta$ で動き続けるので、$\delta$ 稠密。ゆえに $\{na\bmod1\}$ は $\frac1N$ 稠密、$N$ は任意なので稠密。
+(b) $[(x_0,y_0)]\in T^2$ と $\varepsilon>0$ をとる。(a) から整数 $k$ で $\|ka-(y_0-ax_0)\|<\varepsilon$。$t=x_0+k$ とすると $\gamma(t)=[(x_0,ax_0+ka)]$（$x$ 座標は $\Z$ を法）で、$y$ 座標は $y_0$ から $\varepsilon$ 未満。よって $\gamma(\R)$ は稠密。
+(c) $\gamma$ が埋め込みなら、命題~\ref{A:prop:embedding} より $S=\gamma(\R)$ は 1 次元の埋め込み部分多様体。$p\in S$ のスライス座標 $(U,\varphi)$ をとると $S\cap U=\varphi^{-1}(\varphi(U)\cap(\R\times0))$ は $U$ で閉。$S$ は稠密なので $S\cap U$ は $U$ で稠密。閉かつ稠密なので $S\cap U=U$、すなわち $U\subset S$。しかし $\varphi(U)$ は $\R^2$ の空でない開集合で $\R\times0$ に含まれえない。矛盾。
+\end{soll}
+
+\begin{soll}{A_bump}
+(a) $t>0$ で $h^{(k)}(t)=P_k(1/t)e^{-1/t}$（$P_k$ は多項式）を帰納法で示す：$k=0$ は $P_0=1$。$\frac{\dd}{\dd t}\bigl(P(1/t)e^{-1/t}\bigr)=\bigl(-t^{-2}P'(1/t)+t^{-2}P(1/t)\bigr)e^{-1/t}$ は再び $(\text{多項式})(1/t)\,e^{-1/t}$ の形。$s=1/t\to\infty$ で $s^me^{-s}\to0$ なので $h^{(k)}(t)\to0$（$t\to0^+$）、$h^{(k)}(t)/t=P_k(1/t)e^{-1/t}/t\to0$。左側では $h\equiv0$。よって帰納的に $h^{(k)}(0)=0$ が存在して $h^{(k)}$ は $0$ で連続。$h\in C^\infty(\R)$。
+(b) $\lambda(t)=\frac{h(t)}{h(t)+h(1-t)}$（分母は常に正）は $t\le0$ で $0$、$t\ge1$ で $1$。角度 $\theta\in(-\pi,\pi]$ で
+\[
+\rho_2(\theta)=1-\lambda\Bigl(\frac{|\theta|-\pi/4}{\pi/2}\Bigr),\qquad\rho_1=1-\rho_2
+\]
+とおく。$|\theta|\le\frac\pi4$ で $\rho_2=1$、$|\theta|\ge\frac{3\pi}4$ で $\rho_2=0$。$\theta=0$ の近傍で $\rho_2\equiv1$ だから $|\theta|$ の非滑らかさは影響せず、$\theta=\pm\pi$ の近傍で $\rho_2\equiv0$ だから $\theta=\pi$ での貼り合わせも滑らか。したがって $\rho_1,\rho_2\in C^\infty(S^1)$、$0\le\rho_i\le1$、$\rho_1+\rho_2=1$。$\operatorname{supp}\rho_2\subset\{|\theta|\le\frac{3\pi}4\}\subset U_2=S^1\setminus\{\theta=\pi\}$、$\operatorname{supp}\rho_1\subset\{|\theta|\ge\frac\pi4\}\subset U_1=S^1\setminus\{\theta=0\}$。
+\end{soll}
+
+\begin{soll}{A_proper}
+$f=\sum_kk\rho_k$ は局所有限和なので滑らかで $f\ge0$。$c>0$ とする。$f(p)\le c$ なら $\sum_{k>2c}\rho_k(p)\cdot2c\le\sum_{k>2c}k\rho_k(p)\le f(p)\le c$ より $\sum_{k>2c}\rho_k(p)\le\frac12$、したがって $\sum_{k\le2c}\rho_k(p)\ge\frac12>0$。よって $p\in K:=\bigcup_{k\le2c}\operatorname{supp}\rho_k$（有限個のコンパクト集合の和でコンパクト）。$\{f\le c\}$ は閉集合で $K$ に含まれるのでコンパクト。
+\end{soll}
+
+\begin{soll}{A_disc}
+$N=\{f\ge0\}$。$f(p)>0$ の点は $M$ の開集合 $\{f>0\}$ の点で、内部点（$\R^n$ の開集合の座標）。$f(p)=0$ とする。$0$ は正則値なので $f$ は $p$ で沈め込み。命題~\ref{A:prop:normalform}(a)（$n$ を $1$ として）により、座標 $(y^1,\dots,y^m)$ で $f=y^1$ となるものがある（座標の順序を並べ替えて $f=y^m$ としてもよい）。$f=y^m$ とすれば、この座標近傍内で $N=\{y^m\ge0\}$ で、座標は $N$ から半空間 $\mathbb H^m$ の開集合への同相を与える。$\{f=0\}$ は $y^m=0$ の点。座標変換は $M$ の座標変換の制限なので滑らか。$N$ は $M$ の部分空間として Hausdorff、第2可算。したがって $N$ は境界つき多様体で、境界は $\{y^m=0\}=\{f=0\}$。
+\end{soll}
+
+\begin{soll}{A_klein}
+$a(x,y)=(x+1,-y)$、$b(x,y)=(x,y+1)$ は $\Gamma$ を生成し、$aba^{-1}(x,y)=a(b(x-1,-y))=a(x-1,-y+1)=(x,y-1)=b^{-1}(x,y)$。$\Gamma$ の作用は自由で固有不連続なので、商 $K$ は多様体で、射影 $p:\R^2\to K$ は局所微分同相（例~\ref{A:ex:mobius} と同じ）、$p\circ a=p$。$\R^2$ は連結で標準座標が向き $\mathcal O$ を与える。$a$ の Jacobi 行列式は $\det\operatorname{diag}(1,-1)=-1<0$ なので、補題~\ref{A:lem:covorient} により $K$ は向きづけ不可能。
+トーラス：$\Gamma_0=\langle(x,y)\mapsto(x+1,y),(x,y)\mapsto(x,y+1)\rangle\cong\Z^2$ の元はすべて平行移動で、Jacobi 行列式は $1$。$p_0:\R^2\to T^2$ の局所逆 $(p_0|_W)^{-1}$ から作る座標近傍の座標変換は $\Gamma_0$ の元（平行移動）で、Jacobi 行列式 $1>0$。よって向きづけられたアトラスがあり $T^2$ は向きづけ可能。
+\end{soll}
+
+\subsection*{§3 の解答}
+
+\begin{soll}{A_polar}
+(a) 連鎖律 \eqref{A:eq:coordvec}：$\partial_r=\frac{\partial x}{\partial r}\partial_x+\frac{\partial y}{\partial r}\partial_y=\cos\theta\,\partial_x+\sin\theta\,\partial_y=\frac{x\partial_x+y\partial_y}{r}$、$\partial_\theta=\frac{\partial x}{\partial\theta}\partial_x+\frac{\partial y}{\partial\theta}\partial_y=-r\sin\theta\,\partial_x+r\cos\theta\,\partial_y=-y\partial_x+x\partial_y$。
+(b) $r=\sqrt{x^2+y^2}$ より $\dd r=\frac{x\,\dd x+y\,\dd y}{r}$。$\theta=\arctan(y/x)$ より $\dd\theta=\frac{x\,\dd y-y\,\dd x}{x^2+y^2}$。$\dd\theta(\partial_\theta)=\frac{x\cdot x-y\cdot(-y)}{r^2}=1$、$\dd r(\partial_\theta)=\frac{x(-y)+yx}{r}=0$。
+(c) $\partial_x$ の成分は $(\dd r(\partial_x),\dd\theta(\partial_x))=(\frac xr,-\frac y{r^2})=(\cos\theta,-\frac{\sin\theta}r)$、$\partial_x=\cos\theta\,\partial_r-\frac{\sin\theta}r\partial_\theta$。確認：$\cos\theta(\cos\theta\partial_x+\sin\theta\partial_y)-\frac{\sin\theta}r(-r\sin\theta\partial_x+r\cos\theta\partial_y)=\partial_x$。
+\end{soll}
+
+\begin{soll}{A_bracket}
+成分式 \eqref{A:eq:bracket} $[X,Y]^k=X^i\partial_iY^k-Y^i\partial_iX^k$ を使う。
+(a) $R=(-y,x)$、$E=(x,y)$。$k=x$：$R^i\partial_iE^x-E^i\partial_iR^x=R^x\cdot1-E^i\partial_i(-y)=-y+y=0$。$k=y$：$R^y-E^i\partial_i(x)=x-x=0$。よって $[R,E]=0$（回転と一様拡大は可換）。
+(b) $e_m=x^{m+1}\partial_x$：$[e_m,e_n]=x^{m+1}(n+1)x^n-x^{n+1}(m+1)x^m=(n-m)x^{m+n+1}=(n-m)e_{m+n}$。
+(c) $[\partial_x+y\partial_z,\partial_y]=-\partial_z$（例~\ref{A:ex:contact} の計算。成分：$k=z$ で $-\partial_y(y)=-1$）。$[x\partial_x+y\partial_y+z\partial_z,\partial_x]$：$Y=\partial_x$ は定数係数なので $[X,Y]^k=-\partial_xX^k=-\delta^k{}_x$。よって $-\partial_x$。
+\end{soll}
+
+\begin{soll}{A_jacobi}
+(a) $[X,[Y,Z]]f=X(YZf-ZYf)-(YZ-ZY)(Xf)=XYZf-XZYf-YZXf+ZYXf$。巡回置換 $(X,Y,Z)\to(Y,Z,X)\to(Z,X,Y)$ で $YZXf-YXZf-ZXYf+XZYf$、$ZXYf-ZYXf-XYZf+YXZf$。3 つを加えると、$XYZ$ は $+$ と $-$、$XZY$ は $-$ と $+$、…と 6 種類の項がすべて打ち消し合って $0$。
+(b) $[fX,gY]h=fX(gYh)-gY(fXh)=f(Xg)Yh+fgXYh-g(Yf)Xh-gfYXh=\bigl(fg[X,Y]+f(Xg)Y-g(Yf)X\bigr)h$。
+(c) $X=(0,x,0)$、$Y=(0,0,y)$、$Z=(z,0,0)$。$[X,Y]^k=X^i\partial_iY^k-Y^i\partial_iX^k$：$X^y\partial_y(y)=x$ が $k=z$ に、$Y^z\partial_zX^k=0$。$[X,Y]=x\partial_z$。$[Y,Z]$：$Y^z\partial_zZ^x=y$ が $k=x$ に、$Z^x\partial_xY=0$。$[Y,Z]=y\partial_x$。$[Z,X]$：$Z^x\partial_xX^y=z$、$X^y\partial_yZ=0$。$[Z,X]=z\partial_y$。次に $[X,[Y,Z]]=[x\partial_y,y\partial_x]$：$k=x$：$X^y\partial_y(y)=x$；$k=y$：$-W^x\partial_xX^y=-y$（$W=y\partial_x$）。よって $x\partial_x-y\partial_y$。同様に $[Y,[Z,X]]=[y\partial_z,z\partial_y]=y\partial_y-z\partial_z$、$[Z,[X,Y]]=[z\partial_x,x\partial_z]=z\partial_z-x\partial_x$。和 $=(x\partial_x-y\partial_y)+(y\partial_y-z\partial_z)+(z\partial_z-x\partial_x)=0$。
+\end{soll}
+
+\begin{soll}{A_flow}
+(a) $\dot x=-x$：$\theta_t(x)=e^{-t}x$。完備。(b) $\dot x=y$、$\dot y=0$：$\theta_t(x,y)=(x+ty,\,y)$。完備。(c) $\dot x=x$、$\dot y=y$：$\theta_t(x,y)=(e^tx,e^ty)$。完備。(d) $\theta_t(x)=x+t$ は $x+t>0$ のときだけ $(0,\infty)$ の中にあるので $\mathcal D=\{(t,x):x>0,\ x+t>0\}$（$x>0$ の点から $t\le-x$ の方向では $0$ に達して区間を出る）。完備でない（積分曲線は有限時間で $(0,\infty)$ から出ていく。コンパクト台でもない）。(e) $\dot x=x^2$：$x_0\ne0$ で $x(t)=\frac{x_0}{1-x_0t}$、$1-x_0t>0$ の範囲、すなわち $tx_0<1$ で最大解。$x_0=0$ は静止。$\mathcal D=\{(t,x):tx<1\}$ は、$(t,x)$ 平面で双曲線 $tx=1$ の 2 つの枝（第 1 象限と第 3 象限）の間の領域で、原点と直線 $x=0$ 全体を含む。$x>0$ では $t<1/x$、$x<0$ では $t>1/x$。
+\end{soll}
+
+\begin{soll}{A_complete}
+$\gamma:(\omega_-,\omega_+)\to\R^n$ を最大積分曲線とし、$\omega_+<\infty$ と仮定する。$0\le t<\omega_+$ で $|\gamma(t)|\le|\gamma(0)|+\int_0^t|X(\gamma)|\,\dd s\le|\gamma(0)|+C\int_0^t(1+|\gamma|)\,\dd s$。$u=1+|\gamma|$ とおくと $u(t)\le u(0)+C\int_0^tu(s)\,\dd s$。Grönwall の不等式（$\Phi(t)=\int_0^tu$ とおくと $\Phi'\le u(0)+C\Phi$ より $(e^{-Ct}\Phi)'\le u(0)e^{-Ct}$、積分して $\Phi\le\frac{u(0)}C(e^{Ct}-1)$、元の不等式に代入して）$u(t)\le u(0)e^{Ct}\le u(0)e^{C\omega_+}$。すなわち $\gamma$ は $[0,\omega_+)$ で有界な閉球の中にとどまる。これは脱出補題（定理~\ref{A:thm:ode}(4)）と矛盾する。$\omega_->-\infty$ も $t\to-t$（$X\to-X$）で同様。ゆえに $X$ は完備。
+\end{soll}
+
+
+
+\begin{soll}{A_loop}
+(a) $\phi_t(x)=e^tx$、$\psi_t(x)=x+t$。$\phi_t:x\mapsto e^tx$、$\psi_t:\mapsto e^tx+t$、$\phi_{-t}:\mapsto e^{-t}(e^tx+t)=x+te^{-t}$、$\psi_{-t}:\mapsto x+te^{-t}-t=x-t(1-e^{-t})=x-t^2+\frac{t^3}2-\cdots$。よって $x-t^2+O(t^3)$。$[X,Y]=[x\partial_x,\partial_x]=-\partial_x$ より $t^2[X,Y]=-t^2\partial_x$。一致。
+(b) $\partial_x$ と $\partial_y$ の流れは平行移動で可換、ずれは正確に $0$。$[\partial_x,\partial_y]=0$ に対応（系~\ref{A:cor:commute}）。
+\end{soll}
+
+\begin{soll}{A_liealg}
+(a) $L_1L_2$：$L_1$ の第 2 行は $(0,0,-1)$、第 3 行は $(0,1,0)$ で、$L_2$ の行は $(0,0,1),(0,0,0),(-1,0,0)$。$L_1L_2$ の第 2 行は $-1\times(L_2$ の第 3 行$)=(1,0,0)$、第 3 行は $1\times(L_2$ の第 2 行$)=0$、第 1 行は $0$。$L_1L_2=\begin{psmallmatrix}0&0&0\\1&0&0\\0&0&0\end{psmallmatrix}$。$L_2L_1$：$L_2$ の第 1 行 $(0,0,1)$ に $L_1$ をかけると $L_1$ の第 3 行 $(0,1,0)$、第 3 行 $(-1,0,0)$ に $L_1$ をかけると $-(L_1$ の第 1 行$)=0$。$L_2L_1=\begin{psmallmatrix}0&1&0\\0&0&0\\0&0&0\end{psmallmatrix}$。$[L_1,L_2]=\begin{psmallmatrix}0&-1&0\\1&0&0\\0&0&0\end{psmallmatrix}=L_3$。座標の巡回置換 $(1,2,3)\to(2,3,1)$ は $L_i$ を $L_{i+1}$ に移すので残りも成立。
+(b) $e_1\times v=(0\cdot v_3-0\cdot v_2,\,0\cdot v_1-1\cdot v_3,\,1\cdot v_2-0\cdot v_1)=(0,-v_3,v_2)=L_1v$。同様に $L_2v=e_2\times v$、$L_3v=e_3\times v$。$\hat\omega v=\omega\times v$ とすると、$[\hat\omega,\hat\eta]v=\omega\times(\eta\times v)-\eta\times(\omega\times v)$。外積の Jacobi 恒等式 $a\times(b\times c)+b\times(c\times a)+c\times(a\times b)=0$ を $a=\omega,b=\eta,c=v$ に適用して $\omega\times(\eta\times v)-\eta\times(\omega\times v)=\omega\times(\eta\times v)+\eta\times(v\times\omega)=-v\times(\omega\times\eta)=(\omega\times\eta)\times v$。よって $[\hat\omega,\hat\eta]=\widehat{\omega\times\eta}$、$[L_i,L_j]=\widehat{e_i\times e_j}=\varepsilon_{ijk}L_k$。
+(c) Pauli 行列の関係 $\sigma_i\sigma_j=\delta_{ij}+i\varepsilon_{ijk}\sigma_k$ から $[\sigma_i,\sigma_j]=2i\varepsilon_{ijk}\sigma_k$。$e_k=-\frac i2\sigma_k$ は反 Hermite でトレース $0$、$\mathfrak{su}(2)$ の基底。$[e_i,e_j]=(-\frac i2)^2[\sigma_i,\sigma_j]=-\frac14\cdot2i\varepsilon_{ijk}\sigma_k=-\frac i2\varepsilon_{ijk}\sigma_k=\varepsilon_{ijk}e_k$。$e_k\mapsto L_k$ は括弧を保つ線形同型 $\mathfrak{su}(2)\cong\mathfrak{so}(3)$。
+(d) $\hat L_1=(0,-z,y)$、$\hat L_2=(z,0,-x)$（成分は $(x,y,z)$ の順）。$[\hat L_1,\hat L_2]^k=\hat L_1^i\partial_i\hat L_2^k-\hat L_2^i\partial_i\hat L_1^k$：$k=x$：$\hat L_1^z\partial_z(z)=y$、$\hat L_1^x=0$ なので第 2 項 $0$。計 $y$。$k=y$：$\hat L_2^y=0$ なので第 1 項は $0$。第 2 項は $\hat L_2^i\partial_i\hat L_1^y=\hat L_2^z\,\partial_z(-z)=(-x)(-1)=x$ で、符号つきで $-x$。$k=z$：$\hat L_1^i\partial_i(-x)=0$（$\hat L_1^x=0$）、$-\hat L_2^i\partial_iy=-\hat L_2^y=0$。よって $[\hat L_1,\hat L_2]=(y,-x,0)=-\hat L_3$（$\hat L_3=(-y,x,0)$）。符号が行列の $[L_1,L_2]=L_3$ と逆なのは、線形ベクトル場の対応 $A\mapsto\hat A$ が反準同型 $[\hat A,\hat B]=-\widehat{[A,B]}$ だから（注意の計算）。
+\end{soll}
+
+
+\begin{soll}{A_frob}
+(a) $X=\partial_x+y\partial_z$、$Y=\partial_y+x\partial_z$。$[X,Y]^k=X^i\partial_iY^k-Y^i\partial_iX^k$：$k=z$：$X^x\partial_x(x)=1$、$-Y^y\partial_y(y)=-1$、計 $0$。他の成分 $0$。$[X,Y]=0\in D$ なので $D$ は包合的（可積分）。$\dd(z-xy)(X)=y-y=0$、$\dd(z-xy)(Y)=x-x=0$ より、葉は $z-xy=$ 定数。座標 $y^1=x$、$y^2=y$、$y^3=z-xy$ をとると、$z=y^3+y^1y^2$ だから $\partial_{y^1}=\partial_x+y\partial_z=X$、$\partial_{y^2}=\partial_y+x\partial_z=Y$（$y^3$ を固定した微分）。$D=\mathrm{span}(\partial_{y^1},\partial_{y^2})$。
+(b) $X=\partial_x+z\partial_y$、$Y=\partial_z$：$[X,Y]^k=X^i\partial_iY^k-Y^i\partial_iX^k=-\partial_zX^k$。$k=y$ で $-1$。$[X,Y]=-\partial_y$。$D'$ の元は $aX+bY=(a,az,b)$ の形で、第 1 成分 $0$ なら $a=0$、さらに $\partial_y=(0,1,0)$ は $(0,0,b)$ の形でない。$\partial_y\notin D'$。包合的でない。
+(c) $D''=\{v:p\cdot v=0\}$。$R_1=(0,-z,y)$、$R_2=(z,0,-x)$、$R_3=(-y,x,0)$（$R_i=e_i\times p$）は $p$ に直交する。$z\ne0$ で $R_1\times R_2=(zx,yz,z^2)=z\,p\ne0$ なので $R_1,R_2$ は一次独立で $D''$ の局所枠（$\dim D''=2$）。$[R_1,R_2]=-R_3$（問~\ref{pr:A_liealg}(d)）、かつ $xR_1+yR_2+zR_3=0$ より $R_3=-(xR_1+yR_2)/z$。よって $[R_1,R_2]=(xR_1+yR_2)/z\in D''$。$x\ne0$、$y\ne0$ の領域でも同様（添え字を巡回）で、これらが $\R^3\setminus0$ を覆う。$D''$ は包合的。$f=|p|^2$ について $\dd f=2(x\dd x+y\dd y+z\dd z)$ で $D''=\ker\dd f$ なので、葉は球面 $|p|=c$。
+\end{soll}
+
+\begin{soll}{A_kron}
+$x=0$ の閉曲線上の点 $(0,y_0)$ を出る積分曲線は $t\mapsto(t,y_0+at)\bmod1$。$x$ 座標 $t\in\Z$ のときだけ $\{x=0\}$ に戻り、最初は $t=1$、座標は $y_0+a\bmod1$。第一回帰写像は $R_a:y\mapsto y+a$（円周 $\R/\Z$ の角度 $2\pi a$ の回転）。
+(a) $a=p/q$：$R_a^q(y)=y+p\equiv y$。積分曲線は $t=q$ で出発点に戻る閉曲線。$T^2$ は閉曲線の族に分割される。
+(b) $a$ が無理数：葉と $\{x=0\}$ の共通部分は $\{y_0+na\bmod1:n\in\Z\}$ で、問~\ref{pr:A_irrational}(a) により稠密。各点を流れ $t\in[0,1)$ で動かすと $\{(s,y_0+na+as)\}$ が得られ、これは $T^2$ で稠密（$(x,y)$ に近い点は $s=x$、$y_0+na\approx y-ax$ とすればよい）。
+\end{soll}
+
+\begin{soll}{A_contact}
+(a) $\alpha=\dd z-y\,\dd x$、$\dd\alpha=-\dd y\wedge\dd x=\dd x\wedge\dd y$。$\alpha\wedge\dd\alpha=\dd z\wedge\dd x\wedge\dd y-y\,\dd x\wedge\dd x\wedge\dd y=\dd z\wedge\dd x\wedge\dd y$（$\dd x\wedge\dd x=0$）。これは $\dd x\wedge\dd y\wedge\dd z$ に等しい（巡回置換）。
+(b) 水平曲線は $\alpha(\dot\gamma)=\dot z-y\dot x=0$、すなわち $\dot z=y\dot x$。$(x,y)=(r\cos t,r\sin t)$（$t\in[0,2\pi]$）なら $\Delta z=\int_0^{2\pi}y\dot x\,\dd t=-r^2\int_0^{2\pi}\sin^2t\,\dd t=-\pi r^2$（Green の公式 $\oint y\,\dd x=-\text{面積}$ と一致）。
+(c) 原点を通る半径 $\rho$ の円周を、$h>0$ なら時計回りに 1 周する（反時計回りでは $\Delta z=-\pi\rho^2$ だから、時計回りでは $\Delta z=+\pi\rho^2$）。$\rho=\sqrt{h/\pi}$ とすれば、出発点 $(0,0,0)$ から $(x,y)$ は元の点 $(0,0)$ に戻り、$z$ は $h$ だけ増える。$h<0$ なら反時計回り。$\oint y\,\dd x$ は円周上のどの点から出発しても同じなので、$(0,0,0)\to(0,0,h)$ が水平曲線で結べる。$z$ 軸方向 $\partial_z$ は $D$ に含まれないにもかかわらず、水平曲線だけで到達できる（Chow--Rashevskii の定理の例\tC）。
+\end{soll}

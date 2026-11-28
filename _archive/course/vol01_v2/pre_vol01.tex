@@ -1,0 +1,39 @@
+\input{pre_course.tex}
+\setlength{\headheight}{14pt}
+\usepackage[section]{placeins}
+\renewcommand{\topfraction}{0.9}\renewcommand{\bottomfraction}{0.9}\renewcommand{\textfraction}{0.1}\renewcommand{\floatpagefraction}{0.8}
+\makeatletter\renewcommand{\@pnumwidth}{1.9em}\renewcommand{\@tocrmarg}{2.8em}\makeatother
+\tcbuselibrary{breakable}\tcbset{breakable}
+\AtBeginDocument{\renewcommand{\tablename}{表}}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{arrows.meta,calc,decorations.markings,patterns,positioning}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\Lie}{\mathcal L}
+\newcommand{\tr}{\mathrm{tr}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\U}{\mathrm{U}}
+\newcommand{\SO}{\mathrm{SO}}
+\newcommand{\SU}{\mathrm{SU}}
+\newcommand{\Om}{\Omega}
+\newcommand{\X}{\mathfrak X}
+\newcommand{\Gam}{\Gamma}
+\newcommand{\pa}{\partial}
+\newcommand{\Ad}{\mathrm{Ad}}
+\newcommand{\RP}{\mathbb{RP}}
+\newcommand{\CP}{\mathbb{CP}}
+\newcommand{\bs}{\boldsymbol}
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Ran}{Im}
+\newfontfamily\Lat{DejaVu Serif}
+\newcommand{\Cech}{{\Lat \v{C}ech}}
+\renewcommand{\contentsname}{目次}\renewcommand{\figurename}{図}
+\fancyhead[L]{\small 第1巻　多様体・微分形式・ベクトル束・接続}
+% 問題と解答（ラベルつき。問番号は通し番号で、解答は \ref で番号を引く）
+% \begin{probl}{基本}{キー}  ...  \end{probl}    \begin{soll}{キー} ... \end{soll}
+\newenvironment{probl}[2]{\refstepcounter{probno}\label{pr:#2}\par\medskip\noindent\textbf{問~\theprobno}\;\textcolor{red!60!black}{\small[#1]}\;}{\par}
+\newenvironment{soll}[1]{\par\medskip\noindent\textbf{解答~\ref{pr:#1}}\;}{\par}
+\newcommand{\hint}[1]{\;\textcolor{gray!70!black}{\small（ヒント：#1）}}

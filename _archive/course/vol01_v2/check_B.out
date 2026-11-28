@@ -1,0 +1,140 @@
+=== §4 微分形式 ===
+PASS  B_wedge (a) alpha^beta
+PASS  B_wedge (b) alpha^gamma = 0
+PASS  B_wedge (b) beta^gamma = z vol
+PASS  B_wedge (c) iota_X(alpha^beta) both ways
+PASS  B_dcalc d alpha = (x-1)dy^dz - y dz^dx - x^2 dx^dy
+PASS  B_dcalc dd alpha = 0
+PASS  B_dcalc d beta = (z+2y) vol
+PASS  B_pullback F*(du^dv)=4(x^2+y^2)dx^dy
+PASS  B_pullback F*(u dv - v du) = 2(x^2+y^2)(x dy - y dx)
+PASS  例4.7 d(angle form)=0 (数値)
+PASS  例4.12 L_X(x dy)=x dx - y dy (座標公式)
+PASS  例4.12 Cartan と一致
+PASS  B_cartanex L_X omega = x dx^dz - y dy^dz
+      iota_X omega = {(2,): {(0, 2, 0): '-1'}}  d iota = {(1, 2): {(0, 1, 0): '-2'}}
+      iota_X d omega = {(1, 2): {(0, 1, 0): '1'}, (0, 2): {(1, 0, 0): '1'}}
+PASS  Cartan L_X = d i_X + i_X d (R^3, k=0..3, ランダム多項式)
+PASS  [L_X, i_Y] = i_[X,Y]  (ランダム)
+PASS  [L_X,L_Y]=L_[X,Y] (ランダム)
+PASS  B_liebr (b): [L_X,i_Y]w = i_[X,Y]w = -dy
+PASS  B_div(a) L_X(dx^dy) = (P_x+Q_y) dx^dy
+PASS  例4.14 L_E(dx^dy)=2dx^dy
+PASS  例4.14 X=x dx - y dy: L_X(dx^dy)=0
+PASS  B_div(c) i_{X_H} omega = -dH
+PASS  B_div(c) L_{X_H} omega = 0
+PASS  §4.9 i_{X_H}omega = -dH (R^4=T^*R^2, 乱数 H)
+PASS  §4.9 L_{X_H} omega = 0
+PASS  §4.9 omega^2 = 2 dxi1^dx1^dxi2^dx2 (係数 n!=2)
+      omega^2 = {(0, 1, 2, 3): {(0, 0, 0, 0): '-2'}} (基底 dx1^dx2^dxi1^dxi2 での係数。 dxi1^dx1^dxi2^dx2 = +dx1^dxi1^... を並べ替えた符号込み)
+PASS  不変公式 d alpha(X,Y) (1形式, ランダム)
+PASS  B_invk2: d beta(X,Y,Z) の公式 (2形式, ランダム)
+PASS  例4.11 i_G vol = a dy^dz + b dz^dx + c dx^dy
+PASS  例4.14 d i_G vol = div G vol
+PASS  §4.5 d(Pdx+Qdy+Rdz)=curl (dz^dx = -dx^dz)
+PASS  例4.18 alpha closed and = d(x^2 y + xz)
+
+=== §4 数値（積分・Stokes）===
+PASS  B_sphere: det(Phi,Phi_th,Phi_ph)=sin th, Phi_th x Phi_ph = sin th Phi
+PASS  ∫_{S^2} omega = 4π (数値)
+PASS  ∫ Phi^*omega (行列式から)=4π   =12.56643
+PASS  B^3: 3·(4π/3)=4π
+PASS  B_green(a): ½∮(x dy-y dx)=π a b
+PASS  B_line (a)=2π^2, (b)=-π   19.739209, -3.141593
+PASS  B_green(b): 2π + (-2π) = 0
+PASS  B_div3 div(x/r^3)=0 at [ 0.7 -0.3  1.1]   1.80e-11
+PASS  B_div3 div(x/r^3)=0 at [ 2.   1.  -0.5]   -6.94e-13
+PASS  B_div3 flux S_0.5=4π
+PASS  B_div3 flux S_3.0=4π
+
+=== §5 de Rham ===
+PASS  Poincare 補題: dP+Pd=id on R^3, k=1
+PASS  Poincare 補題: dP+Pd=id on R^3, k=2
+PASS  Poincare 補題: dP+Pd=id on R^3, k=3
+PASS  B_primitive(a): P alpha = xy+z^2
+PASS  B_primitive(b): beta closed
+PASS  B_primitive(b): P beta = yz dx - xz dy, d gamma = beta
+PASS  例5.7 P beta0 = ½((z-y)dx+(x-z)dy+(y-x)dz), dP=beta0
+PASS  B_S1MV ∫η=τ2-τ1 for (1,0)   =-1.00000
+PASS  B_S1MV ∫η=τ2-τ1 for (0,1)   =1.00000
+PASS  B_S1MV ∫η=τ2-τ1 for (2.5,-1)   =-3.50000
+PASS  B_MVT2: b=(1,2,1)   b1=2, b2=1, χ=0
+PASS  B_Rk 帰納: b1(M_k)=k
+PASS  B_PD(b): P(S1xS2)=(1,1,1,1) χ=0
+PASS  B_PD(b): T^3 (1,3,3,1), T^4 (1,4,6,4,1), χ=0
+PASS  B_PD(b): S2xS2 (1,0,2,0,1) χ=4
+PASS  Prop5.? χ(Σ_g)=2-2g (連結和の公式)
+PASS  奇数次元の連結和: χ(M#N)=χ(M)+χ(N) (n=3, χ(S^2)=2)
+PASS  B_chi: χ(S^2xΣ_2)=-4, χ(T^3)=0, χ(RP^2)=0+1-0=1
+PASS  B_chi(c): 4次元 b1=0 ⇒ χ=2+b2
+PASS  B_PD(c) Σ_g: b1=2g 偶数, χ 偶数
+PASS  例5.? T^2: 交叉形式 (2π)^2(ps-qr): 行列 [[0,1],[-1,0]] 非退化・歪対称
+PASS  B_kun: S2xS2 の形式 [[0,1],[1,0]] det=-1, 固有値 ±1 (不定符号)
+
+=== §5 写像度 ===
+PASS  B_degree(a) deg z^3 = 3
+PASS  B_degree(a) deg z^-2 = -2
+PASS  B_degree(a) deg z^1 = 1
+PASS  B_degree(a) deg z^0 = 0
+PASS  対蹠写像の符号 n=1: (-1)^(n+1)=1
+PASS  対蹠写像の符号 n=2: (-1)^(n+1)=-1
+PASS  対蹠写像の符号 n=3: (-1)^(n+1)=1
+PASS  対蹠写像の符号 n=4: (-1)^(n+1)=-1
+PASS  対蹠写像の符号 n=5: (-1)^(n+1)=1
+PASS  B_degree(c): f'(±i)=2≠0, 逆像2点で deg=2
+PASS  B_degree(c): 一般の値でも逆像は2点
+PASS  B_brouwer(b): |r(x)|=1 (公式の検算)   max err 3.3e-16
+PASS  B_fixed: f(x)≠x ⇒ 線分 (1-t)f - t x は原点を通らない
+
+=== §6 Hodge 星 ===
+PASS  R^3: ★dx=dy^dz, ★dy=dz^dx, ★dz=dx^dy
+PASS  R^3: ★(dy^dz)=dx, ★(dz^dx)=dy, ★(dx^dy)=dz
+PASS  R^4 表 k=1
+PASS  R^4 表 k=2
+PASS  R^4 表 k=3
+PASS  一般の計量 n=3: ★★=(-1)^(k(n-k)) (定義式から数値的に)
+PASS  一般の計量 n=4: ★★=(-1)^(k(n-k)) (定義式から数値的に)
+PASS  一般の計量 n=5: ★★=(-1)^(k(n-k)) (定義式から数値的に)
+PASS  共形: ★~ = e^((n-2k)u) ★  n=2
+PASS  共形: ★~ = e^((n-2k)u) ★  n=3
+PASS  共形: ★~ = e^((n-2k)u) ★  n=4
+PASS  §6.2 (curl F)^♭ = ★dF^♭
+PASS  §6.2 div F = ★d★F^♭
+PASS  B_star3(d): ★(α∧β)=(-2,1,1)=(1,2,0)x(0,1,-1)
+PASS  B_star3(b): ★d(-y dx + x dy)=2dz
+PASS  B_star3(c): ★d★F♭ = 2(x+y+z)
+PASS  δ=(-1)^(n(k+1)+1)★d★ = -Σ ι_j ∂_j  (R^2, k=1..2)
+PASS  Δ=dδ+δd = -Σ∂_j^2 (成分ごと) on R^2
+PASS  δ=(-1)^(n(k+1)+1)★d★ = -Σ ι_j ∂_j  (R^3, k=1..3)
+PASS  Δ=dδ+δd = -Σ∂_j^2 (成分ごと) on R^3
+PASS  δ=(-1)^(n(k+1)+1)★d★ = -Σ ι_j ∂_j  (R^4, k=1..4)
+PASS  Δ=dδ+δd = -Σ∂_j^2 (成分ごと) on R^4
+PASS  B_adj(b): δ(a dy^dz+b dz^dx+c dx^dy) = curl(a,b,c)♭
+PASS  α∧★β=<α,β>vol (R^4, 乱数)
+PASS  B_star4(b): α^+ = 3/2(dx12+dx34), α^- = -1/2(dx12-dx34)
+PASS  B_star4(b): |α^+|^2-|α^-|^2 = 4, α∧α=4vol   9/2-1/2
+PASS  §6.6 Λ^± の基底 (3+3)
+PASS  B_sd(c)/例6.? T^4: Q の符号 (3,3)   [np.float64(-1.0), np.float64(-1.0), np.float64(-1.0), np.float64(1.0), np.float64(1.0), np.float64(1.0)]
+
+=== §6 Laplacian・トーラス ===
+PASS  B_lap(b): Δ cosθ = 2 cosθ (数値)
+PASS  B_lap(b): Δ(sinθ cosφ) = 2 sinθ cosφ (数値)
+PASS  (参考) Δ P_2(cosθ) = 6 P_2 (ℓ(ℓ+1)=6)
+PASS  B_lap(c): ∫|df|^2 = ∫ f Δ f = 8π/3
+PASS  B_lap(a): Δ log r = 0, Δ(r^3 cos3θ)=0 (数値)
+PASS  B_torus(a): ω 閉 at (0.4, 1.2)
+PASS  B_torus(a): ω 閉 at (2.5, -0.7)
+PASS  例6.? ∮_a ω=4π, ∮_b ω=6π
+PASS  B_torus(a): 調和部分 h = 2dx + 3dy (平均)
+PASS  B_torus(c): ‖ω‖² = 54π², ‖h‖²=52π²   54.000000π²
+PASS  B_torus(b): δ(-cos y dx^dy) = sin y dx
+PASS  定理 HodgeT (T^2): ω = h + dα + δβ (Fourier 公式を有限差分で検証)   max err 7.00e-10
+PASS  恒等式 θ_m∧ι_m + ι_mθ_m∧ = |m|^2 (n=2, 全次数)
+PASS  恒等式 θ_m∧ι_m + ι_mθ_m∧ = |m|^2 (n=3, 全次数)
+PASS  恒等式 θ_m∧ι_m + ι_mθ_m∧ = |m|^2 (n=4, 全次数)
+PASS  定理 HodgeT: b_k(T^n)=C(n,k): n=4 → (1,4,6,4,1)
+PASS  B_minim(c): (∫f)^2 ≤ 2π ∫f^2 (数値例)
+PASS  B_hodge2d: f=z^2: α=u dx+v dy は閉かつ余閉
+
+=== 総括 ===
+ALL PASS

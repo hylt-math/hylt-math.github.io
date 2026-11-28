@@ -1,0 +1,198 @@
+
+\subsection*{§4 の解答}
+\begin{soll}{B_wedge}
+(a) $\dd y\wedge\dd x=-\dd x\wedge\dd y$、$\dd x\wedge\dd x=0$ に注意して
+$\alpha\wedge\beta=(x\,\dd y-y\,\dd x)\wedge(\dd z+x\,\dd x)=x\,\dd y\wedge\dd z+x^2\,\dd y\wedge\dd x-y\,\dd x\wedge\dd z-xy\,\dd x\wedge\dd x
+=x\,\dd y\wedge\dd z-x^2\,\dd x\wedge\dd y+y\,\dd z\wedge\dd x$。
+(b) $\alpha\wedge\gamma=z(x\,\dd y-y\,\dd x)\wedge\dd x\wedge\dd y=0$（各項に $\dd x$ か $\dd y$ が重複）。$\beta\wedge\gamma=z(\dd z+x\,\dd x)\wedge\dd x\wedge\dd y=z\,\dd z\wedge\dd x\wedge\dd y=z\,\dd x\wedge\dd y\wedge\dd z$（$\dd z\wedge\dd x\wedge\dd y$ は巡回置換で偶）。
+(c)(i) $\iota_X(\dd y\wedge\dd z)=\dd y(X)\dd z-\dd z(X)\dd y=\dd z-\dd y$、同様に $\iota_X(\dd x\wedge\dd y)=\dd y-\dd x$、$\iota_X(\dd z\wedge\dd x)=\dd x-\dd z$。よって
+$\iota_X(\alpha\wedge\beta)=x(\dd z-\dd y)-x^2(\dd y-\dd x)+y(\dd x-\dd z)=(x^2+y)\dd x-(x+x^2)\dd y+(x-y)\dd z$。
+(ii) $\iota_X\alpha=x-y$、$\iota_X\beta=1+x$。$\iota_X(\alpha\wedge\beta)=(\iota_X\alpha)\beta-\alpha\,(\iota_X\beta)=(x-y)(\dd z+x\,\dd x)-(1+x)(x\,\dd y-y\,\dd x)$ $=\bigl(x(x-y)+y(1+x)\bigr)\dd x-x(1+x)\dd y+(x-y)\dd z=(x^2+y)\dd x-(x+x^2)\dd y+(x-y)\dd z$。一致する。
+\end{soll}
+
+\begin{soll}{B_pullback}
+(a) $\dd u=2x\,\dd x-2y\,\dd y$, $\dd v=2y\,\dd x+2x\,\dd y$。$\dd u\wedge\dd v=4x^2\,\dd x\wedge\dd y-4y^2\,\dd y\wedge\dd x=4(x^2+y^2)\,\dd x\wedge\dd y$。次に
+$u\,\dd v-v\,\dd u=(x^2-y^2)(2y\,\dd x+2x\,\dd y)-2xy(2x\,\dd x-2y\,\dd y)=(-2x^2y-2y^3)\dd x+(2x^3+2xy^2)\dd y=2(x^2+y^2)(x\,\dd y-y\,\dd x)$。
+(b) $\dd x=\cos\theta\,\dd r-r\sin\theta\,\dd\theta$, $\dd y=\sin\theta\,\dd r+r\cos\theta\,\dd\theta$。$x\,\dd y-y\,\dd x=r\cos\theta(\sin\theta\,\dd r+r\cos\theta\,\dd\theta)-r\sin\theta(\cos\theta\,\dd r-r\sin\theta\,\dd\theta)=r^2(\cos^2\theta+\sin^2\theta)\dd\theta=r^2\dd\theta$。$G^*(x^2+y^2)=r^2$ だから $G^*\omega=r^2\dd\theta/r^2=\dd\theta$。
+\end{soll}
+
+\begin{soll}{B_dcalc}
+$\dd\alpha=\dd(x^2y)\wedge\dd x+\dd z\wedge\dd y+\dd(xy)\wedge\dd z=x^2\,\dd y\wedge\dd x+\dd z\wedge\dd y+(y\,\dd x+x\,\dd y)\wedge\dd z$ $=-x^2\,\dd x\wedge\dd y-\dd y\wedge\dd z-y\,\dd z\wedge\dd x+x\,\dd y\wedge\dd z=(x-1)\,\dd y\wedge\dd z-y\,\dd z\wedge\dd x-x^2\,\dd x\wedge\dd y$。（$\dd(x^2y)\wedge\dd x=(2xy\,\dd x+x^2\dd y)\wedge\dd x=x^2\dd y\wedge\dd x$ を使った。）
+$\dd\dd\alpha=\dd x\wedge\dd y\wedge\dd z-\dd y\wedge\dd z\wedge\dd x-0=\dd x\wedge\dd y\wedge\dd z-\dd x\wedge\dd y\wedge\dd z=0$（$\dd y\wedge\dd z\wedge\dd x=\dd x\wedge\dd y\wedge\dd z$）。
+$\dd\beta=\dd(xz)\wedge\dd y\wedge\dd z+\dd(y^2)\wedge\dd z\wedge\dd x+\dd x\wedge\dd x\wedge\dd y=z\,\dd x\wedge\dd y\wedge\dd z+2y\,\dd y\wedge\dd z\wedge\dd x=(z+2y)\,\dd x\wedge\dd y\wedge\dd z$。ベクトル場 $(xz,y^2,x)$ の発散は $\pa_x(xz)+\pa_y(y^2)+\pa_z(x)=z+2y$ で一致する。
+\end{soll}
+
+
+\begin{soll}{B_tensor}
+(a) 関数 $g$ に対し $[fX,Y]g=fX(Yg)-Y(fXg)=fX(Yg)-(Yf)(Xg)-fY(Xg)=f[X,Y]g-(Yf)Xg$。よって $\alpha([fX,Y])=f\alpha([X,Y])-(Yf)\alpha(X)$ で、$Yf\ne0$, $\alpha(X)\ne0$ となる点があれば $f\alpha([X,Y])$ と異なる。（例：$M=\R$, $X=\pa_x$, $Y=\pa_x$, $f=x$, $\alpha=\dd x$ なら左辺 $\alpha([x\pa_x,\pa_x])=\alpha(-\pa_x)=-1$、右辺 $f\alpha([\pa_x,\pa_x])=0$。）
+(b) $Y\to fY$：$(\Lie_X\alpha)(fY)=X(f\alpha(Y))-\alpha([X,fY])=(Xf)\alpha(Y)+fX\alpha(Y)-\alpha(f[X,Y]+(Xf)Y)=f(\Lie_X\alpha)(Y)$。$X\to fX$：$(\Lie_{fX}\alpha)(Y)=fX\alpha(Y)-\alpha([fX,Y])=fX\alpha(Y)-f\alpha([X,Y])+(Yf)\alpha(X)=f(\Lie_X\alpha)(Y)+\alpha(X)\,\dd f(Y)$。（Cartan から：$\Lie_{fX}\alpha=\dd(f\alpha(X))+f\,\iota_X\dd\alpha=f\Lie_X\alpha+\alpha(X)\dd f$ と一致。）
+(c) 右辺 $T(X,Y)=X\alpha(Y)-Y\alpha(X)-\alpha([X,Y])$ に対し $T(fX,Y)=fX\alpha(Y)-Y(f\alpha(X))-\alpha(f[X,Y]-(Yf)X)=fX\alpha(Y)-(Yf)\alpha(X)-fY\alpha(X)-f\alpha([X,Y])+(Yf)\alpha(X)=fT(X,Y)$。
+\end{soll}
+
+\begin{soll}{B_cartanex}
+(a) $X=-y\pa_x+x\pa_y$ の流れは $z$ 軸まわりの回転 $\varphi_t(x,y,z)=(x\cos t-y\sin t,\ x\sin t+y\cos t,\ z)$。$\varphi_t^*y=x\sin t+y\cos t$、$\varphi_t^*\dd x=\cos t\,\dd x-\sin t\,\dd y$、$\varphi_t^*\dd z=\dd z$ だから $\varphi_t^*\omega=(x\sin t+y\cos t)(\cos t\,\dd x-\sin t\,\dd y)\wedge\dd z$。$t=0$ で微分：第1因子の微分 $x\cos t-y\sin t\to x$、第2因子の微分 $-\sin t\,\dd x-\cos t\,\dd y\to-\dd y$ だから
+$\Lie_X\omega=x\,\dd x\wedge\dd z+y(-\dd y)\wedge\dd z=x\,\dd x\wedge\dd z-y\,\dd y\wedge\dd z$。
+(b) $\iota_X\omega=y(X^x\dd z-X^z\dd x)=y(-y)\dd z=-y^2\dd z$、$\dd\iota_X\omega=-2y\,\dd y\wedge\dd z$。$\dd\omega=\dd y\wedge\dd x\wedge\dd z=-\Bvol$、$\iota_X\Bvol=X^x\dd y\wedge\dd z-X^y\dd x\wedge\dd z+X^z\dd x\wedge\dd y=-y\,\dd y\wedge\dd z-x\,\dd x\wedge\dd z$。よって $\iota_X\dd\omega=y\,\dd y\wedge\dd z+x\,\dd x\wedge\dd z$。和：$-2y\,\dd y\wedge\dd z+y\,\dd y\wedge\dd z+x\,\dd x\wedge\dd z=x\,\dd x\wedge\dd z-y\,\dd y\wedge\dd z$。(a) と一致。
+\end{soll}
+
+\begin{soll}{B_div}
+(a) $\dd(\dd x\wedge\dd y)=0$ より $\Lie_X(\dd x\wedge\dd y)=\dd\iota_X(\dd x\wedge\dd y)$。$\iota_X(\dd x\wedge\dd y)=P\,\dd y-Q\,\dd x$、$\dd(P\,\dd y-Q\,\dd x)=P_x\,\dd x\wedge\dd y-Q_y\,\dd y\wedge\dd x=(P_x+Q_y)\dd x\wedge\dd y$。
+(b) $\varphi_t^*\dd x=e^t\dd x$, $\varphi_t^*\dd y=e^{-t}\dd y$ だから $\varphi_t^*(\dd x\wedge\dd y)=\dd x\wedge\dd y$（$t$ によらない）、微分して $0$。(a) では $P=x,Q=-y$ で $P_x+Q_y=1-1=0$。
+(c) $X_H=a\pa_x+b\pa_\xi$ とおくと $\iota_{X_H}(\dd\xi\wedge\dd x)=b\,\dd x-a\,\dd\xi$。$-\dd H=-x\,\dd x-\xi\,\dd\xi$ と比べて $b=-x$, $a=\xi$：$X_H=\xi\pa_x-x\pa_\xi$。$\dd\xi\wedge\dd x=-\dd x\wedge\dd\xi$ なので (a) を座標 $(x,\xi)$ で使うと、$P=\xi$（$\pa_x$ の係数）、$Q=-x$（$\pa_\xi$ の係数）で $P_x+Q_\xi=0+0=0$。よって $\Lie_{X_H}\omega=0$。（流れは $(x,\xi)$ 平面の回転で面積を保つ。）
+\end{soll}
+
+\begin{soll}{B_sphere}
+(a) $\dd y\wedge\dd z(u,v)=u^yv^z-u^zv^y$ などより $\omega_p(u,v)=p^x(u^yv^z-u^zv^y)+p^y(u^zv^x-u^xv^z)+p^z(u^xv^y-u^yv^x)=p\cdot(u\times v)=\det(p,u,v)$。
+(b) $(\Phi^*\omega)(\pa_\theta,\pa_\varphi)=\omega_\Phi(\Phi_\theta,\Phi_\varphi)=\Phi\cdot(\Phi_\theta\times\Phi_\varphi)$。$\Phi_\theta=(\cos\theta\cos\varphi,\cos\theta\sin\varphi,-\sin\theta)$, $\Phi_\varphi=(-\sin\theta\sin\varphi,\sin\theta\cos\varphi,0)$。外積は $(\sin^2\theta\cos\varphi,\ \sin^2\theta\sin\varphi,\ \sin\theta\cos\theta)=\sin\theta\,\Phi$。よって $\Phi\cdot(\sin\theta\,\Phi)=\sin\theta$ で $\Phi^*\omega=\sin\theta\,\dd\theta\wedge\dd\varphi$。
+(c) $\int_{S^2}\omega=\int_0^{2\pi}\!\!\int_0^\pi\sin\theta\,\dd\theta\,\dd\varphi=2\pi\cdot2=4\pi$（$(\theta,\varphi)$ は外向き法線に関して正の向き：$\det(\Phi,\Phi_\theta,\Phi_\varphi)=\sin\theta>0$）。Stokes：$\dd\omega=3\Bvol$、$\int_{B^3}3\Bvol=3\cdot\frac{4\pi}{3}=4\pi$。一致。
+(d) $T_pS^2=p^\perp$ の基底 $u,v$ で $\omega_p(u,v)=\det(p,u,v)\ne0$（$p,u,v$ は $\R^3$ の基底）。よって $\omega|_{S^2}$ は至る所 $0$ でない $2$ 形式で、命題~\ref{B:prop:orient} より $S^2$ は向きづけ可能。
+\end{soll}
+
+\begin{soll}{B_green}
+(a) $\omega=\frac12(x\,\dd y-y\,\dd x)$、$\dd\omega=\dd x\wedge\dd y$。境界 $\gamma(t)=(a\cos t,b\sin t)$（反時計回り）で $\gamma^*\omega=\frac12(a\cos t\cdot b\cos t+b\sin t\cdot a\sin t)\dd t=\frac{ab}2\dd t$。$\int=\frac{ab}2\cdot2\pi=\pi ab$。Green（Stokes）により面積 $=\iint_D\dd x\,\dd y=\oint_{\partial D}\omega=\pi ab$。
+(b) $\dd\omega=0$ なので左辺 $\int_D\dd\omega=0$。右辺：外側の円 $C_2$（$r=2$）では外向き法線が $\pa_r$、$(\pa_r,\tau)$ が正なら $\tau=\pa_\theta$ 方向、つまり反時計回りで $\int_{C_2}\dd\theta=2\pi$。内側の円 $C_1$（$r=1$）では外向き法線は $D$ から出る向き、すなわち原点向き $-\pa_r$。$(-\pa_r,\tau)$ が正になる $\tau$ は $-\pa_\theta$ 方向（時計回り）で $\int_{C_1}\dd\theta=-2\pi$。和は $0$ で左辺と一致する。もし内側を反時計回りにとると $4\pi\ne0$ で矛盾する。
+\end{soll}
+
+\begin{soll}{B_liebr}
+(a) $\omega\in\Om^k$, $Z_2,\dots,Z_k$ を任意のベクトル場とする。補題~\ref{B:lem:lie}(iii) を $\iota_Y\omega$ に適用して
+$(\Lie_X\iota_Y\omega)(Z_2,\dots)=X\bigl(\omega(Y,Z_2,\dots)\bigr)-\sum_{i\ge2}\omega(Y,\dots,[X,Z_i],\dots)$。$\omega$ に適用して $Y,Z_2,\dots$ で評価すると
+$(\iota_Y\Lie_X\omega)(Z_2,\dots)=(\Lie_X\omega)(Y,Z_2,\dots)=X\bigl(\omega(Y,Z_2,\dots)\bigr)-\omega([X,Y],Z_2,\dots)-\sum_{i\ge2}\omega(Y,\dots,[X,Z_i],\dots)$。差は $\omega([X,Y],Z_2,\dots)=(\iota_{[X,Y]}\omega)(Z_2,\dots)$。
+(b) $[X,Y]=[y\pa_x,\pa_y]=-\pa_x$（$[y\pa_x,\pa_y]f=y f_{xy}-\pa_y(yf_x)=-f_x$）。$\iota_{[X,Y]}\omega=-\iota_{\pa_x}(\dd x\wedge\dd y)=-\dd y$。左辺：$\iota_Y\omega=\iota_{\pa_y}(\dd x\wedge\dd y)=-\dd x$、$\Lie_X(-\dd x)=-\dd(X^x)=-\dd y$（$\Lie_X\dd x=\dd\Lie_Xx=\dd(Xx)=\dd y$）。$\Lie_X\omega=\dd\iota_X\omega=\dd(y\,\dd y)=0$ なので $\iota_Y\Lie_X\omega=0$。$[\Lie_X,\iota_Y]\omega=-\dd y-0=-\dd y$。一致。
+\end{soll}
+
+\begin{soll}{B_invk2}
+Cartan の公式より $\iota_X\dd\beta=\Lie_X\beta-\dd\iota_X\beta$。よって $\dd\beta(X,Y,Z)=(\iota_X\dd\beta)(Y,Z)=(\Lie_X\beta)(Y,Z)-\dd(\iota_X\beta)(Y,Z)$。補題~\ref{B:lem:lie}(iii) より $(\Lie_X\beta)(Y,Z)=X\beta(Y,Z)-\beta([X,Y],Z)-\beta(Y,[X,Z])$。$1$ 形式 $\iota_X\beta$ に不変公式を使うと $\dd(\iota_X\beta)(Y,Z)=Y\beta(X,Z)-Z\beta(X,Y)-\beta(X,[Y,Z])$。差をとり $\beta(Y,[X,Z])=-\beta([X,Z],Y)$, $\beta(X,[Y,Z])=-\beta([Y,Z],X)$ を使えば
+$X\beta(Y,Z)-Y\beta(X,Z)+Z\beta(X,Y)-\beta([X,Y],Z)+\beta([X,Z],Y)-\beta([Y,Z],X)$ を得る。
+\end{soll}
+
+\begin{soll}{B_canon}
+(a) $\pi\circ\sigma=\id_M$ より $\dd\pi\circ\dd\sigma=\id$。$(\sigma^*\lambda)_p(v)=\lambda_{\sigma(p)}(\dd\sigma\,v)=\sigma(p)\bigl(\dd\pi\,\dd\sigma\,v\bigr)=\sigma_p(v)$。座標では $\sigma=\sigma_i(x)\dd x^i$ は $\xi_i=\sigma_i(x)$ なる写像で、$\sigma^*(\xi_i\dd x^i)=\sigma_i\dd x^i$。
+(b) $\sigma^*\dd\lambda=\dd\sigma^*\lambda=\dd\sigma$（(D5)）。$\sigma:M\to\sigma(M)$ は微分同相なので、$\sigma(M)$ 上で $\omega$ の制限が $0$ $\iff\sigma^*\omega=0\iff\dd\sigma=0$。
+(c) $v=a^i\pa_{x^i}+b_i\pa_{\xi_i}$ に対し $\iota_v\omega=b_i\,\dd x^i-a^i\,\dd\xi_i$。これが $0$ なら $a=b=0$ だから $\omega$ は非退化。$\omega=\sum_i\dd\xi_i\wedge\dd x^i$ の各項（2形式）は互いに可換で $(\dd\xi_i\wedge\dd x^i)^2=0$ だから $\omega^n=n!\,\dd\xi_1\wedge\dd x^1\wedge\cdots\wedge\dd\xi_n\wedge\dd x^n$（$n!$ は項の並べ方の数）。これは至る所 $0$ でない。
+\end{soll}
+
+\subsection*{§5 の解答}
+\begin{soll}{B_primitive}
+(a) $\dd\alpha=\dd y\wedge\dd x+\dd x\wedge\dd y+0=0$。公式 \eqref{B:eq:Pformula}（$k=1$）：$f(x,y,z)=\int_0^1\alpha_{tx}(x)\,\dd t=\int_0^1\bigl(y\cdot tx+x\cdot ty+2tz\cdot z\bigr)\dd t=\int_0^1t(2xy+2z^2)\dd t=xy+z^2$。$\dd f=y\,\dd x+x\,\dd y+2z\,\dd z=\alpha$ ✓。
+(b) $\dd\beta=(1+1-2)\dd x\wedge\dd y\wedge\dd z=0$。$k=2$ では $(P\beta)_x(v)=\int_0^1t\,\beta_{tx}(x,v)\,\dd t$。$\beta$ の係数は1次式なので $\beta_{tx}=t\beta_x$ で $=\int_0^1t^2\,\dd t\,\beta_x(x,v)=\frac13(\iota_E\beta)(v)$。$\iota_E(\dd y\wedge\dd z)=y\,\dd z-z\,\dd y$, $\iota_E(\dd z\wedge\dd x)=z\,\dd x-x\,\dd z$, $\iota_E(\dd x\wedge\dd y)=x\,\dd y-y\,\dd x$ より
+$\iota_E\beta=x(y\,\dd z-z\,\dd y)+y(z\,\dd x-x\,\dd z)-2z(x\,\dd y-y\,\dd x)=3yz\,\dd x-3xz\,\dd y+0\cdot\dd z$。よって $\gamma=yz\,\dd x-xz\,\dd y$。検算：$\dd\gamma=z\,\dd y\wedge\dd x+y\,\dd z\wedge\dd x-z\,\dd x\wedge\dd y-x\,\dd z\wedge\dd y=x\,\dd y\wedge\dd z+y\,\dd z\wedge\dd x-2z\,\dd x\wedge\dd y=\beta$ ✓。
+\end{soll}
+
+\begin{soll}{B_punct}
+(a) $i:S^1\hookrightarrow\R^2\setminus\{0\}$, $\rho(x)=x/|x|$ とすると $\rho\circ i=\id_{S^1}$、$i\circ\rho\simeq\id$（$F_t(x)=(1-t)x+t\,x/|x|$）。ホモトピー不変性（定理~\ref{B:thm:hinv}）より $i^*:H^1(\R^2\setminus\{0\})\to H^1(S^1)$ は同型。例~\ref{B:ex:R} より $\int_{S^1}:H^1(S^1)\to\R$ も同型。$c=\frac1{2\pi}\oint_{S^1}\alpha$ とおくと、$\alpha-c\omega$ は $\int_{S^1}i^*(\alpha-c\omega)=2\pi c-c\cdot2\pi=0$ なので $i^*[\alpha-c\omega]=0$、同型性より $[\alpha-c\omega]=0$、すなわち $\alpha-c\omega=\dd f$。
+(b) $\bs F$ は $\omega$ に対応（$\oint_{S^1}=2\pi\ne0$）、(a) により勾配場でない。$\bs G\leftrightarrow\frac{x\,\dd x+y\,\dd y}{x^2+y^2}=\dd\bigl(\tfrac12\log(x^2+y^2)\bigr)$ なので勾配場。（円周上の積分は $0$ ✓。）
+\end{soll}
+
+\begin{soll}{B_S1MV}
+定理~\ref{B:thm:MV} の $\eta$ は $V$ 上で $\dd(\rho_U\tau)$、$U$ 上で $-\dd(\rho_V\tau)$。$U\cap V$ の外では $U\setminus V=\{0\}$ の近くでは $\rho_V=0$（$\operatorname{supp}\rho_V\subset V$）で $\eta=0$。よって $\eta$ の台は $V$ の中にあり、$\int_{S^1}\eta=\int_V\dd(\rho_U\tau)$。$g=\rho_U\tau$ は $V=(0,2\pi)$ 上の滑らかな関数（$\theta=\pi$ の近くでは $\rho_U=0$ なので $W_1,W_2$ の境目で連続）で、$\theta\to0^+$ では $W_1$ 上で $g\to\tau_1\rho_U(0)=\tau_1$、$\theta\to2\pi^-$ では $W_2$ 上で $g\to\tau_2\rho_U(2\pi)=\tau_2$。ゆえに $\int_0^{2\pi}\dd g=\tau_2-\tau_1$。$H^1(S^1)\cong\R$（$\int$ による、例~\ref{B:ex:R}）で $\int[\dd\theta]=2\pi$ だから $\delta\tau=\frac{\tau_2-\tau_1}{2\pi}[\dd\theta]$。（$\tau_1=\tau_2$ のときは $\delta\tau=0$、$\Ker\delta=\Ran b_*$ と整合する。）
+\end{soll}
+
+\begin{soll}{B_MVT2}
+$X=S^1\times A\simeq S^1$、$Y=S^1\times B\simeq S^1$、$X\cap Y=S^1\times(A\cap B)\simeq S^1\sqcup S^1$ だから、$H^0(X)=H^0(Y)=\R$, $H^1(X)=H^1(Y)=\R$, $H^2=0$, $H^0(X\cap Y)=H^1(X\cap Y)=\R^2$, $H^2(X\cap Y)=0$。MV：
+\[
+0\to H^0(T^2)\to\R^2\xrightarrow{b_0}\R^2\to H^1(T^2)\to\R^2\xrightarrow{b_1}\R^2\to H^2(T^2)\to0 .
+\]
+$H^0(T^2)=\R$（連結）なので $b_0$ の核は1次元、したがって $b_0$ の階数は1で $\operatorname{coker}b_0$ は1次元。$H^1(X)$ の生成元は $\mathrm{pr}_1^*\dd\theta$ で、$X\cap Y$ の2つの成分上で $\dd\theta_1$ に制限される（成分 $S^1\times W$ ごとに $\mathrm{pr}_1^*\dd\theta$）。$Y$ の生成元も同様なので $b_1(c_X,c_Y)=(c_Y-c_X)(1,1)$、階数1、核は1次元、余核は1次元。したがって完全性から $b_1(T^2)=\dim\operatorname{coker}b_0+\dim\Ker b_1=1+1=2$、$b_2(T^2)=\dim\operatorname{coker}b_1=1$。$\chi=1-2+1=0$（加法性：$\chi(X)+\chi(Y)-\chi(X\cap Y)=0+0-0$ と一致）。
+\end{soll}
+
+\begin{soll}{B_Rk}
+$k=0$：$M_0=\R^2$ で $b_1=b_2=0$。$k\ge1$：$D$ を $p_k$ を中心とし他の $p_i$ を含まない開円板とすると $M_{k-1}=M_k\cup D$、$M_k\cap D=D\setminus\{p_k\}\simeq S^1$、$D$ は可縮。帰納法の仮定 $b_1(M_{k-1})=k-1$, $H^2(M_{k-1})=0$ のもとで MV を書く：
+\[
+H^0(M_k)\oplus H^0(D)\to H^0(D\setminus p_k)\to H^1(M_{k-1})\to H^1(M_k)\to H^1(D\setminus p_k)\to H^2(M_{k-1})=0 .
+\]
+$M_k$ は連結（平面から有限個の点を除いたもの）で、$H^0(M_k)\oplus H^0(D)=\R^2\to H^0(D\setminus p_k)=\R$ は $(a,b)\mapsto b-a$ で全射だから $H^0(D\setminus p_k)\to H^1(M_{k-1})$ は零写像。したがって $0\to H^1(M_{k-1})\to H^1(M_k)\to H^1(D\setminus p_k)=\R\to0$ が完全で $b_1(M_k)=b_1(M_{k-1})+1=k$。$H^2$：$H^2(M_{k-1})\to H^2(M_k)\oplus H^2(D)\to H^2(D\setminus p_k)$ の両端が $0$（$H^2(D\setminus p_k)=H^2(S^1)=0$）なので $H^2(M_k)=0$。
+\end{soll}
+
+\begin{soll}{B_chi}
+(a) 開 Möbius 帯 $\simeq S^1$ で $\chi=0$。開円板 $D$ で $\chi(D)=1$。交わりは $D$ の「縁」の帯 $\simeq S^1$ で $\chi=0$。加法性 $\chi(\RP^2)=0+1-0=1$。
+(b) 命題~\ref{B:prop:csum}（$n=2$）：$\chi(\Sigma_2)=\chi(T^2)+\chi(T^2)-2=-2$。Künneth より $\chi(S^2\times\Sigma_2)=\chi(S^2)\chi(\Sigma_2)=2\cdot(-2)=-4$。$\chi(T^3)=\chi(S^1)^3=0$。
+(c) $b_0=b_4=1$（連結、向きづけられた閉、定理~\ref{B:thm:Hn}）、$b_1=b_3=0$（$b_1=0$ と Poincaré 双対 $b_3=b_1$）。$\chi=1-0+b_2-0+1=2+b_2$。
+\end{soll}
+
+\begin{soll}{B_degree}
+(a) $f_m^*\dd\theta=m\,\dd\theta$ なので $\int_{S^1}f_m^*\dd\theta=2\pi m=m\int_{S^1}\dd\theta$、$\deg f_m=m$。正則値 $1\in S^1$ の逆像は $m\ne0$ のとき $\{e^{2\pi ik/|m|}\}$ の $|m|$ 個の点で、各点で $\dd f_m=m\,\dd\theta$ は $m>0$ なら向きを保ち、$m<0$ なら逆にするので $\sum\varepsilon=\mathrm{sgn}(m)|m|=m$。$m=0$ は定数写像で逆像が空（$1$ は正則値）、$\deg=0$。
+(b) $r_i$ は $S^n$ の自己微分同相で、$r_i^*$ は $\R^{n+1}$ の鏡映として $S^n$ の向きを逆にする（$\det=-1$）から $\deg r_i=-1$。$a=r_0\circ r_1\circ\cdots\circ r_n$ で $\deg$ は積に関して乗法的だから $\deg a=(-1)^{n+1}$。
+(c) $f(z)=z+1/z$。値 $0$ の逆像は $z^2+1=0$、$z=\pm i$（$z=0,\infty$ は $\infty$ に写るので含まれない）。$f'(z)=1-z^{-2}$、$f'(\pm i)=1-(-1)=2\ne0$ なので $0$ は正則値。$f$ は正則写像で、複素向きに関して $\dd f$ は向きを保つ（実 Jacobi 行列式 $|f'|^2>0$）から $\deg f=1+1=2$。
+\end{soll}
+
+\begin{soll}{B_brouwer}
+(a) $r$ が存在したとする。$\iota:S^1\hookrightarrow D^2$ とすると $r\circ\iota=\id_{S^1}$。$\alpha=r^*\dd\theta\in\Om^1(D^2)$ は $\dd\alpha=r^*\dd(\dd\theta)=0$ ($\dd\theta$ は閉)。Stokes：$\int_{S^1}\iota^*\alpha=\int_{D^2}\dd\alpha=0$。他方 $\iota^*\alpha=(r\circ\iota)^*\dd\theta=\dd\theta$ で $\int_{S^1}\dd\theta=2\pi$。矛盾。
+(b) 不動点がないとする。$u(x)=x-g(x)\ne0$ とし、$r(x)=x+\lambda(x)u(x)$（$\lambda\ge0$）を $|r(x)|=1$ をみたすようにとる：$\lambda=\dfrac{-x\cdot u+\sqrt{(x\cdot u)^2+|u|^2(1-|x|^2)}}{|u|^2}$。根号の中は正：$|x|<1$ ならば明らか、$|x|=1$ のとき $x\cdot u=1-x\cdot g(x)\ge0$ で、等号は $g(x)=x$ のときに限る（$|g(x)|\le1$ とコーシー・シュワルツ）から仮定により $x\cdot u>0$。よって $\lambda$ は滑らか。$|x|=1$ では $x\cdot u>0$ より $\lambda=0$、$r(x)=x$。これは (a) に矛盾する。
+\end{soll}
+
+
+\begin{soll}{B_PD}
+(a) $n=3$ で $b_k=b_{3-k}$ より $b_1=b_2$、$b_0=b_3=1$。$\chi=1-b_1+b_2-1=0$。
+(b) $P_{S^1}=1+t$, $P_{S^2}=1+t^2$。$P_{S^1\times S^2}=(1+t)(1+t^2)=1+t+t^2+t^3$：$(1,1,1,1)$、$\chi=0$（$n=3$、対称）。$P_{T^3}=(1+t)^3=1+3t+3t^2+t^3$：$(1,3,3,1)$、$\chi=0$。$P_{T^4}=(1+t)^4$：$(1,4,6,4,1)$、$\chi=1-4+6-4+1=0$。$P_{S^2\times S^2}=(1+t^2)^2=1+2t^2+t^4$：$(1,0,2,0,1)$、$\chi=4=2\cdot2$。いずれも $b_k=b_{n-k}$ で対称。
+(c) 曲面 $\Sigma$（$n=2$）では $H^1\times H^1\to\R$, $(\alpha,\beta)\mapsto\int\alpha\wedge\beta$ は非退化で、$\beta\wedge\alpha=-\alpha\wedge\beta$ だから歪対称。奇数次元の実ベクトル空間には非退化な歪対称形式がない（$A^T=-A$ なら $\det A=(-1)^b\det A$、$b$ 奇数で $\det A=0$）。よって $b_1$ は偶数。
+\end{soll}
+
+\begin{soll}{B_kun}
+(a) $H^*(S^2)$ は $1,\ [\sigma]$ で張られる。Künneth より $H^2(S^2\times S^2)=H^2\otimes H^0\oplus H^0\otimes H^2$ は $a=[\mathrm{pr}_1^*\sigma]$, $b=[\mathrm{pr}_2^*\sigma]$ を基底とし、$H^4=H^2\otimes H^2$ は $ab=[\mathrm{pr}_1^*\sigma\wedge\mathrm{pr}_2^*\sigma]$ で生成される。$a^2=[\mathrm{pr}_1^*(\sigma\wedge\sigma)]=0$（$\sigma\wedge\sigma$ は $S^2$ 上の $4$ 形式で $0$）、同様に $b^2=0$。Fubini より $\int_{S^2\times S^2}\mathrm{pr}_1^*\sigma\wedge\mathrm{pr}_2^*\sigma=\int\sigma\int\sigma=1$。
+(b) 対の行列は $\begin{pmatrix}\int a^2&\int ab\\\int ba&\int b^2\end{pmatrix}=\begin{pmatrix}0&1\\1&0\end{pmatrix}$。$\det=-1\ne0$ で非退化、固有値 $\pm1$ で符号 $(1,1)$ の不定符号。
+\end{soll}
+
+\begin{soll}{B_Hc}
+(a) $\varphi'(r)$ は $1\le r\le2$ の外で $0$ なので $\operatorname{supp}\eta\subset\{1\le r\le2\}$（$M$ のコンパクト集合）。$\dd\eta=\varphi''(r)\,\dd r\wedge\dd r=0$。
+(b) $\eta=\dd g$, $g\in C^\infty_c(M)$ とする。$g$ は $r\le\varepsilon$ と $r\ge R$ で $0$。原点から出る半直線（$\theta=\text{const}$）に沿って積分すると $\int_\varepsilon^R\eta=g(R)-g(\varepsilon)=0$。しかし $\int_\varepsilon^R\varphi'(r)\dd r=\varphi(R)-\varphi(\varepsilon)=1-0=1$ ($\varepsilon<1$, $R>2$)。矛盾。
+(c) $\omega\wedge\eta=\dd\theta\wedge\varphi'(r)\dd r=-\varphi'(r)\,\dd r\wedge\dd\theta$。$\dd x\wedge\dd y=r\,\dd r\wedge\dd\theta$ だから $(r,\theta)$ は正の向きの座標で $\int_M\omega\wedge\eta=-\int_0^{2\pi}\!\int_0^\infty\varphi'(r)\dd r\,\dd\theta=-2\pi$。$\ne0$ なので、$[\omega]\in H^1(M)$ と $[\eta]\in H^1_c(M)$ の対は非自明（$H^1(M)=\R[\omega]$ だから、対 $H^1(M)\to H^1_c(M)^*$ は単射で、Poincaré 双対性と整合する）。
+\end{soll}
+
+\begin{soll}{B_div3}
+(a) $\omega=\iota_{\bs G}\Bvol$, $\bs G=\bs x/r^3$ なので $\dd\omega=\Bdiv\bs G\,\Bvol$（例~\ref{B:ex:div}）。$\pa_x(xr^{-3})=r^{-3}-3x^2r^{-5}$ などを足して $\Bdiv\bs G=3r^{-3}-3r^{2}r^{-5}=0$。
+(b) $S_\rho$ 上では $r=\rho$ なので $\omega|_{S_\rho}=\rho^{-3}\,\omega_0|_{S_\rho}$、$\omega_0=x\,\dd y\wedge\dd z+y\,\dd z\wedge\dd x+z\,\dd x\wedge\dd y$。Stokes：$\int_{S_\rho}\omega_0=\int_{B_\rho}\dd\omega_0=3\cdot\frac{4\pi}{3}\rho^3=4\pi\rho^3$。よって $\int_{S_\rho}\omega=4\pi$。
+(c) $\varepsilon$ を十分小さくとり、$\Omega'=\Omega\setminus B_\varepsilon$ に Stokes を使う（$\dd\omega=0$）。$\partial\Omega'=\partial\Omega\sqcup(-S_\varepsilon)$（小球面の誘導向きは外向き法線（$\Omega'$ から出る向き＝原点向き）先頭だから $S_\varepsilon$ の通常の向きの逆）。$0=\int_{\Omega'}\dd\omega=\int_{\partial\Omega}\omega-\int_{S_\varepsilon}\omega$、よって $\int_{\partial\Omega}\omega=4\pi$。もし $\omega=\dd\eta$ なら $\int_{S_\rho}\omega=0$（Stokes、閉多様体 $S_\rho$）で (b) に反するから、$\omega$ は完全でない。
+\end{soll}
+
+\subsection*{§6 の解答}
+\begin{soll}{B_metric}
+(a) 例~\ref{B:ex:metric}(2) の計算により $g=|\Phi_\theta|^2\dd\theta^2+2\Phi_\theta\cdot\Phi_\varphi\,\dd\theta\dd\varphi+|\Phi_\varphi|^2\dd\varphi^2=\dd\theta^2+\sin^2\theta\,\dd\varphi^2$。緯線 $\theta=\theta_0$（$\varphi\in[0,2\pi]$）では $g(\dot\gamma,\dot\gamma)=\sin^2\theta_0$ で長さ $\int_0^{2\pi}\sin\theta_0\,\dd\varphi=2\pi\sin\theta_0$。面積形式 $\sin\theta\,\dd\theta\wedge\dd\varphi$ より $\int_0^{2\pi}\!\int_0^{\theta_0}\sin\theta\,\dd\theta\,\dd\varphi=2\pi(1-\cos\theta_0)$（$\theta_0=\pi$ で $4\pi$）。
+(b) $g_{ij}=y^{-2}\delta_{ij}$、$\sqrt{\det g}=y^{-2}$ で $\Bvol_g=y^{-2}\dd x\wedge\dd y$。面積 $=\int_0^1\!\int_1^\infty y^{-2}\dd y\,\dd x=1$。
+(c) $g=\dd r^2+r^2\dd\theta^2$ より $\det g=r^2$、$\sqrt{\det g}=r$（$r>0$）。$\Bvol_g=r\,\dd r\wedge\dd\theta=\dd x\wedge\dd y$（例~\ref{B:ex:polar}）。
+\end{soll}
+
+
+\begin{soll}{B_star4}
+(a) $I=(1,3)$, $I^c=(2,4)$、並べ $(1,3,2,4)$ は互換 1 回で奇置換だから $\Bsgn=-1$、$\star\dd x^{13}=-\dd x^{24}$。$I=(2,3,4)$, $I^c=(1)$、$(2,3,4,1)$ は 1 が 3 つの元を越えるので奇置換、$\star\dd x^{234}=-\dd x^1$。
+(b) $\star\alpha=\dd x^{34}+2\,\dd x^{12}$。$\alpha^+=\frac12(\alpha+\star\alpha)=\frac32(\dd x^{12}+\dd x^{34})$、$\alpha^-=\frac12(\alpha-\star\alpha)=-\frac12(\dd x^{12}-\dd x^{34})$。$|\alpha^+|^2=\frac94\cdot2=\frac92$、$|\alpha^-|^2=\frac14\cdot2=\frac12$、差は $4$。他方 $\alpha\wedge\alpha=(\dd x^{12}+2\dd x^{34})\wedge(\dd x^{12}+2\dd x^{34})=4\,\dd x^{12}\wedge\dd x^{34}=4\Bvol$。式~\eqref{B:eq:sd} と一致。
+\end{soll}
+
+\begin{soll}{B_lap}
+(a) $g=\mathrm{diag}(1,r^2)$（座標 $(r,\theta)$）、$\sqrt{\det g}=r$、式~\eqref{B:eq:laplacefn} より $\Delta f=-\frac1r\bigl[\pa_r(r\,\pa_rf)+\pa_\theta(r\cdot r^{-2}\pa_\theta f)\bigr]=-\frac1r\pa_r(r\pa_rf)-\frac1{r^2}\pa_\theta^2f$。$f=\log r$：$r\pa_rf=1$、$\pa_r1=0$。$f=r^k\cos k\theta$：$\frac1r\pa_r(kr^k)\cos k\theta=k^2r^{k-2}\cos k\theta$、$\frac1{r^2}\pa_\theta^2f=-k^2r^{k-2}\cos k\theta$、$\Delta f=-k^2r^{k-2}\cos k\theta+k^2r^{k-2}\cos k\theta=0$。
+(b) $g=\mathrm{diag}(1,\sin^2\theta)$、$\sqrt{\det g}=\sin\theta$。$f=\cos\theta$：$\pa_\theta f=-\sin\theta$、$\sin\theta\,\pa_\theta f=-\sin^2\theta$、$\pa_\theta(\cdot)=-2\sin\theta\cos\theta$、$\pa_\varphi f=0$。$\Delta f=-\frac1{\sin\theta}(-2\sin\theta\cos\theta)=2\cos\theta$。$f=\sin\theta\,e^{i\varphi}$：$\sin\theta\,\pa_\theta f=\sin\theta\cos\theta\,e^{i\varphi}$、$\pa_\theta(\cdot)=(\cos^2\theta-\sin^2\theta)e^{i\varphi}$、$\pa_\varphi^2f=-\sin\theta\,e^{i\varphi}$。$\Delta f=-\frac{\cos^2\theta-\sin^2\theta}{\sin\theta}e^{i\varphi}+\frac{1}{\sin\theta}e^{i\varphi}=\frac{1-\cos^2\theta+\sin^2\theta}{\sin\theta}e^{i\varphi}=2\sin\theta\,e^{i\varphi}$。
+(c) $f=\cos\theta$：$|\dd f|^2=\sin^2\theta$。$\int|\dd f|^2\Bvol_g=\int_0^{2\pi}\!\int_0^\pi\sin^3\theta\,\dd\theta\,\dd\varphi=2\pi\cdot\frac43=\frac{8\pi}3$。$\int f\Delta f\,\Bvol_g=2\int_0^{2\pi}\!\int_0^\pi\cos^2\theta\sin\theta\,\dd\theta\,\dd\varphi=2\cdot2\pi\cdot\frac23=\frac{8\pi}3$。一致（命題~\ref{B:prop:Lap}(ii)：$(\Delta f,f)=\|\dd f\|^2$）。
+\end{soll}
+
+\begin{soll}{B_adj}
+(a) $\dd x^j\wedge$ は各点で $\Lambda^*$ 上の演算子で、$\{e^I\}$（$e^i=\dd x^i$）が正規直交なので $\langle\dd x^j\wedge e^I,e^K\rangle=\langle e^I,\iota_{\pa_j}e^K\rangle$（両辺とも、$K=I\cup\{j\}$, $j\notin I$ のとき $\dd x^j\wedge e^I=\epsilon e^K$ の符号 $\epsilon$ が現れ、$\iota_{\pa_j}e^K=\epsilon e^I$ だから一致、他は $0$）。したがって $(\dd\alpha,\beta)=\sum_j(\dd x^j\wedge\pa_j\alpha,\beta)=\sum_j\int\langle\pa_j\alpha,\iota_{\pa_j}\beta\rangle\Bvol=-\sum_j\int\langle\alpha,\pa_j\iota_{\pa_j}\beta\rangle\Bvol$（部分積分、コンパクト台）。$\iota_{\pa_j}$ は定数係数だから $\pa_j$ と可換で、$\delta\beta=-\sum_j\iota_{\pa_j}\pa_j\beta$。
+(b) $n=3$。$k=1$：$\delta=(-1)^{3\cdot2+1}\star\dd\star=-\star\dd\star$、$\star(P\dd x+Q\dd y+R\dd z)=P\dd y\wedge\dd z+Q\dd z\wedge\dd x+R\dd x\wedge\dd y$、$\dd$ して $(P_x+Q_y+R_z)\Bvol$、$\star$ して $-(P_x+Q_y+R_z)$。$k=2$：$\delta=(-1)^{3\cdot3+1}\star\dd\star=\star\dd\star$、$\star(a\,\dd y\wedge\dd z+b\,\dd z\wedge\dd x+c\,\dd x\wedge\dd y)=a\,\dd x+b\,\dd y+c\,\dd z$、$\dd$ は例 \S\ref{B:ss:vec} の公式で $(c_y-b_z)\dd y\wedge\dd z+(a_z-c_x)\dd z\wedge\dd x+(b_x-a_y)\dd x\wedge\dd y$、$\star$ して $(c_y-b_z)\dd x+(a_z-c_x)\dd y+(b_x-a_y)\dd z$。
+(c) $\bs F^\flat=P\,\dd x$：$\delta(P\,\dd x)=-P_x$、$\dd\delta(P\,\dd x)=-P_{xx}\dd x-P_{xy}\dd y-P_{xz}\dd z$。$\dd(P\,\dd x)=P_z\,\dd z\wedge\dd x-P_y\,\dd x\wedge\dd y$（$a=0,b=P_z,c=-P_y$）で、(b) より $\delta\dd(P\,\dd x)=(-P_{yy}-P_{zz})\dd x+P_{xy}\dd y+P_{xz}\dd z$。和 $\Delta(P\,\dd x)=-(P_{xx}+P_{yy}+P_{zz})\dd x=(-\sum\pa_j^2P)\dd x$。
+\end{soll}
+
+\begin{soll}{B_conf}
+(a) $\tilde e^i=e^ue^i$ は $\tilde g$ の正の向きの正規直交余基底。命題~\ref{B:prop:star}(i) の $\star e^I=\Bsgn\,e^{I^c}$ を $\tilde g$ に適用して $\tilde\star\tilde e^I=\Bsgn\,\tilde e^{I^c}$。$\tilde e^I=e^{ku}e^I$, $\tilde e^{I^c}=e^{(n-k)u}e^{I^c}$ なので $e^{ku}\tilde\star e^I=\Bsgn\,e^{(n-k)u}e^{I^c}=e^{(n-k)u}\star e^I$、よって $\tilde\star e^I=e^{(n-2k)u}\star e^I$。
+(b) $n=2$, $k=1$：$\tilde\star\alpha=\star\alpha$（$e^{0}$）。$\delta=(-1)^{2(k+1)+1}\star\dd\star=-\star\dd\star$ で、$\tilde\star$ は $2$ 形式上 $e^{-2u}\star$ だから $\tilde\delta\alpha=-\tilde\star\dd\tilde\star\alpha=e^{-2u}\delta\alpha$。ゆえに $\tilde\delta\alpha=0\iff\delta\alpha=0$。閉性は計量によらない。Dirichlet エネルギー $\int\alpha\wedge\tilde\star\alpha=\int\alpha\wedge\star\alpha$。
+(c) $n=4$, $k=2$：$\tilde\star=e^{0}\star=\star$ なので $\star F=\pm F$ は計量の共形類にのみ依存。$n=3$, $k=1$：$\tilde\star F=e^{u}\star F$、$\dd(\tilde\star F)=e^u(\dd u\wedge\star F+\dd\star F)$ で、$\dd\star F=0$ が成り立っていても $\dd u\wedge\star F$ が一般に $0$ でないから、共形変換で方程式 $\dd\star F=0$ は保たれない。
+\end{soll}
+
+\begin{soll}{B_torus}
+(a) $\pa_y(2+\cos x\sin y)=\cos x\cos y=\pa_x(3+\sin x\cos y)$ で閉。$\omega=2\,\dd x+3\,\dd y+\dd(\sin x\sin y)$（$\dd(\sin x\sin y)=\cos x\sin y\,\dd x+\sin x\cos y\,\dd y$）。$\sin x\sin y$ の Fourier 係数に $m=0$ 項がなく、$h=\omega_0=2\,\dd x+3\,\dd y$（$\cos x\sin y$ 等の $m=0$ 成分は $0$）。
+(b) $\beta=\sin y\,\dd x=\frac1{2i}(e^{iy}-e^{-iy})\dd x$ で $\beta_0=0$、$m=(0,\pm1)$ の項だけ。$\iota_m\dd x=m_1=0$ だから $\alpha=0$。$\beta$ の公式で $m=(0,1)$：$\theta_m=\dd y$, $\omega_m=\frac1{2i}\dd x$、項は $\frac{i}{1}e^{iy}\dd y\wedge\frac{\dd x}{2i}=\frac12e^{iy}\dd y\wedge\dd x$。$m=(0,-1)$：$\theta_m=-\dd y$, $\omega_m=-\frac1{2i}\dd x$、項は $ie^{-iy}(-\dd y)\wedge(-\frac{\dd x}{2i})=\frac12e^{-iy}\dd y\wedge\dd x$。和 $\gamma=\cos y\,\dd y\wedge\dd x=-\cos y\,\dd x\wedge\dd y$。検算：$\gamma=g\,\dd x\wedge\dd y$（$g=-\cos y$）、$\delta\gamma=-\iota_{\pa_x}\pa_x\gamma-\iota_{\pa_y}\pa_y\gamma=-g_x\dd y+g_y\dd x=\sin y\,\dd x=\beta$ ✓。よって $\beta=0+\dd0+\delta\gamma$。
+(c) $\|h\|^2=\int(2^2+3^2)\,\dd x\dd y=13\cdot4\pi^2=52\pi^2$。$\|\dd(\sin x\sin y)\|^2=\int(\cos^2x\sin^2y+\sin^2x\cos^2y)\dd x\dd y=\pi\cdot\pi+\pi\cdot\pi=2\pi^2$、$h$ との交差項は $\int(2\cos x\sin y+3\sin x\cos y)=0$。$\|\omega\|^2=54\pi^2\ge52\pi^2=\|h\|^2$ ✓（系~\ref{B:cor:minim}）。
+\end{soll}
+
+\begin{soll}{B_sd}
+(a) 命題~\ref{B:prop:Lap}(iv) と $4$ 次元の $2$ 形式で $\star\star=1$：$\alpha\in\mathcal H^2$ なら $\star\alpha\in\mathcal H^2$。$\alpha^\pm=\frac12(\alpha\pm\star\alpha)\in\mathcal H^2$ で $\star\alpha^\pm=\pm\alpha^\pm$。よって $\mathcal H^2=\mathcal H^+\oplus\mathcal H^-$。
+(b) $\star$ は対称な等長：$\langle\star\alpha,\beta\rangle=\langle\star\alpha,\star\star\beta\rangle=\langle\alpha,\star\beta\rangle$。$\alpha\in\Lambda^+,\beta\in\Lambda^-$ なら $\langle\alpha,\beta\rangle=\langle\star\alpha,\beta\rangle=\langle\alpha,\star\beta\rangle=-\langle\alpha,\beta\rangle$、よって $0$。$\alpha,\beta\in\mathcal H^+$：$\int\alpha\wedge\beta=\int\alpha\wedge\star\beta=(\alpha,\beta)$ で $\alpha=\beta\ne0$ なら正。$\mathcal H^-$ では $\int\alpha\wedge\beta=-\int\alpha\wedge\star\beta=-(\alpha,\beta)$ で負定値。$\alpha\in\mathcal H^+,\beta\in\mathcal H^-$：$\int\alpha\wedge\beta=-\int\alpha\wedge\star\beta=-(\alpha,\beta)=0$（$L^2$ 直交は点ごとの直交から）。したがって $Q$ は $\mathcal H^+\oplus\mathcal H^-\cong H^2$ 上でブロック対角、符号 $(\dim\mathcal H^+,\dim\mathcal H^-)$。
+(c) 平坦 $T^4$：$\mathcal H^2$ は定数係数の $2$ 形式（定理~\ref{B:thm:HodgeT}）で $\star$ は定数係数を保つので $\mathcal H^\pm=\Lambda^\pm$（定数係数）、次元はそれぞれ $3$。
+\end{soll}
+
+\begin{soll}{B_hodge2d}
+$\dd\alpha=(v_x-u_y)\dd x\wedge\dd y$、$\delta\alpha=-(u_x+v_y)$（式~\eqref{B:eq:deltaflat}）。したがって $\dd\alpha=0,\delta\alpha=0$ は $v_x=u_y$, $u_x=-v_y$。$f=u-iv=U+iV$（$U=u$, $V=-v$）に対し Cauchy--Riemann 方程式は $U_x=V_y$, $U_y=-V_x$、すなわち $u_x=-v_y$, $u_y=v_x$ で、上と同値。$\Re(f\,\dd z)=\Re\bigl((u-iv)(\dd x+i\,\dd y)\bigr)=u\,\dd x+v\,\dd y=\alpha$。
+\end{soll}
+
+\begin{soll}{B_minim}
+(a) $\omega-h=\dd\eta$（類が同じ）、$(h,\dd\eta)=(\delta h,\eta)=0$ だから $\|\omega\|^2=\|h+(\omega-h)\|^2=\|h\|^2+\|\omega-h\|^2$。
+(b) $\dd\theta^\sharp=\pa_\theta$、$|\omega|^2=f^2$、$\|\omega\|^2=\int_0^{2\pi}f^2\dd\theta$。調和形式は定数係数（$\Delta=-\pa_\theta^2$）で、同じ類（周期 $c$）の調和形式は $h=\frac c{2\pi}\dd\theta$。$\|h\|^2=\frac{c^2}{4\pi^2}2\pi=\frac{c^2}{2\pi}$。(a) より $\|\omega\|^2=\frac{c^2}{2\pi}+\int\bigl(f-\frac c{2\pi}\bigr)^2\dd\theta\ge\frac{c^2}{2\pi}$、等号は $f\equiv c/2\pi$ のとき。
+(c) $c=\int_0^{2\pi}f\,\dd\theta$ で (b) を使うと $\bigl(\int f\bigr)^2\le2\pi\int f^2$。
+\end{soll}

@@ -1,0 +1,98 @@
+OK   [R,E]=0 on R^2
+OK   [L1,L2]=-L3 (vector fields)
+OK   [L2,L3]=-L1
+OK   [L3,L1]=-L2
+OK   Witt [e_0,e_0]
+OK   Witt [e_0,e_1]
+OK   Witt [e_0,e_2]
+OK   Witt [e_0,e_3]
+OK   Witt [e_1,e_0]
+OK   Witt [e_1,e_1]
+OK   Witt [e_1,e_2]
+OK   Witt [e_1,e_3]
+OK   Witt [e_2,e_0]
+OK   Witt [e_2,e_1]
+OK   Witt [e_2,e_2]
+OK   Witt [e_2,e_3]
+OK   Witt [e_3,e_0]
+OK   Witt [e_3,e_1]
+OK   Witt [e_3,e_2]
+OK   Witt [e_3,e_3]
+OK   [d_x+y d_z,d_y]=-d_z
+OK   [xd_x+yd_y+zd_z,d_x]=-d_x
+OK   Jacobi X=dx,Y=x dy,Z=x^2 dz : [{}, {}, {}]
+OK   [X,Y]=x d_z
+OK   [Y,Z]=y d_x
+OK   [Z,X]=z d_y
+OK   [X,[Y,Z]]=x d_x - y d_y
+OK   [Y,[Z,X]]=y d_y - z d_z
+OK   [Z,[X,Y]]=z d_z - x d_x
+OK   D=span(dx+y dz, dy+x dz) involutive ([.,.]=0)
+OK   [dx+z dy,dz]=-dy
+OK   z[R1,R2] = x R1 + y R2
+OK   [a d_a,a d_b]=a d_b
+OK   x d_x, d_x loop: displacement ~ -t^2 : -0.9995001665208392
+OK   d_x, x d_y loop from (1,0) is (1,t^2)
+OK   Lie derivative = [X,Y] numerically : (array([0.2       , 0.17499994]), array([0.2  , 0.175]))
+OK   Lie_X Y for rotation, Y=d_x: d/dt R_{-t}e1 = (0,-1)
+OK   [X_A,X_B]=X_[A,B] on GL(2)
+OK   [hatA,hatB] = hat(BA-AB)
+OK   [L_i,L_j]=eps_ijk L_k
+OK   L_i v = e_i x v
+OK   L1 matrix
+OK   su(2): [e_i,e_j]=eps e_k
+OK   alpha^beta(v,w)=4
+OK   alpha^beta = e12 - e13 - 2 e23 : {(0, 1): np.int64(1), (0, 2): np.int64(-1), (1, 2): np.int64(-2)}
+OK   alpha^beta(v,w) via expansion
+OK   alpha^beta^gamma = -e123
+OK   signature (n,n) : [-0.5 -0.5 -0.5  0.5  0.5  0.5]
+OK   <x,x> = xi(v) = 1
+OK   e^B orthogonal for skew B
+OK   e^B not orthogonal for non-skew B
+OK   J^2=-1
+OK   e1 - i J e1 = e1 - i e2 eigen i
+OK   omega(Je1,e3)= i omega(e1,e3)
+OK   dz1^dz2 = e13+i e14 + i e23 - e24
+OK   h(e1,e2)=-i, h(Je1,e2)=i h(e1,e2)
+OK   calJ_J orthogonal for pairing
+OK   folium point on curve
+OK   g'(3/2)=-1 : (Fraction(9, 4), Fraction(9, 4))
+OK   Picard iterates: coefficients 1/j!
+OK   det D(inversion) = -|u|^-2n (n=2)
+OK   det D(antipodal in chart) = (-1)^(n+1)|u|^-2n (n=2)
+OK   det D(inversion) = -|u|^-2n (n=2)
+OK   det D(antipodal in chart) = (-1)^(n+1)|u|^-2n (n=2)
+OK   det D(inversion) = -|u|^-2n (n=2)
+OK   det D(antipodal in chart) = (-1)^(n+1)|u|^-2n (n=2)
+OK   det D(inversion) = -|u|^-2n (n=3)
+OK   det D(antipodal in chart) = (-1)^(n+1)|u|^-2n (n=3)
+OK   det D(inversion) = -|u|^-2n (n=3)
+OK   det D(antipodal in chart) = (-1)^(n+1)|u|^-2n (n=3)
+OK   det D(inversion) = -|u|^-2n (n=3)
+OK   det D(antipodal in chart) = (-1)^(n+1)|u|^-2n (n=3)
+OK   sigma_N(-x) = -u/|u|^2
+OK   sigma_N(-x) = -u/|u|^2
+OK   sigma_N(-x) = -u/|u|^2
+OK   sigma_N^{-1} on sphere
+OK   sigma_S sigma_N^{-1} = u/|u|^2
+OK   RP2 Jacobian = -1/u^3
+OK   RP2 Jacobian = -1/u^3
+OK   RP2 Jacobian = -1/u^3
+OK   A^T H + H^T A = S (n=2); dim O(n)=1
+OK   A^T H + H^T A = S (n=3); dim O(n)=3
+OK   A^T H + H^T A = S (n=4); dim O(n)=6
+OK   d det formula
+OK   torus: F=1 and grad!=0 on parametrized torus
+OK   figure-eight: no distinct params give same point (grid)
+OK   figure-eight: velocity never 0
+OK   figure-eight: beta(t)->0 as t->+-pi
+OK   conj(sigma_S)=1/sigma_N
+OK   partition of unity on S^1: rho2=1 on |th|<=pi/4, 0 on |th|>=3pi/4
+OK   oint y dx over ccw circle = -pi r^2 : -9.079202767381034
+OK   Kronecker: after x-time 1 the y-coordinate is y0+a
+OK   x^2 flow x0/(1-x0 t)
+OK   d/dt x0/(1-x0 t)= x^2
+OK   d_r=(x dx+y dy)/r, d_th = x dy - y dx
+OK   dF(d_x)=2x d_u+2y d_v
+OK   dF at -p of d_x is minus that
+ALL OK
