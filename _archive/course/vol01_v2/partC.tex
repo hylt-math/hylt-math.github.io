@@ -11,6 +11,8 @@
 \providecommand{\Hol}{\operatorname{Hol}}
 \providecommand{\Cinf}{C^\infty}
 \providecommand{\KK}{\mathbb K}
+% 点検3：tr, End, Hom, rk, ch, Td を演算子として組む（「EndE」「trXtrY」のように詰まらないように）。§7 以降にだけ効く。
+% (演算子 tr, End, Hom, rk, ch, Td は pre_vol01.tex で一括定義)
 
 \section{ベクトル束}
 \label{C:sec7}
@@ -45,7 +47,7 @@
 \begin{equation}\label{C:eq:transition}
 \Phi_\alpha\circ\Phi_\beta^{-1}(p,v)=(p,\,g_{\alpha\beta}(p)\,v),\qquad g_{\alpha\beta}:U_{\alpha\beta}\to\GL(r,\KK)
 \end{equation}
-と書ける（ファイバーごとの線形同型だから）。$g_{\alpha\beta}$ は滑らかである：$g_{\alpha\beta}(p)e_j=\mathrm{pr}_2\Phi_\alpha\Phi_\beta^{-1}(p,e_j)$ が $p$ の滑らかな関数であり、これが行列 $g_{\alpha\beta}(p)$ の第 $j$ 列だからである。$\{g_{\alpha\beta}\}$ を\emph{貼り合わせ関数}（遷移関数、transition functions）という。
+と書ける（ファイバーごとの線形同型だから）。$g_{\alpha\beta}$ は滑らかである。実際、$\KK^r$ の標準基底を $e_1,\dots,e_r$ とすると、行列 $g_{\alpha\beta}(p)$ の第 $b$ 列 $g_{\alpha\beta}(p)e_b=\mathrm{pr}_2\Phi_\alpha\Phi_\beta^{-1}(p,e_b)$ は $p$ の滑らかな関数である。成分は $g_{\alpha\beta}(p)e_b=\sum_ae_a\,(g_{\alpha\beta})^a{}_b(p)$ と書く（上が行、下が列）。$\{g_{\alpha\beta}\}$ を\emph{貼り合わせ関数}（遷移関数、transition functions）という。
 
 \begin{figure}[ht]
 \centering
@@ -58,7 +60,11 @@
 \foreach \x/\ya/\yb in {1/1.55/3.35,2.2/1.68/3.55,3.5/1.55/3.31,4.8/1.33/3.0,6.0/1.3/3.0,7.2/1.5/3.3}{
  \draw[gray!70] (\x,\ya) -- (\x,\yb);
 }
-\node[font=\small] at (2.2,3.9) {$E_p\cong\KK^r$};
+% 1 本のファイバー E_p を強調し、ラベルをその真上に置く（点検3）
+\draw[very thick] (2.2,1.68) -- (2.2,3.55);
+\node[font=\small,anchor=south] at (2.2,3.6) {$E_p\cong\KK^r$};
+\draw[gray,dashed] (2.2,0.05) -- (2.2,1.6);
+\fill (2.2,0) circle (1.5pt); \node[font=\small,anchor=south east] at (2.17,0.02) {$p$};
 \node[font=\small,anchor=west] at (8.1,2.5) {全空間 $E$};
 % projection
 \draw[->,thick] (4,0.95) -- (4,0.35); \node[right,font=\small] at (4.05,0.65) {$\pi$};
@@ -82,7 +88,7 @@ g_{\alpha\beta}\,g_{\beta\gamma}=g_{\alpha\gamma}\ \text{ on }U_{\alpha\beta\gam
 \end{equation}
 これを\emph{コサイクル条件}という。（$\alpha=\beta=\gamma$ とおくと $g_{\alpha\alpha}^2=g_{\alpha\alpha}$、$g_{\alpha\alpha}$ は可逆なので $I$。$\gamma=\alpha$ とおくと $g_{\alpha\beta}g_{\beta\alpha}=I$。）
 
-\paragraph{規約（枠との関係）。}自明化 $\Phi_\alpha$ のもとで切断 $s$（定義~\ref{C:def:sec}）の成分を $\sigma_\alpha:U_\alpha\to\KK^r$ とすると、\eqref{C:eq:transition} より $\sigma_\alpha=g_{\alpha\beta}\sigma_\beta$。対応する局所枠を $e_\alpha=(e_{\alpha,1},\dots,e_{\alpha,r})$（$e_{\alpha,j}=\Phi_\alpha^{-1}(\cdot,\text{第 }j\text{ 標準基底})$）とすると $e_\beta=e_\alpha\,g_{\alpha\beta}$（枠は行ベクトルと見て右から行列を掛ける）。これは「枠の変換 $e'=eg$ のとき成分は $\sigma=g\sigma'$」という本巻の規約と一致する。以後、$e'=eg$ とあれば $e=e_\alpha$, $e'=e_\beta$, $g=g_{\alpha\beta}$ と読む。
+\paragraph{規約（枠との関係）。}自明化 $\Phi_\alpha$ のもとで切断 $s$（定義~\ref{C:def:sec}）の成分を $\sigma_\alpha:U_\alpha\to\KK^r$ とすると、\eqref{C:eq:transition} より $\sigma_\alpha=g_{\alpha\beta}\sigma_\beta$。対応する局所枠を $e_\alpha=(e_{\alpha,1},\dots,e_{\alpha,r})$（$e_{\alpha,b}=\Phi_\alpha^{-1}(\cdot,e_b)$）とすると $e_\beta=e_\alpha\,g_{\alpha\beta}$、成分では $e_{\beta,b}=\sum_ae_{\alpha,a}(g_{\alpha\beta})^a{}_b$（枠は行ベクトルと見て右から行列を掛ける）。これは「枠の変換 $e'=eg$ のとき成分は $\sigma=g\sigma'$」という本巻の規約と一致する。以後、$e'=eg$ とあれば $e=e_\alpha$, $e'=e_\beta$, $g=g_{\alpha\beta}$ と読む。
 
 \subsection{例}
 \begin{ex}[自明束]\label{C:ex:trivial}
@@ -90,7 +96,7 @@ $\varepsilon^r_{\KK}=M\times\KK^r$（$\pi=\mathrm{pr}_1$）。1 枚の自明化 
 \end{ex}
 
 \begin{ex}[接束・余接束]\label{C:ex:TM}
-$M$ の座標近傍 $(U_\alpha,x_\alpha)$ に対し、$\Phi_\alpha(v)=(p,(v^1,\dots,v^n))$（$v=v^i\partial/\partial x_\alpha^i$）が $TM$ の自明化。座標変換 $x_\alpha=x_\alpha(x_\beta)$ のもとで $v^i_\alpha=\frac{\partial x_\alpha^i}{\partial x_\beta^j}v^j_\beta$ なので、貼り合わせ関数は Jacobi 行列 $g_{\alpha\beta}=\partial x_\alpha/\partial x_\beta$。コサイクル条件は連鎖律そのもの。同様に $T^*M$ の貼り合わせ関数は $(g_{\alpha\beta}^{-1})^T$（余接ベクトルの成分は $\xi_{\beta,j}=\frac{\partial x_\alpha^i}{\partial x_\beta^j}\xi_{\alpha,i}$ と変わる）。
+$M$ の座標近傍 $(U_\alpha,x_\alpha)$ に対し、$v=v^i\partial/\partial x_\alpha^i\in T_pM$ を $(p,(v^1,\dots,v^n))$ に写す $\Phi_\alpha$ が $TM$ の自明化。座標変換 $x_\alpha=x_\alpha(x_\beta)$ のもとで $v^i_\alpha=\frac{\partial x_\alpha^i}{\partial x_\beta^j}v^j_\beta$ なので、貼り合わせ関数は Jacobi 行列 $g_{\alpha\beta}=\partial x_\alpha/\partial x_\beta$。コサイクル条件は連鎖律そのもの。同様に $T^*M$ の貼り合わせ関数は $(g_{\alpha\beta}^{-1})^T$（余接ベクトルの成分は $\xi_{\beta,j}=\frac{\partial x_\alpha^i}{\partial x_\beta^j}\xi_{\alpha,i}$ と変わる）。
 \end{ex}
 
 \begin{ex}[Möbius 束]\label{C:ex:mobius}
@@ -102,35 +108,35 @@ $\R^2=\{(t,v)\}$ に $\Z$ を $n\cdot(t,v)=(t+n,(-1)^nv)$ で作用させ、商 
 \begin{tikzpicture}[scale=1.0]
 \fill[orange!10] (0,-1.3) rectangle (6,1.3);
 \draw[thick] (0,-1.3) rectangle (6,1.3);
-\draw[gray] (0,0) -- (6,0); \node[gray,font=\small] at (1.3,-0.3) {零切断 $v=0$};
 \foreach \x in {1,2,3,4,5}{\draw[gray!60] (\x,-1.3)--(\x,1.3);}
+\draw[gray] (0,0) -- (6,0); \node[gray!70!black,font=\small,fill=orange!10,inner sep=1.5pt] at (1.5,-0.3) {零切断 $v=0$};
 \draw[very thick,->,blue!60!black] (-0.3,-1.0) -- (-0.3,1.0) node[midway,left,font=\small]{$v$};
 \draw[very thick,->,blue!60!black] (6.3,1.0) -- (6.3,-1.0) node[midway,right,font=\small]{$v$};
 \node[font=\small] at (0,-1.7) {$(0,v)$};\node[font=\small] at (6,-1.7) {$(1,-v)\sim(0,v)$};
 \draw[very thick,red!70!black] (0,0.8) .. controls (1.5,1.0) and (2.2,0.4) .. (3,0) .. controls (3.8,-0.4) and (4.5,-0.9) .. (6,-0.8);
-\node[red!70!black,font=\small] at (2.4,0.95) {切断 $s$};
+\node[red!70!black,font=\small,fill=orange!10,inner sep=1.5pt] at (2.5,0.95) {切断 $s$};
 \fill[red!70!black] (3,0) circle (2pt);
-\node[red!70!black,font=\small] at (3,-0.45) {零点};
+\node[red!70!black,font=\small,fill=orange!10,inner sep=1.5pt] at (3.5,0.32) {零点};
 \draw[<->] (0,-2.2) -- (6,-2.2); \node[font=\small,fill=white] at (3,-2.2) {$t\in[0,1]$};
 \end{tikzpicture}
 \caption{Möbius 束：長方形 $[0,1]\times\R$ の左右の辺を $(0,v)\sim(1,-v)$ と貼る。切断は左端で $s(0)=v_0$、右端で $s(1)=-v_0$ となるから、中間値の定理により零点をもつ。したがって自明でない。}
 \label{C:fig:mobius}
 \end{figure}
 
-\begin{ex}[タウトロジー束（tautological bundle）$\mathcal O(-1)$]\label{C:ex:taut}
-$\CP^n=\{\C^{n+1}\text{ の原点を通る複素直線}\}$ 上に
+\begin{ex}[タウトロジー束 $\mathcal O(-1)$]\label{C:ex:taut}
+\emph{タウトロジー束}（tautological bundle）を定義する。$\CP^n=\{\C^{n+1}\text{ の原点を通る複素直線}\}$ 上に
 \[
 \mathcal O(-1):=\{([\ell],v)\in\CP^n\times\C^{n+1}:\ v\in\ell\}
 \]
-を考える。ファイバー $\mathcal O(-1)_{[\ell]}=\ell$ は 1 次元複素ベクトル空間。斉次座標 $[z_0:\dots:z_n]$ に対し $U_i=\{z_i\ne0\}$ とおく。$[\ell]\in U_i$ では、$v\in\ell$ の第 $i$ 成分を取る写像 $\ell\to\C$, $v\mapsto v_i$ は線形同型（$\ell$ の生成元 $z=(z_0,\dots,z_n)$ の第 $i$ 成分が $z_i\ne0$）。そこで
+を考える。ファイバー $\mathcal O(-1)_{[\ell]}=\ell$ は 1 次元複素ベクトル空間。同次座標 $[z_0:\dots:z_n]$ に対し $U_i=\{z_i\ne0\}$ とおく（§2.3 と同じく、同次座標 $z_i$ やその比、$U_i$, $\Phi_i$, $g_{ij}$ の添字 $i,j$ は番号として下付きで書き、和の規約は使わない）。$[\ell]\in U_i$ では、$v\in\ell$ の第 $i$ 成分を取る写像 $\ell\to\C$, $v\mapsto v_i$ は線形同型（$\ell$ の生成元 $z=(z_0,\dots,z_n)$ の第 $i$ 成分が $z_i\ne0$）。そこで
 \[
 \Phi_i([\ell],v)=([\ell],v_i)\in U_i\times\C
 \]
 とする。逆写像は $([z],a)\mapsto([z],\,a\,z/z_i)$ で滑らか。重なり $U_{ij}$ 上で $\Phi_j^{-1}([z],a)=([z],az/z_j)$ の第 $i$ 成分は $az_i/z_j$ だから
 \[
-g_{ij}([z])=\frac{z_i}{z_j}\quad(\text{斉次座標の比で well-defined}).
+g_{ij}([z])=\frac{z_i}{z_j}\quad\text{（同次座標の比で well-defined）}
 \]
-コサイクル条件 $\frac{z_i}{z_j}\frac{z_j}{z_k}=\frac{z_i}{z_k}$ は明らか。特に $\CP^1$ で、$U_0$ の座標 $z=z_1/z_0$ を使うと $U_0$ の枠 $e_0=(1,z)$（ベクトル $(1,z)\in\ell$）、$U_1$ の座標 $w=z_0/z_1=1/z$ の枠 $e_1=(w,1)$ で、重なりで $e_0=(1,z)=z\,(w,1)=z\,e_1$ 。すなわち $e_1=e_0\,z^{-1}$ だから $g_{01}=z^{-1}$, $g_{10}=z$。実版 $\mathcal O_{\RP^n}(-1)$ も同様で、$\RP^1\cong S^1$ 上の貼り合わせ関数 $g_{10}=z_1/z_0\in\R^\times$ は $U_{01}$ の 2 つの成分で正と負の値をとる。したがって $\mathcal O_{\RP^1}(-1)$ は例~\ref{C:ex:mobius} の Möbius 束と同型である（図~\ref{C:fig:taut}）。
+コサイクル条件 $\frac{z_i}{z_j}\frac{z_j}{z_k}=\frac{z_i}{z_k}$ は明らか。特に $\CP^1$ で、$U_0$ の座標 $z=z_1/z_0$ を使うと $U_0$ の枠 $e_0=(1,z)$（ベクトル $(1,z)\in\ell$）、$U_1$ の座標 $w=z_0/z_1=1/z$ の枠 $e_1=(w,1)$ で、重なりで $e_0=(1,z)=z\,(w,1)=z\,e_1$。すなわち $e_1=e_0\,z^{-1}$ だから $g_{01}=z^{-1}$, $g_{10}=z$。実版 $\mathcal O_{\RP^n}(-1)$ も同様で、$\RP^1\cong S^1$ 上の貼り合わせ関数 $g_{10}=z_1/z_0\in\R^\times$ は $U_{01}$ の 2 つの成分で正と負の値をとる。したがって $\mathcal O_{\RP^1}(-1)$ は例~\ref{C:ex:mobius} の Möbius 束と同型である（図~\ref{C:fig:taut}）。
 \end{ex}
 
 \begin{figure}[ht]
@@ -145,7 +151,7 @@ g_{ij}([z])=\frac{z_i}{z_j}\quad(\text{斉次座標の比で well-defined}).
 \node[green!45!black,font=\small,anchor=south] at (-0.55,2.3) {$\ell_{100}$};
 \node[orange!80!black,font=\small,anchor=south east] at (-2.6,1.35) {$\ell_{150}$};
 \draw[->,very thick,red!60!black] (0,0) -- ({1.2*cos(40)},{0.88*sin(40)*1.0});
-\node[font=\small] at (0.35,-2.3) {$\RP^1=\{\text{原点を通る直線 }\ell\}$、$\mathcal O(-1)_\ell=\ell$};
+\node[font=\small] at (0.2,-2.9) {$\RP^1=\{\text{原点を通る直線 }\ell\}$、$\mathcal O(-1)_\ell=\ell$};
 \end{tikzpicture}
 \caption{$\RP^1$ のタウトロジー束：点 $\ell$ のファイバーは直線 $\ell$ そのもの。$\ell$ を $180^\circ$ 回すと元に戻るが、$\ell$ 上のベクトルは $-1$ 倍になる。}
 \label{C:fig:taut}
@@ -189,7 +195,7 @@ $\CP^1=U_0\cup U_1$（$U_0=\C\ni z$, $U_1=\C\ni w=1/z$）で、重なり $U_{01}
 \item ベクトル束 $E,F\to M$ の\emph{準同型}は、滑らかな写像 $f:E\to F$ で、$\pi_F\circ f=\pi_E$ かつ各ファイバー上で線形 $E_p\to F_p$ であるもの。逆も準同型であるとき\emph{同型}、$E\cong F$ と書く。
 \end{itemize}
 \end{defn}
-局所枠 $e$ を取ると $s=e\sigma:=\sum_je_j\sigma^j$（$\sigma:U\to\KK^r$ は滑らかな「成分」）と書け、自明化 $\Phi_\alpha$ に対応する枠 $e_\alpha$ では $\Phi_\alpha(s)=(p,\sigma_\alpha)$。上の規約のとおり、重なりで $\sigma_\alpha=g_{\alpha\beta}\sigma_\beta$。逆に、$\{\sigma_\alpha:U_\alpha\to\KK^r\}$ が $\sigma_\alpha=g_{\alpha\beta}\sigma_\beta$ をみたせば大域切断がひとつ定まる。
+局所枠 $e$ を取ると $s=e\sigma:=\sum_ae_a\sigma^a$（$\sigma:U\to\KK^r$ は滑らかな「成分」）と書け、自明化 $\Phi_\alpha$ に対応する枠 $e_\alpha$ では $\Phi_\alpha(s)=(p,\sigma_\alpha)$。上の規約のとおり、重なりで $\sigma_\alpha=g_{\alpha\beta}\sigma_\beta$。逆に、$\{\sigma_\alpha:U_\alpha\to\KK^r\}$ が $\sigma_\alpha=g_{\alpha\beta}\sigma_\beta$ をみたせば大域切断がひとつ定まる。
 
 \begin{lem}\label{C:lem:iso}\tP\
 束の準同型 $f:E\to F$（同じ底空間上）が各ファイバー上で線形同型ならば、$f$ は束の同型である。
@@ -202,7 +208,7 @@ $\CP^1=U_0\cup U_1$（$U_0=\C\ni z$, $U_1=\C\ni w=1/z$）で、重なり $U_{01}
 階数 $r$ の束 $E\to M$ について、次は同値。(a) $E\cong\varepsilon^r$。(b) 大域枠が存在する。特に、直線束が自明であることと、至る所 $0$ でない大域切断が存在することは同値。
 \end{prop}
 \begin{proof}
-(a)$\Rightarrow$(b)：$\Phi:E\to M\times\KK^r$ が同型なら $e_j=\Phi^{-1}(\cdot,\text{第 }j\text{ 基底})$ が大域枠。(b)$\Rightarrow$(a)：$f(p,v)=\sum v^je_j(p)$ は $M\times\KK^r\to E$ の準同型でファイバーごとに同型（$e(p)$ は基底）。補題~\ref{C:lem:iso} による。
+(a)$\Rightarrow$(b)：$\Phi:E\to M\times\KK^r$ が同型なら $e_a=\Phi^{-1}(\cdot,\text{第 }a\text{ 標準基底})$ が大域枠。(b)$\Rightarrow$(a)：$f(p,v)=\sum_av^ae_a(p)$ は $M\times\KK^r\to E$ の準同型でファイバーごとに同型（$e(p)$ は基底）。補題~\ref{C:lem:iso} による。
 \end{proof}
 
 \begin{ex}[Möbius 束は自明でない]
@@ -230,7 +236,7 @@ g'_{\alpha\beta}=h_\alpha\,g_{\alpha\beta}\,h_\beta^{-1}\quad\text{on }U_{\alpha
 束 & 階数 & 貼り合わせ関数\\
 \midrule
 $E\oplus F$ & $r+s$ & $g_{\alpha\beta}\oplus h_{\alpha\beta}$（ブロック対角）\\
-$E\otimes F$ & $rs$ & $g_{\alpha\beta}\otimes h_{\alpha\beta}$ （Kronecker 積）\\
+$E\otimes F$ & $rs$ & $g_{\alpha\beta}\otimes h_{\alpha\beta}$（Kronecker 積）\\
 $E^*$ & $r$ & $(g_{\alpha\beta}^{-1})^T$\\
 $\Hom(E,F)=E^*\otimes F$ & $rs$ & $X\mapsto h_{\alpha\beta}Xg_{\alpha\beta}^{-1}$\\
 $\End E$ & $r^2$ & $X\mapsto g_{\alpha\beta}Xg_{\alpha\beta}^{-1}$\\
@@ -249,7 +255,7 @@ $TM\otimes_\R\C$ は複素束で、§1 の $V\otimes\C=V^{1,0}\oplus V^{0,1}$ �
 \end{ex}
 
 \begin{ex}[$TM\oplus T^*M$]\label{C:ex:TTstar}
-$TM\oplus T^*M$ の切断は $X+\xi$。§1 の自然な双線形形式 $\langle X+\xi,Y+\eta\rangle=\frac12(\xi(Y)+\eta(X))$ をファイバーごとに適用すると、符号 $(n,n)$ のファイバー計量が得られる。貼り合わせ関数は $\begin{psmallmatrix}g&0\\0&(g^{-1})^T\end{psmallmatrix}$ の形で、この形式を保つ行列、すなわち $\mathrm O(n,n)$ の元（の特別な部分群 $\GL(n)\subset\mathrm O(n,n)$）に値をもつ。つまり $TM\oplus T^*M$ は「構造群が $\mathrm O(n,n)$ に簡約された」束である（簡約は \S7.6）。この形式で $TM\oplus T^*M$ を扱うのが一般化幾何（第12巻）。
+$TM\oplus T^*M$ の切断は $X+\xi$。§1 の自然な双線形形式 $\langle X+\xi,Y+\eta\rangle=\frac12(\xi(Y)+\eta(X))$ をファイバーごとに適用すると、符号 $(n,n)$ のファイバー計量が得られる。貼り合わせ関数は $\begin{psmallmatrix}g&0\\0&(g^{-1})^T\end{psmallmatrix}$ の形で、この形式を保つ行列、すなわち $\mathrm O(n,n)$ の元（の特別な部分群 $\GL(n)\subset\mathrm O(n,n)$）に値をもつ。つまり $TM\oplus T^*M$ は「構造群が $\mathrm O(n,n)$ に簡約された」束である（簡約は §7.6）。この形式で $TM\oplus T^*M$ を扱うのが一般化幾何（第12巻）。
 \end{ex}
 
 \subsection{部分束・商束・完全列・Hermite 計量}
@@ -259,7 +265,7 @@ $E\to M$ の\emph{部分束}（subbundle）$S\subset E$ とは、各ファイバ
 \begin{ex}
 (1) $\mathcal O(-1)\subset\CP^n\times\C^{n+1}$ は部分束で、$Q=\CP^n\times\C^{n+1}/\mathcal O(-1)$ は\emph{普遍商束}。(2) $TS^n\subset S^n\times\R^{n+1}$ で $0\to TS^n\to\varepsilon^{n+1}\to N\to0$。(3) $D$ が $M$ の分布（§3.9）ならば、定義から $D\subset TM$ は部分束。Frobenius の定理（§3）は $D$ が可積分であるための条件を $[\Gamma(D),\Gamma(D)]\subset\Gamma(D)$ で与えた。
 \end{ex}
-束の準同型 $f:E\to F$ の階数が一定ならば $\ker f$, $\mathrm{Im}f$ は部分束である（逆関数定理の定数階数版）。\tC\ （Lee, \emph{Introduction to Smooth Manifolds}, ベクトル束の章（第10章）。\tQ\ 定理番号は書かない）。
+束の準同型 $f:E\to F$ の階数が一定ならば $\ker f$, $\Ran f$ は部分束である（逆関数定理の定数階数版）。\tC\ （Lee, \emph{Introduction to Smooth Manifolds}, ベクトル束の章（第10章）。\tQ\ 定理番号は書かない）。
 
 \begin{defn}[ファイバー計量・Hermite 計量]\label{C:def:herm}
 実ベクトル束 $E$ の\emph{ファイバー計量}とは、各 $E_p$ 上の正定値対称双線形形式 $\langle\cdot,\cdot\rangle_p$ で、切断 $s,t$ に対し $p\mapsto\langle s,t\rangle_p$ が滑らかとなるもの。複素ベクトル束 $E$ の \emph{Hermite 計量} $h$ とは、各 $E_p$ 上の正定値 Hermite 形式（本巻の規約：第1成分で線形、第2成分で反線形、$h(v,u)=\overline{h(u,v)}$）で、$p\mapsto h(s,t)(p)$ が滑らかとなるもの。$TM$ のファイバー計量が Riemann 計量（§6）。
@@ -269,19 +275,19 @@ $E\to M$ の\emph{部分束}（subbundle）$S\subset E$ とは、各ファイバ
 任意のベクトル束 $E\to M$ にファイバー計量（複素束なら Hermite 計量）が存在する。
 \end{thm}
 \begin{proof}
-局所自明化 $\Phi_\alpha$ ごとに、$\KK^r$ の標準内積（標準 Hermite 形式）を引き戻して $h_\alpha(u,v)=\sum_j\sigma_\alpha^j(u)\overline{\sigma_\alpha^j(v)}$ とする（$\sigma_\alpha$ は $\Phi_\alpha$ のファイバー成分）。$\{\rho_\alpha\}$ を $\{U_\alpha\}$ に従属する 1 の分割（§2）として $h=\sum_\alpha\rho_\alpha h_\alpha$（各項は $\rho_\alpha$ の台の外では $0$ と定め、局所有限和）。各点 $p$ で $h_p$ は非負の係数 $\rho_\alpha(p)$（和は 1）による正定値形式の凸結合で、少なくとも 1 つの係数が正だから正定値。滑らかさは明らか。
+局所自明化 $\Phi_\alpha$ ごとに、$\KK^r$ の標準内積（標準 Hermite 形式）を引き戻して $h_\alpha(u,v)=\sum_{a,b}\delta_{ab}\,\sigma_\alpha^a(u)\overline{\sigma_\alpha^b(v)}$ とする（$\sigma_\alpha$ は $\Phi_\alpha$ のファイバー成分）。$\{\rho_\alpha\}$ を $\{U_\alpha\}$ に従属する 1 の分割（§2）として $h=\sum_\alpha\rho_\alpha h_\alpha$（各項は $\rho_\alpha$ の台の外では $0$ と定め、局所有限和）。各点 $p$ で $h_p$ は非負の係数 $\rho_\alpha(p)$（和は 1）による正定値形式の凸結合で、少なくとも 1 つの係数が正だから正定値。滑らかさは明らか。
 \end{proof}
 
 \begin{prop}[構造群のユニタリ簡約]\label{C:prop:unitary}\tP\
 $E$ に Hermite 計量 $h$ があれば、各点の近傍に $h$ に関する正規直交枠がとれ、それらの間の貼り合わせ関数は $\U(r)$ に値をもつ。実束の場合は $\mathrm O(r)$。
 \end{prop}
 \begin{proof}
-局所枠 $e$ に Gram--Schmidt を行う：$e_1'=e_1/\sqrt{h(e_1,e_1)}$, $e_2'=\bigl(e_2-h(e_2,e_1')e_1'\bigr)/\bigl\|e_2-h(e_2,e_1')e_1'\bigr\|$, $\dots$。分母は $e$ が基底であることから $0$ にならず、すべて滑らかな演算なので $e'$ は滑らかな正規直交枠。2 つの正規直交枠 $e,e'=eg$ について $\delta_{ij}=h(e'_i,e'_j)=\sum_{k,l}g^k{}_i\overline{g^l{}_j}h(e_k,e_l)=(g^T\overline g)_{ij}$ すなわち $g^*g=I$（$g^*=\bar g^T$）。
+局所枠 $e$ に Gram--Schmidt を行う：$e_1'=e_1/\sqrt{h(e_1,e_1)}$, $e_2'=\bigl(e_2-h(e_2,e_1')e_1'\bigr)/\bigl\|e_2-h(e_2,e_1')e_1'\bigr\|$, $\dots$。分母は $e$ が基底であることから $0$ にならず、すべて滑らかな演算なので $e'$ は滑らかな正規直交枠。2 つの正規直交枠 $e,e'=eg$ について $\delta_{ab}=h(e'_a,e'_b)=\sum_{c,d}g^c{}_a\overline{g^d{}_b}\,h(e_c,e_d)=\sum_{c,d}g^c{}_a\overline{g^d{}_b}\,\delta_{cd}=(g^T\overline g)_{ab}$ すなわち $g^*g=I$（$g^*=\bar g^T$）。
 \end{proof}
 これを「構造群が $\GL(r,\C)$ から $\U(r)$ に\emph{簡約}された」という。一般に、貼り合わせ関数が（適当な局所枠の選択により）すべて部分群 $G\subset\GL(r,\KK)$ に値をもつようにできるとき、構造群は $G$ に簡約されるという。典型例が上の命題で、計量（Hermite 計量）が与えられると、その正規直交枠だけを局所枠にとることで構造群が $\mathrm O(r)$（$\U(r)$）に簡約される。これは「枠に条件（ここでは正規直交）を課すと、枠の取り替えで許されるのは条件を保つ $g$ だけになる」ためである。同じ理由で、向きづけ可能な実束は $\GL^+(r,\R)$（正の向きの枠だけを使う）、$\det E$ の自明化があれば $\mathrm{SL}(r,\C)$（体積 $e_1\wedge\dots\wedge e_r$ が一定の枠だけを使う）、例~\ref{C:ex:TTstar} の $TM\oplus T^*M$ は $\mathrm O(n,n)$（$\langle\ ,\ \rangle$ に関する正規直交型の枠だけを使う）に簡約される。これらの詳細は各自確かめてみるとよい。
 
 \begin{thm}[完全列は分裂する]\label{C:thm:split}\tP\
-滑らかな実または複素ベクトル束の短完全列 $0\to S\xrightarrow{\iota}E\xrightarrow{p}Q\to0$ に対し、$E\cong S\oplus Q$ （同型は一意ではない）。
+滑らかな実または複素ベクトル束の短完全列 $0\to S\xrightarrow{\iota}E\xrightarrow{p}Q\to0$ に対し、$E\cong S\oplus Q$（同型は一意ではない）。
 \end{thm}
 \begin{proof}
 $E$ にファイバー計量 $h$（定理~\ref{C:thm:metric}）を取り、$S^\perp=\bigsqcup_p(\iota S_p)^\perp$ を考える。部分束であること：$\iota(S)$ の局所枠 $s_1,\dots,s_k$ を $E$ の局所枠 $s_1,\dots,s_k,t_{k+1},\dots,t_r$ に延ばして Gram--Schmidt すれば、後半の $r-k$ 個が $S^\perp$ の局所枠を与える（各点で滑らかに）。各点で $E_p=\iota S_p\oplus S_p^\perp$（直交分解）なので $E=\iota(S)\oplus S^\perp$。さらに $p|_{S^\perp}:S^\perp\to Q$ は各ファイバーで単射（$\ker p=\iota S$ と $S^\perp\cap\iota S=0$）かつ次元が等しく全射、したがって補題~\ref{C:lem:iso} により同型 $S^\perp\cong Q$。ゆえに $E\cong S\oplus Q$。
@@ -304,12 +310,12 @@ h(e_0,e_0)=1+|z|^2,
 \subsection{自明性と分類についての言及}
 \begin{itemize}
 \item \emph{可縮な底では自明。}$M$ が可縮ならば、$M$ 上のどのベクトル束も自明である。（より一般に、ホモトピックな写像による引き戻しは同型を与える。）\tC\ （Milnor--Stasheff §5、Husemoller \emph{Fibre Bundles}。\tQ\ 章・節番号は要確認）。特に、座標近傍が可縮なら局所自明、という構造は「どんな束も局所自明」と矛盾しない。
-\item \emph{分類。}階数 $r$ の複素ベクトル束の同型類は $[M,\mathrm{Gr}_r(\C^\infty)]=[M,B\U(r)]$ （$M$ からの写像のホモトピー類）と 1 対 1 に対応する。\tC\ （Milnor--Stasheff §5（Grassmann 多様体と普遍束）。\tQ\ ）。例えば球面 $S^n$ 上では、赤道 $S^{n-1}$ に沿った\emph{クラッチング関数} $g:S^{n-1}\to\U(r)$ のホモトピー類、すなわち $\pi_{n-1}(\U(r))$ が束の同型類を与える。$n=2$, $r=1$ では $\pi_1(\U(1))=\Z$ なので、$S^2$ 上の複素直線束の同型類は $\Z$ に対応し、これは $\int c_1$ に他ならない（§10）。
+\item \emph{分類。}階数 $r$ の複素ベクトル束の同型類は $[M,\mathrm{Gr}_r(\C^\infty)]=[M,B\U(r)]$（$M$ からの写像のホモトピー類）と 1 対 1 に対応する。\tC\ （Milnor--Stasheff §5（Grassmann 多様体と普遍束）。\tQ\ ）。例えば球面 $S^n$ 上では、赤道 $S^{n-1}$ に沿った\emph{クラッチング関数} $g:S^{n-1}\to\U(r)$ のホモトピー類、すなわち $\pi_{n-1}(\U(r))$ が束の同型類を与える。$n=2$, $r=1$ では $\pi_1(\U(1))=\Z$ なので、$S^2$ 上の複素直線束の同型類は $\Z$ に対応し、これは $\int c_1$ に他ならない（§10）。
 \item \emph{接束の自明性。}$TM$ が自明であるとき $M$ は\emph{平行化可能}（parallelizable）という。$S^1$：$\partial_\theta$ が大域枠。$S^3$, $S^7$：四元数・八元数の積による大域枠（下記）。$T^n$、Lie 群（§3 の左不変枠）も自明。$S^n$ が平行化可能なのは $n=1,3,7$ に限る（Bott--Milnor, Kervaire, 1958）\tC。$S^2$：Euler 標数が $2\ne0$ であり、「毛玉定理」（至る所 $0$ でないベクトル場は存在しない）より $TS^2$ は自明でない。§10 で $c_1(TS^2)\ne0$ から別証を与える。
 \end{itemize}
 
 \begin{ex}[$TS^3$ は自明]\label{C:ex:TS3}
-$S^3=\{p\in\mathbb H:|p|=1\}$ と見て（四元数 $\mathbb H=\R^4$）、$X_1(p)=ip$, $X_2(p)=jp$, $X_3(p)=kp$ とおく。内積は $\langle a,b\rangle=\mathrm{Re}(a\bar b)$。$\langle ip,p\rangle=\mathrm{Re}(ip\bar p)=\mathrm{Re}(i)=0$ より接ベクトル。$\langle ip,jp\rangle=\mathrm{Re}(ip\,\bar p\,\bar j)=\mathrm{Re}(i\bar j)=\mathrm{Re}(-ij)=\mathrm{Re}(-k)=0$（同様に他も）。$|ip|=|p|=1$。したがって $(X_1,X_2,X_3)$ は各点で $T_pS^3$ の正規直交基底、大域枠。同様に $S^1\subset\C$ では $ip$（$p\in S^1$）が大域枠。$S^7$ は八元数で同様（$e_1p,\dots,e_7p$）。\tC
+$S^3=\{p\in\mathbb H:|p|=1\}$ と見て（四元数 $\mathbb H=\R^4$）、$X_1(p)=ip$, $X_2(p)=jp$, $X_3(p)=kp$ とおく。内積は $\langle a,b\rangle=\Re(a\bar b)$。$\langle ip,p\rangle=\Re(ip\bar p)=\Re(i)=0$ より接ベクトル。$\langle ip,jp\rangle=\Re(ip\,\bar p\,\bar j)=\Re(i\bar j)=\Re(-ij)=\Re(-k)=0$（同様に他も）。$|ip|=|p|=1$。したがって $(X_1,X_2,X_3)$ は各点で $T_pS^3$ の正規直交基底、大域枠。同様に $S^1\subset\C$ では $ip$（$p\in S^1$）が大域枠。$S^7$ は八元数で同様（$e_1p,\dots,e_7p$）。\tC
 \end{ex}
 
 \begin{keybox}{§7 の要点}
@@ -320,7 +326,7 @@ $S^3=\{p\in\mathbb H:|p|=1\}$ と見て（四元数 $\mathbb H=\R^4$）、$X_1(p
 \item 1 の分割により計量が存在し、構造群は $\U(r)$（実なら $\mathrm O(r)$）に簡約でき、短完全列は（滑らかな範疇では）分裂する。
 \item 直線束の群 $\Pic(M)\cong H^2(M;\Z)$（予告）。
 \end{itemize}
-\textbf{後の巻へ：}$TM\oplus T^*M$ と $\mathrm O(n,n)$（第12巻）。完全列の分裂と正則な場合の失敗（第2・3巻）。$\check H^1(M,\underline{GL_r})$ と層（第3巻）。
+\textbf{後の巻へ：}$TM\oplus T^*M$ と $\mathrm O(n,n)$（第12巻）。完全列の分裂と正則な場合の失敗（第2・3巻）。$\check H^1(M,\underline{\GL(r,\KK)})$ と層（第3巻）。
 \end{keybox}
 
 \paragraph{つまずきやすい点。}
@@ -335,14 +341,14 @@ $S^3=\{p\in\mathbb H:|p|=1\}$ と見て（四元数 $\mathbb H=\R^4$）、$X_1(p
 例~\ref{C:ex:mobius} の Möbius 束 $L$ について、(a) 貼り合わせ関数が $U\cap V$ の 2 つの成分で $+1,-1$ となることを確かめ、切断が $(\sigma_U,\sigma_V)$ の組として $\sigma_U=g_{UV}\sigma_V$ をみたすものであることを使って、$L$ の任意の切断が零点をもつことを示せ。(b) $L\otimes L$ が自明であることを示せ。
 \end{probl}
 \begin{probl}{基本}{C_taut}
-$\CP^1$ のタウトロジー束 $\mathcal O(-1)$ について、(a) $U_0,U_1$ 上の自明化 $\Phi_0,\Phi_1$ を具体的に書き、貼り合わせ関数が $g_{10}(z)=z$ であることを確かめよ。(b) 双対束 $\mathcal O(1):=\mathcal O(-1)^*$ の貼り合わせ関数を求めよ。(c) $\CP^2$（斉次座標 $[Z_0:Z_1:Z_2]$、$U_i=\{Z_i\ne0\}$）上のタウトロジー束 $\mathcal O(-1)$ でも、各 $U_i$ で第 $i$ 成分をとる自明化を使うと貼り合わせ関数は $g_{ij}=Z_i/Z_j$（$U_i\cap U_j$ 上）で与えられる。これがコサイクル条件 $g_{ij}g_{jk}=g_{ik}$ をみたすこと、特に $g_{01}g_{12}g_{20}=1$ であることを確かめよ。
+$\CP^1$ のタウトロジー束 $\mathcal O(-1)$ について、(a) $U_0,U_1$ 上の自明化 $\Phi_0,\Phi_1$ を具体的に書き、貼り合わせ関数が $g_{10}(z)=z$ であることを確かめよ。(b) 双対束 $\mathcal O(1):=\mathcal O(-1)^*$ の貼り合わせ関数を求めよ。(c) $\CP^2$（同次座標 $[Z_0:Z_1:Z_2]$、$U_i=\{Z_i\ne0\}$）上のタウトロジー束 $\mathcal O(-1)$ でも、各 $U_i$ で第 $i$ 成分をとる自明化を使うと貼り合わせ関数は $g_{ij}=Z_i/Z_j$（$U_i\cap U_j$ 上）で与えられる。これがコサイクル条件 $g_{ij}g_{jk}=g_{ik}$ をみたすこと、特に $g_{01}g_{12}g_{20}=1$ であることを確かめよ。
 \end{probl}
 \begin{probl}{標準}{C_cocycle}
 $\CP^1$ の直線束 $L_k$（例~\ref{C:ex:Lk}、$g_{10}=z^k$）について、(a) $L_k\otimes L_m\cong L_{k+m}$, $L_k^*\cong L_{-k}$ を示せ。(b) $L_k\cong L_m$ ならば $k=m$ であることを、貼り合わせ関数のコホモローグ条件~\eqref{C:eq:cohom} と、$\C^\times$ に値をもつ関数の円周上の巻き数を使って示せ。
 \hint{$h_0:U_0=\C\to\C^\times$ は円板 $|z|\le1$ 上に延びるので、$|z|=1$ 上の巻き数は $0$。$h_1$ も同様（$U_1\supset\{|w|\le1\}$）。}
 \end{probl}
 \begin{probl}{標準}{C_TSn}
-(a) $TS^n\oplus\varepsilon^1\cong\varepsilon^{n+1}$ を示せ。(b) Lie 群 $G$ では $TG\cong G\times\mathfrak g$（左不変枠による自明化）を示し、$T(S^1\times S^1)$, $T\,\mathrm{SO}(3)$, $T\RP^3$ が自明であることを説明せよ。($\mathrm{SO}(3)\cong\RP^3$ は既知としてよい。)
+(a) $TS^n\oplus\varepsilon^1\cong\varepsilon^{n+1}$ を示せ。(b) Lie 群 $G$ では $TG\cong G\times\mathfrak g$（左不変枠による自明化）を示し、$T(S^1\times S^1)$, $T\,\SO(3)$, $T\RP^3$ が自明であることを説明せよ。（$\SO(3)\cong\RP^3$ は既知としてよい。）
 \hint{(b) $\mathfrak g$ の基底を左不変ベクトル場に延ばす（§3）。}
 \end{probl}
 \begin{probl}{標準}{C_simply}
@@ -383,7 +389,7 @@ $S^1$ を 2 つの開弧 $U,V$ で覆う（$U\cup V=S^1$、$U\cap V$ は 2 つ�
 $s$ が開集合 $U$ 上で $0$ ならば $U$ 上 $\nabla s=0$。したがって $\nabla$ は開集合 $U\subset M$ 上の切断にも作用し、$E|_U$ の接続を与える。さらに $(\nabla_Xs)(p)$ は $X_p$ と、$s$ の $p$ の任意の近傍上の値のみで決まる。
 \end{lem}
 \begin{proof}
-$p\in U$ をとり、$\chi\in\Cinf(M)$ を $\chi(p)=1$, $\mathrm{supp}\chi\subset U$ にとると $\chi s=0$ なので $0=\nabla(\chi s)=\dd\chi\otimes s+\chi\nabla s$。$p$ で評価して $s(p)=0$, $\chi(p)=1$ より $(\nabla s)(p)=0$。$U$ 上の切断への作用は、$s\in\Gamma(U,E)$ と $p\in U$ に対し、$p$ のまわりで $s$ と一致する大域切断 $\tilde s=\chi s$ をとって $(\nabla s)(p):=(\nabla\tilde s)(p)$ と定める（前半により $\chi$ の取り方によらない）。
+$p\in U$ をとり、$\chi\in\Cinf(M)$ を $\chi(p)=1$, $\operatorname{supp}\chi\subset U$ にとると $\chi s=0$ なので $0=\nabla(\chi s)=\dd\chi\otimes s+\chi\nabla s$。$p$ で評価して $s(p)=0$, $\chi(p)=1$ より $(\nabla s)(p)=0$。$U$ 上の切断への作用は、$s\in\Gamma(U,E)$ と $p\in U$ に対し、$p$ のまわりで $s$ と一致する大域切断 $\tilde s=\chi s$ をとって $(\nabla s)(p):=(\nabla\tilde s)(p)$ と定める（前半により $\chi$ の取り方によらない）。
 \end{proof}
 
 \begin{ex}[自明束と標準接続]\label{C:ex:triv}
@@ -391,13 +397,17 @@ $p\in U$ をとり、$\chi\in\Cinf(M)$ を $\chi(p)=1$, $\mathrm{supp}\chi\subse
 \end{ex}
 
 \subsection{局所表示とゲージ変換}
-$e=(e_1,\dots,e_r)$ を $U$ 上の局所枠とする。$\nabla e_j\in\Om^1(U;E)$ を枠で展開して
+$e=(e_1,\dots,e_r)$ を $U$ 上の局所枠とする。$\nabla e_b\in\Om^1(U;E)$ を枠で展開して
 \begin{equation}\label{C:eq:Adef}
-\nabla e_j=\sum_ie_i\,A^i{}_j,\quad\text{すなわち}\quad\nabla e=e\,A,\qquad A=(A^i{}_j)\in\Om^1(U;\gl(r,\KK)).
+\nabla e_b=\sum_ae_a\,A^a{}_b,\quad\text{すなわち}\quad\nabla e=e\,A,\qquad A=(A^a{}_b)\in\Om^1(U;\gl(r,\KK)).
 \end{equation}
-$A$ を（枠 $e$ に関する）\emph{接続形式}（connection form、局所ゲージポテンシャル）という。$s=e\sigma=\sum_je_j\sigma^j$ に対し Leibniz 則から
+$A$ を（枠 $e$ に関する）\emph{接続形式}（connection form、局所ゲージポテンシャル）という。
+
+\paragraph{添字の規約。}§7--§10 では、ベクトル束の枠の添字を $a,b,c,\dots$（$1\le a\le r$）、座標と接束の添字を $i,j,k,\dots$ で表す。行列の成分は上が行・下が列で、$A^a{}_b$, $F^a{}_b$, $(g_{\alpha\beta})^a{}_b$ のように段違いに書く。上下に 1 回ずつ現れる添字について和をとる（明示のため $\sum$ も書く）。座標 $(x^i)$ を使うときは $A=A_i\,\dd x^i$ と書き、$A_i=(A^a{}_{b\,i})$ は行列値関数である。$F_{ij}=F(\partial_i,\partial_j)$ も同様に行列である。被覆のラベル $\alpha,\beta$ は上下の意味をもたない。
+
+$s=e\sigma=\sum_be_b\sigma^b$ に対し Leibniz 則から
 \begin{equation}\label{C:eq:locnabla}
-\nabla s=\sum_j\bigl(\dd\sigma^j\otimes e_j+\sigma^j\nabla e_j\bigr)=e\,(\dd\sigma+A\sigma),\qquad\text{つまり}\qquad\nabla=\dd+A.
+\nabla s=\sum_b\bigl(\dd\sigma^b\otimes e_b+\sigma^b\nabla e_b\bigr)=e\,(\dd\sigma+A\sigma),\qquad\text{つまり}\qquad\nabla=\dd+A.
 \end{equation}
 \begin{prop}[ゲージ変換則]\label{C:prop:gauge}\tP\
 枠を $e'=eg$（$g:U\to\GL(r,\KK)$ 滑らか）と取り替えたとき、接続形式は
@@ -435,7 +445,7 @@ $A=\theta$ は $1\times1$ 行列。この接続は §10 で $\int c_1=-1$ を与
 $\Psi:\Gamma(E)\to\Gamma(F)$ が $\Cinf(M)$ 線形（$\Psi(fs)=f\Psi(s)$）ならば、ベクトル束の準同型 $\psi:E\to F$ で $\Psi(s)(p)=\psi_p(s(p))$ となるものがただ 1 つ存在する。
 \end{lem}
 \begin{proof}
-$p\in M$, $e$ を $p$ の近傍 $U$ の局所枠、$\chi$ を $\chi(p)=1$, $\mathrm{supp}\,\chi\subset U$ の関数とする。任意の $s\in\Gamma(E)$ に対し $\chi^2s=\sum_j(\chi\sigma^j)(\chi e_j)$ （$\chi\sigma^j$, $\chi e_j$ は大域的に拡張される）。$\Cinf$ 線形性より $\chi^2\Psi(s)=\Psi(\chi^2s)=\sum_j\chi\sigma^j\,\Psi(\chi e_j)$。$p$ で評価して $\Psi(s)(p)=\sum_j\sigma^j(p)\Psi(\chi e_j)(p)$。これは $s(p)$ のみに依存する線形な式で、$\psi_p(e_j(p)):=\Psi(\chi e_j)(p)$ とおけばよい。滑らかさは右辺から明らか。
+$p\in M$, $e$ を $p$ の近傍 $U$ の局所枠、$\chi$ を $\chi(p)=1$, $\operatorname{supp}\chi\subset U$ の関数とする。任意の $s\in\Gamma(E)$ に対し $\chi^2s=\sum_a(\chi\sigma^a)(\chi e_a)$（$\chi\sigma^a$, $\chi e_a$ は大域的に拡張される）。$\Cinf$ 線形性より $\chi^2\Psi(s)=\Psi(\chi^2s)=\sum_a\chi\sigma^a\,\Psi(\chi e_a)$。$p$ で評価して $\Psi(s)(p)=\sum_a\sigma^a(p)\Psi(\chi e_a)(p)$。これは $s(p)$ のみに依存する線形な式で、$\psi_p(e_a(p)):=\Psi(\chi e_a)(p)$ とおけばよい。滑らかさは右辺から明らか。
 \end{proof}
 
 \begin{thm}[接続の存在とアフィン構造]\label{C:thm:affine}\tP\
@@ -443,7 +453,7 @@ $p\in M$, $e$ を $p$ の近傍 $U$ の局所枠、$\chi$ を $\chi(p)=1$, $\mat
 \end{thm}
 \begin{proof}
 (b) $a=\nabla_1-\nabla_0$ は $a(fs)=\dd f\otimes s+f\nabla_1s-\dd f\otimes s-f\nabla_0s=f\,a(s)$、つまり $\Cinf$ 線形で、補題~\ref{C:lem:tensor} を $\Gamma(E)\to\Gamma(T^*M\otimes E)$ に適用する（各ベクトル場 $X$ に対し $a_X=\nabla_{1,X}-\nabla_{0,X}\in\End E$ が $X$ にも $\Cinf$ 線形）。逆は Leibniz 則の項が加わらないので明らか。(c) $\sum_\alpha\rho_\alpha\nabla^\alpha(fs)=\sum\rho_\alpha(\dd f\otimes s+f\nabla^\alpha s)=\dd f\otimes s+f\sum\rho_\alpha\nabla^\alpha s$。
-(a) $\{U_\alpha\}$ を自明化の被覆、$\nabla^\alpha:=$（$U_\alpha$ の自明化における自明接続）を $U_\alpha$ 上の接続とする。$\{\rho_\alpha\}$ を従属する 1 の分割として $\nabla=\sum_\alpha\rho_\alpha\nabla^\alpha$、ただし $\rho_\alpha\nabla^\alpha s$ は $\mathrm{supp}\rho_\alpha$ の外で $0$ と定める。$\nabla(fs)=\sum\rho_\alpha(\dd f\otimes s+f\nabla^\alpha s)=\dd f\otimes s+f\nabla s$（$\sum\rho_\alpha=1$）。
+(a) $\{U_\alpha\}$ を自明化の被覆、$\nabla^\alpha:=$（$U_\alpha$ の自明化における自明接続）を $U_\alpha$ 上の接続とする。$\{\rho_\alpha\}$ を従属する 1 の分割として $\nabla=\sum_\alpha\rho_\alpha\nabla^\alpha$、ただし $\rho_\alpha\nabla^\alpha s$ は $\operatorname{supp}\rho_\alpha$ の外で $0$ と定める。$\nabla(fs)=\sum\rho_\alpha(\dd f\otimes s+f\nabla^\alpha s)=\dd f\otimes s+f\nabla s$（$\sum\rho_\alpha=1$）。
 \end{proof}
 具体的には、枠 $e_\beta$ での接続形式は $A_\beta=\sum_\alpha\rho_\alpha\,g_{\alpha\beta}^{-1}\dd g_{\alpha\beta}$（枠 $e_\alpha$ の自明接続をゲージ変換 \eqref{C:eq:gauge} で $e_\beta$ に移したものの凸結合）。
 
@@ -453,14 +463,14 @@ $\gamma:[a,b]\to M$ を滑らかな曲線とする。$\gamma$ に沿った切断
 \[
 \frac{D s}{\dd t}:=e\Bigl(\frac{\dd\sigma}{\dd t}+A(\dot\gamma(t))\,\sigma(t)\Bigr)
 \]
-と定める。枠 $e'=eg$ では $\sigma'=g^{-1}\sigma$ より $\sigma'^\cdot+A'(\dot\gamma)\sigma'=g^{-1}(\dot\sigma+A(\dot\gamma)\sigma)$ （$\frac{\dd}{\dd t}(g^{-1}\sigma)=g^{-1}\dot\sigma-g^{-1}\dot gg^{-1}\sigma$ とゲージ変換則 \eqref{C:eq:gauge} から確かめる：問~\ref{pr:C_gauge}）なので、$Ds/\dd t$ は枠によらない。\emph{平行}（parallel）とは $Ds/\dd t=0$。局所表示では
+と定める。枠 $e'=eg$ では $\sigma'=g^{-1}\sigma$ より $\dot\sigma'+A'(\dot\gamma)\sigma'=g^{-1}(\dot\sigma+A(\dot\gamma)\sigma)$（$\frac{\dd}{\dd t}(g^{-1}\sigma)=g^{-1}\dot\sigma-g^{-1}\dot gg^{-1}\sigma$ とゲージ変換則 \eqref{C:eq:gauge} から確かめる：問~\ref{pr:C_gauge}）なので、$Ds/\dd t$ は枠によらない。\emph{平行}（parallel）とは $Ds/\dd t=0$。局所表示では
 \begin{equation}\label{C:eq:parallel}
 \frac{\dd\sigma}{\dd t}=-A(\dot\gamma(t))\,\sigma(t)
 \end{equation}
 という \emph{線形常微分方程式}である。
 
 \begin{thm}[平行移動]\label{C:thm:PT}\tP\
-任意の曲線 $\gamma:[0,1]\to M$ と $v\in E_{\gamma(0)}$ に対し、$s(0)=v$ をみたす平行な $s$ がただ 1 つ存在する。$P_\gamma:E_{\gamma(0)}\to E_{\gamma(1)}$, $v\mapsto s(1)$ は線形同型（\emph{平行移動}）で、(i) $P_{\gamma_1*\gamma_2}=P_{\gamma_2}P_{\gamma_1}$ （曲線の連結）、(ii) $P_{\bar\gamma}=P_\gamma^{-1}$（逆向き）、(iii) 区分的に滑らかな再パラメータ化に不変。また $v\in T_pM$, $\gamma(0)=p$, $\dot\gamma(0)=v$ のとき
+任意の曲線 $\gamma:[0,1]\to M$ と $v\in E_{\gamma(0)}$ に対し、$s(0)=v$ をみたす平行な $s$ がただ 1 つ存在する。$P_\gamma:E_{\gamma(0)}\to E_{\gamma(1)}$, $v\mapsto s(1)$ は線形同型（\emph{平行移動}）で、(i) $P_{\gamma_1*\gamma_2}=P_{\gamma_2}P_{\gamma_1}$（曲線の連結 $\gamma_1*\gamma_2$ は先に $\gamma_1$ をたどる）、(ii) $P_{\bar\gamma}=P_\gamma^{-1}$（逆向き）、(iii) 区分的に滑らかな再パラメータ化に不変。また $v\in T_pM$, $\gamma(0)=p$, $\dot\gamma(0)=v$ のとき
 \begin{equation}\label{C:eq:PTrec}
 \nabla_vs=\frac{\dd}{\dd t}\Big|_{t=0}P_{\gamma|[0,t]}^{-1}\bigl(s(\gamma(t))\bigr).
 \end{equation}
@@ -490,23 +500,22 @@ $\gamma:[a,b]\to M$ を滑らかな曲線とする。$\gamma$ に沿った切断
 \fibreplane{4.2}{2.2}{70}{}
 \node[font=\small,anchor=east] at (-0.7,1.9) {$E_{\gamma(0)}$};
 \node[font=\small,anchor=west] at (5.2,2.2) {$E_{\gamma(1)}$};
-\draw[->,thick] (0.3,2.7) .. controls (1.5,3.4) and (3.0,3.4) .. (4.0,2.8);
-\node[font=\small] at (2.2,3.65) {$P_\gamma$};
+\draw[->,thick] (0.2,2.45) .. controls (1.4,3.5) and (3.0,3.5) .. (3.95,2.72);
+\node[font=\small,anchor=south] at (2.25,3.3) {$P_\gamma$};
 \node[red!70!black,font=\footnotesize] at (3.15,1.15) {$\frac{Ds}{\dd t}=0$};
 % right panel
 \begin{scope}[shift={(9.2,0)}]
-\draw[thick,blue!60!black] (0,0) .. controls (1.5,-0.4) and (2.4,0.8) .. (1.8,1.4) .. controls (1.2,2.0) and (-0.7,1.2) .. (0,0);
-\draw[blue!60!black,->,thick] (1.9,0.45) -- ++(0.1,0.3);
-\fill (0,0) circle (1.5pt); \node[below,font=\small] at (0,-0.05) {$p$};
-\node[blue!60!black,font=\small] at (2.3,-0.3) {閉曲線 $\gamma$};
+\draw[thick,blue!60!black,decoration={markings,mark=at position 0.3 with {\arrow{Stealth}}},postaction={decorate}] (0,0) .. controls (1.2,-0.5) and (2.6,0.3) .. (2.2,1.1) .. controls (1.8,1.8) and (0.6,1.2) .. (0,0);
+\fill (0,0) circle (1.5pt); \node[below left,font=\small] at (0,0) {$p$};
+\node[blue!60!black,font=\small,anchor=west] at (2.45,0.3) {閉曲線 $\gamma$};
 \draw[gray,dashed] (0,0.1) -- (0,1.8);
 \begin{scope}[shift={(0,2.2)}]
   \fill[orange!12] (-0.9,-0.4) -- (0.9,-0.4) -- (1.2,0.4) -- (-0.6,0.4) -- cycle;
   \draw[orange!70!black] (-0.9,-0.4) -- (0.9,-0.4) -- (1.2,0.4) -- (-0.6,0.4) -- cycle;
-  \draw[->,very thick,red!70!black] (0.1,0) -- ++(8:0.8);
-  \draw[->,very thick,green!45!black] (0.1,0) -- ++(60:0.8);
-  \node[red!70!black,font=\small] at (0.55,-0.22) {$v$};
-  \node[green!45!black,font=\small,anchor=south] at (0.5,0.78) {$P_\gamma v$};
+  \draw[->,very thick,red!70!black] (0.1,-0.2) -- ++(8:0.6);
+  \draw[->,very thick,green!45!black] (0.1,-0.2) -- ++(60:0.55);
+  \node[red!70!black,font=\small,anchor=west] at (0.72,-0.14) {$v$};
+  \node[green!45!black,font=\small,anchor=south] at (0.42,0.42) {$P_\gamma v$};
 \end{scope}
 \node[font=\small,anchor=east] at (-1.1,2.2) {$E_p$};
 \end{scope}
@@ -539,7 +548,7 @@ $F_\nabla:=\dd_\nabla\circ\nabla=\dd_\nabla^2:\Gamma(E)\to\Om^2(M;E)$ を $\nabl
 \begin{thm}[曲率の公式]\label{C:thm:curv}\tP\
 (a) $F_\nabla$ は $\Cinf(M)$ 線形であり、したがって $F_\nabla\in\Om^2(M;\End E)$。(b) 局所枠 $e$ に関し $\nabla=\dd+A$ ならば
 \begin{equation}\label{C:eq:F}
-F=\dd A+A\wedge A,\qquad F^i{}_j=\dd A^i{}_j+\sum_kA^i{}_k\wedge A^k{}_j.
+F=\dd A+A\wedge A,\qquad F^a{}_b=\dd A^a{}_b+\sum_cA^a{}_c\wedge A^c{}_b.
 \end{equation}
 (c) ゲージ変換 $e'=eg$ のもとで $F'=g^{-1}Fg$。(d) ベクトル場 $X,Y$ に対し $F(X,Y)s=\nabla_X\nabla_Ys-\nabla_Y\nabla_Xs-\nabla_{[X,Y]}s$。
 \end{thm}
@@ -556,16 +565,16 @@ F=\dd A+A\wedge A,\qquad F^i{}_j=\dd A^i{}_j+\sum_kA^i{}_k\wedge A^k{}_j.
 \dd(g^{-1}\dd g)&=-g^{-1}\dd g\,g^{-1}\wedge\dd g,\\
 A'\wedge A'&=g^{-1}A\wedge A\,g+g^{-1}A\wedge\dd g+g^{-1}\dd g\,g^{-1}\wedge Ag+g^{-1}\dd g\,g^{-1}\wedge\dd g.
 \end{align*}
-辺々加えると、$g^{-1}\dd g\,g^{-1}\wedge Ag$, $g^{-1}A\wedge\dd g$, $g^{-1}\dd g\,g^{-1}\wedge\dd g$ がそれぞれ打ち消し合い、$\dd A'+A'\wedge A'=g^{-1}(\dd A+A\wedge A)g$ 。（別証：(a) より $F$ は枠に依存しない束準同型なので、$e'=eg$ での行列は $g^{-1}Fg$。）
+辺々加えると、$g^{-1}\dd g\,g^{-1}\wedge Ag$, $g^{-1}A\wedge\dd g$, $g^{-1}\dd g\,g^{-1}\wedge\dd g$ がそれぞれ打ち消し合い、$\dd A'+A'\wedge A'=g^{-1}(\dd A+A\wedge A)g$。（別証：(a) より $F$ は枠に依存しない束準同型なので、$e'=eg$ での行列は $g^{-1}Fg$。）
 
-(d) \eqref{C:eq:F} の両辺を座標ベクトル場 $\partial_i,\partial_j$ で評価する。$\nabla_{\partial_i}(e\sigma)=e(\partial_i\sigma+A_i\sigma)$（$A=A_i\dd x^i$）。
+(d) \eqref{C:eq:F} の両辺を座標ベクトル場 $\partial_i,\partial_j$ で評価する。$\nabla_{\partial_i}(e\sigma)=e(\partial_i\sigma+A_i\sigma)$（$A=A_i\dd x^i$）。以下 $\nabla_i:=\nabla_{\partial_i}$ と書く。
 \[
 \nabla_i\nabla_j(e\sigma)=e\bigl(\partial_i(\partial_j\sigma+A_j\sigma)+A_i(\partial_j\sigma+A_j\sigma)\bigr),
 \]
-$i\leftrightarrow j$ を引くと $\partial_i\partial_j$ は消え、$\partial_i\partial_j\sigma$, $A_i\partial_j\sigma$ の項が打ち消し合って $[\nabla_i,\nabla_j](e\sigma)=e\bigl(\partial_iA_j-\partial_jA_i+[A_i,A_j]\bigr)\sigma$ 。これは $F(\partial_i,\partial_j)=\partial_iA_j-\partial_jA_i+A_iA_j-A_jA_i$（$(A\wedge A)(\partial_i,\partial_j)=A_iA_j-A_jA_i$）と一致する。一般のベクトル場については、右辺 $R(X,Y)s:=\nabla_X\nabla_Ys-\nabla_Y\nabla_Xs-\nabla_{[X,Y]}s$ が $X,Y,s$ について $\Cinf$ 線形であることを示せば、補題~\ref{C:lem:tensor} と $[\partial_i,\partial_j]=0$ から $R=F$ が従う。例えば $R(fX,Y)s=f\nabla_X\nabla_Ys-\nabla_Y(f\nabla_Xs)-\nabla_{f[X,Y]-(Yf)X}s=fR(X,Y)s-(Yf)\nabla_Xs+(Yf)\nabla_Xs=fR(X,Y)s$。$Y$, $s$ についても同様。
+$i\leftrightarrow j$ を引くと $\partial_i\partial_j$ は消え、$\partial_i\partial_j\sigma$, $A_i\partial_j\sigma$ の項が打ち消し合って $[\nabla_i,\nabla_j](e\sigma)=e\bigl(\partial_iA_j-\partial_jA_i+[A_i,A_j]\bigr)\sigma$。これは $F(\partial_i,\partial_j)=\partial_iA_j-\partial_jA_i+A_iA_j-A_jA_i$（$(A\wedge A)(\partial_i,\partial_j)=A_iA_j-A_jA_i$）と一致する。一般のベクトル場については、右辺 $R(X,Y)s:=\nabla_X\nabla_Ys-\nabla_Y\nabla_Xs-\nabla_{[X,Y]}s$ が $X,Y,s$ について $\Cinf$ 線形であることを示せば、補題~\ref{C:lem:tensor} と $[\partial_i,\partial_j]=0$ から $R=F$ が従う。例えば $R(fX,Y)s=f\nabla_X\nabla_Ys-\nabla_Y(f\nabla_Xs)-\nabla_{f[X,Y]-(Yf)X}s=fR(X,Y)s-(Yf)\nabla_Xs+(Yf)\nabla_Xs=fR(X,Y)s$。$Y$, $s$ についても同様。
 \end{proof}
 
-曲率が $0$ の接続を\emph{平坦}という。(d) により、$F=0$ は「共変微分が可換」$[\nabla_X,\nabla_Y]=\nabla_{[X,Y]}$ と同値で、平らな空間の自明接続 $\nabla=\dd$ で偏微分が可換であること（$\partial_i\partial_j=\partial_j\partial_i$）の一般化になっている。Lie 括弧 $[X,Y]$ が定義に入っている点は重要で、これは第 11 巻の Lie algebroid（Lie 亜代数）上の接続につながる。
+曲率が $0$ の接続を\emph{平坦}という。(d) により、$F=0$ は「共変微分が可換」$[\nabla_X,\nabla_Y]=\nabla_{[X,Y]}$ と同値で、平らな空間の自明接続 $\nabla=\dd$ で偏微分が可換であること（$\partial_i\partial_j=\partial_j\partial_i$）の一般化になっている。Lie 括弧 $[X,Y]$ が定義に入っている点は重要で、これは第11巻の Lie algebroid（Lie 亜代数）上の接続につながる。
 
 \begin{ex}[曲率の計算]\label{C:ex:curvcalc}
 $\R^3$（座標 $x,y,z$）の自明な階数 2 の束で $A=\begin{pmatrix}0&z\,\dd x\\x\,\dd y&0\end{pmatrix}$。
@@ -619,10 +628,12 @@ A_jA_i-A_j^2-A_jA_i-A_iA_j-A_i^2+A_jA_i=-A_i^2-A_j^2-A_iA_j+A_jA_i.
 \centering
 \begin{tikzpicture}[scale=1.0]
 % left: square loop
-\draw[thick,->,blue!60!black] (0,0) -- (2,0) node[midway,below,font=\small]{$\varepsilon\partial_i$};
-\draw[thick,->,blue!60!black] (2,0) -- (2,2) node[midway,right,font=\small]{$\varepsilon\partial_j$};
-\draw[thick,->,blue!60!black] (2,2) -- (0,2) node[midway,above,font=\small]{$-\varepsilon\partial_i$};
-\draw[thick,->,blue!60!black] (0,2) -- (0,0) node[midway,left,font=\small]{$-\varepsilon\partial_j$};
+\begin{scope}[thick,blue!60!black,decoration={markings,mark=at position 0.55 with {\arrow{Stealth}}}]
+\draw[postaction={decorate}] (0,0) -- (2,0) node[midway,below=2pt,font=\small]{$\varepsilon\partial_i$};
+\draw[postaction={decorate}] (2,0) -- (2,2) node[midway,right=2pt,font=\small]{$\varepsilon\partial_j$};
+\draw[postaction={decorate}] (2,2) -- (0,2) node[midway,above=2pt,font=\small]{$-\varepsilon\partial_i$};
+\draw[postaction={decorate}] (0,2) -- (0,0) node[midway,left=2pt,font=\small]{$-\varepsilon\partial_j$};
+\end{scope}
 \fill (0,0) circle (1.5pt) node[below left,font=\small]{$p$};
 \node[font=\small] at (1,1) {$\gamma_\varepsilon$};
 % right: lifted path in fibre coordinate
@@ -633,6 +644,7 @@ A_jA_i-A_j^2-A_jA_i-A_iA_j-A_i^2+A_jA_i=-A_i^2-A_j^2-A_iA_j+A_jA_i.
  \draw[dotted] (\x,0)--(\x,2.6);}
 \draw[very thick,red!70!black] (0,2.0) .. controls (0.5,2.2) and (0.8,2.3) .. (1.0,2.1) .. controls (1.5,1.6) and (2.0,1.9) .. (2.5,2.0) .. controls (3.0,2.3) and (3.5,2.0) .. (4.0,1.7) .. controls (4.5,1.4) and (5.0,1.5) .. (5.5,1.6);
 \fill[red!70!black] (0,2.0) circle (2pt); \fill[red!70!black] (5.5,1.6) circle (2pt);
+\draw[gray,dashed] (5.5,2.0) -- (5.9,2.0);
 \draw[<->,thick,green!45!black] (5.75,2.0) -- (5.75,1.6);
 \node[green!45!black,font=\small,anchor=west] at (5.8,1.78) {$\approx-\varepsilon^2F_{ij}\sigma_0$};
 \node[font=\small] at (0.5,-0.4) {$+i$}; \node[font=\small] at (1.75,-0.4) {$+j$}; \node[font=\small] at (3.25,-0.4) {$-i$}; \node[font=\small] at (4.75,-0.4) {$-j$};
@@ -653,7 +665,7 @@ $\End E$ 値形式 $\varphi\in\Om^k(M;\End E)$ には、$\nabla$ から誘導さ
 $\varphi\in\Om^k(M;\End E)$, $\psi\in\Om^l(M;\End E)$ について (a) $\dd_\nabla(\varphi\wedge\psi)=\dd_\nabla\varphi\wedge\psi+(-1)^k\varphi\wedge\dd_\nabla\psi$。(b) $\dd\,\tr\varphi=\tr\,\dd_\nabla\varphi$。
 \end{lem}
 \begin{proof}
-(a) 枠で $\Phi,\Psi$：右辺 $=(\dd\Phi+A\wedge\Phi-(-1)^k\Phi\wedge A)\wedge\Psi+(-1)^k\Phi\wedge(\dd\Psi+A\wedge\Psi-(-1)^l\Psi\wedge A)$ を展開すると、$-(-1)^k\Phi\wedge A\wedge\Psi$ と $+(-1)^k\Phi\wedge A\wedge\Psi$ が打ち消し合い、$\dd(\Phi\wedge\Psi)+A\wedge\Phi\wedge\Psi-(-1)^{k+l}\Phi\wedge\Psi\wedge A$ になる。これが左辺。(b) $\tr(A\wedge\Phi)=\sum A^i{}_j\wedge\Phi^j{}_i=(-1)^{k}\sum\Phi^j{}_i\wedge A^i{}_j=(-1)^k\tr(\Phi\wedge A)$ なので $\tr(A\wedge\Phi-(-1)^k\Phi\wedge A)=0$、よって $\tr\dd_\nabla\varphi=\tr\dd\Phi=\dd\tr\Phi$。
+(a) 枠で $\Phi,\Psi$：右辺 $=(\dd\Phi+A\wedge\Phi-(-1)^k\Phi\wedge A)\wedge\Psi+(-1)^k\Phi\wedge(\dd\Psi+A\wedge\Psi-(-1)^l\Psi\wedge A)$ を展開すると、$-(-1)^k\Phi\wedge A\wedge\Psi$ と $+(-1)^k\Phi\wedge A\wedge\Psi$ が打ち消し合い、$\dd(\Phi\wedge\Psi)+A\wedge\Phi\wedge\Psi-(-1)^{k+l}\Phi\wedge\Psi\wedge A$ になる。これが左辺。(b) $\tr(A\wedge\Phi)=\sum_{a,b}A^a{}_b\wedge\Phi^b{}_a=(-1)^{k}\sum_{a,b}\Phi^b{}_a\wedge A^a{}_b=(-1)^k\tr(\Phi\wedge A)$ なので $\tr(A\wedge\Phi-(-1)^k\Phi\wedge A)=0$、よって $\tr\dd_\nabla\varphi=\tr\dd\Phi=\dd\tr\Phi$。
 \end{proof}
 \begin{thm}[Bianchi 恒等式]\label{C:thm:bianchi}\tP\
 $\dd_\nabla F=0$、枠の中で $\dd F+A\wedge F-F\wedge A=0$。
@@ -683,7 +695,7 @@ $f^*E$ & $f^*\nabla$ & $f^*A$ & $f^*F$\\
 \bottomrule
 \end{tabular}
 \end{center}
-（$\End E$ の接続形式は枠 $e\otimes e^*$ で $T\mapsto[A,T]$。$E^*$ では双対枠に対する成分行列。）たとえば $E\otimes E'$ の曲率は、$\mathcal A=A\otimes1+1\otimes A'$ に対し $\mathcal A\wedge\mathcal A=A\wedge A\otimes1+1\otimes A'\wedge A'+(A\otimes1)\wedge(1\otimes A')+(1\otimes A')\wedge(A\otimes1)$ で、最後の 2 項は成分 $A^i{}_j\wedge A'^k{}_l$ と $A'^k{}_l\wedge A^i{}_j$ なので互いに打ち消し合い、$F_{E\otimes E'}=F\otimes1+1\otimes F'$。$E^*$：$\mathcal A=-A^T$ で $\dd\mathcal A+\mathcal A\wedge\mathcal A=-(\dd A)^T+A^T\wedge A^T=-(\dd A)^T-(A\wedge A)^T=-F^T$（$(A\wedge A)^T=-A^T\wedge A^T$：1 形式の積の転置は順序が逆転し符号が付く）。証明の詳細は問~\ref{pr:C_induced}。
+（$\End E$ の接続形式は枠 $e\otimes e^*$ で $T\mapsto[A,T]$。$E^*$ では双対枠に対する成分行列。）たとえば $E\otimes E'$ の曲率は、$\mathcal A=A\otimes1+1\otimes A'$ に対し $\mathcal A\wedge\mathcal A=A\wedge A\otimes1+1\otimes A'\wedge A'+(A\otimes1)\wedge(1\otimes A')+(1\otimes A')\wedge(A\otimes1)$ で、最後の 2 項は成分 $A^a{}_b\wedge A'^c{}_d$ と $A'^c{}_d\wedge A^a{}_b$ なので互いに打ち消し合い、$F_{E\otimes E'}=F\otimes1+1\otimes F'$。$E^*$：$\mathcal A=-A^T$ で $\dd\mathcal A+\mathcal A\wedge\mathcal A=-(\dd A)^T+A^T\wedge A^T=-(\dd A)^T-(A\wedge A)^T=-F^T$（$(A\wedge A)^T=-A^T\wedge A^T$：1 形式の積の転置は順序が逆転し符号が付く）。証明の詳細は問~\ref{pr:C_induced}。
 
 \begin{defn}[計量接続]\label{C:def:metcon}
 $E$ に Hermite 計量 $h$（実束ならファイバー計量）があるとき、$\nabla$ が $h$ と\emph{整合}（compatible）または \emph{ユニタリ接続}（実なら\emph{計量接続}）であるとは、任意の切断 $s,t$ に対し
@@ -696,7 +708,7 @@ $E$ に Hermite 計量 $h$（実束ならファイバー計量）があるとき
 (a) $h$ に関する正規直交枠では、$\nabla$ が整合 $\Leftrightarrow$ $A^*=-A$（$A$ は $\ug(r)$ 値；実なら $A^T=-A$、$\sog(r)$ 値）。このとき $F^*=-F$ で、$\tr F\in i\,\Om^2(M;\R)$、したがって $\frac i{2\pi}\tr F$ は実 2 形式。(b) $h$ と整合する接続が存在する。(c) 整合な接続の平行移動は $h$ を保ち、$\Hol_p\subset\U(E_p,h)$。
 \end{prop}
 \begin{proof}
-(a) $h(e_i,e_j)=\delta_{ij}$ を微分して $0=h(\nabla e_i,e_j)+h(e_i,\nabla e_j)=A^j{}_i+\overline{A^i{}_j}$。逆も同じ式から（一般の $s=e\sigma$, $t=e\tau$ に対し両辺を計算）。$F^*=(\dd A)^*+(A\wedge A)^*$ で、$(\dd A)^*=\dd A^*=-\dd A$、また 1 形式の行列積の転置共役は順序反転による符号を伴って $(A\wedge A)^*=-A^*\wedge A^*=-(-A)\wedge(-A)=-A\wedge A$。よって $F^*=-F$。$\tr F$ は $F^*=-F$ より対角成分が純虚数の 2 形式。
+(a) $h(e_a,e_b)=\delta_{ab}$ を微分して $0=h(\nabla e_a,e_b)+h(e_a,\nabla e_b)=\sum_c\bigl(A^c{}_a\delta_{cb}+\delta_{ac}\overline{A^c{}_b}\bigr)=A^b{}_a+\overline{A^a{}_b}$（正規直交枠なので $\delta$ を挟んで添字の位置を揃えた）、すなわち $A^*=-A$。逆も同じ式から（一般の $s=e\sigma$, $t=e\tau$ に対し両辺を計算）。$F^*=(\dd A)^*+(A\wedge A)^*$ で、$(\dd A)^*=\dd A^*=-\dd A$、また 1 形式の行列積の転置共役は順序反転による符号を伴って $(A\wedge A)^*=-A^*\wedge A^*=-(-A)\wedge(-A)=-A\wedge A$。よって $F^*=-F$。$\tr F$ は $F^*=-F$ より対角成分が純虚数の 2 形式。
 (b) 各自明化の標準 Hermite 内積について正規直交枠で自明接続 $\dd$ は整合（$A=0$）。整合性は $\nabla$ について線形な条件なので、1 の分割による凸結合 $\sum\rho_\alpha\nabla^\alpha$ も整合：$\dd h(s,t)=\sum\rho_\alpha\dd h(s,t)=\sum\rho_\alpha(h(\nabla^\alpha s,t)+h(s,\nabla^\alpha t))=h(\nabla s,t)+h(s,\nabla t)$。ただし各 $U_\alpha$ では、定理~\ref{C:thm:metric} と命題~\ref{C:prop:unitary} により $h$ に関する正規直交枠をとり、その枠での自明接続を $\nabla^\alpha$ とする。(c) $s,t$ が平行なら $\dd\,h(s,t)=0$。
 \end{proof}
 （(b) の証明で $\nabla^\alpha$ は $h$ に関する正規直交枠を使った自明接続。）
@@ -706,9 +718,9 @@ $E$ に Hermite 計量 $h$（実束ならファイバー計量）があるとき
 $E=TM$ のときは、$TM$ 自身の構造（Lie 括弧）のために、計量接続のうち特別なものが 1 つ決まる。$g$ を Riemann 計量とする。接続 $\nabla$ に対し \emph{捩率}（torsion）を $T(X,Y)=\nabla_XY-\nabla_YX-[X,Y]$ で定める（$\Cinf$ 双線形、つまりテンソル）。$T=0$ のとき\emph{捩れなし}という。
 
 \begin{thm}[Riemann 幾何学の基本定理]\label{C:thm:LC}\tP\
-Riemann 多様体 $(M,g)$ 上に、$g$ と整合し捩れのない $TM$ の接続 $\nabla$ がただ 1 つ存在する（\emph{Levi-Civita 接続}）。座標では、$\nabla_{\partial_i}\partial_j=\Gamma^k_{ij}\partial_k$,
+Riemann 多様体 $(M,g)$ 上に、$g$ と整合し捩れのない $TM$ の接続 $\nabla$ がただ 1 つ存在する（\emph{Levi-Civita 接続}）。座標では、$\nabla_{\partial_i}\partial_j=\Gamma^k{}_{ij}\partial_k$,
 \[
-\Gamma^k_{ij}=\tfrac12g^{kl}\bigl(\partial_ig_{jl}+\partial_jg_{il}-\partial_lg_{ij}\bigr).
+\Gamma^k{}_{ij}=\tfrac12g^{kl}\bigl(\partial_ig_{jl}+\partial_jg_{il}-\partial_lg_{ij}\bigr).
 \]
 \end{thm}
 \begin{proof}
@@ -716,7 +728,7 @@ Riemann 多様体 $(M,g)$ 上に、$g$ と整合し捩れのない $TM$ の接�
 \[
 2g(\nabla_XY,Z)=Xg(Y,Z)+Yg(X,Z)-Zg(X,Y)+g([X,Y],Z)-g([X,Z],Y)-g([Y,Z],X).
 \]
-右辺は $g$ と Lie 括弧だけで書けるので、$\nabla_XY$ は（$g$ が非退化だから）一意に決まる。\emph{存在。}座標近傍で $\Gamma^k_{ij}$ を上のように定義し $\nabla_{\partial_i}\partial_j=\Gamma^k_{ij}\partial_k$, Leibniz 則で拡張して接続を作る。$\Gamma^k_{ij}=\Gamma^k_{ji}$ から $T(\partial_i,\partial_j)=\Gamma^k_{ij}\partial_k-\Gamma^k_{ji}\partial_k-0=0$（$[\partial_i,\partial_j]=0$、テンソル性により $T=0$）。$\Gamma_{ki,j}:=g_{jl}\Gamma^l_{ki}=\frac12(\partial_kg_{ij}+\partial_ig_{kj}-\partial_jg_{ki})$ と $\Gamma_{kj,i}=\frac12(\partial_kg_{ij}+\partial_jg_{ki}-\partial_ig_{kj})$ の和は $\partial_kg_{ij}$ で、これは $\partial_kg(\partial_i,\partial_j)=g(\nabla_{\partial_k}\partial_i,\partial_j)+g(\partial_i,\nabla_{\partial_k}\partial_j)$ そのもの。座標によらず一意性から貼り合わさる。
+右辺は $g$ と Lie 括弧だけで書けるので、$\nabla_XY$ は（$g$ が非退化だから）一意に決まる。\emph{存在。}座標近傍で $\Gamma^k{}_{ij}$ を上のように定義し $\nabla_{\partial_i}\partial_j=\Gamma^k{}_{ij}\partial_k$, Leibniz 則で拡張して接続を作る。$\Gamma^k{}_{ij}=\Gamma^k{}_{ji}$ から $T(\partial_i,\partial_j)=\Gamma^k{}_{ij}\partial_k-\Gamma^k{}_{ji}\partial_k-0=0$（$[\partial_i,\partial_j]=0$、テンソル性により $T=0$）。$\Gamma_{ki,j}:=g_{jl}\Gamma^l{}_{ki}=\frac12(\partial_kg_{ij}+\partial_ig_{kj}-\partial_jg_{ki})$ と $\Gamma_{kj,i}=\frac12(\partial_kg_{ij}+\partial_jg_{ki}-\partial_ig_{kj})$ の和は $\partial_kg_{ij}$ で、これは $\partial_kg(\partial_i,\partial_j)=g(\nabla_{\partial_k}\partial_i,\partial_j)+g(\partial_i,\nabla_{\partial_k}\partial_j)$ そのもの。座標によらず一意性から貼り合わさる。
 \end{proof}
 \begin{defn}[Riemann 曲率]\label{C:def:Riem}
 Levi-Civita 接続の曲率 $R(X,Y)Z:=F_\nabla(X,Y)Z=\nabla_X\nabla_YZ-\nabla_Y\nabla_XZ-\nabla_{[X,Y]}Z$ を \emph{Riemann 曲率テンソル}という。2 つの 1 次独立なベクトル $X,Y\in T_pM$ が張る平面の\emph{断面曲率}（sectional curvature）は $K(X,Y)=\dfrac{g(R(X,Y)Y,X)}{|X|^2|Y|^2-g(X,Y)^2}$。
@@ -725,7 +737,7 @@ Levi-Civita 接続の曲率 $R(X,Y)Z:=F_\nabla(X,Y)Z=\nabla_X\nabla_YZ-\nabla_Y\
 $R$ の符号と添字の並べ方は文献ごとに異なる（本巻は上の定義で $K(\text{球面})=+1$）。$g(R(X,Y)Z,W)$ の対称性（$=-g(R(Y,X)Z,W)=-g(R(X,Y)W,Z)=g(R(Z,W)X,Y)$、および第1 Bianchi 恒等式 $R(X,Y)Z+R(Y,Z)X+R(Z,X)Y=0$）は捩れなしと計量整合性から従う \tC\ （Lee, \emph{Introduction to Riemannian Manifolds}, 曲率の章）。
 \end{rem}
 
-\paragraph{正規直交枠による計算。}$(e_1,\dots,e_n)$ を正規直交局所枠、$(\theta^1,\dots,\theta^n)$ をその双対余枠（$\theta^i(e_j)=\delta^i_j$）とし、$\nabla e_j=e_i\,\omega^i{}_j$（本節の $A$ を $\omega$ と書く）。整合性より $\omega$ は歪対称。捩れなしは
+\paragraph{正規直交枠による計算。}$(e_1,\dots,e_n)$ を正規直交局所枠、$(\theta^1,\dots,\theta^n)$ をその双対余枠（$\theta^i(e_j)=\delta^i{}_j$）とし、$\nabla e_j=e_i\,\omega^i{}_j$（本節の $A$ を $\omega$ と書く）。整合性より $\omega$ は歪対称（命題~\ref{C:prop:unit}(a) と同様に $\delta$ で添字を揃えて $\omega^i{}_j=-\omega^j{}_i$）。捩れなしは
 \begin{equation}\label{C:eq:struct1}
 \dd\theta^i=-\sum_j\omega^i{}_j\wedge\theta^j
 \end{equation}
@@ -747,13 +759,17 @@ F^1{}_2=K\,\theta^1\wedge\theta^2,\qquad F^2{}_1=-K\,\theta^1\wedge\theta^2.
 \[
 F^1{}_2=\dd\omega^1{}_2=\sin\vartheta\,\dd\vartheta\wedge\dd\varphi=\theta^1\wedge\theta^2,\qquad K=1.
 \]
-幾何的な確認：$\nabla_{e_2}e_2=e_1\omega^1{}_2(e_2)=-\cot\vartheta\,e_1$。緯線は北半球で北極側に曲がる（$e_1=\partial_\vartheta$ の逆向き）ことと整合する。座標表示 $\Gamma^\vartheta_{\varphi\varphi}=-\sin\vartheta\cos\vartheta$, $\Gamma^\varphi_{\vartheta\varphi}=\Gamma^\varphi_{\varphi\vartheta}=\cot\vartheta$（他は $0$）。
+幾何的な確認：$\nabla_{e_2}e_2=e_1\omega^1{}_2(e_2)=-\cot\vartheta\,e_1$。緯線は北半球で北極側に曲がる（$e_1=\partial_\vartheta$ の逆向き）ことと整合する。座標表示 $\Gamma^\vartheta{}_{\varphi\varphi}=-\sin\vartheta\cos\vartheta$, $\Gamma^\varphi{}_{\vartheta\varphi}=\Gamma^\varphi{}_{\varphi\vartheta}=\cot\vartheta$（他は $0$）。
 \end{ex}
 
 \begin{ex}[$S^2$ 上のホロノミーと面積]\label{C:ex:S2hol}
-緯線 $\vartheta=\vartheta_0$ を $\varphi$ の増加方向に 1 周する閉曲線 $\gamma$（北極側のキャップ $D$ の境界、向きは $D$ の境界向き）に沿った平行移動を求める。上の枠で $A=\omega=\begin{pmatrix}0&-\cos\vartheta\\\cos\vartheta&0\end{pmatrix}\dd\varphi$。\eqref{C:eq:parallel} は $\frac{\dd\sigma}{\dd\varphi}=-\cos\vartheta_0\begin{pmatrix}0&-1\\1&0\end{pmatrix}\sigma$、$J=\begin{pmatrix}0&-1\\1&0\end{pmatrix}$ とすると $\sigma(\varphi)=e^{-\varphi\cos\vartheta_0J}\sigma(0)$。1 周後（枠は $\gamma$ に沿って閉じている）、ホロノミーは角 $-2\pi\cos\vartheta_0$ の回転。キャップの面積は、面積要素を $\mathrm{dvol}=\sin\vartheta\,\dd\vartheta\wedge\dd\varphi$ と書いて（$\dd A$ と書くと接続形式 $A$ と紛らわしい）$\int_D\mathrm{dvol}=2\pi(1-\cos\vartheta_0)$ である。なお枠 $(e_1,e_2)$ と $\omega=-\cos\vartheta\,\dd\varphi$ は北極で特異（北極のまわりを 1 周すると枠は 1 回転する）で、$D$ は北極を含むので、$\int_D\dd\omega=\oint_\gamma\omega$ とは書けない。実際、$\oint_\gamma\omega=-2\pi\cos\vartheta_0$ に対し $\int_D\dd\omega=\int_D\mathrm{dvol}=2\pi(1-\cos\vartheta_0)$ で、両者の差はちょうど $2\pi$（北極のごく小さな円周で $\oint\omega\to-2\pi$ となる、特異点の寄与）である。回転角としては $2\pi$ の差は区別されないから
+緯線 $\vartheta=\vartheta_0$ を $\varphi$ の増加方向に 1 周する閉曲線 $\gamma$（北極側のキャップ $D$ の境界、向きは $D$ の境界向き）に沿った平行移動を求める。上の枠で $J=\begin{psmallmatrix}0&-1\\1&0\end{psmallmatrix}$ とおくと
 \[
-\text{回転角}=-2\pi\cos\vartheta_0\equiv2\pi(1-\cos\vartheta_0)=\int_DK\,\mathrm{dvol}\pmod{2\pi}.
+A=\omega=\begin{pmatrix}0&-\cos\vartheta\\\cos\vartheta&0\end{pmatrix}\dd\varphi=\cos\vartheta\,J\,\dd\varphi,\qquad\eqref{C:eq:parallel}\text{ は }\ \frac{\dd\sigma}{\dd\varphi}=-\cos\vartheta_0\,J\sigma
+\]
+で、$\sigma(\varphi)=e^{-\varphi\cos\vartheta_0J}\sigma(0)$。1 周後（枠は $\gamma$ に沿って閉じている）、ホロノミーは角 $-2\pi\cos\vartheta_0$ の回転。キャップの面積は、面積要素（体積形式、§6.1）を $\mathrm{vol}_g=\sin\vartheta\,\dd\vartheta\wedge\dd\varphi$ と書いて（$\dd A$ と書くと接続形式 $A$ と紛らわしい）$\int_D\mathrm{vol}_g=2\pi(1-\cos\vartheta_0)$ である。なお枠 $(e_1,e_2)$ と $\omega=-\cos\vartheta\,\dd\varphi$ は北極で特異（北極のまわりを 1 周すると枠は 1 回転する）で、$D$ は北極を含むので、$\int_D\dd\omega=\oint_\gamma\omega$ とは書けない。実際、$\oint_\gamma\omega=-2\pi\cos\vartheta_0$ に対し $\int_D\dd\omega=\int_D\mathrm{vol}_g=2\pi(1-\cos\vartheta_0)$ で、両者の差はちょうど $2\pi$（北極のごく小さな円周で $\oint\omega\to-2\pi$ となる、特異点の寄与）である。回転角としては $2\pi$ の差は区別されないから
+\[
+\text{回転角}=-2\pi\cos\vartheta_0\equiv2\pi(1-\cos\vartheta_0)=\int_DK\,\mathrm{vol}_g\pmod{2\pi}.
 \]
 つまり「ホロノミーの回転角は囲む領域の面積」（Gauss--Bonnet の局所形）。赤道（$\vartheta_0=\pi/2$）ではちょうど半球の面積 $2\pi$ に対応して回転角は $0\bmod2\pi$。
 
@@ -765,23 +781,26 @@ F^1{}_2=\dd\omega^1{}_2=\sin\vartheta\,\dd\vartheta\wedge\dd\varphi=\theta^1\wed
 \begin{tikzpicture}[scale=3.0]
 % orthographic view: azimuth 40, elevation 55
 \draw[thick] (0,0) circle (1);
-\draw[gray,thin] plot[domain=0:360,samples=90] ({-0.643*cos(\x)+0.766*sin(\x)},{-0.628*cos(\x)-0.527*sin(\x)});
+% 赤道：手前半分は実線、裏側半分は破線（点検3）
+\draw[gray,thin] plot[domain=-45:135,samples=60] ({-0.643*cos(\x)+0.766*sin(\x)},{-0.628*cos(\x)-0.527*sin(\x)});
+\draw[gray,thin,dashed] plot[domain=135:315,samples=60] ({-0.643*cos(\x)+0.766*sin(\x)},{-0.628*cos(\x)-0.527*sin(\x)});
 \draw[blue!60!black,very thick] plot[domain=0:90,samples=30] ({-0.643*sin(\x)},{-0.628*sin(\x)+0.574*cos(\x)});
 \draw[blue!60!black,very thick] plot[domain=0:90,samples=30] ({0.766*sin(\x)},{-0.527*sin(\x)+0.574*cos(\x)});
 \draw[blue!60!black,very thick] plot[domain=0:90,samples=30] ({-0.643*cos(\x)+0.766*sin(\x)},{-0.628*cos(\x)-0.527*sin(\x)});
 \fill (0,0.574) circle (0.5pt) node[above,font=\small]{$N$};
-\fill (-0.643,-0.628) circle (0.5pt) node[left,font=\small]{$A$};
-\fill (0.766,-0.527) circle (0.5pt) node[right,font=\small]{$B$};
+\fill (-0.643,-0.628) circle (0.5pt); \node[font=\small,anchor=south west] at (-0.62,-0.6) {$A$};
+\fill (0.766,-0.527) circle (0.5pt); \node[font=\small,anchor=south east] at (0.745,-0.5) {$B$};
 % start at N (towards A) and arrival at N (along meridian to B)
 \draw[->,very thick,red!70!black] (0,0.574) -- ++(-0.19,-0.185);
 \draw[->,very thick,green!45!black] (0,0.574) -- ++(0.24,-0.165);
-\node[red!70!black,font=\scriptsize] at (-0.33,0.30) {出発};
-\node[green!45!black,font=\scriptsize] at (0.40,0.34) {帰着};
+\node[red!70!black,font=\scriptsize,anchor=east] at (-0.2,0.47) {出発};
+\node[green!45!black,font=\scriptsize,anchor=west] at (0.2,0.5) {帰着};
 \draw[orange!80!black,thick] (-0.07,0.50) to[bend right=30] (0.09,0.49);
 \node[orange!80!black,font=\scriptsize] at (0.0,0.40) {$\alpha$};
 % transported vector at A and B (pointing south)
-\draw[->,very thick,red!70!black] (-0.643,-0.628) -- ++(0,-0.2);
-\draw[->,very thick,red!70!black] (0.766,-0.527) -- ++(0,-0.2);
+% 赤道上では南向き（球面の輪郭より内側に収まる長さ）
+\draw[->,very thick,red!70!black] (-0.643,-0.628) -- ++(0,-0.11);
+\draw[->,very thick,red!70!black] (0.766,-0.527) -- ++(0,-0.1);
 \end{tikzpicture}
 \caption{球面 $S^2$ 上の測地三角形 $NAB$（斜めから見た図）。赤：$N$ から $A$ 向きに出発した接ベクトルの平行移動、緑：$N$ に戻ったときのベクトル。北極での角 $\alpha$ だけ回転する（$\alpha=$ 三角形の面積）。}
 \label{C:fig:sphtri}
@@ -792,7 +811,7 @@ F^1{}_2=\dd\omega^1{}_2=\sin\vartheta\,\dd\vartheta\wedge\dd\varphi=\theta^1\wed
 $F=0$ の接続を\emph{平坦}（flat）という。平坦でも接続が「自明」とは限らない（例~\ref{C:ex:S1hol}）。次の定理は、平坦であることが「局所的に自明化できる」ことと同値であることを述べる。
 
 \begin{thm}[平坦接続の局所自明性]\label{C:thm:flat}\tP\
-$\nabla$ を $E\to M$ の接続とする。$F=0$ ならば、各点 $p$ の近傍 $U$ と、$U$ 上の\emph{平行な枠} $e$（$\nabla e_j=0$、すなわち $A=0$）が存在する。逆に平行な枠が各点の近傍に存在すれば $F=0$。
+$\nabla$ を $E\to M$ の接続とする。$F=0$ ならば、各点 $p$ の近傍 $U$ と、$U$ 上の\emph{平行な枠} $e$（$\nabla e_a=0$、すなわち $A=0$）が存在する。逆に平行な枠が各点の近傍に存在すれば $F=0$。
 \end{thm}
 \begin{proof}
 逆は $F=\dd A+A\wedge A=0$ から明らか。順方向：座標球 $U\ni p$（$p$ が原点）上の枠 $e$ に関する接続形式を $A=A_i\dd x^i$ とする。平行な枠 $e'=eg$ とは $A'=g^{-1}Ag+g^{-1}\dd g=0$、すなわち行列値関数 $g$ に対する方程式 $\dd g=-Ag$（$\partial_ig=-A_ig$）。$U\times\gl(r)$ 上のベクトル場 $X_i=\partial_i-\sum_{a,b}(A_ig)^a{}_b\,\partial_{g^a{}_b}$ を考える。$X_i$ は $U$ への射影で $\partial_i$ に写るので、$X_1,\dots,X_n$ は 1 次独立で $n$ 次元の分布 $D$ を張る。括弧を計算すると、$[\partial_i,-(A_jg)\partial_g]=-(\partial_iA_j\,g)\partial_g$、また $v_i=-(A_ig)\partial_g$ について $[v_i,v_j](g)=v_i(-A_jg)-v_j(-A_ig)=A_jA_ig-A_iA_jg$ なので
@@ -804,11 +823,11 @@ $F=0$ ならば $[X_i,X_j]=0$ で $D$ は可積分。Frobenius の定理（§3�
 平行な枠 $e,e'$ の間の貼り合わせ $e'=eg$ は $0=A'=g^{-1}Ag+g^{-1}\dd g=g^{-1}\dd g$ より $\dd g=0$、すなわち\emph{局所定数}。したがって平坦な束は、局所定数の貼り合わせ関数をもつ束（「局所定数係数の束」、\emph{局所系}）である。これにより次の結果が従う。
 
 \begin{prop}[ホロノミー表現]\label{C:prop:holrep}\tP\
-$\nabla$ を連結な $M$ 上の平坦接続とする。(a) 平行移動 $P_\gamma$ は、端点を止めたホモトピーで不変。(b) したがって基点 $p$ を固定すると、（曲線の連結は先に $\gamma_1$ をたどる規約で $P_{\gamma_1\cdot\gamma_2}=P_{\gamma_2}P_{\gamma_1}$ だから）$\rho([\gamma]):=P_\gamma^{-1}$ は群の準同型
+$\nabla$ を連結な $M$ 上の平坦接続とする。(a) 平行移動 $P_\gamma$ は、端点を止めたホモトピーで不変。(b) したがって基点 $p$ を固定すると、（曲線の連結は先に $\gamma_1$ をたどる規約で $P_{\gamma_1*\gamma_2}=P_{\gamma_2}P_{\gamma_1}$ だから）$\rho([\gamma]):=P_\gamma^{-1}$ は群の準同型
 \[
 \rho:\pi_1(M,p)\to\GL(E_p)
 \]
-を定める（\emph{ホロノミー表現}、monodromy）。逆に、$\pi_1(M,p)$ の表現 $\rho$ から、普遍被覆 $\tilde M$ 上の自明束を $\pi_1$ で割って平坦束 $E_\rho=\tilde M\times_\rho V$ を作ることができ、（平坦束, 接続）の同型類と $\mathrm{Hom}(\pi_1(M),\GL(r))/\text{共役}$ の元との 1 対 1 対応が得られる（同型類の対応であることに注意）。
+を定める（\emph{ホロノミー表現}、monodromy）。逆に、$\pi_1(M,p)$ の表現 $\rho$ から、普遍被覆 $\tilde M$ 上の自明束を $\pi_1$ で割って平坦束 $E_\rho=\tilde M\times_\rho V$ を作ることができ、（平坦束, 接続）の同型類と $\Hom(\pi_1(M),\GL(r))/\text{共役}$ の元との 1 対 1 対応が得られる（同型類の対応であることに注意）。
 \end{prop}
 \begin{proof}[証明の概略]
 (a) 局所的には、平行な枠 $e$ をとると、$U$ 内の曲線 $\gamma$ に沿った平行移動は $e(\gamma(0))\mapsto e(\gamma(1))$ すなわち端点だけで決まる。ホモトピー $H:[0,1]^2\to M$ を小さな正方形に細分して各正方形が 1 枚の平行枠の定義域に入るようにし、隣り合う曲線の平行移動が等しいことを順に確かめる（被覆空間のホモトピー不変性と同じ議論）。(b) はそのまま。逆対応は定義から。詳細は \tC\ （Kobayashi--Nomizu 第I巻 第II章。\tQ\ 章内の節番号は書かない）。
@@ -822,11 +841,11 @@ $\pi_1(M)$ の表現に対する規約（左右）は文献ごとに異なり、
 \end{ex}
 
 \begin{ex}[トーラス上の平坦 $\U(1)$ 接続]\label{C:ex:torus}
-$T^2=\R^2/\Z^2$（座標 $x,y$）上の自明な直線束に $\nabla=\dd+2\pi i(a\,\dd x+b\,\dd y)$（$a,b\in\R$）。$F=0$。ホロノミーは 2 つの生成ループに沿って $e^{-2\pi ia},e^{-2\pi ib}$。ゲージ変換 $g=e^{2\pi i(mx+ny)}$（$m,n\in\Z$ なら $T^2$ 上の関数）で $(a,b)\to(a+m,b+n)$ となるので、平坦 $\U(1)$ 接続のゲージ同値類は $\mathrm{Hom}(\pi_1(T^2),\U(1))=\U(1)^2\cong(\R/\Z)^2$（双対トーラス）で、問~\ref{pr:C_AB}。Jacobi 多様体・Picard 多様体（第4巻）の実数版のモデルになる像。
+$T^2=\R^2/\Z^2$（座標 $x,y$）上の自明な直線束に $\nabla=\dd+2\pi i(a\,\dd x+b\,\dd y)$（$a,b\in\R$）。$F=0$。ホロノミーは 2 つの生成ループに沿って $e^{-2\pi ia},e^{-2\pi ib}$。ゲージ変換 $g=e^{2\pi i(mx+ny)}$（$m,n\in\Z$ なら $T^2$ 上の関数）で $(a,b)\to(a+m,b+n)$ となるので、平坦 $\U(1)$ 接続のゲージ同値類は $\Hom(\pi_1(T^2),\U(1))=\U(1)^2\cong(\R/\Z)^2$（双対トーラス）で、問~\ref{pr:C_AB}。Jacobi 多様体・Picard 多様体（第4巻）の実数版のモデルになる像。
 \end{ex}
 
 \begin{ex}[対数接続の入り口]\label{C:ex:log}
-$\C^\times$ 上の自明な直線束に $\nabla=\dd+\lambda\,\dfrac{\dd z}{z}$（$\lambda\in\C$）。$\dd(\dd z/z)=0$ で平坦。反時計回りの周 $|z|=1$ に沿ったホロノミーは $e^{-2\pi i\lambda}$ （例~\ref{C:ex:S1hol}、$\dd z/z=i\,\dd\theta+\dd\log r$）。$\dd z/z$ は原点で極をもつ「対数的」1 形式で、$\lambda$ はその\emph{留数}。「平坦な対数接続の留数が局所モノドロミー（ホロノミー）$e^{-2\pi i\lambda}$ を決める」というこの対応は、統合論文（対数接続と留数）の出発点であり、第11・13・14巻で再び現れる。
+$\C^\times$ 上の自明な直線束に $\nabla=\dd+\lambda\,\dfrac{\dd z}{z}$（$\lambda\in\C$）。$\dd(\dd z/z)=0$ で平坦。反時計回りの周 $|z|=1$ に沿ったホロノミーは $e^{-2\pi i\lambda}$（例~\ref{C:ex:S1hol}、$\dd z/z=i\,\dd\theta+\dd\log r$）。$\dd z/z$ は原点で極をもつ「対数的」1 形式で、$\lambda$ はその\emph{留数}。「平坦な対数接続の留数が局所モノドロミー（ホロノミー）$e^{-2\pi i\lambda}$ を決める」というこの対応は、統合論文（対数接続と留数）の出発点であり、第11・13・14巻で再び現れる。
 \end{ex}
 
 \begin{keybox}{§8 の要点}
@@ -851,7 +870,7 @@ $\C^\times$ 上の自明な直線束に $\nabla=\dd+\lambda\,\dfrac{\dd z}{z}$�
 
 \subsection*{問題（§8）}
 \begin{probl}{標準}{C_gauge}
-(a) $\R^2$ の自明な階数 2 の束に $A=\begin{pmatrix}0&y\,\dd x\\x\,\dd y&0\end{pmatrix}$ を考える。$F=\dd A+A\wedge A$ を求めよ。(b) ゲージ変換 $g=\begin{pmatrix}1&x\\0&1\end{pmatrix}$（$e'=eg$）で $A'=g^{-1}Ag+g^{-1}\dd g$ を求め、$F'$ の $(2,1)$ 成分を定義から直接計算して $(g^{-1}Fg)_{21}$ と一致することを確かめよ。(c) 一般に、$g$ に関する $\dd A'+A'\wedge A'=g^{-1}(\dd A+A\wedge A)g$ を導け（定理~\ref{C:thm:curv}(c) の計算を自分でやり直す）。
+(a) $\R^2$ の自明な階数 2 の束に $A=\begin{pmatrix}0&y\,\dd x\\x\,\dd y&0\end{pmatrix}$ を考える。$F=\dd A+A\wedge A$ を求めよ。(b) ゲージ変換 $g=\begin{pmatrix}1&x\\0&1\end{pmatrix}$（$e'=eg$）で $A'=g^{-1}Ag+g^{-1}\dd g$ を求め、$F'$ の $(2,1)$ 成分 $F'^2{}_1$ を定義から直接計算して $(g^{-1}Fg)^2{}_1$ と一致することを確かめよ。(c) 一般に、$g$ に関する $\dd A'+A'\wedge A'=g^{-1}(\dd A+A\wedge A)g$ を導け（定理~\ref{C:thm:curv}(c) の計算を自分でやり直す）。
 \end{probl}
 \begin{probl}{標準}{C_curvcalc}
 $\R^3$ の自明な階数 2 の束で $A=\begin{pmatrix}y\,\dd x&z\,\dd y\\x\,\dd z&-y\,\dd x\end{pmatrix}$ の曲率 $F=\dd A+A\wedge A$ を計算し、Bianchi 恒等式 $\dd F+A\wedge F-F\wedge A=0$ を 4 つの成分すべてについて確かめよ。
@@ -861,16 +880,16 @@ $\R^3$ の自明な階数 2 の束で $A=\begin{pmatrix}y\,\dd x&z\,\dd y\\x\,\d
 \hint{(b) 同値なら $g^{-1}\dd g=2\pi i((a'-a)\dd x+(b'-b)\dd y)$。$g=e^{i\phi}$ と書いて周期性を調べるか、ホロノミーを比べる。}
 \end{probl}
 \begin{probl}{標準}{C_unitary}
-Hermite 計量 $h$ をもつ階数 $r$ の複素束 $E$ とその接続 $\nabla$ について、(a) $h$ の正規直交枠で $\nabla$ が整合 $\Leftrightarrow A^*=-A$ を示し、$F^*=-F$ を確かめよ。(b) 任意の枠（正規直交と限らない）$e$ で $H=(h(e_i,e_j))_{ij}$ と書くとき、整合条件は $\dd H=A^TH+H\bar A$ と同値であることを示せ。(c) 直線束では、$h(e,e)=H>0$, $\nabla e=\theta e$ で整合 $\Leftrightarrow\dd H=(\theta+\bar\theta)H$ を示せ。
+Hermite 計量 $h$ をもつ階数 $r$ の複素束 $E$ とその接続 $\nabla$ について、(a) $h$ の正規直交枠で $\nabla$ が整合 $\Leftrightarrow A^*=-A$ を示し、$F^*=-F$ を確かめよ。(b) 任意の枠（正規直交と限らない）$e$ で $H=(H_{ab})$, $H_{ab}=h(e_a,e_b)$ と書くとき、整合条件は $\dd H=A^TH+H\bar A$ と同値であることを示せ。(c) 直線束では、$h(e,e)=H>0$, $\nabla e=\theta e$ で整合 $\Leftrightarrow\dd H=(\theta+\bar\theta)H$ を示せ。
 \end{probl}
 \begin{probl}{標準}{C_bianchi}
 $\dd_\nabla^2=F\wedge$（$\Om^k(M;E)$ 上）を用いて、$\dd_\nabla^3s$ を 2 通りに計算し、$(\dd_\nabla F)s=0$ を示せ（枠による直接計算 $\dd F+A\wedge F-F\wedge A=0$ との一致も確認せよ）。ここで $(\dd_\nabla F)s=\dd_\nabla(Fs)-F\wedge\nabla s$ を使ってよい。
 \end{probl}
 \begin{probl}{標準}{C_induced}
-(a) 接続つきの直線束 $(L,\nabla)$, $(L',\nabla')$ に対し、テンソル積の接続 $\nabla\otimes1+1\otimes\nabla'$ の曲率は $F+F'$、双対束 $L^*$ では $-F$ であることを示せ。(b) 階数 $r$ の $(E,\nabla)$ の行列式束 $\det E$ の接続形式が $\tr A$、曲率が $\tr F$ であることを示せ（$\Lambda^r$ の誘導接続は枠 $e_1\wedge\dots\wedge e_r$ に対し $\nabla(e_1\wedge\dots\wedge e_r)=\sum_je_1\wedge\dots\wedge\nabla e_j\wedge\dots\wedge e_r$）。(c) $\End E$ では $\dd_\nabla T=\dd T+[A,T]$（0 形式 $T$）、曲率は $F_{\End E}(T)=[F,T]$ であることを示せ。
+(a) 接続つきの直線束 $(L,\nabla)$, $(L',\nabla')$ に対し、テンソル積の接続 $\nabla\otimes1+1\otimes\nabla'$ の曲率は $F+F'$、双対束 $L^*$ では $-F$ であることを示せ。(b) 階数 $r$ の $(E,\nabla)$ の行列式束 $\det E$ の接続形式が $\tr A$、曲率が $\tr F$ であることを示せ（$\Lambda^r$ の誘導接続は枠 $e_1\wedge\dots\wedge e_r$ に対し $\nabla(e_1\wedge\dots\wedge e_r)=\sum_be_1\wedge\dots\wedge\nabla e_b\wedge\dots\wedge e_r$）。(c) $\End E$ では $\dd_\nabla T=\dd T+[A,T]$（0 形式 $T$）、曲率は $F_{\End E}(T)=[F,T]$ であることを示せ。
 \end{probl}
 \begin{probl}{標準}{C_LC}
-(a) $\R^2\setminus0$ の極座標 $g=\dd r^2+r^2\dd\theta^2$ について Christoffel 記号 $\Gamma^k_{ij}$ をすべて求め、曲率が $0$ であることを確かめよ。(b) 上半平面 $H=\{(x,y):y>0\}$ の双曲計量 $g=(\dd x^2+\dd y^2)/y^2$ に、正規直交余枠 $\theta^1=\dd x/y$, $\theta^2=\dd y/y$ をとる。第 1 構造方程式から $\omega^1{}_2$ を求め、Gauss 曲率 $K=-1$ を示せ。
+(a) $\R^2\setminus0$ の極座標 $g=\dd r^2+r^2\dd\theta^2$ について Christoffel 記号 $\Gamma^k{}_{ij}$ をすべて求め、曲率が $0$ であることを確かめよ。(b) 上半平面 $H=\{(x,y):y>0\}$ の双曲計量 $g=(\dd x^2+\dd y^2)/y^2$ に、正規直交余枠 $\theta^1=\dd x/y$, $\theta^2=\dd y/y$ をとる。第 1 構造方程式から $\omega^1{}_2$ を求め、Gauss 曲率 $K=-1$ を示せ。
 \end{probl}
 \begin{probl}{標準}{C_S2hol}
 (a) 例~\ref{C:ex:S2hol} の計算を、$\vartheta_0=\pi/3$ の緯線について実行し、ホロノミーの回転角が（$2\pi$ を法として）キャップの面積と一致することを確かめよ。(b) 緯線ではなく経線・赤道からなる測地三角形（北極と赤道上の 2 点 $A,B$、$N$ での角 $\alpha$）の場合に、ホロノミーの回転角が $\alpha$ であることを、測地線に沿って接ベクトルが測地線となす角が一定であることを使って説明せよ。
@@ -879,7 +898,7 @@ $\dd_\nabla^2=F\wedge$（$\Om^k(M;E)$ 上）を用いて、$\dd_\nabla^3s$ を 2
 (a) 平坦接続をもつ単連結多様体 $M$ 上の束 $E$ は自明で、平行な大域枠をもつことを、命題~\ref{C:prop:holrep} を使って示せ。(b) Möbius 束 $L=\R^2/\Z$（例~\ref{C:ex:mobius}）には、自明接続 $\dd$ から誘導される平坦接続があり、そのホロノミーは $-1$ であることを示せ。したがって $L$ は平坦だが自明でない。(c) (b) の接続は計量接続でもあることを示せ。
 \end{probl}
 \begin{probl}{発展}{C_smallloop}
-直線束の接続 $\nabla=\dd+A$ ($A$ は 1 形式) について、(a) 滑らかな閉曲線 $\gamma=\partial D$（$D$ は単純な領域、$\R^2$ の座標内）に沿ったホロノミーが $\exp\bigl(-\oint_\gamma A\bigr)=\exp\bigl(-\int_DF\bigr)$ であることを Stokes の定理で示せ。(b) 命題~\ref{C:prop:smallloop} の $\varepsilon^2$ の項の係数 $-F_{ij}$ がこれと整合することを確かめよ。(c) 平坦でない（$F\ne0$）直線束で、あるループのホロノミーが自明になる例を作れ。
+直線束の接続 $\nabla=\dd+A$（$A$ は 1 形式） について、(a) 滑らかな閉曲線 $\gamma=\partial D$（$D$ は単純な領域、$\R^2$ の座標内）に沿ったホロノミーが $\exp\bigl(-\oint_\gamma A\bigr)=\exp\bigl(-\int_DF\bigr)$ であることを Stokes の定理で示せ。(b) 命題~\ref{C:prop:smallloop} の $\varepsilon^2$ の項の係数 $-F_{ij}$ がこれと整合することを確かめよ。(c) 平坦でない（$F\ne0$）直線束で、あるループのホロノミーが自明になる例を作れ。
 \end{probl}
 
 %==================================================
@@ -919,7 +938,7 @@ s_\beta=s_\alpha\,g_{\alpha\beta},\qquad g_{\alpha\beta}:U_{\alpha\beta}\to G\ \
 
 \begin{ex}\label{C:ex:principal}
 (1) 自明束 $M\times G$。
-(2) \emph{枠束}（frame bundle）：$E\to M$ を階数 $r$ のベクトル束とし、$\Fr(E)=\{(x,e):x\in M,\ e\text{ は }E_x\text{ の（順序つき）基底}\}$。基底 $e=(e_1,\dots,e_r)$ への $g\in\GL(r,\KK)$ の右作用 $e\cdot g=eg$（$e_j'=\sum_ie_ig^i{}_j$）により主 $\GL(r,\KK)$ 束。局所切断は局所枠、貼り合わせ関数は $E$ の貼り合わせ関数 $g_{\alpha\beta}$（本巻の規約 $e_\beta=e_\alpha g_{\alpha\beta}$ が \eqref{C:eq:Ptrans} と一致する）。$E$ に Hermite 計量があれば、正規直交枠だけを集めた部分束 $\Fr_{\U}(E)$ が主 $\U(r)$ 束。$E=TM$ なら $\Fr(M):=\Fr(TM)$（$\GL(n,\R)$ 束）、Riemann 計量があれば $\Fr_{\SO}(M)$（向きを込めた正規直交枠束、$\SO(n)$ 束）。
+(2) \emph{枠束}（frame bundle）：$E\to M$ を階数 $r$ のベクトル束とし、$\Fr(E)=\{(x,e):x\in M,\ e\text{ は }E_x\text{ の（順序つき）基底}\}$。基底 $e=(e_1,\dots,e_r)$ への $g\in\GL(r,\KK)$ の右作用 $e\cdot g=eg$（$e'_b=\sum_ae_ag^a{}_b$）により主 $\GL(r,\KK)$ 束。局所切断は局所枠、貼り合わせ関数は $E$ の貼り合わせ関数 $g_{\alpha\beta}$（本巻の規約 $e_\beta=e_\alpha g_{\alpha\beta}$ が \eqref{C:eq:Ptrans} と一致する）。$E$ に Hermite 計量があれば、正規直交枠だけを集めた部分束 $\Fr_{\U}(E)$ が主 $\U(r)$ 束。$E=TM$ なら $\Fr(M):=\Fr(TM)$（$\GL(n,\R)$ 束）、Riemann 計量があれば $\Fr_{\SO}(M)$（向きを込めた正規直交枠束、$\SO(n)$ 束）。
 (3) \emph{Hopf 束}：$S^3=\{u\in\C^2:|u|=1\}$ への $\U(1)$ の右作用 $u\cdot e^{i\varphi}=e^{i\varphi}u$、$\pi(u)=[u]\in\CP^1$ が主 $\U(1)$ 束（\emph{Hopf 束}、$S^3\to S^2$）。局所切断：$U_0=\{u_0\ne0\}$ 上 $s_0([u])=\frac1{\sqrt{1+|z|^2}}(1,z)$（$z=u_1/u_0$）、$U_1$ 上 $s_1([u])=\frac1{\sqrt{1+|w|^2}}(w,1)$（$w=u_0/u_1=1/z$）。$|z|^2$ を用いて $\sqrt{1+|w|^2}=\sqrt{1+|z|^2}/|z|$ なので $s_1=s_0\,\frac{|z|}{z}$、すなわち
 \[
 s_0=s_1\,g_{10},\qquad g_{10}(z)=\frac z{|z|}\in\U(1).
@@ -936,10 +955,11 @@ s_0=s_1\,g_{10},\qquad g_{10}(z)=\frac z{|z|}\in\U(1).
  \draw[orange!70!black,thick] (\x,1.6) ellipse (0.28 and 1.0);
 }
 \node[font=\small,orange!70!black] at (0.9,2.9) {$\pi^{-1}(x)\cong G$};
-\fill (2.7,2.15) circle (1.8pt); \node[left,font=\small] at (2.55,2.2) {$p$};
-\draw[->,very thick,blue!60!black] (2.7,2.15) -- (2.88,1.55) node[midway,right,font=\scriptsize]{$\xi^*_p$};
-\draw[->,very thick,red!70!black] (2.7,2.15) -- (4.0,2.45) node[above,font=\small]{水平 $H_p=\ker\omega_p$};
-\draw[dashed,gray] (4.5,2.55)--(4.5,0);
+% p はファイバー（楕円）上の点。垂直ベクトルは楕円に接し、水平ベクトルは隣のファイバーに届かない（点検3）
+\fill (2.942,2.1) circle (1.8pt); \node[font=\small,anchor=east] at (2.88,2.1) {$p$};
+\draw[->,very thick,blue!60!black] (2.942,2.1) -- ++(0.07,-0.48) node[right,font=\scriptsize]{$\xi^*_p$};
+\draw[->,very thick,red!70!black] (2.942,2.1) -- (3.95,2.4);
+\node[red!70!black,font=\small,anchor=south] at (3.45,2.62) {水平 $H_p=\ker\omega_p$};
 \draw[->,thick] (2.7,0.4) -- (2.7,0.05); \node[right,font=\small] at (2.75,0.28) {$\pi$};
 \draw[dashed] (0.9,0.6)--(0.9,0); \draw[dashed] (2.7,0.6)--(2.7,0.35); \draw[dashed] (4.5,0.6)--(4.5,0); \draw[dashed] (6.3,0.6)--(6.3,0);
 \node[font=\small] at (3.5,-0.5) {$TP=V\oplus H$、$V=\ker\dd\pi=\{\xi^*\}$};
@@ -953,11 +973,11 @@ $\rho:G\to\GL(V)$ を $G$ の表現（滑らかな準同型）とする。$P\tim
 \[
 P\times_\rho V:=(P\times V)/G=\{[p,v]\},\qquad[pg,v]=[p,\rho(g)v]
 \]
-を\emph{同伴ベクトル束}（associated vector bundle）という。$\pi[p,v]=\pi(p)$ で $M$ 上のベクトル束。局所切断 $s_\alpha$ から局所枠 $\varepsilon_{\alpha,j}=[s_\alpha,v_j]$（$v_j$ は $V$ の基底）が得られ、\eqref{C:eq:Ptrans} から $[s_\beta,v]=[s_\alpha g_{\alpha\beta},v]=[s_\alpha,\rho(g_{\alpha\beta})v]$ すなわち $\varepsilon_\beta=\varepsilon_\alpha\,\rho(g_{\alpha\beta})$。したがって貼り合わせ関数は $\rho(g_{\alpha\beta})$。
+を\emph{同伴ベクトル束}（associated vector bundle）という。$\pi[p,v]=\pi(p)$ で $M$ 上のベクトル束。局所切断 $s_\alpha$ から局所枠 $\varepsilon_{\alpha,a}=[s_\alpha,v_a]$（$v_1,\dots,v_r$ は $V$ の基底）が得られ、\eqref{C:eq:Ptrans} から $[s_\beta,v]=[s_\alpha g_{\alpha\beta},v]=[s_\alpha,\rho(g_{\alpha\beta})v]$ すなわち $\varepsilon_\beta=\varepsilon_\alpha\,\rho(g_{\alpha\beta})$。したがって貼り合わせ関数は $\rho(g_{\alpha\beta})$。
 
 \begin{ex}\label{C:ex:assoc}
-(1) $\Fr(E)\times_{\GL(r)}\KK^r\cong E$：$[e,v]\mapsto ev=\sum v^je_j\in E_x$（$e\cdot g$ と $v$ の組 $[eg,v]=[e,gv]\mapsto egv$ で well-defined）。つまりすべてのベクトル束は枠束の同伴束である。$\Fr(E)\times_{\GL}\Lambda^k(\KK^r)^*=\Lambda^kE^*$ など。
-(2) Hopf 束 $S^3\to S^2$ と $\U(1)$ の表現 $\rho_k(e^{i\varphi})=e^{ik\varphi}$ ($k\in\Z$)：$S^3\times_{\rho_k}\C$ の貼り合わせ関数は $g_{10}^k=(z/|z|)^k$。$k=1$ では、$S^3\times_{\rho_1}\C\ni[u,\lambda]\mapsto\lambda u\in\mathcal O(-1)$ が同型（$[ue^{i\varphi},\lambda]=[u,e^{i\varphi}\lambda]\mapsto\lambda e^{i\varphi}u$ と整合）。したがって $S^3\times_{\rho_1}\C\cong\mathcal O(-1)=L_1$。表現は $\rho_k=\rho_1^{\otimes k}$ なので同伴束も $S^3\times_{\rho_k}\C\cong(S^3\times_{\rho_1}\C)^{\otimes k}\cong L_k=\mathcal O(-k)$（問~\ref{pr:C_frame}）。
+(1) $\Fr(E)\times_{\GL(r)}\KK^r\cong E$：$[e,v]\mapsto ev=\sum_av^ae_a\in E_x$（$e\cdot g$ と $v$ の組 $[eg,v]=[e,gv]\mapsto egv$ で well-defined）。つまりすべてのベクトル束は枠束の同伴束である。$\Fr(E)\times_{\GL}\Lambda^k(\KK^r)^*=\Lambda^kE^*$ など。
+(2) Hopf 束 $S^3\to S^2$ と $\U(1)$ の表現 $\rho_k(e^{i\varphi})=e^{ik\varphi}$（$k\in\Z$）：$S^3\times_{\rho_k}\C$ の貼り合わせ関数は $g_{10}^k=(z/|z|)^k$。$k=1$ では、$S^3\times_{\rho_1}\C\ni[u,\lambda]\mapsto\lambda u\in\mathcal O(-1)$ が同型（$[ue^{i\varphi},\lambda]=[u,e^{i\varphi}\lambda]\mapsto\lambda e^{i\varphi}u$ と整合）。したがって $S^3\times_{\rho_1}\C\cong\mathcal O(-1)=L_1$。表現は $\rho_k=\rho_1^{\otimes k}$ なので同伴束も $S^3\times_{\rho_k}\C\cong(S^3\times_{\rho_1}\C)^{\otimes k}\cong L_k=\mathcal O(-k)$（問~\ref{pr:C_frame}）。
 (3) 随伴表現 $\Ad:G\to\GL(\gfr)$ による同伴束 $\mathrm{ad}P=P\times_{\Ad}\gfr$。$E=P\times_\rho V$ なら $\End E\supset\mathrm{ad}P$（$\ug(r)$ 束）。接続の曲率 $F$ は $\mathrm{ad}P$ 値 2 形式。
 \end{ex}
 
@@ -1000,7 +1020,7 @@ $\omega$ の\emph{曲率}は $\Om:=\dd\omega+\tfrac12[\omega,\omega]\in\Om^2(P;\
 (a) $R_g^*\Om=\Ad(g^{-1})\Om$。(b) $\Om$ は水平：$\iota_{\xi^*}\Om=0$。(c) 局所切断 $s$ について $s^*\Om=\dd A+\tfrac12[A,A]$、行列 Lie 群では $\tfrac12[A,A]=A\wedge A$ なので $s^*\Om=\dd A+A\wedge A=F_A$（§8 の曲率）。(d) Bianchi：$\dd\Om+[\omega,\Om]=0$。
 \end{prop}
 \begin{proof}
-(a) $\dd$, $[\cdot,\cdot]$ は引き戻しと可換で、$R_g^*\omega=\Ad(g^{-1})\omega$ ($\Ad$ は Lie 環の自己同型)。(b) $\iota_{\xi^*}\dd\omega=L_{\xi^*}\omega-\dd\iota_{\xi^*}\omega=L_{\xi^*}\omega$（$\omega(\xi^*)=\xi$ は定数）。$L_{\xi^*}\omega=\frac{\dd}{\dd t}|_0R^*_{\exp t\xi}\omega=\frac{\dd}{\dd t}|_0\Ad(\exp(-t\xi))\omega=-[\xi,\omega]$。一方 $\iota_{\xi^*}\frac12[\omega,\omega]=[\omega(\xi^*),\omega]=[\xi,\omega]$。足して $0$。(c) $s^*$ は $\dd$ と $[\ ,\ ]$ に可換。行列では $\frac12[A,A](X,Y)=[A(X),A(Y)]=(A\wedge A)(X,Y)$。(d) $\alpha\in\Om^a,\beta\in\Om^b$ の Lie 環値形式の括弧は $[\alpha,\beta]=-(-1)^{ab}[\beta,\alpha]$ をみたし（ここで初めて使う符号規約）、$\dd[\alpha,\beta]=[\dd\alpha,\beta]+(-1)^a[\alpha,\dd\beta]$ である。よって $\dd[\omega,\omega]=[\dd\omega,\omega]-[\omega,\dd\omega]=2[\dd\omega,\omega]$ なので $\dd\Om=[\dd\omega,\omega]=[\Om,\omega]-\frac12[[\omega,\omega],\omega]$。最後の項は Jacobi 恒等式で $0$、また $\Om$ は偶数次なので $[\Om,\omega]=-[\omega,\Om]$。よって $\dd\Om+[\omega,\Om]=0$。行列群では $[\omega,\Om]=\omega\wedge\Om-\Om\wedge\omega$ で、§8 の Bianchi 恒等式と一致する。
+(a) $\dd$, $[\cdot,\cdot]$ は引き戻しと可換で、$R_g^*\omega=\Ad(g^{-1})\omega$（$\Ad$ は Lie 環の自己同型）。(b) $\iota_{\xi^*}\dd\omega=L_{\xi^*}\omega-\dd\iota_{\xi^*}\omega=L_{\xi^*}\omega$（$\omega(\xi^*)=\xi$ は定数）。$L_{\xi^*}\omega=\frac{\dd}{\dd t}|_0R^*_{\exp t\xi}\omega=\frac{\dd}{\dd t}|_0\Ad(\exp(-t\xi))\omega=-[\xi,\omega]$。一方 $\iota_{\xi^*}\frac12[\omega,\omega]=[\omega(\xi^*),\omega]=[\xi,\omega]$。足して $0$。(c) $s^*$ は $\dd$ と $[\ ,\ ]$ に可換。行列では $\frac12[A,A](X,Y)=[A(X),A(Y)]=(A\wedge A)(X,Y)$。(d) $\alpha\in\Om^a,\beta\in\Om^b$ の Lie 環値形式の括弧は $[\alpha,\beta]=-(-1)^{ab}[\beta,\alpha]$ をみたし（ここで初めて使う符号規約）、$\dd[\alpha,\beta]=[\dd\alpha,\beta]+(-1)^a[\alpha,\dd\beta]$ である。よって $\dd[\omega,\omega]=[\dd\omega,\omega]-[\omega,\dd\omega]=2[\dd\omega,\omega]$ なので $\dd\Om=[\dd\omega,\omega]=[\Om,\omega]-\frac12[[\omega,\omega],\omega]$。最後の項は Jacobi 恒等式で $0$、また $\Om$ は偶数次なので $[\Om,\omega]=-[\omega,\Om]$。よって $\dd\Om+[\omega,\Om]=0$。行列群では $[\omega,\Om]=\omega\wedge\Om-\Om\wedge\omega$ で、§8 の Bianchi 恒等式と一致する。
 \end{proof}
 
 \begin{ex}[$S^1$ 上の水平持ち上げとホロノミー]\label{C:ex:S1P}
@@ -1014,7 +1034,7 @@ $\omega$ の\emph{曲率}は $\Om:=\dd\omega+\tfrac12[\omega,\omega]\in\Om^2(P;\
 \foreach \x in {1,2,3,4,5,6}{\draw[gray!50] (\x,0)--(\x,3);}
 \draw[->,thick,blue!60!black] (-0.35,0.3)--(-0.35,2.7) node[midway,left,font=\small]{$\psi$};
 \draw[<->] (0,-0.5)--(7,-0.5); \node[font=\small,fill=white] at (3.5,-0.5) {$\theta\in[0,2\pi]$（左右の辺を同一視）};
-\draw[very thick,red!70!black,->] (0,2.2)--(7,0.9);
+\draw[very thick,red!70!black,decoration={markings,mark=at position 0.75 with {\arrow{Stealth}}},postaction={decorate}] (0,2.2)--(7,0.9);
 \fill[red!70!black] (0,2.2) circle (2pt); \fill[red!70!black] (7,0.9) circle (2pt);
 \draw[<->,thick,green!45!black] (7.35,2.2)--(7.35,0.9);
 \node[green!45!black,font=\small,anchor=west] at (7.4,1.55) {$-2\pi\lambda$};
@@ -1026,7 +1046,7 @@ $\omega$ の\emph{曲率}は $\Om:=\dd\omega+\tfrac12[\omega,\omega]\in\Om^2(P;\
 \end{figure}
 
 \begin{ex}[Hopf 束の標準接続]\label{C:ex:HopfConn}
-$S^3\subset\C^2$ 上で $\omega:=\bar u_0\dd u_0+\bar u_1\dd u_1=\bar u\cdot\dd u$ と置く。$|u|^2=1$ より $\dd(\bar u\cdot u)=\bar u\cdot\dd u+u\cdot\dd\bar u=\omega+\bar\omega=0$ なので $\omega$ は純虚数値、$\ug(1)=i\R$ 値 1 形式。基本ベクトル場は $\xi=i$ に対し $\xi^*(u)=\frac{\dd}{\dd t}ue^{it}=iu$ で、$\omega(\xi^*)=\bar u\cdot iu=i$。可換群なので $R_g^*\omega=\omega$ ($\Ad$ は自明)。したがって $\omega$ は接続。局所切断 $s_0=\frac{(1,z)}{\sqrt{1+|z|^2}}$ で引き戻すと、$H=1+|z|^2$ として $s_0^*\omega=\frac1{\sqrt H}\dd\frac1{\sqrt H}\cdot H+\frac{\bar z\dd z}{H}=-\tfrac12\dd\log H+\partial\log H=\tfrac12(\partial-\bar\partial)\log H$、すなわち
+$S^3\subset\C^2$ 上で $\omega:=\bar u_0\dd u_0+\bar u_1\dd u_1=\bar u\cdot\dd u$ と置く。$|u|^2=1$ より $\dd(\bar u\cdot u)=\bar u\cdot\dd u+u\cdot\dd\bar u=\omega+\bar\omega=0$ なので $\omega$ は純虚数値、$\ug(1)=i\R$ 値 1 形式。基本ベクトル場は $\xi=i$ に対し $\xi^*(u)=\frac{\dd}{\dd t}ue^{it}=iu$ で、$\omega(\xi^*)=\bar u\cdot iu=i$。可換群なので $R_g^*\omega=\omega$（$\Ad$ は自明）。したがって $\omega$ は接続。局所切断 $s_0=\frac{(1,z)}{\sqrt{1+|z|^2}}$ で引き戻すと、$H=1+|z|^2$ として $s_0^*\omega=\frac1{\sqrt H}\dd\frac1{\sqrt H}\cdot H+\frac{\bar z\dd z}{H}=-\tfrac12\dd\log H+\partial\log H=\tfrac12(\partial-\bar\partial)\log H$、すなわち
 \[
 A_0=\frac{\bar z\,\dd z-z\,\dd\bar z}{2(1+|z|^2)},\qquad F=\dd A_0=\frac{\dd\bar z\wedge\dd z}{(1+|z|^2)^2}.
 \]
@@ -1044,17 +1064,17 @@ $s_\beta=s_\alpha g$ のとき $\varepsilon_\beta=\varepsilon_\alpha\rho(g)$ で
 \begin{defn}[ゲージ群]\label{C:def:gaugegp}
 主 $G$ 束 $P$ の\emph{ゲージ群} $\mathcal G(P)$ とは、$\Psi:P\to P$ 微分同相で $\pi\Psi=\pi$ かつ $\Psi(pg)=\Psi(p)g$ をみたすもの全体。
 \end{defn}
-$\Psi(p)=p\,\phi(p)$ と書くと $\phi:P\to G$ で $\phi(pg)=g^{-1}\phi(p)g$ をみたし、これは $\mathrm{Ad}P=P\times_{\mathrm{conj}}G$ の切断と同一視される。接続 $\omega$ への作用は引き戻し $\omega\mapsto\Psi^*\omega$。局所切断 $s_\alpha$ に対し $g:=\phi\circ s_\alpha:U_\alpha\to G$ とおくと、$\Psi\circ s_\alpha=s_\alpha\cdot g$ なので命題~\ref{C:prop:Pgauge} により
+$\Psi(p)=p\,\phi(p)$ と書くと $\phi:P\to G$ で $\phi(pg)=g^{-1}\phi(p)g$ をみたし、これは $\Ad P=P\times_{\mathrm{conj}}G$ の切断と同一視される。接続 $\omega$ への作用は引き戻し $\omega\mapsto\Psi^*\omega$。局所切断 $s_\alpha$ に対し $g:=\phi\circ s_\alpha:U_\alpha\to G$ とおくと、$\Psi\circ s_\alpha=s_\alpha\cdot g$ なので命題~\ref{C:prop:Pgauge} により
 \[
 s_\alpha^*(\Psi^*\omega)=(\Psi s_\alpha)^*\omega=(s_\alpha g)^*\omega=g^{-1}A_\alpha g+g^{-1}\dd g.
 \]
 すなわち、接続形式の\emph{能動的}なゲージ変換 $A\mapsto g^{-1}Ag+g^{-1}\dd g$ が得られる（§8 の受動的な変換則と式の形は同じ）。曲率は $F\mapsto g^{-1}Fg$。\emph{ゲージ同値な接続は物理的に同じ}とみなし、接続全体のなす（$\Om^1(M;\mathrm{ad}P)$ 上のアフィン）空間 $\mathcal A$ を $\mathcal G$ で割ったものがモジュライ空間 $\mathcal A/\mathcal G$（Yang--Mills 理論、第15巻）。
 
 \begin{ex}\label{C:ex:gaugegp}
-自明な $\U(1)$ 束 $M\times\U(1)$ では $\mathcal G=\Cinf(M,\U(1))$、作用は $A\mapsto A+g^{-1}\dd g$（可換なので $\Ad$ は消える）で、曲率 $F=\dd A$ は不変（\emph{ゲージ不変な場の強さ}）。$M=S^1$ では $\pi_0(\mathcal G)=\Z$（写像度）で、$g=e^{ik\theta}$ が「大きなゲージ変換」（連結成分の生成元）。$M=\R^3$（または $\R^4$）の $\U(1)$ ゲージ理論が電磁気学である（\S10 の最後）。
+自明な $\U(1)$ 束 $M\times\U(1)$ では $\mathcal G=\Cinf(M,\U(1))$、作用は $A\mapsto A+g^{-1}\dd g$（可換なので $\Ad$ は消える）で、曲率 $F=\dd A$ は不変（\emph{ゲージ不変な場の強さ}）。$M=S^1$ では $\pi_0(\mathcal G)=\Z$（写像度）で、$g=e^{ik\theta}$ が「大きなゲージ変換」（連結成分の生成元）。$M=\R^3$（または $\R^4$）の $\U(1)$ ゲージ理論が電磁気学である（§10 の最後）。
 \end{ex}
 
-\paragraph{第15巻への橋渡し。}Yang--Mills 理論は、主 $G$ 束 $P$（通常 $G=\SU(2)$ など）の接続 $\omega$ の空間 $\mathcal A$ の上で作用 $\mathrm{YM}(\omega)=\int_M|\Om|^2$ を考え、その臨界点（$\dd_\nabla\ast F=0$）や、$\ast F=\pm F$ をみたす (反) 自己双対接続（インスタントン、§6 の $\R^4$ の 2 形式の分解）を調べる。本節の対応により、これはベクトル束の接続 $\nabla$（$A\in\ug(r)$ 値）の言葉でも書ける。ゲージ変換による商 $\mathcal A/\mathcal G$ が基本的な対象になる。
+\paragraph{第15巻への橋渡し。}Yang--Mills 理論は、主 $G$ 束 $P$（通常 $G=\SU(2)$ など）の接続 $\omega$ の空間 $\mathcal A$ の上で作用 $\mathrm{YM}(\omega)=\int_M|\Om|^2$ を考え、その臨界点（$\dd_\nabla\ast F=0$）や、$\ast F=\pm F$ をみたす（反）自己双対接続（インスタントン、§6 の $\R^4$ の 2 形式の分解）を調べる。本節の対応により、これはベクトル束の接続 $\nabla$（$A\in\ug(r)$ 値）の言葉でも書ける。ゲージ変換による商 $\mathcal A/\mathcal G$ が基本的な対象になる。
 
 \begin{keybox}{§9 の要点}
 \begin{itemize}
@@ -1075,7 +1095,7 @@ s_\alpha^*(\Psi^*\omega)=(\Psi s_\alpha)^*\omega=(s_\alpha g)^*\omega=g^{-1}A_\a
 
 \subsection*{問題（§9）}
 \begin{probl}{標準}{C_hopf}
-Hopf 束 $S^3\to S^2$ について (a) $\omega=\bar u_0\dd u_0+\bar u_1\dd u_1$ が純虚数値で、$\omega(\xi^*)=i$ をみたすことを示せ。(b) 局所切断 $s_0=(1,z)/\sqrt{1+|z|^2}$ による引き戻し $s_0^*\omega=\frac{\bar z\dd z-z\dd\bar z}{2(1+|z|^2)}$ を計算し、$F=\dd(s_0^*\omega)=\frac{\dd\bar z\wedge\dd z}{(1+|z|^2)^2}$ を確かめよ。(c) 別の切断 $s_1=(w,1)/\sqrt{1+|w|^2}$ ($w=1/z$) で引き戻した $A_1$ に対し $A_1-A_0=\ldots$ を計算し、命題~\ref{C:prop:Pgauge} の変換則（$g_{10}=z/|z|$）と一致することを確かめよ。
+Hopf 束 $S^3\to S^2$ について (a) $\omega=\bar u_0\dd u_0+\bar u_1\dd u_1$ が純虚数値で、$\omega(\xi^*)=i$ をみたすことを示せ。(b) 局所切断 $s_0=(1,z)/\sqrt{1+|z|^2}$ による引き戻し $s_0^*\omega=\frac{\bar z\dd z-z\dd\bar z}{2(1+|z|^2)}$ を計算し、$F=\dd(s_0^*\omega)=\frac{\dd\bar z\wedge\dd z}{(1+|z|^2)^2}$ を確かめよ。(c) 別の切断 $s_1=(w,1)/\sqrt{1+|w|^2}$（$w=1/z$） で引き戻した $A_1$ に対し $A_1-A_0=\ldots$ を計算し、命題~\ref{C:prop:Pgauge} の変換則（$g_{10}=z/|z|$）と一致することを確かめよ。
 \end{probl}
 \begin{probl}{標準}{C_frame}
 (a) 枠束 $\Fr(E)$ が主 $\GL(r)$ 束であることを示し、局所切断が局所枠であること、$\Fr(E)\times_{\GL(r)}\KK^r\cong E$ を示せ。(b) Hopf 束と $\rho_k(e^{i\varphi})=e^{ik\varphi}$ に対し、$S^3\times_{\rho_k}\C$ の貼り合わせ関数が $(z/|z|)^k$ であることを示し、これが $L_k$ と同型であることを、$\mathcal O(-1)$ との同型（例~\ref{C:ex:assoc}）とテンソル積（問~\ref{pr:C_cocycle}(a)）から示せ。\hint{(b) $\rho_k=\rho_1^{\otimes k}$、$[u,\lambda]\mapsto[u,\lambda^k]$ は $(P\times_{\rho_1}\C)^{\otimes k}\to P\times_{\rho_k}\C$ の同型。$k<0$ は双対。}
@@ -1092,7 +1112,7 @@ Hopf 束 $S^3\to S^2$ について (a) $\omega=\bar u_0\dd u_0+\bar u_1\dd u_1$ 
 \end{goalbox}
 
 %==================================================
-\paragraph{動機。}曲率 $F$ は接続に依存する局所的な量で、ゲージ変換でも $g^{-1}Fg$ と変わる。しかし、その\emph{ゲージ不変な多項式}（たとえば $\tr F$, $\tr F^2$, $\det F$）の積分は、（適切に正規化すれば）接続の取り方によらない整数になる、というのが Chern--Weil 理論である。これは Gauss--Bonnet の定理「$\frac1{2\pi}\int_\Sigma K\,\mathrm{dvol}=\chi(\Sigma)$」の大きな一般化になっている。局所的な微分幾何（曲率）が、大域的な位相（束の自明でなさ）を測る。ここで得られる Chern 類は、指数定理や Riemann--Roch の定理（第6〜9巻）の局所公式の出発点である。
+\paragraph{動機。}曲率 $F$ は接続に依存する局所的な量で、ゲージ変換でも $g^{-1}Fg$ と変わる。しかし、その\emph{ゲージ不変な多項式}（たとえば $\tr F$, $\tr F^2$, $\det F$）の積分は、（適切に正規化すれば）接続の取り方によらない整数になる、というのが Chern--Weil 理論である。これは Gauss--Bonnet の定理「$\frac1{2\pi}\int_\Sigma K\,\mathrm{vol}_g=\chi(\Sigma)$」の大きな一般化になっている。局所的な微分幾何（曲率）が、大域的な位相（束の自明でなさ）を測る。ここで得られる Chern 類は、指数定理や Riemann--Roch の定理（第6〜9巻）の局所公式の出発点である。
 
 \subsection{不変多項式と Chern 形式}
 $E\to M$ を階数 $r$ の複素ベクトル束、$\nabla$ を接続、$F\in\Om^2(M;\End E)$ を曲率とする。枠 $e$ で $F$ は 2 形式を成分とする $r\times r$ 行列。2 形式は偶数次なので互いに可換であり、$F$ の成分は可換環 $\Om^{\mathrm{even}}(M)$ の元と見なせる。したがって $\det(I+tF)$, $\tr(F^k)$ などが意味をもち、枠の取り替え $F'=g^{-1}Fg$ で不変。したがって枠によらない大域的な形式が定まる。
@@ -1137,7 +1157,7 @@ $\dd\,\tr(aF_t^{k-1})=\tr\,\dd_{\nabla_t}(aF_t^{k-1})=\tr\bigl((\dd_{\nabla_t}a)
 (iii) $c_k$ や $\ch_k$ は $p_j$ の有理係数多項式。閉形式の積は閉で、$\alpha_1-\alpha_0=\dd\beta_1$, $\alpha_j$ 閉ならば $\alpha_1\wedge\alpha_2-\alpha_0\wedge\alpha_2=\dd(\beta_1\wedge\alpha_2)$ なので、積の類もそれぞれの類の積。したがって多項式の類は $\nabla$ によらない。
 \end{proof}
 \begin{rem}[出典と一般の不変多項式]
-任意のゲージ不変多項式 $P$ に対して $P(F)$ は閉で、その類は接続によらない（Chern--Weil 準同型 $I(\mathrm{GL}_r)\to H^*(M)$）。$\GL(r,\C)$ の不変多項式環は $e_1,\dots,e_r$（または $p_1,\dots,p_r$）で生成されるので、上の証明で十分である。一般の Lie 群に対する定式化は Kobayashi--Nomizu 第II巻（特性類の章）、Milnor--Stasheff の付録、Bott--Tu、Tu \emph{Differential Geometry} を参照。\tC\ （章・付録番号は\tQ）。
+任意のゲージ不変多項式 $P$ に対して $P(F)$ は閉で、その類は接続によらない（Chern--Weil 準同型 $I(\GL(r,\C))\to H^*(M)$）。$\GL(r,\C)$ の不変多項式環は $e_1,\dots,e_r$（または $p_1,\dots,p_r$）で生成されるので、上の証明で十分である。一般の Lie 群に対する定式化は Kobayashi--Nomizu 第II巻（特性類の章）、Milnor--Stasheff の付録、Bott--Tu、Tu \emph{Differential Geometry} を参照。\tC\ （章・付録番号は\tQ）。
 \end{rem}
 
 \paragraph{基本的な性質。}定義と定理~\ref{C:thm:CW} から次がすぐ従う。
@@ -1171,7 +1191,7 @@ $\CP^1\setminus U_0$ は 1 点なので積分は $U_0=\C$ 上の積分に等し�
 この整数 $-1$ は接続によらない（定理~\ref{C:thm:CW}(ii) と Stokes：$\int_{\CP^1}\dd T_1=0$）。特に \emph{$\mathcal O(-1)$ は自明でない}：自明束なら $\nabla=\dd$ をとれて $F=0$、$\int c_1=0$ になってしまう。向きは $\CP^1$ の複素向き（$\dd x\wedge\dd y>0$）。符号 $-1$ は、$\mathcal O(-1)$ という名前の「$-1$」と整合しており、本巻の規約（$c_1=\frac i{2\pi}F$, $F=\dd A+A\wedge A$, $h$ は第1成分で線形）から確定した。
 
 \begin{ex}[$L_k$：$\int c_1=-k$]\label{C:ex:Lk10}
-$L_k$（$e_0=z^ke_1$、例~\ref{C:ex:Lk}）に $h(e_0,e_0)=(1+|z|^2)^k$ を与える。$h(e_1,e_1)=|z|^{-2k}h(e_0,e_0)=(1+|w|^2)^k$ （$w=1/z$）で $U_1$ 上でも滑らか・正値なので Hermite 計量。$\theta_k=\partial\log(1+|z|^2)^k=k\theta$、$F=k\,\dd\theta$、$c_1=-\frac k\pi\frac{\dd x\wedge\dd y}{(1+r^2)^2}$、$\int_{\CP^1}c_1=-k$（問~\ref{pr:C_Ok}）。
+$L_k$（$e_0=z^ke_1$、例~\ref{C:ex:Lk}）に $h(e_0,e_0)=(1+|z|^2)^k$ を与える。$h(e_1,e_1)=|z|^{-2k}h(e_0,e_0)=(1+|w|^2)^k$（$w=1/z$）で $U_1$ 上でも滑らか・正値なので Hermite 計量。$\theta_k=\partial\log(1+|z|^2)^k=k\theta$、$F=k\,\dd\theta$、$c_1=-\frac k\pi\frac{\dd x\wedge\dd y}{(1+r^2)^2}$、$\int_{\CP^1}c_1=-k$（問~\ref{pr:C_Ok}）。
 \end{ex}
 
 \paragraph{貼り合わせ関数との関係（クラッチング）。}$S^2=\CP^1$ 上の直線束の $\int c_1$ は、赤道に沿った貼り合わせ関数の巻き数で書ける。
@@ -1184,7 +1204,7 @@ $L_k$（$e_0=z^ke_1$、例~\ref{C:ex:Lk}）に $h(e_0,e_0)=(1+|z|^2)^k$ を与�
 ただし $\mathrm{wind}(g)=\frac1{2\pi i}\oint_Cg^{-1}\dd g$（$C$ は $z$ 平面で反時計回り）。
 \end{thm}
 \begin{proof}
-$\nabla e_0=\theta_0e_0$, $\nabla e_1=\theta_1e_1$ とすると、$\nabla e_0=\nabla(ge_1)=\dd g\,e_1+g\theta_1e_1=(g^{-1}\dd g+\theta_1)e_0$ より $\theta_0=\theta_1+\dd\log g$ on $C$。円板 $D_0=\{|z|\le1\}$ ($\partial D_0=C$) と $D_1=\{|z|\ge1\}\cup\{\infty\}$ ($\partial D_1=-C$) に分けて Stokes：
+$\nabla e_0=\theta_0e_0$, $\nabla e_1=\theta_1e_1$ とすると、$\nabla e_0=\nabla(ge_1)=\dd g\,e_1+g\theta_1e_1=(g^{-1}\dd g+\theta_1)e_0$ より $\theta_0=\theta_1+\dd\log g$ on $C$。円板 $D_0=\{|z|\le1\}$（$\partial D_0=C$）と $D_1=\{|z|\ge1\}\cup\{\infty\}$（$\partial D_1=-C$） に分けて Stokes：
 \[
 \int_{\CP^1}F=\int_{D_0}\dd\theta_0+\int_{D_1}\dd\theta_1=\oint_C\theta_0-\oint_C\theta_1=\oint_C\dd\log g=2\pi i\,\mathrm{wind}(g).
 \]
@@ -1199,18 +1219,18 @@ $\mathcal O(-1)$（$g=z$, wind $=1$）で $-1$、$L_k$（$g=z^k$）で $-k$、�
 \draw[thick] (0,0) circle (1.4);
 \draw[thick,blue!60!black] (-1.4,0) arc (180:360:1.4 and 0.45);
 \draw[thick,blue!60!black,dashed] (-1.4,0) arc (180:0:1.4 and 0.45);
-\node[font=\small] at (0,0.9) {$D_0$：枠 $e_0$};
-\node[font=\small] at (0,-0.95) {$D_1$：枠 $e_1$};
+\node[font=\small] at (0,0.78) {$D_0$：枠 $e_0$};
+\node[font=\small] at (0,-0.8) {$D_1$：枠 $e_1$};
 \node[blue!60!black,font=\small,anchor=west] at (1.45,-0.1) {$C$：$e_0=g\,e_1$};
 % right: image of g
 \begin{scope}[shift={(6.0,0)}]
 \draw[->,gray] (-1.9,0)--(1.9,0) node[right,font=\small]{$\Re$}; \draw[->,gray] (0,-1.7)--(0,1.7) node[above,font=\small]{$\Im$};
-\fill[red!70!black] (0,0) circle (1.8pt); \node[red!70!black,font=\small,anchor=north east] at (0,0) {$0$};
-\draw[very thick,blue!60!black,->] (1.1,0) arc (0:350:1.1);
+\fill[red!70!black] (0,0) circle (1.8pt);
+\draw[very thick,blue!60!black,decoration={markings,mark=at position 0.3 with {\arrow{Stealth}}},postaction={decorate}] (0,0) circle (1.1);
 \draw[thick,orange!80!black,->] plot[domain=0:700,samples=140] ({(0.28+0.0007*\x)*cos(\x)},{(0.28+0.0007*\x)*sin(\x)});
-\node[blue!60!black,font=\small,anchor=west] at (1.25,1.15) {$g=z$，wind $=1$};
-\node[orange!80!black,font=\small,anchor=west] at (1.25,-1.2) {$g=z^2$，wind $=2$};
-\node[font=\small] at (0,-2.1) {$g:C\to\C^\times$（$0$ を避ける閉曲線）};
+\node[blue!60!black,font=\small,anchor=west] at (1.25,1.15) {$g=z$、$\mathrm{wind}=1$};
+\node[orange!80!black,font=\small,anchor=west] at (1.25,-1.2) {$g=z^2$、$\mathrm{wind}=2$};
+\node[font=\small] at (0,-2.1) {$g:C\to\C^\times$（赤点 $0$ を避ける閉曲線）};
 \end{scope}
 \end{tikzpicture}
 \caption{$S^2$ を赤道 $C$ で 2 つの円板に分け、各円板上の枠を $C$ 上の関数 $g:C\to\C^\times$ で貼り合わせる（クラッチング）。巻き数 $\mathrm{wind}(g)$ が束を決め、$\int c_1=-\mathrm{wind}(g)$。}
@@ -1220,28 +1240,28 @@ $\mathcal O(-1)$（$g=z$, wind $=1$）で $-1$、$L_k$（$g=z^k$）で $-k$、�
 $L_k$ は $k\ne0$ のとき自明でない。（さらに、すべての $S^2$ 上の複素直線束は、ある $L_k$ と同型 \tC。）
 \end{cor}
 
-\paragraph{一般の閉多様体での整数性。}\tC\ ここまでは $\int c_1\in\Z$ を $S^2$ の例（貼り合わせ関数の巻き数）で直接確認した。一般の閉じた向きづけられた多様体 $M$ 上の複素ベクトル束 $E$ について、Chern 数 $\int_Mc_{k_1}(E)\cdots c_{k_j}(E)$ が整数になる理由は、Chern 類 $c_k(E)$ がもともと\emph{整係数}コホモロジー類 $c_k(E)\in H^{2k}(M;\Z)$ として定義され、曲率から作った de Rham 類 $[c_k(E,\nabla)]$ はその実（複素）係数での像と一致する（Chern--Weil の定理）ことにある。整係数の類は、分類空間 $B\U(r)$ の普遍束の Chern 類を引き戻して得られる（§7.7 の分類の予告、詳細は第 6 巻）。整係数の類の積を基本類で評価した値は整数である。（Milnor--Stasheff §14、Bott--Tu 第 III 章。\tQ 節番号は未確認。）
+\paragraph{一般の閉多様体での整数性。}\tC\ ここまでは $\int c_1\in\Z$ を $S^2$ の例（貼り合わせ関数の巻き数）で直接確認した。一般の閉じた向きづけられた多様体 $M$ 上の複素ベクトル束 $E$ について、Chern 数 $\int_Mc_{k_1}(E)\cdots c_{k_j}(E)$ が整数になる理由は、Chern 類 $c_k(E)$ がもともと\emph{整係数}コホモロジー類 $c_k(E)\in H^{2k}(M;\Z)$ として定義され、曲率から作った de Rham 類 $[c_k(E,\nabla)]$ はその実（複素）係数での像と一致する（Chern--Weil の定理）ことにある。整係数の類は、分類空間 $B\U(r)$ の普遍束の Chern 類を引き戻して得られる（§7.7 の分類の予告、詳細は第6巻）。整係数の類の積を基本類で評価した値は整数である。（Milnor--Stasheff §14、Bott--Tu 第III章。\tQ 節番号は未確認。）
 
 \subsection{接面束の Chern 数と Gauss--Bonnet}
 向きづけられた閉曲面 $\Sigma$ に Riemann 計量を与える。向きと計量から、接束 $T\Sigma$ に（正の向きの $90^\circ$ 回転として）概複素構造 $J$ が定まり、$T\Sigma$ は複素直線束、$h(u,v)=g(u,v)+i\,g(u,Jv)$ は Hermite 計量（第1成分で線形）、Levi-Civita 接続は $J$ と $g$ に整合するので、$T\Sigma$ のユニタリ接続になる。向きの正の正規直交枠 $(e_1,e_2=Je_1)$ は複素直線束 $T\Sigma$ のユニタリ枠 $e_1$ を与え、$\nabla e_1=e_2\omega^2{}_1=(Je_1)\omega^2{}_1=e_1\,(i\omega^2{}_1)$、すなわち
 \[
-\theta=i\,\omega^2{}_1,\qquad F=\dd\theta=i\,F^2{}_1=-iK\,\theta^1\wedge\theta^2\quad(\text{\eqref{C:eq:Gauss} による}),
+\theta=i\,\omega^2{}_1,\qquad F=\dd\theta=i\,F^2{}_1=-iK\,\theta^1\wedge\theta^2\quad\text{（\eqref{C:eq:Gauss} による）},
 \]
 \[
-c_1(T\Sigma,\nabla^{LC})=\frac i{2\pi}F=\frac1{2\pi}K\,\mathrm{dvol},\qquad\int_\Sigma c_1(T\Sigma)=\frac1{2\pi}\int_\Sigma K\,\mathrm{dvol}=\chi(\Sigma).
+c_1(T\Sigma,\nabla^{LC})=\frac i{2\pi}F=\frac1{2\pi}K\,\mathrm{vol}_g,\qquad\int_\Sigma c_1(T\Sigma)=\frac1{2\pi}\int_\Sigma K\,\mathrm{vol}_g=\chi(\Sigma).
 \]
-最後の等号は Gauss--Bonnet の定理 \tC\ （Chern の内在的証明が、まさにこの Chern--Weil の議論）。$S^2$ では $K=1$, $\int_{S^2}\dd A=4\pi$ から $\int c_1(TS^2)=2$。
+最後の等号は Gauss--Bonnet の定理 \tC\ （Chern の内在的証明が、まさにこの Chern--Weil の議論）。$S^2$ では $K=1$, $\int_{S^2}\mathrm{vol}_g=4\pi$ から $\int c_1(TS^2)=2$。
 
 \paragraph{同じ数 $2$ の三通りの現れ。}$\CP^1$ の複素構造のもとで $T\CP^1$ は座標 $z$（$U_0$）, $w=1/z$（$U_1$）の複素枠 $e_0=\partial_z$, $e_1=\partial_w$ をもつ。$w=1/z$, $\dd w=-z^{-2}\dd z$ より $\partial_z=\frac{\partial w}{\partial z}\partial_w=-z^{-2}\partial_w$、すなわち $e_0=g\,e_1$, $g=-z^{-2}$。$C=\{|z|=1\}$ 上の巻き数は $\mathrm{wind}(g)=-2$（$-1$ は定数なので巻き数に影響しない）。定理~\ref{C:thm:winding} により $\int c_1(T\CP^1)=+2$。したがって
 \[
-\underbrace{\tfrac1{2\pi}\!\int_{S^2}K\,\mathrm{dvol}=2}_{\text{曲率（解析）}}\quad=\quad\underbrace{-\mathrm{wind}(-z^{-2})=2}_{\text{貼り合わせ関数（クラッチング）}}\quad=\quad\underbrace{\chi(S^2)=2}_{\text{位相（Euler 標数）}}.
+\underbrace{\tfrac1{2\pi}\!\int_{S^2}K\,\mathrm{vol}_g=2}_{\text{曲率（解析）}}\quad=\quad\underbrace{-\mathrm{wind}(-z^{-2})=2}_{\text{貼り合わせ関数（クラッチング）}}\quad=\quad\underbrace{\chi(S^2)=2}_{\text{位相（Euler 標数）}}.
 \]
 これが Chern--Weil、クラッチング、位相の三者の整合の最初の例である。
 
 \begin{figure}[ht]
 \centering
 \begin{tikzpicture}[scale=1.0]
-\node[draw,rounded corners,fill=blue!6,align=center,font=\small,minimum width=4.2cm,minimum height=1.2cm] (A) at (0,2.0) {曲率の積分\\$\frac1{2\pi}\int K\,\mathrm{dvol}$};
+\node[draw,rounded corners,fill=blue!6,align=center,font=\small,minimum width=4.2cm,minimum height=1.2cm] (A) at (0,2.0) {曲率の積分\\$\frac1{2\pi}\int K\,\mathrm{vol}_g$};
 \node[draw,rounded corners,fill=green!6,align=center,font=\small,minimum width=4.2cm,minimum height=1.2cm] (B) at (5.2,2.0) {クラッチングの巻き数\\$-\mathrm{wind}(-z^{-2})$};
 \node[draw,rounded corners,fill=orange!8,align=center,font=\small,minimum width=4.2cm,minimum height=1.2cm] (C) at (10.4,2.0) {Euler 標数\\$\chi(S^2)$};
 \node[draw,circle,fill=yellow!15,font=\large] (D) at (5.2,0) {$2$};
@@ -1295,23 +1315,23 @@ Chern 数 $\int_Mc_{k}\cdots$（次元が合うとき） & 依存しない & 束
 \begin{itemize}
 \item \emph{他の特性類（第6巻）。}Pontryagin 類 $p_k(E)=(-1)^kc_{2k}(E\otimes\C)$（実束）、Euler 類 $e(E)=\mathrm{Pf}(\frac1{2\pi}F)$（向きづけられた偶数階数の実束、$\mathrm{Pf}$ は Pfaffian）、Todd 類 $\Td=\prod\frac{x_j}{1-e^{-x_j}}=1+\frac{c_1}2+\frac{c_1^2+c_2}{12}+\frac{c_1c_2}{24}+\cdots$。$\ch(E)\Td(TM)$ の積分が指数定理の局所公式（第8巻、族の場合は第9巻。HRR は第6巻）。\tC
 \item \emph{整合性の確認（HRR の予告）。}$\CP^1$ で $\chi(\CP^1,\mathcal O(m))=\int_{\CP^1}\ch(\mathcal O(m))\Td(T\CP^1)=\int(1+c_1(\mathcal O(m)))(1+\tfrac12c_1(T\CP^1))=m+1$（$\int c_1(\mathcal O(m))=m$、$\int c_1(T\CP^1)=2$）。$m=-1$ なら $0$、$m=0$ なら $1$。これは $\mathcal O(m)$ の正則切断の次元（$m\ge0$ で $m+1$）と整合する。ここで $\mathcal O(m)=L_{-m}$（$\int c_1=m$）。
-\item \emph{Chern--Simons 形式。}$\nabla_0=\dd$（自明束）、$\nabla_1=\dd+A$ に超越公式 \eqref{C:eq:transg}（$k=2$）を適用すると $a=A$, $F_t=t\,\dd A+t^2A\wedge A$ で $T_2=2\int_0^1\tr\bigl(A(t\,\dd A+t^2A\wedge A)\bigr)\dd t=\tr\bigl(A\wedge\dd A+\tfrac23A\wedge A\wedge A\bigr)=:\mathrm{CS}(A)$。$\dd\,\mathrm{CS}(A)=\tr(F\wedge F)$ （問~\ref{pr:C_CS}）。3 次元多様体上の $\int\mathrm{CS}(A)$ が Chern--Simons 不変量で、ゲージ変換に対して一般には不変でなく（$\tfrac13\tr(g^{-1}\dd g)^3$ と完全形式の分だけ変わる）、$\SU(n)$ 接続について $\frac1{8\pi^2}$ を掛けて正規化した $\frac1{8\pi^2}\int\mathrm{CS}(A)$ は、整数の差を除いて不変になる（$\frac1{24\pi^2}\int_{S^3}\tr(g^{-1}\dd g)^3$ が $g$ の写像度で整数であることによる） \tC。第15〜17巻（ゲージ理論・Donaldson 理論・Seiberg--Witten 理論）で現れる。
+\item \emph{Chern--Simons 形式。}$\nabla_0=\dd$（自明束）、$\nabla_1=\dd+A$ に超越公式 \eqref{C:eq:transg}（$k=2$）を適用すると $a=A$, $F_t=t\,\dd A+t^2A\wedge A$ で $T_2=2\int_0^1\tr\bigl(A(t\,\dd A+t^2A\wedge A)\bigr)\dd t=\tr\bigl(A\wedge\dd A+\tfrac23A\wedge A\wedge A\bigr)=:\mathrm{CS}(A)$。$\dd\,\mathrm{CS}(A)=\tr(F\wedge F)$（問~\ref{pr:C_CS}）。3 次元多様体上の $\int\mathrm{CS}(A)$ が Chern--Simons 不変量で、ゲージ変換に対して一般には不変でなく（$\tfrac13\tr(g^{-1}\dd g)^3$ と完全形式の分だけ変わる）、$\SU(n)$ 接続について $\frac1{8\pi^2}$ を掛けて正規化した $\frac1{8\pi^2}\int\mathrm{CS}(A)$ は、整数の差を除いて不変になる（$\frac1{24\pi^2}\int_{S^3}\tr(g^{-1}\dd g)^3$ が $g$ の写像度で整数であることによる）\tC。第15〜17巻（ゲージ理論・Donaldson 理論・Seiberg--Witten 理論）で現れる。
 \end{itemize}
 
 \subsection{$\R^3$ 上の $\mathfrak u(1)$ ゲージ理論：電磁気学との対応}
-自明な直線束 $\R^3\times\C$ の接続 $\nabla=\dd-i\,a$（$a=a_1\dd x+a_2\dd y+a_3\dd z$ は実 1 形式、すなわちベクトルポテンシャル）を考える（$A=-ia$）。曲率は $F=\dd A=-i\,\dd a$、$\dd a=B_x\,\dd y\wedge\dd z+B_y\,\dd z\wedge\dd x+B_z\,\dd x\wedge\dd y$ の係数が $\mathbf B=\mathrm{rot}\,\mathbf a$（磁場、§4 の対応表）。
+自明な直線束 $\R^3\times\C$ の接続 $\nabla=\dd-i\,a$（$a=a_1\dd x+a_2\dd y+a_3\dd z$ は実 1 形式、すなわちベクトルポテンシャル）を考える（$A=-ia$）。曲率は $F=\dd A=-i\,\dd a$、$\dd a=B_x\,\dd y\wedge\dd z+B_y\,\dd z\wedge\dd x+B_z\,\dd x\wedge\dd y$ の係数が $\bs B=\operatorname{curl}\bs a$（磁場、§4 の対応表）。
 \begin{itemize}
-\item Bianchi 恒等式 $\dd F=0$ は $\mathrm{div}\,\mathbf B=0$（磁気単極子がない）。
-\item ゲージ変換 $g=e^{-i\phi}$ で $a\mapsto a+\dd\phi$（$\mathbf B$ 不変）。
+\item Bianchi 恒等式 $\dd F=0$ は $\operatorname{div}\bs B=0$（磁気単極子がない）。
+\item ゲージ変換 $g=e^{-i\phi}$ で $a\mapsto a+\dd\phi$（$\bs B$ 不変）。
 \item $c_1=\frac i{2\pi}F=\frac1{2\pi}\dd a$、ホロノミー $=\exp(-\oint A)=\exp(i\oint a)=e^{i\Phi}$、$\Phi$ は閉曲線を貫く磁束（Aharonov--Bohm 効果、例~\ref{C:ex:AB}）。
 \item \emph{Dirac の量子化条件：}$\R^3\setminus\{0\}\simeq S^2$ 上のユニタリ直線束 $L$ と接続に対し、球面 $S^2_r$ を貫く磁束は $\int_{S^2_r}\dd a=2\pi\int c_1(L)\in2\pi\Z$。Hopf 束（$\mathcal O(-1)$、$\int c_1=-1$）の接続（例~\ref{C:ex:HopfConn}）は、磁荷 $\mp1$ の Dirac 単極子のポテンシャルである（符号は規約）。電荷の量子化（単極子が 1 つでも存在すれば電荷は量子化される）の数学的な核心は、$\int c_1\in\Z$ である。
-\item 時空 $\R^4$ では、Maxwell 方程式の半分が $\dd F=0$（Bianchi）、残り半分が $\dd\ast F=\ast j$（Hodge 星は §6、$U(1)$ Yang--Mills）。
+\item 時空 $\R^4$ では、Maxwell 方程式の半分が $\dd F=0$（Bianchi）、残り半分が $\dd\ast F=\ast j$（Hodge 星は §6、$\U(1)$ Yang--Mills）。
 \end{itemize}
 
 \begin{keybox}{§10 の要点}
 \begin{itemize}
 \item Chern 形式 $c(E,\nabla)=\det(I+\frac i{2\pi}F)$、$\ch=\tr\exp(\frac i{2\pi}F)$。$\tr F^k$ は閉（Bianchi）、$\tr F_1^k-\tr F_0^k=\dd T_k$（超越公式）。したがって Chern 類は接続によらない束の不変量。
-\item 本巻の規約で $\int_{\CP^1}c_1(\mathcal O(-1))=-1$、一般に $S^2$ 上の直線束では $\int c_1=-\mathrm{wind}(g)$。$\int c_1(TS^2)=\frac1{2\pi}\int K\,\mathrm{dvol}=\chi(S^2)=2$（Gauss--Bonnet）。
+\item 本巻の規約で $\int_{\CP^1}c_1(\mathcal O(-1))=-1$、一般に $S^2$ 上の直線束では $\int c_1=-\mathrm{wind}(g)$。$\int c_1(TS^2)=\frac1{2\pi}\int K\,\mathrm{vol}_g=\chi(S^2)=2$（Gauss--Bonnet）。
 \item $c_k(E)\ne0$ ならば $E$ は自明でない（例：毛玉定理）。$c(E\oplus E')=c(E)c(E')$、$\ch$ は加法的かつ乗法的。
 \item 差は完全形式（Chern--Simons の起源）。電磁気学では $c_1=\frac1{2\pi}\dd a$、磁束の量子化。
 \end{itemize}
@@ -1321,7 +1341,7 @@ Chern 数 $\int_Mc_{k}\cdots$（次元が合うとき） & 依存しない & 束
 \paragraph{つまずきやすい点。}
 \begin{enumerate}
 \item $F$ は $\End E$ 値 2 形式で成分は可換（偶数次）なので $\det$, $\tr$ が使える。ただし 2 つの $\End E$ 値 1 形式 $a,b$ では $\tr(a\wedge b)=-\tr(b\wedge a)$（奇数次は反可換）。
-\item 符号：$\int c_1(\mathcal O(-1))=-1$ は、規約（$c_1=\frac i{2\pi}F$、$F=\dd A+A\wedge A$、$\CP^1$ の複素向き、$e_0=g\,e_1$ に対し $\int c_1=-\mathrm{wind}(g)$）をすべて固定して初めて確定する。文献の記号 ($\mathcal O(1)$ の次数) と混同しないこと。
+\item 符号：$\int c_1(\mathcal O(-1))=-1$ は、規約（$c_1=\frac i{2\pi}F$、$F=\dd A+A\wedge A$、$\CP^1$ の複素向き、$e_0=g\,e_1$ に対し $\int c_1=-\mathrm{wind}(g)$）をすべて固定して初めて確定する。文献の記号（$\mathcal O(1)$ の次数）と混同しないこと。
 \item Chern 形式（形式）は接続に依存し、類だけが不変。「Chern 数が整数」は閉多様体の積分の話で、例えば $\int c_1(\mathcal O(-1),\nabla)$ は任意の接続で $-1$ だが、点ごとの $c_1(\nabla)$ は接続次第。
 \item $c_k(E)\ne0\Rightarrow E$ 自明でない、の逆は偽。
 \end{enumerate}

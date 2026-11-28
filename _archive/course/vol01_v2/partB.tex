@@ -9,6 +9,7 @@
 \providecommand{\Bsgn}{\operatorname{sgn}}
 \providecommand{\Bhat}[1]{\widehat{#1}}
 \providecommand{\Bdeg}{\operatorname{deg}}
+\providecommand{\Bkeep}[1]{\par\vskip 0pt plus #1\baselineskip\penalty-200\vskip 0pt plus -#1\baselineskip}% 見出しがページ末に孤立しないための条件つき改ページ
 
 \section{微分形式・外微分・Cartan の公式・積分}\label{B:sec4}
 
@@ -25,7 +26,7 @@
 
 曲線 $\gamma$ に沿った積分 $\int_\gamma P\,\dd x+Q\,\dd y$ を考えよう。この量は、曲線の媒介変数のとり方によらず（向きを保つ限り）定まり、向きを逆にすると符号が変わる。曲面上の積分 $\iint_S a\,\dd y\wedge\dd z+\cdots$ も同様である。これらに共通するのは、各点で「$k$ 個の接ベクトルを受け取って実数を返し、各引数について線形で、引数の入れ替えで符号が変わる」量が積分の被積分関数になっている、という構造である。$k=1$ なら「速度ベクトルを受け取って仕事を返す」、$k=2$ なら「2本のベクトルが張る平行四辺形を受け取って流束を返す」、$k=n$ なら「体積要素」である。符号が変わるのは、積分が向きに依存するからである。
 
-こうして、$k$ 次の積分の被積分関数は「各点の $k$ 重の交代多重線形形式」、すなわち $\Lambda^kT^*_pM$ の元の滑らかな族として定式化される。これが $k$ 形式である。そして、$\R^3$ では $\mathrm{grad},\mathrm{curl},\mathrm{div}$ という3種類の微分があったのに対し、微分形式では外微分 $\dd$ という1つの演算がすべてを統一する。以下、まずその代数（\S\ref{B:ss:forms}）、次に微分（\S\ref{B:ss:d}--\ref{B:ss:cartan}）、最後に積分（\S\ref{B:ss:int}--\ref{B:ss:stokes}）を順に見る。
+こうして、$k$ 次の積分の被積分関数は「各点の $k$ 重の交代多重線形形式」、すなわち $\Lambda^kT^*_pM$ の元の滑らかな族として定式化される。これが $k$ 形式である。そして、$\R^3$ では $\Bgrad,\Bcurl,\Bdiv$ という3種類の微分があったのに対し、微分形式では外微分 $\dd$ という1つの演算がすべてを統一する。以下、まずその代数（\S\ref{B:ss:forms}）、次に微分（\S\ref{B:ss:d}--\ref{B:ss:cartan}）、最後に積分（\S\ref{B:ss:int}--\ref{B:ss:stokes}）を順に見る。
 
 \subsection{テンソル場と $k$ 形式}\label{B:ss:forms}
 
@@ -53,7 +54,7 @@
 \midrule
 $\Om^0$ & $f$ & スカラー場 $f$ \\
 $\Om^1$ & $P\,\dd x+Q\,\dd y+R\,\dd z$ & ベクトル場 $\bs F=(P,Q,R)$（仕事 $\bs F\cdot v$） \\
-$\Om^2$ & $a\,\dd y\wedge\dd z+b\,\dd z\wedge\dd x$ $+c\,\dd x\wedge\dd y$ & ベクトル場 $\bs G=(a,b,c)$（流束 $\bs G\cdot(u\times v)$） \\
+$\Om^2$ & $a\,\dd y\wedge\dd z+b\,\dd z\wedge\dd x+c\,\dd x\wedge\dd y$ & ベクトル場 $\bs G=(a,b,c)$（流束 $\bs G\cdot(u\times v)$） \\
 $\Om^3$ & $h\,\dd x\wedge\dd y\wedge\dd z$ & スカラー場 $h$（密度） \\
 \bottomrule
 \end{tabular}
@@ -90,8 +91,8 @@ $2$ 形式とベクトル場の対応は、体積形式 $\Bvol=\dd x\wedge\dd y\
 $T:\X(M)^k\to C^\infty(M)$ が各引数について $C^\infty(M)$ 線形、すなわち $T(\dots,fX_i,\dots)=f\,T(\dots,X_i,\dots)$ かつ加法的であるとする。すると $k$ 重共変テンソル場 $\tau$ がただ一つあって $T(X_1,\dots,X_k)(p)=\tau_p(X_{1,p},\dots,X_{k,p})$。特に値 $T(X_1,\dots,X_k)(p)$ は各 $X_i$ の点 $p$ での値だけで決まる。
 \end{lem}
 \begin{proof}
-局所性：$X_i$ が $p$ の開近傍 $U$ で $0$ とする。$\chi\in C^\infty(M)$ を $p$ の近くで $\chi=1$、$\operatorname{supp}\chi\subset U$ にとると $\chi X_i=0$ だから $0=T(\dots,\chi X_i,\dots)(p)=\chi(p)T(\dots,X_i,\dots)(p)=T(\dots,X_i,\dots)(p)$。次に $X_{i,p}=0$ とする。$p$ のまわりの座標 $x$ をとり、$\psi$ を $p$ の近くで $1$、台が座標近傍に入る関数とする。大域的なベクトル場 $\tilde\partial_j=\psi\partial_j$ と関数 $\psi X_i^j$ に対し、$p$ の近くで $X_i=\sum_j X_i^j\,\partial_j=\sum_j(\psi X_i^j)\tilde\partial_j$ が成り立つから、局所性より
-$T(\dots,X_i,\dots)(p)=\sum_j\psi(p)X_i^j(p)\,T(\dots,\tilde\partial_j,\dots)(p)=0$（$X_i^j(p)=0$）。よって $T(\dots)(p)$ は $X_{i,p}$ にのみ依存し、$X_{i,p}$ について線形だから、$T_pM$ の多重線形形式 $\tau_p$ が定まる（任意のベクトル $v\in T_pM$ は大域的ベクトル場に延長できる）。滑らかさは $\tau(\partial_{i_1},\dots,\partial_{i_k})=T(\tilde\partial_{i_1},\dots)$ が局所的に滑らかであることから従う。
+局所性：$X_i$ が $p$ の開近傍 $U$ で $0$ とする。$\chi\in C^\infty(M)$ を $p$ の近くで $\chi=1$、$\operatorname{supp}\chi\subset U$ にとると $\chi X_i=0$ だから $0=T(\dots,\chi X_i,\dots)(p)=\chi(p)T(\dots,X_i,\dots)(p)=T(\dots,X_i,\dots)(p)$。次に $X_{i,p}=0$ とする。$p$ のまわりの座標 $x$ をとり、$\psi$ を $p$ の近くで $1$、台が座標近傍に入る関数とする。$X_i$ の成分を $f^j$ と書く（$X_i=\sum_jf^j\partial_j$）。大域的なベクトル場 $\tilde\partial_j=\psi\partial_j$ と関数 $\psi f^j$ に対し、$p$ の近くで $X_i=\sum_jf^j\,\partial_j=\sum_j(\psi f^j)\tilde\partial_j$ が成り立つから、局所性より
+$T(\dots,X_i,\dots)(p)=\sum_j\psi(p)f^j(p)\,T(\dots,\tilde\partial_j,\dots)(p)=0$（$f^j(p)=0$）。よって $T(\dots)(p)$ は $X_{i,p}$ にのみ依存し、$X_{i,p}$ について線形だから、$T_pM$ の多重線形形式 $\tau_p$ が定まる（任意のベクトル $v\in T_pM$ は大域的ベクトル場に延長できる）。滑らかさは $\tau(\partial_{i_1},\dots,\partial_{i_k})=T(\tilde\partial_{i_1},\dots)$ が局所的に滑らかであることから従う。
 \end{proof}
 
 例えば、$X\mapsto\alpha([X,Y])$ は $C^\infty$ 線形でない（$[fX,Y]=f[X,Y]-(Yf)X$）のでテンソルではない。他方、\S\ref{B:ss:d} で見る $\dd\alpha(X,Y)=X\alpha(Y)-Y\alpha(X)-\alpha([X,Y])$ は、非テンソル的な項が互いに打ち消し合ってテンソルになる。同様のことが、§8 の曲率・捩率でも起こる。
@@ -194,7 +195,11 @@ $\alpha\in\Om^1(M)$, $X,Y\in\X(M)$ に対し
 $T(fX,Y)=fX\alpha(Y)-Y(f\alpha(X))-\alpha(f[X,Y]-(Yf)X)
 =fX\alpha(Y)-(Yf)\alpha(X)-fY\alpha(X)-f\alpha([X,Y])+(Yf)\alpha(X)=f\,T(X,Y)$。反対称性から第2引数も同様。よって補題~\ref{B:lem:tensor} により $T$ は点ごとの量であり、両辺は局所的に確かめればよい。局所的には $\alpha=\sum_i a_i\,\dd x^i$ と書けて、両辺とも $\alpha$ について加法的だから $\alpha=f\,\dd g$ の形で示せば十分。左辺は $\dd(f\,\dd g)=\dd f\wedge\dd g$ で $(\dd f\wedge\dd g)(X,Y)=(Xf)(Yg)-(Yf)(Xg)$。右辺は $X(fYg)-Y(fXg)-f[X,Y]g=(Xf)(Yg)+fXYg-(Yf)(Xg)-fYXg-f(XYg-YXg)=(Xf)(Yg)-(Yf)(Xg)$。
 \end{proof}
-一般の $k$ 形式に対しては $\dd\omega(X_0,\dots,X_k)=\sum_i(-1)^iX_i\bigl(\omega(\dots,\widehat{X_i},\dots)\bigr)+\sum_{i<j}(-1)^{i+j}\omega([X_i,X_j],\dots,\widehat{X_i},\dots,\widehat{X_j},\dots)$ が成り立つ\tC（Lee 第14章、Warner 第2章）。$k=2$ の場合は \S\ref{B:ss:cartan} の Cartan の公式から導く（問~\ref{pr:B_invk2}）。この式は、$\dd^2=0$ が Jacobi 恒等式と同じ根をもつことを示している（Lie 代数の Chevalley--Eilenberg 複体）。
+一般の $k$ 形式に対しては
+\[
+\dd\omega(X_0,\dots,X_k)=\sum_i(-1)^iX_i\bigl(\omega(\dots,\widehat{X_i},\dots)\bigr)+\sum_{i<j}(-1)^{i+j}\omega([X_i,X_j],\dots,\widehat{X_i},\dots,\widehat{X_j},\dots)
+\]
+が成り立つ\tC（Lee 第14章、Warner 第2章）。$k=2$ の場合は \S\ref{B:ss:cartan} の Cartan の公式から導く（問~\ref{pr:B_invk2}）。この式は、$\dd^2=0$ が Jacobi 恒等式と同じ根をもつことを示している（Lie 代数の Chevalley--Eilenberg 複体）。
 
 \paragraph{幾何学的な意味。}式~\eqref{B:eq:dalpha} で $X,Y$ が可換（$[X,Y]=0$）のとき、$\dd\alpha(X,Y)$ は「$\alpha$ を $X$ 方向に積分した量と $Y$ 方向の量のずれ」を表す。具体的には、$p$ から $X$ に沿って $\varepsilon$、続いて $Y$ に沿って $\varepsilon$、$-X$ に沿って $\varepsilon$、$-Y$ に沿って $\varepsilon$ と進む小さな閉路 $\partial\Box_\varepsilon$ に対し
 \[
@@ -254,7 +259,10 @@ $\Lie_X\omega=\dfrac{\dd}{\dd t}\Big|_{t=0}\varphi_t^*\omega$。関数に対し�
 が成り立つ（$\varphi_{t+s}^*=\varphi_t^*\varphi_s^*$ を $s$ で微分する）。
 
 \begin{lem}[Lie 微分の基本性質]\label{B:lem:lie}\tP
-(i) $\Lie_X(\alpha\wedge\beta)=\Lie_X\alpha\wedge\beta+\alpha\wedge\Lie_X\beta$（次数 $0$ の導分）。(ii) $\Lie_X\dd=\dd\Lie_X$。(iii) $(\Lie_X\omega)(Y_1,\dots,Y_k)=X\bigl(\omega(Y_1,\dots,Y_k)\bigr)-\sum_{i=1}^k\omega(Y_1,\dots,[X,Y_i],\dots,Y_k)$。
+(i) $\Lie_X(\alpha\wedge\beta)=\Lie_X\alpha\wedge\beta+\alpha\wedge\Lie_X\beta$（次数 $0$ の導分）。(ii) $\Lie_X\dd=\dd\Lie_X$。(iii)
+\[
+(\Lie_X\omega)(Y_1,\dots,Y_k)=X\bigl(\omega(Y_1,\dots,Y_k)\bigr)-\sum_{i=1}^k\omega(Y_1,\dots,[X,Y_i],\dots,Y_k).
+\]
 \end{lem}
 \begin{proof}
 (i) $\varphi_t^*(\alpha\wedge\beta)=\varphi_t^*\alpha\wedge\varphi_t^*\beta$ を $t=0$ で微分する（積の微分）。(ii) $\varphi_t^*\dd=\dd\varphi_t^*$（(D5)）を $t$ で微分する。座標で見れば形式の係数は $(t,x)$ の滑らかな関数なので、$\pa_t$ と $\pa_{x^j}$ は交換でき、$\dd$ とも $\dd/\dd t$ は可換。(iii) 点 $p$ で $\varphi_t^*\bigl(\omega(Y_1,\dots,Y_k)\bigr)=(\varphi_t^*\omega)(\varphi_t^*Y_1,\dots,\varphi_t^*Y_k)$（$\varphi_t^*Y=(\varphi_{-t})_*Y$）。両辺を $t=0$ で微分し、積の微分則と $\Lie_XY_i=[X,Y_i]$ を用いると
@@ -308,11 +316,11 @@ $\R^n$ の $\Bvol=\dd x^1\wedge\cdots\wedge\dd x^n$ は閉だから $\Lie_X\Bvol
 \centering
 \begin{tikzpicture}[scale=0.8]
 \foreach \a in {0,30,...,330} \draw[->,gray!70] ({0.5*cos(\a)},{0.5*sin(\a)}) -- ({3.7*cos(\a)},{3.7*sin(\a)});
-\fill[blue!25] (0.7,0.7) rectangle (1.2,1.2);
-\draw[thick,blue!60!black] (0.7,0.7) rectangle (1.2,1.2);
-\draw[thick,dashed,red!60!black] (1.4,1.4) rectangle (2.4,2.4);
-\node[blue!60!black] at (0.6,1.5) {\small $R$};
-\node[red!60!black,right] at (2.5,2.7) {\small $\varphi_t(R)$};
+\fill[blue!25] (0.8,0.8) rectangle (1.1,1.1);
+\draw[thick,blue!60!black] (0.8,0.8) rectangle (1.1,1.1);
+\draw[thick,dashed,red!60!black] (1.6,1.6) rectangle (2.2,2.2);
+\node[blue!60!black] at (0.95,1.3) {\small $R$};
+\node[red!60!black,right] at (2.3,2.45) {\small $\varphi_t(R)$};
 \node at (0,-4.4) {$E=x\pa_x+y\pa_y$：面積 $\times e^{2t}$、$\Lie_E(\dd x\wedge\dd y)=2\,\dd x\wedge\dd y$};
 \end{tikzpicture}
 \caption{Euler ベクトル場の流れによる面積の膨張。$\Bdiv E=2$ が $\Lie_E\Bvol=2\Bvol$ に対応する（図では $t=\ln 2$ 程度）。}\label{B:fig:euler}
@@ -349,7 +357,7 @@ $M$ が向きづけ可能 $\iff$ $M$ 上に至る所 $0$ でない $n$ 形式（
 \begin{proof}
 ($\Leftarrow$) 体積形式 $\mu$ に対し、$\mu(\partial_1,\dots,\partial_n)>0$ となる座標近傍（連結な座標近傍で、必要なら $x^1\to-x^1$）を集めたアトラスを考える。座標変換 $y=\phi(x)$ で $\mu=f\dd x=g\,\dd y=g\det(D\phi)\dd x$ だから $f,g>0$ より $\det D\phi>0$。($\Rightarrow$) 有向アトラス $\{(U_\alpha,x_\alpha)\}$ と従属する1の分割 $\{\rho_\alpha\}$ をとり $\mu=\sum_\alpha\rho_\alpha\,\dd x_\alpha^1\wedge\cdots\wedge\dd x_\alpha^n$ とおく。各項は向きと両立する正の $n$ 形式（$\det>0$）だから、和は至る所正。
 \end{proof}
-例：$\R^n$, $S^n$（$\iota_{\bs x}\Bvol$ の制限）, $T^n$, 任意の Lie 群、任意の複素多様体は向きづけ可能。Möbius 帯と $\RP^{2}$ は向きづけ不可能である（§2）。向きづけ可能な連結多様体は、ちょうど2つの向きをもつ。
+例：$\R^n$、$S^n$（$\iota_{\bs x}\Bvol$ の制限）、$T^n$、任意の Lie 群、任意の複素多様体は向きづけ可能。Möbius 帯と $\RP^{2}$ は向きづけ不可能である（§2）。向きづけ可能な連結多様体は、ちょうど2つの向きをもつ。
 
 \paragraph{積分の定義。}$M$ を向きづけられた $n$ 次元多様体とし、$\omega\in\Om^n_c(M)$（コンパクト台）とする。
 
@@ -401,11 +409,11 @@ $S^1$ の向きを反時計回りにとると $\int_{S^1}\dd\theta=\int_0^{2\pi}
 \begin{scope}[xshift=7.5cm]
 \fill[blue!10] (-2.2,1.8) rectangle (2.2,0);
 \draw[thick] (-2.2,0) -- (2.2,0);
-\node at (1.0,0.9) {$\mathbb H^n=\{x^n\ge0\}$};
+\node at (1.15,1.3) {$\mathbb H^n=\{x^n\ge0\}$};
 \draw[->,thick,blue!60!black] (-0.4,0) -- (-0.4,-0.9) node[below] {$N=-\pa_n$};
 \draw[->,thick,red!60!black] (-0.4,0) -- (0.6,0) node[above right] {$e_1$};
-\fill[orange!40,opacity=0.7] (-1.5,0.9) ellipse (0.55 and 0.45);
-\node at (-1.5,0.9) {\small $\operatorname{supp}\omega$};
+\fill[orange!40,opacity=0.7] (-1.3,0.9) ellipse (0.8 and 0.5);
+\node at (-1.3,0.9) {\small $\operatorname{supp}\omega$};
 \node at (0,-2.5) {境界の向きは標準の向きの $(-1)^{n}$ 倍};
 \end{scope}
 \end{tikzpicture}
@@ -422,18 +430,22 @@ $M$ を向きづけられた $n$ 次元の境界つき多様体、$\omega\in\Om^
 \begin{proof}
 \emph{(Step 1) 半空間、$\R^n$ の場合。}$\omega\in\Om^{n-1}_c(\mathbb H^n)$ で $\mathbb H^n$ に標準の向き（$\dd x^1\wedge\cdots\wedge\dd x^n$ が正）をいれる。$\omega$ は一意に
 \[
-\omega=\sum_{i=1}^n(-1)^{i-1}f_i\,\dd x^1\wedge\cdots\wedge\widehat{\dd x^i}\wedge\cdots\wedge\dd x^n
+\omega=\sum_{i=1}^n(-1)^{i-1}f^i\,\dd x^1\wedge\cdots\wedge\widehat{\dd x^i}\wedge\cdots\wedge\dd x^n
 \]
-と書け（$f_i$ はコンパクト台）、$\dd(f_i\,\dd x^1\wedge\cdots\widehat{\dd x^i}\cdots\wedge\dd x^n)=\pa_if_i\,\dd x^i\wedge\dd x^1\wedge\cdots\widehat{\dd x^i}\cdots\wedge\dd x^n=(-1)^{i-1}\pa_if_i\,\dd x^1\wedge\cdots\wedge\dd x^n$ なので
+と書け（$f^i$ はコンパクト台）、$\dd(f^i\,\dd x^1\wedge\cdots\widehat{\dd x^i}\cdots\wedge\dd x^n)=\pa_if^i\,\dd x^i\wedge\dd x^1\wedge\cdots\widehat{\dd x^i}\cdots\wedge\dd x^n=(-1)^{i-1}\pa_if^i\,\dd x^1\wedge\cdots\wedge\dd x^n$ なので
 \[
-\dd\omega=\Bigl(\sum_{i=1}^n\pa_if_i\Bigr)\dd x^1\wedge\cdots\wedge\dd x^n .
+\dd\omega=\Bigl(\sum_{i=1}^n\pa_if^i\Bigr)\dd x^1\wedge\cdots\wedge\dd x^n .
 \]
-$\int_{\mathbb H^n}\dd\omega=\sum_i\int_{\mathbb H^n}\pa_if_i\,\dd x$ を Fubini で計算する。$i<n$ では $x^i$ について $\R$ 全体で積分できて $\int_{-\infty}^\infty\pa_if_i\,\dd x^i=0$（台がコンパクト）。$i=n$ では $\int_0^{\infty}\pa_nf_n\,\dd x^n=-f_n(x',0)$（$x'=(x^1,\dots,x^{n-1})$）。よって
+$\int_{\mathbb H^n}\dd\omega=\sum_i\int_{\mathbb H^n}\pa_if^i\,\dd x$ を Fubini で計算する。$i<n$ では $x^i$ について $\R$ 全体で積分できて $\int_{-\infty}^\infty\pa_if^i\,\dd x^i=0$（台がコンパクト）。$i=n$ では $\int_0^{\infty}\pa_nf^n\,\dd x^n=-f^n(x',0)$（$x'=(x^1,\dots,x^{n-1})$）。よって
 \[
-\int_{\mathbb H^n}\dd\omega=-\int_{\R^{n-1}}f_n(x',0)\,\dd x'.
+\int_{\mathbb H^n}\dd\omega=-\int_{\R^{n-1}}f^n(x',0)\,\dd x'.
 \]
-一方 $\partial\mathbb H^n=\{x^n=0\}$ への制限では $\dd x^n=0$ なので、$i<n$ の項は消え $\iota^*\omega=(-1)^{n-1}f_n(x',0)\,\dd x^1\wedge\cdots\wedge\dd x^{n-1}$。外向きは $N=-\pa_n$ だから、境界の誘導向きは、$(-\pa_n,e_1,\dots,e_{n-1})$ の符号 $\det=-(-1)^{n-1}=(-1)^n$ より、$\dd x^1\wedge\cdots\wedge\dd x^{n-1}$ の標準の向きの $(-1)^{n}$ 倍。したがって
-$\int_{\partial\mathbb H^n}\iota^*\omega=(-1)^{n}\cdot(-1)^{n-1}\int_{\R^{n-1}}f_n(x',0)\,\dd x'=-\int_{\R^{n-1}}f_n(x',0)\,\dd x'$ で、両辺は一致する。$\R^n$ の場合は、各 $i$ で $\int_{-\infty}^\infty\pa_if_i\,\dd x^i=0$ だから $\int_{\R^n}\dd\omega=0$（境界なし）。
+一方 $\partial\mathbb H^n=\{x^n=0\}$ への制限では $\dd x^n=0$ なので、$i<n$ の項は消え
+\[
+\iota^*\omega=(-1)^{n-1}f^n(x',0)\,\dd x^1\wedge\cdots\wedge\dd x^{n-1}.
+\]
+外向きは $N=-\pa_n$ だから、境界の誘導向きは、$(-\pa_n,e_1,\dots,e_{n-1})$ の符号 $\det=-(-1)^{n-1}=(-1)^n$ より、$\dd x^1\wedge\cdots\wedge\dd x^{n-1}$ の標準の向きの $(-1)^{n}$ 倍。したがって
+$\int_{\partial\mathbb H^n}\iota^*\omega=(-1)^{n}\cdot(-1)^{n-1}\int_{\R^{n-1}}f^n(x',0)\,\dd x'=-\int_{\R^{n-1}}f^n(x',0)\,\dd x'$ で、両辺は一致する。$\R^n$ の場合は、各 $i$ で $\int_{-\infty}^\infty\pa_if^i\,\dd x^i=0$ だから $\int_{\R^n}\dd\omega=0$（境界なし）。
 
 \emph{(Step 2) 一般の場合。}$M$ の有向アトラス（$\R^n$ または $\mathbb H^n$ への座標）と従属する1の分割 $\{\rho_\alpha\}$ をとる。$\operatorname{supp}\omega$ はコンパクトだから $\omega=\sum_{\alpha\in A}\rho_\alpha\omega$（$A$ は有限）で、$\sum_\alpha\dd(\rho_\alpha\omega)=\dd\omega$ （$\sum_\alpha\dd\rho_\alpha=0$ より）。したがって各 $\rho_\alpha\omega$（台が1つの座標近傍に入る）について示せば十分。座標近傍が正の向きなら、座標写像で引き戻して Step 1 に帰着する（積分の微分同相不変性と $F^*\dd=\dd F^*$、境界の向きも座標で $\partial\mathbb H^n$ の誘導向きに対応）。負の向きなら $M$ の向きを逆にして、左辺・右辺とも符号が変わるだけなので同じ。
 \end{proof}
@@ -484,7 +496,7 @@ Stokes の定理は、3つの古典的な定理を特別な場合として含む
 で定まる $\lambda\in\Om^1(T^*M)$ を標準 1 形式（tautological 1-form）という。座標 $(x^i)$ から $T^*M$ の座標 $(x^i,\xi_i)$（$\xi=\xi_i\,\dd x^i$）をとると、$\dd\pi=\dd x$ だから $\lambda=\xi_i\,\dd x^i$。座標変換 $x'=x'(x)$ で $\xi_i=\xi'_j\frac{\pa x'^j}{\pa x^i}$ だから $\xi_i\dd x^i=\xi'_j\dd x'^j$ で形を保つ（定義に座標は使っていないので当然）。
 
 \begin{defn}
-$\omega=\dd\lambda=\sum_i\dd\xi_i\wedge\dd x^i\in\Om^2(T^*M)$ を $T^*M$ の標準シンプレクティック形式という。閉（$\dd\omega=\dd^2\lambda=0$）かつ非退化（各点で $\omega(\pa_{\xi_i},\pa_{x^j})=\delta_{ij}$, $\omega(\pa_{x^i},\pa_{x^j})=\omega(\pa_{\xi_i},\pa_{\xi_j})=0$ だから行列は可逆）である。
+$\omega=\dd\lambda=\sum_i\dd\xi_i\wedge\dd x^i\in\Om^2(T^*M)$ を $T^*M$ の標準シンプレクティック形式という。閉（$\dd\omega=\dd^2\lambda=0$）かつ非退化（各点で $\omega(\pa_{\xi_i},\pa_{x^j})=\delta^i{}_j$, $\omega(\pa_{x^i},\pa_{x^j})=\omega(\pa_{\xi_i},\pa_{\xi_j})=0$ だから行列は可逆）である。
 \end{defn}
 
 符号の規約：ここでは $\omega=+\dd\lambda$ を使った。文献によっては $-\dd\lambda$ を使う（Hamilton ベクトル場の符号などが逆になる）。
@@ -511,6 +523,7 @@ $\omega=\dd\lambda=\sum_i\dd\xi_i\wedge\dd x^i\in\Om^2(T^*M)$ を $T^*M$ の標�
 \end{itemize}
 \end{keybox}
 
+\Bkeep{8}
 \paragraph{つまずきやすい点。}
 \begin{enumerate}
 \item \textbf{$\dd\theta$ は $\theta$ の微分ではない。}$S^1$ や $\R^2\setminus\{0\}$ の $\dd\theta$ は閉だが完全でない。記号は局所的な座標 $\theta$ の微分の名残である。
@@ -610,7 +623,7 @@ $\R^2\setminus\{0\}$ の場合は次節で扱う（$H^1\cong\R$ で生成元は 
 
 \subsection{ホモトピー不変性と Poincaré の補題}\label{B:ss:homotopy}
 
-コホモロジー群は定義から計算しにくい（無限次元の空間の商）。計算の出発点は、「連続的に変形できる写像は同じ $H^*$ への写像を与える」というホモトピー不変性である。これを Cartan の公式から導く。$M\times[0,1]$ の滑らかな構造は $M\times\R$ の部分集合として考え（境界つき）、$s_t:M\to M\times\R$, $s_t(p)=(p,t)$ とおく。
+コホモロジー群は定義から計算しにくい（無限次元の空間の商）。計算の出発点は、「連続的に変形できる写像は同じ $H^*$ への写像を与える」というホモトピー不変性である。これを \mbox{Cartan} の公式から導く。$M\times[0,1]$ の滑らかな構造は $M\times\R$ の部分集合として考え（境界つき）、$s_t:M\to M\times\R$, $s_t(p)=(p,t)$ とおく。
 
 \begin{prop}[ホモトピー公式]\label{B:prop:hf}\tP
 $K:\Om^k(M\times\R)\to\Om^{k-1}(M)$ を
@@ -641,11 +654,13 @@ s_1^*\omega-s_0^*\omega&=\int_0^1\frac{\dd}{\dd t}s_t^*\omega\,\dd t=\int_0^1s_t
 \draw[thick] (-1.6,0) -- (-1.6,3);
 \draw[thick] (1.6,0) -- (1.6,3);
 \draw[thick,blue!60!black] (0,3) ellipse (1.6 and 0.45);
-\draw[gray,->] (0,-0.45) -- (0,3.8) node[right] {$t$};
+\draw[gray,->] (-2.3,0) -- (-2.3,3.4) node[above] {$t$};
+\node[gray,left] at (-2.3,0) {\small $0$};
+\node[gray,left] at (-2.3,3) {\small $1$};
 \node[red!60!black,right] at (1.7,0) {$s_0(M)$};
 \node[blue!60!black,right] at (1.7,3) {$s_1(M)$};
-\foreach \x in {-0.8,0.4,1.1} {\draw[->,gray] (\x,0.1) -- (\x,2.9);}
-\node at (-0.15,1.7) {$\pa_t$};
+\foreach \x in {-0.8,0.4,1.1} {\draw[->,gray] (\x,0.6) -- (\x,2.4);}
+\node at (-0.2,1.5) {$\pa_t$};
 \node at (0,-1.1) {$M\times[0,1]$：$K$ は $\pa_t$ 方向に積分して $s_1^*-s_0^*$ を $\dd$-ホモトピーにする};
 \end{tikzpicture}
 \caption{円柱 $M\times[0,1]$ と2つの切り口 $s_0,s_1$。形式を $\pa_t$ 方向に積分する演算 $K$ がホモトピー作用素。}\label{B:fig:cyl}
@@ -734,27 +749,29 @@ a(\omega)=(\omega|_U,\omega|_V),\qquad b(\mu,\nu)=\nu|_{U\cap V}-\mu|_{U\cap V}
 % S^1 with two arcs
 \begin{scope}
 \draw[thick] (0,0) circle (1.4);
-\draw[line width=4pt,blue!45,opacity=0.55] (-0.2,1.386) arc (97:-173:1.4);
-\draw[line width=4pt,red!45,opacity=0.55] (0.2,-1.386) arc (-83:187:1.4);
-\node[blue!60!black] at (-2.3,0.2) {$U$};
-\node[red!60!black] at (2.3,-0.2) {$V$};
+\draw[line width=4pt,blue!45,opacity=0.6] (70:1.58) arc (70:290:1.58);
+\draw[line width=4pt,red!45,opacity=0.6] (-110:1.22) arc (-110:110:1.22);
+\node[blue!60!black] at (-2.1,0) {$U$};
+\node[red!60!black] at (2.1,0) {$V$};
 \node at (0,0) {$S^1$};
 \node at (0,-2.3) {$U\cap V\simeq$ 2点};
 \end{scope}
 % S^2 as two caps
 \begin{scope}[xshift=7.2cm]
 \draw[thick] (0,0) circle (1.4);
-\draw[thick] (-1.4,0) arc (180:360:1.4 and 0.4);
-\draw[thick,dashed] (-1.4,0) arc (180:0:1.4 and 0.4);
-\fill[blue!20,opacity=0.5] (-1.4,0.25) arc (180:360:1.4 and 0.4) -- (1.4,0.25) arc (0:180:1.4 and 0) -- cycle;
-\draw[line width=3pt,green!50!black,opacity=0.5] (-1.38,0.3) arc (180:360:1.38 and 0.38);
-\draw[line width=3pt,green!50!black,opacity=0.5,dashed] (-1.38,0.3) arc (180:0:1.38 and 0.38);
+\fill[green!50!black,opacity=0.18] (-1.367,0.3) arc[start angle=180,end angle=360,x radius=1.367,y radius=0.39] -- (1.367,-0.3) arc[start angle=360,end angle=180,x radius=1.367,y radius=0.39] -- cycle;
+\draw[gray] (-1.4,0) arc (180:360:1.4 and 0.4);
+\draw[gray,dashed] (-1.4,0) arc (180:0:1.4 and 0.4);
+\draw[thick,red!60!black] (-1.367,0.3) arc[start angle=180,end angle=360,x radius=1.367,y radius=0.39];
+\draw[thick,red!60!black,dashed] (-1.367,0.3) arc[start angle=180,end angle=0,x radius=1.367,y radius=0.39];
+\draw[thick,blue!60!black] (-1.367,-0.3) arc[start angle=180,end angle=360,x radius=1.367,y radius=0.39];
+\draw[thick,blue!60!black,dashed] (-1.367,-0.3) arc[start angle=180,end angle=0,x radius=1.367,y radius=0.39];
 \node[blue!60!black] at (0,1.0) {$U$};
 \node[red!60!black] at (0,-1.0) {$V$};
-\node at (0,-2.3) {$U\cap V\simeq S^1$（赤道の帯）};
+\node at (0,-2.3) {$U\cap V\simeq S^1$（赤道の帯：緑）};
 \end{scope}
 \end{tikzpicture}
-\caption{$S^1$ を2つの開弧で、$S^2$ を2つの開半球（少し広げて重ねたもの）で覆う。$U,V$ は可縮、$U\cap V$ は $S^1$ では2点、$S^2$ では $S^1$ にホモトピー同値。}\label{B:fig:MVcover}
+\caption{$S^1$ を2つの開弧で、$S^2$ を2つの開半球（少し広げて重ねたもの）で覆う。$U,V$ は可縮、$U\cap V$ は $S^1$ では2つの弧（2点にホモトピー同値）、$S^2$ では赤道の帯（$S^1$ にホモトピー同値）。$S^2$ の図で、青の線は $U$ の下端、赤の線は $V$ の上端。}\label{B:fig:MVcover}
 \end{figure}
 
 \begin{ex}[$S^1$：連結準同型の具体形]\label{B:ex:S1MV}
@@ -762,7 +779,7 @@ $S^1=U\cup V$（$U,V$ は開弧）では $U,V$ は可縮なので $H^0(U)\oplus 
 \[
 0\to H^0(S^1)\to\R^2\xrightarrow{\ b_*\ }\R^2\xrightarrow{\ \delta\ }H^1(S^1)\to0
 \]
-の $b_*(c_U,c_V)=(c_V-c_U,\ c_V-c_U)$ の像は1次元で、$\Ker b_*$ も1次元、したがって $H^0(S^1)=\R$, $H^1(S^1)=\R^2/\mathrm{Im}\,b_*=\R$。具体的に $\tau=(\tau_1,\tau_2)\in H^0(U\cap V)$（各成分で定数）に対し、$\eta=\delta\tau$ の積分 $\int_{S^1}\eta=\pm(\tau_2-\tau_1)$ となる（問~\ref{pr:B_S1MV}）。すなわち $\delta$ は「ずれ」$\tau_2-\tau_1$ を $\int_{S^1}$ で読み取る。
+の $b_*(c_U,c_V)=(c_V-c_U,\ c_V-c_U)$ の像は1次元で、$\Ker b_*$ も1次元、したがって $H^0(S^1)=\R$, $H^1(S^1)=\R^2/\Ran b_*=\R$。具体的に $\tau=(\tau_1,\tau_2)\in H^0(U\cap V)$（各成分で定数）に対し、$\eta=\delta\tau$ の積分 $\int_{S^1}\eta=\pm(\tau_2-\tau_1)$ となる（問~\ref{pr:B_S1MV}）。すなわち $\delta$ は「ずれ」$\tau_2-\tau_1$ を $\int_{S^1}$ で読み取る。
 \end{ex}
 
 \begin{ex}[$S^n$]\label{B:ex:Sn}
@@ -844,8 +861,8 @@ Sard の定理により正則値は稠密に存在する\tC（Lee 第6章）の�
 \end{figure}
 
 \begin{ex}[例]\label{B:ex:degex}
-(a) $f_m(z)=z^m:S^1\to S^1$（$\theta\mapsto m\theta$）。$f_m^*\dd\theta=m\,\dd\theta$ だから $\int_{S^1}f_m^*\dd\theta=2\pi m$、$\deg f_m=m$。正則値 $1$ の逆像は $|m|$ 個の点で、各点で $f_m'$ の符号は $\mathrm{sgn}(m)$。
-(b) 球面の対蹠写像 $a(x)=-x:S^n\to S^n$ は $\deg a=(-1)^{n+1}$。$S^n$ の向きは「$T_pS^n$ の基底 $(v_1,\dots,v_n)$ が正 $\iff(p,v_1,\dots,v_n)$ が $\R^{n+1}$ の正基底」（外向き法線先頭）で与える。$\dd a(v_i)=-v_i\in T_{-p}S^n$ で、$(-p,-v_1,\dots,-v_n)=(-I)(p,v_1,\dots,v_n)$ の向きは $(p,v_1,\dots,v_n)$ の向きの $\det(-I_{n+1})=(-1)^{n+1}$ 倍である。したがって $\varepsilon(x)=(-1)^{n+1}$ が全点で成り立ち、各 $y$ の逆像は1点だから $\deg a=(-1)^{n+1}$。(c) 鏡映 $(x_0,\dots,x_n)\mapsto(-x_0,x_1,\dots,x_n)$ は $\deg=-1$。
+(a) $f_m(z)=z^m:S^1\to S^1$（$\theta\mapsto m\theta$）。$f_m^*\dd\theta=m\,\dd\theta$ だから $\int_{S^1}f_m^*\dd\theta=2\pi m$、$\deg f_m=m$。正則値 $1$ の逆像は $|m|$ 個の点で、各点で $f_m'$ の符号は $\Bsgn(m)$。
+(b) 球面の対蹠写像 $a(x)=-x:S^n\to S^n$ は $\deg a=(-1)^{n+1}$。$S^n$ の向きは「$T_pS^n$ の基底 $(v_1,\dots,v_n)$ が正 $\iff(p,v_1,\dots,v_n)$ が $\R^{n+1}$ の正基底」（外向き法線先頭）で与える。$\dd a(v_i)=-v_i\in T_{-p}S^n$ で、$(-p,-v_1,\dots,-v_n)=(-I)(p,v_1,\dots,v_n)$ の向きは $(p,v_1,\dots,v_n)$ の向きの $\det(-I_{n+1})=(-1)^{n+1}$ 倍である。したがって $\varepsilon(x)=(-1)^{n+1}$ が全点で成り立ち、各 $y$ の逆像は1点だから $\deg a=(-1)^{n+1}$。(c) 鏡映 $(x^0,\dots,x^n)\mapsto(-x^0,x^1,\dots,x^n)$ は $\deg=-1$。
 (d) $\CP^1=S^2$ 上の $z\mapsto z^m$ ($m\ge1$) は正則写像で、複素向きに関して $\dd f$ は向きを保つ（複素線形写像の実 Jacobi 行列式は $|f'|^2>0$）。正則値 $1$ の逆像は $m$ 個の相異なる $m$ 乗根だから $\deg=m$。
 \end{ex}
 
@@ -966,18 +983,23 @@ $H^k_{\rm dR}(M)\cong H^k_{\rm sing}(M;\R)$（特異コホモロジー）。こ�
 \src{Lee 第18章、Bott--Tu 第II章（§8 以降の {\Cech}--de Rham 複体）、Warner 第5章。\tQ\ 節番号は未確認。}
 したがって、Betti 数は多様体の滑らかな構造によらない。Chern 類を $H^{2k}(M;\Z)$ の元として考える（第6巻）ときの土台である。証明の道筋は第3巻で層のコホモロジーとして見る：$\underline{\R}\to\Om^0\to\Om^1\to\cdots$ は定数層の分解（Poincaré の補題が各点でこれの完全性を与える）であり、各 $\Om^k$ が（1の分割のおかげで）軟弱（fine）層であることから、$H^k_{\rm dR}(M)\cong H^k(M;\underline{\R})$ が従う。
 
-\paragraph{{\Cech}--de Rham 複体の予告。}開被覆 $\mathcal U=\{U_\alpha\}$ に対し、二重複体 $C^{p}(\mathcal U,\Om^q)=\prod_{\alpha_0<\cdots<\alpha_p}\Om^q(U_{\alpha_0\cdots\alpha_p})$ に、{\Cech} 微分 $\delta$ と外微分 $\dd$ を考える。MV 列は、被覆が2個のときの {\Cech} 微分 $\delta$ に他ならない。「良い被覆」（有限交叉がすべて可縮）では、各 $U_{\alpha_0\cdots\alpha_p}$ に Poincaré の補題が使えて、この二重複体のコホモロジーが {\Cech} コホモロジー $\check H^p(\mathcal U;\R)$ に等しくなり、$H^k_{\rm dR}(M)\cong\check H^k(\mathcal U;\R)$ を得る（Bott--Tu 第II章）。第3巻では、$\Om^q$ を一般の層に置き換えて層コホモロジー理論を展開し、複素多様体の正則 de Rham 複体、Dolbeault 複体と結びつける。
+\paragraph{{\Cech}--de Rham 複体の予告。}開被覆 $\mathcal U=\{U_\alpha\}$ に対し、二重複体
+\[
+C^{p}(\mathcal U,\Om^q)=\prod_{\alpha_0<\cdots<\alpha_p}\Om^q(U_{\alpha_0\cdots\alpha_p})
+\]
+に、{\Cech} 微分 $\delta$ と外微分 $\dd$ を考える。MV 列は、被覆が2個のときの {\Cech} 微分 $\delta$ に他ならない。「良い被覆」（有限交叉がすべて可縮）では、各 $U_{\alpha_0\cdots\alpha_p}$ に Poincaré の補題が使えて、この二重複体のコホモロジーが {\Cech} コホモロジー $\check H^p(\mathcal U;\R)$ に等しくなり、$H^k_{\rm dR}(M)\cong\check H^k(\mathcal U;\R)$ を得る（Bott--Tu 第II章）。第3巻では、$\Om^q$ を一般の層に置き換えて層コホモロジー理論を展開し、複素多様体の正則 de Rham 複体、Dolbeault 複体と結びつける。
 
 \begin{keybox}{§5 の要点}
 \begin{itemize}
 \item $H^k_{\rm dR}=\Ker\dd/\Ran\dd$。反変関手で環構造をもつ。ホモトピー不変（Cartan の公式から出るホモトピー公式 $s_1^*-s_0^*=\dd K+K\dd$）。$\R^n$ は $H^0$ のみ（Poincaré の補題）。
-\item 計算は Mayer--Vietoris（開被覆の貼り合わせ）：$H^*(S^n)=\R$ ($k=0,n$)、$H^*(T^n)=\Lambda^*\R^n$（$b_k=\binom nk$）、$\Sigma_g$ は $(1,2g,1)$、$\CP^n$ は $b_{2k}=1$。
+\item 計算は Mayer--Vietoris（開被覆の貼り合わせ）：$H^k(S^n)=\R$ ($k=0,n$)、$H^*(T^n)=\Lambda^*\R^n$（$b_k=\binom nk$）、$\Sigma_g$ は $(1,2g,1)$、$\CP^n$ は $b_{2k}=1$。
 \item 写像度：$\int_Mf^*\omega=\deg f\int_N\omega$。正則値の逆像の符号つき個数。$\deg(\text{対蹠写像})=(-1)^{n+1}$ から偶数次元球面の毛玉定理。
 \item Poincaré 双対：向きづけられた閉 $n$ 次元で $H^k\times H^{n-k}\to\R$ が完全対。$b_k=b_{n-k}$、奇数次元で $\chi=0$。
 \item \textbf{【あとで使う】}$H^k_{\rm dR}\cong H^k(M;\underline{\R})$ $\to$ 第3巻（層コホモロジー、{\Cech}--de Rham）。Poincaré 双対 $\to$ Serre 双対・統合論文の双対性（第4・5巻）。MV 列の連結準同型 $\to$ 長完全列の標準的な使い方。写像度・正則値 $\to$ 指数定理（第6巻）。
 \end{itemize}
 \end{keybox}
 
+\Bkeep{8}
 \paragraph{つまずきやすい点。}
 \begin{enumerate}
 \item \textbf{$H^k_{\rm dR}$ は位相不変量だが、$\dd$ は滑らかな構造に依存する。}代表元（閉形式）は微分同相でしか対応しない。ホモトピー同値、あるいは位相同型で不変なのは類だけ。
@@ -994,7 +1016,7 @@ $H^k_{\rm dR}(M)\cong H^k_{\rm sing}(M;\R)$（特異コホモロジー）。こ�
 \end{probl}
 
 \begin{probl}{標準}{B_punct}
-(a) $\R^2\setminus\{0\}$ 上の任意の閉 $1$ 形式 $\alpha$ は、ある定数 $c$ と関数 $f$ により $\alpha=c\,\omega+\dd f$（$\omega=\dd\theta$ は例~\ref{B:ex:angle} の角形式）と書け、$c=\frac1{2\pi}\oint_{S^1}\alpha$ であることを示せ。\hint{$i:S^1\hookrightarrow\R^2\setminus\{0\}$ が $H^1$ の同型を与える。}(b) $\R^2\setminus\{0\}$ 上のベクトル場 $\bs F=\dfrac{(-y,x)}{x^2+y^2}$ と $\bs G=\dfrac{(x,y)}{x^2+y^2}$ はどちらも rot $=0$ である。勾配場であるのはどちらか。理由とともに答えよ。
+(a) $\R^2\setminus\{0\}$ 上の任意の閉 $1$ 形式 $\alpha$ は、ある定数 $c$ と関数 $f$ により $\alpha=c\,\omega+\dd f$（$\omega=\dd\theta$ は例~\ref{B:ex:angle} の角形式）と書け、$c=\frac1{2\pi}\oint_{S^1}\alpha$ であることを示せ。\hint{$i:S^1\hookrightarrow\R^2\setminus\{0\}$ が $H^1$ の同型を与える。}(b) $\R^2\setminus\{0\}$ 上のベクトル場 $\bs F=\dfrac{(-y,x)}{x^2+y^2}$ と $\bs G=\dfrac{(x,y)}{x^2+y^2}$ はどちらも回転が $0$（$(P,Q)$ に対し $Q_x-P_y=0$）である。勾配場であるのはどちらか。理由とともに答えよ。
 \end{probl}
 
 \begin{probl}{標準}{B_S1MV}
@@ -1014,7 +1036,7 @@ $M_k=\R^2\setminus\{p_1,\dots,p_k\}$（$k$ 個の相異なる点）について�
 \end{probl}
 
 \begin{probl}{標準}{B_degree}
-(a) $f_m(z)=z^m:S^1\to S^1$ の次数を $\int f_m^*\dd\theta$ と、正則値の逆像の個数の両方で求めよ（$m\in\Z$）。(b) $S^n$ の対蹠写像 $a$ は $n+1$ 個の鏡映 $r_i(x)=(x_0,\dots,-x_i,\dots,x_n)$ の合成であることを用い、$\deg a=(-1)^{n+1}$ を再確認せよ（鏡映の次数は $-1$）。(c) 有理関数 $f(z)=\dfrac{z^2+1}{z}$ を $\CP^1=S^2$ の自己写像（$f(0)=f(\infty)=\infty$）と見たときの次数を求めよ。
+(a) $f_m(z)=z^m:S^1\to S^1$ の次数を $\int f_m^*\dd\theta$ と、正則値の逆像の個数の両方で求めよ（$m\in\Z$）。(b) $S^n$ の対蹠写像 $a$ は $n+1$ 個の鏡映 $r_i(x)=(x^0,\dots,-x^i,\dots,x^n)$ の合成であることを用い、$\deg a=(-1)^{n+1}$ を再確認せよ（鏡映の次数は $-1$）。(c) 有理関数 $f(z)=\dfrac{z^2+1}{z}$ を $\CP^1=S^2$ の自己写像（$f(0)=f(\infty)=\infty$）と見たときの次数を求めよ。
 \end{probl}
 
 \begin{probl}{発展}{B_brouwer}
@@ -1051,7 +1073,7 @@ $\R^3\setminus\{0\}$ 上の $\omega=\dfrac{x\,\dd y\wedge\dd z+y\,\dd z\wedge\dd
 多様体上の点における接ベクトルの長さや、2つのベクトルのなす角を測りたい。Euclid 空間では内積が使えるが、一般の多様体には $\R^n$ の標準内積が「どれ」と決まっていないので、各接空間に内積を「付け加える」必要がある。
 
 \begin{defn}[Riemann 計量]\label{B:def:metric}
-多様体 $M$ の Riemann 計量（Riemannian metric）$g$ とは、各 $T_pM$ 上の内積（対称・正定値な双線形形式）$g_p$ で、$p$ について滑らかなもの（すなわち $g(X,Y)\in C^\infty(M)$ がすべての $X,Y\in\X(M)$ について成り立つ）をいう。組 $(M,g)$ を Riemann 多様体という。座標では $g=g_{ij}\,\dd x^i\dd x^j$、$g_{ij}=g(\pa_i,\pa_j)$（対称正定値行列）で、$g^{ij}$ で逆行列を表す。
+多様体 $M$ の Riemann 計量（Riemannian metric）$g$ とは、各 $T_pM$ 上の内積（対称・正定値な双線形形式）$g_p$ で、$p$ について滑らかなもの（すなわち $g(X,Y)\in C^\infty(M)$ がすべての $X,Y\in\X(M)$ について成り立つ）をいう。組 $(M,g)$ を \mbox{Riemann} 多様体という。座標では $g=g_{ij}\,\dd x^i\dd x^j$、$g_{ij}=g(\pa_i,\pa_j)$（対称正定値行列）で、$g^{ij}$ で逆行列を表す。
 \end{defn}
 
 \begin{prop}[存在]\label{B:prop:gexist}\tP
@@ -1075,7 +1097,11 @@ g_{S^2}=\dd\theta^2+\sin^2\theta\,\dd\varphi^2 .
 \Bvol_g=\sqrt{\det(g_{ij})}\,\dd x^1\wedge\cdots\wedge\dd x^n\qquad(\text{正の向きの座標}).
 \end{equation}
 \begin{proof}[式~\eqref{B:eq:volg} の確認]
-$e_a=A^i_a\pa_i$（$A$ は正の向きなので $\det A>0$）が正規直交なら $\delta_{ab}=g(e_a,e_b)=A^i_ag_{ij}A^j_b$、$\det(A)^2\det g=1$、$\det A=1/\sqrt{\det g}$。$(\sqrt{\det g}\,\dd x^1\wedge\cdots)(e_1,\dots,e_n)=\sqrt{\det g}\det A=1$。
+$e_a=A^i{}_a\pa_i$（$A$ は正の向きなので $\det A>0$）が正規直交なら
+\[
+\delta_{ab}=g(e_a,e_b)=A^i{}_a\,g_{ij}\,A^j{}_b
+\]
+で、行列式をとって $\det(A)^2\det g=1$、$\det A=1/\sqrt{\det g}$。$(\sqrt{\det g}\,\dd x^1\wedge\cdots)(e_1,\dots,e_n)=\sqrt{\det g}\det A=1$。
 \end{proof}
 $S^2$ では $\sqrt{\det g}=\sin\theta$ で $\Bvol_g=\sin\theta\,\dd\theta\wedge\dd\varphi$、面積 $\int_{S^2}\Bvol_g=4\pi$（問~\ref{pr:B_sphere} の $\Phi^*\omega$ と一致する：$\omega|_{S^2}=\Bvol_g$）。計量は体積 $\mathrm{Vol}(M)=\int_M\Bvol_g$ を定め、これは $M$ が向きづけられていなくても測度として意味をもつ。
 
@@ -1092,7 +1118,7 @@ $S^2$ では $\sqrt{\det g}=\sin\theta$ で $\Bvol_g=\sin\theta\,\dd\theta\wedge
 \draw[thick,blue!60!black] (0,0) ellipse (1.7 and 0.9);
 \end{scope}
 \node[blue!60!black] at (2.0,1.55) {$\{g(v,v)=1\}$};
-\draw[->,thick,red!60!black] (0,0) -- (1.3,0.6) node[above right] {$v$};
+\draw[->,thick,red!60!black] (0,0) -- (1.3,0.6) node[midway,above] {$v$};
 \node at (0,-2.7) {$T_pM$：単位球は楕円（座標が正規直交でないとき）};
 \end{scope}
 % right: area element
@@ -1126,8 +1152,8 @@ $S^2$ では $\sqrt{\det g}=\sin\theta$ で $\Bvol_g=\sin\theta\,\dd\theta\wedge
 \draw[thick,red!60!black] (0.75,0.8) -- (1.05,0.78) -- (1.1,0.35) -- (0.75,0.36) -- cycle;
 \fill (0,1.6) circle (1.5pt);
 \node[above] at (0,1.62) {$N$（$\theta=0$）};
-\draw[->,thick,blue!60!black] (2.3,0.35) -- (2.3,0.9) node[right] {$\theta$ 増};
-\draw[->,thick,blue!60!black] (2.3,0.35) -- (3.0,0.35) node[right] {$\varphi$ 増};
+\draw[->,thick,blue!60!black] (2.3,0.95) -- (2.3,0.35) node[below] {$\theta$ 増};
+\draw[->,thick,blue!60!black] (2.3,0.95) -- (3.0,0.95) node[right] {$\varphi$ 増};
 \node[align=left,anchor=west] at (3.0,-0.7) {小さな四角形の面積\\ $\approx\sin\theta\,\dd\theta\,\dd\varphi$};
 \end{tikzpicture}
 \caption{$S^2$ の球面座標。座標線（緯線・経線）が作る小さな四角形の辺は $\dd\theta$ と $\sin\theta\,\dd\varphi$ で、面積要素 $\sin\theta\,\dd\theta\wedge\dd\varphi$ を与える。}\label{B:fig:S2coord}
@@ -1135,13 +1161,13 @@ $S^2$ では $\sqrt{\det g}=\sin\theta$ で $\Bvol_g=\sin\theta\,\dd\theta\wedge
 
 \subsection{形式の内積と Hodge 星}\label{B:ss:star}
 
-$\dim\Lambda^kV^*=\binom nk=\dim\Lambda^{n-k}V^*$ である。内積と向きがあれば、この2つの空間の間に自然な同型を作ることができる。これが Hodge 星作用素である。電磁気学で「電場 $\bs E$ ↔ 2 形式」「磁場 $\bs B$ ↔ 2 形式」と同一視を行き来するときに使われている構造である。
+$\dim\Lambda^kV^*=\binom nk=\dim\Lambda^{n-k}V^*$ である。内積と向きがあれば、この2つの空間の間に自然な同型を作ることができる。これが Hodge 星作用素である。電磁気学で「電場 $\bs E$ ↔ $1$ 形式」「磁場 $\bs B$ ↔ $2$ 形式」と同一視を行き来するときに使われている構造である。
 
 \paragraph{$\Lambda^kV^*$ の内積。}$(V,\langle\,,\rangle)$ を向きづけられた $n$ 次元内積空間とする。$V^*$ には $\flat,\sharp$ を通じて内積が入る。$\Lambda^kV^*$ の内積を
 \[
 \langle\alpha^1\wedge\cdots\wedge\alpha^k,\ \beta^1\wedge\cdots\wedge\beta^k\rangle=\det\bigl(\langle\alpha^i,\beta^j\rangle\bigr)
 \]
-で定める。$(e^1,\dots,e^n)$ が $V^*$ の正規直交基底ならば $\{e^I=e^{i_1}\wedge\cdots\wedge e^{i_k}\}_{i_1<\cdots<i_k}$ は $\Lambda^kV^*$ の正規直交基底（行列式の値が $\delta_{IJ}$ になる）。$\Bvol=e^1\wedge\cdots\wedge e^n$ を体積形式とする（正の向きの正規直交余基底）。
+で定める。$(e^1,\dots,e^n)$ が $V^*$ の正規直交基底ならば $\{e^I=e^{i_1}\wedge\cdots\wedge e^{i_k}\}_{i_1<\cdots<i_k}$ は $\Lambda^kV^*$ の正規直交基底（$\langle e^I,e^J\rangle$ は行列式の値で $\delta^{IJ}$ になる）。$\Bvol=e^1\wedge\cdots\wedge e^n$ を体積形式とする（正の向きの正規直交余基底）。
 
 \begin{defn}[Hodge 星]\label{B:def:star}
 $\star:\Lambda^kV^*\to\Lambda^{n-k}V^*$ を、すべての $\alpha,\beta\in\Lambda^kV^*$ に対し
@@ -1155,9 +1181,9 @@ $\star:\Lambda^kV^*\to\Lambda^{n-k}V^*$ を、すべての $\alpha,\beta\in\Lamb
 (i) $\star$ は一意に存在し、正の向きの正規直交余基底 $(e^i)$ に関して $\star e^I=\Bsgn(I,I^c)\,e^{I^c}$（$I^c$ は補集合を昇順に並べたもの、$\Bsgn(I,I^c)$ は並べ $(I,I^c)$ の符号、すなわち $e^I\wedge e^{I^c}=\Bsgn(I,I^c)\Bvol$）。(ii) $\star1=\Bvol$, $\star\Bvol=1$。(iii) $\star\star=(-1)^{k(n-k)}$ on $\Lambda^k$。(iv) $\langle\star\alpha,\star\beta\rangle=\langle\alpha,\beta\rangle$（等長）。(v) $\alpha\wedge\star\beta=\beta\wedge\star\alpha$。
 \end{prop}
 \begin{proof}
-(i) $\alpha=e^I$ とし、$\star e^K=\sum_Jc^K_Je^J$ とおくと、定義は $e^I\wedge\star e^K=\delta_{IK}\Bvol$。$e^I\wedge e^J\ne0$ となるのは $J=I^c$ のときだけで、そのとき値は $\Bsgn(I,I^c)\Bvol$。したがって $\star e^K$ の係数は $J=K^c$ 以外は $0$、$J=K^c$ では $c^K_{K^c}\Bsgn(K,K^c)=1$、すなわち $c=\Bsgn(K,K^c)$。これは存在と一意性を与える。(ii) は $k=0,n$ の場合の (i)。(iii) $\star\star e^K=\Bsgn(K,K^c)\star e^{K^c}=\Bsgn(K,K^c)\Bsgn(K^c,K)e^K$ で、並べ $(K^c,K)$ と $(K,K^c)$ は $k(n-k)$ 回の互換で移り合うので $\Bsgn(K^c,K)=(-1)^{k(n-k)}\Bsgn(K,K^c)$。(iv)(v) は (i) と、$\alpha\wedge\star\beta=\langle\alpha,\beta\rangle\Bvol$ の対称性から。
+(i) $\alpha=e^I$ とし、$\star e^K=\sum_Jc^K{}_J\,e^J$ とおくと、定義は $e^I\wedge\star e^K=\delta^{IK}\Bvol$。$e^I\wedge e^J\ne0$ となるのは $J=I^c$ のときだけで、そのとき値は $\Bsgn(I,I^c)\Bvol$。したがって $\star e^K$ の係数は $J=K^c$ 以外は $0$、$J=K^c$ では $c^K{}_{K^c}\Bsgn(K,K^c)=1$、すなわち $c=\Bsgn(K,K^c)$。これは存在と一意性を与える。(ii) は $k=0,n$ の場合の (i)。(iii) $\star\star e^K=\Bsgn(K,K^c)\star e^{K^c}=\Bsgn(K,K^c)\Bsgn(K^c,K)e^K$ で、並べ $(K^c,K)$ と $(K,K^c)$ は $k(n-k)$ 回の互換で移り合うので $\Bsgn(K^c,K)=(-1)^{k(n-k)}\Bsgn(K,K^c)$。(iv)(v) は (i) と、$\alpha\wedge\star\beta=\langle\alpha,\beta\rangle\Bvol$ の対称性から。
 \end{proof}
-多様体上では、各点で上を適用して $\star:\Om^k(M)\to\Om^{n-k}(M)$ を得る（向きづけられた Riemann 多様体）。滑らかな形式を滑らかな形式に写す。内積 $\langle\alpha,\beta\rangle=\sum_I\alpha_I\beta_I$（正規直交余基底に関して）は $C^\infty$ 関数を与える。
+多様体上では、各点で上を適用して $\star:\Om^k(M)\to\Om^{n-k}(M)$ を得る（向きづけられた \mbox{Riemann} 多様体）。滑らかな形式を滑らかな形式に写す。内積 $\langle\alpha,\beta\rangle=\sum_I\alpha_I\beta_I$（正規直交余基底 $e^I$ に関する成分。正規直交なので添字の上下を区別せず、和は $\sum$ で明記する）は $C^\infty$ 関数を与える。
 
 \begin{ex}[$\R^3$ の Hodge 星]\label{B:ex:star3}
 標準計量と標準の向き。$\star1=\dd x\wedge\dd y\wedge\dd z$ で、
@@ -1194,7 +1220,7 @@ $\star\dd x^4=-\dd x^{123}$ & $\star\dd x^{23}=\dd x^{14}$ & $\star\dd x^{234}=-
 （$k(4-k)=3,4,3$ なので $\star\star=-1,+1,-1$。例：$\star\star\dd x^1=\star\dd x^{234}=-\dd x^1$ ✓。）
 \end{ex}
 
-\paragraph{共形変換。}計量を $\tilde g=e^{2u}g$（$u\in C^\infty(M)$）に取り替える。正規直交余基底 $(e^i)$ は $\tilde e^i=e^ue^i$ に変わる。(i) より $\tilde\star\tilde e^I=\Bsgn\,\tilde e^{I^c}$、$\tilde e^I=e^{ku}e^I$ だから
+\paragraph{共形変換。}計量を $\tilde g=e^{2u}g$（$u\in C^\infty(M)$）に取り替える。正規直交余基底 $(e^i)$ は $\tilde e^i=e^ue^i$ に変わる。(i) より $\tilde\star\tilde e^I=\Bsgn(I,I^c)\,\tilde e^{I^c}$、$\tilde e^I=e^{ku}e^I$ だから
 \begin{equation}\label{B:eq:starconf}
 \tilde\star=e^{(n-2k)u}\star\quad\text{on }\Om^k.
 \end{equation}
@@ -1225,7 +1251,7 @@ $\R^n$（またはトーラス）で $\dd=\sum_j\dd x^j\wedge\pa_j$ と見る。
 \begin{equation}\label{B:eq:deltaflat}
 \delta=-\sum_{j=1}^n\iota_{\pa_j}\pa_j .
 \end{equation}
-1形式 $f_i\dd x^i$ では $\delta(f_i\,\dd x^i)=-\sum_i\pa_if_i=-\Bdiv\bs f$。$\R^3$ の $2$ 形式では、$\delta=(-1)^{3\cdot3+1}\star\dd\star=\star\dd\star$ で、$\star\dd\star(a\,\dd y\wedge\dd z+b\,\dd z\wedge\dd x+c\,\dd x\wedge\dd y)=(\Bcurl(a,b,c))^\flat$（問~\ref{pr:B_adj}）。
+$1$ 形式 $f_i\,\dd x^i$ では、標準計量で成分の上下を区別せず（$f^i=f_i$）$\delta(f_i\,\dd x^i)=-\sum_i\pa_if_i=-\Bdiv\bs f$（$\bs f=(f_1,\dots,f_n)$）。$\R^3$ の $2$ 形式では、$\delta=(-1)^{3\cdot3+1}\star\dd\star=\star\dd\star$ で、$\star\dd\star(a\,\dd y\wedge\dd z+b\,\dd z\wedge\dd x+c\,\dd x\wedge\dd y)=(\Bcurl(a,b,c))^\flat$（問~\ref{pr:B_adj}）。
 \end{ex}
 
 \begin{defn}[Hodge Laplacian、調和形式]\label{B:def:Hodge}
@@ -1239,14 +1265,19 @@ $M$ が向きづけられた閉 Riemann 多様体のとき：(i) $(\Delta\alpha,
 (i)(ii) は $(\dd\delta\alpha,\beta)=(\delta\alpha,\delta\beta)=(\alpha,\dd\delta\beta)$ と $(\delta\dd\alpha,\beta)=(\dd\alpha,\dd\beta)=(\alpha,\delta\dd\beta)$ から。(iii) ($\Leftarrow$) は明らか。($\Rightarrow$) $0=(\Delta\alpha,\alpha)=\|\dd\alpha\|^2+\|\delta\alpha\|^2$。(iv) $\delta\alpha=\pm\star^{-1}\dd\star\alpha$ だから $\delta\alpha=0\iff\dd(\star\alpha)=0$、また $\delta(\star\alpha)=\pm\star^{-1}\dd\star\star\alpha=\pm\star^{-1}\dd\alpha$ だから $\dd\alpha=0\iff\delta(\star\alpha)=0$。したがって (iii) より $\alpha$ が調和 $\iff\alpha$ が閉かつ余閉 $\iff\star\alpha$ が閉かつ余閉 $\iff\star\alpha$ が調和。
 \end{proof}
 
-\paragraph{関数に対する Laplacian。}$f\in C^\infty(M)$ では $\delta f=0$ で $\Delta f=\delta\dd f=(-1)^{2n+1}\star\dd\star\dd f=-\star\dd\star\dd f$。$1$ 形式 $\alpha$ に対し $\star\alpha=\iota_{\alpha^\sharp}\Bvol_g$ である（$\beta\wedge\iota_X\Bvol=\beta(X)\Bvol$ と $\beta(\alpha^\sharp)=\langle\beta,\alpha\rangle$ から）。したがって $\star\dd f=\iota_{\Bgrad f}\Bvol_g$ で、式~\eqref{B:eq:volg} を用いると $\iota_X\Bvol_g=\sqrt{\det g}\sum_i(-1)^{i-1}X^i\,\dd x^1\wedge\cdots\widehat{\dd x^i}\cdots\wedge\dd x^n$、$\dd\iota_X\Bvol_g=\sum_i\pa_i(\sqrt{\det g}\,X^i)\,\dd x^1\wedge\cdots\wedge\dd x^n$ だから（$\star(\dd x^1\wedge\cdots\wedge\dd x^n)=1/\sqrt{\det g}$）
+\paragraph{関数に対する Laplacian。}$f\in C^\infty(M)$ では $\delta f=0$ で $\Delta f=\delta\dd f=(-1)^{2n+1}\star\dd\star\dd f=-\star\dd\star\dd f$。$1$ 形式 $\alpha$ に対し $\star\alpha=\iota_{\alpha^\sharp}\Bvol_g$ である（$\beta\wedge\iota_X\Bvol=\beta(X)\Bvol$ と $\beta(\alpha^\sharp)=\langle\beta,\alpha\rangle$ から）。したがって $\star\dd f=\iota_{\Bgrad f}\Bvol_g$ である。式~\eqref{B:eq:volg} を用いると
+\begin{align*}
+\iota_X\Bvol_g&=\sqrt{\det g}\sum_i(-1)^{i-1}X^i\,\dd x^1\wedge\cdots\wedge\widehat{\dd x^i}\wedge\cdots\wedge\dd x^n,\\
+\dd\iota_X\Bvol_g&=\sum_i\pa_i\bigl(\sqrt{\det g}\,X^i\bigr)\,\dd x^1\wedge\cdots\wedge\dd x^n
+\end{align*}
+だから（$\star(\dd x^1\wedge\cdots\wedge\dd x^n)=1/\sqrt{\det g}$、$(\Bgrad f)^i=g^{ij}\pa_jf$）
 \begin{equation}\label{B:eq:laplacefn}
 \Delta f=-\frac1{\sqrt{\det g}}\sum_{i,j}\frac{\pa}{\pa x^i}\Bigl(\sqrt{\det g}\,g^{ij}\frac{\pa f}{\pa x^j}\Bigr)=-\Bdiv\Bgrad f .
 \end{equation}
-符号は、$\Delta$ が非負（$\Delta\ge0$）であるように決めた（幾何学者の Laplacian。解析学では $\sum\pa_i^2$ を $\Delta$ と書くので、符号が逆）。
+符号は、$\Delta$ が非負（$\Delta\ge0$）であるように決めた（幾何学者の Laplacian。解析学では $\R^n$ の標準座標で $\sum_i\pa_i^2$ を $\Delta$ と書くので、符号が逆）。
 
 \begin{ex}[具体例]\label{B:ex:lap}
-(1) $\R^n$：$\Delta f=-\sum\pa_i^2f$。(2) $\R^2$ の極座標：$g=\dd r^2+r^2\dd\theta^2$、$\sqrt{\det g}=r$、$g^{rr}=1,g^{\theta\theta}=r^{-2}$ で
+(1) $\R^n$：$g^{ij}=\delta^{ij}$ だから $\Delta f=-\sum_i\pa_i^2f$。(2) $\R^2$ の極座標：$g=\dd r^2+r^2\dd\theta^2$、$\sqrt{\det g}=r$、$g^{rr}=1,g^{\theta\theta}=r^{-2}$ で
 $\Delta f=-\frac1r\pa_r(r\pa_rf)-\frac1{r^2}\pa_\theta^2f$。調和関数は $\log r,\ r^k\cos k\theta,\ r^k\sin k\theta$ など。(3) $S^2$：$g=\dd\theta^2+\sin^2\theta\,\dd\varphi^2$、$\sqrt{\det g}=\sin\theta$ で
 $\Delta f=-\frac1{\sin\theta}\pa_\theta(\sin\theta\,\pa_\theta f)-\frac1{\sin^2\theta}\pa_\varphi^2f$。$f=\cos\theta$ で $\pa_\theta f=-\sin\theta$, $\pa_\theta(-\sin^2\theta)=-2\sin\theta\cos\theta$ だから $\Delta\cos\theta=2\cos\theta$。同様に $\Delta(\sin\theta\,e^{i\varphi})=2\sin\theta\,e^{i\varphi}$。これらは $z,x+iy$ の $S^2$ への制限で、固有値 $\ell(\ell+1)=2$ （$\ell=1$ の球面調和関数）である（問~\ref{pr:B_lap}）。$S^2$ 上の調和関数は定数だけ（(ii)(iii) から $\dd f=0$）で $b_0=1$ と整合する。
 \end{ex}
@@ -1256,7 +1287,7 @@ $\Delta f=-\frac1{\sin\theta}\pa_\theta(\sin\theta\,\pa_\theta f)-\frac1{\sin^2\
 de Rham コホモロジーの元（閉形式の類）には、代表元の選び方に任意性がある。計量を入れると、その中から「もっとも良い」ものを選ぶことができる。それが調和形式である。
 
 \begin{thm}[Hodge の定理]\label{B:thm:Hodge}\tC
-$(M,g)$ を向きづけられたコンパクトな（境界のない）Riemann 多様体とする。
+$(M,g)$ を向きづけられたコンパクトな（境界のない）\mbox{Riemann} 多様体とする。
 \begin{enumerate}[label=(\roman*)]
 \item $\mathcal H^k(M)=\Ker\Delta$ は有限次元。
 \item $L^2$ 直交分解（Hodge 分解）
@@ -1310,7 +1341,7 @@ $(h,\dd\eta)=(\delta h,\eta)=0$ だから、$\|h+\dd\eta\|^2=\|h\|^2+\|\dd\eta\|
 \[
 \omega=\sum_{m\in\Z^n}e^{im\cdot x}\,\omega_m,\qquad\omega_m=\sum_Ic_{I,m}\,\dd x^I\in\Lambda^k(\C^n)^*\quad(\text{定数係数})
 \]
-と書く。$m\in\Z^n$ に対し $\theta_m=\sum_jm_j\dd x^j$（定数 $1$ 形式）、$\iota_m=\sum_jm_j\iota_{\pa_j}$ とおく。
+と書く。$m\in\Z^n$ に対し $\theta_m=\sum_jm_j\dd x^j$（定数 $1$ 形式）、$\iota_m=\sum_jm^j\iota_{\pa_j}$ とおく（$m^j=m_j$ は平坦計量 $\delta_{ij}$ で添字を上げたもので、$\iota_m=\iota_{\theta_m^\sharp}$）。$|m|^2=\sum_jm_jm^j$ である。
 
 \begin{lem}[平坦トーラスの $\dd,\delta,\Delta$]\label{B:lem:flat}\tP
 定数係数の形式 $\gamma$ に対し
@@ -1319,7 +1350,7 @@ $(h,\dd\eta)=(\delta h,\eta)=0$ だから、$\|h+\dd\eta\|^2=\|h\|^2+\|\dd\eta\|
 \]
 \end{lem}
 \begin{proof}
-第1式は $\pa_je^{im\cdot x}=im_je^{im\cdot x}$ と $\dd=\sum\dd x^j\wedge\pa_j$。第2式は式~\eqref{B:eq:deltaflat}。$\iota_{\pa_l}(\dd x^j\wedge\gamma)=\delta^j_l\gamma-\dd x^j\wedge\iota_{\pa_l}\gamma$ に $m_jm_l$ を掛けて足すと $\iota_m\theta_m\wedge+\theta_m\wedge\iota_m=|m|^2$。第3式：$\dd\delta(e^{imx}\gamma)=(-i)(i)e^{imx}\theta_m\wedge\iota_m\gamma$, $\delta\dd(e^{imx}\gamma)=(i)(-i)e^{imx}\iota_m\theta_m\wedge\gamma$、和は $e^{imx}(\theta_m\wedge\iota_m+\iota_m\theta_m\wedge)\gamma=|m|^2e^{imx}\gamma$。
+第1式は $\pa_je^{im\cdot x}=im_je^{im\cdot x}$ と $\dd=\sum\dd x^j\wedge\pa_j$。第2式は式~\eqref{B:eq:deltaflat}。$\iota_{\pa_l}(\dd x^j\wedge\gamma)=\delta^j{}_l\gamma-\dd x^j\wedge\iota_{\pa_l}\gamma$ に $m_jm^l$ を掛けて $j,l$ について足すと $\iota_m\theta_m\wedge+\theta_m\wedge\iota_m=|m|^2$。第3式：$\dd\delta(e^{im\cdot x}\gamma)=(-i)(i)e^{im\cdot x}\theta_m\wedge\iota_m\gamma$, $\delta\dd(e^{im\cdot x}\gamma)=(i)(-i)e^{im\cdot x}\iota_m\theta_m\wedge\gamma$、和は $e^{im\cdot x}(\theta_m\wedge\iota_m+\iota_m\theta_m\wedge)\gamma=|m|^2e^{im\cdot x}\gamma$。
 \end{proof}
 
 \begin{thm}[トーラス上の Hodge の定理]\label{B:thm:HodgeT}\tP
@@ -1336,8 +1367,8 @@ H^k_{\rm dR}(T^n)\cong\Lambda^k(\R^n)^*,\qquad b_k(T^n)=\binom nk,\qquad\chi(T^n
 \begin{proof}
 $m\ne0$ で補題の恒等式から $\omega_m=\dfrac1{|m|^2}\bigl(\theta_m\wedge\iota_m\omega_m+\iota_m(\theta_m\wedge\omega_m)\bigr)$。補題の第1・第2式を使えば
 \[
-e^{imx}\frac{\theta_m\wedge\iota_m\omega_m}{|m|^2}=\dd\Bigl(\frac{-i}{|m|^2}e^{imx}\iota_m\omega_m\Bigr),\qquad
-e^{imx}\frac{\iota_m(\theta_m\wedge\omega_m)}{|m|^2}=\delta\Bigl(\frac{i}{|m|^2}e^{imx}\theta_m\wedge\omega_m\Bigr)
+e^{im\cdot x}\frac{\theta_m\wedge\iota_m\omega_m}{|m|^2}=\dd\Bigl(\frac{-i}{|m|^2}e^{im\cdot x}\iota_m\omega_m\Bigr),\qquad
+e^{im\cdot x}\frac{\iota_m(\theta_m\wedge\omega_m)}{|m|^2}=\delta\Bigl(\frac{i}{|m|^2}e^{im\cdot x}\theta_m\wedge\omega_m\Bigr)
 \]
 （$-i\cdot i=1$ と $i\cdot(-i)=1$）。$m$ について足し合わせると $\omega=h+\dd\alpha+\delta\beta$。$\alpha,\beta$ の級数は、係数が $|m|^{-1}|\omega_m|$ 程度で急減少なので、すべての導関数が一様収束し、滑らかな形式である（項別微分が許される）。$\omega$ が実なら $\omega_{-m}=\overline{\omega_m}$ で、$\alpha,\beta$ の $m$ 項と $-m$ 項は複素共役になって実になる。一意性と直交性は、Fourier 係数の違い（$e^{im\cdot x}$ は $L^2$ で直交）から、$\Delta$ の作用 $|m|^2$ を見ればよい：$\Delta\omega=0\iff|m|^2\omega_m=0\ \forall m\iff\omega_m=0\ (m\neq0)$、すなわち $\omega=\omega_0$ は定数係数。分解 (ii) が成り立つことは構成から明らか。コホモロジーの同型は定理~\ref{B:thm:Hodge} の後の議論（(ii) から (iii) を導く部分は一般論）による。定数係数形式の外積は定数係数形式で、$[\dd x^I][\dd x^J]=[\dd x^I\wedge\dd x^J]$ だから環構造は $\Lambda^*(\R^n)^*$ の外積に一致する。
 \end{proof}
@@ -1389,12 +1420,16 @@ $2$ 形式 $\alpha=\alpha^++\alpha^-$ に対し、$\alpha\wedge\star\gamma=\lang
 式~\eqref{B:eq:starconf} より、$\Lambda^\pm$ は共形類だけで決まる（$\tilde\star=e^{(4-4)u}\star=\star$）。$\SO(4)$ の局所同型 $\SO(4)\simeq(\SU(2)\times\SU(2))/\{\pm1\}$ のもとで $\Lambda^\pm$ は2つの $\SU(2)$ の随伴表現に対応する\tC。
 
 \begin{ex}[$T^4$]\label{B:ex:T4}
-平坦トーラス $T^4$ の $\mathcal H^2$ は定数係数の2形式で6次元（$b_2=\binom42=6$）。$\star$ は定数係数形式を保つので $\mathcal H^2=\mathcal H^+\oplus\mathcal H^-$、$\dim\mathcal H^\pm=3$（上の基底）。交叉形式 $\int\alpha\wedge\beta$ は (\ref{B:eq:sd}) により $\mathcal H^+$ で正定値、$\mathcal H^-$ で負定値で、符号 $(3,3)$、signature $=0$。一般にコンパクトな向きづけられた $4$ 次元 Riemann 多様体では $H^2\cong\mathcal H^+\oplus\mathcal H^-$、交叉形式の符号が $(b^+,b^-)=(\dim\mathcal H^+,\dim\mathcal H^-)$（問~\ref{pr:B_sd}）。
+平坦トーラス $T^4$ の $\mathcal H^2$ は定数係数の $2$ 形式で $6$ 次元（$b_2=\binom42=6$）。$\star$ は定数係数形式を保つので $\mathcal H^2=\mathcal H^+\oplus\mathcal H^-$、$\dim\mathcal H^\pm=3$（上の基底）。交叉形式 $\int\alpha\wedge\beta$ は (\ref{B:eq:sd}) により $\mathcal H^+$ で正定値、$\mathcal H^-$ で負定値で、符号 $(3,3)$、signature $=0$。一般にコンパクトな向きづけられた $4$ 次元 Riemann 多様体では $H^2\cong\mathcal H^+\oplus\mathcal H^-$、交叉形式の符号が $(b^+,b^-)=(\dim\mathcal H^+,\dim\mathcal H^-)$（問~\ref{pr:B_sd}）。
 \end{ex}
 
 \paragraph{ゲージ理論への伏線。}第15巻（Yang--Mills）では、$4$ 次元多様体上のベクトル束 $E$ の接続 $\nabla$ の曲率 $F\in\Om^2(\End E)$ に対し、$F=\star F$ または $F=-\star F$ をみたす接続（インスタントン、反インスタントン）を扱う。(i) Bianchi の恒等式 $\dd_\nabla F=0$（§8）から $F=\pm\star F$ なら $\dd_\nabla\star F=0$、つまり Yang--Mills 方程式が自動的に成り立つ。(ii) $F=F^++F^-$ として $\int|F|^2=\int|F^+|^2+|F^-|^2\ge\bigl|\int|F^+|^2-|F^-|^2\bigr|$ で、右辺は式~\eqref{B:eq:sd} と同様に $\int\tr(F\wedge F)$（Chern 数、§10）の定数倍になる。つまり Yang--Mills エネルギーは位相不変量で下から押さえられ、等号は（反）自己双対のとき。(iii) $\Lambda^\pm$ は共形類だけで決まるので、方程式 $F^+=0$ は共形不変。これらを使うために、この節の内容（特に $\star$ と式~\eqref{B:eq:sd}）が必要になる。
 
-\paragraph{Levi-Civita 接続との関係（§8 の予告）。}計量 $g$ には、曲率が計量で測れる自然な接続 Levi-Civita 接続 $\nabla$（§8）が付随する。これを使うと、$\dd$, $\delta$ は $\dd=\sum_j e^j\wedge\nabla_{e_j}$, $\delta=-\sum_j\iota_{e_j}\nabla_{e_j}$（$(e_j)$ は局所的な正規直交枠）と書け、これは平坦な場合の式~\eqref{B:eq:deltaflat} の一般化である。この表示から Weitzenböck の公式 $\Delta=\nabla^*\nabla+(\text{曲率の項})$ が得られ、曲率の符号からコホモロジーの消滅（Bochner の定理：$\mathrm{Ric}>0$ ならば $b_1=0$）が従う\tC（例えば Petersen『Riemannian Geometry』、Lee『Riemannian Manifolds』。章番号は\tQ）。
+\paragraph{Levi-Civita 接続との関係（§8 の予告）。}計量 $g$ には、曲率が計量で測れる自然な接続 Levi-Civita 接続 $\nabla$（§8）が付随する。これを使うと、$\dd$, $\delta$ は
+\[
+\dd=\sum_j e^j\wedge\nabla_{e_j},\qquad\delta=-\sum_j\iota_{e_j}\nabla_{e_j}
+\]
+（$(e_j)$ は局所的な正規直交枠、$(e^j)$ はその双対余枠。正規直交なので $\delta$ の式では添字の上下を区別せず、和は $\sum$ で明記する）と書け、これは平坦な場合の式~\eqref{B:eq:deltaflat} の一般化である。この表示から Weitzenböck の公式 $\Delta=\nabla^*\nabla+(\text{曲率の項})$ が得られ、曲率の符号からコホモロジーの消滅（Bochner の定理：$\mathrm{Ric}>0$ ならば $b_1=0$）が従う\tC（例えば Petersen『\mbox{Riemannian} Geometry』、Lee『Riemannian Manifolds』。章番号は\tQ）。
 
 \begin{keybox}{§6 の要点}
 \begin{itemize}
@@ -1406,9 +1441,10 @@ $2$ 形式 $\alpha=\alpha^++\alpha^-$ に対し、$\alpha\wedge\star\gamma=\lang
 \end{itemize}
 \end{keybox}
 
+\Bkeep{8}
 \paragraph{つまずきやすい点。}
 \begin{enumerate}
-\item \textbf{$\Delta$ の符号。}幾何学の Hodge Laplacian $\Delta=\dd\delta+\delta\dd$ は非負で、関数では $-\sum\pa_i^2$。解析学・物理の Laplacian $\sum\pa_i^2$ とは符号が逆。$\delta$ の符号規約（$\pm\star\dd\star$）も文献ごとに異なる。式 $\delta=(-1)^{n(k+1)+1}\star\dd\star$ は Riemann 計量・$\dd$ の随伴として決めたもの。
+\item \textbf{$\Delta$ の符号。}幾何学の Hodge Laplacian $\Delta=\dd\delta+\delta\dd$ は非負で、関数では（$\R^n$ の標準座標で）$-\sum_i\pa_i^2$。解析学・物理の Laplacian $\sum_i\pa_i^2$ とは符号が逆。$\delta$ の符号規約（$\pm\star\dd\star$）も文献ごとに異なる。式 $\delta=(-1)^{n(k+1)+1}\star\dd\star$ は Riemann 計量・$\dd$ の随伴として決めたもの。
 \item \textbf{調和形式の「調和」は閉かつ余閉。}非コンパクトな空間（$\R^n$ 全体）では $\Delta\omega=0$ と閉かつ余閉は同値でない（部分積分の境界項が落ちない）。Hodge の定理もコンパクト性が要る。例えば $\R^2$ 上の $\Delta f=0$ の解 $x$ は調和だが $L^2$ でなく、$H^1_{\rm dR}(\R^2)=0$ とは無関係。
 \item \textbf{$\star$ は向きと計量に依存する。}向きを逆にすると $\star\to-\star$。計量を共形に変えると $e^{(n-2k)u}$ 倍。コホモロジー類は計量によらないが、調和代表元は計量に依存する。
 \item \textbf{$\star\star$ の符号。}Riemann 計量（正定値）で $(-1)^{k(n-k)}$。Lorentz 計量（符号 $(n-1,1)$）ではさらに符号 $-1$ が加わる（物理でのよくある混乱）。
@@ -1435,7 +1471,7 @@ $\R^4$（標準計量・向き $\dd x^1\wedge\dd x^2\wedge\dd x^3\wedge\dd x^4$�
 \end{probl}
 
 \begin{probl}{標準}{B_conf}
-(a) $\tilde g=e^{2u}g$ のとき $\tilde\star=e^{(n-2k)u}\star$ を示せ。(b) $n=2$ の向きづけられた閉曲面で、$1$ 形式 $\alpha$ が閉かつ余閉であること（調和）は、$g$ を共形な計量 $e^{2u}g$ に変えても変わらないことを示せ。また $\int\alpha\wedge\star\alpha$（Dirichlet エネルギー）も変わらない。(c) $n=4$ で、2形式 $F$ の $\star F=\pm F$ は共形不変であるが、$n=3$ で $\dd\star F=0$ ($F\in\Om^1$) の形の方程式は共形不変でないことを説明せよ。
+(a) $\tilde g=e^{2u}g$ のとき $\tilde\star=e^{(n-2k)u}\star$ を示せ。(b) $n=2$ の向きづけられた閉曲面で、$1$ 形式 $\alpha$ が閉かつ余閉であること（調和）は、$g$ を共形な計量 $e^{2u}g$ に変えても変わらないことを示せ。また $\int\alpha\wedge\star\alpha$（Dirichlet エネルギー）も変わらない。(c) $n=4$ で、$2$ 形式 $F$ の $\star F=\pm F$ は共形不変であるが、$n=3$ で $\dd\star F=0$ ($F\in\Om^1$) の形の方程式は共形不変でないことを説明せよ。
 \end{probl}
 
 \begin{probl}{標準}{B_torus}
@@ -1447,7 +1483,7 @@ $(M,g)$ をコンパクトな向きづけられた 4 次元 Riemann 多様体と
 \end{probl}
 
 \begin{probl}{標準}{B_hodge2d}
-$\R^2$ の1形式 $\alpha=u\,\dd x+v\,\dd y$ について、$\dd\alpha=0$ かつ $\delta\alpha=0$ は $f=u-iv$ が正則関数（Cauchy--Riemann 方程式）であることと同値であり、そのとき $\alpha=\Re(f\,\dd z)$ であることを示せ。（したがって、Riemann 面上の調和 $1$ 形式は局所的に正則 $1$ 形式の実部である。閉 Riemann 面 $\Sigma_g$ では $\dim\mathcal H^1=2g$ で、正則 $1$ 形式の空間は複素 $g$ 次元（第2巻以降）。）
+$\R^2$ の $1$ 形式 $\alpha=u\,\dd x+v\,\dd y$ について、$\dd\alpha=0$ かつ $\delta\alpha=0$ は $f=u-iv$ が正則関数（Cauchy--Riemann 方程式）であることと同値であり、そのとき $\alpha=\Re(f\,\dd z)$ であることを示せ。（したがって、Riemann 面上の調和 $1$ 形式は局所的に正則 $1$ 形式の実部である。閉 Riemann 面 $\Sigma_g$ では $\dim\mathcal H^1=2g$ で、正則 $1$ 形式の空間は複素 $g$ 次元（第2巻以降）。）
 \end{probl}
 
 \begin{probl}{標準}{B_minim}

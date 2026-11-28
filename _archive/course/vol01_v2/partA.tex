@@ -42,11 +42,14 @@
 \node[box,fill=orange!8] (s9) at (8,-1.6) {§9};
 \node[box,fill=orange!8] (s10) at (10,-1.6) {§10};
 \draw[->] (s1)--(s2); \draw[->] (s2)--(s3); \draw[->] (s3)--(s4); \draw[->] (s4)--(s5); \draw[->] (s5)--(s6);
-\draw[->] (s3)--(s7); \draw[->] (s7)--(s8); \draw[->] (s8)--(s9); \draw[->] (s8)--(s10);
+\draw[->] (s3)--(s7); \draw[->] (s7)--(s8); \draw[->] (s8)--(s9);
 \draw[->] (s4)--(s8);
-\draw[->] (s4)--(s10);
-\draw[->,dashed] (s6)--(s8);
+\draw[->,dashed] (s6.south west)--(s8.north east);
 \draw[->,dashed] (s9)--(s10);
+% §8→§10：下を迂回（§9 の下を通る）
+\draw[->,rounded corners=4pt] (s8.south) |- (8,-2.75) -| (s10.south);
+% §4→§10：上を迂回（§5・§6 の上を通り、§6 の右から §10 へ）
+\draw[->,rounded corners=4pt] (s4.north) |- (11.1,0.85) |- (s10.east);
 \node[font=\footnotesize,anchor=east] at (3.3,-1.6) {ベクトル束へ};
 \end{tikzpicture}
 \caption{この巻の依存関係。実線は本質的な依存、破線は補助的な関係（§6 の Riemann 計量が §8 の Levi-Civita 接続で再登場すること、§10 の Chern--Weil が §9 の主束の言葉でも書けること）を示す。§7（ベクトル束）は §4--§6 を読まずに進めるが、§8 の曲率 $F=\dd A+A\wedge A$ には §4 の外微分と微分形式が必要で、§10 もそれを使う（§10 では de Rham 類の言葉も使う）。}
@@ -57,26 +60,26 @@
 \begin{table}[h]
 \centering\small
 \renewcommand{\arraystretch}{1.35}
-\begin{tabular}{@{}p{3.1cm}p{6.6cm}p{5.6cm}@{}}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{2.6cm}>{\raggedright\arraybackslash}p{7.0cm}>{\raggedright\arraybackslash}p{5.6cm}@{}}
 \toprule
 項目 & 本書の規約 & 他書との違い \\
 \midrule
-多様体 & $C^\infty$、Hausdorff、第2可算。次元 $n$、座標 $(x^1,\dots,x^n)$、Einstein の和の規約。 & 第2可算を課さない流儀では 1 の分割が使えない。 \\
-Lie 括弧 & $[X,Y]f=X(Yf)-Y(Xf)$ & Lie 代数を\emph{右}不変ベクトル場で定義する流儀では括弧の符号が逆になる。 \\
-外積 & 「行列式」規約：$\dd x^1\wedge\dd x^2(\partial_1,\partial_2)=1$。$\alpha\wedge\beta=\frac{(k+l)!}{k!\,l!}\Alt(\alpha\otimes\beta)$ & Kobayashi--Nomizu は $\Alt$ をそのまま使い $\dd x^1\wedge\dd x^2(\partial_1,\partial_2)=\frac12$ となる\tQ。 \\
-外微分 & $\dd(\alpha\wedge\beta)=\dd\alpha\wedge\beta+(-1)^k\alpha\wedge\dd\beta$、$\dd\alpha(X,Y)=X\alpha(Y)-Y\alpha(X)-\alpha([X,Y])$ & 外積を $\Alt$ のまま使う流儀（上の行の Kobayashi--Nomizu）では右辺に $\frac12$ が付く\tQ。 \\
-内部積・Lie 微分 & $(\iota_X\omega)(\cdots)=\omega(X,\cdots)$、$\Lie_X=\dd\iota_X+\iota_X\dd$ & $\iota_X$ を最後の引数に入れる流儀もある。 \\
-接続・曲率 & $\nabla=\dd+A$、$F=\dd A+A\wedge A$。枠の変換 $e'=eg$ のとき $A'=g^{-1}Ag+g^{-1}\dd g$ & 本書では、ユニタリ接続の $A$ は $\mathfrak u(n)$ 値（歪 Hermite 行列値）の 1 形式で $\nabla=\dd+A$。物理では Hermite 行列値（実）の $A$ で $\nabla=\dd-iA$ と書く（§8.2、§10.8）。 \\
-Chern 形式 & $c(F)=\det\bigl(I+\frac{i}{2\pi}F\bigr)$、$c_1(L)=\frac{i}{2\pi}F$ & $\frac{i}{2\pi}$ と $-\frac1{2\pi i}$ は同じ数である。ただし、$F$ の符号を逆にとる本では $c_1$ の式の符号が変わる。 \\
-符号の確認 & $\CP^1$ 上の $\mathcal O(-1)$（tautological 束）で $\int c_1=-1$。$T\CP^1=TS^2$ で $\int c_1=2$（Gauss--Bonnet と整合）。 & --- \\
-Hermite 計量 & 第1成分で線形：$h(\lambda u,v)=\lambda h(u,v)$ & 物理・一部の幾何の本では第2成分で線形。 \\
+多様体 & $C^\infty$、Hausdorff、第2可算。次元 $n$、座標 \mbox{$(x^1,\dots,x^n)$}、Einstein の和の規約。 & 第2可算を課さない流儀では 1 の分割が使えない。 \\
+Lie 括弧 & \mbox{$[X,Y]f=X(Yf)-Y(Xf)$} & Lie 代数を\emph{右}不変ベクトル場で定義する流儀では括弧の符号が逆になる。 \\
+外積 & 「行列式」規約：\allowbreak\mbox{$\dd x^1\wedge\dd x^2(\partial_1,\partial_2)=1$}。\allowbreak\mbox{$\alpha\wedge\beta=\frac{(k+l)!}{k!\,l!}\Alt(\alpha\otimes\beta)$} & Kobayashi--Nomizu は $\Alt$ をそのまま使い \mbox{$\dd x^1\wedge\dd x^2(\partial_1,\partial_2)=\frac12$} となる\tQ。 \\
+外微分 & \mbox{$\dd(\alpha\wedge\beta)=\dd\alpha\wedge\beta+(-1)^k\alpha\wedge\dd\beta$}、\allowbreak\mbox{$\dd\alpha(X,Y)=X\alpha(Y)-Y\alpha(X)-\alpha([X,Y])$} & 外積を $\Alt$ のまま使う流儀（上の行の Kobayashi--Nomizu）では右辺に $\frac12$ が付く\tQ。 \\
+内部積・Lie 微分 & \mbox{$(\iota_X\omega)(\cdots)=\omega(X,\cdots)$}、\allowbreak\mbox{$\Lie_X=\dd\iota_X+\iota_X\dd$} & $\iota_X$ を最後の引数に入れる流儀もある。 \\
+接続・曲率 & \mbox{$\nabla=\dd+A$}、\allowbreak\mbox{$F=\dd A+A\wedge A$}。枠の変換 \mbox{$e'=eg$} のとき \mbox{$A'=g^{-1}Ag+g^{-1}\dd g$} & 本書では、ユニタリ接続の $A$ は $\mathfrak u(n)$ 値（歪 Hermite 行列値）の 1 形式で \mbox{$\nabla=\dd+A$}。物理では Hermite 行列値（実）の $A$ で \mbox{$\nabla=\dd-iA$} と書く（§8.2、§10.8）。 \\
+Chern 形式 & \mbox{$c(F)=\det\bigl(I+\frac{i}{2\pi}F\bigr)$}、\allowbreak\mbox{$c_1(L)=\frac{i}{2\pi}F$} & $\frac{i}{2\pi}$ と $-\frac1{2\pi i}$ は同じ数である。ただし、$F$ の符号を逆にとる本では $c_1$ の式の符号が変わる。 \\
+符号の確認 & $\CP^1$ 上の $\mathcal O(-1)$（tautological 束）で \mbox{$\int c_1=-1$}。\allowbreak\mbox{$T\CP^1=TS^2$} で \mbox{$\int c_1=2$}（Gauss--Bonnet と整合）。 & --- \\
+Hermite 計量 & 第1成分で線形：\allowbreak\mbox{$h(\lambda u,v)=\lambda h(u,v)$} & 物理・一部の幾何の本では第2成分で線形。 \\
 数の集合 & $\N,\Z,\Q,\R,\C$ & --- \\
 \bottomrule
 \end{tabular}
 \caption{本書の規約。}
 \end{table}
 
-記号の使い分け：ベクトル空間の元は $v,w$、1 形式（双対空間の元）は $\xi,\eta,\alpha,\beta$ と書く。成分の添え字は、ベクトルの成分は上付き $v^i$、余ベクトルの成分は下付き $\xi_i$ とする（Einstein の規約：同じ添え字が上下に現れたら和をとる）。
+記号の使い分け：ベクトル空間の元は $v,w$、1 形式（双対空間の元）は $\xi,\eta,\alpha,\beta$ と書く。成分の添え字は、ベクトルの成分は上付き $v^i$、余ベクトルの成分は下付き $\xi_i$ とする（Einstein の規約：同じ添え字が上下に 1 回ずつ現れたら和をとる。同じ位置に 2 回現れる添え字の和はこの規約では書かず、$\sum$ を明記する）。行列の成分は上が行、下が列で、$A^i{}_j$ のように段違いに書く。
 
 \subsection{双対空間とテンソル積}
 \paragraph{動機。}多様体の各点には「速度ベクトル」の空間（接空間）と、「関数の微小変化を測る量」の空間（余接空間）が自然に付く。この二つは互いに双対であり、座標変換のとき成分が反対に変換する。この反対向きの変換を最も透明に扱う道具が双対空間である。
@@ -155,7 +158,7 @@ $\alpha\wedge(\beta\wedge\gamma)$ も同じ式になる。
 \]
 （Leibniz の行列式展開）。
 
-(4) (3) から $e^I(e_J)=\det(e^{i_a}(e_{j_b}))$ で、$J=I$ なら単位行列の行列式 $1$、$J\ne I$（ともに昇順）なら零行が現れて $0$。$\omega\in\Lambda^kV^*$ は交代性により値 $\omega(e_{j_1},\dots,e_{j_k})$（$j_1<\dots<j_k$）で決まるから、$\omega=\sum_I\omega(e_I)\,e^I$。$e^I$ の一次独立性も $e^I(e_J)=\delta_{IJ}$ から従う。
+(4) (3) から $e^I(e_J)=\det(e^{i_a}(e_{j_b}))$ で、$J=I$ なら単位行列の行列式 $1$、$J\ne I$（ともに昇順）なら零行が現れて $0$。$\omega\in\Lambda^kV^*$ は交代性により値 $\omega(e_{j_1},\dots,e_{j_k})$（$j_1<\dots<j_k$）で決まるから、$\omega=\sum_I\omega(e_I)\,e^I$。$e^I$ の一次独立性も $e^I(e_J)=\delta^I{}_J$ から従う。
 \end{proof}
 
 \begin{figure}[htbp]
@@ -164,12 +167,12 @@ $\alpha\wedge(\beta\wedge\gamma)$ も同じ式になる。
 % xy-plane
 \fill[gray!12] (-0.3,-0.3,0)--(3.2,-0.3,0)--(3.2,2.3,0)--(-0.3,2.3,0)--cycle;
 \draw[->,thick] (0,0,0)--(3.5,0,0) node[right]{$x$};
-\draw[->,thick] (0,0,0)--(0,2.6,0) node[above right]{$y$};
 \draw[->,thick] (0,0,0)--(0,0,2.5) node[above]{$z$};
 % parallelogram spanned by v=(2,0,1.2), w=(0.5,1.5,0.9)
 \fill[blue!20,opacity=0.7] (0,0,0)--(2,0,1.2)--(2.5,1.5,2.1)--(0.5,1.5,0.9)--cycle;
 \draw[blue!60!black,thick] (0,0,0)--(2,0,1.2)--(2.5,1.5,2.1)--(0.5,1.5,0.9)--cycle;
-\draw[->,very thick,blue!60!black] (0,0,0)--(2,0,1.2) node[midway,below right]{$v$};
+\draw[->,thick] (0,0,0)--(0,2.6,0) node[above right,fill=white,inner sep=1pt]{$y$};
+\draw[->,very thick,blue!60!black] (0,0,0)--(2,0,1.2) node[right]{$v$};
 \draw[->,very thick,blue!60!black] (0,0,0)--(0.5,1.5,0.9) node[midway,above left]{$w$};
 % shadow
 \fill[red!25,opacity=0.7] (0,0,0)--(2,0,0)--(2.5,1.5,0)--(0.5,1.5,0)--cycle;
@@ -179,7 +182,7 @@ $\alpha\wedge(\beta\wedge\gamma)$ も同じ式になる。
 \draw[dashed,gray] (0.5,1.5,0.9)--(0.5,1.5,0);
 \node[red!60!black,font=\small] at (3.9,0.9,0) {射影の面積};
 \end{tikzpicture}
-\caption{$\dd x\wedge\dd y(v,w)=v^1w^2-v^2w^1$ は、$v,w$ が張る平行四辺形（青）を $xy$ 平面（赤）に射影した平行四辺形の符号つき面積である。$k$ 形式は「$k$ 次元の平行体を測る」ものと思うとよい。}
+\caption{$\dd x\wedge\dd y(v,w)=v^1w^2-v^2w^1$ は、$v,w$ が張る平行四辺形（青）を $xy$ 平面に射影した平行四辺形（赤）の符号つき面積である。$k$ 形式は「$k$ 次元の平行体を測る」ものと思うとよい。}
 \end{figure}
 
 \begin{prop}[行列式]\label{A:prop:det}
@@ -206,7 +209,7 @@ $\omega(Ae_1,\dots,Ae_n)=\sum_{\sigma}\sgn(\sigma)\prod_iA^{\sigma(i)}{}_i\;\ome
 \[
 (v^\flat)_i=g_{ij}v^j,\qquad \xi^\sharp=g^{ij}\xi_je_i .
 \]
-正規直交基底では $e_i^\flat=e^i$ である。関数 $f$ の微分 $\dd f$（余ベクトル）を $\sharp$ で送ったものが勾配 $\nabla f$ である。このように、内積を一つ選ぶと $V$ と $V^*$ を同一視できる。一般には、内積を選ばなければ $V$ と $V^*$ は同一視できない。
+$e_i^\flat=g_{ij}e^j$ であり、正規直交基底（$g_{ij}=\delta_{ij}$）では $e_i^\flat=\delta_{ij}e^j$、つまり成分で見て $e^i$ と同じ番号の双対基底になる。関数 $f$ の微分 $\dd f$（余ベクトル）を $\sharp$ で送ったものが勾配 $\nabla f$ である。このように、内積を一つ選ぶと $V$ と $V^*$ を同一視できる。一般には、内積を選ばなければ $V$ と $V^*$ は同一視できない。
 
 \paragraph{動機：内積を選ばずに $V$ と $V^*$ を並べる。}$V$ と $V^*$ を直和 $V\oplus V^*$ にして、その上に、$V$ の内積を選ぶ必要のない\emph{自然な}対称双線形形式を考えたい。ペアリング $V^*\times V\to\R$ がまさにそれを与える。この空間は、§3 で学ぶ接束と余接束の直和 $T\oplus T^*$ の線形代数版であり、一般化幾何（一般化複素構造・Dirac 構造）の舞台である。
 
@@ -222,8 +225,8 @@ $V\oplus V^*$ 上の対称双線形形式を
 \tP\ 上の形式は非退化で、符号は $(n,n)$ である。部分空間 $V$、$V^*$ はそれぞれ $\langle\ ,\ \rangle$ に関して全イソトロピック（$\langle x,y\rangle=0$）である。
 \end{prop}
 \begin{proof}
-基底 $(e_1,\dots,e_n,e^1,\dots,e^n)$ での Gram 行列は $\frac12\begin{pmatrix}0&I\\ I&0\end{pmatrix}$ で、行列式 $\pm2^{-2n}\ne0$。$u_i^\pm=e_i\pm e^i$ とおくと、
-$\langle u_i^+,u_j^+\rangle=\frac12(\delta_{ij}+\delta_{ij})=\delta_{ij}$、$\langle u_i^-,u_j^-\rangle=-\delta_{ij}$、$\langle u_i^+,u_j^-\rangle=\frac12(-\delta_{ij}+\delta_{ij})=0$。よって $\{u_i^+\}$ は正定値な $n$ 次元部分空間、$\{u_i^-\}$ は負定値な $n$ 次元部分空間を張り、互いに直交する。ゆえに符号は $(n,n)$。$V$ 上、$V^*$ 上で形式が $0$ なのは定義から明らか。
+基底 $(e_1,\dots,e_n,e^1,\dots,e^n)$ での Gram 行列は $\frac12\begin{pmatrix}0&I\\ I&0\end{pmatrix}$ で、行列式 $\pm2^{-2n}\ne0$。$u_i^\pm=e_i\pm\delta_{ij}e^j$（$j$ について和。$u_1^\pm=e_1\pm e^1$ などのこと）とおくと、$e^k(e_j)=\delta^k{}_j$ より
+$\langle u_i^+,u_j^+\rangle=\frac12(\delta_{ik}\delta^k{}_j+\delta_{jk}\delta^k{}_i)=\delta_{ij}$、$\langle u_i^-,u_j^-\rangle=-\delta_{ij}$、$\langle u_i^+,u_j^-\rangle=\frac12(-\delta_{ik}\delta^k{}_j+\delta_{jk}\delta^k{}_i)=0$。よって $\{u_i^+\}$ は正定値な $n$ 次元部分空間、$\{u_i^-\}$ は負定値な $n$ 次元部分空間を張り、互いに直交する。ゆえに符号は $(n,n)$。$V$ 上、$V^*$ 上で形式が $0$ なのは定義から明らか。
 \end{proof}
 
 $n=1$ の場合は平面 $\R^2\ni(v,\xi)$ で、$\langle x,x\rangle=\xi v$ は双曲型の 2 次形式である（図~\ref{A:fig:hyper}）。軸 $V$、$V^*$ が零錐、$u^\pm$ の方向が正負の方向である。
@@ -241,7 +244,7 @@ $n=1$ の場合は平面 $\R^2\ni(v,\xi)$ で、$\langle x,x\rangle=\xi v$ は�
 \draw[dashed,gray] (-2.4,2.4)--(2.6,-2.6) node[right,black]{\small $u^-$ の方向};
 \node[blue!60!black,font=\small] at (2.25,1.05) {$\xi v=1$};
 \node[red!60!black,font=\small] at (-2.25,1.05) {$\xi v=-1$};
-\node[font=\small] at (2.3,-0.25) {零錐};
+\node[font=\small] at (1.45,-0.24) {零錐};
 \end{tikzpicture}
 \caption{$n=1$ の $V\oplus V^*\cong\R^2$。二次形式 $\langle x,x\rangle=\xi(v)$ の等高線は双曲線で、軸（$V$ と $V^*$）が零錐。$V$ も $V^*$ も\ 1 次元の全イソトロピック部分空間（最大）である。\label{A:fig:hyper}}
 \end{figure}
@@ -262,7 +265,7 @@ $L\subset V\oplus V^*$ が\emph{イソトロピック}（isotropic）とは $\la
 \begin{rem}[後の巻との接点]
 (1) \emph{計量と一般化計量。}$V$ の内積 $g$ に対し $C_\pm=\{v\pm g^\flat(v)\}$ は $n$ 次元の部分空間で、$\langle v\pm g^\flat v,v\pm g^\flat v\rangle=\pm g(v,v)$、$\langle C_+,C_-\rangle=0$。計量 $g$ を $V\oplus V^*$ 内の正定値部分空間 $C_+$ とみなす見方が一般化計量である。
 (2) \emph{Clifford 作用。}$x=v+\xi$ に対し $c(x)\varphi=\iota_v\varphi+\xi\wedge\varphi$（$\varphi\in\Lambda^\bullet V^*$）と定めると、補題~\ref{A:lem:iota} から $\iota_v(\xi\wedge\varphi)=\xi(v)\varphi-\xi\wedge\iota_v\varphi$ なので $c(x)^2=\xi(v)=\langle x,x\rangle$（Clifford 関係式）。$\Lambda^\bullet V^*$ が $V\oplus V^*$ の\emph{スピノル}の空間であり、B-場変換 $e^B$ はスピノルには $\varphi\mapsto e^{-B}\wedge\varphi$ として働く（$S=e^{-B}\wedge$ が $S\,c(x)\,S^{-1}=c(e^Bx)$ を満たす）。文献によっては $e^{B}\wedge$ と書くが、それは $B$ の符号か $c(x)$ の取り方が本書と異なるためで、本質的な違いではない。
-(3) 一般化複素幾何では、$V\oplus V^*$ の $\langle\,,\rangle$ を保つ複素構造 $\mathcal J$ が主役で、その $+i$ 固有空間が（複素化した）最大イソトロピック部分空間になる。これらは後で Courant 代数（$T\oplus T^*$ 上の括弧）とともに第 12 巻（一般化複素幾何）で再登場する。
+(3) 一般化複素幾何では、$V\oplus V^*$ の $\langle\ ,\ \rangle$ を保つ複素構造 $\mathcal J$ が主役で、その $+i$ 固有空間が（複素化した）最大イソトロピック部分空間になる。これらは後で Courant 代数（$T\oplus T^*$ 上の括弧）とともに第 12 巻（一般化複素幾何）で再登場する。
 \end{rem}
 
 \subsection{複素構造 $J$ と複素化}
@@ -298,7 +301,7 @@ h(u,v)=g(u,v)-i\,\omega(u,v)
 は第 1 成分で $\C$ 線形（$h(Ju,v)=g(Ju,v)+i\,g(u,v)=i\,h(u,v)$）、$h(v,u)=\overline{h(u,v)}$ な Hermite 内積である。$\C$ では $\omega=\dd x\wedge\dd y$ となる。
 
 \begin{rem}[$V\oplus V^*$ との接点]
-$\mathcal J_J=\begin{pmatrix}-J&0\\0&J^*\end{pmatrix}$（$J^*\xi=\xi\circ J$）は $\mathcal J_J^2=-1$ で、$\langle\ ,\ \rangle$ を保つ：$\mathcal J(v+\xi)=-Jv+\xi\circ J$ なので $\langle\mathcal J(v+\xi),\mathcal J(w+\eta)\rangle=\frac12\bigl(\xi(J(-Jw))+\eta(J(-Jv))\bigr)=\frac12(-\xi(J^2w)-\eta(J^2v))=\frac12(\xi(w)+\eta(v))$（問~\ref{pr:A_J}(c)）。その $+i$ 固有空間は $V^{0,1}\oplus\Lambda^{1,0}$ で、これは $V_{\C}\oplus V_{\C}^*$ の最大イソトロピックな部分空間である。複素構造とは、$V\oplus V^*$ の中の特別な最大イソトロピック部分空間と見なせる、というのが一般化複素構造の出発点（Gualtieri\tQ）である。
+$\mathcal J_J=\begin{pmatrix}-J&0\\0&J^*\end{pmatrix}$（$J^*\xi=\xi\circ J$）は $\mathcal J_J^2=-1$ で、$\langle\ ,\ \rangle$ を保つ：$\mathcal J_J(v+\xi)=-Jv+\xi\circ J$ なので $\langle\mathcal J_J(v+\xi),\mathcal J_J(w+\eta)\rangle=\frac12\bigl(\xi(J(-Jw))+\eta(J(-Jv))\bigr)=\frac12(-\xi(J^2w)-\eta(J^2v))=\frac12(\xi(w)+\eta(v))$（問~\ref{pr:A_J}(c)）。その $+i$ 固有空間は $V^{0,1}\oplus\Lambda^{1,0}$ で、これは $V_{\C}\oplus V_{\C}^*$ の最大イソトロピックな部分空間である。複素構造とは、$V\oplus V^*$ の中の特別な最大イソトロピック部分空間と見なせる、というのが一般化複素構造の出発点（Gualtieri\tQ）である。
 \end{rem}
 
 \subsection{解析の道具：逆関数定理・陰関数定理}
@@ -355,7 +358,7 @@ Lipschitz 条件は本質的である：$\dot x=3x^{2/3}$、$x(0)=0$ は $x\equi
 \begin{keybox}{§1 の要点}
 \begin{itemize}
 \item $V^*$ は $V$ の双対。成分は $v^i$（上）と $\xi_i$（下）で逆向きに変換し、$\xi(v)=\xi_iv^i$ は不変。
-\item $\Lambda^kV^*$ は交代形式、$\alpha\wedge\beta=\frac{(k+l)!}{k!\,l!}\Alt(\alpha\otimes\beta)$（行列式規約）。外積は結合的で $\beta\wedge\alpha=(-1)^{kl}\alpha\wedge\beta$、$\alpha^1\wedge\cdots\wedge\alpha^k(v_1,\dots,v_k)=\det(\alpha^i(v_j))$。$\dim\Lambda^kV^*=\binom nk$。$A^*\omega=\det A\,\omega$（$\omega\in\Lambda^nV^*$）。
+\item $\Lambda^kV^*$ は交代形式、$\alpha\wedge\beta=\frac{(k+l)!}{k!\,l!}\Alt(\alpha\otimes\beta)$（行列式規約）。外積は結合的で \mbox{$\beta\wedge\alpha=(-1)^{kl}\alpha\wedge\beta$}、\allowbreak\mbox{$\alpha^1\wedge\cdots\wedge\alpha^k(v_1,\dots,v_k)=\det(\alpha^i(v_j))$}。\allowbreak\mbox{$\dim\Lambda^kV^*=\binom nk$}。\allowbreak\mbox{$A^*\omega=\det A\,\omega$}（$\omega\in\Lambda^nV^*$）。
 \item $V\oplus V^*$ には内積なしで $\langle v+\xi,w+\eta\rangle=\frac12(\xi(w)+\eta(v))$ が入り、符号は $(n,n)$。歪対称 $B$ のグラフは最大イソトロピック、$e^B$ は直交変換。
 \item $J^2=-1$ のとき $V_{\C}=V^{1,0}\oplus V^{0,1}$（$\pm i$ 固有空間）。
 \item 逆関数定理・陰関数定理、ODE の存在・一意性・滑らかな依存（Lipschitz 性が要る）。Hausdorff・第2可算・コンパクト・連結の基本事実。
@@ -364,7 +367,7 @@ Lipschitz 条件は本質的である：$\dot x=3x^{2/3}$、$x(0)=0$ は $x\equi
 
 \subsection*{§1 のつまずきやすい点}
 \begin{enumerate}
-\item \textbf{外積の規約。}$\alpha\wedge\beta$ を $\Alt(\alpha\otimes\beta)$ と定める流儀（係数 $\frac{(k+l)!}{k!l!}$ なし）では、$\dd x\wedge\dd y(\partial_x,\partial_y)=\frac12$ になり、以後のすべての公式に $\frac12$ や階乗が現れる。本書は行列式規約で統一する。
+\item \textbf{外積の規約。}$\alpha\wedge\beta$ を $\Alt(\alpha\otimes\beta)$ と定める流儀（係数 $\frac{(k+l)!}{k!\,l!}$ なし）では、$\dd x\wedge\dd y(\partial_x,\partial_y)=\frac12$ になり、以後のすべての公式に $\frac12$ や階乗が現れる。本書は行列式規約で統一する。
 \item \textbf{$V\oplus V^*$ の内積の因子 $\frac12$。}$\frac12$ を付けるのは $\langle x,x\rangle=\xi(v)$ とするためである。$\frac12$ なしの流儀では $\langle x,x\rangle=2\xi(v)$ で、符号は同じ $(n,n)$ だが Clifford 関係式 $c(x)^2=\langle x,x\rangle$ の係数が変わる。
 \item \textbf{$V^{1,0}$ は $V$ の部分空間ではない。}$V^{1,0}\subset V_{\C}$ であり、$V$ そのものとは $v\mapsto\frac12(v-iJv)$ で同型であるにすぎない。
 \item \textbf{陰関数定理は局所的。}$\{F=0\}$ が点の近くでグラフになるだけで、全体がグラフとは限らない（円周）。
@@ -382,7 +385,7 @@ Lipschitz 条件は本質的である：$\dot x=3x^{2/3}$、$x(0)=0$ は $x\equi
 \end{probl}
 
 \begin{probl}{基本}{A_pair1}
-$n=2$ で、$V\oplus V^*$ の基底 $(e_1,e_2,e^1,e^2)$ に関する $\langle\ ,\ \rangle$ の Gram 行列を書け。$x=e_1-2e_2+3e^1+e^2$ について $\langle x,x\rangle$ を求めよ。また $u_i^\pm=e_i\pm e^i$（$i=1,2$）が直交基底で、$\langle u_i^\pm,u_i^\pm\rangle=\pm1$ であることを確かめ、符号が $(2,2)$ であることを結論せよ。
+$n=2$ で、$V\oplus V^*$ の基底 $(e_1,e_2,e^1,e^2)$ に関する $\langle\ ,\ \rangle$ の Gram 行列を書け。$x=e_1-2e_2+3e^1+e^2$ について $\langle x,x\rangle$ を求めよ。また $u_i^\pm=e_i\pm\delta_{ij}e^j$（$i=1,2$。すなわち $u_1^\pm=e_1\pm e^1$、$u_2^\pm=e_2\pm e^2$）が直交基底で、$\langle u_i^\pm,u_i^\pm\rangle=\pm1$ であることを確かめ、符号が $(2,2)$ であることを結論せよ。
 \end{probl}
 
 \begin{probl}{標準}{A_pairB}
@@ -394,7 +397,7 @@ $B\in\Lambda^2V^*$ に対し (a) $e^B\circ e^{B'}=e^{B+B'}$ を示し、$e^B$ �
 \end{probl}
 
 \begin{probl}{標準}{A_J}
-$\R^4=\C^2$（座標 $(x^1,y^1,x^2,y^2)$ ＝基底 $e_1,e_2,e_3,e_4$）で $Je_1=e_2$、$Je_3=e_4$（$Je_2=-e_1$、$Je_4=-e_3$）とする。(a) $V^{1,0}$ の基底を $e_i$ で書け。(b) $\Lambda^{1,0}$ の基底 $\dd z^1=e^1+ie^2$、$\dd z^2=e^3+ie^4$ について $\dd z^1\wedge\dd z^2$ を $e^{ij}$ で展開し、$\omega=\dd z^1\wedge\dd z^2$ が $\omega(Ju,v)=i\,\omega(u,v)$ を満たすことを $(u,v)=(e_1,e_3)$ で確かめよ。(c) $\mathcal J_J$ が $\langle\ ,\ \rangle$ を保つことを一般の $v+\xi$、$w+\eta$ で示せ。また計量 $g=\sum(e^i)^2$ に対し $h=g-i\omega_g$（$\omega_g(u,v)=g(Ju,v)$）について $h(e_1,e_2)$ を求め、$h(Je_1,e_2)=ih(e_1,e_2)$ を確かめよ。
+$\R^4=\C^2$（座標 $(x^1,y^1,x^2,y^2)$ ＝基底 $e_1,e_2,e_3,e_4$）で $Je_1=e_2$、$Je_3=e_4$（$Je_2=-e_1$、$Je_4=-e_3$）とする。(a) $V^{1,0}$ の基底を $e_i$ で書け。(b) $\Lambda^{1,0}$ の基底 $\dd z^1=e^1+ie^2$、$\dd z^2=e^3+ie^4$ について $\dd z^1\wedge\dd z^2$ を $e^{ij}$ で展開し、$\omega=\dd z^1\wedge\dd z^2$ が $\omega(Ju,v)=i\,\omega(u,v)$ を満たすことを $(u,v)=(e_1,e_3)$ で確かめよ。(c) $\mathcal J_J$ が $\langle\ ,\ \rangle$ を保つことを一般の $v+\xi$、$w+\eta$ で示せ。また計量 $g=\delta_{ij}\,e^i\otimes e^j$（標準内積）に対し $h=g-i\omega_g$（$\omega_g(u,v)=g(Ju,v)$）について $h(e_1,e_2)$ を求め、$h(Je_1,e_2)=ih(e_1,e_2)$ を確かめよ。
 \end{probl}
 
 \begin{probl}{基本}{A_ift}
@@ -442,8 +445,9 @@ $F(x,y)=x^3+y^3-3xy$ とする。点 $(\frac32,\frac32)$ は $F=0$ 上にある�
 \draw[blue!60!black,thick] (1.35,1.35) ellipse (1.25 and 0.95);
 \draw[red!60!black,thick] (2.85,1.35) ellipse (1.25 and 0.95);
 \node[blue!60!black] at (0.75,1.35) {$U$}; \node[red!60!black] at (3.45,1.35) {$V$};
-\node at (2.1,1.35) {\small $U\cap V$};
-\node at (2.1,-0.4) {$M$};
+\node[font=\footnotesize] (uv) at (2.1,0.12) {$U\cap V$};
+\draw[gray] (uv.north)--(2.1,1.0);
+\node at (-0.35,2.15) {$M$};
 % patches
 \draw[thick,rounded corners=3pt] (6.2,2.7) rectangle (9.6,5.0);
 \fill[blue!25,opacity=0.8] (7.35,3.85) ellipse (0.95 and 0.8);
@@ -455,10 +459,9 @@ $F(x,y)=x^3+y^3-3xy$ とする。点 $(\frac32,\frac32)$ は $F=0$ 上にある�
 \draw[red!60!black,thick] (8.45,0.25) ellipse (0.95 and 0.8);
 \fill[purple!30,opacity=0.8] (7.85,0.25) ellipse (0.35 and 0.55);
 \node[font=\small] at (9.2,1.05) {$\R^n$};
-\draw[->,thick,blue!60!black] (2.0,2.2) .. controls (4,4.2) .. (6.2,4.2) node[pos=0.55,above,sloped,font=\small]{$\varphi$};
-\draw[->,thick,red!60!black] (3.2,0.55) .. controls (4.8,-0.4) .. (6.2,0.0) node[pos=0.5,below,font=\small]{$\psi$};
+\draw[->,thick,blue!60!black] (1.35,2.3) .. controls (3.2,4.2) .. (6.2,4.2) node[pos=0.55,above,sloped,font=\small]{$\varphi$};
+\draw[->,thick,red!60!black] (2.85,0.4) .. controls (4.6,-0.6) .. (6.2,0.0) node[pos=0.6,below,font=\small]{$\psi$};
 \draw[->,thick] (8.0,3.1) to[bend left=25] node[right,font=\small]{$\psi\circ\varphi^{-1}$} (8.0,1.0);
-\node[font=\footnotesize,purple!60!black] at (8.2,2.4) {};
 \end{tikzpicture}
 \caption{座標近傍 $(U,\varphi)$、$(V,\psi)$ と座標変換 $\psi\circ\varphi^{-1}$。$M$ 上の点を 2 通りに座標で表すと、その対応が座標変換である。\label{A:fig:chart}}
 \end{figure}
@@ -494,10 +497,10 @@ $\R^n$ は座標近傍 $(\R^n,\mathrm{id})$ 1 つのアトラスをもつ。多�
 \begin{ex}[球面 $S^n$、立体射影]\label{A:ex:Sn}
 $S^n=\{x\in\R^{n+1}:|x|=1\}$、$N=(0,\dots,0,1)$、$S=-N$。\emph{立体射影}
 \[
-\sigma_N:S^n\setminus\{N\}\to\R^n,\ \ \sigma_N(x)=\frac{(x_1,\dots,x_n)}{1-x_{n+1}},\qquad
-\sigma_S:S^n\setminus\{S\}\to\R^n,\ \ \sigma_S(x)=\frac{(x_1,\dots,x_n)}{1+x_{n+1}}
+\sigma_N:S^n\setminus\{N\}\to\R^n,\ \ \sigma_N(x)=\frac{(x^1,\dots,x^n)}{1-x^{n+1}},\qquad
+\sigma_S:S^n\setminus\{S\}\to\R^n,\ \ \sigma_S(x)=\frac{(x^1,\dots,x^n)}{1+x^{n+1}}
 \]
-は同相写像（逆写像は $\sigma_N^{-1}(u)=\dfrac{(2u,\ |u|^2-1)}{|u|^2+1}$）。座標変換は、$u=\sigma_N(x)$ のとき $x_{n+1}=\frac{|u|^2-1}{|u|^2+1}$、$1+x_{n+1}=\frac{2|u|^2}{|u|^2+1}$ なので
+は同相写像（逆写像は $\sigma_N^{-1}(u)=\dfrac{(2u,\ |u|^2-1)}{|u|^2+1}$）。座標変換は、$u=\sigma_N(x)$ のとき \mbox{$x^{n+1}=\frac{|u|^2-1}{|u|^2+1}$}、\allowbreak\mbox{$1+x^{n+1}=\frac{2|u|^2}{|u|^2+1}$} なので
 \[
 \sigma_S\circ\sigma_N^{-1}(u)=\frac{2u/(|u|^2+1)}{2|u|^2/(|u|^2+1)}=\frac{u}{|u|^2}\qquad(u\in\R^n\setminus\{0\})
 \]
@@ -516,7 +519,7 @@ $S^n=\{x\in\R^{n+1}:|x|=1\}$、$N=(0,\dots,0,1)$、$S=-N$。\emph{立体射影}
 \draw[blue!60!black,thick] (0,1.5)--(2.88,0);
 \draw[orange!80!black,thick] (0,-1.5)--(P);
 \fill[blue!60!black] (2.88,0) circle (1.6pt) node[below]{$\sigma_N(x)$};
-\fill[orange!80!black] (0.781,0) circle (1.6pt) node[below left]{$\sigma_S(x)$};
+\fill[orange!80!black] (0.781,0) circle (1.6pt) node[below right]{$\sigma_S(x)$};
 \node at (-2.6,0.25) {$\R^n$};
 \end{tikzpicture}
 \caption{$S^1$ の立体射影。$N$ から $x$ を通る直線と $\R$ の交点が $\sigma_N(x)$、$S$ からのそれが $\sigma_S(x)$。図で $|\sigma_N(x)||\sigma_S(x)|=1$（半径 $1.5$ で測れば $2.88\times0.78\approx1.5^2$）。座標変換は $u\mapsto u/|u|^2$。}\label{A:fig:stereo}
@@ -527,7 +530,7 @@ $S^1=\{e^{i\theta}\}\subset\C=\R^2$ は 1 次元多様体（$S^n$ の $n=1$ の�
 \end{ex}
 
 \begin{ex}[実射影空間 $\RP^n$]\label{A:ex:RPn}
-$\RP^n=(\R^{n+1}\setminus0)/\R^\times=S^n/\{\pm1\}$ は原点を通る直線の集合。同次座標 $[x_0:\cdots:x_n]$。$U_i=\{x_i\ne0\}$、
+$\RP^n=(\R^{n+1}\setminus0)/\R^\times=S^n/\{\pm1\}$ は原点を通る直線の集合。同次座標 $[x_0:\cdots:x_n]$（同次座標 $x_i$、その比 $x_j/x_i$ や $y_j$ の添字は番号として下付きで書き、和の規約は使わない。$\CP^n$ の $z_i$ も同様）。$U_i=\{x_i\ne0\}$、
 \[
 \varphi_i:U_i\to\R^n,\qquad\varphi_i[x]=\Bigl(\tfrac{x_0}{x_i},\dots,\widehat{\tfrac{x_i}{x_i}},\dots,\tfrac{x_n}{x_i}\Bigr)
 \]
@@ -547,7 +550,7 @@ $X=(\R\times\{1,2\})/\!\sim$（$x\ne0$ で $(x,1)\sim(x,2)$）は「原点が 2 
 \end{ex}
 
 \subsection{正則値定理と部分多様体}\label{A:sub:regval}
-\paragraph{動機。}球面 $x_1^2+\dots+x_{n+1}^2=1$、行列群 $\SO(n)$、トーラスなどは「滑らかな写像の逆像」として書かれる。逆像がいつ多様体になるかを、陰関数定理の幾何版（正則値定理）で答える。そのためまず、座標を使って写像の\emph{階数}を定義する。
+\paragraph{動機。}球面 $(x^1)^2+\dots+(x^{n+1})^2=1$、行列群 $\SO(n)$、トーラスなどは「滑らかな写像の逆像」として書かれる。逆像がいつ多様体になるかを、陰関数定理の幾何版（正則値定理）で答える。そのためまず、座標を使って写像の\emph{階数}を定義する。
 
 $F:M^m\to N^n$ が滑らかで $p\in M$ のとき、座標近傍 $(U,\varphi)$、$(V,\psi)$ に関する $\psi\circ F\circ\varphi^{-1}$ の Jacobi 行列の $\varphi(p)$ での階数を $\operatorname{rank}_pF$ とする。座標の取り替え（微分同相）の Jacobi 行列は可逆なので、連鎖律により階数は座標によらない。
 
@@ -713,19 +716,25 @@ $M$ の開被覆 $\{U_\alpha\}_{\alpha\in A}$ に\emph{従属する 1 の分割}
 \centering
 \begin{tikzpicture}[>={Stealth[length=2.2mm]},scale=1.0]
 \draw[thick,fill=gray!8] (0,0) circle (1.4);
-\draw[blue!60!black,thick,fill=blue!15] (1.4,0) arc (0:45:1.4) -- ++(-0.55,-0.1) arc (60:-60:0.9)-- cycle;
-\fill[blue!25,opacity=0.7] (0.95,0.95) ellipse (0.45 and 0.35);
+\begin{scope}
+\clip (0,0) circle (1.4);
+\fill[blue!25] (1.4,0) circle (0.6);
+\draw[blue!60!black,thick] (1.4,0) circle (0.6);
+\end{scope}
+\draw[blue!60!black,very thick] (0:1.4) arc (0:{2*asin(0.2143)}:1.4);
+\draw[blue!60!black,very thick] (0:1.4) arc (0:{-2*asin(0.2143)}:1.4);
 \node at (-0.2,-0.3) {$D^2$};
 \node at (0.4,1.7) {\small $\partial D^2=S^1$};
-\draw[->,thick] (2.0,0.2)--(3.3,0.2) node[midway,above]{$\varphi$};
+\draw[->,thick] (2.1,0)--(3.35,0) node[midway,above]{$\varphi$};
 \fill[gray!10] (3.5,-1.2) rectangle (7,1.5);
 \draw[thick] (3.5,-0.4)--(7,-0.4);
 \fill[blue!25] (4.7,-0.4) arc (180:0:0.8) -- cycle;
 \draw[blue!60!black,thick] (4.7,-0.4) arc (180:0:0.8);
+\draw[blue!60!black,very thick] (4.7,-0.4)--(6.3,-0.4);
 \node[font=\small] at (6.2,1.1) {$\mathbb H^2=\{x^2\ge0\}$};
 \node[font=\small] at (6.2,-0.75) {$\{x^2=0\}$};
 \end{tikzpicture}
-\caption{境界つき多様体の座標。円盤の境界付近の座標近傍は、半空間 $\mathbb H^2$ の開集合（半円盤）と同一視される。}
+\caption{境界つき多様体の座標。円盤の境界付近の座標近傍（青）は、半空間 $\mathbb H^2$ の開集合（半円盤）と同一視される。$\partial D^2$ の部分（太線）は $\{x^2=0\}$ の部分（太線）に写る。}
 \end{figure}
 
 \begin{prop}\label{A:prop:halfspace}
@@ -749,7 +758,7 @@ $f:M\to\R$ が滑らかで $0$ が $f$ の正則値のとき、$\{f\ge0\}$ は�
 \end{proof}
 
 \begin{ex}
-(1) $\R^n$、およびその開集合は向きづけ可能。(2) 積 $M\times N$ は、両方が向きづけ可能なら向きづけ可能。特に $T^n$ は向きづけ可能（実際 $T^n$ には $\dd\theta^1\wedge\dots\wedge\dd\theta^n$ が至るところ $\ne0$）。(3) $S^n$ は向きづけ可能：立体射影 2 枚の座標変換 $u\mapsto u/|u|^2$ の Jacobi 行列式は $-|u|^{-2n}<0$（問~\ref{pr:A_stereo}）なので、$\sigma_S$ の第 1 座標の符号を反転した座標 $r\circ\sigma_S$ を使えば、行列式が正になって向きづけられたアトラスができる。
+(1) $\R^n$、およびその開集合は向きづけ可能。(2) 積 $M\times N$ は、両方が向きづけ可能なら向きづけ可能。特に $T^n$ は向きづけ可能（実際 $T^n$ には $\dd\theta^1\wedge\cdots\wedge\dd\theta^n$ が至るところ $\ne0$）。(3) $S^n$ は向きづけ可能：立体射影 2 枚の座標変換 $u\mapsto u/|u|^2$ の Jacobi 行列式は \mbox{$-|u|^{-2n}<0$}（問~\ref{pr:A_stereo}）なので、$\sigma_S$ の第 1 座標の符号を反転した座標 $r\circ\sigma_S$ を使えば、行列式が正になって向きづけられたアトラスができる。
 \end{ex}
 
 \paragraph{向きづけ不可能な例：被覆の議論。}$p:\tilde M\to M$ を局所微分同相、$T:\tilde M\to\tilde M$ を $p\circ T=p$ を満たす微分同相（被覆変換）とする。
@@ -766,7 +775,7 @@ $\tilde M=\R\times(-1,1)$（連結）、$T(x,y)=(x+1,-y)$。$\langle T\rangle\co
 \end{ex}
 
 \begin{ex}[$\RP^2$]\label{A:ex:RP2}
-$p:S^2\to\RP^2$ は局所微分同相（半球面 $\{x_i>0\}$ から $\R^2$ への $x\mapsto(x_j/x_i)_{j\ne i}$ が同型）で、対蹠写像 $T(x)=-x$ が被覆変換。立体射影 $\sigma_N$ による座標で $T$ は、$S^2\setminus\{N,S\}$ 上で $\sigma_N T\sigma_N^{-1}(u)=-u/|u|^2$（$x\mapsto-x$ のとき $u=\frac{x'}{1-x_3}\mapsto\frac{-x'}{1+x_3}$ で、$|u|^2=\frac{1+x_3}{1-x_3}$ より $-u/|u|^2$）。反転 $u\mapsto u/|u|^2$ の Jacobi 行列式は $-|u|^{-2n}$（$n=2$）、$u\mapsto-u$ のそれは $(-1)^n=1$。合成の行列式は $-|u|^{-4}<0$。$S^2\setminus\{N\}\cong\R^2$ は連結で $\sigma_N$ は（符号が一定の）向きの座標だから、$T$ は向きを逆転する。ゆえに $\RP^2$ は向きづけ不可能（補題~\ref{A:lem:covorient}）。同じ計算で、一般の偶数 $n$ について $\RP^n$ は向きづけ不可能、奇数 $n$ なら向きづけ可能（$\RP^1=S^1$、$\RP^3=\SO(3)$）。
+$p:S^2\to\RP^2$ は局所微分同相（半球面 $\{x^i>0\}$ から $\R^2$ への $x\mapsto(x^j/x^i)_{j\ne i}$ が同型）で、対蹠写像 $T(x)=-x$ が被覆変換。立体射影 $\sigma_N$ による座標で $T$ は、$S^2\setminus\{N,S\}$ 上で $\sigma_N T\sigma_N^{-1}(u)=-u/|u|^2$（$x\mapsto-x$ のとき $u=\frac{x'}{1-x^3}\mapsto\frac{-x'}{1+x^3}$ で、$|u|^2=\frac{1+x^3}{1-x^3}$ より $-u/|u|^2$）。反転 $u\mapsto u/|u|^2$ の Jacobi 行列式は $-|u|^{-2n}$（$n=2$）、$u\mapsto-u$ のそれは $(-1)^n=1$。合成の行列式は $-|u|^{-4}<0$。$S^2\setminus\{N\}\cong\R^2$ は連結で $\sigma_N$ は（符号が一定の）向きの座標だから、$T$ は向きを逆転する。ゆえに $\RP^2$ は向きづけ不可能（補題~\ref{A:lem:covorient}）。同じ計算で、一般の偶数 $n$ について $\RP^n$ は向きづけ不可能、奇数 $n$ なら向きづけ可能（$\RP^1=S^1$、$\RP^3=\SO(3)$）。
 \end{ex}
 
 \begin{figure}[htbp]
@@ -778,10 +787,10 @@ $p:S^2\to\RP^2$ は局所微分同相（半球面 $\{x_i>0\}$ から $\R^2$ へ�
 \draw[->,very thick,red!70!black] (0,0.2)--(0,1.2);
 \draw[->,very thick,red!70!black] (4,1.8)--(4,0.8);
 \node at (2,1) {Möbius の帯};
-\draw[->,thick,gray] (0.7,0.5)--(1.3,0.5);
-\draw[->,thick,gray] (0.7,0.5)--(0.7,1.1);
-\draw[->,thick,gray] (3.3,1.5)--(2.7,1.5);
-\draw[->,thick,gray] (3.3,1.5)--(3.3,0.9);
+\draw[->,thick,gray] (0.4,0.3)--(1.0,0.3);
+\draw[->,thick,gray] (0.4,0.3)--(0.4,0.9);
+\draw[->,thick,gray] (3.6,1.7)--(3.0,1.7);
+\draw[->,thick,gray] (3.6,1.7)--(3.6,1.1);
 \node[font=\footnotesize] at (2,-0.4) {$(x,y)\sim(x+1,-y)$};
 % torus
 \draw[thick,fill=blue!6] (6,0) rectangle (9,2);
@@ -826,7 +835,7 @@ $p:S^2\to\RP^2$ は局所微分同相（半球面 $\{x_i>0\}$ から $\R^2$ へ�
 \begin{keybox}{§2 の要点}
 \begin{itemize}
 \item 多様体 $=$ Hausdorff・第2可算な位相空間 $+$ 滑らかに貼り合うアトラス（座標近傍の族）。座標変換が滑らかであることが本質。
-\item 例：$\R^n$、開集合、$S^n$（立体射影 2 枚、変換 $u\mapsto u/|u|^2$）、$T^n$、$\RP^n$、$\CP^n$、$\GL(n,\R)$、$\SO(n)$（$\dim=\frac{n(n-1)}{2}$）。
+\item 例：$\R^n$、開集合、$S^n$（立体射影 2 枚、変換 \mbox{$u\mapsto u/|u|^2$}）、\allowbreak $T^n$、\allowbreak $\RP^n$、\allowbreak $\CP^n$、\allowbreak $\GL(n,\R)$、\allowbreak $\SO(n)$（$\dim=\frac{n(n-1)}{2}$）。
 \item \textbf{正則値定理}：$c$ が正則値なら $F^{-1}(c)$ は余次元 $n$ の部分多様体。局所標準形（沈め込み $\to$ 射影、はめ込み $\to$ 包含）は逆関数定理の帰結。
 \item 埋め込み $=$ はめ込み $+$ 像への同相。単射なはめ込みでも埋め込みとは限らない（8 の字、無理数傾きの線）。コンパクト／固有なら大丈夫。
 \item \textbf{1 の分割}は局所構造を貼り合わせる標準手段。存在の証明には Hausdorff と第2可算が効く。
@@ -839,18 +848,18 @@ $p:S^2\to\RP^2$ は局所微分同相（半球面 $\{x_i>0\}$ から $\R^2$ へ�
 \item \textbf{位相多様体の条件の Hausdorff・第2可算を忘れる。}局所 Euclid だけでは病的な例（原点が 2 つの直線）が出る。
 \item \textbf{滑らかな構造は「アトラスの同値類」。}同じ集合に異なる滑らかな構造を入れうる。微分同相という弱い同値関係で見ると、これらが同じになる場合も多い。
 \item \textbf{$\operatorname{rank}$ は座標によらないが、$\det$ や符号はよる。}向きは Jacobi 行列式の\emph{符号}に関する情報で、座標の取り方に依存する。
-\item \textbf{正則値の定義：$F^{-1}(c)$ のすべての点で $dF$ が全射。}1 点でも臨界点があると $F^{-1}(c)$ は多様体とは限らない（$F=xy$、$c=0$ は十字形）。
+\item \textbf{正則値の定義：$F^{-1}(c)$ のすべての点で $\dd F$ が全射。}1 点でも臨界点があると $F^{-1}(c)$ は多様体とは限らない（$F=xy$、$c=0$ は十字形）。
 \item \textbf{部分多様体と部分集合の位相。}はめ込まれた多様体は、像に部分空間位相を入れた多様体とは限らない（8 の字）。
 \end{enumerate}
 
 \subsection*{§2 の問題}
 
 \begin{probl}{基本}{A_stereo}
-$S^n$ の立体射影について (a) $\sigma_N^{-1}$ が例~\ref{A:ex:Sn} の式で与えられることを確かめよ。(b) 反転 $\iota(u)=u/|u|^2$ の Jacobi 行列は $\frac1{|u|^2}\bigl(I-2\hat u\hat u^T\bigr)$（$\hat u=u/|u|$）で、行列式は $-|u|^{-2n}$ であることを示せ。(c) $r(v_1,\dots,v_n)=(-v_1,v_2,\dots,v_n)$ とおくと、$\{\sigma_N,\ r\circ\sigma_S\}$ は向きづけられたアトラスをなす（$S^n$ の向きづけ可能性）ことを示せ。
+$S^n$ の立体射影について (a) $\sigma_N^{-1}$ が例~\ref{A:ex:Sn} の式で与えられることを確かめよ。(b) 反転 $\iota(u)=u/|u|^2$ の Jacobi 行列は $\frac1{|u|^2}\bigl(I-2\hat u\hat u^T\bigr)$（$\hat u=u/|u|$）で、行列式は $-|u|^{-2n}$ であることを示せ。(c) $r(v^1,\dots,v^n)=(-v^1,v^2,\dots,v^n)$ とおくと、$\{\sigma_N,\ r\circ\sigma_S\}$ は向きづけられたアトラスをなす（$S^n$ の向きづけ可能性）ことを示せ。
 \end{probl}
 
 \begin{probl}{標準}{A_cp1}
-$\CP^1$ の 2 枚の座標 $z=z_1/z_0$、$w=z_0/z_1$（$w=1/z$）と、$S^2$ の座標 $\sigma_N$、$\overline{\ \cdot\ }\circ\sigma_S$（$\sigma_S$ に複素共役 $r'(v_1,v_2)=(v_1,-v_2)$ を合成したものを $\C$ の座標とみなす）を考える。$S^2\to\CP^1$ を、$S^2\setminus\{N\}$ では $x\mapsto[1:\sigma_N(x)]$（$\sigma_N(x)\in\R^2=\C$）、$N\mapsto[0:1]$ で定める。これが微分同相であることを示せ。\hint{$\sigma_S(x)=\sigma_N(x)/|\sigma_N(x)|^2$ を複素数で書くと $\overline{\sigma_S}=1/\sigma_N$}
+$\CP^1$ の 2 枚の座標 $z=z_1/z_0$、$w=z_0/z_1$（$w=1/z$）と、$S^2$ の座標 $\sigma_N$、$\overline{\ \cdot\ }\circ\sigma_S$（$\sigma_S$ に複素共役 $r'(v^1,v^2)=(v^1,-v^2)$ を合成したものを $\C$ の座標とみなす）を考える。$S^2\to\CP^1$ を、$S^2\setminus\{N\}$ では $x\mapsto[1:\sigma_N(x)]$（$\sigma_N(x)\in\R^2=\C$）、$N\mapsto[0:1]$ で定める。これが微分同相であることを示せ。\hint{$\sigma_S(x)=\sigma_N(x)/|\sigma_N(x)|^2$ を複素数で書くと $\overline{\sigma_S}=1/\sigma_N$}
 \end{probl}
 
 \begin{probl}{標準}{A_rp}
@@ -858,7 +867,7 @@ $\CP^1$ の 2 枚の座標 $z=z_1/z_0$、$w=z_0/z_1$（$w=1/z$）と、$S^2$ の
 \end{probl}
 
 \begin{probl}{標準}{A_sl}
-(a) $\SL(n,\R)$ が $n^2-1$ 次元の多様体であることを示せ（$D\det_A(H)=\det A\,\tr(A^{-1}H)$ を使う。この公式は $\det(A+tH)=\det A\det(I+tA^{-1}H)$ から得よ）。(b) $\SO(3)$ が 3 次元であることを例~\ref{A:ex:SOn} の方法で確かめ、$\SO(3)$ の単位元での「接空間」$\ker DF_I$ が歪対称行列の空間であること、その次元が 3 であることを確かめよ。(c) $\U(n)$ が $n^2$ 次元の多様体であることを示せ（(b) と同様に $F(A)=A^*A$ を考える）。
+(a) $\SL(n,\R)$ が $n^2-1$ 次元の多様体であることを示せ（\mbox{$D\det_A(H)=\det A\,\tr(A^{-1}H)$} を使う。この公式は $\det(A+tH)=\det A\det(I+tA^{-1}H)$ から得よ）。(b) $\SO(3)$ が 3 次元であることを例~\ref{A:ex:SOn} の方法で確かめ、$\SO(3)$ の単位元での「接空間」$\ker DF_I$ が歪対称行列の空間であること、その次元が 3 であることを確かめよ。(c) $\U(n)$ が $n^2$ 次元の多様体であることを示せ（(b) と同様に $F(A)=A^*A$ を考える）。
 \end{probl}
 
 \begin{probl}{標準}{A_torus}
@@ -925,7 +934,7 @@ v'^j=\frac{\partial y^j}{\partial x^i}(p)\,v^i
 \begin{thm}[3 つの定義の同値]\label{A:thm:tangent}
 \tP\ 座標近傍 $(U,\varphi=(x^1,\dots,x^n))$ をとり、$\varphi(p)=0$ としてよい。
 \begin{enumerate}
-\item $\dfrac{\partial}{\partial x^i}\Big|_p f:=\dfrac{\partial(f\circ\varphi^{-1})}{\partial x^i}(0)$ で定まる $\partial_i|_p\in T_pM$（(A) の意味）は $T_pM$ の基底をなす。$v=\sum v(x^i)\,\partial_i|_p$。特に $\dim T_pM=n$。
+\item $\dfrac{\partial}{\partial x^i}\Big|_p f:=\dfrac{\partial(f\circ\varphi^{-1})}{\partial x^i}(0)$ で定まる $\partial_i|_p\in T_pM$（(A) の意味）は $T_pM$ の基底をなす。\allowbreak\mbox{$v=\sum v(x^i)\,\partial_i|_p$}。特に $\dim T_pM=n$。
 \item 曲線 $\gamma$ に $v_\gamma(f)=(f\circ\gamma)'(0)$ を対応させる写像 $[\gamma]\mapsto v_\gamma$ は、(B) から (A) への全単射である。
 \item (A) の $v$ に、座標近傍ごとに成分 $v^i=v(x^i)$ を対応させれば (C) になり、これは全単射である。
 \end{enumerate}
@@ -950,13 +959,13 @@ v(f)=v(\text{定数})+\sum_i\bigl(x^i(p)\,v(g_i)+g_i(p)\,v(x^i)\bigr)=\sum_iv(x^
 \centering
 \begin{tikzpicture}[>={Stealth[length=2.2mm]},scale=1.0]
 \draw[thick,fill=blue!6] (0,0) .. controls (0.3,2.3) and (2.3,3.0) .. (4.2,2.4) .. controls (5.6,1.9) and (5.2,0.2) .. (3.9,-0.3) .. controls (2.5,-0.9) and (0.2,-1.0) .. (0,0) -- cycle;
-\draw[red!70!black,thick] (0.8,0.2) .. controls (1.8,1.5) and (3.0,1.6) .. (4.2,0.6);
-\fill (2.35,1.25) circle (1.6pt) node[below right]{$p$};
-\draw[->,very thick,red!70!black] (2.35,1.25)--(3.25,1.50) node[right]{$\dot\gamma(0)$};
 \fill[orange!30,opacity=0.55] (1.55,0.75)--(3.35,0.45)--(3.95,1.6)--(2.15,1.95)--cycle;
-\node[orange!60!black,font=\small] at (1.55,1.95) {$T_pM$};
+\draw[red!70!black,thick] (0.8,0.2) .. controls (1.8,1.5) and (3.0,1.6) .. (4.2,0.6);
+\draw[->,very thick,red!70!black] (2.35,1.25)--(3.25,1.50) node[right,fill=white,inner sep=1pt]{$\dot\gamma(0)$};
+\fill (2.35,1.25) circle (1.6pt) node[below,fill=white,inner sep=1pt,yshift=-2pt]{$p$};
+\node[orange!60!black,font=\small,anchor=east] at (1.8,1.6) {$T_pM$};
 \node[red!70!black,font=\small] at (1.0,0.55) {$\gamma$};
-\node at (4.6,2.4) {$M$};
+\node at (5.2,2.55) {$M$};
 \end{tikzpicture}
 \caption{接ベクトルは曲線 $\gamma$ の速度ベクトル $\dot\gamma(0)=[\gamma]$。$p$ での接ベクトル全体 $T_pM$ は（接平面のように見える）$n$ 次元ベクトル空間。}
 \end{figure}
@@ -990,9 +999,9 @@ $\operatorname{rank}_pF=\operatorname{rank}\dd F_p$ である。はめ込みは 
 \draw[->] (-0.2,0)--(3.2,0) node[right]{$x$};
 \draw[->] (0,-0.2)--(0,3.0) node[above]{$y$};
 \draw[gray!70,thin] (0,0) circle (1.3); \draw[gray!70,thin] (0,0) circle (2.0);
-\draw[gray!70,thin] (0,0)--(2.6,1.0);\draw[gray!70,thin] (0,0)--(1.0,2.6);
+\draw[gray!70,thin,dashed] (0,0)--({1.6*cos(40)},{1.6*sin(40)});
 \coordinate (P) at ({1.6*cos(40)},{1.6*sin(40)});
-\fill (P) circle (1.5pt) node[above right,xshift=-1pt]{$p$};
+\fill (P) circle (1.5pt) node[below right]{$p$};
 \draw[->,very thick,blue!60!black] (P)--++({0.9*cos(40)},{0.9*sin(40)}) node[right]{$\partial_r$};
 \draw[->,very thick,red!70!black] (P)--++({-1.1*sin(40)},{1.1*cos(40)}) node[above]{$\partial_\theta$};
 \draw[dashed,gray] (P)--++(1,0) node[right,black]{\small $\partial_x$};
@@ -1011,7 +1020,7 @@ $F\circ\iota\equiv c$（定数）なので $\dd F_p\circ\dd\iota_p=0$、$T_pS\su
 \end{proof}
 
 \begin{ex}
-(1) $S^n=\{|x|^2=1\}$：$\dd F_x(h)=2x\cdot h$ より $T_xS^n=\{h:x\cdot h=0\}=x^\perp$。(2) $\SO(n)$：例~\ref{A:ex:SOn} で $DF_I(H)=H+H^T$ より $T_I\SO(n)=\{H:H^T=-H\}=\mathfrak{so}(n)$（歪対称行列、次元 $\frac{n(n-1)}2$）。一般の $A\in\SO(n)$ で $T_A\SO(n)=\{AH:H\in\mathfrak{so}(n)\}$。(3) $\SL(n,\R)$：$T_I\SL=\{H:\tr H=0\}=\mathfrak{sl}(n)$。
+(1) $S^n=\{|x|^2=1\}$：$\dd F_x(h)=2x\cdot h$ より $T_xS^n=\{h:x\cdot h=0\}=x^\perp$。(2) $\SO(n)$：例~\ref{A:ex:SOn} で $DF_I(H)=H+H^T$ より $T_I\SO(n)=\{H:H^T=-H\}=\mathfrak{so}(n)$（歪対称行列、次元 $\frac{n(n-1)}2$）。一般の $A\in\SO(n)$ で $T_A\SO(n)=\{AH:H\in\mathfrak{so}(n)\}$。(3) $\SL(n,\R)$：$T_I\SL=\{H:\tr\,H=0\}=\mathfrak{sl}(n)$。
 \end{ex}
 
 \subsection{接束・余接束}
@@ -1161,7 +1170,7 @@ $X,Y\in\X(M)$ に対し $[X,Y]f=X(Yf)-Y(Xf)$。
 (1) $[\partial_i,\partial_j]=0$（座標ベクトル場）。(2) $\R$ 上で $[x\partial_x,\partial_x]=-\partial_x$：成分式で $X=x$、$Y=1$：$[X,Y]=x\cdot0-1\cdot1=-1$。(3) $\R^2$ 上で $X=\partial_x$、$Y=x\partial_y$：$[X,Y]=\partial_y$。(4) $\R^2$ 上の回転 $R=x\partial_y-y\partial_x$ と Euler 場 $E=x\partial_x+y\partial_y$：$[R,E]=0$（問~\ref{pr:A_bracket}）。
 \end{ex}
 
-\paragraph{幾何的な意味：閉じない四角形。}$X$ と $Y$ の流れ $\phi_t$、$\psi_s$ が可換でないとき、$X$ に $t$、$Y$ に $t$、$X$ に $-t$、$Y$ に $-t$ だけ進む操作は出発点に戻らない。例~\ref{A:ex:brackets}(3) で見る。$X=\partial_x$ の流れは $(x,y)\mapsto(x+t,y)$、$Y=x\partial_y$ の流れは $(x,y)\mapsto(x,y+tx)$。点 $p=(1,0)$ から
+\paragraph{幾何的な意味：閉じない四角形。}$X$ と $Y$ の流れ $\phi^X_t$、$\phi^Y_t$ が可換でないとき、$X$ に $t$、$Y$ に $t$、$X$ に $-t$、$Y$ に $-t$ だけ進む操作は出発点に戻らない。例~\ref{A:ex:brackets}(3) で見る。$X=\partial_x$ の流れは $(x,y)\mapsto(x+t,y)$、$Y=x\partial_y$ の流れは $(x,y)\mapsto(x,y+tx)$。点 $p=(1,0)$ から
 \[
 (1,0)\xrightarrow{\ \phi^X_t\ }(1+t,0)\xrightarrow{\ \phi^Y_t\ }(1+t,\,t+t^2)\xrightarrow{\ \phi^X_{-t}\ }(1,\,t+t^2)\xrightarrow{\ \phi^Y_{-t}\ }(1,\,t^2)
 \]
@@ -1172,15 +1181,15 @@ $X,Y\in\X(M)$ に対し $[X,Y]f=X(Yf)-Y(Xf)$。
 \begin{tikzpicture}[>={Stealth[length=2.2mm]},scale=1.5]
 \draw[gray!40] (0.4,-0.2) grid (2.8,2.4);
 \coordinate (p) at (1,0); \coordinate (a) at (2,0); \coordinate (b) at (2,2); \coordinate (c) at (1,2); \coordinate (d) at (1,1);
-\draw[->,very thick,blue!60!black] (p)--(a) node[midway,below]{$\phi^X_t$};
-\draw[->,very thick,red!70!black] (a)--(b) node[midway,right]{$\phi^Y_t$};
-\draw[->,very thick,blue!60!black] (b)--(c) node[midway,above]{$\phi^X_{-t}$};
-\draw[->,very thick,red!70!black] (c)--(d) node[midway,left]{$\phi^Y_{-t}$};
-\fill (p) circle (1.3pt) node[below left]{$p$};
-\fill (d) circle (1.3pt) node[left,xshift=-2pt]{\small $\phi^Y_{-t}\phi^X_{-t}\phi^Y_t\phi^X_t(p)$};
+\draw[->,very thick,blue!60!black] (p)--(a) node[midway,below,fill=white,inner sep=1pt]{$\phi^X_t$};
+\draw[->,very thick,red!70!black] (a)--(b) node[midway,right,fill=white,inner sep=1pt]{$\phi^Y_t$};
+\draw[->,very thick,blue!60!black] (b)--(c) node[midway,above,fill=white,inner sep=1pt]{$\phi^X_{-t}$};
+\draw[->,very thick,red!70!black] (c)--(d) node[midway,left,fill=white,inner sep=1pt]{$\phi^Y_{-t}$};
+\fill (p) circle (1.3pt) node[below left,fill=white,inner sep=1pt]{$p$};
+\fill (d) circle (1.3pt) node[left,xshift=-2pt,fill=white,inner sep=1pt]{\small $\phi^Y_{-t}\phi^X_{-t}\phi^Y_t\phi^X_t(p)$};
 \draw[<->,thick,green!40!black] (1.2,0.04)--(1.2,0.96);
-\node[green!40!black,font=\small] at (1.55,0.5) {$t^2[X,Y]$};
-\node[font=\footnotesize] at (2.6,2.2) {$t=1$};
+\node[green!40!black,font=\small,anchor=east,fill=white,inner sep=1pt] at (1.12,0.5) {$t^2[X,Y]$};
+\node[font=\footnotesize,fill=white,inner sep=1pt] at (2.55,2.2) {$t=1$};
 \end{tikzpicture}
 \caption{$X=\partial_x$、$Y=x\partial_y$、$p=(1,0)$、$t=1$ の場合。$Y$ の流れは $x$ に比例して上に動く（右の辺は左の辺より長い）ため、四角形は閉じず、ずれは $t^2[X,Y]=t^2\partial_y$。}\label{A:fig:rect}
 \end{figure}
@@ -1211,7 +1220,9 @@ $t=0$ で微分する（$T_pM$ は有限次元なので、ベクトルの微分�
 \end{cor}
 \begin{proof}
 ($\Rightarrow$) $q=\phi_s(p)$ とすると、$\phi_{-(s+h)}=\phi_{-s}\circ\phi_{-h}$ なので
-$\dd\phi_{-(s+h)}Y_{\phi_{s+h}(p)}=\dd\phi_{-s}\bigl(\dd\phi_{-h}Y_{\phi_h(q)}\bigr)$。両辺を $h$ で微分して $h=0$：$\frac{\dd}{\dd s}\bigl(\dd\phi_{-s}Y_{\phi_s(p)}\bigr)=\dd\phi_{-s}\bigl([X,Y]_q\bigr)=0$。よって $\dd\phi_{-s}Y_{\phi_s(p)}=Y_p$ は $s$ によらず、$\dd\phi_sY_p=Y_{\phi_s(p)}$、すなわち $Y\sim_{\phi_s}Y$。命題~\ref{A:prop:related} より $\phi_s\psi_t=\psi_t\phi_s$。($\Leftarrow$) $\phi_s\circ\psi_t=\psi_t\circ\phi_s$ を $t$ で微分して $t=0$：$\dd\phi_sY_p=Y_{\phi_s(p)}$。よって $(\Lie_XY)_p=0$。
+\[
+\dd\phi_{-(s+h)}Y_{\phi_{s+h}(p)}=\dd\phi_{-s}\bigl(\dd\phi_{-h}Y_{\phi_h(q)}\bigr).
+\]両辺を $h$ で微分して $h=0$：$\frac{\dd}{\dd s}\bigl(\dd\phi_{-s}Y_{\phi_s(p)}\bigr)=\dd\phi_{-s}\bigl([X,Y]_q\bigr)=0$。よって $\dd\phi_{-s}Y_{\phi_s(p)}=Y_p$ は $s$ によらず、$\dd\phi_sY_p=Y_{\phi_s(p)}$、すなわち $Y\sim_{\phi_s}Y$。命題~\ref{A:prop:related} より $\phi_s\psi_t=\psi_t\phi_s$。($\Leftarrow$) $\phi_s\circ\psi_t=\psi_t\circ\phi_s$ を $t$ で微分して $t=0$：$\dd\phi_sY_p=Y_{\phi_s(p)}$。よって $(\Lie_XY)_p=0$。
 \end{proof}
 
 \subsection{可換なベクトル場と座標}\label{A:sub:commute}
@@ -1219,11 +1230,11 @@ $\dd\phi_{-(s+h)}Y_{\phi_{s+h}(p)}=\dd\phi_{-s}\bigl(\dd\phi_{-h}Y_{\phi_h(q)}\b
 \tP\ $X_1,\dots,X_k$ が $p$ の近傍で互いに可換（$[X_i,X_j]=0$）で、$p$ で一次独立とする。このとき $p$ のまわりの座標 $(y^1,\dots,y^n)$ で $X_i=\partial/\partial y^i$（$i=1,\dots,k$）となるものが存在する。特に $k=1$：$X_p\ne0$ なら $X=\partial_{y^1}$ となる座標がある（流れ箱定理）。
 \end{thm}
 \begin{proof}
-$p$ の座標近傍で $\R^n$ の原点 $0$ に $p$ を写し、座標の 1 次変換により $X_i(0)=e_i$（$i\le k$）としてよい。$\phi^i_t$ を $X_i$ の流れとして
+$p$ の座標近傍で $\R^n$ の原点 $0$ に $p$ を写し、座標の 1 次変換により $X_i(0)=e_i$（$i\le k$）としてよい。$\phi^{(i)}_t$ を $X_i$ の流れとして
 \[
-\Psi(t_1,\dots,t_k,s_{k+1},\dots,s_n)=\phi^1_{t_1}\circ\cdots\circ\phi^k_{t_k}\bigl(0,\dots,0,s_{k+1},\dots,s_n\bigr)
+\Psi(t^1,\dots,t^k,s^{k+1},\dots,s^n)=\phi^{(1)}_{t^1}\circ\cdots\circ\phi^{(k)}_{t^k}\bigl(0,\dots,0,s^{k+1},\dots,s^n\bigr)
 \]
-とおく（$0$ の近傍で定義される）。$\Psi(0,s)=(0,s)$ なので $\partial\Psi/\partial s_j(0)=e_j$（$j>k$）。流れが互いに可換（系~\ref{A:cor:commute}）なので、$\phi^i_{t_i}$ を最初に作用させる順序に並べ替えられて $\partial\Psi/\partial t_i=X_i(\Psi)$。特に $\partial\Psi/\partial t_i(0)=X_i(0)=e_i$。よって $D\Psi(0)=I$ で、逆関数定理により $\Psi$ は局所微分同相。$y=\Psi^{-1}$ を座標とすれば、$\Psi_*(\partial/\partial t_i)=X_i$、すなわち $X_i=\partial/\partial y^i$。
+とおく（$0$ の近傍で定義される）。$\Psi(0,s)=(0,s)$ なので $\partial\Psi/\partial s^j(0)=e_j$（$j>k$）。流れが互いに可換（系~\ref{A:cor:commute}）なので、$\phi^{(i)}_{t^i}$ を最初に作用させる順序に並べ替えられて $\partial\Psi/\partial t^i=X_i(\Psi)$。特に $\partial\Psi/\partial t^i(0)=X_i(0)=e_i$。よって $D\Psi(0)=I$ で、逆関数定理により $\Psi$ は局所微分同相。$y=\Psi^{-1}$ を座標とすれば、$\Psi_*(\partial/\partial t^i)=X_i$、すなわち $X_i=\partial/\partial y^i$。
 \end{proof}
 
 逆に、座標ベクトル場は互いに可換なので、「$k$ 個の独立なベクトル場が座標ベクトル場である」ことと「互いに可換」は同値である。
@@ -1236,7 +1247,11 @@ $p$ の座標近傍で $\R^n$ の原点 $0$ に $p$ を写し、座標の 1 次�
 \end{defn}
 
 \begin{ex}
-$(\R^n,+)$、$S^1$、$T^n$、$\GL(n,\R)$（積は多項式、逆は Cramer の公式）、$\SL(n,\R)$、$\OO(n)$、$\SO(n)$、$\U(n)$、$\SU(n)$。$\SU(2)=\{\begin{psmallmatrix}a&-\bar b\\b&\bar a\end{psmallmatrix}:|a|^2+|b|^2=1\}\cong S^3$ は群構造をもつ 3 次元球面。
+$(\R^n,+)$、\allowbreak $S^1$、\allowbreak $T^n$、\allowbreak $\GL(n,\R)$（積は多項式、逆は Cramer の公式）、\allowbreak $\SL(n,\R)$、\allowbreak $\OO(n)$、\allowbreak $\SO(n)$、\allowbreak $\U(n)$、\allowbreak $\SU(n)$。特に
+\[
+\SU(2)=\Bigl\{\begin{pmatrix}a&-\bar b\\b&\bar a\end{pmatrix}:|a|^2+|b|^2=1\Bigr\}\cong S^3
+\]
+は群構造をもつ 3 次元球面である。
 \end{ex}
 
 $X\in\X(G)$ が\emph{左不変}とは、すべての $g$ で $(L_g)_*X=X$（$\dd L_g(X_h)=X_{gh}$）。$v\in T_eG$ に対し $X_v(g):=\dd(L_g)_e(v)$ とおくと、$X_v(g)=\dd m_{(g,e)}(0,v)$ は滑らか（$m$ が滑らかなので）で、左不変であり、$v\mapsto X_v$ は $T_eG$ から左不変ベクトル場の空間への同型（逆は $X\mapsto X_e$）。特に
@@ -1258,17 +1273,17 @@ $X\sim_{L_g}X$、$Y\sim_{L_g}Y$ なので、命題~\ref{A:prop:bracket}(4) よ�
 \tP\ $G=\GL(n,\R)$ の Lie 代数 $\mathfrak{gl}(n,\R)=M_n(\R)$ で $[A,B]=AB-BA$。$G\subset\GL(n,\R)$ が埋め込み部分群（$\SO(n)$ など）なら、$\mathfrak g\subset M_n(\R)$ の括弧も行列の交換子である。
 \end{thm}
 \begin{proof}
-$\GL(n,\R)\subset M_n(\R)\cong\R^{n^2}$ は開集合で、座標 $g_{kl}$ をもつ。$L_g(h)=gh$ は線形写像なので $\dd(L_g)_e(A)=gA$、左不変ベクトル場は $X_A(g)=gA$、すなわち $X_A=\sum_{k,l}(gA)_{kl}\,\dfrac{\partial}{\partial g_{kl}}$。座標関数 $g_{kl}$ に作用させると $X_Bg_{kl}=(gB)_{kl}=\sum_mg_{km}B_{ml}$。これを $X_A$ で微分すると $X_A(g_{km})=(gA)_{km}$ より
+$\GL(n,\R)\subset M_n(\R)\cong\R^{n^2}$ は開集合で、行列成分 $g^k{}_l$（$k$ 行 $l$ 列）を座標にもつ。$L_g(h)=gh$ は線形写像なので $\dd(L_g)_e(A)=gA$、左不変ベクトル場は $X_A(g)=gA$、すなわち $X_A=(gA)^k{}_l\,\dfrac{\partial}{\partial g^k{}_l}$。座標関数 $g^k{}_l$ に作用させると $X_Bg^k{}_l=(gB)^k{}_l=g^k{}_mB^m{}_l$。これを $X_A$ で微分すると $X_A(g^k{}_m)=(gA)^k{}_m$ より
 \[
-X_A(X_Bg_{kl})=\sum_m(gA)_{km}B_{ml}=(gAB)_{kl}.
+X_A(X_Bg^k{}_l)=(gA)^k{}_mB^m{}_l=(gAB)^k{}_l.
 \]
-よって $[X_A,X_B]g_{kl}=(gAB-gBA)_{kl}=X_{AB-BA}\,g_{kl}$。ベクトル場は座標関数への作用で決まるので $[X_A,X_B]=X_{[A,B]}$、$[A,B]=AB-BA$。部分群 $H$ では、左不変ベクトル場 $X^H_A$（$A\in\mathfrak h$）は $\iota:H\to\GL(n,\R)$ のもとで $X_A^{\GL}$ と $\iota$ 関連（$\dd\iota(X_A^H(h))=hA$）なので、命題~\ref{A:prop:bracket}(4) より $\mathfrak h$ の括弧は交換子の制限。
+よって $[X_A,X_B]g^k{}_l=(gAB-gBA)^k{}_l=X_{AB-BA}\,g^k{}_l$。ベクトル場は座標関数への作用で決まるので $[X_A,X_B]=X_{[A,B]}$、$[A,B]=AB-BA$。部分群 $H$ では、左不変ベクトル場 $X^H_A$（$A\in\mathfrak h$）は $\iota:H\to\GL(n,\R)$ のもとで $X_A^{\GL}$ と $\iota$ 関連（$\dd\iota(X_A^H(h))=hA$）なので、命題~\ref{A:prop:bracket}(4) より $\mathfrak h$ の括弧は交換子の制限。
 \end{proof}
 
 \begin{ex}[$\mathfrak{so}(3)$]\label{A:ex:so3}
-$\mathfrak{so}(3)=\{A:A^T=-A\}$ は、$L_i=-\varepsilon_{ijk}$（行列要素 $(L_i)_{jk}=-\varepsilon_{ijk}$）が基底。$L_1=\begin{psmallmatrix}0&0&0\\0&0&-1\\0&1&0\end{psmallmatrix}$、$L_2=\begin{psmallmatrix}0&0&1\\0&0&0\\-1&0&0\end{psmallmatrix}$、$L_3=\begin{psmallmatrix}0&-1&0\\1&0&0\\0&0&0\end{psmallmatrix}$。これは $L_iv=e_i\times v$（外積）で、
+$\mathfrak{so}(3)=\{A:A^T=-A\}$ は、行列要素が $(L_i)^j{}_k=-\varepsilon_{ijk}$ の 3 つの行列 $L_i$ が基底（$\R^3$ の標準内積で上下を同一視し、$\varepsilon_{ijk}$ の添字は番号として使う。和は $\sum$ で明記する）。$L_1=\begin{psmallmatrix}0&0&0\\0&0&-1\\0&1&0\end{psmallmatrix}$、$L_2=\begin{psmallmatrix}0&0&1\\0&0&0\\-1&0&0\end{psmallmatrix}$、$L_3=\begin{psmallmatrix}0&-1&0\\1&0&0\\0&0&0\end{psmallmatrix}$。これは $L_iv=e_i\times v$（外積）で、
 \[
-[L_1,L_2]=L_3,\quad[L_2,L_3]=L_1,\quad[L_3,L_1]=L_2,\qquad\text{すなわち }[L_i,L_j]=\varepsilon_{ijk}L_k
+[L_1,L_2]=L_3,\quad[L_2,L_3]=L_1,\quad[L_3,L_1]=L_2,\qquad\text{すなわち }[L_i,L_j]=\textstyle\sum_k\varepsilon_{ijk}L_k
 \]
 （問~\ref{pr:A_liealg}）。$\mathfrak{so}(3)\cong(\R^3,\times)$。
 \end{ex}
@@ -1296,14 +1311,14 @@ $\R^3$ 上の線形ベクトル場 $\hat A(v)=Av$（成分 $\hat A^k=A^k{}_jv^j$
 \begin{proof}
 ($\Rightarrow$) $D=\mathrm{span}(\partial_1,\dots,\partial_k)$ の座標をとる。$D$ の切断は $X=\sum_{i\le k}a^i\partial_i$ の形で、$X=\sum a^i\partial_i$、$Y=\sum b^i\partial_i$ に対し $[X,Y]=\sum_{i\le k}(a^j\partial_jb^i-b^j\partial_ja^i)\partial_i\in D$。
 
-($\Leftarrow$) $p$ のまわりの座標 $x$ を、$D_p=\mathrm{span}(\partial_1,\dots,\partial_k)|_p$ となるようにとる（線形座標変換）。局所枠 $X_1,\dots,X_k$ をとり、その最初の $k$ 個の成分からなる $k\times k$ 行列 $(X_j^i)_{i,j\le k}$ を考える。$p$ で可逆なので近傍でも可逆である。その逆行列で枠を取り替えると、$D$ の局所枠
+($\Leftarrow$) $p$ のまわりの座標 $x$ を、$D_p=\mathrm{span}(\partial_1,\dots,\partial_k)|_p$ となるようにとる（線形座標変換）。局所枠 $X_1,\dots,X_k$ をとり、その最初の $k$ 個の成分からなる $k\times k$ 行列 $(X_j{}^i)_{i,j\le k}$（$X_j=\sum_iX_j{}^i\partial_i$、$i$ が行）を考える。$p$ で可逆なので近傍でも可逆である。その逆行列で枠を取り替えると、$D$ の局所枠
 \[
-Y_i=\partial_i+\sum_{a>k}c_i^a\,\partial_a\qquad(i=1,\dots,k)
+Y_i=\partial_i+\sum_{a>k}c_i{}^a\,\partial_a\qquad(i=1,\dots,k)
 \]
-が得られる（$c^a_i$ は滑らかな関数）。$D$ は包合的なので $[Y_i,Y_j]\in D$。一方、成分式 \eqref{A:eq:bracket} により、$Y_i,Y_j$ の最初の $k$ 個の成分は定数（$\delta$）なので、$[Y_i,Y_j]$ の最初の $k$ 個の成分は $0$ であり、$[Y_i,Y_j]=\sum_{a>k}(\cdots)\partial_a$。ところが $D$ の元で最初の $k$ 個の成分がすべて $0$ のものは $0$ である（$D$ の元は $\sum_if^iY_i$ の形で、最初の $k$ 成分は $f^i$）。よって $[Y_i,Y_j]=0$。$Y_1,\dots,Y_k$ は一次独立で互いに可換なので、定理~\ref{A:thm:commute} により座標 $y$ で $Y_i=\partial_{y^i}$ となる。$D=\mathrm{span}(Y_i)=\mathrm{span}(\partial_{y^1},\dots,\partial_{y^k})$。
+が得られる（$c_i{}^a$ は滑らかな関数）。$D$ は包合的なので $[Y_i,Y_j]\in D$。一方、成分式 \eqref{A:eq:bracket} により、$Y_i,Y_j$ の最初の $k$ 個の成分は定数（$\delta$）なので、$[Y_i,Y_j]$ の最初の $k$ 個の成分は $0$ であり、$[Y_i,Y_j]=\sum_{a>k}(\cdots)\partial_a$。ところが $D$ の元で最初の $k$ 個の成分がすべて $0$ のものは $0$ である（$D$ の元は $\sum_if^iY_i$ の形で、最初の $k$ 成分は $f^i$）。よって $[Y_i,Y_j]=0$。$Y_1,\dots,Y_k$ は一次独立で互いに可換なので、定理~\ref{A:thm:commute} により座標 $y$ で $Y_i=\partial_{y^i}$ となる。$D=\mathrm{span}(Y_i)=\mathrm{span}(\partial_{y^1},\dots,\partial_{y^k})$。
 \end{proof}
 
-可積分な分布では、座標近傍内の $\{y^{k+1}=c_{k+1},\dots,y^n=c_n\}$（\emph{プラーク}）が $D$ を接空間にもつ部分多様体で、$M$ はそれらで局所的に「葉に分けられている」。
+可積分な分布では、座標近傍内の $\{y^{k+1}=b^{k+1},\dots,y^n=b^n\}$（$b^a$ は定数。\emph{プラーク}）が $D$ を接空間にもつ部分多様体で、$M$ はそれらで局所的に「葉に分けられている」。
 
 \paragraph{双対的な言い方。}$D$ を 1 形式 $\alpha^1,\dots,\alpha^{n-k}$ の共通の核 $D=\bigcap\ker\alpha^a$ と書くと、不変公式（§4 で証明する）$\dd\alpha(X,Y)=X\alpha(Y)-Y\alpha(X)-\alpha([X,Y])$ により、$D$ が包合的であることと「$\dd\alpha^a$ が $\alpha^b$ の生成するイデアルに入る」($\dd\alpha^a=\sum\beta^a{}_b\wedge\alpha^b$) ことは同値になる\tC。
 
@@ -1350,9 +1365,9 @@ $D^2\times\R\ni(x,y,t)$、$r=\sqrt{x^2+y^2}\le1$。1 形式 $\beta=(1-r^2)^2\dd 
 \draw[thick] (-2.6,-0.2)--(-2.6,4.2) node[above]{\small $r=-1$};
 \draw[thick] (2.6,-0.2)--(2.6,4.2) node[above]{\small $r=1$};
 \foreach \c in {-0.4,0.9,2.2}{
-  \draw[blue!60!black,thick,domain=-2.35:2.35,samples=80,variable=\x] plot (\x,{\c+0.5+0.28/(1-(\x/2.6)^2)});
+  \draw[blue!60!black,thick,domain=-2.3:2.3,samples=80,variable=\x] plot (\x,{\c+0.5+0.28/(1-(\x/2.6)^2)});
 }
-\node[blue!60!black,font=\small] at (1.2,3.2) {葉};
+\node[blue!60!black,font=\small] at (1.2,2.45) {葉};
 \end{tikzpicture}
 \caption{Reeb 葉層の断面（$(r,t)$ 平面）。各葉 $t=c+\frac1{1-r^2}$ は $r\to\pm1$ で上へ発散して境界のトーラスに漸近する。}
 \end{figure}
@@ -1385,15 +1400,15 @@ $\R^3$ 上の $D=\mathrm{span}(X,Y)$、$X=\partial_x+y\,\partial_z$、$Y=\partia
 \item 接ベクトルの 3 つの定義（導分／曲線の速度／座標成分 $v'^j=\frac{\partial y^j}{\partial x^i}v^i$）は同値。$T_pM$ は $n$ 次元で、座標ベクトル $\partial_i$ が基底。
 \item $\dd F_p$ は Jacobi 行列で、連鎖律 $\dd(G\circ F)=\dd G\circ\dd F$。$TM$、$T^*M$ は $2n$ 次元多様体。
 \item ベクトル場の流れ（ODE）は最大流 $\theta:\mathcal D\to M$ で、コンパクト台ならば完備。
-\item $[X,Y]f=X(Yf)-Y(Xf)$、成分 $X^i\partial_iY^k-Y^i\partial_iX^k$、Jacobi 恒等式と Leibniz 則。$[X,Y]=\Lie_XY=\frac{\dd}{\dd t}\phi_{-t*}Y$ で、$[X,Y]=0\Leftrightarrow$ 流れが可換 $\Leftrightarrow$ 座標ベクトル場。
-\item Lie 群の左不変ベクトル場の括弧が Lie 代数。$\mathfrak{gl}(n)$ の括弧は交換子、$\mathfrak{so}(3)\cong(\R^3,\times)$。
+\item \mbox{$[X,Y]f=X(Yf)-Y(Xf)$}、成分 \mbox{$X^i\partial_iY^k-Y^i\partial_iX^k$}、Jacobi 恒等式と Leibniz 則。$[X,Y]=\Lie_XY=\frac{\dd}{\dd t}\phi_{-t*}Y$ で、$[X,Y]=0\Leftrightarrow$ 流れが可換 $\Leftrightarrow$ 座標ベクトル場。
+\item Lie 群の左不変ベクトル場の括弧が Lie 代数。$\mathfrak{gl}(n)$ の括弧は交換子、\allowbreak\mbox{$\mathfrak{so}(3)\cong(\R^3,\times)$}。
 \item \textbf{Frobenius}：分布は包合的であることと可積分（座標 $\partial_1,\dots,\partial_k$ の張る分布）であることが同値。非可積分の例が接触構造 $\ker(\dd z-y\,\dd x)$。
 \end{itemize}
 \end{keybox}
 
 \subsection*{§3 のつまずきやすい点}
 \begin{enumerate}
-\item \textbf{成分は反変、座標ベクトルは共変。}$v'^j=\frac{\partial y^j}{\partial x^i}v^i$ と $\partial_{x^i}=\frac{\partial y^j}{\partial x^i}\partial_{y^j}$ では、行列が同じ $\frac{\partial y}{\partial x}$ で、$v=v^i\partial_{x^i}=v'^j\partial_{y^j}$ が整合する。
+\item \textbf{成分は反変、座標ベクトルは共変。}\mbox{$v'^j=\frac{\partial y^j}{\partial x^i}v^i$} と \mbox{$\partial_{x^i}=\frac{\partial y^j}{\partial x^i}\partial_{y^j}$} では、行列が同じ $\frac{\partial y}{\partial x}$ で、$v=v^i\partial_{x^i}=v'^j\partial_{y^j}$ が整合する。
 \item \textbf{座標ベクトル場 $\partial_{x^1}$ は他の座標 $x^2,\dots$ にも依存する。}$\partial_r$ は、座標 $(r,\theta)$ で決まるので、$\varphi=\theta+r$ として座標 $(r,\varphi)$ をとると別のベクトル場になる（$\partial_r|_{(r,\varphi)}=\partial_r|_{(r,\theta)}-\partial_\theta$）。座標ベクトル場は「座標系全体」で決まる。
 \item \textbf{Lie 括弧は 2 階の項が消えるので 1 階の微分作用素。}成分式の符号を暗記するより、$[X,Y]f=X(Yf)-Y(Xf)$ に戻って計算するのが安全。
 \item \textbf{左不変と右不変、基本ベクトル場の符号。}Lie 代数を左不変ベクトル場で定義すると $[A,B]=AB-BA$。作用が生成するベクトル場は反準同型になる。
@@ -1428,7 +1443,7 @@ $X=X^i\partial_i$ を $\R^n$ 上の滑らかなベクトル場で、線形増大
 \end{probl}
 
 \begin{probl}{基本}{A_liealg}
-(a) 例~\ref{A:ex:so3} の行列 $L_i$ について $[L_1,L_2]=L_3$、$[L_2,L_3]=L_1$、$[L_3,L_1]=L_2$ を計算で確かめよ。(b) $L_iv=e_i\times v$ を示し、$\omega\times$ に対応する行列 $\hat\omega$ について $[\hat\omega,\hat\eta]=\widehat{\omega\times\eta}$ を（ベクトル積の Jacobi 恒等式から）導け。(c) $\mathfrak{su}(2)=\{A\in M_2(\C):A^*=-A,\tr A=0\}$ で $e_k=-\frac i2\sigma_k$（$\sigma_k$ は Pauli 行列）について $[e_i,e_j]=\varepsilon_{ijk}e_k$。したがって $\mathfrak{su}(2)\cong\mathfrak{so}(3)$。(d) $\R^3$ 上の線形ベクトル場 $\hat L_1=y\partial_z-z\partial_y$ などについて $[\hat L_1,\hat L_2]=-\hat L_3$ を成分式で確かめ、符号の違いの理由を述べよ。
+(a) 例~\ref{A:ex:so3} の行列 $L_i$ について $[L_1,L_2]=L_3$、$[L_2,L_3]=L_1$、$[L_3,L_1]=L_2$ を計算で確かめよ。(b) $L_iv=e_i\times v$ を示し、$\omega\times$ に対応する行列 $\hat\omega$ について $[\hat\omega,\hat\eta]=\widehat{\omega\times\eta}$ を（ベクトル積の Jacobi 恒等式から）導け。(c) $\mathfrak{su}(2)=\{A\in M_2(\C):A^*=-A,\tr\,A=0\}$ で $e_k=-\frac i2\sigma_k$（$\sigma_k$ は Pauli 行列）について $[e_i,e_j]=\sum_k\varepsilon_{ijk}e_k$。したがって $\mathfrak{su}(2)\cong\mathfrak{so}(3)$。(d) $\R^3$ 上の線形ベクトル場 $\hat L_1=y\partial_z-z\partial_y$ などについて $[\hat L_1,\hat L_2]=-\hat L_3$ を成分式で確かめ、符号の違いの理由を述べよ。
 \end{probl}
 
 

@@ -16,8 +16,8 @@ $N=k+l$ とし、$\sigma(j)=l+j$（$1\le j\le k$）、$\sigma(k+i)=i$（$1\le i\
 \end{soll}
 
 \begin{soll}{A_pair1}
-$\langle e_i,e_j\rangle=0$、$\langle e^i,e^j\rangle=0$、$\langle e_i,e^j\rangle=\frac12e^j(e_i)=\frac12\delta_{ij}$ より Gram 行列は $\dfrac12\begin{pmatrix}0&I_2\\I_2&0\end{pmatrix}$。$x=v+\xi$、$v=e_1-2e_2$、$\xi=3e^1+e^2$ で $\langle x,x\rangle=\xi(v)=3\cdot1+1\cdot(-2)=1$。
-$u_i^\pm=e_i\pm e^i$：$\langle u_i^+,u_j^+\rangle=\frac12(\delta_{ij}+\delta_{ij})=\delta_{ij}$、$\langle u_i^-,u_j^-\rangle=\frac12(-\delta_{ij}-\delta_{ij})=-\delta_{ij}$、$\langle u_i^+,u_j^-\rangle=\frac12(e^i(e_j)\cdot1+(-e^j)(e_i))=\frac12(\delta_{ij}-\delta_{ij})=0$。したがって $(u_1^+,u_2^+,u_1^-,u_2^-)$ は直交基底で、Gram 行列は $\operatorname{diag}(1,1,-1,-1)$、符号は $(2,2)$。
+$\langle e_i,e_j\rangle=0$、$\langle e^i,e^j\rangle=0$、$\langle e_i,e^j\rangle=\frac12e^j(e_i)=\frac12\delta^j{}_i$ より Gram 行列は $\dfrac12\begin{pmatrix}0&I_2\\I_2&0\end{pmatrix}$。$x=v+\xi$、$v=e_1-2e_2$、$\xi=3e^1+e^2$ で $\langle x,x\rangle=\xi(v)=3\cdot1+1\cdot(-2)=1$。
+$u_i^\pm=e_i\pm\delta_{ik}e^k$（$k$ について和）：$e^k(e_j)=\delta^k{}_j$ より $\langle u_i^+,u_j^+\rangle=\frac12(\delta_{ik}\delta^k{}_j+\delta_{jk}\delta^k{}_i)=\delta_{ij}$、$\langle u_i^-,u_j^-\rangle=\frac12(-\delta_{ik}\delta^k{}_j-\delta_{jk}\delta^k{}_i)=-\delta_{ij}$、$\langle u_i^+,u_j^-\rangle=\frac12\bigl(\delta_{ik}e^k(e_j)-\delta_{jk}e^k(e_i)\bigr)=\frac12(\delta_{ij}-\delta_{ji})=0$。したがって $(u_1^+,u_2^+,u_1^-,u_2^-)$ は直交基底で、Gram 行列は $\operatorname{diag}(1,1,-1,-1)$、符号は $(2,2)$。
 \end{soll}
 
 \begin{soll}{A_pairB}
@@ -36,9 +36,9 @@ $p:L\to V$、$v+\xi\mapsto v$ の核は $L\cap V^*=0$ なので $p$ は単射、
 \begin{soll}{A_J}
 (a) $V^{1,0}=\{v-iJv\}$ なので、$e_1-ie_2$、$e_3-ie_4$ が基底（$v=e_1,e_3$ に対応。$v=e_2$ では $e_2-iJe_2=e_2+ie_1=i(e_1-ie_2)$ で従属）。
 (b) $\dd z^1\wedge\dd z^2=(e^1+ie^2)\wedge(e^3+ie^4)=e^{13}+ie^{14}+ie^{23}-e^{24}$（$i\cdot i=-1$）。$(u,v)=(e_1,e_3)$：$\omega(e_1,e_3)=1$（$e^{13}$ の係数）。$Je_1=e_2$ より $\omega(Je_1,e_3)=\omega(e_2,e_3)=i$（展開式で $(e_2,e_3)$ に $0$ でない値をもつのは $ie^{23}$ の項だけで、$e^{23}(e_2,e_3)=1$）。したがって $\omega(Je_1,e_3)=i=i\,\omega(e_1,e_3)$。
-(c) $\mathcal J(v+\xi)=-Jv+\xi\circ J$。$x=v+\xi$、$y=w+\eta$：
-$\langle\mathcal Jx,\mathcal Jy\rangle=\frac12\bigl((\xi\circ J)(-Jw)+(\eta\circ J)(-Jv)\bigr)=\frac12\bigl(-\xi(J^2w)-\eta(J^2v)\bigr)=\frac12(\xi(w)+\eta(v))=\langle x,y\rangle$。また $\mathcal J^2(v+\xi)=J^2v+\xi\circ J^2=-(v+\xi)$。
-$g=\sum(e^i)^2$、$h=g-i\omega_g$（$\omega_g(u,v)=g(Ju,v)$）：$h(e_1,e_2)=g(e_1,e_2)-ig(Je_1,e_2)=0-ig(e_2,e_2)=-i$。$h(Je_1,e_2)=h(e_2,e_2)=1-ig(Je_2,e_2)=1-ig(-e_1,e_2)=1$。一方 $ih(e_1,e_2)=i(-i)=1$。一致する。
+(c) $\mathcal J_J(v+\xi)=-Jv+\xi\circ J$。$x=v+\xi$、$y=w+\eta$：
+$\langle\mathcal J_Jx,\mathcal J_Jy\rangle=\frac12\bigl((\xi\circ J)(-Jw)+(\eta\circ J)(-Jv)\bigr)=\frac12\bigl(-\xi(J^2w)-\eta(J^2v)\bigr)=\frac12(\xi(w)+\eta(v))=\langle x,y\rangle$。また $\mathcal J_J^2(v+\xi)=J^2v+\xi\circ J^2=-(v+\xi)$。
+$g=\delta_{ij}\,e^i\otimes e^j$、$h=g-i\omega_g$（$\omega_g(u,v)=g(Ju,v)$）：$h(e_1,e_2)=g(e_1,e_2)-ig(Je_1,e_2)=0-ig(e_2,e_2)=-i$。$h(Je_1,e_2)=h(e_2,e_2)=1-ig(Je_2,e_2)=1-ig(-e_1,e_2)=1$。一方 $ih(e_1,e_2)=i(-i)=1$。一致する。
 \end{soll}
 
 \begin{soll}{A_ift}
@@ -56,13 +56,13 @@ $(0,0)$：$F_x=F_y=0$ で定理の仮定（$F_y\ne0$、あるいは $F_x\ne0$）
 
 
 \begin{soll}{A_stereo}
-(a) $x=\frac{(2u,|u|^2-1)}{|u|^2+1}$ とおくと $|x|^2=\frac{4|u|^2+(|u|^2-1)^2}{(|u|^2+1)^2}=\frac{(|u|^2+1)^2}{(|u|^2+1)^2}=1$、$1-x_{n+1}=\frac{2}{|u|^2+1}$ で $\sigma_N(x)=\frac{2u}{|u|^2+1}\cdot\frac{|u|^2+1}2=u$。$\sigma_N$ は単射（$x\ne N$ から $u$ が決まり、上の式が逆）なので $\sigma_N^{-1}$ は上の式。
-(b) $\iota(u)=u/|u|^2$ の成分 $\iota^i=u_i/|u|^2$、$\partial_j\iota^i=\frac{\delta_{ij}}{|u|^2}-\frac{2u_iu_j}{|u|^4}$。よって $D\iota=\frac1{|u|^2}(I-2\hat u\hat u^T)$。$I-2\hat u\hat u^T$ は $\hat u$ 方向を反転する鏡映（固有値 $-1$ が 1 個、$+1$ が $n-1$ 個）で $\det=-1$。$\det D\iota=|u|^{-2n}\cdot(-1)=-|u|^{-2n}$。
+(a) $x=\frac{(2u,|u|^2-1)}{|u|^2+1}$ とおくと $|x|^2=\frac{4|u|^2+(|u|^2-1)^2}{(|u|^2+1)^2}=\frac{(|u|^2+1)^2}{(|u|^2+1)^2}=1$、$1-x^{n+1}=\frac{2}{|u|^2+1}$ で $\sigma_N(x)=\frac{2u}{|u|^2+1}\cdot\frac{|u|^2+1}2=u$。$\sigma_N$ は単射（$x\ne N$ から $u$ が決まり、上の式が逆）なので $\sigma_N^{-1}$ は上の式。
+(b) $\iota(u)=u/|u|^2$ の成分 $\iota^i=u^i/|u|^2$、$\partial_j\iota^i=\frac{\delta^i{}_j}{|u|^2}-\frac{2u^iu_j}{|u|^4}$（$u_j:=\delta_{jk}u^k$、$\R^n$ の標準内積で下げた成分）。よって $D\iota=\frac1{|u|^2}(I-2\hat u\hat u^T)$。$I-2\hat u\hat u^T$ は $\hat u$ 方向を反転する鏡映（固有値 $-1$ が 1 個、$+1$ が $n-1$ 個）で $\det=-1$。$\det D\iota=|u|^{-2n}\cdot(-1)=-|u|^{-2n}$。
 (c) $\sigma_N$ と $\sigma_N$ の間の座標変換は恒等写像（行列式 $1$）、$r\circ\sigma_S$ と $r\circ\sigma_S$ の間も恒等。$(r\sigma_S)\circ\sigma_N^{-1}=r\circ\iota$ の行列式は $\det r\cdot\det D\iota=(-1)(-|u|^{-2n})=|u|^{-2n}>0$。逆向きの座標変換はこの逆写像で、行列式は逆数で正。したがって $\{\sigma_N,r\sigma_S\}$ は向きづけられたアトラス。
 \end{soll}
 
 \begin{soll}{A_cp1}
-$\CP^1$ の座標 $z=z_1/z_0$（$U_0$）と $w=z_0/z_1$（$U_1$）、$S^2$ の座標 $\sigma_N$、$\sigma_S$ を使う。$f:S^2\to\CP^1$：$S^2\setminus\{N\}$ で $x\mapsto[1:\sigma_N(x)]$（$\sigma_N(x)=u_1+iu_2\in\C$）、$f(N)=[0:1]$。
+$\CP^1$ の座標 $z=z_1/z_0$（$U_0$）と $w=z_0/z_1$（$U_1$）、$S^2$ の座標 $\sigma_N$、$\sigma_S$ を使う。$f:S^2\to\CP^1$：$S^2\setminus\{N\}$ で $x\mapsto[1:\sigma_N(x)]$（$\sigma_N(x)=u^1+iu^2\in\C$）、$f(N)=[0:1]$。
 $S^2\setminus\{N\}$ では $\sigma_N$ と $z$ に関して $f$ は恒等写像 $u\mapsto u$ で、全単射かつ滑らか（微分同相 $S^2\setminus\{N\}\to U_0$）。$N$ の近傍 $S^2\setminus\{S\}$ では、$\sigma_S(x)=\sigma_N(x)/|\sigma_N(x)|^2$（例~\ref{A:ex:Sn}）を複素数で書くと、$z=\sigma_N(x)$ のとき $\overline{\sigma_S(x)}=\bar z/|z|^2=1/z$。よって $x\neq N,S$ で $w(f(x))=1/z=\overline{\sigma_S(x)}$。$x=N$ では $\sigma_S(N)=0$、$w(f(N))=0$ で同じ式が成り立つ。すなわち、座標 $\sigma_S$（$S^2\setminus\{S\}$）と $w$（$U_1$）に関して $f$ は複素共役 $u\mapsto\bar u$（$\R^2$ の鏡映）で、全単射かつ滑らか。$f(S^2\setminus\{S\})=U_1$ もわかる。両側の逆写像も同じ局所表示で滑らか。ゆえに $f$ は微分同相。
 \end{soll}
 
@@ -153,9 +153,12 @@ $\gamma:(\omega_-,\omega_+)\to\R^n$ を最大積分曲線とし、$\omega_+<\inf
 \end{soll}
 
 \begin{soll}{A_liealg}
-(a) $L_1L_2$：$L_1$ の第 2 行は $(0,0,-1)$、第 3 行は $(0,1,0)$ で、$L_2$ の行は $(0,0,1),(0,0,0),(-1,0,0)$。$L_1L_2$ の第 2 行は $-1\times(L_2$ の第 3 行$)=(1,0,0)$、第 3 行は $1\times(L_2$ の第 2 行$)=0$、第 1 行は $0$。$L_1L_2=\begin{psmallmatrix}0&0&0\\1&0&0\\0&0&0\end{psmallmatrix}$。$L_2L_1$：$L_2$ の第 1 行 $(0,0,1)$ に $L_1$ をかけると $L_1$ の第 3 行 $(0,1,0)$、第 3 行 $(-1,0,0)$ に $L_1$ をかけると $-(L_1$ の第 1 行$)=0$。$L_2L_1=\begin{psmallmatrix}0&1&0\\0&0&0\\0&0&0\end{psmallmatrix}$。$[L_1,L_2]=\begin{psmallmatrix}0&-1&0\\1&0&0\\0&0&0\end{psmallmatrix}=L_3$。座標の巡回置換 $(1,2,3)\to(2,3,1)$ は $L_i$ を $L_{i+1}$ に移すので残りも成立。
-(b) $e_1\times v=(0\cdot v_3-0\cdot v_2,\,0\cdot v_1-1\cdot v_3,\,1\cdot v_2-0\cdot v_1)=(0,-v_3,v_2)=L_1v$。同様に $L_2v=e_2\times v$、$L_3v=e_3\times v$。$\hat\omega v=\omega\times v$ とすると、$[\hat\omega,\hat\eta]v=\omega\times(\eta\times v)-\eta\times(\omega\times v)$。外積の Jacobi 恒等式 $a\times(b\times c)+b\times(c\times a)+c\times(a\times b)=0$ を $a=\omega,b=\eta,c=v$ に適用して $\omega\times(\eta\times v)-\eta\times(\omega\times v)=\omega\times(\eta\times v)+\eta\times(v\times\omega)=-v\times(\omega\times\eta)=(\omega\times\eta)\times v$。よって $[\hat\omega,\hat\eta]=\widehat{\omega\times\eta}$、$[L_i,L_j]=\widehat{e_i\times e_j}=\varepsilon_{ijk}L_k$。
-(c) Pauli 行列の関係 $\sigma_i\sigma_j=\delta_{ij}+i\varepsilon_{ijk}\sigma_k$ から $[\sigma_i,\sigma_j]=2i\varepsilon_{ijk}\sigma_k$。$e_k=-\frac i2\sigma_k$ は反 Hermite でトレース $0$、$\mathfrak{su}(2)$ の基底。$[e_i,e_j]=(-\frac i2)^2[\sigma_i,\sigma_j]=-\frac14\cdot2i\varepsilon_{ijk}\sigma_k=-\frac i2\varepsilon_{ijk}\sigma_k=\varepsilon_{ijk}e_k$。$e_k\mapsto L_k$ は括弧を保つ線形同型 $\mathfrak{su}(2)\cong\mathfrak{so}(3)$。
+(a) $L_1L_2$：$L_1$ の第 2 行は $(0,0,-1)$、第 3 行は $(0,1,0)$ で、$L_2$ の行は $(0,0,1),(0,0,0),(-1,0,0)$。$L_1L_2$ の第 2 行は $-1\times(L_2$ の第 3 行$)=(1,0,0)$、第 3 行は $1\times(L_2$ の第 2 行$)=0$、第 1 行は $0$。$L_2L_1$：$L_2$ の第 1 行 $(0,0,1)$ に $L_1$ をかけると $L_1$ の第 3 行 $(0,1,0)$、第 3 行 $(-1,0,0)$ に $L_1$ をかけると $-(L_1$ の第 1 行$)=0$。まとめると
+\[
+L_1L_2=\begin{pmatrix}0&0&0\\1&0&0\\0&0&0\end{pmatrix},\qquad L_2L_1=\begin{pmatrix}0&1&0\\0&0&0\\0&0&0\end{pmatrix},\qquad [L_1,L_2]=\begin{pmatrix}0&-1&0\\1&0&0\\0&0&0\end{pmatrix}=L_3 .
+\]座標の巡回置換 $(1,2,3)\to(2,3,1)$ は $L_i$ を $L_{i+1}$ に移すので残りも成立。
+(b) $v=(v^1,v^2,v^3)$ として $e_1\times v=(0\cdot v^3-0\cdot v^2,\,0\cdot v^1-1\cdot v^3,\,1\cdot v^2-0\cdot v^1)=(0,-v^3,v^2)=L_1v$。同様に $L_2v=e_2\times v$、$L_3v=e_3\times v$。$\hat\omega v=\omega\times v$ とすると、$[\hat\omega,\hat\eta]v=\omega\times(\eta\times v)-\eta\times(\omega\times v)$。外積の Jacobi 恒等式 $a\times(b\times c)+b\times(c\times a)+c\times(a\times b)=0$ を $a=\omega,b=\eta,c=v$ に適用して $\omega\times(\eta\times v)-\eta\times(\omega\times v)=\omega\times(\eta\times v)+\eta\times(v\times\omega)=-v\times(\omega\times\eta)=(\omega\times\eta)\times v$。よって $[\hat\omega,\hat\eta]=\widehat{\omega\times\eta}$、$[L_i,L_j]=\widehat{e_i\times e_j}=\sum_k\varepsilon_{ijk}L_k$。
+(c) （添字は番号として使い、和は $\sum_k$ で明記する。）Pauli 行列の関係 $\sigma_i\sigma_j=\delta_{ij}I+i\sum_k\varepsilon_{ijk}\sigma_k$ から $[\sigma_i,\sigma_j]=2i\sum_k\varepsilon_{ijk}\sigma_k$。$e_k=-\frac i2\sigma_k$ は反 Hermite でトレース $0$、$\mathfrak{su}(2)$ の基底。$[e_i,e_j]=(-\frac i2)^2[\sigma_i,\sigma_j]=-\frac14\cdot2i\sum_k\varepsilon_{ijk}\sigma_k=-\frac i2\sum_k\varepsilon_{ijk}\sigma_k=\sum_k\varepsilon_{ijk}e_k$。$e_k\mapsto L_k$ は括弧を保つ線形同型 $\mathfrak{su}(2)\cong\mathfrak{so}(3)$。
 (d) $\hat L_1=(0,-z,y)$、$\hat L_2=(z,0,-x)$（成分は $(x,y,z)$ の順）。$[\hat L_1,\hat L_2]^k=\hat L_1^i\partial_i\hat L_2^k-\hat L_2^i\partial_i\hat L_1^k$：$k=x$：$\hat L_1^z\partial_z(z)=y$、$\hat L_1^x=0$ なので第 2 項 $0$。計 $y$。$k=y$：$\hat L_2^y=0$ なので第 1 項は $0$。第 2 項は $\hat L_2^i\partial_i\hat L_1^y=\hat L_2^z\,\partial_z(-z)=(-x)(-1)=x$ で、符号つきで $-x$。$k=z$：$\hat L_1^i\partial_i(-x)=0$（$\hat L_1^x=0$）、$-\hat L_2^i\partial_iy=-\hat L_2^y=0$。よって $[\hat L_1,\hat L_2]=(y,-x,0)=-\hat L_3$（$\hat L_3=(-y,x,0)$）。符号が行列の $[L_1,L_2]=L_3$ と逆なのは、線形ベクトル場の対応 $A\mapsto\hat A$ が反準同型 $[\hat A,\hat B]=-\widehat{[A,B]}$ だから（注意の計算）。
 \end{soll}
 
@@ -163,7 +166,7 @@ $\gamma:(\omega_-,\omega_+)\to\R^n$ を最大積分曲線とし、$\omega_+<\inf
 \begin{soll}{A_frob}
 (a) $X=\partial_x+y\partial_z$、$Y=\partial_y+x\partial_z$。$[X,Y]^k=X^i\partial_iY^k-Y^i\partial_iX^k$：$k=z$：$X^x\partial_x(x)=1$、$-Y^y\partial_y(y)=-1$、計 $0$。他の成分 $0$。$[X,Y]=0\in D$ なので $D$ は包合的（可積分）。$\dd(z-xy)(X)=y-y=0$、$\dd(z-xy)(Y)=x-x=0$ より、葉は $z-xy=$ 定数。座標 $y^1=x$、$y^2=y$、$y^3=z-xy$ をとると、$z=y^3+y^1y^2$ だから $\partial_{y^1}=\partial_x+y\partial_z=X$、$\partial_{y^2}=\partial_y+x\partial_z=Y$（$y^3$ を固定した微分）。$D=\mathrm{span}(\partial_{y^1},\partial_{y^2})$。
 (b) $X=\partial_x+z\partial_y$、$Y=\partial_z$：$[X,Y]^k=X^i\partial_iY^k-Y^i\partial_iX^k=-\partial_zX^k$。$k=y$ で $-1$。$[X,Y]=-\partial_y$。$D'$ の元は $aX+bY=(a,az,b)$ の形で、第 1 成分 $0$ なら $a=0$、さらに $\partial_y=(0,1,0)$ は $(0,0,b)$ の形でない。$\partial_y\notin D'$。包合的でない。
-(c) $D''=\{v:p\cdot v=0\}$。$R_1=(0,-z,y)$、$R_2=(z,0,-x)$、$R_3=(-y,x,0)$（$R_i=e_i\times p$）は $p$ に直交する。$z\ne0$ で $R_1\times R_2=(zx,yz,z^2)=z\,p\ne0$ なので $R_1,R_2$ は一次独立で $D''$ の局所枠（$\dim D''=2$）。$[R_1,R_2]=-R_3$（問~\ref{pr:A_liealg}(d)）、かつ $xR_1+yR_2+zR_3=0$ より $R_3=-(xR_1+yR_2)/z$。よって $[R_1,R_2]=(xR_1+yR_2)/z\in D''$。$x\ne0$、$y\ne0$ の領域でも同様（添え字を巡回）で、これらが $\R^3\setminus0$ を覆う。$D''$ は包合的。$f=|p|^2$ について $\dd f=2(x\dd x+y\dd y+z\dd z)$ で $D''=\ker\dd f$ なので、葉は球面 $|p|=c$。
+(c) $D''=\{v:p\cdot v=0\}$。$R_1=(0,-z,y)$、$R_2=(z,0,-x)$、$R_3=(-y,x,0)$（$R_i=e_i\times p$）は $p$ に直交する。$z\ne0$ で $R_1\times R_2=(zx,yz,z^2)=z\,p\ne0$ なので $R_1,R_2$ は一次独立で $D''$ の局所枠（$\dim D''=2$）。$[R_1,R_2]=-R_3$（問~\ref{pr:A_liealg}(d)）、かつ $xR_1+yR_2+zR_3=0$ より $R_3=-(xR_1+yR_2)/z$。よって $[R_1,R_2]=(xR_1+yR_2)/z\in D''$。$x\ne0$、$y\ne0$ の領域でも同様（添え字を巡回）で、これらが $\R^3\setminus\{0\}$ を覆う。$D''$ は包合的。$f=|p|^2$ について $\dd f=2(x\dd x+y\dd y+z\dd z)$ で $D''=\ker\dd f$ なので、葉は球面 $|p|=c$。
 \end{soll}
 
 \begin{soll}{A_kron}

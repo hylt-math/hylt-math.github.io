@@ -40,7 +40,7 @@
 \textbf{答：}正（§8.2、§8.5）。$A$ に余分な項 $g^{-1}\dd g$ が付くので、枠をうまくとれば $A$ を点の近傍で消せることがある（平坦な場合）。しかし $F$ は $g^{-1}Fg$ と共役でしか変わらないので、$F\ne0$ ならどの枠をとっても、その点の近傍で $A$ を恒等的に $0$ にすることはできない。
 
 \item \textbf{[短答]} $S^1$ 上の直線束の接続 $\nabla=\dd+i\lambda\,\dd\theta$（$\lambda\in\R$）の、$\theta=0\to2\pi$ に沿ったホロノミーを求めよ。ゲージ変換 $g=e^{ik\theta}$（$k\in\Z$）で変わるか。\\
-\textbf{答：}$e^{-2\pi i\lambda}$。平行な切断は $\sigma'=-i\lambda\sigma$ を解いて $\sigma=e^{-i\lambda\theta}$。ゲージ変換 $A'=A+ik\,\dd\theta$ は $\lambda\mapsto\lambda+k$ で、$e^{-2\pi i(\lambda+k)}=e^{-2\pi i\lambda}$ と変わらない（§8.4、§8.10）。
+\textbf{答：}$e^{-2\pi i\lambda}$。平行な切断は $\dd\sigma/\dd\theta=-i\lambda\sigma$ を解いて $\sigma=e^{-i\lambda\theta}$。ゲージ変換 $A'=A+ik\,\dd\theta$ は $\lambda\mapsto\lambda+k$ で、$e^{-2\pi i(\lambda+k)}=e^{-2\pi i\lambda}$ と変わらない（§8.4、§8.10）。
 
 \item \textbf{[正誤]} 曲率が $0$ の接続（平坦接続）のホロノミーは、常に自明である。\\
 \textbf{答：}誤。平坦ならホロノミーは $\pi_1$ の表現を与えるが、$\pi_1$ が非自明ならその表現は自明とは限らない。$\R^2\setminus\{0\}$ 上の $\nabla=\dd+i\lambda\,\dd\theta$ は平坦だが、$\lambda\notin\Z$ ならホロノミー $e^{-2\pi i\lambda}\ne1$（Aharonov--Bohm 型）。単連結なら自明（§8.10）。
@@ -55,7 +55,7 @@
 %--------------------------------------------------
 \clearpage
 \section*{次巻以降への橋渡しと統合論文との対応}\addcontentsline{toc}{section}{次巻以降への橋渡しと統合論文との対応}
-この節は、第 1 巻の内容が第 2〜18 巻と統合論文（「一般化複素幾何の三種の神器へのアプローチ」、2026-11-22、以下\emph{統合論文}）のどこで効くかを整理する。巻の構成はシラバスによる。\textbf{対応は読み方の目安であり、「第 1 巻だけで統合論文の主張が再現できる」という意味ではない。}統合論文の引用は、節番号と、本文・状態表（統合論文 §1.3）で実在を確認した定理・命題・定義の番号だけに限り、それ以外の番号は書かない。
+この節は、第1巻の内容が第2〜18巻と統合論文（「一般化複素幾何の三種の神器へのアプローチ」、2026-11-22、以下\emph{統合論文}）のどこで効くかを整理する。巻の構成はシラバスによる。\textbf{対応は読み方の目安であり、「第1巻だけで統合論文の主張が再現できる」という意味ではない。}統合論文の引用は、節番号と、本文・状態表（統合論文 §1.3）で実在を確認した定理・命題・定義の番号だけに限り、それ以外の番号は書かない。
 
 \subsection*{巻ごとの対応}
 \begingroup\small
@@ -65,23 +65,23 @@
 後の巻 & この巻の効く内容 & 備考 \\
 \midrule
 \endhead
-\textbf{第 2 巻}\newline 複素多様体・Dolbeault & §1.5 複素構造 $J$、$V\otimes\C=V^{1,0}\oplus V^{0,1}$、Hermite 計量（第 1 成分で線形）。§4 の外微分が $\dd=\partial+\bar\partial$ と分解する枠組み。§3.9 Frobenius（$T^{0,1}$ の包合性は積分可能性の条件）。§7 の Hermite 計量、§8.8 の Hermite 接続。 & Newlander--Nirenberg は第 2 巻で主張する。複素版の Hodge 星は §6.2 の $\star$ を $\C$ 係数に拡張する。\emph{Chern 接続}（正則 Hermite 束の標準接続）と\emph{Kähler 計量}の定義は本巻では扱わず、第 2 巻で導入する（§8.8 の Hermite 接続と §9 の Hopf 束の例が準備になる）。 \\
-\textbf{第 3 巻}\newline 層・コホモロジー & §5.7 の {\Cech}--de Rham の予告。§7.4 の貼り合わせ関数（{\Cech} 1 コサイクル）と直線束の群 $\Pic$。§8.10 の平坦接続と局所系。§5.3 Mayer--Vietoris（{\Cech} 複体の最小の例）。 & 統合論文の超コホモロジー $\mathbb H^k$、一般化 Dolbeault コホモロジー（統合論文 定義 5）の土台。 \\
-\textbf{第 4 巻}\newline Riemann 面 & §10 の $\int c_1$ と次数、Gauss--Bonnet（$\int c_1(TS^2)=2$）、$\mathcal O(k)$。§5.4 写像度。§2.9 曲面の分類。 & Riemann--Roch（曲線版）の次数の符号は §10.3 で固定した規約を使う。 \\
-\textbf{第 5 巻}\newline Hodge 理論 & §6 全体（$\star$、$\delta$、$\Delta$、調和形式、Hodge 分解）。§5.5 Poincaré 双対。 & 双対性の型の主張（統合論文 定理 18 は一般化 Dolbeault の双対性）の古典版。 \\
-\textbf{第 6 巻}\newline 特性類・HRR & §10 全体（Chern 形式、超越公式、Whitney 和、$\ch$）。§9 主束、§7.7 の分類の予告。 & 統合論文 §2.1 の HRR、統合論文 定理 22（全 Euler 標数が $c_1(E)$ によらない）は HRR による。 \\
-\textbf{第 7 巻}\newline 楕円作用素 & §4 の de Rham 複体、§6 の $\Delta=\dd\delta+\delta\dd$、§8 の共変微分。微分作用素としての $\dd$、$\delta$。 & 統合論文 §2.2：一般化 Dolbeault 複体は楕円型複体（Gualtieri\tQ）。 \\
-\textbf{第 8 巻}\newline Atiyah--Singer & §10 の $\ch$、$\Td$ の予告と Gauss--Bonnet（$\chi$ の局所公式）。§6 の Hodge 理論。 & 指数公式の被積分形式は Chern--Weil 形式。 \\
-\textbf{第 9 巻}\newline 族の指数 & §7 の束、§8.10 の平坦接続（Gauss--Manin のモデル）、§9 主束。 & 統合論文 §8 の Gauss--Manin 束、平坦なシンプレクティックファイバー束。 \\
-\textbf{第 10 巻}\newline APS・b 計算 & §2.7 境界つき多様体、§4.7 Stokes（境界項）、§6 の Laplacian。 & 統合論文 §10 の指数予想（重み付き b 計算）は予想にとどまる。 \\
-\textbf{第 11 巻}\newline Lie 亜代数（Lie algebroid）・Poisson & §3.6 Lie 括弧、§3.8 Lie 代数、§3.9--§3.10 Frobenius と葉層（シンプレクティック葉の分解）、§4.9 シンプレクティック形式と Hamilton ベクトル場。§4.3--§4.4 の $\dd$、$\Lie$、$\iota$。 & 統合論文の記号表の括弧 $[a,b]_\sigma=\Lie_{\sigma^\sharp a}b-\Lie_{\sigma^\sharp b}a-\dd\sigma(a,b)$ は $\Lie$、$\dd$ だけで書かれている。 \\
-\textbf{第 12 巻}\newline 一般化複素幾何 & §1.4 $V\oplus V^*$ の内積 $\langle v+\xi,w+\eta\rangle=\frac12(\xi(w)+\eta(v))$、符号 $(n,n)$、最大イソトロピック部分空間、$B$ 変換 $e^B$（問~\ref{pr:A_pairB}、\ref{pr:A_pairmax}）。§1.5 $J$ と $V\otimes\C$。§3.6、§4.4 の $\Lie$、$\iota_X$、$\dd$：Courant 括弧 $[X+\xi,Y+\eta]=[X,Y]+\Lie_X\eta-\iota_Y\dd\xi$。§3.9 の Dirac 構造（包合性）。 & 統合論文 §2.2（一般化複素構造の定義、$\beta$ 変換）の記号表と同じ記号・係数 $\frac12$ を使った。 \\
-\textbf{第 13 巻}\newline 一般化正則束・Poisson 加群 & §8.1--§8.5 の接続・曲率・平坦性、§8.10 平坦接続と局所系、§8.4 の ODE と平行移動。 & 統合論文 定義 4、命題 6（一般化正則束 $=$ Poisson 加群）の「平坦 $A$-接続」は §8 の平坦接続の Lie 亜群版。 \\
-\textbf{第 14 巻}\newline 統合論文への案内 & 下表の対応。 & \\
-\textbf{第 15 巻}\newline Yang--Mills & §8（$\nabla=\dd+A$、$F$、Bianchi、ゲージ変換）、§9（主束、$\omega$、ゲージ群）、§10（$\tr F\wedge F$、Chern--Simons）、§6.6（$\Lambda^\pm$、(反)自己双対）、§6.2 の $\star$。 & $\int\tr(F\wedge F)$ は Chern 数（位相不変量）で、(反)自己双対方程式の下限を与える（§6.6、§10 の予告）。 \\
-\textbf{第 16 巻}\newline Donaldson & §10 の $c_2=\frac1{8\pi^2}\tr(F\wedge F)$（$\SU(2)$）、§9.5 ゲージ群、§6.6 の自己双対分解、§5 の Poincaré 双対と交叉形式。 & \\
-\textbf{第 17 巻}\newline Seiberg--Witten & §9 の $\U(1)$ 束（Hopf）、§10 の $c_1$ と符号の規約、§6.6 の $\Lambda^+$、§8.8 の Hermite 接続。 & spin$^c$ 構造は第 17 巻で導入する。 \\
-\textbf{第 18 巻}\newline gerbe・twisted K & §5.7 の {\Cech}--de Rham の予告、§7.4 の $\Pic$ と $H^2$、§10 の整数性（$c_1$ が整数類）。 & gerbe は $H^3$ を分類する。第 12 巻の exact Courant 代数と合わせて読む。 \\
+\textbf{第2巻}\newline 複素多様体・Dolbeault & §1.5 複素構造 $J$、$V\otimes\C=V^{1,0}\oplus V^{0,1}$、Hermite 計量（第1成分で線形）。§4 の外微分が $\dd=\partial+\bar\partial$ と分解する枠組み。§3.9 Frobenius（$T^{0,1}$ の包合性は積分可能性の条件）。§7 の Hermite 計量、§8.8 の Hermite 接続。 & Newlander--Nirenberg は第2巻で主張する。複素版の Hodge 星は §6.2 の $\star$ を $\C$ 係数に拡張する。\emph{Chern 接続}（正則 Hermite 束の標準接続）と\emph{Kähler 計量}の定義は本巻では扱わず、第2巻で導入する（§8.8 の Hermite 接続と §9 の Hopf 束の例が準備になる）。 \\
+\textbf{第3巻}\newline 層・コホモロジー & §5.7 の {\Cech}--de Rham の予告。§7.4 の貼り合わせ関数（{\Cech} 1 コサイクル）と直線束の群 $\Pic$。§8.10 の平坦接続と局所系。§5.3 Mayer--Vietoris（{\Cech} 複体の最小の例）。 & 統合論文の超コホモロジー $\mathbb H^k$、一般化 Dolbeault コホモロジー（統合論文 定義 5）の土台。 \\
+\textbf{第4巻}\newline Riemann 面 & §10 の $\int c_1$ と次数、Gauss--Bonnet（$\int c_1(TS^2)=2$）、$\mathcal O(k)$。§5.4 写像度。§2.9 曲面の分類。 & Riemann--Roch（曲線版）の次数の符号は §10.3 で固定した規約を使う。 \\
+\textbf{第5巻}\newline Hodge 理論 & §6 全体（$\star$、$\delta$、$\Delta$、調和形式、Hodge 分解）。§5.5 Poincaré 双対。 & 双対性の型の主張（統合論文 定理 18 は一般化 Dolbeault の双対性）の古典版。 \\
+\textbf{第6巻}\newline 特性類・HRR & §10 全体（Chern 形式、超越公式、Whitney 和、$\ch$）。§9 主束、§7.7 の分類の予告。 & 統合論文 §2.1 の HRR、統合論文 定理 22（全 Euler 標数が $c_1(E)$ によらない）は HRR による。 \\
+\textbf{第7巻}\newline 楕円作用素 & §4 の de Rham 複体、§6 の $\Delta=\dd\delta+\delta\dd$、§8 の共変微分。微分作用素としての $\dd$、$\delta$。 & 統合論文 §2.2：一般化 Dolbeault 複体は楕円型複体（Gualtieri\tQ）。 \\
+\textbf{第8巻}\newline Atiyah--Singer & §10 の $\ch$、$\Td$ の予告と Gauss--Bonnet（$\chi$ の局所公式）。§6 の Hodge 理論。 & 指数公式の被積分形式は Chern--Weil 形式。 \\
+\textbf{第9巻}\newline 族の指数 & §7 の束、§8.10 の平坦接続（Gauss--Manin のモデル）、§9 主束。 & 統合論文 §8 の Gauss--Manin 束、平坦なシンプレクティックファイバー束。 \\
+\textbf{第10巻}\newline APS・b 計算 & §2.7 境界つき多様体、§4.7 Stokes（境界項）、§6 の Laplacian。 & 統合論文 §10 の指数予想（重み付き b 計算）は予想にとどまる。 \\
+\textbf{第11巻}\newline Lie 亜代数（Lie algebroid）・Poisson & §3.6 Lie 括弧、§3.8 Lie 代数、§3.9--§3.10 Frobenius と葉層（シンプレクティック葉の分解）、§4.9 シンプレクティック形式と Hamilton ベクトル場。§4.3--§4.4 の $\dd$、$\Lie$、$\iota$。 & 統合論文の記号表の括弧 $[a,b]_\sigma=\Lie_{\sigma^\sharp a}b-\Lie_{\sigma^\sharp b}a-\dd\sigma(a,b)$ は $\Lie$、$\dd$ だけで書かれている。 \\
+\textbf{第12巻}\newline 一般化複素幾何 & §1.4 $V\oplus V^*$ の内積 $\langle v+\xi,w+\eta\rangle=\frac12(\xi(w)+\eta(v))$、符号 $(n,n)$、最大イソトロピック部分空間、$B$ 変換 $e^B$（問~\ref{pr:A_pairB}、\ref{pr:A_pairmax}）。§1.5 $J$ と $V\otimes\C$。§3.6、§4.4 の $\Lie$、$\iota_X$、$\dd$：Courant 括弧 $[X+\xi,Y+\eta]=[X,Y]+\Lie_X\eta-\iota_Y\dd\xi$。§3.9 の Dirac 構造（包合性）。 & 統合論文 §2.2（一般化複素構造の定義、$\beta$ 変換）の記号表と同じ記号・係数 $\frac12$ を使った。 \\
+\textbf{第13巻}\newline 一般化正則束・Poisson 加群 & §8.1--§8.5 の接続・曲率・平坦性、§8.10 平坦接続と局所系、§8.4 の ODE と平行移動。 & 統合論文 定義 4、命題 6（一般化正則束 $=$ Poisson 加群）の「平坦 $A$-接続」は §8 の平坦接続の Lie 亜群版。 \\
+\textbf{第14巻}\newline 統合論文への案内 & 下表の対応。 & \\
+\textbf{第15巻}\newline Yang--Mills & §8（$\nabla=\dd+A$、$F$、Bianchi、ゲージ変換）、§9（主束、$\omega$、ゲージ群）、§10（$\tr F\wedge F$、Chern--Simons）、§6.6（$\Lambda^\pm$、（反）自己双対）、§6.2 の $\star$。 & $\int\tr(F\wedge F)$ は Chern 数（位相不変量）で、（反）自己双対方程式の下限を与える（§6.6、§10 の予告）。 \\
+\textbf{第16巻}\newline Donaldson & §10 の $c_2=\frac1{8\pi^2}\tr(F\wedge F)$（$\SU(2)$）、§9.5 ゲージ群、§6.6 の自己双対分解、§5 の Poincaré 双対と交叉形式。 & \\
+\textbf{第17巻}\newline Seiberg--Witten & §9 の $\U(1)$ 束（Hopf）、§10 の $c_1$ と符号の規約、§6.6 の $\Lambda^+$、§8.8 の Hermite 接続。 & spin$^c$ 構造は第17巻で導入する。 \\
+\textbf{第18巻}\newline gerbe・twisted K & §5.7 の {\Cech}--de Rham の予告、§7.4 の $\Pic$ と $H^2$、§10 の整数性（$c_1$ が整数類）。 & gerbe は $H^3$ を分類する。第12巻の exact Courant 代数と合わせて読む。 \\
 \bottomrule
 \end{longtable}
 \endgroup
@@ -96,14 +96,14 @@
 \endhead
 §2.2 一般化接束 $\mathbb T=T\oplus T^*$、内積 $\frac12(\xi(Y)+\eta(X))$、Courant 括弧 & §1.4（$V\oplus V^*$ の符号 $(n,n)$ の内積）、§3.6 と §4.4（括弧、$\Lie$、$\iota$、$\dd$）。 \\
 §2.2 一般化複素構造 $J$（$J^2=-1$、内積を保つ）、$+i$ 固有束 $L$（極大イソトロピック） & §1.5（$J$ と $V\otimes\C$）、§1.4（最大イソトロピック部分空間）。 \\
-§2.2 命題 3（$\beta$ 変換 $L_\sigma$） & §1.4 の $B$ 変換と最大イソトロピック部分空間の記述（問~\ref{pr:A_pairB}、\ref{pr:A_pairmax}）。$B$ 変換は $v+\xi\mapsto v+\xi+\iota_vB$ で $T^*$ 成分に足すが、$\beta$ 変換は $\xi\mapsto\sigma^\sharp\xi$ を $T$ 成分に足す双対版で、第 12 巻で扱う。 \\
-§2.2 定義 4、命題 6（Poisson 加群 $=$ 平坦 $A$-接続を持つ正則束） & §8.1（接続の Leibniz 則）、§8.5（曲率 $=0$ が平坦性）、§8.10。$A=(T^*)_\sigma$ は Lie 亜群（第 11 巻）で、アンカー $\sigma^\sharp$ を通して関数を微分する。 \\
-§2.3 定理 9（対数シンプレクティックなら対数的平坦接続、留数 $r_i$ は定数） & §8.10 の例（$\nabla=\dd+\lambda\,\dd z/z$、$\dd z/z$ は対数 1 形式でホロノミー $e^{-2\pi i\lambda}$）、問~\ref{pr:C_AB}。留数と $c_1$ の関係式の符号（統合論文 定理 9(c) の $c_1(E)=-\sum r_i[D_i]$）が §8 のホロノミーと §10 の規約 $c_1=\frac i{2\pi}F$ とどう整合するかは、第 13 巻で一般の場合を確認する\tQ。（最も単純な例では整合する：$\CP^1$ で枠 $e_0$（$U_0$）、$e_1$（$U_1$）に対し $\nabla e_0=r\,\dd z/z\,e_0$、$\nabla e_1=0$ とすると $e_0=z^re_1$（$r\in\Z$）で、§10.3 の巻き数の公式から $\int c_1=-r$。これは統合論文の $c_1=-\sum r_i[D_i]$（$D=\{0\}$）と一致する。） \\
+§2.2 命題 3（$\beta$ 変換 $L_\sigma$） & §1.4 の $B$ 変換と最大イソトロピック部分空間の記述（問~\ref{pr:A_pairB}、\ref{pr:A_pairmax}）。$B$ 変換は $v+\xi\mapsto v+\xi+\iota_vB$ で $T^*$ 成分に足すが、$\beta$ 変換は $\xi\mapsto\sigma^\sharp\xi$ を $T$ 成分に足す双対版で、第12巻で扱う。 \\
+§2.2 定義 4、命題 6（Poisson 加群 $=$ 平坦 $A$-接続を持つ正則束） & §8.1（接続の Leibniz 則）、§8.5（曲率 $=0$ が平坦性）、§8.10。$A=(T^*)_\sigma$ は Lie 亜群（第11巻）で、アンカー $\sigma^\sharp$ を通して関数を微分する。 \\
+§2.3 定理 9（対数シンプレクティックなら対数的平坦接続、留数 $r_i$ は定数） & §8.10 の例（$\nabla=\dd+\lambda\,\dd z/z$、$\dd z/z$ は対数 1 形式でホロノミー $e^{-2\pi i\lambda}$）、問~\ref{pr:C_AB}。留数と $c_1$ の関係式の符号（統合論文 定理 9(c) の $c_1(E)=-\sum r_i[D_i]$）が §8 のホロノミーと §10 の規約 $c_1=\frac i{2\pi}F$ とどう整合するかは、第13巻で一般の場合を確認する\tQ。（最も単純な例では整合する：$\CP^1$ で枠 $e_0$（$U_0$）、$e_1$（$U_1$）に対し $\nabla e_0=r\,\dd z/z\,e_0$、$\nabla e_1=0$ とすると $e_0=z^re_1$（$r\in\Z$）で、§10.3 の巻き数の公式から $\int c_1=-r$。これは統合論文の $c_1=-\sum r_i[D_i]$（$D=\{0\}$）と一致する。） \\
 §1.5 (i)(ii)、定理 25 など：局所系 $L_U$ のコホモロジー & §8.10 の「平坦接続 $\leftrightarrow$ $\pi_1$ の表現 $\leftrightarrow$ 局所系」、§5 の de Rham コホモロジーと Mayer--Vietoris。 \\
-§4 定理 22（全 Euler 標数 $(-1)^n\rk(E)\chi(X)$）、定理 25（対数 de Rham 複体の Euler 標数 $=\chi(U)$） & §5.6（Euler 標数）、§10.4（Gauss--Bonnet）、§10.5（Chern 形式の演算）。定理 22 は HRR を使うので、完全な理解には第 6 巻まで要る。 \\
-§3 定理 18（双対性） & §5.5 Poincaré 双対、§6.2 Hodge 星。Serre 双対（第 4--5 巻）の古典版。 \\
-§8 正則型、Gauss--Manin、平坦なシンプレクティックファイバー束 & §8.10 の平坦束（局所定数の貼り合わせ）、§4.9 のシンプレクティック形式。第 9 巻で Gauss--Manin を扱う。 \\
-§10 Riemann--Roch 型の公式、指数予想 & §10 の Chern--Weil 理論（$\ch$、$\Td$ の予告）、§6 の Hodge 理論。第 6、8、10 巻へ。 \\
+§4 定理 22（全 Euler 標数 $(-1)^n\rk(E)\chi(X)$）、定理 25（対数 de Rham 複体の Euler 標数 $=\chi(U)$） & §5.6（Euler 標数）、§10.4（Gauss--Bonnet）、§10.5（Chern 形式の演算）。定理 22 は HRR を使うので、完全な理解には第6巻まで要る。 \\
+§3 定理 18（双対性） & §5.5 Poincaré 双対、§6.2 Hodge 星。Serre 双対（第4--5巻）の古典版。 \\
+§8 正則型、Gauss--Manin、平坦なシンプレクティックファイバー束 & §8.10 の平坦束（局所定数の貼り合わせ）、§4.9 のシンプレクティック形式。第9巻で Gauss--Manin を扱う。 \\
+§10 Riemann--Roch 型の公式、指数予想 & §10 の Chern--Weil 理論（$\ch$、$\Td$ の予告）、§6 の Hodge 理論。第6、8、10巻へ。 \\
 \bottomrule
 \end{longtable}
 \endgroup
@@ -118,7 +118,7 @@
 \item Chern 形式 $c(F)=\det(I+\frac i{2\pi}F)$ は閉で、類は接続によらない。$\int_{\CP^1}c_1(\mathcal O(-1))=-1$、$\int_{S^2}c_1(TS^2)=2$（§10.2--§10.4）。
 \item $V\oplus V^*$ の内積と最大イソトロピック部分空間（§1.4）、Frobenius の定理（§3.9）。
 \end{enumerate}
-\textbf{本巻で扱わず、第 2 巻に送るもの。}正則ベクトル束の\emph{Chern 接続}（Hermite 計量と $\bar\partial$ 作用素から決まる接続。本巻では §9.4 の Hopf 束の接続の例で、$\mathcal O(-1)$ の射影接続がこれに当たる、と述べるにとどめた）と、\emph{Kähler 計量}の定義およびその Hodge 理論は第 2 巻で扱う。また、Euler 類・Pontryagin 類（実束の特性類）は §10 の予告にとどめ、第 6 巻で扱う。Lie 群・Lie 環の復習は §3.8 と §9.1 で足りるとして、本巻では追加しなかった。
+\textbf{本巻で扱わず、第2巻に送るもの。}正則ベクトル束の\emph{Chern 接続}（Hermite 計量と $\bar\partial$ 作用素から決まる接続。本巻では §9.4 の Hopf 束の接続の例で、$\mathcal O(-1)$ の射影接続がこれに当たる、と述べるにとどめた）と、\emph{Kähler 計量}の定義およびその Hodge 理論は第2巻で扱う。また、Euler 類・Pontryagin 類（実束の特性類）は §10 の予告にとどめ、第6巻で扱う。Lie 群・Lie 環の復習は §3.8 と §9.1 で足りるとして、本巻では追加しなかった。
 
 %--------------------------------------------------
 \clearpage
@@ -128,11 +128,11 @@
 \subsection*{多様体・微分形式・de Rham 理論}
 \begin{description}[leftmargin=2.2em,labelindent=0pt,itemsep=3pt]
 \item[{[Lee1]}] J.~M.~Lee, \emph{Introduction to Smooth Manifolds}, 2nd ed., GTM 218, Springer, 2013. 全 22 章（目次で確認）：1 多様体、4 沈め込み・はめ込み・埋め込み、5 部分多様体、6 Sard の定理、7 Lie 群、8 ベクトル場、9 積分曲線と流れ、10 ベクトル束、14 微分形式、15 向き、16 積分、17 de Rham コホモロジー、18 de Rham の定理、19 分布と葉層、21 商多様体、22 シンプレクティック多様体。付録 C（微積分）、D（微分方程式）。本巻 §1--§5 の標準的な参考書。
-\item[{[Lee2]}] J.~M.~Lee, \emph{Riemannian Manifolds: An Introduction to Curvature}, GTM 176, Springer, 1997（第 2 版は \emph{Introduction to Riemannian Manifolds}, 2018）。§6、§8.9 の計量・Levi-Civita 接続・曲率。章番号は\tQ。
-\item[{[Lee3]}] J.~M.~Lee, \emph{Introduction to Topological Manifolds}, 2nd ed., GTM 202, Springer, 2011. 曲面の分類（第 6 章）\tQ。
-\item[{[BT]}] R.~Bott, L.~W.~Tu, \emph{Differential Forms in Algebraic Topology}, GTM 82, Springer, 1982. 構成（目次で確認）：第 I 章 de Rham 理論（§1--§7：$\R^n$ 上・多様体上の de Rham 複体、Poincaré の補題、Mayer--Vietoris 列、向きと積分、Poincaré 双対、Thom 同型）、第 II 章 {\Cech}--de Rham 複体（§8--§13）、第 III 章 スペクトル系列（§14--§19）、第 IV 章 特性類（§20--§23：Chern 類、分裂原理、Pontrjagin 類、普遍束）。§5、§10 の補助。
-\item[{[Wa]}] F.~W.~Warner, \emph{Foundations of Differentiable Manifolds and Lie Groups}, GTM 94, Springer, 1983. 第 2 章 テンソルと微分形式、第 5 章 de Rham の定理、第 6 章 Hodge の定理（完全な証明）。章題は Springer の目次で確認：1 Manifolds、2 Tensors and Differential Forms、3 Lie Groups、4 Integration on Manifolds、5 Sheaves, Cohomology, and the de Rham Theorem、6 The Hodge Theorem。
-\item[{[Sp1]}] M.~Spivak, \emph{Calculus on Manifolds}, Benjamin, 1965. 第 2 章（微分、逆関数定理）、第 5 章（多様体上の積分、Stokes）。
+\item[{[Lee2]}] J.~M.~Lee, \emph{Riemannian Manifolds: An Introduction to Curvature}, GTM 176, Springer, 1997（第2版は \emph{Introduction to Riemannian Manifolds}, 2018）。§6、§8.9 の計量・Levi-Civita 接続・曲率。章番号は\tQ。
+\item[{[Lee3]}] J.~M.~Lee, \emph{Introduction to Topological Manifolds}, 2nd ed., GTM 202, Springer, 2011. 曲面の分類（第6章）\tQ。
+\item[{[BT]}] R.~Bott, L.~W.~Tu, \emph{Differential Forms in Algebraic Topology}, GTM 82, Springer, 1982. 構成（目次で確認）：第I章 de Rham 理論（§1--§7：$\R^n$ 上・多様体上の de Rham 複体、Poincaré の補題、Mayer--Vietoris 列、向きと積分、Poincaré 双対、Thom 同型）、第II章 {\Cech}--de Rham 複体（§8--§13）、第III章 スペクトル系列（§14--§19）、第IV章 特性類（§20--§23：Chern 類、分裂原理、Pontrjagin 類、普遍束）。§5、§10 の補助。
+\item[{[Wa]}] F.~W.~Warner, \emph{Foundations of Differentiable Manifolds and Lie Groups}, GTM 94, Springer, 1983. 第2章 テンソルと微分形式、第5章 de Rham の定理、第6章 Hodge の定理（完全な証明）。章題は Springer の目次で確認：1 Manifolds、2 Tensors and Differential Forms、3 Lie Groups、4 Integration on Manifolds、5 Sheaves, Cohomology, and the de Rham Theorem、6 The Hodge Theorem。
+\item[{[Sp1]}] M.~Spivak, \emph{Calculus on Manifolds}, Benjamin, 1965. 第2章（微分、逆関数定理）、第5章（多様体上の積分、Stokes）。
 \item[{[Sp2]}] M.~Spivak, \emph{A Comprehensive Introduction to Differential Geometry}, vol.~1--2, 3rd ed., Publish or Perish, 1999. 多様体、微分形式、接続と曲率の詳細な導入。
 \item[{[Tu1]}] L.~W.~Tu, \emph{An Introduction to Manifolds}, 2nd ed., Universitext, Springer, 2011. 入門的で丁寧。
 \item[{[MT]}] I.~Madsen, J.~Tornehave, \emph{From Calculus to Cohomology}, Cambridge Univ.\ Press, 1997. de Rham コホモロジーから特性類まで。
@@ -144,18 +144,18 @@
 
 \subsection*{ベクトル束・接続・特性類}
 \begin{description}[leftmargin=2.2em,labelindent=0pt,itemsep=3pt]
-\item[{[KN]}] S.~Kobayashi, K.~Nomizu, \emph{Foundations of Differential Geometry}, vol.~I, II, Wiley, 1963/1969. 第 I 巻 第 II 章 接続論（Ambrose--Singer の定理を含む）、第 II 巻 特性類の章。外積の規約（$\Alt$ 規約）が本書と異なる（§1.1）。章番号は\tQ。
+\item[{[KN]}] S.~Kobayashi, K.~Nomizu, \emph{Foundations of Differential Geometry}, vol.~I, II, Wiley, 1963/1969. 第I巻 第II章 接続論（Ambrose--Singer の定理を含む）、第II巻 特性類の章。外積の規約（$\Alt$ 規約）が本書と異なる（§1.1）。章番号は\tQ。
 \item[{[MS]}] J.~W.~Milnor, J.~D.~Stasheff, \emph{Characteristic Classes}, Annals of Math.\ Studies 76, Princeton Univ.\ Press, 1974. ベクトル束、分類空間（§5 付近）、Chern 類、付録 C（微分形式との関係）。節番号は\tQ。
 \item[{[Hu]}] D.~Husemoller, \emph{Fibre Bundles}, GTM 20, Springer. 束の分類。節番号は\tQ。
 \item[{[Na]}] M.~Nakahara, \emph{Geometry, Topology and Physics}, 2nd ed., IOP, 2003. 物理との対応（ゲージ理論、Chern--Simons）。規約が本書と異なる（$\nabla=\dd-iA$ など）。
 \item[{[Tu2]}] L.~W.~Tu, \emph{Differential Geometry: Connections, Curvature, and Characteristic Classes}, GTM 275, Springer, 2017. §8--§10 の標準的な参考書。
-\item[{[Hi]}] F.~Hirzebruch, \emph{Topological Methods in Algebraic Geometry}, 3rd ed., Springer, 1966. Chern 類と HRR（第 I 章）\tQ。
+\item[{[Hi]}] F.~Hirzebruch, \emph{Topological Methods in Algebraic Geometry}, 3rd ed., Springer, 1966. Chern 類と HRR（第I章）\tQ。
 \item[{[Pe]}] P.~Petersen, \emph{Riemannian Geometry}, GTM 171, Springer. §6 の Hodge 理論の補足。章番号は\tQ。
 \end{description}
 
 \subsection*{一般化幾何・統合論文（伏線の出典）}
 \begin{description}[leftmargin=2.2em,labelindent=0pt,itemsep=3pt]
-\item[{[Gu]}] M.~Gualtieri, \emph{Generalized complex geometry}, Ann.\ of Math.\ 174 (2011), 75--123; 博士論文 arXiv:math/0401221, 論文 arXiv:math/0703298。$V\oplus V^*$、Courant 括弧、一般化複素構造。詳細は第 12 巻で確認する\tQ。
+\item[{[Gu]}] M.~Gualtieri, \emph{Generalized complex geometry}, Ann.\ of Math.\ 174 (2011), 75--123; 博士論文 arXiv:math/0401221, 論文 arXiv:math/0703298。$V\oplus V^*$、Courant 括弧、一般化複素構造。詳細は第12巻で確認する\tQ。
 \item[{[Hit]}] N.~Hitchin, \emph{Generalized Calabi--Yau manifolds}, Q.~J.~Math.\ 54 (2003), arXiv:math/0209099。
 \item[{[統合論文]}]\raggedright 「一般化複素幾何の三種の神器へのアプローチ：正則 Poisson 構造の例から（統合論文）」、2026-11-22（本サイト、PDF：\texttt{generalized-geometry-poisson-unified-v1-ja.pdf}）。本巻の「橋渡し」の対応は、同論文の §1.3 の状態表と記号表に基づく。
 \end{description}
@@ -164,7 +164,7 @@
 \begin{itemize}[itemsep=2pt]
 \item $S^1,S^3,S^7$ の平行化可能性と、それ以外の球面が平行化可能でないこと：R.~Bott, J.~Milnor, \emph{On the parallelizability of the spheres}, Bull.\ AMS 64 (1958)；M.~Kervaire, \emph{Non-parallelizability of the $n$-sphere for $n>7$}, PNAS 44 (1958)。\tC
 \item $S^7$ の滑らかな構造が 28 個：J.~Milnor (1956)、M.~Kervaire--J.~Milnor, \emph{Groups of homotopy spheres I}, Ann.\ of Math.\ 77 (1963)。\tC
-\item Ambrose--Singer の定理（曲率とホロノミー代数）：[KN] 第 I 巻 第 II 章。\tC
+\item Ambrose--Singer の定理（曲率とホロノミー代数）：[KN] 第I巻 第II章。\tC
 \end{itemize}
 
 %--------------------------------------------------
@@ -173,7 +173,7 @@
 右端は主に導入された節。マクロの定義は本文の指定どおり（$\dd$、$\Lie$、$\iota$、$\star$ など）。
 \begingroup\small
 \renewcommand{\arraystretch}{1.22}
-\begin{longtable}{@{}p{5.0cm}p{8.3cm}p{1.5cm}@{}}
+\begin{longtable}{@{}p{4.7cm}p{8.0cm}>{\raggedright\arraybackslash}p{2.1cm}@{}}
 \toprule
 記号 & 意味 & 節 \\
 \midrule
@@ -185,7 +185,7 @@ $\alpha\wedge\beta$ & 外積（行列式規約。$\dd x^1\wedge\dd x^2(\partial_
 $\iota_X$ & 内部積 $(\iota_X\omega)(\cdots)=\omega(X,\cdots)$ & §1.3、§4.4 \\
 $\langle\ ,\ \rangle$ & $V\oplus V^*$ の内積 $\langle v+\xi,w+\eta\rangle=\frac12(\xi(w)+\eta(v))$、符号 $(n,n)$ & §1.4 \\
 $J$、$V^{1,0},V^{0,1}$ & 複素構造 $J^2=-1$ と $V\otimes\C$ の $\pm i$ 固有空間分解 & §1.5 \\
-$h$ & Hermite 計量（第 1 成分で線形） & §1.5、§7.6 \\
+$h$ & Hermite 計量（第1成分で線形） & §1.5、§7.6 \\
 $(U,\varphi)$、$(x^1,\dots,x^n)$ & 座標近傍、座標 & §2.2 \\
 $S^n,T^n,\RP^n,\CP^n$ & 球面、トーラス、実・複素射影空間 & §2.3 \\
 $\GL(n),\SO(n),\U(n),\SU(n)$ & 一般線形群、特殊直交群、ユニタリ群、特殊ユニタリ群 & §2.3 \\
@@ -214,16 +214,18 @@ $\mathcal H^k$ & 調和 $k$ 形式の空間 & §6.3 \\
 $\Lambda^\pm$ & $\R^4$ の自己双対・反自己双対 2 形式 & §6.6 \\
 $E\to M$、$E_p$、$\Gamma(E)$ & ベクトル束、ファイバー、切断の空間 & §7 \\
 $\varepsilon^r$ & 自明な階数 $r$ の束 & §7 \\
-$g_{\alpha\beta}$ & 貼り合わせ関数（$e_\beta=e_\alpha g_{\alpha\beta}$、コサイクル条件 $g_{\alpha\beta}g_{\beta\gamma}=g_{\alpha\gamma}$） & §7.1 \\
-$\Hom,\End,\Lambda^kE,E^*,E\oplus E',E\otimes E'$ & 束の構成 & §7.5 \\
-$\mathcal O(-1)$、$L_k$ & $\CP^1$ のタウトロジー束、$g_{10}=z^k$ の直線束（$L_1=\mathcal O(-1)$、$L_k=\mathcal O(-k)$） & §7.2、§10.3 \\
+$g_{\alpha\beta}$ & 貼り合わせ関数（$e_\beta=e_\alpha g_{\alpha\beta}$、成分 $(g_{\alpha\beta})^a{}_b$、コサイクル条件 $g_{\alpha\beta}g_{\beta\gamma}=g_{\alpha\gamma}$。$\alpha,\beta$ は被覆のラベル） & §7.1 \\
+$\Hom$、$\End$、$\Lambda^kE$、$E^*$、$E\oplus E'$、$E\otimes E'$ & 束の構成 & §7.5 \\
+$\mathcal O(-1)$、$L_k$ & $\CP^1$ のタウトロジー束、$g_{10}=z^k$ の直線束（$L_1=\mathcal O(-1)$、$L_k=\mathcal O(-k)$） & §7.2--7.3, §10.3 \\
 $\Pic(M)$ & 直線束の同型類のなす群 & §7.4 \\
-$\nabla$、$A$ & 接続、局所接続形式（$\nabla=\dd+A$、枠 $e$ について $\nabla e=eA$） & §8.1--8.2 \\
+$e=(e_1,\dots,e_r)$、$a,b,c$ & ベクトル束の局所枠と枠の添字（座標・接束の添字は $i,j,k$。行列の成分は上が行・下が列で段違いに書く：$A^a{}_b$） & §8.2 \\
+$\nabla$、$A$ & 接続、局所接続形式（$\nabla=\dd+A$。$\nabla e_b=e_a\,A^a{}_b$、すなわち $\nabla e=eA$） & §8.1--8.2 \\
 $A'=g^{-1}Ag+g^{-1}\dd g$ & ゲージ変換則（$e'=eg$） & §8.2 \\
 $P_\gamma$、$\Hol_p(\nabla)$ & 平行移動、ホロノミー群 & §8.4 \\
 $\dd_\nabla$ & 共変外微分 & §8.5 \\
-$F$ & 曲率 $F=\dd A+A\wedge A=\dd_\nabla^2\in\Om^2(\End E)$ & §8.5 \\
-$R$、$\Gamma^k_{ij}$ & Riemann 曲率、Christoffel 記号 & §8.9 \\
+$F$ & 曲率 $F=\dd A+A\wedge A=\dd_\nabla^2\in\Om^2(\End E)$、成分 $F^a{}_b=\dd A^a{}_b+A^a{}_c\wedge A^c{}_b$ & §8.5 \\
+$R$、$\Gamma^k{}_{ij}$ & Riemann 曲率、Christoffel 記号（$\nabla_{\partial_i}\partial_j=\Gamma^k{}_{ij}\partial_k$） & §8.9 \\
+$\theta^i$、$\omega^i{}_j$ & 正規直交余枠と Levi-Civita 接続の接続形式（$\theta^i(e_j)=\delta^i{}_j$、$\nabla e_j=e_i\,\omega^i{}_j$） & §8.9 \\
 $G$、$\mathfrak g$、$\Ad$ & Lie 群、Lie 環、随伴作用 & §9.1 \\
 $P\to M$ & 主 $G$ 束 & §9.2 \\
 $\Fr(E)$ & 枠束 & §9.2 \\

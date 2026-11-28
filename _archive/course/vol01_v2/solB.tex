@@ -68,7 +68,7 @@ $X\beta(Y,Z)-Y\beta(X,Z)+Z\beta(X,Y)-\beta([X,Y],Z)+\beta([X,Z],Y)-\beta([Y,Z],X
 \begin{soll}{B_canon}
 (a) $\pi\circ\sigma=\id_M$ より $\dd\pi\circ\dd\sigma=\id$。$(\sigma^*\lambda)_p(v)=\lambda_{\sigma(p)}(\dd\sigma\,v)=\sigma(p)\bigl(\dd\pi\,\dd\sigma\,v\bigr)=\sigma_p(v)$。座標では $\sigma=\sigma_i(x)\dd x^i$ は $\xi_i=\sigma_i(x)$ なる写像で、$\sigma^*(\xi_i\dd x^i)=\sigma_i\dd x^i$。
 (b) $\sigma^*\dd\lambda=\dd\sigma^*\lambda=\dd\sigma$（(D5)）。$\sigma:M\to\sigma(M)$ は微分同相なので、$\sigma(M)$ 上で $\omega$ の制限が $0$ $\iff\sigma^*\omega=0\iff\dd\sigma=0$。
-(c) $v=a^i\pa_{x^i}+b_i\pa_{\xi_i}$ に対し $\iota_v\omega=b_i\,\dd x^i-a^i\,\dd\xi_i$。これが $0$ なら $a=b=0$ だから $\omega$ は非退化。$\omega=\sum_i\dd\xi_i\wedge\dd x^i$ の各項（2形式）は互いに可換で $(\dd\xi_i\wedge\dd x^i)^2=0$ だから $\omega^n=n!\,\dd\xi_1\wedge\dd x^1\wedge\cdots\wedge\dd\xi_n\wedge\dd x^n$（$n!$ は項の並べ方の数）。これは至る所 $0$ でない。
+(c) $v=a^i\pa_{x^i}+b_i\pa_{\xi_i}$ に対し $\iota_v\omega=b_i\,\dd x^i-a^i\,\dd\xi_i$。これが $0$ なら $a=b=0$ だから $\omega$ は非退化。$\omega=\sum_i\dd\xi_i\wedge\dd x^i$ の各項（$2$ 形式）は互いに可換で $(\dd\xi_i\wedge\dd x^i)^2=0$ だから $\omega^n=n!\,\dd\xi_1\wedge\dd x^1\wedge\cdots\wedge\dd\xi_n\wedge\dd x^n$（$n!$ は項の並べ方の数）。これは至る所 $0$ でない。
 \end{soll}
 
 \subsection*{§5 の解答}
@@ -98,9 +98,9 @@ $H^0(T^2)=\R$（連結）なので $b_0$ の核は1次元、したがって $b_0
 \begin{soll}{B_Rk}
 $k=0$：$M_0=\R^2$ で $b_1=b_2=0$。$k\ge1$：$D$ を $p_k$ を中心とし他の $p_i$ を含まない開円板とすると $M_{k-1}=M_k\cup D$、$M_k\cap D=D\setminus\{p_k\}\simeq S^1$、$D$ は可縮。帰納法の仮定 $b_1(M_{k-1})=k-1$, $H^2(M_{k-1})=0$ のもとで MV を書く：
 \[
-H^0(M_k)\oplus H^0(D)\to H^0(D\setminus p_k)\to H^1(M_{k-1})\to H^1(M_k)\to H^1(D\setminus p_k)\to H^2(M_{k-1})=0 .
+H^0(M_k)\oplus H^0(D)\to H^0(D\setminus\{p_k\})\to H^1(M_{k-1})\to H^1(M_k)\to H^1(D\setminus\{p_k\})\to H^2(M_{k-1})=0 .
 \]
-$M_k$ は連結（平面から有限個の点を除いたもの）で、$H^0(M_k)\oplus H^0(D)=\R^2\to H^0(D\setminus p_k)=\R$ は $(a,b)\mapsto b-a$ で全射だから $H^0(D\setminus p_k)\to H^1(M_{k-1})$ は零写像。したがって $0\to H^1(M_{k-1})\to H^1(M_k)\to H^1(D\setminus p_k)=\R\to0$ が完全で $b_1(M_k)=b_1(M_{k-1})+1=k$。$H^2$：$H^2(M_{k-1})\to H^2(M_k)\oplus H^2(D)\to H^2(D\setminus p_k)$ の両端が $0$（$H^2(D\setminus p_k)=H^2(S^1)=0$）なので $H^2(M_k)=0$。
+$M_k$ は連結（平面から有限個の点を除いたもの）で、$H^0(M_k)\oplus H^0(D)=\R^2\to H^0(D\setminus\{p_k\})=\R$ は $(a,b)\mapsto b-a$ で全射だから $H^0(D\setminus\{p_k\})\to H^1(M_{k-1})$ は零写像。したがって $0\to H^1(M_{k-1})\to H^1(M_k)\to H^1(D\setminus\{p_k\})=\R\to0$ が完全で $b_1(M_k)=b_1(M_{k-1})+1=k$。$H^2$：$H^2(M_{k-1})\to H^2(M_k)\oplus H^2(D)\to H^2(D\setminus\{p_k\})$ の両端が $0$（$H^2(D\setminus\{p_k\})=H^2(S^1)=0$）なので $H^2(M_k)=0$。
 \end{soll}
 
 \begin{soll}{B_chi}
@@ -110,14 +110,14 @@ $M_k$ は連結（平面から有限個の点を除いたもの）で、$H^0(M_k
 \end{soll}
 
 \begin{soll}{B_degree}
-(a) $f_m^*\dd\theta=m\,\dd\theta$ なので $\int_{S^1}f_m^*\dd\theta=2\pi m=m\int_{S^1}\dd\theta$、$\deg f_m=m$。正則値 $1\in S^1$ の逆像は $m\ne0$ のとき $\{e^{2\pi ik/|m|}\}$ の $|m|$ 個の点で、各点で $\dd f_m=m\,\dd\theta$ は $m>0$ なら向きを保ち、$m<0$ なら逆にするので $\sum\varepsilon=\mathrm{sgn}(m)|m|=m$。$m=0$ は定数写像で逆像が空（$1$ は正則値）、$\deg=0$。
+(a) $f_m^*\dd\theta=m\,\dd\theta$ なので $\int_{S^1}f_m^*\dd\theta=2\pi m=m\int_{S^1}\dd\theta$、$\deg f_m=m$。正則値 $1\in S^1$ の逆像は $m\ne0$ のとき $\{e^{2\pi ik/|m|}\}$ の $|m|$ 個の点で、各点で $\dd f_m=m\,\dd\theta$ は $m>0$ なら向きを保ち、$m<0$ なら逆にするので $\sum\varepsilon=\Bsgn(m)|m|=m$。$m=0$ は定数写像で逆像が空（$1$ は正則値）、$\deg=0$。
 (b) $r_i$ は $S^n$ の自己微分同相で、$r_i^*$ は $\R^{n+1}$ の鏡映として $S^n$ の向きを逆にする（$\det=-1$）から $\deg r_i=-1$。$a=r_0\circ r_1\circ\cdots\circ r_n$ で $\deg$ は積に関して乗法的だから $\deg a=(-1)^{n+1}$。
 (c) $f(z)=z+1/z$。値 $0$ の逆像は $z^2+1=0$、$z=\pm i$（$z=0,\infty$ は $\infty$ に写るので含まれない）。$f'(z)=1-z^{-2}$、$f'(\pm i)=1-(-1)=2\ne0$ なので $0$ は正則値。$f$ は正則写像で、複素向きに関して $\dd f$ は向きを保つ（実 Jacobi 行列式 $|f'|^2>0$）から $\deg f=1+1=2$。
 \end{soll}
 
 \begin{soll}{B_brouwer}
-(a) $r$ が存在したとする。$\iota:S^1\hookrightarrow D^2$ とすると $r\circ\iota=\id_{S^1}$。$\alpha=r^*\dd\theta\in\Om^1(D^2)$ は $\dd\alpha=r^*\dd(\dd\theta)=0$ ($\dd\theta$ は閉)。Stokes：$\int_{S^1}\iota^*\alpha=\int_{D^2}\dd\alpha=0$。他方 $\iota^*\alpha=(r\circ\iota)^*\dd\theta=\dd\theta$ で $\int_{S^1}\dd\theta=2\pi$。矛盾。
-(b) 不動点がないとする。$u(x)=x-g(x)\ne0$ とし、$r(x)=x+\lambda(x)u(x)$（$\lambda\ge0$）を $|r(x)|=1$ をみたすようにとる：$\lambda=\dfrac{-x\cdot u+\sqrt{(x\cdot u)^2+|u|^2(1-|x|^2)}}{|u|^2}$。根号の中は正：$|x|<1$ ならば明らか、$|x|=1$ のとき $x\cdot u=1-x\cdot g(x)\ge0$ で、等号は $g(x)=x$ のときに限る（$|g(x)|\le1$ とコーシー・シュワルツ）から仮定により $x\cdot u>0$。よって $\lambda$ は滑らか。$|x|=1$ では $x\cdot u>0$ より $\lambda=0$、$r(x)=x$。これは (a) に矛盾する。
+(a) $r$ が存在したとする。$\iota:S^1\hookrightarrow D^2$ とすると $r\circ\iota=\id_{S^1}$。$\alpha=r^*\dd\theta\in\Om^1(D^2)$ は $\dd\alpha=r^*\dd(\dd\theta)=0$（$\dd\theta$ は閉）。Stokes：$\int_{S^1}\iota^*\alpha=\int_{D^2}\dd\alpha=0$。他方 $\iota^*\alpha=(r\circ\iota)^*\dd\theta=\dd\theta$ で $\int_{S^1}\dd\theta=2\pi$。矛盾。
+(b) 不動点がないとする。$u(x)=x-g(x)\ne0$ とし、$r(x)=x+\lambda(x)u(x)$（$\lambda\ge0$）を $|r(x)|=1$ をみたすようにとる：$\lambda=\dfrac{-x\cdot u+\sqrt{(x\cdot u)^2+|u|^2(1-|x|^2)}}{|u|^2}$。根号の中は正：$|x|<1$ ならば明らか、$|x|=1$ のとき $x\cdot u=1-x\cdot g(x)\ge0$ で、等号は $g(x)=x$ のときに限る（$|g(x)|\le1$ と Cauchy--Schwarz の不等式）から仮定により $x\cdot u>0$。よって $\lambda$ は滑らか。$|x|=1$ では $x\cdot u>0$ より $\lambda=0$、$r(x)=x$。これは (a) に矛盾する。
 \end{soll}
 
 
@@ -170,14 +170,14 @@ $M_k$ は連結（平面から有限個の点を除いたもの）で、$H^0(M_k
 \end{soll}
 
 \begin{soll}{B_conf}
-(a) $\tilde e^i=e^ue^i$ は $\tilde g$ の正の向きの正規直交余基底。命題~\ref{B:prop:star}(i) の $\star e^I=\Bsgn\,e^{I^c}$ を $\tilde g$ に適用して $\tilde\star\tilde e^I=\Bsgn\,\tilde e^{I^c}$。$\tilde e^I=e^{ku}e^I$, $\tilde e^{I^c}=e^{(n-k)u}e^{I^c}$ なので $e^{ku}\tilde\star e^I=\Bsgn\,e^{(n-k)u}e^{I^c}=e^{(n-k)u}\star e^I$、よって $\tilde\star e^I=e^{(n-2k)u}\star e^I$。
+(a) $\tilde e^i=e^ue^i$ は $\tilde g$ の正の向きの正規直交余基底。命題~\ref{B:prop:star}(i) の $\star e^I=\Bsgn(I,I^c)\,e^{I^c}$ を $\tilde g$ に適用して $\tilde\star\tilde e^I=\Bsgn(I,I^c)\,\tilde e^{I^c}$。$\tilde e^I=e^{ku}e^I$, $\tilde e^{I^c}=e^{(n-k)u}e^{I^c}$ なので $e^{ku}\tilde\star e^I=\Bsgn(I,I^c)\,e^{(n-k)u}e^{I^c}=e^{(n-k)u}\star e^I$、よって $\tilde\star e^I=e^{(n-2k)u}\star e^I$。
 (b) $n=2$, $k=1$：$\tilde\star\alpha=\star\alpha$（$e^{0}$）。$\delta=(-1)^{2(k+1)+1}\star\dd\star=-\star\dd\star$ で、$\tilde\star$ は $2$ 形式上 $e^{-2u}\star$ だから $\tilde\delta\alpha=-\tilde\star\dd\tilde\star\alpha=e^{-2u}\delta\alpha$。ゆえに $\tilde\delta\alpha=0\iff\delta\alpha=0$。閉性は計量によらない。Dirichlet エネルギー $\int\alpha\wedge\tilde\star\alpha=\int\alpha\wedge\star\alpha$。
 (c) $n=4$, $k=2$：$\tilde\star=e^{0}\star=\star$ なので $\star F=\pm F$ は計量の共形類にのみ依存。$n=3$, $k=1$：$\tilde\star F=e^{u}\star F$、$\dd(\tilde\star F)=e^u(\dd u\wedge\star F+\dd\star F)$ で、$\dd\star F=0$ が成り立っていても $\dd u\wedge\star F$ が一般に $0$ でないから、共形変換で方程式 $\dd\star F=0$ は保たれない。
 \end{soll}
 
 \begin{soll}{B_torus}
 (a) $\pa_y(2+\cos x\sin y)=\cos x\cos y=\pa_x(3+\sin x\cos y)$ で閉。$\omega=2\,\dd x+3\,\dd y+\dd(\sin x\sin y)$（$\dd(\sin x\sin y)=\cos x\sin y\,\dd x+\sin x\cos y\,\dd y$）。$\sin x\sin y$ の Fourier 係数に $m=0$ 項がなく、$h=\omega_0=2\,\dd x+3\,\dd y$（$\cos x\sin y$ 等の $m=0$ 成分は $0$）。
-(b) $\beta=\sin y\,\dd x=\frac1{2i}(e^{iy}-e^{-iy})\dd x$ で $\beta_0=0$、$m=(0,\pm1)$ の項だけ。$\iota_m\dd x=m_1=0$ だから $\alpha=0$。$\beta$ の公式で $m=(0,1)$：$\theta_m=\dd y$, $\omega_m=\frac1{2i}\dd x$、項は $\frac{i}{1}e^{iy}\dd y\wedge\frac{\dd x}{2i}=\frac12e^{iy}\dd y\wedge\dd x$。$m=(0,-1)$：$\theta_m=-\dd y$, $\omega_m=-\frac1{2i}\dd x$、項は $ie^{-iy}(-\dd y)\wedge(-\frac{\dd x}{2i})=\frac12e^{-iy}\dd y\wedge\dd x$。和 $\gamma=\cos y\,\dd y\wedge\dd x=-\cos y\,\dd x\wedge\dd y$。検算：$\gamma=g\,\dd x\wedge\dd y$（$g=-\cos y$）、$\delta\gamma=-\iota_{\pa_x}\pa_x\gamma-\iota_{\pa_y}\pa_y\gamma=-g_x\dd y+g_y\dd x=\sin y\,\dd x=\beta$ ✓。よって $\beta=0+\dd0+\delta\gamma$。
+(b) $\beta=\sin y\,\dd x=\frac1{2i}(e^{iy}-e^{-iy})\dd x$ で $\beta_0=0$、$m=(0,\pm1)$ の項だけ。$\iota_m\dd x=m^1=0$ だから $\alpha=0$。$\beta$ の公式で $m=(0,1)$：$\theta_m=\dd y$, $\omega_m=\frac1{2i}\dd x$、項は $\frac{i}{1}e^{iy}\dd y\wedge\frac{\dd x}{2i}=\frac12e^{iy}\dd y\wedge\dd x$。$m=(0,-1)$：$\theta_m=-\dd y$, $\omega_m=-\frac1{2i}\dd x$、項は $ie^{-iy}(-\dd y)\wedge(-\frac{\dd x}{2i})=\frac12e^{-iy}\dd y\wedge\dd x$。和 $\gamma=\cos y\,\dd y\wedge\dd x=-\cos y\,\dd x\wedge\dd y$。検算：$\gamma=g\,\dd x\wedge\dd y$（$g=-\cos y$）、$\delta\gamma=-\iota_{\pa_x}\pa_x\gamma-\iota_{\pa_y}\pa_y\gamma=-g_x\dd y+g_y\dd x=\sin y\,\dd x=\beta$ ✓。よって $\beta=0+\dd0+\delta\gamma$。
 (c) $\|h\|^2=\int(2^2+3^2)\,\dd x\dd y=13\cdot4\pi^2=52\pi^2$。$\|\dd(\sin x\sin y)\|^2=\int(\cos^2x\sin^2y+\sin^2x\cos^2y)\dd x\dd y=\pi\cdot\pi+\pi\cdot\pi=2\pi^2$、$h$ との交差項は $\int(2\cos x\sin y+3\sin x\cos y)=0$。$\|\omega\|^2=54\pi^2\ge52\pi^2=\|h\|^2$ ✓（系~\ref{B:cor:minim}）。
 \end{soll}
 

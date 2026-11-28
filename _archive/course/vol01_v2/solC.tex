@@ -3,23 +3,23 @@
 %==================================================
 \subsection*{§7 の解答}
 \begin{soll}{C_mobius}
-(a) 切断は組 $(\sigma_U,\sigma_V)$（$\sigma_U:U\to\R$, $\sigma_V:V\to\R$ 滑らか）で $U\cap V$ 上 $\sigma_U=g_{UV}\sigma_V$ をみたすもの。$W_1$ で $g_{UV}=+1$、$W_2$ で $-1$ なので、$W_1$ 上 $\sigma_U=\sigma_V$、$W_2$ 上 $\sigma_U=-\sigma_V$。今、切断 $s$ が至る所 $0$ でないと仮定する。$U$, $V$ は開区間（連結）で $\sigma_U,\sigma_V$ は連続で零にならないから、中間値の定理により各々一定の符号をもつ。$-s$ を考えることで $\sigma_U>0$ としてよい。$W_1\subset U\cap V$ 上で $\sigma_V=\sigma_U>0$、よって $\sigma_V>0$ （$V$ 全体で）。しかし $W_2$ 上では $\sigma_V=-\sigma_U<0$ で矛盾。したがって任意の切断は零点をもつ。
+(a) 切断は組 $(\sigma_U,\sigma_V)$（$\sigma_U:U\to\R$, $\sigma_V:V\to\R$ 滑らか）で $U\cap V$ 上 $\sigma_U=g_{UV}\sigma_V$ をみたすもの。$W_1$ で $g_{UV}=+1$、$W_2$ で $-1$ なので、$W_1$ 上 $\sigma_U=\sigma_V$、$W_2$ 上 $\sigma_U=-\sigma_V$。今、切断 $s$ が至る所 $0$ でないと仮定する。$U$, $V$ は開区間（連結）で $\sigma_U,\sigma_V$ は連続で零にならないから、中間値の定理により各々一定の符号をもつ。$-s$ を考えることで $\sigma_U>0$ としてよい。$W_1\subset U\cap V$ 上で $\sigma_V=\sigma_U>0$、よって $\sigma_V>0$（$V$ 全体で）。しかし $W_2$ 上では $\sigma_V=-\sigma_U<0$ で矛盾。したがって任意の切断は零点をもつ。
 (b) $L\otimes L$ の貼り合わせ関数は $g_{UV}^2=1$（両成分で）。$U$ の枠 $e_U$ と $V$ の枠 $e_V$ は $e_V=\pm e_U$ なので $e_V\otimes e_V=e_U\otimes e_U$ が $U\cap V$ 上で成り立ち、$U$ 上の $e_U\otimes e_U$ と $V$ 上の $e_V\otimes e_V$ が貼り合わさって、至る所 $0$ でない大域切断になる。命題~\ref{C:prop:trivial} により $L\otimes L$ は自明。
 \end{soll}
 
 \begin{soll}{C_taut}
-(a) $\CP^1$ の斉次座標 $[Z_0:Z_1]$、$U_0=\{Z_0\ne0\}$（$z=Z_1/Z_0$）、$U_1=\{Z_1\ne0\}$（$w=Z_0/Z_1$）。$\Phi_0([\ell],v)=([\ell],v_0)$, $\Phi_1([\ell],v)=([\ell],v_1)$（$v\in\ell$ の第 0, 1 成分）。逆写像は $\Phi_0^{-1}(z,a)=a\,(1,z)$、$\Phi_1^{-1}(w,b)=b\,(w,1)$。重なり $U_{01}$ 上、$\Phi_1\Phi_0^{-1}(z,a)=\Phi_1(a(1,z))=(\cdot,az)$ より $g_{10}(z)=z$。また $\Phi_0\Phi_1^{-1}(w,b)=(\cdot,bw)$ より $g_{01}=w=1/z$。(b) $\mathcal O(1)=\mathcal O(-1)^*$ の貼り合わせ関数は $(g^{-1})^T=1/g$（$1\times1$）：$g^{\mathcal O(1)}_{10}=1/z$, $g^{\mathcal O(1)}_{01}=z$。(c) $g_{ij}=Z_i/Z_j$ は $U_{ij}=\{Z_i\ne0,Z_j\ne0\}$ 上で意味をもち、$g_{ij}g_{jk}=\frac{Z_i}{Z_j}\frac{Z_j}{Z_k}=\frac{Z_i}{Z_k}=g_{ik}$。特に $g_{01}g_{12}g_{20}=\frac{Z_0}{Z_1}\frac{Z_1}{Z_2}\frac{Z_2}{Z_0}=1=g_{00}$。
+(a) $\CP^1$ の同次座標 $[Z_0:Z_1]$、$U_0=\{Z_0\ne0\}$（$z=Z_1/Z_0$）、$U_1=\{Z_1\ne0\}$（$w=Z_0/Z_1$）。$\Phi_0([\ell],v)=([\ell],v_0)$, $\Phi_1([\ell],v)=([\ell],v_1)$（$v\in\ell$ の第 0, 1 成分）。逆写像は $\Phi_0^{-1}(z,a)=a\,(1,z)$、$\Phi_1^{-1}(w,b)=b\,(w,1)$。重なり $U_{01}$ 上、$\Phi_1\Phi_0^{-1}(z,a)=\Phi_1(a(1,z))=(\cdot,az)$ より $g_{10}(z)=z$。また $\Phi_0\Phi_1^{-1}(w,b)=(\cdot,bw)$ より $g_{01}=w=1/z$。(b) $\mathcal O(1)=\mathcal O(-1)^*$ の貼り合わせ関数は $(g^{-1})^T=1/g$（$1\times1$）：$g^{\mathcal O(1)}_{10}=1/z$, $g^{\mathcal O(1)}_{01}=z$。(c) $g_{ij}=Z_i/Z_j$ は $U_{ij}=\{Z_i\ne0,Z_j\ne0\}$ 上で意味をもち、$g_{ij}g_{jk}=\frac{Z_i}{Z_j}\frac{Z_j}{Z_k}=\frac{Z_i}{Z_k}=g_{ik}$。特に $g_{01}g_{12}g_{20}=\frac{Z_0}{Z_1}\frac{Z_1}{Z_2}\frac{Z_2}{Z_0}=1=g_{00}$。
 \end{soll}
 
 \begin{soll}{C_cocycle}
 (a) $L_k\otimes L_m$ の貼り合わせ関数は $z^k\cdot z^m=z^{k+m}$（直線束のテンソル積は貼り合わせ関数の積）、一意性（定理~\ref{C:thm:glue}）により $L_k\otimes L_m\cong L_{k+m}$。$L_k^*$ の貼り合わせ関数は $(g^{-1})^T=z^{-k}$ なので $L_k^*\cong L_{-k}$。
-(b) 同型 $L_k\cong L_m$ があれば、\eqref{C:eq:cohom} より滑らかな $h_0:U_0=\C\to\C^\times$, $h_1:U_1\to\C^\times$ があって、重なり $\C^\times$ 上 $z^m=g'_{10}=h_1\,g_{10}\,h_0^{-1}=h_1(w)\,z^k\,h_0(z)^{-1}$。円 $C=\{|z|=1\}$（反時計回り）上での巻き数をとると、巻き数は積を和にするので $m=\mathrm{wind}(h_1|_C)+k-\mathrm{wind}(h_0|_C)$。$h_0$ は閉円板 $|z|\le1\subset U_0$ 全体で零にならず連続なので、写像 $s\mapsto h_0(sz)$ ($s\in[0,1]$) により $h_0|_C$ は定数ループにホモトピックで、巻き数 $0$。$h_1$ も閉円板 $\{|w|\le1\}\subset U_1$ 上で零にならないので、$C$（$w$ 平面では $|w|=1$ を時計回り）上の巻き数は $0$。したがって $m=k$。
+(b) 同型 $L_k\cong L_m$ があれば、\eqref{C:eq:cohom} より滑らかな $h_0:U_0=\C\to\C^\times$, $h_1:U_1\to\C^\times$ があって、重なり $\C^\times$ 上 $z^m=g'_{10}=h_1\,g_{10}\,h_0^{-1}=h_1(w)\,z^k\,h_0(z)^{-1}$。円 $C=\{|z|=1\}$（反時計回り）上での巻き数をとると、巻き数は積を和にするので $m=\mathrm{wind}(h_1|_C)+k-\mathrm{wind}(h_0|_C)$。$h_0$ は閉円板 $|z|\le1\subset U_0$ 全体で零にならず連続なので、写像 $s\mapsto h_0(sz)$（$s\in[0,1]$）により $h_0|_C$ は定数ループにホモトピックで、巻き数 $0$。$h_1$ も閉円板 $\{|w|\le1\}\subset U_1$ 上で零にならないので、$C$（$w$ 平面では $|w|=1$ を時計回り）上の巻き数は $0$。したがって $m=k$。
 \end{soll}
 
 
 \begin{soll}{C_TSn}
 (a) 各 $x\in S^n$ で $\R^{n+1}=T_xS^n\oplus\R x$（直交分解）。$N=\{(x,tx)\}$ は大域切断 $x\mapsto(x,x)$（至る所 $0$ でない）をもつので自明（命題~\ref{C:prop:trivial}）。$TS^n\to\varepsilon^{n+1}$ と $N\to\varepsilon^{n+1}$ の和 $TS^n\oplus N\to S^n\times\R^{n+1}$ はファイバーごとに同型で束の準同型なので（補題~\ref{C:lem:iso}）同型。よって $TS^n\oplus\varepsilon^1\cong\varepsilon^{n+1}$。
-(b) $\mathfrak g=T_eG$ の基底 $v_1,\dots,v_n$ をとり、左不変ベクトル場 $X_i(g)=(\dd L_g)_ev_i$（§3、滑らか）を定める。$\dd L_g:T_eG\to T_gG$ は同型なので $X_1(g),\dots,X_n(g)$ は $T_gG$ の基底、大域枠。命題~\ref{C:prop:trivial} より $TG$ は自明。$S^1\times S^1$, $\mathrm{SO}(3)$ は Lie 群。$\RP^3\cong\mathrm{SO}(3)$（微分同相）なので $T\RP^3\cong T\mathrm{SO}(3)$ も自明。
+(b) $\mathfrak g=T_eG$ の基底 $v_1,\dots,v_n$ をとり、左不変ベクトル場 $X_i(g)=(\dd L_g)_ev_i$（§3、滑らか）を定める。$\dd L_g:T_eG\to T_gG$ は同型なので $X_1(g),\dots,X_n(g)$ は $T_gG$ の基底、大域枠。命題~\ref{C:prop:trivial} より $TG$ は自明。$S^1\times S^1$, $\SO(3)$ は Lie 群。$\RP^3\cong\SO(3)$（微分同相）なので $T\RP^3\cong T\SO(3)$ も自明。
 \end{soll}
 
 
@@ -30,13 +30,13 @@
 
 \begin{soll}{C_clutch}
 (a) $g'=h_Ugh_V^{-1}$ とする。$h_U,h_V$ は零にならない連続関数で、$U,V$ は区間（連結）だから符号 $s_U,s_V\in\{\pm1\}$ が一定。各 $W_i$ 上で符号をとると $\varepsilon_i'=s_Us_V\varepsilon_i$。したがって $\varepsilon_1'\varepsilon_2'=(s_Us_V)^2\varepsilon_1\varepsilon_2=\varepsilon_1\varepsilon_2$。
-(b) 任意の実直線束は区間 $U,V$ 上で自明（区間は可縮）なので、上の形の貼り合わせ関数 $g$ で記述される。$h_V=\varepsilon_1$（定数）、$h_U=1$ で $g'=g\,\varepsilon_1$ とすると、$g'$ の符号は $W_1$ で $+1$、$W_2$ で $\varepsilon_1\varepsilon_2=:\varepsilon$。$g_0$ を「$W_1$ で $+1$、$W_2$ で $\varepsilon$」という定数の貼り合わせ関数（$\varepsilon=1$ なら自明束、$\varepsilon=-1$ なら Möbius 束）とすると、$p:=g'/g_0$ は $U\cap V$ 上の正値の滑らかな関数。$u=\log p$ とし、$U,V$ に従属する 1 の分割 $\rho_U,\rho_V$ で $a=\rho_Vu$（$\mathrm{supp}\rho_V\subset V$ なので $U\cap V$ の外へ $0$ で延長して $U$ 上の滑らかな関数）、$b=-\rho_Uu$（$V$ 上）とおくと、$U\cap V$ 上 $a-b=(\rho_V+\rho_U)u=u$。$h_U'=e^a$, $h_V'=e^b$ で $p=h_U'(h_V')^{-1}$、すなわち $g'=h_U'g_0(h_V')^{-1}$ なので $g'$ と $g_0$ はコホモローグで、束は $g_0$ に対応する束と同型。したがって同型類は $\varepsilon=+1$（自明束）か $\varepsilon=-1$（Möbius 束）。$\varepsilon_1\varepsilon_2$ は同型不変量（(a)）で 2 つの束で異なる値をとる（Möbius 束では $-1$）から、この 2 つは非同型。よって $S^1$ 上の実直線束の同型類は 2 つだけである。
+(b) 任意の実直線束は区間 $U,V$ 上で自明（区間は可縮）なので、上の形の貼り合わせ関数 $g$ で記述される。$h_V=\varepsilon_1$（定数）、$h_U=1$ で $g'=g\,\varepsilon_1$ とすると、$g'$ の符号は $W_1$ で $+1$、$W_2$ で $\varepsilon_1\varepsilon_2=:\varepsilon$。$g_0$ を「$W_1$ で $+1$、$W_2$ で $\varepsilon$」という定数の貼り合わせ関数（$\varepsilon=1$ なら自明束、$\varepsilon=-1$ なら Möbius 束）とすると、$p:=g'/g_0$ は $U\cap V$ 上の正値の滑らかな関数。$u=\log p$ とし、$U,V$ に従属する 1 の分割 $\rho_U,\rho_V$ で $a=\rho_Vu$（$\operatorname{supp}\rho_V\subset V$ なので $U\cap V$ の外へ $0$ で延長して $U$ 上の滑らかな関数）、$b=-\rho_Uu$（$V$ 上）とおくと、$U\cap V$ 上 $a-b=(\rho_V+\rho_U)u=u$。$h_U'=e^a$, $h_V'=e^b$ で $p=h_U'(h_V')^{-1}$、すなわち $g'=h_U'g_0(h_V')^{-1}$ なので $g'$ と $g_0$ はコホモローグで、束は $g_0$ に対応する束と同型。したがって同型類は $\varepsilon=+1$（自明束）か $\varepsilon=-1$（Möbius 束）。$\varepsilon_1\varepsilon_2$ は同型不変量（(a)）で 2 つの束で異なる値をとる（Möbius 束では $-1$）から、この 2 つは非同型。よって $S^1$ 上の実直線束の同型類は 2 つだけである。
 \end{soll}
 
 
 \subsection*{§8 の解答}
 \begin{soll}{C_gauge}
-(a) $\omega=\dd x\wedge\dd y$ とおく。$A_{12}=y\,\dd x$, $A_{21}=x\,\dd y$（他は $0$）。$\dd A=\begin{pmatrix}0&\dd y\wedge\dd x\\\dd x\wedge\dd y&0\end{pmatrix}=\begin{pmatrix}0&-\omega\\\omega&0\end{pmatrix}$。$A\wedge A$ は $(1,1)$ 成分 $A_{12}\wedge A_{21}=y\,\dd x\wedge x\,\dd y=xy\,\omega$、$(2,2)$ 成分 $A_{21}\wedge A_{12}=x\,\dd y\wedge y\,\dd x=-xy\,\omega$、非対角は $0$。よって
+(a) $\omega=\dd x\wedge\dd y$ とおく。$A^1{}_2=y\,\dd x$, $A^2{}_1=x\,\dd y$（他は $0$）。$\dd A=\begin{pmatrix}0&\dd y\wedge\dd x\\\dd x\wedge\dd y&0\end{pmatrix}=\begin{pmatrix}0&-\omega\\\omega&0\end{pmatrix}$。$A\wedge A$ は $(1,1)$ 成分 $A^1{}_2\wedge A^2{}_1=y\,\dd x\wedge x\,\dd y=xy\,\omega$、$(2,2)$ 成分 $A^2{}_1\wedge A^1{}_2=x\,\dd y\wedge y\,\dd x=-xy\,\omega$、非対角は $0$。よって
 \[
 F=\begin{pmatrix}xy\,\omega&-\omega\\\omega&-xy\,\omega\end{pmatrix}.
 \]
@@ -44,7 +44,7 @@ F=\begin{pmatrix}xy\,\omega&-\omega\\\omega&-xy\,\omega\end{pmatrix}.
 \[
 A'=\begin{pmatrix}-x^2\dd y&(y+1)\dd x-x^3\dd y\\x\,\dd y&x^2\dd y\end{pmatrix}.
 \]
-$F'$ の $(2,1)$ 成分：$\dd A'_{21}=\dd(x\,\dd y)=\omega$、$(A'\wedge A')_{21}=A'_{21}\wedge A'_{11}+A'_{22}\wedge A'_{21}=x\,\dd y\wedge(-x^2\dd y)+x^2\dd y\wedge x\,\dd y=0$。よって $F'_{21}=\omega$。一方 $Fg=\begin{pmatrix}xy\,\omega&x^2y\,\omega-\omega\\\omega&x\omega-xy\,\omega\end{pmatrix}$、$(g^{-1}Fg)_{21}=(Fg)_{21}=\omega$。一致。（他の成分も $g^{-1}Fg=\begin{pmatrix}(xy-x)\omega&(2x^2y-x^2-1)\omega\\\omega&(x-xy)\omega\end{pmatrix}$ で、計算機でも $F'=g^{-1}Fg$ を確認した。）
+$F'$ の $(2,1)$ 成分：$\dd A'^2{}_1=\dd(x\,\dd y)=\omega$、$(A'\wedge A')^2{}_1=A'^2{}_1\wedge A'^1{}_1+A'^2{}_2\wedge A'^2{}_1=x\,\dd y\wedge(-x^2\dd y)+x^2\dd y\wedge x\,\dd y=0$。よって $F'^2{}_1=\omega$。一方 $Fg=\begin{pmatrix}xy\,\omega&x^2y\,\omega-\omega\\\omega&x\omega-xy\,\omega\end{pmatrix}$、$(g^{-1}Fg)^2{}_1=(Fg)^2{}_1=\omega$（$g^{-1}$ の第 2 行は $(0,1)$）。一致。（他の成分も $g^{-1}Fg=\begin{pmatrix}(xy-x)\omega&(2x^2y-x^2-1)\omega\\\omega&(x-xy)\omega\end{pmatrix}$ で、計算機でも $F'=g^{-1}Fg$ を確認した。）
 (c) $\dd(g^{-1})=-g^{-1}\dd g\,g^{-1}$ を使う。$A'=g^{-1}Ag+g^{-1}\dd g$ について
 \begin{align*}
 \dd(g^{-1}Ag)&=-g^{-1}\dd g\,g^{-1}\wedge Ag+g^{-1}\dd A\,g-g^{-1}A\wedge\dd g,\qquad\dd(g^{-1}\dd g)=-g^{-1}\dd g\,g^{-1}\wedge\dd g,\\
@@ -54,24 +54,24 @@ A'\wedge A'&=g^{-1}(A\wedge A)g+g^{-1}A\wedge\dd g+g^{-1}\dd g\,g^{-1}\wedge Ag+
 \end{soll}
 
 \begin{soll}{C_curvcalc}
-$A_{11}=y\,\dd x$, $A_{12}=z\,\dd y$, $A_{21}=x\,\dd z$, $A_{22}=-y\,\dd x$。
+$A^1{}_1=y\,\dd x$, $A^1{}_2=z\,\dd y$, $A^2{}_1=x\,\dd z$, $A^2{}_2=-y\,\dd x$。
 $\dd A=\begin{pmatrix}\dd y\wedge\dd x&\dd z\wedge\dd y\\\dd x\wedge\dd z&-\dd y\wedge\dd x\end{pmatrix}$。
 $A\wedge A$ の成分：
-\par\noindent$(1,1)$: $A_{11}\wedge A_{11}+A_{12}\wedge A_{21}=z\,\dd y\wedge x\,\dd z=xz\,\dd y\wedge\dd z$。
-\par\noindent$(1,2)$: $A_{11}\wedge A_{12}+A_{12}\wedge A_{22}=yz\,\dd x\wedge\dd y-yz\,\dd y\wedge\dd x=2yz\,\dd x\wedge\dd y$。
-\par\noindent$(2,1)$: $A_{21}\wedge A_{11}+A_{22}\wedge A_{21}=xy\,\dd z\wedge\dd x-xy\,\dd x\wedge\dd z=2xy\,\dd z\wedge\dd x$。
-\par\noindent$(2,2)$: $A_{21}\wedge A_{12}+A_{22}\wedge A_{22}=xz\,\dd z\wedge\dd y=-xz\,\dd y\wedge\dd z$。
+\par\noindent$(1,1)$ 成分：$A^1{}_1\wedge A^1{}_1+A^1{}_2\wedge A^2{}_1=z\,\dd y\wedge x\,\dd z=xz\,\dd y\wedge\dd z$。
+\par\noindent$(1,2)$ 成分：$A^1{}_1\wedge A^1{}_2+A^1{}_2\wedge A^2{}_2=yz\,\dd x\wedge\dd y-yz\,\dd y\wedge\dd x=2yz\,\dd x\wedge\dd y$。
+\par\noindent$(2,1)$ 成分：$A^2{}_1\wedge A^1{}_1+A^2{}_2\wedge A^2{}_1=xy\,\dd z\wedge\dd x-xy\,\dd x\wedge\dd z=2xy\,\dd z\wedge\dd x$。
+\par\noindent$(2,2)$ 成分：$A^2{}_1\wedge A^1{}_2+A^2{}_2\wedge A^2{}_2=xz\,\dd z\wedge\dd y=-xz\,\dd y\wedge\dd z$。
 $\dd y\wedge\dd x=-\dd x\wedge\dd y$, $\dd z\wedge\dd y=-\dd y\wedge\dd z$, $\dd x\wedge\dd z=-\dd z\wedge\dd x$ を使って、$\omega_{xy}=\dd x\wedge\dd y$, $\omega_{yz}=\dd y\wedge\dd z$, $\omega_{zx}=\dd z\wedge\dd x$ とすると
 \[
 F=\begin{pmatrix}-\omega_{xy}+xz\,\omega_{yz}&-\omega_{yz}+2yz\,\omega_{xy}\\(2xy-1)\,\omega_{zx}&\omega_{xy}-xz\,\omega_{yz}\end{pmatrix}.
 \]
 Bianchi：$V=\dd x\wedge\dd y\wedge\dd z$ とすると $\dd\omega_{xy}=\dd\omega_{yz}=\dd\omega_{zx}=0$。
-$\dd F_{11}=z\,V$、$\dd F_{12}=2y\,V$、$\dd F_{21}=2x\,V$、$\dd F_{22}=-z\,V$（例えば $\dd(xz\,\omega_{yz})=z\,\dd x\wedge\dd y\wedge\dd z$, $\dd(2yz\,\omega_{xy})=2y\,\dd z\wedge\dd x\wedge\dd y=2yV$, $\dd((2xy-1)\omega_{zx})=2x\,\dd y\wedge\dd z\wedge\dd x=2xV$）。
-次に $(A\wedge F-F\wedge A)_{ij}=\sum_k(A_{ik}\wedge F_{kj}-F_{ik}\wedge A_{kj})$ を計算する。2 形式 $\omega_{xy},\omega_{yz},\omega_{zx}$ との 1 形式の積は $\dd x\wedge\omega_{yz}=\dd y\wedge\omega_{zx}=\dd z\wedge\omega_{xy}=V$ 以外は $0$、$\omega_{yz}\wedge\dd x=\omega_{zx}\wedge\dd y=\omega_{xy}\wedge\dd z=V$。
-\par\noindent$(1,1)$: $A_{11}\wedge F_{11}=y\,\dd x\wedge xz\,\omega_{yz}=xyzV$、$F_{11}\wedge A_{11}=xz\,\omega_{yz}\wedge y\,\dd x=xyzV$（差 $0$）；$A_{12}\wedge F_{21}=z\,\dd y\wedge(2xy-1)\omega_{zx}=z(2xy-1)V$；$F_{12}\wedge A_{21}=2yz\,\omega_{xy}\wedge x\,\dd z=2xyzV$。合計 $z(2xy-1)V-2xyzV=-zV$。$\dd F_{11}+(\ )=zV-zV=0$ ✓。
-\par\noindent$(1,2)$: $A_{11}\wedge F_{12}+A_{12}\wedge F_{22}-F_{11}\wedge A_{12}-F_{12}\wedge A_{22}$。$A_{11}\wedge F_{12}=y\,\dd x\wedge(-\omega_{yz})=-yV$；$A_{12}\wedge F_{22}=z\,\dd y\wedge(\omega_{xy}-xz\,\omega_{yz})=0$；$F_{11}\wedge A_{12}=(-\omega_{xy}+xz\,\omega_{yz})\wedge z\,\dd y=0$；$F_{12}\wedge A_{22}=(-\omega_{yz}+2yz\,\omega_{xy})\wedge(-y\,\dd x)=yV$。合計 $-yV-0-0-yV=-2yV$。$\dd F_{12}=2yV$ ✓。
-\par\noindent$(2,1)$: $A_{21}\wedge F_{11}+A_{22}\wedge F_{21}-F_{21}\wedge A_{11}-F_{22}\wedge A_{21}$。$A_{21}\wedge F_{11}=x\,\dd z\wedge(-\omega_{xy})=-xV$；$A_{22}\wedge F_{21}=-y\,\dd x\wedge(2xy-1)\omega_{zx}=0$；$F_{21}\wedge A_{11}=(2xy-1)\omega_{zx}\wedge y\,\dd x=0$；$F_{22}\wedge A_{21}=(\omega_{xy}-xz\,\omega_{yz})\wedge x\,\dd z=xV$。合計 $-xV-xV=-2xV$。$\dd F_{21}=2xV$ ✓。
-\par\noindent$(2,2)$: $A_{21}\wedge F_{12}+A_{22}\wedge F_{22}-F_{21}\wedge A_{12}-F_{22}\wedge A_{22}$。$A_{21}\wedge F_{12}=x\,\dd z\wedge2yz\,\omega_{xy}=2xyzV$ ... （$\dd z\wedge\omega_{xy}=V$、$\dd z\wedge(-\omega_{yz})=0$ なので）$=2xyzV$；$A_{22}\wedge F_{22}=-y\,\dd x\wedge(-xz\,\omega_{yz})=xyzV$；$F_{21}\wedge A_{12}=(2xy-1)\omega_{zx}\wedge z\,\dd y=z(2xy-1)V$；$F_{22}\wedge A_{22}=(-xz\,\omega_{yz})\wedge(-y\,\dd x)=xyzV$。合計 $2xyzV+xyzV-z(2xy-1)V-xyzV=zV$。$\dd F_{22}=-zV$ ✓。
+$\dd F^1{}_1=z\,V$、$\dd F^1{}_2=2y\,V$、$\dd F^2{}_1=2x\,V$、$\dd F^2{}_2=-z\,V$（例えば $\dd(xz\,\omega_{yz})=z\,\dd x\wedge\dd y\wedge\dd z$, $\dd(2yz\,\omega_{xy})=2y\,\dd z\wedge\dd x\wedge\dd y=2yV$, $\dd((2xy-1)\omega_{zx})=2x\,\dd y\wedge\dd z\wedge\dd x=2xV$）。
+次に $(A\wedge F-F\wedge A)^a{}_b=\sum_c(A^a{}_c\wedge F^c{}_b-F^a{}_c\wedge A^c{}_b)$ を計算する。2 形式 $\omega_{xy},\omega_{yz},\omega_{zx}$ との 1 形式の積は $\dd x\wedge\omega_{yz}=\dd y\wedge\omega_{zx}=\dd z\wedge\omega_{xy}=V$ 以外は $0$、$\omega_{yz}\wedge\dd x=\omega_{zx}\wedge\dd y=\omega_{xy}\wedge\dd z=V$。
+\par\noindent$(1,1)$ 成分：$A^1{}_1\wedge F^1{}_1=y\,\dd x\wedge xz\,\omega_{yz}=xyzV$、$F^1{}_1\wedge A^1{}_1=xz\,\omega_{yz}\wedge y\,\dd x=xyzV$（差 $0$）；$A^1{}_2\wedge F^2{}_1=z\,\dd y\wedge(2xy-1)\omega_{zx}=z(2xy-1)V$；$F^1{}_2\wedge A^2{}_1=2yz\,\omega_{xy}\wedge x\,\dd z=2xyzV$。合計 $z(2xy-1)V-2xyzV=-zV$。$\dd F^1{}_1+(\text{この合計})=zV-zV=0$ ✓。
+\par\noindent$(1,2)$ 成分：$A^1{}_1\wedge F^1{}_2+A^1{}_2\wedge F^2{}_2-F^1{}_1\wedge A^1{}_2-F^1{}_2\wedge A^2{}_2$。$A^1{}_1\wedge F^1{}_2=y\,\dd x\wedge(-\omega_{yz})=-yV$；$A^1{}_2\wedge F^2{}_2=z\,\dd y\wedge(\omega_{xy}-xz\,\omega_{yz})=0$；$F^1{}_1\wedge A^1{}_2=(-\omega_{xy}+xz\,\omega_{yz})\wedge z\,\dd y=0$；$F^1{}_2\wedge A^2{}_2=(-\omega_{yz}+2yz\,\omega_{xy})\wedge(-y\,\dd x)=yV$。合計 $-yV-0-0-yV=-2yV$。$\dd F^1{}_2=2yV$ ✓。
+\par\noindent$(2,1)$ 成分：$A^2{}_1\wedge F^1{}_1+A^2{}_2\wedge F^2{}_1-F^2{}_1\wedge A^1{}_1-F^2{}_2\wedge A^2{}_1$。$A^2{}_1\wedge F^1{}_1=x\,\dd z\wedge(-\omega_{xy})=-xV$；$A^2{}_2\wedge F^2{}_1=-y\,\dd x\wedge(2xy-1)\omega_{zx}=0$；$F^2{}_1\wedge A^1{}_1=(2xy-1)\omega_{zx}\wedge y\,\dd x=0$；$F^2{}_2\wedge A^2{}_1=(\omega_{xy}-xz\,\omega_{yz})\wedge x\,\dd z=xV$。合計 $-xV-xV=-2xV$。$\dd F^2{}_1=2xV$ ✓。
+\par\noindent$(2,2)$ 成分：$A^2{}_1\wedge F^1{}_2+A^2{}_2\wedge F^2{}_2-F^2{}_1\wedge A^1{}_2-F^2{}_2\wedge A^2{}_2$。$A^2{}_1\wedge F^1{}_2=x\,\dd z\wedge(-\omega_{yz}+2yz\,\omega_{xy})=2xyzV$（$\dd z\wedge\omega_{xy}=V$、$\dd z\wedge\omega_{yz}=0$ なので）；$A^2{}_2\wedge F^2{}_2=-y\,\dd x\wedge(-xz\,\omega_{yz})=xyzV$；$F^2{}_1\wedge A^1{}_2=(2xy-1)\omega_{zx}\wedge z\,\dd y=z(2xy-1)V$；$F^2{}_2\wedge A^2{}_2=(-xz\,\omega_{yz})\wedge(-y\,\dd x)=xyzV$。合計 $2xyzV+xyzV-z(2xy-1)V-xyzV=zV$。$\dd F^2{}_2=-zV$ ✓。
 以上 4 成分すべてで $\dd F+A\wedge F-F\wedge A=0$。
 \end{soll}
 
@@ -82,8 +82,8 @@ $\dd F_{11}=z\,V$、$\dd F_{12}=2y\,V$、$\dd F_{21}=2x\,V$、$\dd F_{22}=-z\,V$
 \end{soll}
 
 \begin{soll}{C_unitary}
-(a) $s=e\sigma$, $t=e\tau$ とし、$e$ は $h$ の正規直交枠、$h(s,t)=\sum_i\sigma^i\overline{\tau^i}=\tau^*\sigma$。$\dd h(s,t)=\dd\tau^*\,\sigma+\tau^*\dd\sigma$。一方 $h(\nabla s,t)+h(s,\nabla t)=\tau^*(\dd\sigma+A\sigma)+(\dd\tau+A\tau)^*\sigma=\tau^*\dd\sigma+\dd\tau^*\sigma+\tau^*(A+A^*)\sigma$。任意の $\sigma,\tau$ で等しいことは $A+A^*=0$ と同値。このとき $F^*=(\dd A)^*+(A\wedge A)^*=-\dd A-A\wedge A=-F$（$(A\wedge A)^*=-A^*\wedge A^*=-A\wedge A$：行列要素 $(A\wedge A)^*_{ij}=\overline{\sum_kA_{jk}\wedge A_{ki}}=\sum_k\bar A_{jk}\wedge\bar A_{ki}=-\sum_k\bar A_{ki}\wedge\bar A_{jk}=-(A^*\wedge A^*)_{ij}$）。
-(b) 一般の枠 $e$ で $H_{ij}=h(e_i,e_j)$。双線形性と Leibniz から、整合性は $s,t$ が枠の元のとき成り立てば十分。$\dd H_{ij}=h(\nabla e_i,e_j)+h(e_i,\nabla e_j)=\sum_kA^k{}_iH_{kj}+\sum_kH_{ik}\overline{A^k{}_j}$。行列で $\dd H=A^TH+H\bar A$。
+(a) $s=e\sigma$, $t=e\tau$ とし、$e$ は $h$ の正規直交枠、$h(s,t)=\sum_{a,b}\delta_{ab}\,\sigma^a\overline{\tau^b}=\tau^*\sigma$（正規直交枠なので $\delta$ を挟んで添字を揃えた）。$\dd h(s,t)=\dd\tau^*\,\sigma+\tau^*\dd\sigma$。一方 $h(\nabla s,t)+h(s,\nabla t)=\tau^*(\dd\sigma+A\sigma)+(\dd\tau+A\tau)^*\sigma=\tau^*\dd\sigma+\dd\tau^*\sigma+\tau^*(A+A^*)\sigma$。任意の $\sigma,\tau$ で等しいことは $A+A^*=0$ と同値。このとき $F^*=(\dd A)^*+(A\wedge A)^*=-\dd A-A\wedge A=-F$（$(A\wedge A)^*=-A^*\wedge A^*=-A\wedge A$：成分では $(A^*)^a{}_b=\overline{A^b{}_a}$ より $\bigl((A\wedge A)^*\bigr)^a{}_b=\overline{\sum_cA^b{}_c\wedge A^c{}_a}=\sum_c\overline{A^b{}_c}\wedge\overline{A^c{}_a}=-\sum_c\overline{A^c{}_a}\wedge\overline{A^b{}_c}=-(A^*\wedge A^*)^a{}_b$）。
+(b) 一般の枠 $e$ で $H_{ab}=h(e_a,e_b)$（計量の成分なので添字は 2 つとも下）。双線形性と Leibniz から、整合性は $s,t$ が枠の元のとき成り立てば十分。$\dd H_{ab}=h(\nabla e_a,e_b)+h(e_a,\nabla e_b)=\sum_cA^c{}_aH_{cb}+\sum_cH_{ac}\overline{A^c{}_b}$。行列で $\dd H=A^TH+H\bar A$。
 (c) 階数 1 で $A=\theta$, $H=h(e,e)>0$：$\dd H=\theta H+H\bar\theta=(\theta+\bar\theta)H$。
 \end{soll}
 
@@ -96,23 +96,23 @@ $k$ 形式の列 $\Phi$ に対し $\dd_\nabla^2(e\Phi)=e(\dd(\dd\Phi+A\wedge\Phi
 
 \begin{soll}{C_induced}
 (a) 枠 $e$, $e'$ に対し $\nabla(e\otimes e')=\theta\,e\otimes e'+e\otimes\theta'e'=(\theta+\theta')\,e\otimes e'$。接続形式は $\theta+\theta'$、曲率 $\dd(\theta+\theta')=F+F'$。双対：双対枠 $e^*$（$\langle e^*,e\rangle=1$）で $0=\dd\langle e^*,e\rangle=\langle\nabla e^*,e\rangle+\langle e^*,\nabla e\rangle=\langle\nabla e^*,e\rangle+\theta$ より $\nabla e^*=-\theta e^*$。曲率 $-\dd\theta=-F$。
-(b) $\nabla(e_1\wedge\cdots\wedge e_r)=\sum_je_1\wedge\cdots\wedge\nabla e_j\wedge\cdots\wedge e_r$、$\nabla e_j=\sum_ie_iA^i{}_j$ のうち $i=j$ 以外は 2 つの同じ $e_i$ が現れて $0$。よって $=\bigl(\sum_jA^j{}_j\bigr)e_1\wedge\cdots\wedge e_r=\tr A\cdot e_1\wedge\cdots\wedge e_r$。接続形式 $\tr A$、曲率 $\dd\tr A$。$\tr(A\wedge A)=\sum A^i{}_k\wedge A^k{}_i=-\sum A^k{}_i\wedge A^i{}_k=-\tr(A\wedge A)$ より $\tr(A\wedge A)=0$、よって $\tr F=\tr\dd A+\tr(A\wedge A)=\dd\tr A$。
+(b) $\nabla(e_1\wedge\cdots\wedge e_r)=\sum_be_1\wedge\cdots\wedge\nabla e_b\wedge\cdots\wedge e_r$、$\nabla e_b=\sum_ae_aA^a{}_b$ のうち $a=b$ 以外は 2 つの同じ $e_a$ が現れて $0$。よって $=\bigl(\sum_bA^b{}_b\bigr)e_1\wedge\cdots\wedge e_r=\tr A\cdot e_1\wedge\cdots\wedge e_r$。接続形式 $\tr A$、曲率 $\dd\tr A$。$\tr(A\wedge A)=\sum_{a,c}A^a{}_c\wedge A^c{}_a=-\sum_{a,c}A^c{}_a\wedge A^a{}_c=-\tr(A\wedge A)$ より $\tr(A\wedge A)=0$、よって $\tr F=\tr\dd A+\tr(A\wedge A)=\dd\tr A$。
 (c) $T\in\Gamma(\End E)$（枠で行列値関数 $T$）。$\nabla^{\End}T:=[\nabla,T]$ すなわち $(\nabla^{\End}T)s=\nabla(Ts)-T\nabla s$。$s=e\sigma$ で $\nabla(Ts)=e(\dd(T\sigma)+AT\sigma)$、$T\nabla s=e\,T(\dd\sigma+A\sigma)$。差は $e\,(\dd T+AT-TA)\sigma$。よって $\dd_\nabla T=\dd T+[A,T]$。曲率：$1$ 形式 $\Phi=\dd T+AT-TA$ に \eqref{C:eq:dnablaEnd}（$k=1$）を適用：$\dd\Phi+A\wedge\Phi+\Phi\wedge A$。
 $\dd\Phi=\dd A\,T-A\wedge\dd T-\dd T\wedge A-T\,\dd A$、$A\wedge\Phi=A\wedge\dd T+(A\wedge A)T-A\,T\,A$（最後は $A\wedge(TA)$）、$\Phi\wedge A=\dd T\wedge A+A\,T\,A-T(A\wedge A)$。和は $\dd A\,T-T\dd A+(A\wedge A)T-T(A\wedge A)=FT-TF=[F,T]$。
 \end{soll}
 
 \begin{soll}{C_LC}
-(a) $g_{rr}=1$, $g_{\theta\theta}=r^2$、逆 $g^{rr}=1$, $g^{\theta\theta}=r^{-2}$。$g$ の偏導関数で $0$ でないのは $\partial_rg_{\theta\theta}=2r$ のみ。$\Gamma^k_{ij}=\frac12g^{kl}(\partial_ig_{jl}+\partial_jg_{il}-\partial_lg_{ij})$ より：$\Gamma^r_{\theta\theta}=\frac12g^{rr}(-\partial_rg_{\theta\theta})=-r$、$\Gamma^\theta_{r\theta}=\Gamma^\theta_{\theta r}=\frac12g^{\theta\theta}\partial_rg_{\theta\theta}=\frac1r$、他は $0$。曲率：正規直交余枠 $\theta^1=\dd r$, $\theta^2=r\dd\theta$。$\dd\theta^1=0$, $\dd\theta^2=\dd r\wedge\dd\theta$。構造方程式 $\dd\theta^2=-\omega^2{}_1\wedge\theta^1$ は $\omega^2{}_1=\dd\theta$ で成り立つ（$-\dd\theta\wedge\dd r=\dd r\wedge\dd\theta$）、$\dd\theta^1=-\omega^1{}_2\wedge\theta^2=\dd\theta\wedge r\dd\theta=0$ ✓。$F^2{}_1=\dd\omega^2{}_1=\dd\dd\theta=0$。平坦（$K=0$）。確認：$e_2=\frac1r\partial_\theta$ で $\nabla_{e_2}e_2=e_1\omega^1{}_2(e_2)=-\frac1re_1$、座標では $\frac1{r^2}\Gamma^r_{\theta\theta}\partial_r=-\frac1r\partial_r$ ✓。
+(a) $g_{rr}=1$, $g_{\theta\theta}=r^2$、逆 $g^{rr}=1$, $g^{\theta\theta}=r^{-2}$。$g$ の偏導関数で $0$ でないのは $\partial_rg_{\theta\theta}=2r$ のみ。$\Gamma^k{}_{ij}=\frac12g^{kl}(\partial_ig_{jl}+\partial_jg_{il}-\partial_lg_{ij})$ より：$\Gamma^r{}_{\theta\theta}=\frac12g^{rr}(-\partial_rg_{\theta\theta})=-r$、$\Gamma^\theta{}_{r\theta}=\Gamma^\theta{}_{\theta r}=\frac12g^{\theta\theta}\partial_rg_{\theta\theta}=\frac1r$、他は $0$。曲率：正規直交余枠 $\theta^1=\dd r$, $\theta^2=r\dd\theta$。$\dd\theta^1=0$, $\dd\theta^2=\dd r\wedge\dd\theta$。構造方程式 $\dd\theta^2=-\omega^2{}_1\wedge\theta^1$ は $\omega^2{}_1=\dd\theta$ で成り立つ（$-\dd\theta\wedge\dd r=\dd r\wedge\dd\theta$）、$\dd\theta^1=-\omega^1{}_2\wedge\theta^2=\dd\theta\wedge r\dd\theta=0$ ✓。$F^2{}_1=\dd\omega^2{}_1=\dd\dd\theta=0$。平坦（$K=0$）。確認：$e_2=\frac1r\partial_\theta$ で $\nabla_{e_2}e_2=e_1\omega^1{}_2(e_2)=-\frac1re_1$、座標では $\frac1{r^2}\Gamma^r{}_{\theta\theta}\partial_r=-\frac1r\partial_r$ ✓。
 (b) $\theta^1=\dd x/y$, $\theta^2=\dd y/y$。$\dd\theta^1=-y^{-2}\dd y\wedge\dd x=y^{-2}\dd x\wedge\dd y=\theta^1\wedge\theta^2$、$\dd\theta^2=0$。$\omega:=\omega^1{}_2=-\omega^2{}_1=p\theta^1+q\theta^2$ とすると、$\dd\theta^1=-\omega^1{}_2\wedge\theta^2=-p\,\theta^1\wedge\theta^2$ より $-p=1$、$p=-1$。$\dd\theta^2=-\omega^2{}_1\wedge\theta^1=\omega\wedge\theta^1=q\,\theta^2\wedge\theta^1=0$ より $q=0$。したがって $\omega^1{}_2=-\theta^1=-\dd x/y$。$F^1{}_2=\dd\omega^1{}_2=-\dd(\dd x/y)=-\theta^1\wedge\theta^2$。\eqref{C:eq:Gauss} より $K=-1$。（Christoffel 記号からの数値微分でも $K=-1$ を確認した。）
 \end{soll}
 
 \begin{soll}{C_S2hol}
 (a) $\vartheta_0=\pi/3$, $\cos\vartheta_0=\tfrac12$。$\sigma(\varphi)=e^{-\varphi\cos\vartheta_0J}\sigma(0)$ より 1 周後は角 $-2\pi\cdot\frac12=-\pi$ の回転。北極側キャップの面積は $2\pi(1-\cos\vartheta_0)=\pi$。回転角 $-\pi$ と面積 $\pi$ は $2\pi$ を法として一致（$-\pi\equiv\pi$）。
-(b) 測地線に沿って、接ベクトル $\dot\gamma$ は平行（$\nabla_{\dot\gamma}\dot\gamma=0$）で、平行移動は内積を保つので、$\dot\gamma$ と平行移動されたベクトル $v$ のなす角は一定。$N$ で $v_0$ を経線 $\varphi=0$ の向き（$A$ に向かう向き、進行方向）にとる：角 $0$。$N\to A$ の間 $v=\dot\gamma$。$A$ で赤道に折れ曲がる際、ベクトル自身は変わらず、$v$ は赤道の進行方向と直角（南向き）。赤道上でその角は一定 $\pm\frac\pi2$ のまま、すなわち $v$ は南向き。$B$ から $N$ への経線上では進行方向は北向きで、$v$ は南向き、つまり進行方向と角 $\pi$。$N$ に着いたとき進行方向（経線 $\varphi=\alpha$ を北極に向かって進む向き）の逆、すなわち経線 $\varphi=\alpha$ を北極から遠ざかる向きを向く。出発時は経線 $\varphi=0$ を北極から遠ざかる向きだった。$\varphi=0$ と $\varphi=\alpha$ の経線のなす角は $\alpha$。したがって回転角は $\alpha$。面積：経度 $\alpha$ の「月形」（2 本の経線に挟まれた領域）の面積は $4\pi\cdot\frac\alpha{2\pi}=2\alpha$、三角形 $NAB$ はその北半分なので面積 $\alpha$。回転角 $=$ 面積 $=\int K\,\dd A$ で整合。
+(b) 測地線に沿って、接ベクトル $\dot\gamma$ は平行（$\nabla_{\dot\gamma}\dot\gamma=0$）で、平行移動は内積を保つので、$\dot\gamma$ と平行移動されたベクトル $v$ のなす角は一定。$N$ で $v_0$ を経線 $\varphi=0$ の向き（$A$ に向かう向き、進行方向）にとる：角 $0$。$N\to A$ の間 $v=\dot\gamma$。$A$ で赤道に折れ曲がる際、ベクトル自身は変わらず、$v$ は赤道の進行方向と直角（南向き）。赤道上でその角は一定 $\pm\frac\pi2$ のまま、すなわち $v$ は南向き。$B$ から $N$ への経線上では進行方向は北向きで、$v$ は南向き、つまり進行方向と角 $\pi$。$N$ に着いたとき進行方向（経線 $\varphi=\alpha$ を北極に向かって進む向き）の逆、すなわち経線 $\varphi=\alpha$ を北極から遠ざかる向きを向く。出発時は経線 $\varphi=0$ を北極から遠ざかる向きだった。$\varphi=0$ と $\varphi=\alpha$ の経線のなす角は $\alpha$。したがって回転角は $\alpha$。面積：経度 $\alpha$ の「月形」（2 本の経線に挟まれた領域）の面積は $4\pi\cdot\frac\alpha{2\pi}=2\alpha$、三角形 $NAB$ はその北半分なので面積 $\alpha$。回転角 $=$ 面積 $=\int K\,\mathrm{vol}_g$ で整合。
 \end{soll}
 
 \begin{soll}{C_flat}
-(a) $M$ が単連結で $\nabla$ が平坦とする。命題~\ref{C:prop:holrep}(a) により、平行移動 $P_\gamma:E_p\to E_x$ は $p$ から $x$ への曲線 $\gamma$ のとり方によらない（端点を止めて互いにホモトピック）。基点 $p$ の基底 $e(p)$ を固定して $e_j(x):=P_\gamma(e_j(p))$ と定める。$x$ の近傍 $U$ の平行枠 $f$（定理~\ref{C:thm:flat}）をとると $e(x)=f(x)C$ ($C$ は定数行列：$P_\gamma$ は平行枠を平行枠に写すので、$U$ の中では $e$ も平行で、$f$ との差は定数行列) なので、$e$ は滑らかな平行枠。大域枠だから $E$ は自明（命題~\ref{C:prop:trivial}）。
+(a) $M$ が単連結で $\nabla$ が平坦とする。命題~\ref{C:prop:holrep}(a) により、平行移動 $P_\gamma:E_p\to E_x$ は $p$ から $x$ への曲線 $\gamma$ のとり方によらない（端点を止めて互いにホモトピック）。基点 $p$ の基底 $e(p)$ を固定して $e_a(x):=P_\gamma(e_a(p))$ と定める。$x$ の近傍 $U$ の平行枠 $f$（定理~\ref{C:thm:flat}）をとると $e(x)=f(x)C$（$C$ は定数行列：$P_\gamma$ は平行枠を平行枠に写すので、$U$ の中では $e$ も平行で、$f$ との差は定数行列）なので、$e$ は滑らかな平行枠。大域枠だから $E$ は自明（命題~\ref{C:prop:trivial}）。
 (b) $L=\R^2/\Z$ の切断は $\sigma(t+1)=-\sigma(t)$ をみたす $\sigma:\R\to\R$。$\nabla s:=\dd\sigma$ は、$(\dd\sigma)(t+1)=-\dd\sigma(t)$ なので $L$ の切断に値をもつ 1 形式 $\nabla s$ を定め、Leibniz 則 $\nabla(fs)=\dd f\,\sigma+f\dd\sigma$ をみたす（$f$ は $S^1$ 上の関数）。局所的に $\dd$ だから $F=0$。ホロノミー：平行な切断（$\sigma$ 定数）を $t=0$ から $t=1$ にたどると、$[1,\sigma_0]=[0,-\sigma_0]$ なので、$[0,\sigma_0]\mapsto[0,-\sigma_0]$、$P_\gamma=-1$。$L$ は自明でない（問~\ref{pr:C_mobius}）が平坦。（平坦でホロノミーが自明でない例。）
 (c) $\langle[t,v],[t,v']\rangle=vv'$ は $(t,v)\mapsto(t+1,-v)$ で不変なので $L$ のファイバー計量を定める。$\dd(\sigma\sigma')=\dd\sigma\,\sigma'+\sigma\,\dd\sigma'$ なので $\nabla$ と整合。ホロノミー $-1\in\mathrm O(1)$ ✓。
 \end{soll}
@@ -125,7 +125,7 @@ $\dd\Phi=\dd A\,T-A\wedge\dd T-\dd T\wedge A-T\,\dd A$、$A\wedge\Phi=A\wedge\dd
 
 \subsection*{§9 の解答}
 \begin{soll}{C_hopf}
-(a) $|u|^2=\bar u_0u_0+\bar u_1u_1=1$ の外微分：$0=\sum(\dd\bar u_j\,u_j+\bar u_j\dd u_j)=\bar\omega+\omega$ ($\omega=\sum\bar u_j\dd u_j$)。$\omega+\bar\omega=0$ なので $\omega$ は純虚数値。$\xi=i\in\ug(1)$ に対し $\xi^*(u)=\frac{\dd}{\dd t}|_0ue^{it}=iu$、$\omega(\xi^*)=\sum\bar u_j(iu_j)=i|u|^2=i$。
+(a) $|u|^2=\bar u_0u_0+\bar u_1u_1=1$ の外微分：$0=\sum(\dd\bar u_j\,u_j+\bar u_j\dd u_j)=\bar\omega+\omega$（$\omega=\sum_j\bar u_j\dd u_j$）。$\omega+\bar\omega=0$ なので $\omega$ は純虚数値。$\xi=i\in\ug(1)$ に対し $\xi^*(u)=\frac{\dd}{\dd t}|_0ue^{it}=iu$、$\omega(\xi^*)=\sum\bar u_j(iu_j)=i|u|^2=i$。
 (b) $H=1+|z|^2$, $u=H^{-1/2}(1,z)$。$\dd u=H^{-1/2}(0,\dd z)+(1,z)\,\dd(H^{-1/2})$。$\bar u\cdot\dd u=H^{-1}\,\bar z\,\dd z+H^{-1/2}\dd(H^{-1/2})\,(1+|z|^2)=\frac{\bar z\dd z}H+H\cdot H^{-1/2}\bigl(-\tfrac12H^{-3/2}\dd H\bigr)=\frac{\bar z\dd z}H-\frac{\dd H}{2H}$。$\dd H=\bar z\dd z+z\dd\bar z$ を代入して
 \[
 s_0^*\omega=\frac{\bar z\dd z}H-\frac{\bar z\dd z+z\dd\bar z}{2H}=\frac{\bar z\dd z-z\dd\bar z}{2H}.
@@ -140,12 +140,12 @@ $z=re^{i\varphi}$ で $\frac{\dd z}z=\frac{\dd r}r+i\dd\varphi$、$\frac{\dd\bar
 
 
 \begin{soll}{C_frame}
-(a) 各 $x$ で、基底全体 $\Fr(E)_x$ に $\GL(r)$ が $e\mapsto eg$ で自由かつ推移的に作用する（2 つの基底は唯一の $g$ で結ばれる）。$E$ の局所枠 $e_\alpha$ に対し $\Psi_\alpha^{-1}(x,a)=(x,e_\alpha(x)a)$ は $U_\alpha\times\GL(r)\to\Fr(E)|_{U_\alpha}$ の同変な全単射で、$E$ の局所自明化を使えば $e_\alpha(x)a$ の成分は $(x,a)$ の滑らかな関数（行列の積）なので、$\Fr(E)$ に滑らかな構造を入れて $\Psi_\alpha$ は微分同相。局所切断 $s_\alpha=e_\alpha$ が局所枠。写像 $\Fr(E)\times\KK^r\to E$, $(e,v)\mapsto ev=\sum v^je_j$ は $(eg,v)\mapsto egv$、$(e,gv)\mapsto egv$ で $G$ の作用で不変なので $[e,v]\mapsto ev$ が定まる。各ファイバー $\Fr(E)_x\times_{\GL}\KK^r\to E_x$ は線形で、全単射（$w\in E_x$ に対し基底 $e$ を 1 つとって $v=e^{-1}w$ で $[e,v]\mapsto w$、$[e,v]$ は基底の取り方によらない）。局所自明化で行列の積として滑らか。したがって束の同型（補題~\ref{C:lem:iso}）。
+(a) 各 $x$ で、基底全体 $\Fr(E)_x$ に $\GL(r)$ が $e\mapsto eg$ で自由かつ推移的に作用する（2 つの基底は唯一の $g$ で結ばれる）。$E$ の局所枠 $e_\alpha$ に対し $\Psi_\alpha^{-1}(x,a)=(x,e_\alpha(x)a)$ は $U_\alpha\times\GL(r)\to\Fr(E)|_{U_\alpha}$ の同変な全単射で、$E$ の局所自明化を使えば $e_\alpha(x)a$ の成分は $(x,a)$ の滑らかな関数（行列の積）なので、$\Fr(E)$ に滑らかな構造を入れて $\Psi_\alpha$ は微分同相。局所切断 $s_\alpha=e_\alpha$ が局所枠。写像 $\Fr(E)\times\KK^r\to E$, $(e,v)\mapsto ev=\sum_av^ae_a$ は $(eg,v)\mapsto egv$、$(e,gv)\mapsto egv$ で $G$ の作用で不変なので $[e,v]\mapsto ev$ が定まる。各ファイバー $\Fr(E)_x\times_{\GL}\KK^r\to E_x$ は線形で、全単射（$w\in E_x$ に対し基底 $e$ を 1 つとって $v=e^{-1}w$ で $[e,v]\mapsto w$、$[e,v]$ は基底の取り方によらない）。局所自明化で行列の積として滑らか。したがって束の同型（補題~\ref{C:lem:iso}）。
 (b) 貼り合わせ関数は一般論（同伴束の項）より $\rho_k(g_{10})=(z/|z|)^k$。$S^3\times_{\rho_1}\C\cong\mathcal O(-1)=L_1$（例~\ref{C:ex:assoc}）。写像 $(S^3\times_{\rho_1}\C)^{\otimes k}\to S^3\times_{\rho_k}\C$, $[u,\lambda_1]\otimes\cdots\otimes[u,\lambda_k]\mapsto[u,\lambda_1\cdots\lambda_k]$（同じ $u$ を共通に選ぶ）は、$u\mapsto ue^{i\varphi}$ で左辺の表示が $[ue^{i\varphi},\lambda_j]=[u,e^{i\varphi}\lambda_j]$ と変わるとき右辺は $[ue^{i\varphi},\lambda_1\cdots\lambda_k]=[u,e^{ik\varphi}\lambda_1\cdots\lambda_k]$ となり、$e^{i\varphi}\lambda_j$ の積 $e^{ik\varphi}\prod\lambda_j$ と整合するので well-defined。各ファイバーで線形同型なので束の同型。したがって $S^3\times_{\rho_k}\C\cong L_1^{\otimes k}\cong L_k$（問~\ref{pr:C_cocycle}(a)）。$k<0$ は $\rho_{-k}$ の双対で $L_{-k}^*\cong L_k$。
 \end{soll}
 
 \begin{soll}{C_ggroup}
-(a) $A=ia$, $g=e^{i\phi}$ ($\phi$ は局所的な実関数)。$g^{-1}\dd g=i\,\dd\phi$、$A'=A+g^{-1}\dd g=i(a+\dd\phi)$、$a'=a+\dd\phi$。$F=\dd A=i\,\dd a$、$F'=i\,\dd a'=i\,\dd a+i\,\dd\dd\phi=F$。（大域的に $g:M\to\U(1)$ で $\phi$ が存在しなくても $g^{-1}\dd g$ は閉形式なので同じ。）
+(a) $A=ia$, $g=e^{i\phi}$（$\phi$ は局所的な実関数）。$g^{-1}\dd g=i\,\dd\phi$、$A'=A+g^{-1}\dd g=i(a+\dd\phi)$、$a'=a+\dd\phi$。$F=\dd A=i\,\dd a$、$F'=i\,\dd a'=i\,\dd a+i\,\dd\dd\phi=F$。（大域的に $g:M\to\U(1)$ で $\phi$ が存在しなくても $g^{-1}\dd g$ は閉形式なので同じ。）
 (b) 滑らかな $g:S^1\to\U(1)$ は、$g(\theta)=e^{i\phi(\theta)}$（$\phi:[0,2\pi]\to\R$ 滑らか、$\phi(2\pi)-\phi(0)=2\pi k$）と書け、$k$ は $g$ の写像度。2 つの写像 $g_0,g_1$ が同じ $k$ をもつなら、$\phi_t=(1-t)\phi_0+t\phi_1$ も $\phi_t(2\pi)-\phi_t(0)=2\pi k$ をみたし、$g_t=e^{i\phi_t}$ は $S^1$ 上の滑らかな写像の連続族。逆に写像度は連続変形で不変（整数値連続）。したがって連結成分は $k\in\Z$ で分類される。ホロノミー：$\exp(-\oint_{S^1}A)=\exp(-i\oint a)$、ゲージ変換後 $a'=a+g^{-1}\dd g/i=a+\dd\phi$、$\oint\dd\phi=2\pi k$、$\exp(-i(\oint a+2\pi k))=\exp(-i\oint a)$。不変。
 (c) $A'=g^{-1}Ag+g^{-1}\dd g$。$\sigma$ が $A$ に関する平行移動の方程式 $\dot\sigma=-A(\dot\gamma)\sigma$ の解なら、$\tilde\sigma=g^{-1}\sigma$ は $\dot{\tilde\sigma}=-g^{-1}\dot g\,g^{-1}\sigma+g^{-1}\dot\sigma=-g^{-1}\dot g\tilde\sigma-g^{-1}A(\dot\gamma)g\tilde\sigma=-A'(\dot\gamma)\tilde\sigma$（$A'(\dot\gamma)=g^{-1}A(\dot\gamma)g+g^{-1}\dot g$）。よって新しい接続の平行移動は $P'_\gamma=g(\gamma(1))^{-1}P_\gamma\,g(\gamma(0))$。閉曲線 $\gamma$（基点 $p$）では $P'_\gamma=g(p)^{-1}P_\gamma g(p)$、ホロノミーの共役類は不変（$G$ が可換なら不変）。
 \end{soll}
@@ -159,7 +159,7 @@ $z=re^{i\varphi}$ で $\frac{\dd z}z=\frac{\dd r}r+i\dd\varphi$、$\frac{\dd\bar
 
 \begin{soll}{C_chernops}
 (a) 問~\ref{pr:C_induced}(a) より $F_{L\otimes L'}=F+F'$ なので $c_1(L\otimes L',\nabla\otimes\nabla')=\frac i{2\pi}(F+F')=c_1(L,\nabla)+c_1(L',\nabla')$、類でも同様。$F_{L^*}=-F$ から $c_1(L^*)=-c_1(L)$。
-(b) $V=\C^r$ の基底 $v_i$、$\Lambda^2V$ の基底 $v_i\wedge v_j$（$i<j$）。$X$ を導分として作用させる：$X(v_i\wedge v_j)=Xv_i\wedge v_j+v_i\wedge Xv_j$。$v_i\wedge v_j$ 成分は $X_{ii}+X_{jj}$（$Xv_i=\sum_kX_{ki}v_k$ から $v_i\wedge v_j$ への寄与は $X_{ii}$、$v_j$ から $X_{jj}$）。トレースは $\sum_{i<j}(X_{ii}+X_{jj})=(r-1)\sum_iX_{ii}$（各 $i$ は $r-1$ 個の対 $\{i,j\}$ に現れる）。$\Lambda^2E$ の誘導接続の曲率は $F_{E\otimes E}=F\otimes1+1\otimes F$（\ref{C:ss:unitary} 節）の部分束 $\Lambda^2E\subset E\otimes E$ への制限、すなわち $F$ の導分としての作用。したがって $c_1(\Lambda^2E,\nabla)=\frac i{2\pi}(r-1)\tr F=(r-1)c_1(E,\nabla)$。（$r=3$ の数値確認も行った。）
+(b) $V=\C^r$ の基底 $v_a$、$\Lambda^2V$ の基底 $v_a\wedge v_b$（$a<b$）。$X$ を導分として作用させる：$X(v_a\wedge v_b)=Xv_a\wedge v_b+v_a\wedge Xv_b$。$v_a\wedge v_b$ 成分は $X^a{}_a+X^b{}_b$（$Xv_a=\sum_cv_cX^c{}_a$ から $v_a\wedge v_b$ への寄与は $X^a{}_a$、$v_b$ から $X^b{}_b$。ここでは $a,b$ を固定した番号として使い、和はとらない）。トレースは $\sum_{a<b}(X^a{}_a+X^b{}_b)=(r-1)\sum_aX^a{}_a$（各 $a$ は $r-1$ 個の対 $\{a,b\}$ に現れる）。$\Lambda^2E$ の誘導接続の曲率は $F_{E\otimes E}=F\otimes1+1\otimes F$（\ref{C:ss:unitary} 節）の部分束 $\Lambda^2E\subset E\otimes E$ への制限、すなわち $F$ の導分としての作用。したがって $c_1(\Lambda^2E,\nabla)=\frac i{2\pi}(r-1)\tr F=(r-1)c_1(E,\nabla)$。（$r=3$ の数値確認も行った。）
 (c) $F_{E\otimes E'}=F\otimes1+1\otimes F'$ で $\tr(F\otimes1)=r'\tr F$, $\tr(1\otimes F')=r\tr F'$。$c_1(E\otimes E')=\frac i{2\pi}(r'\tr F+r\tr F')=r'c_1(E)+rc_1(E')$。
 \end{soll}
 
@@ -176,12 +176,12 @@ $2\times2$ 行列 $X$（成分が可換環の元）に対し $\det X=\frac12((\t
 
 
 \begin{soll}{C_TS2}
-(a) $L_{-2}$ は $e_0=z^{-2}e_1'$。$T\CP^1$ は $e_0=-z^{-2}e_1$。$e_1':=-e_1$ とおくと $e_0=z^{-2}(-e_1)=z^{-2}e_1'$。つまり $U_1$ の枠を定数 $-1$ 倍するだけ（\eqref{C:eq:cohom} で $h_0=1$, $h_1=-1$）で同型 $T\CP^1\cong L_{-2}=\mathcal O(2)$。(b) $g=-z^{-2}$ の $C$ 上の巻き数は $-2$。定理~\ref{C:thm:winding} より $\int c_1(T\CP^1)=2=\chi(S^2)$。(c) $X$ が $S^2$ 上至る所 $0$ でないベクトル場だとする。$S^2$ に向きを入れ、$J$ を $+90^\circ$ 回転とすると $(TS^2,J)$ は複素直線束で、$X$ はその至る所 $0$ でない切断。命題~\ref{C:prop:trivial} より複素直線束として自明。自明束の Chern 数は $0$（自明束の Chern 形式は完全形式 $\frac i{2\pi}\dd\tr A$）。しかし Gauss--Bonnet と Chern--Weil から $\int c_1(TS^2)=\frac1{2\pi}\int K\,\mathrm{dvol}=2\ne0$ で矛盾。つまり「$c_1$ の積分が $0$ でない」ことが、「$J$ に関する複素線形な大域枠は存在しない」ことを示す。
+(a) $L_{-2}$ は $e_0=z^{-2}e_1'$。$T\CP^1$ は $e_0=-z^{-2}e_1$。$e_1':=-e_1$ とおくと $e_0=z^{-2}(-e_1)=z^{-2}e_1'$。つまり $U_1$ の枠を定数 $-1$ 倍するだけ（\eqref{C:eq:cohom} で $h_0=1$, $h_1=-1$）で同型 $T\CP^1\cong L_{-2}=\mathcal O(2)$。(b) $g=-z^{-2}$ の $C$ 上の巻き数は $-2$。定理~\ref{C:thm:winding} より $\int c_1(T\CP^1)=2=\chi(S^2)$。(c) $X$ が $S^2$ 上至る所 $0$ でないベクトル場だとする。$S^2$ に向きを入れ、$J$ を $+90^\circ$ 回転とすると $(TS^2,J)$ は複素直線束で、$X$ はその至る所 $0$ でない切断。命題~\ref{C:prop:trivial} より複素直線束として自明。自明束の Chern 数は $0$（自明束の Chern 形式は完全形式 $\frac i{2\pi}\dd\tr A$）。しかし Gauss--Bonnet と Chern--Weil から $\int c_1(TS^2)=\frac1{2\pi}\int K\,\mathrm{vol}_g=2\ne0$ で矛盾。つまり「$c_1$ の積分が $0$ でない」ことが、「$J$ に関する複素線形な大域枠は存在しない」ことを示す。
 \end{soll}
 
 \begin{soll}{C_CS}
 (a) $\dd\tr(A\wedge\dd A)=\tr(\dd A\wedge\dd A)$（$\dd(A\wedge\dd A)=\dd A\wedge\dd A-A\wedge\dd\dd A$）。形式のトレースの巡回則 $\tr(\alpha\wedge\beta)=(-1)^{|\alpha||\beta|}\tr(\beta\wedge\alpha)$ を使う。$\dd\tr(A^3)=\tr(\dd A\wedge A\wedge A)-\tr(A\wedge\dd A\wedge A)+\tr(A\wedge A\wedge\dd A)$。$\tr(A\wedge(\dd A\wedge A))=(-1)^{1\cdot3}\tr(\dd A\wedge A\wedge A)=-\tr(\dd A\wedge A\wedge A)$、$\tr((A\wedge A)\wedge\dd A)=(-1)^{2\cdot2}\tr(\dd A\wedge A\wedge A)=\tr(\dd A\wedge A\wedge A)$。よって $\dd\tr(A^3)=3\tr(\dd A\wedge A\wedge A)$。ゆえに $\dd\,\mathrm{CS}(A)=\tr(\dd A\wedge\dd A)+2\tr(\dd A\wedge A\wedge A)$。他方 $\tr(F\wedge F)=\tr(\dd A\wedge\dd A)+\tr(\dd A\wedge A\wedge A)+\tr(A\wedge A\wedge\dd A)+\tr(A^4)$、$\tr(A\wedge A\wedge\dd A)=\tr(\dd A\wedge A\wedge A)$、$\tr(A^4)=\tr(A\wedge A^3)=(-1)^{1\cdot3}\tr(A^3\wedge A)=-\tr(A^4)$ より $\tr(A^4)=0$。したがって $\tr(F\wedge F)=\tr(\dd A\wedge\dd A)+2\tr(\dd A\wedge A\wedge A)=\dd\,\mathrm{CS}(A)$。（$3\times3$ 以下の行列値のランダムな多項式係数の 1 形式 $A$（$\R^4$）で厳密に確認した。）
-(b) $\nabla_0=\dd$ ($A_0=0$)、$\nabla_1=\dd+A$、$a=A$。$\nabla_t=\dd+tA$、$F_t=t\,\dd A+t^2A\wedge A$。\eqref{C:eq:transg} で $k=2$：$T_2=2\int_0^1\tr\bigl(A\wedge(t\,\dd A+t^2A\wedge A)\bigr)\dd t=2\bigl(\tfrac12\tr(A\wedge\dd A)+\tfrac13\tr(A^3)\bigr)=\tr\bigl(A\wedge\dd A+\tfrac23A^3\bigr)=\mathrm{CS}(A)$。
+(b) $\nabla_0=\dd$（$A_0=0$）、$\nabla_1=\dd+A$、$a=A$。$\nabla_t=\dd+tA$、$F_t=t\,\dd A+t^2A\wedge A$。\eqref{C:eq:transg} で $k=2$：$T_2=2\int_0^1\tr\bigl(A\wedge(t\,\dd A+t^2A\wedge A)\bigr)\dd t=2\bigl(\tfrac12\tr(A\wedge\dd A)+\tfrac13\tr(A^3)\bigr)=\tr\bigl(A\wedge\dd A+\tfrac23A^3\bigr)=\mathrm{CS}(A)$。
 \end{soll}
 
 \begin{soll}{C_Dirac}
@@ -191,6 +191,6 @@ $2\times2$ 行列 $X$（成分が可換環の元）に対し $\det X=\frac12((\t
 
 \begin{soll}{C_Euler}
 (a) $0\to\mathcal O(-1)\to\varepsilon^2\to Q\to0$ と Whitney 公式（命題~\ref{C:prop:chernops}(b)）：$c(\mathcal O(-1))\,c(Q)=c(\varepsilon^2)=1$。$x:=c_1(\mathcal O(-1))$, $q:=c_1(Q)$ とすると $(1+x)(1+q)=1$ の 2 次の部分から $x+q=0$、$\int q=-\int x=1$。
-(b) 直線束のテンソル積と双対 (命題~\ref{C:prop:chernops}(c)) より $c_1(\Hom(\mathcal O(-1),Q))=c_1(\mathcal O(-1)^*\otimes Q)=-x+q$。積分は $1+1=2$。これは問~\ref{pr:C_TS2} の $\int c_1(T\CP^1)=2$ と一致する。
+(b) 直線束のテンソル積と双対（命題~\ref{C:prop:chernops}(c)）より $c_1(\Hom(\mathcal O(-1),Q))=c_1(\mathcal O(-1)^*\otimes Q)=-x+q$。積分は $1+1=2$。これは問~\ref{pr:C_TS2} の $\int c_1(T\CP^1)=2$ と一致する。
 (c) $\ell=[v]\in\CP^1$ での接ベクトルを $\ell_t=[v_t]$（$v_0=v$）の速度 $\frac{\dd}{\dd t}|_0\ell_t$ で表し、$\Phi(\dot\ell_0)\in\Hom(\ell,\C^2/\ell)$ を $\Phi(\dot\ell_0)(v)=\dot v_0\bmod\ell$ と定める。well-defined：同じ曲線 $\ell_t$ の別の代表 $v_t'=\lambda(t)v_t$（$\lambda(0)=1$）をとると $\dot v_0'=\dot\lambda(0)v+\dot v_0\equiv\dot v_0\bmod\ell$。$U_0$ の座標 $z$、$\ell=[(1,z)]$ で、接ベクトル $\tau\,\partial_z$（$\tau\in\C$）は曲線 $[(1,z+t\tau)]=[(1,z)+t(0,\tau)]$ の速度なので $\Phi(\tau\partial_z)(1,z)=\tau\,(0,1)\bmod\ell$。これは $\tau$ について $\C$ 線形で、$\tau\ne0$ なら $\Hom(\ell,\C^2/\ell)$（複素 1 次元）の非零元。したがって $\Phi$ は各ファイバーで $\C$ 線形同型。$z$ について滑らか（枠 $e_0=(1,z)$ と $\C^2/\ell$ の枠 $(0,1)\bmod\ell$ に関する表示は定数 $\tau$）。補題~\ref{C:lem:iso} により束の同型 $T\CP^1\cong\Hom(\mathcal O(-1),Q)$。
 \end{soll}
